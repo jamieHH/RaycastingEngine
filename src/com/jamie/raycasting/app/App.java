@@ -16,7 +16,7 @@ import com.jamie.raycasting.input.UserInputHandler;
 public class App extends Canvas implements Runnable {
 	private static final long serialVersionUID = 1L;
 	
-	public static final String TITLE = "raycasting_engine_pre_0.62";
+	protected static final String TITLE = "raycasting_engine_pre_0.62";
 	public static int width = 200;
 	public static int height = 150;
 	public static int scale = 4;
@@ -30,7 +30,7 @@ public class App extends Canvas implements Runnable {
 	private int[] pixels;
 	private int fps;
 	
-	public App() {
+	protected App() {
 		Dimension size = new Dimension(width * scale, height * scale);
 		setPreferredSize(size);
 		setMinimumSize(size);
@@ -46,7 +46,7 @@ public class App extends Canvas implements Runnable {
 		addFocusListener(input);
 	}
 	
-	public void start() {
+	protected void start() {
 		if (running) return;
 		running = true;
 		thread = new Thread(this);
@@ -65,41 +65,6 @@ public class App extends Canvas implements Runnable {
 			System.exit(0);
 		}
 	}
-	
-	
-	
-//	// Not sure about this one...
-//	public void run() {
-//		long previousTime = System.nanoTime();
-//		double ns = 1000000000.0 / 60.0;
-//		double delta = 0;
-//		int frames = 0; 
-//		int updates = 0;
-//		long timer = System.currentTimeMillis();
-//		requestFocus();
-//		while(running) { 
-//			long currentTime = System.nanoTime();
-//			delta += (currentTime - previousTime) / ns;
-//			previousTime = currentTime;
-//						
-//			if (delta >= 1) {
-//				tick();
-//				updates++;
-//				delta--;
-//			}
-//			
-//			render();
-//			frames++;
-//			
-//			while (System.currentTimeMillis() - timer > 1000) {
-//				timer += 1000;
-//				System.out.println("ups: " + updates + " | " + frames + " fps");
-//				fps = frames;
-//				frames = 0;
-//				updates = 0;
-//			}
-//		}
-//	}
 	
 	public void run() {
 		int frames = 0;

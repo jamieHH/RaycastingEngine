@@ -14,7 +14,6 @@ public class UserInputHandler extends InputHandler implements KeyListener, Focus
 	public boolean randomLevel, loadLevel, nextMob, pause;
 
 	public int disableKey;
-	public List<Object> disableKeys = new ArrayList<Object>();
 
 	public void tick() {
         if (pauseTime > 0) {

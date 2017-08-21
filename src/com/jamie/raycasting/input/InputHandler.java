@@ -1,7 +1,5 @@
 package com.jamie.raycasting.input;
 
-import java.util.ArrayList;
-
 public class InputHandler {
 	
 	public boolean forward, back, left, right, rotLeft, rotRight, crouch, run, action;
@@ -18,7 +16,6 @@ public class InputHandler {
         if (disableTime > 0) {
             disableTime--;
             disableInputs();
-            return;
         }
 	}
 

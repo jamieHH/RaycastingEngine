@@ -7,25 +7,27 @@ import com.jamie.raycasting.graphics.overlays.Overlay;
 
 public class MainMenu extends Overlay {
 
-    protected String[] options = {
+    private String[] options = {
             "New Game",
             "Load Game",
             "Options",
             "Quit"
     };
 
-    protected int optionIndex = 0;
+    private int optionIndex = 0;
 
     public void tick(Game game) {
         super.tick(game);
 
         if (game.userInput.forward) {
+            game.userInput.forward = false;
             game.pauseTime = 10;
             if ((optionIndex > 0)) {
                 optionIndex--;
             }
         }
         if (game.userInput.back) {
+            game.userInput.back = false;
             game.pauseTime = 10;
             if ((optionIndex < options.length - 1)) {
                 optionIndex++;
