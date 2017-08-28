@@ -14,7 +14,7 @@ import com.jamie.raycasting.app.RunGame;
 public class Launcher extends JFrame {
 	private static final long serialVersionUID = 1L;
 	
-	private boolean devAutoLaunch = false ; // Used to start the game without launch menu.
+	private boolean devAutoLaunch = true ; // Used to start the game without launch menu.
 	
 	protected JPanel window = new JPanel();
 	

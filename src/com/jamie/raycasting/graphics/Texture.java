@@ -81,7 +81,7 @@ public class Texture {
         }
     }
 
-	public static Render loadBitmap(String fileName) {
+	private static Render loadBitmap(String fileName) {
 		try {
 			BufferedImage img = ImageIO.read(new FileInputStream("res/" + fileName));
 			

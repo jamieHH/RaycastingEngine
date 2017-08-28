@@ -2,9 +2,7 @@ package com.jamie.raycasting.graphics;
 
 import com.jamie.raycasting.entities.Entity;
 import com.jamie.raycasting.entities.mobs.Mob;
-import com.jamie.raycasting.entities.mobs.Player;
 import com.jamie.raycasting.levels.blocks.*;
-import com.jamie.raycasting.levels.Level;
 
 public class Render3D extends Render {
 	

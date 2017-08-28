@@ -12,7 +12,6 @@ import com.jamie.raycasting.app.Game;
 import com.jamie.raycasting.entities.Entity;
 import com.jamie.raycasting.entities.mobs.Bat;
 import com.jamie.raycasting.entities.mobs.Mob;
-import com.jamie.raycasting.entities.mobs.Player;
 import com.jamie.raycasting.input.ArtificialInputHandler;
 import com.jamie.raycasting.levels.blocks.*;
 
@@ -22,8 +21,8 @@ public class Level {
 	public Block[] blocks;
 	public List<Entity> entities = new ArrayList<Entity>();
 
-	public int sizeX;
-	public int sizeZ;
+	private int sizeX;
+	private int sizeZ;
     public int levelHeight = 8;
 	
 	public double spawnX;
@@ -32,7 +31,7 @@ public class Level {
 	protected Game game;
 	public Mob player;
 
-	public void setupLevelClass(Game game, String name, int sizeX, int sizeZ, int[] pixels) {
+	private void setupLevelClass(Game game, String name, int sizeX, int sizeZ, int[] pixels) {
 		this.name = name;
 		this.game = game;
 		this.sizeX = sizeX;
@@ -108,7 +107,7 @@ public class Level {
 		return blocks[x + z * sizeX];
 	}
 	
-	protected Block getBlockByColour(int col) {
+	private Block getBlockByColour(int col) {
 		if (col == 0xFFFFFF) return new SolidBlock();
 		if (col == 0x808080) return new PillarBlock();
 		if (col == 0xC0C0C0) return new BarsBlock();
@@ -130,12 +129,12 @@ public class Level {
 		return new Block();
 	}
 
-    protected Mob getMobByColour(int col) {
+    private Mob getMobByColour(int col) {
         if (col == 0x804000) return new Bat(new ArtificialInputHandler());
         return null;
     }
 
-    protected void decorateBlock(int x, int z, Block block, int col) {
+    private void decorateBlock(int x, int z, Block block, int col) {
         if (col == 0xFFFF00) {
             spawnX = (x * 16) + 8;
             spawnZ = (z * 16) + 8;
@@ -218,7 +217,7 @@ public class Level {
         Random random = new Random();
         for (int z = 0; z < sizeZ; z++) {
             for (int x = 0; x < sizeX; x++) {
-                Block block = null;
+                Block block;
                 if (random.nextInt(4) == 0) {
                     block = new SolidBlock();
                 } else {
