@@ -13,7 +13,6 @@ public class Texture {
     public static final Render logo = loadBitmap("/textures/logo.png");
     public static final Render sky = new Render(400, 150);
 
-
     // surfaces
 	public static final Render floor = loadBitmap("/textures/floor.png");
 	public static final Render wetFloor = loadBitmap("/textures/wetFloor.png");

@@ -55,7 +55,7 @@ public class Render3D extends Render {
         renderDistanceLimiter();
 	}
 
-    protected void floor() {
+    private void floor() {
         for (int y = 0; y < height; y++) {
             double yDist = (y - height / 2.0) / height;
 
@@ -97,7 +97,7 @@ public class Render3D extends Render {
         }
     }
 	
-	protected void renderSprite(double x, double y, double z, Render tex) {
+	private void renderSprite(double x, double y, double z, Render tex) {
 		double xc = (x - displacedCamX) * 2.0;
 		double yc = (-y - displacedCamY) * 2.0;
 		double zc = (z - displacedCamZ) * 2.0;
@@ -149,7 +149,7 @@ public class Render3D extends Render {
 	}
 
 	
-	protected void renderWall(double xLeft, double xRight, double zLeft, double zRight, double yHeight, Render texture) {
+	private void renderWall(double xLeft, double xRight, double zLeft, double zRight, double yHeight, Render texture) {
 		double xcLeft = (xLeft - displacedCamX) * 2;
 		double zcLeft = (zLeft - displacedCamZ) * 2;
 
@@ -246,7 +246,7 @@ public class Render3D extends Render {
 		}
 	}
 	
-	protected void renderSprites() {
+	private void renderSprites() {
         for (int xBlock = xBlockStart; xBlock <= xBlockEnd; xBlock++) {
             for (int zBlock = zBlockStart; zBlock <= zBlockEnd; zBlock++) {
                 Block block = p.level.getBlock(xBlock, zBlock);
@@ -267,7 +267,7 @@ public class Render3D extends Render {
         }
 	}
 	
-	protected void renderWalls() {
+	private void renderWalls() {
         for (int xBlock = xBlockStart; xBlock <= xBlockEnd; xBlock++) {
             for (int zBlock = zBlockStart; zBlock <= zBlockEnd; zBlock++) {
                 Block block = p.level.getBlock(xBlock, zBlock);
@@ -309,7 +309,7 @@ public class Render3D extends Render {
 		}
 	}
 	
-	protected void renderDistanceLimiter() {
+	private void renderDistanceLimiter() {
 	    // TODO: (p.viewDist) should control the distance limit and all linked attributes
 //        int renderDist = p.viewDist;
         int renderDist = 4096;

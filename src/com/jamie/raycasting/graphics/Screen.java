@@ -25,23 +25,23 @@ public class Screen extends Render {
 
 	public Screen(int width, int height, Game game) {
 		super(width, height);
-
 		p = game.player;
 
         // 3D render
 		render = new Render3D(width, height - (height / 8));
 
-		// HUD
+        equipedItem = Texture.screenSpear0;
+
+        // HUD
         hudBar = new Render(width, height / 8);
-        for (int i = 0; i < hudBar.width * hudBar.height; i++) {
-            if (i < (hudBar.width * hudBar.height) - ((hudBar.width * hudBar.height) - hudBar.width)) {
+        for (int i = 0; i < hudBar.pixels.length; i++) {
+            if (i < (hudBar.pixels.length) - ((hudBar.pixels.length) - hudBar.width)) {
                 hudBar.pixels[i] = 0x404040;
             } else {
                 hudBar.pixels[i] = 0x606060;
             }
         }
 
-        equipedItem = Texture.screenSpear0;
 
         // HUD Items
         healthBarIcon = new Render(6, 4);
@@ -51,7 +51,7 @@ public class Screen extends Render {
         }
 
         healthBarBorder = new Render(32, 4);
-        for (int i = 0; i < healthBarBorder.width * healthBarBorder.height; i++) {
+        for (int i = 0; i < healthBarBorder.pixels.length; i++) {
             healthBarBorder.pixels[i] = 0x808080;
         }
 
@@ -65,7 +65,7 @@ public class Screen extends Render {
 		int pBannerXSt = menuBackground.width * (int) (menuBackground.height * 0.2);
 		int pBannerXEnd = menuBackground.width * (int) (menuBackground.height * 0.8);
 
-        for (int i = 0; i < menuBackground.width * menuBackground.height; i++) {
+        for (int i = 0; i < menuBackground.pixels.length; i++) {
             if (i >= pBannerXSt && i < pBannerXSt + menuBackground.width) {
                 menuBackground.pixels[i] = 0x606060;
             } else if (i >= pBannerXSt + menuBackground.width && i < (pBannerXEnd - menuBackground.width)) {
@@ -103,7 +103,7 @@ public class Screen extends Render {
 
         double healthBarWidth = ((double) p.health / (double) p.maxHealth) * (double) healthBar.width;
 
-        for (int i = 0; i < healthBar.width * healthBar.height; i++) {
+        for (int i = 0; i < healthBar.pixels.length; i++) {
             if (i < healthBarWidth || (i >= healthBar.width && i < (healthBarWidth + healthBar.width))) {
                 healthBar.pixels[i] = 0xF00000;
             } else {
@@ -117,7 +117,7 @@ public class Screen extends Render {
 
         if (p.damageTime >= 0) {
             double percentage = ((p.damageTime) / 60.0);
-            for (int i = 0; i < viewPunch.width * viewPunch.height; i++) {
+            for (int i = 0; i < viewPunch.pixels.length; i++) {
                 if (random.nextInt(viewPunch.width * viewPunch.height) < ((percentage / 2) * (viewPunch.width * viewPunch.height))) {
                     if (random.nextBoolean()) {
                         viewPunch.pixels[i] = 0x101010;
@@ -131,7 +131,6 @@ public class Screen extends Render {
             draw(viewPunch, 0, 0);
         }
 
-        draw(equipedItem, 0, render.height - equipedItem.height);
-        // TODO: Figure out why textures have negative hex values
+//        draw(equipedItem, 0, render.height - equipedItem.height);
     }
 }
