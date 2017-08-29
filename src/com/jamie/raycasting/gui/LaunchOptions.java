@@ -127,8 +127,7 @@ public class LaunchOptions extends Launcher {
 		
 		OK.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setGameLaunchRes();
-				setGameLaunchScale();
+				setGameLaunchOptions();
 				dispose();
 				new Launcher(0);
 			}
@@ -151,7 +150,7 @@ public class LaunchOptions extends Launcher {
         window.add(OK);
 	}
 	
-	public void setGameLaunchRes() {
+	public void setGameLaunchOptions() {
 		if (aspectRatio.getSelectedItem() == "4:3") {
 			App.width = resolutions4x3[resolution.getSelectedIndex()][0];
 			App.height = resolutions4x3[resolution.getSelectedIndex()][1];
@@ -159,9 +158,7 @@ public class LaunchOptions extends Launcher {
 			App.width = resolutions16x9[resolution.getSelectedIndex()][0];
 			App.height = resolutions16x9[resolution.getSelectedIndex()][1];
 		}
-	}
-	
-	public void setGameLaunchScale() {
+
 		App.scale = scales[scale.getSelectedIndex()];
 	}
 }

@@ -90,53 +90,54 @@ public class Render3D extends Render {
                     tex = block.ceilTex;
                 }
 
-                pixels[x + y * width] = tex.pixels[(xTexture & 15) + (zTexture & 15) * 16];
+//                pixels[x + y * width] = tex.pixels[(xTexture & 15) + (zTexture & 15) * 16];
+                pixels[x + y * width] = 0xFFFFFF;
 
                 zBufferWall[x] = 0;
             }
         }
     }
-	
+
 	private void renderSprite(double x, double y, double z, Render tex) {
 		double xc = (x - displacedCamX) * 2.0;
 		double yc = (-y - displacedCamY) * 2.0;
 		double zc = (z - displacedCamZ) * 2.0;
-		
+
 		double rotX = xc * cosine - zc * sine;
 		double rotY = yc;
 		double rotZ = zc * cosine + xc * sine;
 
 		if (rotZ < 0.1) return;
-		
+
 		double xPixel = rotX / rotZ * height + xCentre;
 		double yPixel = rotY / rotZ * height + yCentre;
-		
+
 		double xPixelL = xPixel - height / rotZ;
 		double xPixelR = xPixel + height / rotZ;
 		double yPixelL = yPixel - height / rotZ;
 		double yPixelR = yPixel + height / rotZ;
-		
+
 		int xPixelLInt = (int) Math.ceil(xPixelL);
 		int xPixelRInt = (int) Math.ceil(xPixelR);
 		int yPixelLInt = (int) Math.ceil(yPixelL);
 		int yPixelRInt = (int) Math.ceil(yPixelR);
-		
+
 		if (xPixelLInt < 0) xPixelLInt = 0;
 		if (xPixelRInt > width) xPixelRInt = width;
 		if (yPixelLInt < 0) yPixelLInt = 0;
 		if (yPixelRInt > height) yPixelRInt = height;
-		
+
 		double distBuffer = rotZ * 8;
 
 		int scale = tex.width; // 16 // use to implement texture scales
-		
+
 		for (int yp = yPixelLInt; yp < yPixelRInt; yp++) {
-			double pixelRotationY = (yp - yPixelL) / (yPixelR - yPixelL); 
+			double pixelRotationY = (yp - yPixelL) / (yPixelR - yPixelL);
 			int yTexture = (int) (pixelRotationY * scale); // 16
 			for (int xp = xPixelLInt; xp < xPixelRInt; xp++) {
-				double pixelRotationX = (xp - xPixelL) / (xPixelR - xPixelL); 
+				double pixelRotationX = (xp - xPixelL) / (xPixelR - xPixelL);
 				int xTexture = (int) (pixelRotationX * scale); // 16
-				
+
 				if (zBuffer[xp + yp * width] > distBuffer) {
 					int colour = tex.pixels[(xTexture &15) + (yTexture &15) * 16]; // 16 // TODO: support different texture scales
 					if (colour != 0xffff00ff) {
@@ -148,7 +149,7 @@ public class Render3D extends Render {
 		}
 	}
 
-	
+
 	private void renderWall(double xLeft, double xRight, double zLeft, double zRight, double yHeight, Render texture) {
 		double xcLeft = (xLeft - displacedCamX) * 2;
 		double zcLeft = (zLeft - displacedCamZ) * 2;
@@ -157,10 +158,10 @@ public class Render3D extends Render {
 		double yCornerTL = (-yHeight - displacedCamY) * 2;
 		double yCornerBL = (yHeight - displacedCamY) * 2;
 		double rotLeftSideZ = zcLeft * cosine + xcLeft * sine;
-		
+
 		double xcRight = (xRight - displacedCamX) * 2;
 		double zcRight = (zRight - displacedCamZ) * 2;
-		
+
 		double rotRightSideX = xcRight * cosine - zcRight * sine;
 		double yCornerTR = (-yHeight - displacedCamY) * 2;
 		double yCornerBR = (yHeight - displacedCamY) * 2;
@@ -192,16 +193,16 @@ public class Render3D extends Render {
 			xt1 = xt0 + (xt1 - xt0) * clip0;
 		}
 		// End clipping algorithm
-		
+
 		double xPixelLeft = (rotLeftSideX / rotLeftSideZ * height + width / 2);
 		double xPixelRight = (rotRightSideX / rotRightSideZ * height + width / 2);
-		
+
 		if (xPixelLeft >= xPixelRight) return;
 		int xPixelLeftInt = (int) Math.ceil(xPixelLeft);
 		int xPixelRightInt = (int) Math.ceil(xPixelRight);
 		if (xPixelLeftInt < 0) xPixelLeftInt = 0;
 		if (xPixelRightInt > width) xPixelRightInt = width;
-		
+
 		double yPixelLeftTop = (yCornerTL / rotLeftSideZ * fov + yCentre);
 		double yPixelLeftBottom = (yCornerBL / rotLeftSideZ * fov + yCentre);
 		double yPixelRightTop = (yCornerTR / rotRightSideZ * fov + yCentre);
@@ -216,16 +217,16 @@ public class Render3D extends Render {
 		for (int x = xPixelLeftInt; x < xPixelRightInt; x++) {
 			double pixelRotation = (x - xPixelLeft) * iw;
 			double zWall = (iz0 + (iz1 - iz0) * pixelRotation);
-			
+
 			if (zBufferWall[x] > zWall) continue;
 			zBufferWall[x] = zWall;
             int xTexture = (int) ((itx0 + itxa * pixelRotation) / zWall);
 
             if (xt1 < 0) xTexture -= 1; // corrects texture shift from negative tex1
-			
+
 			double yPixelTop = yPixelLeftTop + (yPixelRightTop - yPixelLeftTop) * pixelRotation; // + 0.5??
 			double yPixelBottom = yPixelLeftBottom + (yPixelRightBottom - yPixelLeftBottom) * pixelRotation;
-			
+
 			int yPixelTopInt = (int) Math.ceil(yPixelTop);
 			int yPixelBottomInt = (int) Math.ceil(yPixelBottom);
 
@@ -245,7 +246,7 @@ public class Render3D extends Render {
 			}
 		}
 	}
-	
+
 	private void renderSprites() {
         for (int xBlock = xBlockStart; xBlock <= xBlockEnd; xBlock++) {
             for (int zBlock = zBlockStart; zBlock <= zBlockEnd; zBlock++) {
@@ -266,7 +267,7 @@ public class Render3D extends Render {
             }
         }
 	}
-	
+
 	private void renderWalls() {
         for (int xBlock = xBlockStart; xBlock <= xBlockEnd; xBlock++) {
             for (int zBlock = zBlockStart; zBlock <= zBlockEnd; zBlock++) {
@@ -308,7 +309,7 @@ public class Render3D extends Render {
 			}
 		}
 	}
-	
+
 	private void renderDistanceLimiter() {
 	    // TODO: (p.viewDist) should control the distance limit and all linked attributes
 //        int renderDist = p.viewDist;
@@ -329,7 +330,7 @@ public class Render3D extends Render {
 				int yp = (i / width) * 14;
 				double xx = ((i % width - width / 2.0) / width);
 
-                int brightness = (int) (256 - iBuff * (((xx * xx) * 2) + 2));
+				int brightness = (int) (((renderDist * 4) / iBuff) / (((xx * xx) * 2) + 2) * 2);
 //                brightness = (brightness + ((xp + yp) & 3) * 4) >> 5 << 4;
 //                brightness = (brightness + ((xp + yp) & 3) * 4) >> 4 << 2;
 //                brightness = (brightness + ((xp + yp) & 3) * 4) >> 4 << 2;

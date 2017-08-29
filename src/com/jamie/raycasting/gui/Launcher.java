@@ -9,15 +9,16 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 
+import com.jamie.raycasting.app.App;
 import com.jamie.raycasting.app.RunGame;
 
 public class Launcher extends JFrame {
 	private static final long serialVersionUID = 1L;
-	
-	private boolean devAutoLaunch = true; // Used to start the game without launch menu.
-	
+
+	private boolean autoLaunch = true;
+
 	protected JPanel window = new JPanel();
-	
+
 	private int windowWidth = 220;
 	private int windowHeight = 220;
 
@@ -26,9 +27,12 @@ public class Launcher extends JFrame {
 	protected int select_width = 80;
 	protected int select_height = 30;
 	protected int label_height = 25;
-	
+
 	public Launcher(int id) {
-		if (devAutoLaunch) {
+		if (autoLaunch) {
+            App.width = 200;
+            App.height = 150;
+            App.scale = 4;
 			new RunGame();
 		} else {
 			try {
@@ -36,22 +40,22 @@ public class Launcher extends JFrame {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
-			setTitle("Launcher - Raycasting Engine");
+
+			setTitle("Raycasting Engine");
 			setSize(new Dimension(windowWidth, windowHeight));
 			getContentPane().add(window);
 			setResizable(false);
 			setLocationRelativeTo(null);
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			window.setLayout(null);
-			
-			if (id == 0) {			
+
+			if (id == 0) {
 				drawButtons();
 			}
 			setVisible(true);
 		}
 	}
-	
+
 	private void drawButtons() {
 		JButton play = new JButton("Play");
 		play.setBounds((windowWidth / 2) - (button_width / 2), 40, button_width, button_height);
@@ -62,7 +66,7 @@ public class Launcher extends JFrame {
 				new RunGame();
 			}
 		});
-		
+
 		JButton options = new JButton("Options");
 		options.setBounds((windowWidth / 2) - (button_width / 2), 80, button_width, button_height);
 		options.addActionListener(new ActionListener() {
@@ -72,7 +76,7 @@ public class Launcher extends JFrame {
 				new LaunchOptions();
 			}
 		});
-		
+
 		JButton quit = new JButton("Quit");
 		quit.setBounds((windowWidth / 2) - (button_width / 2), 120, button_width, button_height);
 		quit.addActionListener(new ActionListener() {
