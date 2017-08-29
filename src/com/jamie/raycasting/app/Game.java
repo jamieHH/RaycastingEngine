@@ -64,8 +64,8 @@ public class Game {
             }
 
             if (userInput.randomLevel) {
-                switchLevel("random", 999);
-//                switchLevel("test", 999);
+//                switchLevel("random", 999);
+                switchLevel("test", 999);
             }
 
             if (userInput.loadLevel) {

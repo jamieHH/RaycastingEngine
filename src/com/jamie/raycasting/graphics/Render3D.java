@@ -312,9 +312,8 @@ public class Render3D extends Render {
 	private void renderDistanceLimiter() {
 	    // TODO: (p.viewDist) should control the distance limit and all linked attributes
 //        int renderDist = p.viewDist;
-        int renderDist = 4096;
-		int dropOfMult = 16;
-
+        int renderDist = 4048;
+		int dropOfMult = 512;
 		for (int i = 0; i < width * height; i++) {
 			int colour = pixels[i];
 			double iBuff = zBuffer[i];
@@ -324,13 +323,21 @@ public class Render3D extends Render {
 //                int yy = i / width;
 //                pixels[i] = Texture.sky.pixels[xx + yy * 512];
 
-                pixels[i] = 0x000010;
+                pixels[i] = 0x000020;
             } else {
+                int xp = (i % width);
+				int yp = (i / width) * 14;
+				double xx = ((i % width - width / 2.0) / width);
 
-                int brightness = (int) (renderDist / iBuff);
-                brightness = brightness - (int) (iBuff / dropOfMult);
+                int brightness = (int) (256 - iBuff * (((xx * xx) * 2) + 2));
+//                brightness = (brightness + ((xp + yp) & 3) * 4) >> 5 << 4;
+//                brightness = (brightness + ((xp + yp) & 3) * 4) >> 4 << 2;
+//                brightness = (brightness + ((xp + yp) & 3) * 4) >> 4 << 2;
 
-                if (brightness < 0) brightness = 0;
+//				int brightness = (int) (renderDist / iBuff);
+//				brightness = brightness - (int) (iBuff / dropOfMult);
+
+				if (brightness < 0) brightness = 0;
                 else if (brightness > 255) brightness = 255;
 
                 int r = (colour >> 16) & 0xff;
