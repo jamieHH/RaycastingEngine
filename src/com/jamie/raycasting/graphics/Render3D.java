@@ -330,7 +330,8 @@ public class Render3D extends Render {
 				int yp = (i / width) * 14;
 				double xx = ((i % width - width / 2.0) / width);
 
-				int brightness = (int) (((renderDist * 4) / iBuff) / (((xx * xx) * 2) + 2) * 2);
+                int brightness = (int) (256 - iBuff * (((xx * xx) * 2) + 2));
+//				int brightness = (int) (((renderDist * 4) / iBuff) / (((xx * xx) * 2) + 2) * 2);
 //                brightness = (brightness + ((xp + yp) & 3) * 4) >> 5 << 4;
 //                brightness = (brightness + ((xp + yp) & 3) * 4) >> 4 << 2;
 //                brightness = (brightness + ((xp + yp) & 3) * 4) >> 4 << 2;
