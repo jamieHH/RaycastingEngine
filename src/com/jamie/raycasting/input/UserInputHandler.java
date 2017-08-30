@@ -9,7 +9,7 @@ import java.util.List;
 
 public class UserInputHandler extends InputHandler implements KeyListener, FocusListener {
 
-	public boolean[] key = new boolean[68836];
+	private boolean[] key = new boolean[68836];
 
 	public boolean randomLevel, loadLevel, nextMob, pause;
 
@@ -34,7 +34,7 @@ public class UserInputHandler extends InputHandler implements KeyListener, Focus
 		rotLeft = key[KeyEvent.VK_LEFT];
 		rotRight = key[KeyEvent.VK_RIGHT];
 		crouch = key[KeyEvent.VK_CONTROL];
-		run = key[KeyEvent.VK_SHIFT];
+//		run = key[KeyEvent.VK_SHIFT];
 		action = key[KeyEvent.VK_ENTER] || key[KeyEvent.VK_SPACE];
 
 		randomLevel = key[KeyEvent.VK_R];

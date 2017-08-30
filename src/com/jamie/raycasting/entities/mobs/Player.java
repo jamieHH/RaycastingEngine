@@ -23,7 +23,8 @@ public class Player extends Mob {
 	    radius = 4;
 
         rotationSpeed = 0.03;
-        walkSpeed = 0.3;
+//        walkSpeed = 0.3;
+        walkSpeed = 0.4; // disabling walking
         runSpeed = 0.4;
         crouchSpeed = 0.15;
 
