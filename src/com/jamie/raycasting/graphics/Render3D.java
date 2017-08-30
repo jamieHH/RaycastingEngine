@@ -9,8 +9,8 @@ public class Render3D extends Render {
 	private double[] zBuffer;
 	private double[] zBufferWall;
 
-    double xCentre = width / 2.0;
-    double yCentre = height / 2.0;
+    private double xCentre = width / 2.0;
+    private double yCentre = height / 2.0;
 
     private double floorDepth = 8.0;
     private double ceilingHeight = 8.0;
@@ -90,8 +90,8 @@ public class Render3D extends Render {
                     tex = block.ceilTex;
                 }
 
-//                pixels[x + y * width] = tex.pixels[(xTexture & 15) + (zTexture & 15) * 16];
-                pixels[x + y * width] = 0xFFFFFF;
+                pixels[x + y * width] = tex.pixels[(xTexture & 15) + (zTexture & 15) * 16];
+//                pixels[x + y * width] = 0xFFFFFF;
 
                 zBufferWall[x] = 0;
             }
@@ -311,9 +311,8 @@ public class Render3D extends Render {
 	}
 
 	private void renderDistanceLimiter() {
-	    // TODO: (p.viewDist) should control the distance limit and all linked attributes
 //        int renderDist = p.viewDist;
-        int renderDist = 4048;
+        int renderDist = 4092;
 		int dropOfMult = 512;
 		for (int i = 0; i < width * height; i++) {
 			int colour = pixels[i];
@@ -330,8 +329,9 @@ public class Render3D extends Render {
 				int yp = (i / width) * 14;
 				double xx = ((i % width - width / 2.0) / width);
 
-                int brightness = (int) (256 - iBuff * (((xx * xx) * 2) + 2));
-//				int brightness = (int) (((renderDist * 4) / iBuff) / (((xx * xx) * 2) + 2) * 2);
+				// TODO: Incorporate p.viewDistance into this equasion
+                int brightness = (int) (256 - ((iBuff) * (((xx * xx) * 2) + 2)));
+//				int brightness = (int) ((renderDist / iBuff) / (((xx * xx) * 2) + 2));
 //                brightness = (brightness + ((xp + yp) & 3) * 4) >> 5 << 4;
 //                brightness = (brightness + ((xp + yp) & 3) * 4) >> 4 << 2;
 //                brightness = (brightness + ((xp + yp) & 3) * 4) >> 4 << 2;
