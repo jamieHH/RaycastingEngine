@@ -72,8 +72,6 @@ public class Screen extends Render {
                 menuBackground.pixels[i] = 0x202020;
             } else if (i >= (pBannerXEnd - menuBackground.width) && i < pBannerXEnd) {
                 menuBackground.pixels[i] = 0x606060;
-            } else {
-//                menuBackground.pixels[i] = 0xF00000;
             }
         }
     }
@@ -116,9 +114,11 @@ public class Screen extends Render {
         draw(healthBar, 9, (height - hudBar.height) + 4);
 
         if (p.damageTime >= 0) {
-            double percentage = ((p.damageTime) / 60.0);
+            double percentage = p.damageTime / 60.0;
             for (int i = 0; i < viewPunch.pixels.length; i++) {
-                if (random.nextInt(viewPunch.width * viewPunch.height) < ((percentage / 2) * (viewPunch.width * viewPunch.height))) {
+                double xp = ((i % width) - viewPunch.width / 2.0) / width * 2;
+                double yp = ((i / width) - viewPunch.height / 2.0) / viewPunch.height * 2;
+                if (random.nextDouble() < percentage * Math.sqrt(xp * xp + yp * yp)) {
                     if (random.nextBoolean()) {
                         viewPunch.pixels[i] = 0x101010;
                     } else {

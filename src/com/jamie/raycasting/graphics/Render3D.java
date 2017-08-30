@@ -329,7 +329,7 @@ public class Render3D extends Render {
 				int yp = (i / width) * 14;
 				double xx = ((i % width - width / 2.0) / width);
 
-				// TODO: Incorporate p.viewDistance into this equasion
+				// TODO: Incorporate p.viewDistance into this equation
                 int brightness = (int) (256 - ((iBuff) * (((xx * xx) * 2) + 2)));
 //				int brightness = (int) ((renderDist / iBuff) / (((xx * xx) * 2) + 2));
 //                brightness = (brightness + ((xp + yp) & 3) * 4) >> 5 << 4;

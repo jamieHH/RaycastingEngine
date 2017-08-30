@@ -64,11 +64,13 @@ public class Game {
             }
 
             if (userInput.randomLevel) {
+				player.rotation = 0.2;
 //                switchLevel("random", 999);
                 switchLevel("test", 999);
             }
 
             if (userInput.loadLevel) {
+				player.rotation = 0.2;
                 switchLevel("island", 999);
             }
 
@@ -112,7 +114,6 @@ public class Game {
 
 		player.posX = level.spawnX;
 		player.posZ = level.spawnZ;
-		player.rotation = 0.2;
 
 		Block spawnBlock = level.getBlock((int) (level.spawnX - 8) / 16, (int) (level.spawnZ - 8) / 16);
 
@@ -125,11 +126,11 @@ public class Game {
 		level.player = player;
 	}
 	
-	public void clearLoadedLevels() {
+	private void clearLoadedLevels() {
 		loaded.clear();
 	}
 
-	public void switchPlayer() {
+	private void switchPlayer() {
         pauseTime = 10;
 
         List<Mob> mobs = new ArrayList<Mob>();
