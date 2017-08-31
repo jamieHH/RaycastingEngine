@@ -30,9 +30,15 @@ public class Launcher extends JFrame {
 
 	public Launcher(int id) {
 		if (autoLaunch) {
+//            App.width = 100;
+//            App.height = 75;
+//            App.scale = 8;
             App.width = 200;
             App.height = 150;
             App.scale = 4;
+//			App.width = 800;
+//			App.height = 600;
+//			App.scale = 1;
 			new RunGame();
 		} else {
 			try {

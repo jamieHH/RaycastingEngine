@@ -10,12 +10,14 @@ import java.util.Random;
 public class Entity {
 	protected static final Random random = new Random();
 	public List<Sprite> sprites = new ArrayList<Sprite>();
-    public int animTime = 5;
+    protected int animTime = 5;
     public int spriteIndex = 0;
 
 	public Level level;
     public boolean solid = true;
     public double radius = 6.0;
+
+    public double rotation;
 	public double posX, posZ;
 	public double posY;
 
@@ -25,7 +27,7 @@ public class Entity {
 		removed = true;
 	}
 
-	public void spriteTick() {
+	protected void spriteTick() {
         if (animTime > 0) {
             animTime--;
             return;
@@ -45,7 +47,7 @@ public class Entity {
         spriteTick();
 	}
 
-	public double distanceFrom(double x, double z) {
+	protected double distanceFrom(double x, double z) {
         return Math.hypot(Math.abs(posX - x), Math.abs(posZ - z));
     }
 
@@ -63,7 +65,6 @@ public class Entity {
 
         if (posZ + radius <= z2) return false;
         if (posZ - radius >= z2) return false;
-
         return true;
     }
 
@@ -73,7 +74,6 @@ public class Entity {
 
         if (posZ + radius <= z0) return false;
         if (posZ - radius >= z1) return false;
-
         return true;
     }
 }

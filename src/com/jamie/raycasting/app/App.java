@@ -16,7 +16,7 @@ import com.jamie.raycasting.input.UserInputHandler;
 public class App extends Canvas implements Runnable {
 	private static final long serialVersionUID = 1L;
 	
-	protected static final String TITLE = "raycasting_engine_pre_0.62";
+	public static final String TITLE = "raycasting_engine_pre_0.71";
 	public static int width = 200;
 	public static int height = 150;
 	public static int scale = 4;
@@ -30,7 +30,7 @@ public class App extends Canvas implements Runnable {
 	private int[] pixels;
 	private int fps;
 	
-	protected App() {
+	public App() {
 		Dimension size = new Dimension(width * scale, height * scale);
 		setPreferredSize(size);
 		setMinimumSize(size);
@@ -46,7 +46,7 @@ public class App extends Canvas implements Runnable {
 		addFocusListener(input);
 	}
 	
-	protected void start() {
+	public void start() {
 		if (running) return;
 		running = true;
 		thread = new Thread(this);

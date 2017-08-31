@@ -22,13 +22,9 @@ public class Mob extends Entity {
 
     // actions
     protected InputHandler input;
-
-    public double camY;
-    private int bobTime = 0;
-    private double yBob = 0;
+    protected int useTime = 0;
 
     // movement
-	public double rotation;
 	protected double rotationMove;
     protected double moveX, moveZ;
 
@@ -40,16 +36,20 @@ public class Mob extends Entity {
     protected double camHeightMod = 2.0;
     protected double crouchHeightMod = 4.0;
 
+    public double camY = 0;
+    private int bobTime = 0;
+    private double yBob = 0;
+
+
 	// stats
 	public int damageTime = 0;
 	public int maxHealth = 10;
 	public int health = 10;
 
-	public int dieTime = 30;
-	public boolean isDieing = false;
+	protected int dieTime = 30;
+	protected boolean isDieing = false;
     public boolean isDead = false;
 
-    public int useTime = 0;
 
     public void tick() {
         super.tick();
@@ -115,17 +115,17 @@ public class Mob extends Entity {
         // View bob:
         if ((input.forward ^ input.back) || (input.left ^ input.right)) {
             bobTime++;
-            yBob = Math.sin(bobTime / (7 - (moveSpeed * 10))) * 0.5;
-            // TODO: change this to a += equation to allow hurt yBob mod
+            yBob += Math.sin(bobTime / (7 - (moveSpeed * 10))) * 0.25;
         } else {
             bobTime = 0;
-            yBob *= 0.875;
         }
-
         camY += yBob;
+        yBob *= 0.875;
 
         // Do movements:
         rotation += rotationMove;
+        rotationMove *= 0.5;
+
         move(moveX * Math.cos(rotation) + moveZ * Math.sin(rotation), moveZ * Math.cos(rotation) - moveX * Math.sin(rotation));
     }
 
@@ -154,7 +154,6 @@ public class Mob extends Entity {
         }
         posZ += nextZ;
 
-        rotationMove *= 0.5;
         moveX *= 0.5;
         moveZ *= 0.5;
 	}
@@ -177,7 +176,7 @@ public class Mob extends Entity {
         if (damageTime > 0 || damage <= 0 || isDieing) return;
 
         // add when yBob calc is changed
-//        yBob -= 6;
+        yBob -= 6;
 
         health -= damage;
         damageTime = 30;
@@ -227,7 +226,6 @@ public class Mob extends Entity {
         double za = (blockUseDist * Math.cos(rotation));
 
         for (int i = 0; i < divs; i++) {
-
             double xx = posX + xa * (i * 16) / divs;
             double zz = posZ + za * (i * 16) / divs;
             for (int b = 0; b < closeEnts.size(); b++) {
