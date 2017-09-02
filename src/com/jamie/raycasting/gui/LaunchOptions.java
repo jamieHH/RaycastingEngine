@@ -19,7 +19,11 @@ public class LaunchOptions extends Launcher {
 	
 	private int windowWidth = 340;
 	private int windowHeight = 220;
-	
+
+	private int defaultAspectRatioIndex = 0;
+	private int defaultResolutionIndex = 0;
+	private int defaultScaleIndex = 0;
+
 	// resolution options
 	private String[] aspectRatios = {
 		"4:3",
@@ -72,7 +76,7 @@ public class LaunchOptions extends Launcher {
 		for(int i = 0; i < aspectRatios.length; i++) {
 			aspectRatio.add(aspectRatios[i]);
 		}
-		aspectRatio.select(0);
+		aspectRatio.select(defaultAspectRatioIndex);
 
 		// Resolution
 		Label lresolution = new Label();
@@ -83,7 +87,7 @@ public class LaunchOptions extends Launcher {
 		for(int i = 0; i < resolutions4x3.length; i++) {
 			resolution.add(Integer.toString(resolutions4x3[i][0]) + ", " + Integer.toString(resolutions4x3[i][1]));
 		}
-		resolution.select(1);
+		resolution.select(defaultResolutionIndex);
 
 		// Scale
 		Label lscale = new Label();
@@ -94,7 +98,7 @@ public class LaunchOptions extends Launcher {
 		for(int i = 0; i < resolutions4x3.length; i++) {
 			scale.add(Integer.toString(scales[i]) + ":1");
 		}
-		scale.select(1);
+		scale.select(defaultScaleIndex);
 		
 		// OK
 		JButton OK = new JButton("OK");
@@ -114,13 +118,13 @@ public class LaunchOptions extends Launcher {
 					for(int i = 0; i < resolutions4x3.length; i++) {
 						resolution.add(Integer.toString(resolutions4x3[i][0]) + ", " + Integer.toString(resolutions4x3[i][1]));
 					}
-					resolution.select(1);
+					resolution.select(defaultResolutionIndex);
 				} else if (aspectRatio.getSelectedItem() == "16:9") {
 					resolution.removeAll();
 					for(int i = 0; i < resolutions4x3.length; i++) {
 						resolution.add(Integer.toString(resolutions16x9[i][0]) + ", " + Integer.toString(resolutions16x9[i][1]));
 					}
-					resolution.select(1);
+					resolution.select(defaultResolutionIndex);
 				}
 			}
 		});
