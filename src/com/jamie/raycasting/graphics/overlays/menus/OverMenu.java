@@ -4,7 +4,7 @@ import com.jamie.raycasting.app.Game;
 import com.jamie.raycasting.graphics.Screen;
 import com.jamie.raycasting.graphics.overlays.Overlay;
 
-public class OverMenu extends Overlay {
+public class OverMenu extends Menu {
 
     private  String[] options = {
             "Load Game",
@@ -49,12 +49,12 @@ public class OverMenu extends Overlay {
 //        super.render(screen);
 
         screen.draw(screen.menuBackground, 0, 0);
-        screen.draw("Game Over", 26, (int) ((screen.height * 0.2) + 8), 0xF0F0F0);
+        screen.draw("Game Over", textMarginX + 6, (int) ((screen.height * 0.2) + 8), 0xF0F0F0);
         for (int i = 0; i < options.length; i++) {
             if (optionIndex == i) {
-                screen.draw("-> " + options[i], 20, 10 + (int) ((screen.height * 0.2) + 8) + (i * 10), 0xD0D0D0);
+                screen.draw("-> " + options[i], selectedTextMarginX, 10 + (int) ((screen.height * 0.2) + 8) + (i * 10), 0xD0D0D0);
             } else {
-                screen.draw(options[i], 32, 10 + (int) ((screen.height * 0.2) + 8) + (i * 10), 0x707070);
+                screen.draw(options[i], textMarginX, 10 + (int) ((screen.height * 0.2) + 8) + (i * 10), 0x707070);
             }
         }
     }

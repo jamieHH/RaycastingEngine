@@ -2,8 +2,9 @@ package com.jamie.raycasting.graphics.overlays;
 
 import com.jamie.raycasting.app.Game;
 import com.jamie.raycasting.graphics.Screen;
+import com.jamie.raycasting.graphics.overlays.menus.Menu;
 
-public class LoadingOverlay extends Overlay {
+public class LoadingOverlay extends Menu {
 
     public void tick(Game game) {
         if (pauseTime > 0) {

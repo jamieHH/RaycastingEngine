@@ -5,7 +5,7 @@ import com.jamie.raycasting.app.Game;
 import com.jamie.raycasting.graphics.Screen;
 import com.jamie.raycasting.graphics.overlays.Overlay;
 
-public class OptionsMenu extends Overlay {
+public class OptionsMenu extends Menu {
 
     // resolution options
     private String[] aspectRatios = {
@@ -115,39 +115,39 @@ public class OptionsMenu extends Overlay {
         super.render(screen);
 
         screen.draw(screen.menuBackground, 0, 0);
-        screen.draw("Options", 26, (int) ((screen.height * 0.2) + 8), 0xF0F0F0);
+        screen.draw("Options", textMarginX + 6, (int) ((screen.height * 0.2) + 8), 0xF0F0F0);
         for (int i = 0; i < options.length; i++) {
             if (optionIndex == i) {
-                screen.draw("-> " + options[i], 20, 10 + (int) ((screen.height * 0.2) + 8) + (i * 10), 0xD0D0D0);
+                screen.draw("-> " + options[i], selectedTextMarginX, 10 + (int) ((screen.height * 0.2) + 8) + (i * 10), 0xD0D0D0);
 
                 if (options[optionIndex] == "Aspect Ratio") {
                     String string = "< " + aspectRatios[aspectRatioIndex] + " >";
-                    screen.draw(string, screen.width - ((string.length() * 6) + 20), 10 + (int) ((screen.height * 0.2) + 8) + (i * 10), 0xD0D0D0);
+                    screen.draw(string, screen.width - ((string.length() * 6) + selectedTextMarginX), 10 + (int) ((screen.height * 0.2) + 8) + (i * 10), 0xD0D0D0);
                 } else if (options[optionIndex] == "Resolution" && aspectRatios[aspectRatioIndex] == "4:3") {
                     String string = "< " + resolutions4x3[resolutionIndex][0] + ", " + resolutions4x3[resolutionIndex][1] + " >";
-                    screen.draw(string, screen.width - ((string.length() * 6) + 20), 10 + (int) ((screen.height * 0.2) + 8) + (i * 10), 0xD0D0D0);
+                    screen.draw(string, screen.width - ((string.length() * 6) + selectedTextMarginX), 10 + (int) ((screen.height * 0.2) + 8) + (i * 10), 0xD0D0D0);
                 } else if (options[optionIndex] == "Resolution" && aspectRatios[aspectRatioIndex] == "16:9") {
                     String string = "< " + resolutions16x9[resolutionIndex][0] + ", " + resolutions16x9[resolutionIndex][1] + " >";
-                    screen.draw(string, screen.width - ((string.length() * 6) + 20), 10 + (int) ((screen.height * 0.2) + 8) + (i * 10), 0xD0D0D0);
+                    screen.draw(string, screen.width - ((string.length() * 6) + selectedTextMarginX), 10 + (int) ((screen.height * 0.2) + 8) + (i * 10), 0xD0D0D0);
                 } else if (options[optionIndex] == "Scaling") {
                     String string = "< " + scales[scaleIndex] + " >";
-                    screen.draw(string, screen.width - ((string.length() * 6) + 20), 10 + (int) ((screen.height * 0.2) + 8) + (i * 10), 0xD0D0D0);
+                    screen.draw(string, screen.width - ((string.length() * 6) + selectedTextMarginX), 10 + (int) ((screen.height * 0.2) + 8) + (i * 10), 0xD0D0D0);
                 }
             } else {
-                screen.draw(options[i], 32, 10 + (int) ((screen.height * 0.2) + 8) + (i * 10), 0x707070);
+                screen.draw(options[i], textMarginX, 10 + (int) ((screen.height * 0.2) + 8) + (i * 10), 0x707070);
 
                 if (options[i] == "Aspect Ratio") {
                     String string = aspectRatios[aspectRatioIndex];
-                    screen.draw(string, screen.width - ((string.length() * 6) + 20), 10 + (int) ((screen.height * 0.2) + 8) + (i * 10), 0x707070);
+                    screen.draw(string, screen.width - ((string.length() * 6) + textMarginX), 10 + (int) ((screen.height * 0.2) + 8) + (i * 10), 0x707070);
                 } else if (options[i] == "Resolution" && aspectRatios[aspectRatioIndex] == "4:3") {
                     String string = resolutions4x3[resolutionIndex][0] + ", " + resolutions4x3[resolutionIndex][1];
-                    screen.draw(string, screen.width - ((string.length() * 6) + 20), 10 + (int) ((screen.height * 0.2) + 8) + (i * 10), 0x707070);
+                    screen.draw(string, screen.width - ((string.length() * 6) + textMarginX), 10 + (int) ((screen.height * 0.2) + 8) + (i * 10), 0x707070);
                 } else if (options[i] == "Resolution" && aspectRatios[aspectRatioIndex] == "16:9") {
                     String string = resolutions16x9[resolutionIndex][0] + ", " + resolutions16x9[resolutionIndex][1];
-                    screen.draw(string, screen.width - ((string.length() * 6) + 20), 10 + (int) ((screen.height * 0.2) + 8) + (i * 10), 0x707070);
+                    screen.draw(string, screen.width - ((string.length() * 6) + textMarginX), 10 + (int) ((screen.height * 0.2) + 8) + (i * 10), 0x707070);
                 } else if (options[i] == "Scaling") {
                     String string = scales[scaleIndex] + "";
-                    screen.draw(string, screen.width - ((string.length() * 6) + 20), 10 + (int) ((screen.height * 0.2) + 8) + (i * 10), 0x707070);
+                    screen.draw(string, screen.width - ((string.length() * 6) + textMarginX), 10 + (int) ((screen.height * 0.2) + 8) + (i * 10), 0x707070);
                 }
             }
         }

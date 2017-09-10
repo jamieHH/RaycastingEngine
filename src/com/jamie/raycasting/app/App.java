@@ -16,7 +16,7 @@ import com.jamie.raycasting.input.UserInputHandler;
 public class App extends Canvas implements Runnable {
 	private static final long serialVersionUID = 1L;
 	
-	public static final String TITLE = "raycasting_engine_pre_0.71";
+	public static final String TITLE = "raycasting_engine_pre_0.72";
 	public static int width = 200;
 	public static int height = 150;
 	public static int scale = 4;
@@ -55,10 +55,11 @@ public class App extends Canvas implements Runnable {
         Dimension size = new Dimension(width * scale, height * scale);
 
         runGame.refreshFrame();
+        runGame.frame.add(this);
         runGame.frame.setPreferredSize(size);
         runGame.frame.setMinimumSize(size);
         runGame.frame.setMaximumSize(size);
-        runGame.frame.add(this);
+        runGame.frame.setLocationRelativeTo(null);
         runGame.frame.requestFocus();
 
 		screen = new Screen(width, height, game);
@@ -127,9 +128,10 @@ public class App extends Canvas implements Runnable {
 		input.tick();
 		game.tick();
 
-//		if (input.changeRes) {
-//		    changeResolution(50, 50);
-//        }
+		if (input.changeRes) {
+		    App.scale = 4;
+		    changeResolution(200, 150);
+        }
 	}
 	
 	private void render() {

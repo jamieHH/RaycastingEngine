@@ -9,8 +9,8 @@ import com.jamie.raycasting.entities.Entity;
 import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.entities.mobs.Player;
 import com.jamie.raycasting.graphics.overlays.LoadingOverlay;
-import com.jamie.raycasting.graphics.overlays.Overlay;
 import com.jamie.raycasting.graphics.overlays.menus.MainMenu;
+import com.jamie.raycasting.graphics.overlays.menus.Menu;
 import com.jamie.raycasting.graphics.overlays.menus.OverMenu;
 import com.jamie.raycasting.graphics.overlays.menus.PauseMenu;
 import com.jamie.raycasting.input.UserInputHandler;
@@ -26,7 +26,7 @@ public class Game {
 	public Mob player;
 	public UserInputHandler userInput;
 	
-	public Overlay menu;
+	public Menu menu;
 	
 	public Map<String, Level> loaded = new HashMap<String, Level>();
 	
