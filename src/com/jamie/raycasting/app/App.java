@@ -30,6 +30,11 @@ public class App extends Canvas implements Runnable {
 	private int[] pixels;
 	private int fps;
 
+	public static boolean setNewOptions = false;
+    public static int newWidth;
+    public static int newHeight;
+    public static int newScale;
+
 	public static RunGame runGame;
 	
 	public App() {
@@ -60,7 +65,7 @@ public class App extends Canvas implements Runnable {
         runGame.frame.setMinimumSize(size);
         runGame.frame.setMaximumSize(size);
         runGame.frame.setLocationRelativeTo(null);
-        runGame.frame.requestFocus();
+        runGame.frame.requestFocusInWindow();
 
 		screen = new Screen(width, height, game);
 		img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
@@ -94,7 +99,7 @@ public class App extends Canvas implements Runnable {
 		double secondsPerTick = 1/60.0;
 		int tickCount = 0;
 
-		requestFocus();
+		requestFocusInWindow();
 		while (running) {
 			long currentTime = System.nanoTime();
 			long passedTime = currentTime - previousTime;
@@ -131,6 +136,12 @@ public class App extends Canvas implements Runnable {
 		if (input.changeRes) {
 		    App.scale = 4;
 		    changeResolution(200, 150);
+        }
+
+        if (setNewOptions) {
+            App.scale = newScale;
+            changeResolution(newWidth, newHeight);
+            setNewOptions = false;
         }
 	}
 	

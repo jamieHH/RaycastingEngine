@@ -12,7 +12,6 @@ public class RunGame {
 		App.runGame = this;
 
 		frame = new JFrame();
-
 		frame.add(game);
 		frame.setTitle(App.TITLE);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -20,7 +19,8 @@ public class RunGame {
 		frame.pack();
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
-			
+        frame.setFocusable(true);
+
 		System.out.println("Running...");
 		
 		game.start();
@@ -35,5 +35,6 @@ public class RunGame {
         frame.setResizable(false);
         frame.pack();
         frame.setVisible(true);
+        frame.setFocusable(true);
     }
 }

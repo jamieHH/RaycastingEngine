@@ -105,7 +105,15 @@ public class OptionsMenu extends Menu {
                 resolutionIndex = 1;
                 scaleIndex = 1;
             } else if (options[optionIndex] == "Accept") {
-                // TODO: access App.changeResolution(w, h);
+                App.newScale = scales[scaleIndex];
+                if (aspectRatios[aspectRatioIndex] == "16:9") {
+                    App.newWidth = resolutions16x9[resolutionIndex][0];
+                    App.newHeight = resolutions16x9[resolutionIndex][1];
+                } else if (aspectRatios[aspectRatioIndex] == "4:3") {
+                    App.newWidth = resolutions4x3[resolutionIndex][0];
+                    App.newHeight = resolutions4x3[resolutionIndex][1];
+                }
+                App.setNewOptions = true;
                 game.menu = new MainMenu();
             }
         }
