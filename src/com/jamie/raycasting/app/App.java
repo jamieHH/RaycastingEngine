@@ -29,6 +29,8 @@ public class App extends Canvas implements Runnable {
 	private UserInputHandler input;
 	private int[] pixels;
 	private int fps;
+
+	public static RunGame runGame;
 	
 	public App() {
 		Dimension size = new Dimension(width * scale, height * scale);
@@ -38,6 +40,7 @@ public class App extends Canvas implements Runnable {
 
 		input = new UserInputHandler();
 		game = new Game(input);
+
 		screen = new Screen(width, height, game);
 		img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		pixels = ((DataBufferInt)img.getRaster().getDataBuffer()).getData();
@@ -45,6 +48,23 @@ public class App extends Canvas implements Runnable {
 		addKeyListener(input);
 		addFocusListener(input);
 	}
+
+	public void changeResolution(int width, int height) {
+	    App.width = width;
+	    App.height = height;
+        Dimension size = new Dimension(width * scale, height * scale);
+
+        runGame.refreshFrame();
+        runGame.frame.setPreferredSize(size);
+        runGame.frame.setMinimumSize(size);
+        runGame.frame.setMaximumSize(size);
+        runGame.frame.add(this);
+        runGame.frame.requestFocus();
+
+		screen = new Screen(width, height, game);
+		img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+		pixels = ((DataBufferInt)img.getRaster().getDataBuffer()).getData();
+    }
 	
 	public void start() {
 		if (running) return;
@@ -106,6 +126,10 @@ public class App extends Canvas implements Runnable {
 	private void tick() {
 		input.tick();
 		game.tick();
+
+//		if (input.changeRes) {
+//		    changeResolution(50, 50);
+//        }
 	}
 	
 	private void render() {

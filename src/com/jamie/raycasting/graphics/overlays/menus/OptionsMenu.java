@@ -1,5 +1,6 @@
 package com.jamie.raycasting.graphics.overlays.menus;
 
+import com.jamie.raycasting.app.App;
 import com.jamie.raycasting.app.Game;
 import com.jamie.raycasting.graphics.Screen;
 import com.jamie.raycasting.graphics.overlays.Overlay;
@@ -104,7 +105,7 @@ public class OptionsMenu extends Overlay {
                 resolutionIndex = 1;
                 scaleIndex = 1;
             } else if (options[optionIndex] == "Accept") {
-                // Apply Changes
+                // TODO: access App.changeResolution(w, h);
                 game.menu = new MainMenu();
             }
         }

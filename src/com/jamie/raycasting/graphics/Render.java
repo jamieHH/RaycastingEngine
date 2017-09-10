@@ -1,9 +1,9 @@
 package com.jamie.raycasting.graphics;
 
 public class Render {
-	public final int width;
-	public final int height;
-	public final int[] pixels;
+	public int width;
+	public int height;
+	public int[] pixels;
 
 	private static final String chars = "" + //
 			"ABCDEFGHIJKLMNOPQRSTUVWXYZ.,!?\"'/\\<>()[]{}" + //
