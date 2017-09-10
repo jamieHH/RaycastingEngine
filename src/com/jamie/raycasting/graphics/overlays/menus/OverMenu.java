@@ -46,8 +46,6 @@ public class OverMenu extends Menu {
     }
 
     public void render(Screen screen) {
-//        super.render(screen);
-
         screen.draw(screen.menuBackground, 0, 0);
         screen.draw("Game Over", textMarginX + 6, (int) ((screen.height * 0.2) + 8), 0xF0F0F0);
         for (int i = 0; i < options.length; i++) {
