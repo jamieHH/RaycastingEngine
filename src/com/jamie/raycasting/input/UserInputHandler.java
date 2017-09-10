@@ -11,7 +11,7 @@ public class UserInputHandler extends InputHandler implements KeyListener, Focus
 
 	private boolean[] key = new boolean[68836];
 
-	public boolean randomLevel, loadLevel, nextMob, pause, changeRes;
+	public boolean randomLevel, loadLevel, nextMob, pause, yKey;
 
 	public int disableKey;
 
@@ -41,7 +41,7 @@ public class UserInputHandler extends InputHandler implements KeyListener, Focus
 		loadLevel = key[KeyEvent.VK_P];
 		nextMob = key[KeyEvent.VK_G];
         pause = key[KeyEvent.VK_ESCAPE];
-        changeRes = key[KeyEvent.VK_Y];
+        yKey = key[KeyEvent.VK_Y];
 
         // add a method to disable keys
 //        disableKey(disableKey);

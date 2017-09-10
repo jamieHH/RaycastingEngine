@@ -133,11 +133,6 @@ public class App extends Canvas implements Runnable {
 		input.tick();
 		game.tick();
 
-		if (input.changeRes) {
-		    App.scale = 4;
-		    changeResolution(200, 150);
-        }
-
         if (setNewOptions) {
             App.scale = newScale;
             changeResolution(newWidth, newHeight);

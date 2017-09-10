@@ -12,7 +12,7 @@ public class LoadingOverlay extends Menu {
             return;
         }
 
-        game.menu = null;
+        game.activeMenu = null;
     }
 
     public void render(Screen screen, String levelname) {
