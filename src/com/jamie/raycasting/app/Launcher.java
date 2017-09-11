@@ -1,4 +1,4 @@
-package com.jamie.raycasting.gui;
+package com.jamie.raycasting.app;
 
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -8,9 +8,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
-
-import com.jamie.raycasting.app.App;
-import com.jamie.raycasting.app.RunGame;
 
 public class Launcher extends JFrame {
 	private static final long serialVersionUID = 1L;
