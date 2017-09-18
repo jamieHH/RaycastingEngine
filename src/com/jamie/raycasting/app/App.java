@@ -10,13 +10,12 @@ import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 
 import com.jamie.raycasting.graphics.Screen;
-import com.jamie.raycasting.gui.Launcher;
 import com.jamie.raycasting.input.UserInputHandler;
 
 public class App extends Canvas implements Runnable {
 	private static final long serialVersionUID = 1L;
 	
-	public static final String TITLE = "raycasting_engine_pre_0.71";
+	public static final String TITLE = "raycasting_engine_pre_0.72";
 	public static int width = 200;
 	public static int height = 150;
 	public static int scale = 4;
@@ -29,6 +28,13 @@ public class App extends Canvas implements Runnable {
 	private UserInputHandler input;
 	private int[] pixels;
 	private int fps;
+
+	public static boolean setNewOptions = false;
+    public static int newWidth;
+    public static int newHeight;
+    public static int newScale;
+
+	public static RunGame runGame;
 	
 	public App() {
 		Dimension size = new Dimension(width * scale, height * scale);
@@ -38,6 +44,7 @@ public class App extends Canvas implements Runnable {
 
 		input = new UserInputHandler();
 		game = new Game(input);
+
 		screen = new Screen(width, height, game);
 		img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		pixels = ((DataBufferInt)img.getRaster().getDataBuffer()).getData();
@@ -45,6 +52,24 @@ public class App extends Canvas implements Runnable {
 		addKeyListener(input);
 		addFocusListener(input);
 	}
+
+	public void changeResolution(int width, int height) {
+	    App.width = width;
+	    App.height = height;
+        Dimension size = new Dimension(width * scale, height * scale);
+
+        runGame.refreshFrame();
+        runGame.frame.add(this);
+        runGame.frame.setPreferredSize(size);
+        runGame.frame.setMinimumSize(size);
+        runGame.frame.setMaximumSize(size);
+        runGame.frame.setLocationRelativeTo(null);
+        runGame.frame.requestFocusInWindow();
+
+		screen = new Screen(width, height, game);
+		img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+		pixels = ((DataBufferInt)img.getRaster().getDataBuffer()).getData();
+    }
 	
 	public void start() {
 		if (running) return;
@@ -73,7 +98,7 @@ public class App extends Canvas implements Runnable {
 		double secondsPerTick = 1/60.0;
 		int tickCount = 0;
 
-		requestFocus();
+		requestFocusInWindow();
 		while (running) {
 			long currentTime = System.nanoTime();
 			long passedTime = currentTime - previousTime;
@@ -106,6 +131,12 @@ public class App extends Canvas implements Runnable {
 	private void tick() {
 		input.tick();
 		game.tick();
+
+        if (setNewOptions) {
+            App.scale = newScale;
+            changeResolution(newWidth, newHeight);
+            setNewOptions = false;
+        }
 	}
 	
 	private void render() {

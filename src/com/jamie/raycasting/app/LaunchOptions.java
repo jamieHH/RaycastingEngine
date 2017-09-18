@@ -1,4 +1,4 @@
-package com.jamie.raycasting.gui;
+package com.jamie.raycasting.app;
 
 import java.awt.Choice;
 import java.awt.Dimension;
@@ -11,8 +11,6 @@ import java.awt.event.ItemListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-
-import com.jamie.raycasting.app.App;
 
 public class LaunchOptions extends Launcher {
 	private static final long serialVersionUID = 1L;

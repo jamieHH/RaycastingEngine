@@ -9,10 +9,7 @@ import com.jamie.raycasting.entities.Entity;
 import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.entities.mobs.Player;
 import com.jamie.raycasting.graphics.overlays.LoadingOverlay;
-import com.jamie.raycasting.graphics.overlays.Overlay;
-import com.jamie.raycasting.graphics.overlays.menus.MainMenu;
-import com.jamie.raycasting.graphics.overlays.menus.OverMenu;
-import com.jamie.raycasting.graphics.overlays.menus.PauseMenu;
+import com.jamie.raycasting.graphics.overlays.menus.*;
 import com.jamie.raycasting.input.UserInputHandler;
 import com.jamie.raycasting.levels.Level;
 import com.jamie.raycasting.levels.blocks.Block;
@@ -25,8 +22,15 @@ public class Game {
 	public Level level;
 	public Mob player;
 	public UserInputHandler userInput;
-	
-	public Overlay menu;
+
+	public Menu mainMenu = new MainMenu();
+    public Menu loadMenu = new LoadMenu();
+    public Menu optionsMenu = new OptionsMenu();
+    public Menu pauseMenu = new PauseMenu();
+    public Menu overMenu = new OverMenu();
+    public Menu loadingOverlay = new LoadingOverlay();
+
+	public Menu activeMenu;
 	
 	public Map<String, Level> loaded = new HashMap<String, Level>();
 	
@@ -34,8 +38,14 @@ public class Game {
 	public Game(UserInputHandler input) {
 		userInput = input;
 
-        menu = new MainMenu();
+        setActiveMenu(mainMenu);
 //		newGame();
+	}
+
+	public void setActiveMenu(Menu activeMenu) {
+		this.activeMenu = activeMenu;
+        this.activeMenu.optionIndex = 0;
+
 	}
 
 	public void tick() {
@@ -44,23 +54,23 @@ public class Game {
             return;
         }
 
-		if (menu != null) {
-		    menu.tick(this);
+		if (activeMenu != null) {
+		    activeMenu.tick(this);
         } else {
 			level.tick();
 			time++;
 
             if (player.isDead) {
                 if (userInput.action || userInput.pause) {
-                    menu = new OverMenu();
-                    menu.pauseTime = 10;
+                    setActiveMenu(overMenu);
+                    activeMenu.pauseTime = 10;
                 }
                 return;
             }
 
             if (userInput.pause) {
-                menu = new PauseMenu();
-                menu.pauseTime = 10;
+                setActiveMenu(pauseMenu);
+                activeMenu.pauseTime = 10;
             }
 
             if (userInput.randomLevel) {
@@ -83,7 +93,7 @@ public class Game {
 	
 	public void newGame() {
 		clearLoadedLevels();
-		menu = null;
+		activeMenu = null;
 		player = new Player(userInput);
 
 		level = Level.getLoadLevel(this, "prison");
@@ -99,8 +109,8 @@ public class Game {
 	
 	
 	public void switchLevel(String name, int id) {
-	    menu = new LoadingOverlay();
-		menu.pauseTime = 30;
+	    setActiveMenu(loadingOverlay);
+		activeMenu.pauseTime = 30;
 
 		level.removeEntity(player);
 		level.player = null;

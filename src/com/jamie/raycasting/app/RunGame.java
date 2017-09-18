@@ -4,10 +4,14 @@ import javax.swing.JFrame;
 
 public class RunGame {
 
+    public JFrame frame;
+
 	public RunGame() {
 		// BufferedImage cursor, cursor blank ??
 		App game = new App();
-		JFrame frame = new JFrame();
+		App.runGame = this;
+
+		frame = new JFrame();
 		frame.add(game);
 		frame.setTitle(App.TITLE);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -15,9 +19,22 @@ public class RunGame {
 		frame.pack();
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
-			
+        frame.setFocusable(true);
+
 		System.out.println("Running...");
 		
 		game.start();
 	}
+
+	public void refreshFrame() {
+        frame.dispose();
+
+        frame = new JFrame();
+        frame.setTitle(App.TITLE);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
+        frame.pack();
+        frame.setVisible(true);
+        frame.setFocusable(true);
+    }
 }
