@@ -32,6 +32,9 @@ public class Texture {
     public static final Render bat0 = loadBitmap("/textures/bat0.png");
     public static final Render bat1 = loadBitmap("/textures/bat1.png");
     public static final Render bat2 = loadBitmap("/textures/bat2.png");
+    public static final Render spirit0 = loadBitmap("/textures/spirit0.png");
+    public static final Render spirit1 = loadBitmap("/textures/spirit1.png");
+    public static final Render spirit2 = loadBitmap("/textures/spirit2.png");
     public static final Render spinningDummy = loadBitmap("/textures/spinningDummy.png");
     public static final Render pillar = loadBitmap("/textures/pillar.png");
     public static final Render bars = loadBitmap("/textures/bars.png");
