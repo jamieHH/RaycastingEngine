@@ -12,6 +12,7 @@ import com.jamie.raycasting.app.Game;
 import com.jamie.raycasting.entities.Entity;
 import com.jamie.raycasting.entities.mobs.Bat;
 import com.jamie.raycasting.entities.mobs.Mob;
+import com.jamie.raycasting.entities.mobs.Spirit;
 import com.jamie.raycasting.input.ArtificialInputHandler;
 import com.jamie.raycasting.levels.blocks.*;
 
@@ -131,6 +132,7 @@ public class Level {
 
     private Mob getMobByColour(int col) {
         if (col == 0x804000) return new Bat(new ArtificialInputHandler());
+        if (col == 0xFFFF71) return new Spirit(new ArtificialInputHandler());
         return null;
     }
 

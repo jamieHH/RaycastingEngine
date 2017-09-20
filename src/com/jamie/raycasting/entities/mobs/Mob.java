@@ -37,8 +37,8 @@ public class Mob extends Entity {
     protected double crouchHeightMod = 4.0;
 
     public double camY = 0;
+    protected double yBob = 0;
     private int bobTime = 0;
-    private double yBob = 0;
 
 
 	// stats
@@ -175,14 +175,13 @@ public class Mob extends Entity {
     public void hurt(Mob source, int damage) {
         if (damageTime > 0 || damage <= 0 || isDieing) return;
 
-        // add when yBob calc is changed
         yBob -= 6;
 
         health -= damage;
         damageTime = 30;
 
-        double mx = (posX - source.posX) / 4;
-        double mz = (posZ - source.posZ) / 4;
+        double mx = (posX - source.posX) / 2;
+        double mz = (posZ - source.posZ) / 2;
         push(mx, mz);
 
         for (int i = 0; i < 2 ; i++) {
