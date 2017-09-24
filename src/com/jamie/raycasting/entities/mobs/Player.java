@@ -1,13 +1,6 @@
 package com.jamie.raycasting.entities.mobs;
 
 import com.jamie.raycasting.input.InputHandler;
-import com.jamie.raycasting.input.UserInputHandler;
-import com.jamie.raycasting.levels.blocks.Block;
-import com.jamie.raycasting.levels.blocks.DoorBlock;
-
-import java.awt.event.KeyEvent;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Player extends Mob {
 

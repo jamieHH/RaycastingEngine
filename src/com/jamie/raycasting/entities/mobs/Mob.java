@@ -120,7 +120,7 @@ public class Mob extends Entity {
             bobTime = 0;
         }
         camY += yBob;
-        yBob *= 0.875;
+        yBob *= 0.75;
 
         // Do movements:
         rotation += rotationMove;

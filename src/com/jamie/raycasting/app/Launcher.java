@@ -4,10 +4,7 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.UIManager;
+import javax.swing.*;
 
 public class Launcher extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -49,7 +46,7 @@ public class Launcher extends JFrame {
 			getContentPane().add(window);
 			setResizable(false);
 			setLocationRelativeTo(null);
-			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 			window.setLayout(null);
 
 			if (id == 0) {

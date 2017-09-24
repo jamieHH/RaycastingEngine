@@ -31,7 +31,7 @@ public class CeilDripBlock extends Block {
 	}
 
 	public void tick() {
-	    // TODO: why does standing clode to the sprite kill the cpu? render issue??
+	    // TODO: why does standing code to the sprite kill the cpu? render issue??
 	    texTick();
     }
 

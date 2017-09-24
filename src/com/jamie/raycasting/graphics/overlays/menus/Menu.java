@@ -24,7 +24,6 @@ public class Menu extends Overlay {
     public void tick(Game game) {
         if (pauseTime > 0) {
             pauseTime--;
-            return;
         }
     }
 }

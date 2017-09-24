@@ -9,8 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
+import javax.swing.*;
 
 public class LaunchOptions extends Launcher {
 	private static final long serialVersionUID = 1L;
@@ -59,7 +58,7 @@ public class LaunchOptions extends Launcher {
 		setTitle("Options - Raycasting Engine");
 		setSize(new Dimension(windowWidth, windowHeight));
 		setLocationRelativeTo(null);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		drawButtons();
 		setVisible(true);
 	}

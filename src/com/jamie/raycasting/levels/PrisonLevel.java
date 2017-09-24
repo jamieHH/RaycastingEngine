@@ -1,7 +1,5 @@
 package com.jamie.raycasting.levels;
 
-import java.util.ArrayList;
-
 public class PrisonLevel extends Level {
 	public PrisonLevel() {
 		name = "Prison";

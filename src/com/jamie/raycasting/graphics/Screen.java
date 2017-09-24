@@ -10,7 +10,7 @@ public class Screen extends Render {
     private Mob p = new Mob();
 
     private Render3D render;
-	private Render equipedItem;
+	private Render equippedItem;
 	private Render hudBar;
 
 	private Render healthBarIcon;
@@ -30,7 +30,7 @@ public class Screen extends Render {
         // 3D render
 		render = new Render3D(width, height - (height / 8));
 
-        equipedItem = Texture.screenSpear0;
+        equippedItem = Texture.screenSpear0;
 
         // HUD
         hudBar = new Render(width, height / 8);
@@ -131,6 +131,6 @@ public class Screen extends Render {
             draw(viewPunch, 0, 0);
         }
 
-//        draw(equipedItem, 0, render.height - equipedItem.height);
+//        draw(equippedItem, 0, render.height - equippedItem.height);
     }
 }
