@@ -18,8 +18,8 @@ public class LaunchOptions extends Launcher {
 	private int windowHeight = 220;
 
 	private int defaultAspectRatioIndex = 0;
-	private int defaultResolutionIndex = 0;
-	private int defaultScaleIndex = 0;
+	private int defaultResolutionIndex = 1;
+	private int defaultScaleIndex = 1;
 
 	// resolution options
 	private String[] aspectRatios = {
