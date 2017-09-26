@@ -4,8 +4,8 @@ import com.jamie.raycasting.graphics.Render;
 import com.jamie.raycasting.graphics.SpriteParticle;
 import com.jamie.raycasting.graphics.Texture;
 
-public class BloodParticle extends Entity {
-
+public class BloodParticle extends Entity
+{
     public int life = 120;
 
     public BloodParticle(double x, double z) {

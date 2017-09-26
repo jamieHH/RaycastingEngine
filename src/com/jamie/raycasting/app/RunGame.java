@@ -2,8 +2,8 @@ package com.jamie.raycasting.app;
 
 import javax.swing.*;
 
-public class RunGame {
-
+public class RunGame
+{
     public JFrame frame;
 
 	public RunGame() {

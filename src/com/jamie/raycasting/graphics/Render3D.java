@@ -4,8 +4,8 @@ import com.jamie.raycasting.entities.Entity;
 import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.levels.blocks.*;
 
-public class Render3D extends Render {
-	
+public class Render3D extends Render
+{
 	private double[] zBuffer;
 	private double[] zBufferWall;
 

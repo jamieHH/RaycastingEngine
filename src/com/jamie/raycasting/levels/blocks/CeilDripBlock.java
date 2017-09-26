@@ -3,8 +3,8 @@ package com.jamie.raycasting.levels.blocks;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
 
-public class CeilDripBlock extends Block {
-
+public class CeilDripBlock extends Block
+{
 //    public int animTime = 5;
 //    public int spriteIndex = 0;
 

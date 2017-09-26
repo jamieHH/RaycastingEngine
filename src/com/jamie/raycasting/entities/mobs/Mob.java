@@ -11,8 +11,8 @@ import com.jamie.raycasting.levels.blocks.Block;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Mob extends Entity {
-
+public class Mob extends Entity
+{
     protected boolean wallCollide = true;
     protected boolean entCollide = true;
 

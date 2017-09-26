@@ -6,8 +6,8 @@ import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
 import com.jamie.raycasting.input.InputHandler;
 
-public class Spirit extends Mob {
-
+public class Spirit extends Mob
+{
     private int poofTick = 0;
 
     public Spirit(InputHandler input) {

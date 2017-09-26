@@ -4,8 +4,8 @@ import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
 import com.jamie.raycasting.input.InputHandler;
 
-public class Bat extends Mob {
-
+public class Bat extends Mob
+{
     public Bat(InputHandler input) {
         this.input = input;
 

@@ -1,6 +1,7 @@
 package com.jamie.raycasting.levels;
 
-public class PrisonLevel extends Level {
+public class PrisonLevel extends Level
+{
 	public PrisonLevel() {
 		name = "Prison";
 	}

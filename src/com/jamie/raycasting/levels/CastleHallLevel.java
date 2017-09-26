@@ -1,6 +1,7 @@
 package com.jamie.raycasting.levels;
 
-public class CastleHallLevel extends Level {
+public class CastleHallLevel extends Level
+{
 	public CastleHallLevel() {
 	    name = "CastleHall";
 	}

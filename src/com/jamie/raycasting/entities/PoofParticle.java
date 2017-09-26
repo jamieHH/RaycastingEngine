@@ -4,8 +4,8 @@ import com.jamie.raycasting.graphics.Render;
 import com.jamie.raycasting.graphics.SpriteParticle;
 import com.jamie.raycasting.graphics.Texture;
 
-public class PoofParticle extends Entity {
-
+public class PoofParticle extends Entity
+{
     public int life = 120;
 
     public PoofParticle(double x, double z) {

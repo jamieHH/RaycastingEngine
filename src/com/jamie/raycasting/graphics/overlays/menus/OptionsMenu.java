@@ -4,29 +4,29 @@ import com.jamie.raycasting.app.App;
 import com.jamie.raycasting.app.Game;
 import com.jamie.raycasting.graphics.Screen;
 
-public class OptionsMenu extends Menu {
-
+public class OptionsMenu extends Menu
+{
     // resolution options
-    private String[] aspectRatios = {
+    private final String[] aspectRatios = {
             "4:3",
             "16:9"
     };
 
-    private int[] scales = {
+    private final int[] scales = {
             8,
             4,
             2,
             1
     };
 
-    private int[][] resolutions4x3 = {
+    private final int[][] resolutions4x3 = {
             {100, 75},
             {200, 150},
             {400, 300},
             {800, 600},
     };
 
-    private int[][] resolutions16x9= {
+    private final int[][] resolutions16x9 = {
             {128, 72},
             {256, 144},
             {512, 288},

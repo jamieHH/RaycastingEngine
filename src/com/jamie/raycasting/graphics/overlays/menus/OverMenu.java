@@ -3,8 +3,8 @@ package com.jamie.raycasting.graphics.overlays.menus;
 import com.jamie.raycasting.app.Game;
 import com.jamie.raycasting.graphics.Screen;
 
-public class OverMenu extends Menu {
-
+public class OverMenu extends Menu
+{
     public OverMenu() {
         options.clear();
         options.add("Load Game");

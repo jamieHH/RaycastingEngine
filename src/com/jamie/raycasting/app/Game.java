@@ -15,20 +15,20 @@ import com.jamie.raycasting.levels.Level;
 import com.jamie.raycasting.levels.blocks.Block;
 import com.jamie.raycasting.levels.blocks.LadderBlock;
 
-public class Game {
-
+public class Game
+{
 	public int time;
 	public int pauseTime;
 	public Level level;
 	public Mob player;
 	public UserInputHandler userInput;
 
-	public Menu mainMenu = new MainMenu();
-    public Menu loadMenu = new LoadMenu();
-    public Menu optionsMenu = new OptionsMenu();
-    public Menu pauseMenu = new PauseMenu();
-    public Menu overMenu = new OverMenu();
-    public Menu loadingOverlay = new LoadingOverlay();
+	public final Menu mainMenu = new MainMenu();
+    public final Menu loadMenu = new LoadMenu();
+    public final Menu optionsMenu = new OptionsMenu();
+    public final Menu pauseMenu = new PauseMenu();
+    public final Menu overMenu = new OverMenu();
+    public final Menu loadingOverlay = new LoadingOverlay();
 
 	public Menu activeMenu;
 	

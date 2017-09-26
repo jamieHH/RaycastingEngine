@@ -6,7 +6,8 @@ import com.jamie.raycasting.app.Game;
 import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.graphics.overlays.LoadingOverlay;
 
-public class Screen extends Render {
+public class Screen extends Render
+{
     private Mob p = new Mob();
 
     private Render3D render;

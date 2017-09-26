@@ -6,21 +6,22 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-public class Launcher extends JFrame {
+public class Launcher extends JFrame
+{
 	private static final long serialVersionUID = 1L;
 
-	private boolean autoLaunch = true;
+	private final boolean autoLaunch = true;
 
-	protected JPanel window = new JPanel();
+	protected final JPanel window = new JPanel();
 
-	private int windowWidth = 220;
-	private int windowHeight = 220;
+	private final int windowWidth = 220;
+	private final int windowHeight = 220;
 
-	protected int button_width = 100;
-	protected int button_height = 30;
-	protected int select_width = 80;
-	protected int select_height = 30;
-	protected int label_height = 25;
+	protected final int button_width = 100;
+	protected final int button_height = 30;
+	protected final int select_width = 80;
+	protected final int select_height = 30;
+	protected final int label_height = 25;
 
 	public Launcher(int id) {
 		if (autoLaunch) {

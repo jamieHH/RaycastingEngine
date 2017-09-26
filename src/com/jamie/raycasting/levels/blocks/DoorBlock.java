@@ -2,7 +2,8 @@ package com.jamie.raycasting.levels.blocks;
 
 import com.jamie.raycasting.graphics.Texture;
 
-public class DoorBlock extends Block {
+public class DoorBlock extends Block
+{
 	public boolean open = false;
 
     public int useWait = 0;

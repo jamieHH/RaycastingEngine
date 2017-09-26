@@ -3,8 +3,8 @@ package com.jamie.raycasting.graphics.overlays.menus;
 import com.jamie.raycasting.app.Game;
 import com.jamie.raycasting.graphics.Screen;
 
-public class LoadMenu extends Menu {
-
+public class LoadMenu extends Menu
+{
     protected String[] saves = {
             "Empty",
             "Empty",

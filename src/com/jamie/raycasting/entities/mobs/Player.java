@@ -2,8 +2,8 @@ package com.jamie.raycasting.entities.mobs;
 
 import com.jamie.raycasting.input.InputHandler;
 
-public class Player extends Mob {
-
+public class Player extends Mob
+{
 	public Player(InputHandler input) {
 	    this.input = input;
 

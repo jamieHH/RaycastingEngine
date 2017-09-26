@@ -3,8 +3,8 @@ package com.jamie.raycasting.graphics.overlays.menus;
 import com.jamie.raycasting.app.Game;
 import com.jamie.raycasting.graphics.Screen;
 
-public class PauseMenu extends Menu {
-
+public class PauseMenu extends Menu
+{
     public PauseMenu() {
         options.clear();
         options.add("Resume");

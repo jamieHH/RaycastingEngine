@@ -4,8 +4,8 @@ import com.jamie.raycasting.graphics.Render;
 import com.jamie.raycasting.graphics.SpriteParticle;
 import com.jamie.raycasting.graphics.Texture;
 
-public class DropParticle extends Entity {
-
+public class DropParticle extends Entity
+{
     public int life = 20;
 
     public DropParticle(double x, double z) {

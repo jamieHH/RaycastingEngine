@@ -3,8 +3,8 @@ package com.jamie.raycasting.levels.blocks;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
 
-public class LadderBlock extends Block {
-
+public class LadderBlock extends Block
+{
     public boolean disabled = false;
 
 	public LadderBlock(boolean ladderUp) {

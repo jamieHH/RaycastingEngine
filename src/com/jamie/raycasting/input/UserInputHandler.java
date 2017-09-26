@@ -5,8 +5,8 @@ import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class UserInputHandler extends InputHandler implements KeyListener, FocusListener {
-
+public class UserInputHandler extends InputHandler implements KeyListener, FocusListener
+{
 	private boolean[] key = new boolean[68836];
 
 	public boolean randomLevel, loadLevel, nextMob, pause, yKey;

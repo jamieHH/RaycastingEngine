@@ -7,7 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class Entity {
+public class Entity
+{
 	protected static final Random random = new Random();
 	private List<Sprite> sprites = new ArrayList<Sprite>();
     protected int animTime = 5;

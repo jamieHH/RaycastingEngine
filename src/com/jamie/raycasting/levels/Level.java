@@ -16,7 +16,8 @@ import com.jamie.raycasting.entities.mobs.Spirit;
 import com.jamie.raycasting.input.ArtificialInputHandler;
 import com.jamie.raycasting.levels.blocks.*;
 
-public class Level {
+public class Level
+{
 	public String name = "";
 
 	public Block[] blocks;

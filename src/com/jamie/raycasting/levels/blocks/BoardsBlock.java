@@ -4,7 +4,8 @@ import com.jamie.raycasting.entities.WoodParticle;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
 
-public class BoardsBlock extends Block {
+public class BoardsBlock extends Block
+{
 	public boolean smashed = false;
 
 	public BoardsBlock() {
@@ -23,7 +24,7 @@ public class BoardsBlock extends Block {
         return false;
     }
 
-    public void smash() {
+    private void smash() {
         smashed = true;
         blocksMotion = false;
 

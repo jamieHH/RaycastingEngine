@@ -4,8 +4,8 @@ import com.jamie.raycasting.entities.DropParticle;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
 
-public class FountainBlock extends Block {
-
+public class FountainBlock extends Block
+{
     int i = 0;
 
 	public FountainBlock() {

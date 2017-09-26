@@ -8,7 +8,8 @@ import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
 import com.jamie.raycasting.levels.Level;
 
-public class Block {
+public class Block
+{
     public Level level;
 
 	public boolean solidRender = false;

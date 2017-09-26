@@ -4,8 +4,8 @@ import com.jamie.raycasting.graphics.Render;
 import com.jamie.raycasting.graphics.SpriteParticle;
 import com.jamie.raycasting.graphics.Texture;
 
-public class WoodParticle extends Entity {
-
+public class WoodParticle extends Entity
+{
     public int life = 120;
 
     public WoodParticle(double x, double z) {
