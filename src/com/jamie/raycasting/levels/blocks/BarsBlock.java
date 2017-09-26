@@ -6,7 +6,7 @@ import com.jamie.raycasting.graphics.Texture;
 public class BarsBlock extends Block {
 	public BarsBlock() {
 		Sprite sprite = new Sprite(0, 0, 0, Texture.bars);
-		sprites.add(sprite);
+		addSprite(sprite);
 		
 		blocksMotion = true;
 	}

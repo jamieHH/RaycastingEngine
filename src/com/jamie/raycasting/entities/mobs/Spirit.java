@@ -37,10 +37,10 @@ public class Spirit extends Mob {
         Sprite sprite2 = new Sprite(0, 0, 0, Texture.spirit1);
         Sprite sprite3 = new Sprite(0, 0, 0, Texture.spirit2);
 
-        sprites.add(sprite1);
-        sprites.add(sprite2);
-        sprites.add(sprite3);
-        sprites.add(sprite2);
+        addSprite(sprite1);
+        addSprite(sprite2);
+        addSprite(sprite3);
+        addSprite(sprite2);
     }
 
     public void tick() {
@@ -48,7 +48,7 @@ public class Spirit extends Mob {
         if (isDead || isDieing) {
             camY = -6.0;
             if (isDead) {
-                removed = true;
+                remove();
             }
             return;
         }

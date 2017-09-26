@@ -15,14 +15,14 @@ public class CeilDripBlock extends Block {
 		Sprite sprite4 = new Sprite(0, 0, 0, Texture.drip3);
 		Sprite sprite5 = new Sprite(0, 0, 0, Texture.drip4);
 
-		sprites.add(sprite1);
-		sprites.add(sprite1);
-		sprites.add(sprite2);
-        sprites.add(sprite2);
-		sprites.add(sprite3);
-		sprites.add(sprite4);
-		sprites.add(sprite5);
-        sprites.add(sprite1);
+		addSprite(sprite1);
+		addSprite(sprite1);
+		addSprite(sprite2);
+        addSprite(sprite2);
+		addSprite(sprite3);
+		addSprite(sprite4);
+		addSprite(sprite5);
+        addSprite(sprite1);
 
 		blocksMotion = false;
 
@@ -43,7 +43,7 @@ public class CeilDripBlock extends Block {
 
         int i = spriteIndex;
         i++;
-        if (i >= sprites.size()) {
+        if (i >= countSprites()) {
             i = 0;
         }
 

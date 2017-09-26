@@ -12,7 +12,7 @@ public class BoardsBlock extends Block {
 		blocksMotion = true;
 
         Sprite sprite = new Sprite(0, 0, 0, Texture.boards);
-        sprites.add(sprite);
+        addSprite(sprite);
 	}
 
 	public boolean use() {
@@ -27,8 +27,10 @@ public class BoardsBlock extends Block {
         smashed = true;
         blocksMotion = false;
 
-        sprites.clear();
-        sprites.add(new Sprite(0, 0, 0, Texture.boardsSmashed));
+        clearSprites();
+
+        Sprite sprite = new Sprite(0, 0, 0, Texture.boardsSmashed);
+        addSprite(sprite);
 
         for (int i = 0; i < 6 ; i++) {
             level.addEntity(new WoodParticle((gridX * 16) + 8, (gridZ * 16) + 8));

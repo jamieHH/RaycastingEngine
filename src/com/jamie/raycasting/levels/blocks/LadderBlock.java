@@ -16,13 +16,13 @@ public class LadderBlock extends Block {
 			ceilTex = Texture.ladderHole;
 
             Sprite sprite = new Sprite(0, 0.2, 0, Texture.ladder);
-            sprites.add(sprite);
+            addSprite(sprite);
 		} else {
             floorTex = Texture.ladderHole;
             ceilTex = Texture.floor;
 
             Sprite sprite = new Sprite(0, -0.15, 0, Texture.ladder);
-            sprites.add(sprite);
+            addSprite(sprite);
         }
 	}
 

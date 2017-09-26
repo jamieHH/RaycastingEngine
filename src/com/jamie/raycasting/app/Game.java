@@ -144,14 +144,14 @@ public class Game {
         pauseTime = 10;
 
         List<Mob> mobs = new ArrayList<Mob>();
-        for (int e = 0; e < level.entities.size(); e++) {
-            Entity ent = level.entities.get(e);
+        for (int e = 0; e < level.countEntities(); e++) {
+            Entity ent = level.getEntity(e);
             if (ent instanceof Mob) {
                 mobs.add((Mob) ent);
             }
         }
 
-        int i = level.entities.indexOf(player);
+        int i = level.getEntities().indexOf(player);
         if (i + 1 >= mobs.size()) {
             player = mobs.get(0);
         } else {

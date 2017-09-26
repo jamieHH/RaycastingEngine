@@ -16,18 +16,18 @@ public class DropParticle extends Entity {
         Render addTex = Texture.drop;
 
         SpriteParticle tex = new SpriteParticle(0, 1, 0, addTex);
-        sprites.add(tex);
+        addSprite(tex);
     }
 
     public void tick() {
         super.tick();
         life -= 1;
         if (life <= 0) {
-            removed = true;
+            remove();
         }
 
-        for (int i = 0; i < sprites.size(); i++) {
-            sprites.get(i).tick();
+        for (int i = 0; i < countSprites(); i++) {
+            getSprite(i).tick();
         }
     }
 }

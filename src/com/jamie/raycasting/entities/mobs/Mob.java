@@ -76,13 +76,13 @@ public class Mob extends Entity {
     }
 
     protected boolean isEntityFree(double x, double z) {
-        for (int i = 0; i < level.entities.size(); i++) {
-            Entity e = level.entities.get(i);
+        for (int i = 0; i < level.countEntities(); i++) {
+            Entity e = level.getEntity(i);
             if (e.solid) {
                 double entX = e.posX;
                 double entZ = e.posZ;
                 double entRadius = e.radius;
-                if (level.entities.get(i) != this) {
+                if (level.getEntity(i) != this) {
                     if (((Math.abs(x - entX)) - entRadius < radius) && ((Math.abs(z - entZ)) - entRadius < radius)) {
                         return false;
                     }
@@ -194,9 +194,11 @@ public class Mob extends Entity {
     protected void dieTick() {
         dieTime--;
 
-        sprites.clear();
+        clearSprites();
         spriteIndex = 0;
-        sprites.add(new Sprite(0, 0, 0, Texture.splat));
+
+        Sprite sprite = new Sprite(0, 0, 0, Texture.splat);
+        addSprite(sprite);
 
         if (dieTime <= 0) {
             isDead = true;
@@ -211,8 +213,8 @@ public class Mob extends Entity {
 
     public void activate() {
         List<Entity> closeEnts = new ArrayList<Entity>();
-        for (int e = 0; e < level.entities.size(); e++) {
-            Entity ent = level.entities.get(e);
+        for (int e = 0; e < level.countEntities(); e++) {
+            Entity ent = level.getEntity(e);
             if (distanceFrom(ent.posX, ent.posZ) < useDist) {
                 closeEnts.add(ent);
             }

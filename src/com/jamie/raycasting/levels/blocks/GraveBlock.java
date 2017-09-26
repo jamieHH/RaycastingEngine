@@ -11,7 +11,7 @@ public class GraveBlock extends Block {
 	floorTex = Texture.dirt;
 
 		Sprite sprite = new Sprite(0, 0, 0, Texture.grave);
-		sprites.add(sprite);
+		addSprite(sprite);
 		
 		blocksMotion = false;
 	}

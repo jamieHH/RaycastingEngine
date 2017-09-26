@@ -8,6 +8,6 @@ public class SpinningDummyBlock extends Block {
 	
 	public SpinningDummyBlock() {
 		sprite = new Sprite(0, 0, 0, Texture.spinningDummy);
-		sprites.add(sprite);
+		addSprite(sprite);
 	}
 }

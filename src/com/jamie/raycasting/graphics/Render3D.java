@@ -251,18 +251,17 @@ public class Render3D extends Render {
         for (int xBlock = xBlockStart; xBlock <= xBlockEnd; xBlock++) {
             for (int zBlock = zBlockStart; zBlock <= zBlockEnd; zBlock++) {
                 Block block = p.level.getBlock(xBlock, zBlock);
-                for (int i = 0; i < block.sprites.size(); i++) {
-//                    Sprite sprite = block.sprites.get(i);
-					Sprite sprite = block.sprites.get(block.spriteIndex);
+                for (int i = 0; i < block.countSprites(); i++) {
+					Sprite sprite = block.getSprite(block.spriteIndex);
                     renderSprite((xBlock + 0.5) + sprite.x, sprite.y, (zBlock + 0.5) + sprite.z, sprite.texture);
                 }
 			}
 		}
 
-        for (int i = 0; i < p.level.entities.size(); i++) {
-            Entity entity = p.level.entities.get(i);
-            if (entity.sprites.size() > 0) {
-                Sprite sprite = entity.sprites.get(entity.spriteIndex);
+        for (int i = 0; i < p.level.countEntities(); i++) {
+            Entity entity = p.level.getEntity(i);
+            if (entity.countSprites() > 0) {
+                Sprite sprite = entity.getSprite(entity.spriteIndex);
                 renderSprite((entity.posX + sprite.x) / 16, entity.posY + sprite.y, (entity.posZ + sprite.z) / 16, sprite.texture); // replace with: entity.posY + sprite.y
             }
         }

@@ -26,17 +26,17 @@ public class PoofParticle extends Entity {
 
         SpriteParticle tex = new SpriteParticle(0, 0.5, 0, addTex);
         tex.gravity = -0.25; // adjust to rise rather tha fall.
-        sprites.add(tex);
+        addSprite(tex);
     }
 
     public void tick() {
         super.tick();
         life -= 1;
         if (life <= 0) {
-            removed = true;
+            remove();
         }
-        for (int i = 0; i < sprites.size(); i++) {
-            sprites.get(i).tick();
+        for (int i = 0; i < countSprites(); i++) {
+            getSprite(i).tick();
         }
     }
 }
