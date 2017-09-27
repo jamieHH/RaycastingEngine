@@ -28,13 +28,10 @@ public class Screen extends Render
 		super(width, height);
 		p = game.player;
 
-        // 3D render
-		render = new Render3D(width, height - (height / 8));
-
         equippedItem = Texture.screenSpear0;
 
         // HUD
-        hudBar = new Render(width, height / 8);
+        hudBar = new Render(width, 9);
         for (int i = 0; i < hudBar.pixels.length; i++) {
             if (i < (hudBar.pixels.length) - ((hudBar.pixels.length) - hudBar.width)) {
                 hudBar.pixels[i] = 0x404040;
@@ -42,6 +39,9 @@ public class Screen extends Render
                 hudBar.pixels[i] = 0x606060;
             }
         }
+
+        // 3D render
+        render = new Render3D(width, height - (hudBar.height));
 
 
         // HUD Items
@@ -93,7 +93,6 @@ public class Screen extends Render
 
         // 3D Render objects
         p = game.player;
-//        p = (Mob) game.level.entities.get(1);
         render.render(p);
 
         draw(render, 0, 0);
