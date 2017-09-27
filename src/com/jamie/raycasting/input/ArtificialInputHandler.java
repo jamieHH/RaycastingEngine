@@ -2,7 +2,8 @@ package com.jamie.raycasting.input;
 
 import java.util.Random;
 
-public class ArtificialInputHandler extends InputHandler {
+public class ArtificialInputHandler extends InputHandler
+{
     private boolean allowMovement = true;
 
 	private Random random = new Random();

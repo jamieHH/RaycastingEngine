@@ -11,8 +11,8 @@ import com.jamie.raycasting.levels.blocks.Block;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Mob extends Entity {
-
+public class Mob extends Entity
+{
     protected boolean wallCollide = true;
     protected boolean entCollide = true;
 
@@ -37,8 +37,8 @@ public class Mob extends Entity {
     protected double crouchHeightMod = 4.0;
 
     public double camY = 0;
+    protected double yBob = 0;
     private int bobTime = 0;
-    private double yBob = 0;
 
 
 	// stats
@@ -76,13 +76,13 @@ public class Mob extends Entity {
     }
 
     protected boolean isEntityFree(double x, double z) {
-        for (int i = 0; i < level.entities.size(); i++) {
-            Entity e = level.entities.get(i);
+        for (int i = 0; i < level.countEntities(); i++) {
+            Entity e = level.getEntity(i);
             if (e.solid) {
                 double entX = e.posX;
                 double entZ = e.posZ;
                 double entRadius = e.radius;
-                if (level.entities.get(i) != this) {
+                if (level.getEntity(i) != this) {
                     if (((Math.abs(x - entX)) - entRadius < radius) && ((Math.abs(z - entZ)) - entRadius < radius)) {
                         return false;
                     }
@@ -120,7 +120,7 @@ public class Mob extends Entity {
             bobTime = 0;
         }
         camY += yBob;
-        yBob *= 0.875;
+        yBob *= 0.75;
 
         // Do movements:
         rotation += rotationMove;
@@ -175,14 +175,13 @@ public class Mob extends Entity {
     public void hurt(Mob source, int damage) {
         if (damageTime > 0 || damage <= 0 || isDieing) return;
 
-        // add when yBob calc is changed
         yBob -= 6;
 
         health -= damage;
         damageTime = 30;
 
-        double mx = (posX - source.posX) / 4;
-        double mz = (posZ - source.posZ) / 4;
+        double mx = (posX - source.posX) / 2;
+        double mz = (posZ - source.posZ) / 2;
         push(mx, mz);
 
         for (int i = 0; i < 2 ; i++) {
@@ -195,9 +194,11 @@ public class Mob extends Entity {
     protected void dieTick() {
         dieTime--;
 
-        sprites.clear();
+        clearSprites();
         spriteIndex = 0;
-        sprites.add(new Sprite(0, 0, 0, Texture.splat));
+
+        Sprite sprite = new Sprite(0, 0, 0, Texture.splat);
+        addSprite(sprite);
 
         if (dieTime <= 0) {
             isDead = true;
@@ -212,8 +213,8 @@ public class Mob extends Entity {
 
     public void activate() {
         List<Entity> closeEnts = new ArrayList<Entity>();
-        for (int e = 0; e < level.entities.size(); e++) {
-            Entity ent = level.entities.get(e);
+        for (int e = 0; e < level.countEntities(); e++) {
+            Entity ent = level.getEntity(e);
             if (distanceFrom(ent.posX, ent.posZ) < useDist) {
                 closeEnts.add(ent);
             }

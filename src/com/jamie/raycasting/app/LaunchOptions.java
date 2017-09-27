@@ -9,40 +9,40 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
+import javax.swing.*;
 
-public class LaunchOptions extends Launcher {
+public class LaunchOptions extends Launcher
+{
 	private static final long serialVersionUID = 1L;
 	
-	private int windowWidth = 340;
-	private int windowHeight = 220;
+	private final int windowWidth = 340;
+	private final int windowHeight = 220;
 
-	private int defaultAspectRatioIndex = 0;
-	private int defaultResolutionIndex = 0;
-	private int defaultScaleIndex = 0;
+	private final int defaultAspectRatioIndex = 0;
+	private final int defaultResolutionIndex = 1;
+	private final int defaultScaleIndex = 1;
 
 	// resolution options
-	private String[] aspectRatios = {
+	private final String[] aspectRatios = {
 		"4:3",
 		"16:9"
 	};
 	
-	private int[] scales = {
+	private final int[] scales = {
 		8,
 		4,
 		2,
 		1
 	};
 	
-	private int[][] resolutions4x3 = {
+	private final int[][] resolutions4x3 = {
 		{100, 75},
 		{200, 150},
 		{400, 300},
 		{800, 600},
 	};
 	
-	private int[][] resolutions16x9= {
+	private final int[][] resolutions16x9= {
 		{128, 72},
 		{256, 144},
 		{512, 288},
@@ -50,16 +50,16 @@ public class LaunchOptions extends Launcher {
 	};
 	//
 	
-	private Choice aspectRatio = new Choice();
-	private Choice resolution = new Choice();
-	private Choice scale = new Choice();
+	private final Choice aspectRatio = new Choice();
+	private final Choice resolution = new Choice();
+	private final Choice scale = new Choice();
 	
 	public LaunchOptions() {
 		super(1);
 		setTitle("Options - Raycasting Engine");
 		setSize(new Dimension(windowWidth, windowHeight));
 		setLocationRelativeTo(null);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		drawButtons();
 		setVisible(true);
 	}

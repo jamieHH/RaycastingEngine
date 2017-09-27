@@ -1,6 +1,7 @@
 package com.jamie.raycasting.levels;
 
-public class IslandLevel extends Level {
+public class IslandLevel extends Level
+{
 	public IslandLevel() {
 		name = "Island";
 		levelHeight = 8192;

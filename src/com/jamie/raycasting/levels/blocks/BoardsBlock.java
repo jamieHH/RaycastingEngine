@@ -4,7 +4,8 @@ import com.jamie.raycasting.entities.WoodParticle;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
 
-public class BoardsBlock extends Block {
+public class BoardsBlock extends Block
+{
 	public boolean smashed = false;
 
 	public BoardsBlock() {
@@ -12,7 +13,7 @@ public class BoardsBlock extends Block {
 		blocksMotion = true;
 
         Sprite sprite = new Sprite(0, 0, 0, Texture.boards);
-        sprites.add(sprite);
+        addSprite(sprite);
 	}
 
 	public boolean use() {
@@ -23,12 +24,14 @@ public class BoardsBlock extends Block {
         return false;
     }
 
-    public void smash() {
+    private void smash() {
         smashed = true;
         blocksMotion = false;
 
-        sprites.clear();
-        sprites.add(new Sprite(0, 0, 0, Texture.boardsSmashed));
+        clearSprites();
+
+        Sprite sprite = new Sprite(0, 0, 0, Texture.boardsSmashed);
+        addSprite(sprite);
 
         for (int i = 0; i < 6 ; i++) {
             level.addEntity(new WoodParticle((gridX * 16) + 8, (gridZ * 16) + 8));

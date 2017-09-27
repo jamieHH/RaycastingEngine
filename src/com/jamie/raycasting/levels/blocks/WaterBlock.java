@@ -5,8 +5,8 @@ import com.jamie.raycasting.graphics.Texture;
 
 import java.util.ArrayList;
 
-public class WaterBlock extends Block {
-
+public class WaterBlock extends Block
+{
     protected int animTime = 20;
     protected int floorTexIndex = 0;
     public ArrayList<Render> floorTextures = new ArrayList<>();

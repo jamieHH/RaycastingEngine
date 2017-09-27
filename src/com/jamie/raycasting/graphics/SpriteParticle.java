@@ -2,8 +2,8 @@ package com.jamie.raycasting.graphics;
 
 import java.util.Random;
 
-public class SpriteParticle extends Sprite {
-
+public class SpriteParticle extends Sprite
+{
     private int life = 120;
     private int time = 0;
 

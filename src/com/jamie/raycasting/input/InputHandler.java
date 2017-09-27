@@ -1,7 +1,7 @@
 package com.jamie.raycasting.input;
 
-public class InputHandler {
-	
+public class InputHandler
+{
 	public boolean forward, back, left, right, rotLeft, rotRight, crouch, run, action;
 
 	public int pauseTime = 0;

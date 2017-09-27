@@ -1,9 +1,9 @@
 package com.jamie.raycasting.app;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 
-public class RunGame {
-
+public class RunGame
+{
     public JFrame frame;
 
 	public RunGame() {
@@ -14,7 +14,7 @@ public class RunGame {
 		frame = new JFrame();
 		frame.add(game);
 		frame.setTitle(App.TITLE);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		frame.setResizable(false);
 		frame.pack();
 		frame.setLocationRelativeTo(null);
@@ -31,7 +31,7 @@ public class RunGame {
 
         frame = new JFrame();
         frame.setTitle(App.TITLE);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setResizable(false);
         frame.pack();
         frame.setVisible(true);

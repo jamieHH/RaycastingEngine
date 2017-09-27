@@ -15,20 +15,20 @@ import com.jamie.raycasting.levels.Level;
 import com.jamie.raycasting.levels.blocks.Block;
 import com.jamie.raycasting.levels.blocks.LadderBlock;
 
-public class Game {
-
+public class Game
+{
 	public int time;
 	public int pauseTime;
 	public Level level;
 	public Mob player;
 	public UserInputHandler userInput;
 
-	public Menu mainMenu = new MainMenu();
-    public Menu loadMenu = new LoadMenu();
-    public Menu optionsMenu = new OptionsMenu();
-    public Menu pauseMenu = new PauseMenu();
-    public Menu overMenu = new OverMenu();
-    public Menu loadingOverlay = new LoadingOverlay();
+	public final Menu mainMenu = new MainMenu();
+    public final Menu loadMenu = new LoadMenu();
+    public final Menu optionsMenu = new OptionsMenu();
+    public final Menu pauseMenu = new PauseMenu();
+    public final Menu overMenu = new OverMenu();
+    public final Menu loadingOverlay = new LoadingOverlay();
 
 	public Menu activeMenu;
 	
@@ -144,14 +144,14 @@ public class Game {
         pauseTime = 10;
 
         List<Mob> mobs = new ArrayList<Mob>();
-        for (int e = 0; e < level.entities.size(); e++) {
-            Entity ent = level.entities.get(e);
+        for (int e = 0; e < level.countEntities(); e++) {
+            Entity ent = level.getEntity(e);
             if (ent instanceof Mob) {
                 mobs.add((Mob) ent);
             }
         }
 
-        int i = level.entities.indexOf(player);
+        int i = level.getEntities().indexOf(player);
         if (i + 1 >= mobs.size()) {
             player = mobs.get(0);
         } else {

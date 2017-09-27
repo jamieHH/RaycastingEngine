@@ -6,7 +6,8 @@ import java.util.Random;
 
 import javax.imageio.ImageIO;
 
-public class Texture {
+public class Texture
+{
     // special
     public static final Render font = loadBitmap("/gui/font2.png");
     public static final Render noTex = loadBitmap("/textures/noTex.png");

@@ -1,6 +1,7 @@
 package com.jamie.raycasting.levels;
 
-public class SewerLevel extends Level {
+public class SewerLevel extends Level
+{
 	public SewerLevel() {
 	    name = "Sewer";
 	}

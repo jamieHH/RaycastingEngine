@@ -12,14 +12,16 @@ import com.jamie.raycasting.app.Game;
 import com.jamie.raycasting.entities.Entity;
 import com.jamie.raycasting.entities.mobs.Bat;
 import com.jamie.raycasting.entities.mobs.Mob;
+import com.jamie.raycasting.entities.mobs.Spirit;
 import com.jamie.raycasting.input.ArtificialInputHandler;
 import com.jamie.raycasting.levels.blocks.*;
 
-public class Level {
+public class Level
+{
 	public String name = "";
 
 	public Block[] blocks;
-	public List<Entity> entities = new ArrayList<Entity>();
+	private List<Entity> entities = new ArrayList<Entity>();
 
 	private int sizeX;
 	private int sizeZ;
@@ -82,22 +84,34 @@ public class Level {
             blocks[i].tick();
         }
 
-		for (int i = 0; i < entities.size(); i++) {
-			entities.get(i).tick();
+		for (int i = 0; i < countEntities(); i++) {
+            getEntity(i).tick();
 
-			if (entities.get(i).removed) {
-                entities.remove(entities.get(i));
+			if (getEntity(i).removed) {
+                removeEntity(getEntity(i));
             }
 		}
 	}
 	
 	public void addEntity(Entity e) {
-		entities.add(e);
+	    entities.add(e);
 	}
+
+    public List<Entity> getEntities() {
+        return entities;
+    }
+
+    public Entity getEntity(int i) {
+        return entities.get(i);
+    }
 	
 	public void removeEntity(Entity e) {
-		entities.remove(e);
+        entities.remove(e);
 	}
+
+    public int countEntities() {
+        return entities.size();
+    }
 	
 	public Block getBlock(int x, int z) {
 		if (x < 0 || z < 0 || x >= sizeX || z >= sizeZ) {
@@ -131,6 +145,7 @@ public class Level {
 
     private Mob getMobByColour(int col) {
         if (col == 0x804000) return new Bat(new ArtificialInputHandler());
+        if (col == 0xFFFF71) return new Spirit(new ArtificialInputHandler());
         return null;
     }
 
@@ -163,8 +178,8 @@ public class Level {
         int bX1 = (block.gridX * 16) + 16;
         int bZ0 = block.gridZ * 16;
         int bZ1 = (block.gridZ * 16) + 16;
-        for (int i = 0; i < entities.size(); i++) {
-            Entity e = entities.get(i);
+        for (int i = 0; i < countEntities(); i++) {
+            Entity e = getEntity(i);
             if (e.solid) {
                 if ((e.posX + e.radius > bX0 && e.posX - e.radius < bX1) && (e.posZ + e.radius > bZ0 && e.posZ - e.radius < bZ1)) {
                     return true;

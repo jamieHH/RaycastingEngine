@@ -7,9 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class Entity {
+public class Entity
+{
 	protected static final Random random = new Random();
-	public List<Sprite> sprites = new ArrayList<Sprite>();
+	private List<Sprite> sprites = new ArrayList<Sprite>();
     protected int animTime = 5;
     public int spriteIndex = 0;
 
@@ -22,10 +23,26 @@ public class Entity {
 	public double posY;
 
 	public Boolean removed = false;
-	
+
 	public void remove() {
-		removed = true;
+        removed = true;
 	}
+
+	public void addSprite(Sprite s) {
+        sprites.add(s);
+    }
+
+    public Sprite getSprite(int i) {
+        return sprites.get(i);
+    }
+
+    public int countSprites() {
+        return sprites.size();
+    }
+
+    public void clearSprites() {
+        sprites.clear();
+    }
 
 	protected void spriteTick() {
         if (animTime > 0) {
@@ -35,7 +52,7 @@ public class Entity {
 
         int i = spriteIndex;
         i++;
-        if (i >= sprites.size()) {
+        if (i >= countSprites()) {
             i = 0;
         }
 

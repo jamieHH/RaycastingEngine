@@ -12,7 +12,8 @@ import java.awt.image.DataBufferInt;
 import com.jamie.raycasting.graphics.Screen;
 import com.jamie.raycasting.input.UserInputHandler;
 
-public class App extends Canvas implements Runnable {
+public class App extends Canvas implements Runnable
+{
 	private static final long serialVersionUID = 1L;
 	
 	public static final String TITLE = "raycasting_engine_pre_0.72";

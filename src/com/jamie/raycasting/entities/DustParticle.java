@@ -4,11 +4,11 @@ import com.jamie.raycasting.graphics.Render;
 import com.jamie.raycasting.graphics.SpriteParticle;
 import com.jamie.raycasting.graphics.Texture;
 
-public class PoofParticle extends Entity
+public class DustParticle extends Entity
 {
     public int life = 120;
 
-    public PoofParticle(double x, double z) {
+    public DustParticle(double x, double z) {
         this.posX = x;
         this.posZ = z;
         solid = false;
@@ -25,7 +25,7 @@ public class PoofParticle extends Entity
         }
 
         SpriteParticle tex = new SpriteParticle(0, 0.5, 0, addTex);
-        tex.gravity = -0.25; // adjust to rise rather tha fall.
+        tex.gravity = 0; // adjust to rise rather tha fall.
         addSprite(tex);
     }
 

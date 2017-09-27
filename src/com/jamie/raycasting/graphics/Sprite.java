@@ -1,7 +1,7 @@
 package com.jamie.raycasting.graphics;
 
-public class Sprite {
-	
+public class Sprite
+{
 	public double x, y, z;
 	public Render texture = Texture.noTex;
 	public int col = 0x202020; // TODO: build color tint into sprite renderer
