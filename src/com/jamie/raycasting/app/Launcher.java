@@ -62,7 +62,6 @@ public class Launcher extends JFrame
 		play.setBounds((windowWidth / 2) - (button_width / 2), 40, button_width, button_height);
 		play.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("Play!");
 				dispose();
 				new RunGame();
 			}
@@ -72,7 +71,6 @@ public class Launcher extends JFrame
 		options.setBounds((windowWidth / 2) - (button_width / 2), 80, button_width, button_height);
 		options.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("Options!");
 				dispose();
 				new LaunchOptions();
 			}

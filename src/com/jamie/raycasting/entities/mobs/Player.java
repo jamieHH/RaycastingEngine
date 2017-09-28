@@ -16,7 +16,6 @@ public class Player extends Mob
 	    radius = 4;
 
         rotationSpeed = 0.03;
-//        walkSpeed = 0.3;
         walkSpeed = 0.4; // disabling walking
         runSpeed = 0.4;
         crouchSpeed = 0.15;
@@ -35,17 +34,6 @@ public class Player extends Mob
         if (isDead || isDieing) {
             camY = -6.0;
             return;
-        }
-
-        if (input.action) {
-            if (useTime <= 0) {
-                useTime = 30;
-
-//            ((UserInputHandler) input).key[KeyEvent.VK_SPACE] = false;
-//            ((UserInputHandler) input).key[KeyEvent.VK_ENTER] = false;
-
-                activate();
-            }
         }
 
         doMovements();

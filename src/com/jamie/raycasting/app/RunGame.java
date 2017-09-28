@@ -20,8 +20,6 @@ public class RunGame
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
         frame.setFocusable(true);
-
-		System.out.println("Running...");
 		
 		game.start();
 	}

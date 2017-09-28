@@ -10,6 +10,7 @@ import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.entities.mobs.Player;
 import com.jamie.raycasting.graphics.overlays.LoadingOverlay;
 import com.jamie.raycasting.graphics.overlays.menus.*;
+import com.jamie.raycasting.input.InputHandler;
 import com.jamie.raycasting.input.UserInputHandler;
 import com.jamie.raycasting.levels.Level;
 import com.jamie.raycasting.levels.blocks.Block;
@@ -22,6 +23,7 @@ public class Game
 	public Level level;
 	public Mob player;
 	public UserInputHandler userInput;
+	public InputHandler temporaryInput;
 
 	public final Menu mainMenu = new MainMenu();
     public final Menu loadMenu = new LoadMenu();
@@ -60,6 +62,11 @@ public class Game
 			level.tick();
 			time++;
 
+            if (userInput.nextMob) { // for fun :)
+//				switchPlayer();
+                possessNextMob();
+            }
+
             if (player.isDead) {
                 if (userInput.action || userInput.pause) {
                     setActiveMenu(overMenu);
@@ -83,10 +90,6 @@ public class Game
 				player.rotation = 0.2;
                 switchLevel("island", 999);
             }
-
-			if (userInput.nextMob) {
-				switchPlayer();
-			}
         }
 	}
 	
@@ -157,5 +160,40 @@ public class Game
         } else {
             player = mobs.get(i + 1);
         }
+	}
+
+	private void possessNextMob() {
+	    // build upon this functionality
+		pauseTime = 10;
+
+		List<Mob> mobs = new ArrayList<Mob>();
+		for (int e = 0; e < level.countEntities(); e++) {
+			Entity ent = level.getEntity(e);
+			if (ent instanceof Mob) {
+				mobs.add((Mob) ent);
+			}
+		}
+
+		int i = level.getEntities().indexOf(player);
+		if (i + 1 >= mobs.size()) {
+		    if (temporaryInput != null) {
+                player.input = temporaryInput;
+            }
+            if (temporaryInput instanceof UserInputHandler) {
+                player.input = new InputHandler();
+            }
+
+			player = mobs.get(0);
+			temporaryInput = player.input;
+			player.input = userInput;
+		} else {
+            if (temporaryInput != null) {
+                player.input = temporaryInput;
+            }
+
+			player = mobs.get(i + 1);
+            temporaryInput = player.input;
+            player.input = userInput;
+		}
 	}
 }

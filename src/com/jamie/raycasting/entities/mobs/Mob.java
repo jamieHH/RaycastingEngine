@@ -21,7 +21,7 @@ public class Mob extends Entity
     public int viewDist = 64;
 
     // actions
-    protected InputHandler input;
+    public InputHandler input;
     protected int useTime = 0;
 
     // movement
@@ -54,6 +54,16 @@ public class Mob extends Entity
     public void tick() {
         super.tick();
         input.tick();
+
+        if (input.action) {
+            if (useTime <= 0) {
+                useTime = 20;
+
+                activate();
+                // TODO: find put why mobs activate blocks faster than the first player
+                System.out.println("activate " + posX);
+            }
+        }
 
         if (damageTime > 0) damageTime--;
         if (useTime > 0) useTime--;

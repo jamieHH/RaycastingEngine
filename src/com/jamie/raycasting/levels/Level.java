@@ -163,7 +163,6 @@ public class Level
             for (int x = 0; x < sizeX; x++) {
                 Block b = blocks[x + z * sizeX];
                 if (b.id == id && b instanceof LadderBlock) {
-                    System.out.println("Spawn found at grid: " + x + ", " + z);
                     spawnX = (x * 16) + 8;
                     spawnZ = (z * 16) + 8;
                     return;
@@ -206,7 +205,7 @@ public class Level
 
 			return level;
 		} catch (Exception e) {
-			System.out.println("Failed to get load level:" + name + "!!");
+			System.out.println("Failed to load level: " + name + "!");
 			throw new RuntimeException(e);
 		}
 	}
@@ -216,7 +215,7 @@ public class Level
 			name = name.substring(0, 1).toUpperCase() + name.substring(1);
 			return (Level) Class.forName("com.jamie.raycasting.levels." + name + "Level").newInstance();
 		} catch (Exception e) {
-			System.out.println("Failed to load levels by name!");
+			System.out.println("Failed to get level by name: " + name + "!");
 			throw new RuntimeException(e);
 		}
 	}

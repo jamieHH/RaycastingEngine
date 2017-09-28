@@ -77,8 +77,6 @@ public class App extends Canvas implements Runnable
 		running = true;
 		thread = new Thread(this);
 		thread.start();
-		
-		System.out.println("Starting...");
 	}
 	
 	public void stop() {

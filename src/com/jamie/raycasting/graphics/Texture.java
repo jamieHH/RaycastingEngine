@@ -103,7 +103,7 @@ public class Texture
 
 			return result;
 		} catch (Exception e) {
-			System.out.println("Could not read image from file: " + fileName);
+			System.out.println("Could not read image from file name: " + fileName + "!");
 			throw new RuntimeException(e);
 		}
 	}
