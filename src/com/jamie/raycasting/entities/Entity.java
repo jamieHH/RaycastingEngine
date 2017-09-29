@@ -62,6 +62,13 @@ public class Entity
 
 	public void tick() {
         spriteTick();
+
+        double rot = rotation;
+        if (rotation > 6.28319) {
+            rotation = 0 + rot - 6.28319;
+        } else if (rotation < 0) {
+            rotation = 6.28319 - rot;
+        }
 	}
 
 	protected double distanceFrom(double x, double z) {

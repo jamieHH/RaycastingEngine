@@ -5,7 +5,7 @@ import com.jamie.raycasting.input.InputHandler;
 public class Player extends Mob
 {
 	public Player(InputHandler input) {
-	    this.input = input;
+        super(input);
 
 //        wallCollide = false;
 //        entCollide = false;

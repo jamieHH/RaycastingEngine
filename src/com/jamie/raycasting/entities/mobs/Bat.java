@@ -7,7 +7,7 @@ import com.jamie.raycasting.input.InputHandler;
 public class Bat extends Mob
 {
     public Bat(InputHandler input) {
-        this.input = input;
+        super(input);
 
 //        wallCollide = false;
 //        entCollide = false;
@@ -57,7 +57,14 @@ public class Bat extends Mob
 
         if (level.player != null) { // stop gap fix
             if (squareDistanceFrom(level.player.posX, level.player.posZ) < viewDist) {
+
+                // TODO: this function needs be replaced
+                // - because rotation now returns to 0 after 360 degrees
+                // - put this function in the input handler and make the mob input turn to face the target
+                // - this might be achived by checking if the rotation of the mob is more or less than the rotation that lookTowards() calculates
+                // - improve input handler to target particular mobs!!
                 lookTowards(level.player.posX, level.player.posZ);
+
                 input.forward = true;
                 if (squareDistanceFrom(level.player.posX, level.player.posZ) < useDist) {
                     input.action = true;

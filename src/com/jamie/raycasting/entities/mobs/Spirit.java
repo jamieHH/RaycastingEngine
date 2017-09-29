@@ -11,7 +11,7 @@ public class Spirit extends Mob
     private int poofTick = 0;
 
     public Spirit(InputHandler input) {
-        this.input = input;
+        super(input);
 
         wallCollide = false;
         entCollide = false;

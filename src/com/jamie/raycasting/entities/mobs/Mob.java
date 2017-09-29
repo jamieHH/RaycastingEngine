@@ -50,6 +50,10 @@ public class Mob extends Entity
 	protected boolean isDieing = false;
     public boolean isDead = false;
 
+    public Mob(InputHandler input) {
+        input.setMob(this);
+        this.input = input;
+    }
 
     public void tick() {
         super.tick();
@@ -60,8 +64,6 @@ public class Mob extends Entity
                 useTime = 20;
 
                 activate();
-                // TODO: find put why mobs activate blocks faster than the first player
-                System.out.println("activate " + posX);
             }
         }
 

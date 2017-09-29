@@ -5,10 +5,11 @@ import java.util.Random;
 import com.jamie.raycasting.app.Game;
 import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.graphics.overlays.LoadingOverlay;
+import com.jamie.raycasting.input.InputHandler;
 
 public class Screen extends Render
 {
-    private Mob p = new Mob();
+    private Mob p = new Mob(new InputHandler());
 
     private Render3D render;
 	private Render equippedItem;
