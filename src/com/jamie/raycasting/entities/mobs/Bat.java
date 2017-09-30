@@ -61,7 +61,7 @@ public class Bat extends Mob
                 // TODO: this function needs be replaced
                 // - because rotation now returns to 0 after 360 degrees
                 // - put this function in the input handler and make the mob input turn to face the target
-                // - this might be achived by checking if the rotation of the mob is more or less than the rotation that lookTowards() calculates
+                // - this might be achieved by checking if the rotation of the mob is more or less than the rotation that lookTowards() calculates
                 // - improve input handler to target particular mobs!!
                 lookTowards(level.player.posX, level.player.posZ);
 

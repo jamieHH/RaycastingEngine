@@ -17,7 +17,7 @@ public class Spirit extends Mob
         entCollide = false;
 
         useDist = 12;
-        viewDist = 64;
+        viewDist = 256;
 
         radius = 4;
 
@@ -29,7 +29,7 @@ public class Spirit extends Mob
         camHeightMod = 2.0;
         crouchHeightMod = 4.0;
 
-        maxHealth = 3;
+        maxHealth = 100;
 //        maxHealth = 100;
         health = maxHealth;
 

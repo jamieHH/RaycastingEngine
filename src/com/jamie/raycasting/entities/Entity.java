@@ -63,13 +63,30 @@ public class Entity
 	public void tick() {
         spriteTick();
 
-        double rot = rotation;
-        if (rotation > 6.28319) {
-            rotation = 0 + rot - 6.28319;
-        } else if (rotation < 0) {
-            rotation = 6.28319 - rot;
-        }
+//        rotation = correctRotation(rotation);
 	}
+
+	public double correctRotation(double rotation) {
+	    // TODO: normalise rotation between: 0 - 6.28319
+
+//        double pi = 6.28319;
+//        while (rotation > pi) {
+//            rotation -= 2 * pi;
+//        }
+//        while (rotation < -pi) {
+//            rotation += 2 * pi;
+//        }
+
+//        ???
+
+//        if (rotation > 6.28319) {
+//            return rotation - 6.28319;
+//        } else if (rotation < 0) {
+//            return 6.28319 - rotation;
+//        }
+//
+        return rotation;
+    }
 
 	protected double distanceFrom(double x, double z) {
         return Math.hypot(Math.abs(posX - x), Math.abs(posZ - z));

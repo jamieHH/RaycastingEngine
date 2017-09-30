@@ -31,6 +31,8 @@ public class Player extends Mob
 	public void tick() {
         super.tick();
 
+//        System.out.println(rotation);
+
         if (isDead || isDieing) {
             camY = -6.0;
             return;

@@ -101,6 +101,16 @@ public class Level
         return entities;
     }
 
+    public List<Mob> getMobEntities() {
+	    List<Mob> mobs = new ArrayList<Mob>();
+        for (int i = 0; i < countEntities(); i++) {
+            if (getEntity(i) instanceof Mob) {
+                mobs.add((Mob) (getEntity(i)));
+            }
+        }
+        return mobs;
+    }
+
     public Entity getEntity(int i) {
         return entities.get(i);
     }
