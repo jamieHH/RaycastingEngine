@@ -1,5 +1,6 @@
 package com.jamie.raycasting.entities.mobs;
 
+import com.jamie.raycasting.entities.particles.BloodParticle;
 import com.jamie.raycasting.input.InputHandler;
 
 public class Player extends Mob
@@ -10,7 +11,7 @@ public class Player extends Mob
 //        wallCollide = false;
 //        entCollide = false;
 
-	    useDist = 24;
+	    useDist = 32;
 	    viewDist = 4096;
 
 	    radius = 4;
@@ -26,18 +27,11 @@ public class Player extends Mob
         maxHealth = 10;
 //        maxHealth = 100;
         health = maxHealth;
+
+        hurtParticle = new BloodParticle(0, 0);
     }
 
 	public void tick() {
         super.tick();
-
-//        System.out.println(rotation);
-
-        if (isDead || isDieing) {
-            camY = -6.0;
-            return;
-        }
-
-        doMovements();
 	}
 }

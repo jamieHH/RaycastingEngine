@@ -111,6 +111,14 @@ public class Level
         return mobs;
     }
 
+    public Mob getMobEntity(int i) {
+        return (Mob) (entities.get(i));
+    }
+
+    public int countMobs() {
+	    return getMobEntities().size();
+    }
+
     public Entity getEntity(int i) {
         return entities.get(i);
     }

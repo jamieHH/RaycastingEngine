@@ -1,12 +1,12 @@
 package com.jamie.raycasting.levels.blocks;
 
-import com.jamie.raycasting.entities.DropParticle;
+import com.jamie.raycasting.entities.particles.DropParticle;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
 
 public class FountainBlock extends Block
 {
-    int i = 0;
+    private int i = 0;
 
 	public FountainBlock() {
 		floorTex = Texture.grass;

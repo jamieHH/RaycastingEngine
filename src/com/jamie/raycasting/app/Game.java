@@ -23,7 +23,7 @@ public class Game
 	public Level level;
 	public Mob player;
 	public UserInputHandler userInput;
-	public InputHandler temporaryInput;
+	private InputHandler temporaryInput = new InputHandler();
 
 	public final Menu mainMenu = new MainMenu();
     public final Menu loadMenu = new LoadMenu();
@@ -166,34 +166,17 @@ public class Game
 	    // build upon this functionality
 		pauseTime = 10;
 
-		List<Mob> mobs = new ArrayList<Mob>();
-		for (int e = 0; e < level.countEntities(); e++) {
-			Entity ent = level.getEntity(e);
-			if (ent instanceof Mob) {
-				mobs.add((Mob) ent);
-			}
-		}
+		List<Mob> mobs = level.getMobEntities();
 
-		int i = level.getEntities().indexOf(player);
-		if (i + 1 >= mobs.size()) {
-		    if (temporaryInput != null) {
-                player.input = temporaryInput;
-            }
-            if (temporaryInput instanceof UserInputHandler) {
-                player.input = new InputHandler();
-            }
+		int i = mobs.indexOf(player);
+		i++;
+		if (i >= level.countMobs()) i = 0;
 
-			player = mobs.get(0);
-			temporaryInput = player.input;
-			player.input = userInput;
-		} else {
-            if (temporaryInput != null) {
-                player.input = temporaryInput;
-            }
 
-			player = mobs.get(i + 1);
-            temporaryInput = player.input;
-            player.input = userInput;
-		}
+        // check logic here
+        player.input = temporaryInput;
+        player = level.getMobEntity(i);
+        temporaryInput = player.input;
+        player.input = userInput;
 	}
 }

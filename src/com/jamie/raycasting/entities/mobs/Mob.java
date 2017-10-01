@@ -1,8 +1,9 @@
 package com.jamie.raycasting.entities.mobs;
 
-import com.jamie.raycasting.entities.BloodParticle;
 import com.jamie.raycasting.entities.Entity;
-import com.jamie.raycasting.entities.PoofParticle;
+import com.jamie.raycasting.entities.particles.BloodParticle;
+import com.jamie.raycasting.entities.particles.Particle;
+import com.jamie.raycasting.entities.particles.PoofParticle;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
 import com.jamie.raycasting.input.InputHandler;
@@ -16,17 +17,22 @@ public class Mob extends Entity
     protected boolean wallCollide = true;
     protected boolean entCollide = true;
 
+    // details
+    protected Particle hurtParticle;
+    protected int hurtParticleCount = 2;
+
     // distances
     public int useDist = 24;
     public int viewDist = 64;
 
     // actions
     public InputHandler input;
-    protected int useTime = 0;
+    private int useTime = 0;
+    private int useDelay = 30;
 
     // movement
-	protected double rotationMove;
-    protected double moveX, moveZ;
+	private double rotationMove;
+    private double moveX, moveZ;
 
     protected double rotationSpeed = 0.03;
     protected double walkSpeed = 0.3;
@@ -37,17 +43,16 @@ public class Mob extends Entity
     protected double crouchHeightMod = 4.0;
 
     public double camY = 0;
-    protected double yBob = 0;
+    private double yBob = 0;
     private int bobTime = 0;
-
 
 	// stats
 	public int damageTime = 0;
 	public int maxHealth = 10;
 	public int health = 10;
 
-	protected int dieTime = 30;
-	protected boolean isDieing = false;
+	private int dieTime = 30;
+	private boolean isDieing = false;
     public boolean isDead = false;
 
     public Mob(InputHandler input) {
@@ -59,19 +64,49 @@ public class Mob extends Entity
         super.tick();
         input.tick();
 
-        if (input.action) {
-            if (useTime <= 0) {
-                useTime = 20;
-
-                activate();
-            }
-        }
-
         if (damageTime > 0) damageTime--;
         if (useTime > 0) useTime--;
 
         if (health <= 0) isDieing = true;
         if (isDieing && !isDead) dieTick();
+
+        if (isDead || isDieing) {
+            camY = -6.0;
+            if (isDead) {
+                remove();
+            }
+            return;
+        }
+
+        if (input.action) {
+            if (useTime <= 0) {
+                useTime = useDelay;
+
+                activate();
+            }
+        }
+
+        doMovements();
+    }
+
+    private void dieTick() {
+        dieTime--;
+
+        clearSprites();
+        spriteIndex = 0;
+
+        Sprite sprite = new Sprite(0, 0, 0, Texture.splat);
+        addSprite(sprite);
+
+        if (dieTime <= 0) {
+            isDead = true;
+
+            for (int i = 0; i < 6 ; i++) {
+                PoofParticle poofParticle = new PoofParticle(posX, posZ);
+                poofParticle.level = level;
+                level.addEntity(poofParticle);
+            }
+        }
     }
 
     protected boolean isFree(double x, double z) {
@@ -104,7 +139,7 @@ public class Mob extends Entity
         return true;
     }
 
-    protected void doMovements() {
+    private void doMovements() {
         camY = camHeightMod;
 
         double moveSpeed;
@@ -141,7 +176,7 @@ public class Mob extends Entity
         move(moveX * Math.cos(rotation) + moveZ * Math.sin(rotation), moveZ * Math.cos(rotation) - moveX * Math.sin(rotation));
     }
 
-	protected void move(double nextX, double nextZ) {
+	private void move(double nextX, double nextZ) {
         if (wallCollide) {
             if (!isFree(posX + nextX, posZ)) {
                 nextX = 0;
@@ -196,34 +231,17 @@ public class Mob extends Entity
         double mz = (posZ - source.posZ) / 2;
         push(mx, mz);
 
-        for (int i = 0; i < 2 ; i++) {
-            BloodParticle bloodParticle = new BloodParticle(posX, posZ);
-            bloodParticle.level = level;
-            level.addEntity(bloodParticle);
+        for (int i = 0; i < hurtParticleCount; i++) {
+//            Particle particle = hurtParticle;
+//            particle.posX = this.posX;
+//            particle.posZ = this.posZ;
+//            level.addEntity(particle);
+            // TODO: using above looks bad. Fix.
+            level.addEntity(new BloodParticle(posX, posZ));
         }
     }
 
-    protected void dieTick() {
-        dieTime--;
-
-        clearSprites();
-        spriteIndex = 0;
-
-        Sprite sprite = new Sprite(0, 0, 0, Texture.splat);
-        addSprite(sprite);
-
-        if (dieTime <= 0) {
-            isDead = true;
-
-            for (int i = 0; i < 6 ; i++) {
-                PoofParticle poofParticle = new PoofParticle(posX, posZ);
-                poofParticle.level = level;
-                level.addEntity(poofParticle);
-            }
-        }
-    }
-
-    public void activate() {
+    private void activate() {
         List<Entity> closeEnts = new ArrayList<Entity>();
         for (int e = 0; e < level.countEntities(); e++) {
             Entity ent = level.getEntity(e);

@@ -1,5 +1,6 @@
 package com.jamie.raycasting.entities.mobs;
 
+import com.jamie.raycasting.entities.particles.BloodParticle;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
 import com.jamie.raycasting.input.InputHandler;
@@ -29,6 +30,8 @@ public class Bat extends Mob
 //        maxHealth = 100;
         health = maxHealth;
 
+        hurtParticle = new BloodParticle(0, 0);
+
         Sprite sprite1 = new Sprite(0, 0, 0, Texture.bat0);
         Sprite sprite2 = new Sprite(0, 0, 0, Texture.bat1);
         Sprite sprite3 = new Sprite(0, 0, 0, Texture.bat2);
@@ -41,19 +44,6 @@ public class Bat extends Mob
 
     public void tick() {
         super.tick();
-        if (isDead || isDieing) {
-            camY = -6.0;
-            if (isDead) {
-                remove();
-            }
-            return;
-        }
-
-        if (input.action) {
-            activate();
-        }
-
-        doMovements();
 
         if (level.player != null) { // stop gap fix
             if (squareDistanceFrom(level.player.posX, level.player.posZ) < viewDist) {

@@ -1,7 +1,7 @@
 package com.jamie.raycasting.entities.mobs;
 
-import com.jamie.raycasting.entities.DustParticle;
-import com.jamie.raycasting.entities.PoofParticle;
+import com.jamie.raycasting.entities.particles.DustParticle;
+import com.jamie.raycasting.entities.particles.PoofParticle;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
 import com.jamie.raycasting.input.InputHandler;
@@ -16,7 +16,7 @@ public class Spirit extends Mob
         wallCollide = false;
         entCollide = false;
 
-        useDist = 12;
+        useDist = 24;
         viewDist = 256;
 
         radius = 4;
@@ -33,6 +33,9 @@ public class Spirit extends Mob
 //        maxHealth = 100;
         health = maxHealth;
 
+        hurtParticle = new DustParticle(0, 0);
+        hurtParticleCount = 2;
+
         Sprite sprite1 = new Sprite(0, 0, 0, Texture.spirit0);
         Sprite sprite2 = new Sprite(0, 0, 0, Texture.spirit1);
         Sprite sprite3 = new Sprite(0, 0, 0, Texture.spirit2);
@@ -45,13 +48,6 @@ public class Spirit extends Mob
 
     public void tick() {
         super.tick();
-        if (isDead || isDieing) {
-            camY = -6.0;
-            if (isDead) {
-                remove();
-            }
-            return;
-        }
 
         if (poofTick > 0) {
             poofTick--;
@@ -65,14 +61,6 @@ public class Spirit extends Mob
             }
         }
 
-
-
-        if (input.action) {
-            activate();
-        }
-
-        doMovements();
-
         if (level.player != null) { // stop gap fix
             if (squareDistanceFrom(level.player.posX, level.player.posZ) < viewDist) {
                 lookTowards(level.player.posX, level.player.posZ);
@@ -83,25 +71,6 @@ public class Spirit extends Mob
                     input.action = false;
                 }
             }
-        }
-    }
-
-    public void hurt(Mob source, int damage) {
-        if (damageTime > 0 || damage <= 0 || isDieing) return;
-
-        yBob -= 6;
-
-        health -= damage;
-        damageTime = 30;
-
-        double mx = (posX - source.posX) / 2;
-        double mz = (posZ - source.posZ) / 2;
-        push(mx, mz);
-
-        for (int i = 0; i < 2 ; i++) {
-            DustParticle particle = new DustParticle(posX, posZ);
-            particle.level = level;
-            level.addEntity(particle);
         }
     }
 }
