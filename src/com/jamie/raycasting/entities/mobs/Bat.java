@@ -26,8 +26,8 @@ public class Bat extends Mob
         camHeightMod = 2.0;
         crouchHeightMod = 4.0;
 
-        maxHealth = 3;
-//        maxHealth = 100;
+//        maxHealth = 3;
+        maxHealth = 100;
         health = maxHealth;
 
         hurtParticle = new BloodParticle(0, 0);

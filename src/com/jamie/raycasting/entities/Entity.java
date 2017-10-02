@@ -66,6 +66,11 @@ public class Entity
 //        rotation = correctRotation(rotation);
 	}
 
+    public void setPosition(double x, double z) {
+        posX = x;
+        posZ = z;
+    }
+
 	public double correctRotation(double rotation) {
 	    // TODO: normalise rotation between: 0 - 6.28319
 

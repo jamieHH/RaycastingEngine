@@ -176,30 +176,64 @@ public class Mob extends Entity
         move(moveX * Math.cos(rotation) + moveZ * Math.sin(rotation), moveZ * Math.cos(rotation) - moveX * Math.sin(rotation));
     }
 
-	private void move(double nextX, double nextZ) {
-        if (wallCollide) {
-            if (!isFree(posX + nextX, posZ)) {
-                nextX = 0;
-            }
-        }
-        if (entCollide) {
-            if (!isEntityFree(posX + nextX, posZ)) {
-                nextX = 0;
-            }
+
+
+
+    private void moveWallEntColl(double nextX, double nextZ) {
+        if (!isFree(posX + nextX, posZ) || !isEntityFree(posX + nextX, posZ)) {
+            nextX = 0;
         }
         posX += nextX;
 
         if (wallCollide) {
-            if (!isFree(posX, posZ + nextZ)) {
-                nextZ = 0;
-            }
-        }
-        if (entCollide) {
-            if (!isEntityFree(posX, posZ + nextZ)) {
+            if (!isFree(posX, posZ + nextZ) || !isEntityFree(posX, posZ + nextZ)) {
                 nextZ = 0;
             }
         }
         posZ += nextZ;
+    }
+
+    private void moveWallColl(double nextX, double nextZ) {
+        if (!isFree(posX + nextX, posZ)) {
+            nextX = 0;
+        }
+        posX += nextX;
+
+
+        if (!isFree(posX, posZ + nextZ)) {
+            nextZ = 0;
+        }
+
+        posZ += nextZ;
+    }
+
+    private void moveEntColl(double nextX, double nextZ) {
+        if (!isEntityFree(posX + nextX, posZ)) {
+            nextX = 0;
+        }
+        posX += nextX;
+
+        if (!isEntityFree(posX, posZ + nextZ)) {
+            nextZ = 0;
+        }
+        posZ += nextZ;
+    }
+
+    private void moveNoColl(double nextX, double nextZ) {
+        posX += nextX;
+        posZ += nextZ;
+    }
+
+	private void move(double nextX, double nextZ) {
+	    if (wallCollide && entCollide) {
+	        moveWallEntColl(nextX, nextZ);
+        } else if (wallCollide && !entCollide) {
+            moveWallColl(nextX, nextZ);
+        } else if (!wallCollide && entCollide) {
+            moveEntColl(nextX, nextZ);
+        } else {
+            moveNoColl(nextX, nextZ);
+        }
 
         moveX *= 0.5;
         moveZ *= 0.5;
@@ -233,11 +267,18 @@ public class Mob extends Entity
 
         for (int i = 0; i < hurtParticleCount; i++) {
 //            Particle particle = hurtParticle;
-//            particle.posX = this.posX;
-//            particle.posZ = this.posZ;
+//            System.out.println(particle.posZ);
+//            System.out.println(particle.posX);
+//            particle.setPosition(posX, posZ);
 //            level.addEntity(particle);
+//            System.out.println(particle.posZ);
+//            System.out.println(particle.posX);
             // TODO: using above looks bad. Fix.
-            level.addEntity(new BloodParticle(posX, posZ));
+            BloodParticle p = new BloodParticle(posX, posZ);
+//            System.out.println(p.posZ);
+//            System.out.println(p.posX);
+
+            level.addEntity(p);
         }
     }
 
