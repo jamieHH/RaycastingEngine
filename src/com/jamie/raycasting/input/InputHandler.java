@@ -4,9 +4,16 @@ import com.jamie.raycasting.entities.mobs.Mob;
 
 public class InputHandler
 {
+    protected Mob mob;
+
 	public boolean forward, back, left, right, rotLeft, rotRight, crouch, run, action;
 
-	protected Mob mob;
+    public int forwardInf = 50;
+    public int backInf = 50;
+    public int leftInf = 50;
+    public int rightInf = 50;
+    public int rotLeftInf = 50;
+    public int rotRightInf = 50;
 
 	public int pauseTime = 0;
 	public int disableTime = 0;

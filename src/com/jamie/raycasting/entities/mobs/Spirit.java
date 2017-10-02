@@ -21,8 +21,8 @@ public class Spirit extends Mob
 
         radius = 4;
 
-        rotationSpeed = 0.01;
-        walkSpeed = 0.15;
+        rotationSpeed = 0.03;
+        walkSpeed = 0.2;
         runSpeed = 0.2;
         crouchSpeed = 0.075;
 
@@ -64,8 +64,13 @@ public class Spirit extends Mob
         if (level.player != null) { // stop gap fix
             if (squareDistanceFrom(level.player.posX, level.player.posZ) < viewDist) {
                 lookTowards(level.player.posX, level.player.posZ);
-                input.forward = true;
+                input.forwardInf = 100;
+                input.backInf = 0;
+                input.leftInf = 75;
+                input.rightInf = 0;
                 if (squareDistanceFrom(level.player.posX, level.player.posZ) < useDist) {
+                    input.forwardInf = 50;
+                    input.backInf = 50;
                     input.action = true;
                 } else {
                     input.action = false;

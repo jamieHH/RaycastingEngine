@@ -266,18 +266,10 @@ public class Mob extends Entity
         push(mx, mz);
 
         for (int i = 0; i < hurtParticleCount; i++) {
-//            Particle particle = hurtParticle;
-//            System.out.println(particle.posZ);
-//            System.out.println(particle.posX);
-//            particle.setPosition(posX, posZ);
-//            level.addEntity(particle);
-//            System.out.println(particle.posZ);
-//            System.out.println(particle.posX);
+//            Particle p = hurtParticle;
+//            p.setPosition(posX, posZ);
             // TODO: using above looks bad. Fix.
             BloodParticle p = new BloodParticle(posX, posZ);
-//            System.out.println(p.posZ);
-//            System.out.println(p.posX);
-
             level.addEntity(p);
         }
     }

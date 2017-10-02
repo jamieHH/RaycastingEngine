@@ -16,12 +16,12 @@ public class ArtificialInputHandler extends InputHandler
         }
 
         if (allowMovement) {
-            forward = random.nextBoolean(); //false;
-            back = random.nextBoolean(); //false;
-            left = random.nextBoolean(); //false;
-            right = random.nextBoolean(); //false;
-            rotLeft = random.nextBoolean(); //false;
-            rotRight = random.nextBoolean(); //false;
+            forward = (random.nextInt(100) < forwardInf); //false;
+            back = (random.nextInt(100) < backInf); //false;
+            left = (random.nextInt(100) < leftInf); //false;
+            right = (random.nextInt(100) < rightInf); //false;
+            rotLeft = (random.nextInt(100) < rotLeftInf); //false;
+            rotRight = (random.nextInt(100) < rotRightInf); //false;
         }
 
         changeTimer = 20;
