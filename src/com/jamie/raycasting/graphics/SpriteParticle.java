@@ -11,8 +11,8 @@ public class SpriteParticle extends Sprite
     private double xa, ya, za;
     private Random random = new Random();
 
-    public SpriteParticle(Render texture, double y, double z, double x) {
-        super(texture, y, z, x);
+    public SpriteParticle(Render texture, double x, double y, double z) {
+        super(texture, x, y, z);
 
         gravity = 1;
         xa = Math.random() - 0.5;

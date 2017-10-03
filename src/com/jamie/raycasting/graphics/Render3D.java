@@ -150,7 +150,7 @@ public class Render3D extends Render
 	}
 
 
-	private void renderWall(double xLeft, double xRight, double zLeft, double zRight, double yHeight, Render texture) {
+	private void renderWall(double xLeft, double zLeft, double xRight, double zRight, double yHeight, Render texture) {
 		double xcLeft = (xLeft - displacedCamX) * 2;
 		double zcLeft = (zLeft - displacedCamZ) * 2;
 
@@ -279,30 +279,30 @@ public class Render3D extends Render
                     double openness = 1 - ((DoorBlock) block).openness * 7 / 8;
 
                     if (east.solidRender) {
-                        renderWall(xBlock + openness, xBlock - 1 + openness, zBlock + 1 - rr, zBlock + 1 - rr, 0.5, block.wallTex);
-                        renderWall(xBlock - 1 + openness, xBlock + openness, zBlock + rr, zBlock + rr, 0.5, block.wallTex);
-                        renderWall(xBlock + openness, xBlock + openness, zBlock + rr, zBlock + 1 - rr, 0.5, block.wallTex);
+                        renderWall(xBlock + openness, zBlock + 1 - rr, xBlock - 1 + openness, zBlock + 1 - rr, 0.5, block.wallTex);
+                        renderWall(xBlock - 1 + openness, zBlock + rr, xBlock + openness, zBlock + rr, 0.5, block.wallTex);
+                        renderWall(xBlock + openness, zBlock + rr, xBlock + openness, zBlock + 1 - rr, 0.5, block.wallTex);
                     } else {
                         openness = 2 - openness;
-                        renderWall(xBlock + 1 - rr, xBlock + 1 - rr, zBlock - 1 + openness, zBlock + openness, 0.5, block.wallTex);
-                        renderWall(xBlock + rr, xBlock + rr, zBlock + openness, zBlock - 1 + openness, 0.5, block.wallTex);
-                        renderWall(xBlock + rr, xBlock + 1 - rr, zBlock - 1 + openness, zBlock - 1 + openness, 0.5, block.wallTex);
+                        renderWall(xBlock + 1 - rr, zBlock - 1 + openness, xBlock + 1 - rr, zBlock + openness, 0.5, block.wallTex);
+                        renderWall(xBlock + rr, zBlock + openness, xBlock + rr, zBlock - 1 + openness, 0.5, block.wallTex);
+                        renderWall(xBlock + rr, zBlock - 1 + openness, xBlock + 1 - rr, zBlock - 1 + openness, 0.5, block.wallTex);
                     }
                 }
 
                 if (block.solidRender) {
                     if (!east.solidRender) {
-                        renderWall(xBlock + 1, xBlock + 1, zBlock, zBlock + 1, 0.5, block.wallTex);
+                        renderWall(xBlock + 1, zBlock, xBlock + 1, zBlock + 1, 0.5, block.wallTex);
                     }
                     if (!south.solidRender) {
-                        renderWall(xBlock + 1, xBlock, zBlock + 1, zBlock + 1, 0.5, block.wallTex);
+                        renderWall(xBlock + 1, zBlock + 1, xBlock, zBlock + 1, 0.5, block.wallTex);
                     }
                 } else {
                     if (east.solidRender) {
-                        renderWall(xBlock + 1, xBlock + 1, zBlock + 1, zBlock, 0.5, east.wallTex);
+                        renderWall(xBlock + 1, zBlock + 1, xBlock + 1, zBlock, 0.5, east.wallTex);
                     }
                     if (south.solidRender) {
-                        renderWall(xBlock, xBlock + 1, zBlock + 1, zBlock + 1, 0.5, south.wallTex);
+                        renderWall(xBlock, zBlock + 1, xBlock + 1, zBlock + 1, 0.5, south.wallTex);
                     }
                 }
 			}
