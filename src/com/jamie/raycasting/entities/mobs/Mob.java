@@ -95,7 +95,7 @@ public class Mob extends Entity
         clearSprites();
         spriteIndex = 0;
 
-        Sprite sprite = new Sprite(0, 0, 0, Texture.splat);
+        Sprite sprite = new Sprite(Texture.splat, 0, 0, 0);
         addSprite(sprite);
 
         if (dieTime <= 0) {

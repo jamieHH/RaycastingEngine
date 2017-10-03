@@ -32,9 +32,9 @@ public class Bat extends Mob
 
         hurtParticle = new BloodParticle(0, 0);
 
-        Sprite sprite1 = new Sprite(0, 0, 0, Texture.bat0);
-        Sprite sprite2 = new Sprite(0, 0, 0, Texture.bat1);
-        Sprite sprite3 = new Sprite(0, 0, 0, Texture.bat2);
+        Sprite sprite1 = new Sprite(Texture.bat0, 0, 0, 0);
+        Sprite sprite2 = new Sprite(Texture.bat1, 0, 0, 0);
+        Sprite sprite3 = new Sprite(Texture.bat2, 0, 0, 0);
 
         addSprite(sprite1);
         addSprite(sprite2);

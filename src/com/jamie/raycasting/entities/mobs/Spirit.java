@@ -36,9 +36,9 @@ public class Spirit extends Mob
         hurtParticle = new DustParticle(0, 0);
         hurtParticleCount = 2;
 
-        Sprite sprite1 = new Sprite(0, 0, 0, Texture.spirit0);
-        Sprite sprite2 = new Sprite(0, 0, 0, Texture.spirit1);
-        Sprite sprite3 = new Sprite(0, 0, 0, Texture.spirit2);
+        Sprite sprite1 = new Sprite(Texture.spirit0, 0, 0, 0);
+        Sprite sprite2 = new Sprite(Texture.spirit1, 0, 0, 0);
+        Sprite sprite3 = new Sprite(Texture.spirit2, 0, 0, 0);
 
         addSprite(sprite1);
         addSprite(sprite2);

@@ -14,7 +14,7 @@ public class DropParticle extends Particle
         textures.add(Texture.drop);
         int i = random.nextInt(textures.size());
 
-        SpriteParticle tex = new SpriteParticle(0, 1, 0, textures.get(i));
+        SpriteParticle tex = new SpriteParticle(textures.get(i), 1, 0, 0);
         addSprite(tex);
     }
 }

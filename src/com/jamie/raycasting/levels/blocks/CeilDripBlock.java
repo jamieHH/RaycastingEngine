@@ -9,11 +9,11 @@ public class CeilDripBlock extends Block
 //    public int spriteIndex = 0;
 
 	public CeilDripBlock() {
-		Sprite sprite1 = new Sprite(0, 0, 0, Texture.drip0);
-		Sprite sprite2 = new Sprite(0, 0, 0, Texture.drip1);
-		Sprite sprite3 = new Sprite(0, 0, 0, Texture.drip2);
-		Sprite sprite4 = new Sprite(0, 0, 0, Texture.drip3);
-		Sprite sprite5 = new Sprite(0, 0, 0, Texture.drip4);
+		Sprite sprite1 = new Sprite(Texture.drip0, 0, 0, 0);
+		Sprite sprite2 = new Sprite(Texture.drip1, 0, 0, 0);
+		Sprite sprite3 = new Sprite(Texture.drip2, 0, 0, 0);
+		Sprite sprite4 = new Sprite(Texture.drip3, 0, 0, 0);
+		Sprite sprite5 = new Sprite(Texture.drip4, 0, 0, 0);
 
 		addSprite(sprite1);
 		addSprite(sprite1);

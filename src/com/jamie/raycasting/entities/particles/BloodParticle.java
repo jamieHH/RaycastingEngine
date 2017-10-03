@@ -15,7 +15,7 @@ public class BloodParticle extends Particle
         textures.add(Texture.blood3);
         int i = random.nextInt(textures.size());
 
-        SpriteParticle tex = new SpriteParticle(0, 0.5, 0, textures.get(i));
+        SpriteParticle tex = new SpriteParticle(textures.get(i), 0.5, 0, 0);
         addSprite(tex);
     }
 }

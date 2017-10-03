@@ -8,7 +8,7 @@ public class TreeBlock extends Block
 	public TreeBlock() {
 		floorTex = Texture.grass;
 
-		Sprite sprite = new Sprite(0, 0, 0, Texture.tree);
+		Sprite sprite = new Sprite(Texture.tree, 0, 0, 0);
 		addSprite(sprite);
 		
 		blocksMotion = true;

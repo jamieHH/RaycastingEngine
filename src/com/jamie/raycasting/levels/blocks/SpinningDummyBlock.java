@@ -8,7 +8,7 @@ public class SpinningDummyBlock extends Block
 	private Sprite sprite;
 	
 	public SpinningDummyBlock() {
-		sprite = new Sprite(0, 0, 0, Texture.spinningDummy);
+		sprite = new Sprite(Texture.spinningDummy, 0, 0, 0);
 		addSprite(sprite);
 	}
 }
