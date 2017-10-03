@@ -1,6 +1,7 @@
 package com.jamie.raycasting.entities;
 
 import com.jamie.raycasting.graphics.Sprite;
+import com.jamie.raycasting.graphics.Texture;
 import com.jamie.raycasting.levels.Level;
 
 import java.util.ArrayList;
@@ -11,6 +12,17 @@ public class Entity
 {
 	protected static final Random random = new Random();
 	private List<Sprite> sprites = new ArrayList<Sprite>();
+
+
+
+
+	public Sprite sprite = new Sprite(Texture.noTex);
+	// TODO: turn sprites into a single sprite.
+    // -- change mobs constructor to set mob.sprite.textures
+    // -- change render sprites function to get mob.sprite.texture
+    // -- sprites can be used to hold different animation set sprites for different mob states (attacking, hurt, etc)
+
+
     protected int animTime = 5;
     public int spriteIndex = 0;
 
