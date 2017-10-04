@@ -12,6 +12,9 @@ public class Entity
 	protected static final Random random = new Random();
 	private List<Sprite> sprites = new ArrayList<Sprite>();
 
+	// TODO: Make a way for animated sprites to be swapped in and out of visible sprites array!
+    private List<Sprite> tmpSprites = new ArrayList<Sprite>(); // could this work????
+
 	public Level level;
     public boolean solid = true;
     public double radius = 6.0;
