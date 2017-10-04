@@ -5,7 +5,7 @@ import com.jamie.raycasting.graphics.Screen;
 
 public class LoadMenu extends Menu
 {
-    protected String[] saves = {
+    private final String[] saves = {
             "Empty",
             "Empty",
             "Empty",

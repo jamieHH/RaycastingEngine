@@ -12,7 +12,7 @@ public class FountainBlock extends Block
 		blocksMotion = true;
 		floorTex = Texture.grass;
 
-		Sprite sprite = new Sprite(Texture.fountain, 0, 0, 0);
+		Sprite sprite = new Sprite(Texture.fountain);
 		addSprite(sprite);
 	}
 

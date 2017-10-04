@@ -66,7 +66,7 @@ public class Texture
     // screen
     public static final Render screenSpear0 = loadBitmap("/textures/screenSpear0.png");
 
-    private Random random = new Random();
+    private final Random random = new Random();
 
 	public Texture () {
 	    // Generate sky texture

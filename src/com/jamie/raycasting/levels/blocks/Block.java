@@ -27,7 +27,7 @@ public class Block
 	
 	public int id;
 
-	public static Block boundaryBlock = new Block();
+	public static final Block boundaryBlock = new Block();
 
 	private List<Sprite> sprites = new ArrayList<Sprite>();
 

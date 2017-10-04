@@ -7,9 +7,10 @@ import java.util.ArrayList;
 
 public class WaterBlock extends Block
 {
-    protected int animTime = 20;
-    protected int floorTexIndex = 0;
-    public ArrayList<Render> floorTextures = new ArrayList<>();
+    private int animTime = 20;
+    private int floorTexIndex = 0;
+
+    private ArrayList<Render> floorTextures = new ArrayList<>();
 
 	public WaterBlock() {
 		solidRender = false;
@@ -24,10 +25,11 @@ public class WaterBlock extends Block
 	}
 
     public void tick() {
+        super.tick();
         texTick();
     }
 
-    public void texTick() {
+    private void texTick() {
         if (animTime > 0) {
             animTime--;
             return;

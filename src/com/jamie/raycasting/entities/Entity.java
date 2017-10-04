@@ -1,7 +1,6 @@
 package com.jamie.raycasting.entities;
 
 import com.jamie.raycasting.graphics.Sprite;
-import com.jamie.raycasting.graphics.Texture;
 import com.jamie.raycasting.levels.Level;
 
 import java.util.ArrayList;
@@ -12,7 +11,6 @@ public class Entity
 {
 	protected static final Random random = new Random();
 	private List<Sprite> sprites = new ArrayList<Sprite>();
-    public int spriteIndex = 0;
 
 	public Level level;
     public boolean solid = true;
@@ -24,7 +22,7 @@ public class Entity
 
 	public Boolean removed = false;
 
-	public void remove() {
+	protected void remove() {
         removed = true;
 	}
 

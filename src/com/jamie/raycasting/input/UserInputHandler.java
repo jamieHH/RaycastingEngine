@@ -7,11 +7,9 @@ import java.awt.event.KeyListener;
 
 public class UserInputHandler extends InputHandler implements KeyListener, FocusListener
 {
-	private boolean[] key = new boolean[68836];
+	private final boolean[] key = new boolean[68836];
 
 	public boolean randomLevel, loadLevel, nextMob, pause, yKey;
-
-	public int disableKey;
 
 	public void tick() {
         if (pauseTime > 0) {
@@ -40,29 +38,7 @@ public class UserInputHandler extends InputHandler implements KeyListener, Focus
 		nextMob = key[KeyEvent.VK_G];
         pause = key[KeyEvent.VK_ESCAPE];
         yKey = key[KeyEvent.VK_Y];
-
-        // add a method to disable keys
-//        disableKey(disableKey);
     }
-
-    private void disableKey(int keyEvent) {
-        if (keyEvent == disableKey) {
-            key[keyEvent] = false;
-            disableKey = 0;
-        }
-    }
-
-//    private void disableKeys(int keyEvent) {
-//        for (int i = 0; i < disableKeys.size(); i++) {
-//            // find a way to append key integers to a list and disable accordingly
-//            int disableKey = disableKeys.get(i);
-//
-//            if (keyEvent == disableKey) {
-//                key[keyEvent] = false;
-//                disableKey = 0;
-//            }
-//        }
-//    }
 
     protected void disableInputs() {
         forward = false;

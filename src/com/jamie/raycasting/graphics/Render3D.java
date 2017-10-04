@@ -328,8 +328,8 @@ public class Render3D extends Render
 
                 pixels[i] = 0x000020;
             } else {
-                int xp = (i % width);
-				int yp = (i / width) * 14;
+//                int xp = (i % width);
+//				int yp = (i / width) * 14;
 				double xx = ((i % width - width / 2.0) / width);
 
 				// TODO: Incorporate p.viewDistance into this equation

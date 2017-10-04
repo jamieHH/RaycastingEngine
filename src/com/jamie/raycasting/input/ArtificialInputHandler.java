@@ -6,7 +6,7 @@ public class ArtificialInputHandler extends InputHandler
 {
     private boolean allowMovement = true;
 
-	private Random random = new Random();
+	private final Random random = new Random();
 	private int changeTimer = 20;
 
 	public void tick() {

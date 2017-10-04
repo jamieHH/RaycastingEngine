@@ -10,7 +10,7 @@ public class GraveBlock extends Block
 
 		floorTex = Texture.dirt;
 
-		Sprite sprite = new Sprite(Texture.grave, 0, 0, 0);
+		Sprite sprite = new Sprite(Texture.grave);
 		addSprite(sprite);
 	}
 }

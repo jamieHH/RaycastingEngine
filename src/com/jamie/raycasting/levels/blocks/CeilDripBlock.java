@@ -36,7 +36,7 @@ public class CeilDripBlock extends Block
 	    texTick();
     }
 
-    public void texTick() {
+    private void texTick() {
 	    // TODO: generify this to apply to all block types
         if (animTime > 0) {
             animTime--;

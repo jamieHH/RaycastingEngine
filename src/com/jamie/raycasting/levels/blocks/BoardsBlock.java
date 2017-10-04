@@ -12,7 +12,7 @@ public class BoardsBlock extends Block
         solidRender = false;
         blocksMotion = true;
 
-        Sprite sprite = new Sprite(Texture.boards, 0, 0, 0);
+        Sprite sprite = new Sprite(Texture.boards);
         addSprite(sprite);
 	}
 
@@ -30,7 +30,7 @@ public class BoardsBlock extends Block
 
         clearSprites();
 
-        Sprite sprite = new Sprite(Texture.boardsSmashed, 0, 0, 0);
+        Sprite sprite = new Sprite(Texture.boardsSmashed);
         addSprite(sprite);
 
         for (int i = 0; i < 6 ; i++) {

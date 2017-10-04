@@ -1,15 +1,11 @@
 package com.jamie.raycasting.graphics;
 
-import java.util.Random;
-
 public class SpriteParticle extends Sprite
 {
-    public int life = 120;
     private int time = 0;
 
     public double gravity = 1;
     private double xa, ya, za;
-    private Random random = new Random();
 
     public SpriteParticle(Render texture, double xOffs, double yOffs, double zOffs) {
         super(texture, xOffs, yOffs, zOffs);

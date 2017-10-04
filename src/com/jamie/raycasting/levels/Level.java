@@ -20,7 +20,7 @@ public class Level
 {
 	public String name = "";
 
-	public Block[] blocks;
+	private Block[] blocks;
 	private List<Entity> entities = new ArrayList<Entity>();
 
 	private int sizeX;

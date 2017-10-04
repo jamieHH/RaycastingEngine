@@ -93,9 +93,8 @@ public class Mob extends Entity
         dieTime--;
 
         clearSprites();
-        spriteIndex = 0;
 
-        Sprite sprite = new Sprite(Texture.splat, 0, 0, 0);
+        Sprite sprite = new Sprite(Texture.splat);
         addSprite(sprite);
 
         if (dieTime <= 0) {
@@ -109,7 +108,7 @@ public class Mob extends Entity
         }
     }
 
-    protected boolean isFree(double x, double z) {
+    private boolean isFree(double x, double z) {
         int x0 = (int) (Math.floor((x + radius) / 16));
         int x1 = (int) (Math.floor((x - radius) / 16));
         int z0 = (int) (Math.floor((z + radius) / 16));
@@ -122,7 +121,7 @@ public class Mob extends Entity
         return true;
     }
 
-    protected boolean isEntityFree(double x, double z) {
+    private boolean isEntityFree(double x, double z) {
         for (int i = 0; i < level.countEntities(); i++) {
             Entity e = level.getEntity(i);
             if (e.solid) {

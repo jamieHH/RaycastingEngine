@@ -152,7 +152,7 @@ public class LaunchOptions extends Launcher
         window.add(OK);
 	}
 	
-	public void setGameLaunchOptions() {
+	private void setGameLaunchOptions() {
 		if (aspectRatio.getSelectedItem() == "4:3") {
 			App.width = resolutions4x3[resolution.getSelectedIndex()][0];
 			App.height = resolutions4x3[resolution.getSelectedIndex()][1];

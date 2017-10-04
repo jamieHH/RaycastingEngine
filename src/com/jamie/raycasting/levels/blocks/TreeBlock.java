@@ -10,7 +10,7 @@ public class TreeBlock extends Block
 
 		floorTex = Texture.grass;
 
-		Sprite sprite = new Sprite(Texture.tree, 0, 0, 0);
+		Sprite sprite = new Sprite(Texture.tree);
 		addSprite(sprite);
 
 	}

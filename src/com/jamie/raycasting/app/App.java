@@ -26,7 +26,7 @@ public class App extends Canvas implements Runnable
 	private Game game;
 	private BufferedImage img;
 	private Boolean running = false;
-	private UserInputHandler input;
+	private final UserInputHandler input;
 	private int[] pixels;
 	private int fps;
 

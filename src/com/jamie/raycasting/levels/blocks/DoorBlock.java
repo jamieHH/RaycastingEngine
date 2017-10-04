@@ -4,12 +4,12 @@ import com.jamie.raycasting.graphics.Texture;
 
 public class DoorBlock extends Block
 {
-	public boolean open = false;
+	private boolean open = false;
 
-    public int useWait = 0;
+    private int useWait = 0;
 
 	public double openness = 0;
-	public double openLimit = 7 / 8.0;
+	private double openLimit = 7 / 8.0;
 
 	public DoorBlock() {
 		solidRender = false;
@@ -32,7 +32,7 @@ public class DoorBlock extends Block
         updateOpenness();
     }
 
-    public void updateOpenness() {
+    private void updateOpenness() {
         if (open) openness += 0.1;
         else openness -= 0.1;
         if (openness < 0) openness = 0;
