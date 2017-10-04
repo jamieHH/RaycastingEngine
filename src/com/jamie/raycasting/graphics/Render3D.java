@@ -311,8 +311,8 @@ public class Render3D extends Render
 
 	private void renderDistanceLimiter() {
 //        int renderDist = p.viewDist;
-        int renderDist = 4092;
-		int dropOfMult = 512;
+//        int renderDist = 4092;
+//		int dropOfMult = 512;
 		for (int i = 0; i < width * height; i++) {
 			int colour = pixels[i];
 			double iBuff = zBuffer[i];
