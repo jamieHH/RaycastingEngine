@@ -1,5 +1,6 @@
 package com.jamie.raycasting.entities.particles;
 
+import com.jamie.raycasting.graphics.Render;
 import com.jamie.raycasting.graphics.SpriteParticle;
 import com.jamie.raycasting.graphics.Texture;
 
@@ -8,13 +9,14 @@ public class DustParticle extends Particle
     public DustParticle(double x, double z) {
         super(x, z);
 
-        textures.clear();
-        textures.add(Texture.poof0);
-        textures.add(Texture.poof1);
-        int i = random.nextInt(textures.size());
+        Render[] ts = {
+                Texture.poof0,
+                Texture.poof1,
+        };
 
-        SpriteParticle tex = new SpriteParticle(textures.get(i), 0, 0.5, 0);
-        tex.gravity = 0;
-        addSprite(tex);
+        SpriteParticle particle = new SpriteParticle(ts[random.nextInt(ts.length)], 0, 0.5, 0);
+        particle.gravity = 0;
+
+        addSprite(particle);
     }
 }

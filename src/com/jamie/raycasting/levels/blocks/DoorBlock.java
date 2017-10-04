@@ -22,9 +22,6 @@ public class DoorBlock extends Block
             return false;
         }
 
-        System.out.println("activate");
-        // TODO: find out how doors get activated faster by mobs.
-
         useWait = 10;
 	    open = !open;
 	    return true;

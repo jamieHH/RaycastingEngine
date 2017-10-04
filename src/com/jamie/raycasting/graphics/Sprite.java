@@ -6,36 +6,41 @@ import java.util.List;
 public class Sprite
 {
 	public double x, y, z;
-	public Render texture = Texture.noTex;
 	private int colour = 0x202020;
 
 	private boolean isAnimated = false;
 	private List<Render> textures = new ArrayList<Render>();
-    public int texIndex = 0;
+    public int index = 0;
     private int animTick = 0;
     private int interval = 5;
 
-	public Sprite(Render tex, double xOffs, double yOffs, double zOffs) {
-		this.x = xOffs;
-		this.y = yOffs;
-		this.z = zOffs;
-		this.texture = tex;
+	public Sprite(Render t, double xOffs, double yOffs, double zOffs) {
+		x = xOffs;
+		y = yOffs;
+		z = zOffs;
+        addTexture(t);
 	}
 
-    public Sprite(Render tex) {
-        this.x = 0;
-        this.y = 0;
-        this.z = 0;
-        this.texture = tex;
+    public Sprite(Render t) {
+        x = 0;
+        y = 0;
+        z = 0;
+        addTexture(t);
     }
 
-    public Sprite(Render[] texs) {
-        this.x = 0;
-        this.y = 0;
-        this.z = 0;
-        for (int i = 0; i < texs.length; i++) {
-            textures.add(texs[i]);
-        }
+    public Sprite(Render[] ts, double xOffs, double yOffs, double zOffs) {
+        x = xOffs;
+        y = yOffs;
+        z = zOffs;
+        addTextures(ts);
+        this.isAnimated = true;
+    }
+
+    public Sprite(Render[] ts) {
+        x = 0;
+        y = 0;
+        z = 0;
+        addTextures(ts);
         this.isAnimated = true;
     }
 
@@ -71,13 +76,13 @@ public class Sprite
             return;
         }
 
-        int i = texIndex;
+        int i = index;
         i++;
         if (i >= countTextures()) {
             i = 0;
         }
 
-        texIndex = i;
+        index = i;
         animTick = interval;
     }
 }

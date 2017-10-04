@@ -2,6 +2,7 @@ package com.jamie.raycasting.entities.mobs;
 
 import com.jamie.raycasting.entities.particles.DustParticle;
 import com.jamie.raycasting.entities.particles.PoofParticle;
+import com.jamie.raycasting.graphics.Render;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
 import com.jamie.raycasting.input.InputHandler;
@@ -36,14 +37,14 @@ public class Spirit extends Mob
         hurtParticle = new DustParticle(0, 0);
         hurtParticleCount = 2;
 
-        Sprite sprite1 = new Sprite(Texture.spirit0, 0, 0, 0);
-        Sprite sprite2 = new Sprite(Texture.spirit1, 0, 0, 0);
-        Sprite sprite3 = new Sprite(Texture.spirit2, 0, 0, 0);
+        Render[] ts = {
+                Texture.spirit0,
+                Texture.spirit1,
+                Texture.spirit2,
+                Texture.spirit1,
+        };
 
-        addSprite(sprite1);
-        addSprite(sprite2);
-        addSprite(sprite3);
-        addSprite(sprite2);
+        addSprite(new Sprite(ts));
     }
 
     public void tick() {

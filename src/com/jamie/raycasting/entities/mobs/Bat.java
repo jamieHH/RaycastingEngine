@@ -1,6 +1,7 @@
 package com.jamie.raycasting.entities.mobs;
 
 import com.jamie.raycasting.entities.particles.BloodParticle;
+import com.jamie.raycasting.graphics.Render;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
 import com.jamie.raycasting.input.InputHandler;
@@ -32,14 +33,14 @@ public class Bat extends Mob
 
         hurtParticle = new BloodParticle(0, 0);
 
-        Sprite sprite1 = new Sprite(Texture.bat0, 0, 0, 0);
-        Sprite sprite2 = new Sprite(Texture.bat1, 0, 0, 0);
-        Sprite sprite3 = new Sprite(Texture.bat2, 0, 0, 0);
+        Render[] ts = {
+                Texture.bat0,
+                Texture.bat1,
+                Texture.bat2,
+                Texture.bat1,
+        };
 
-        addSprite(sprite1);
-        addSprite(sprite2);
-        addSprite(sprite3);
-        addSprite(sprite2);
+        addSprite(new Sprite(ts));
     }
 
     public void tick() {

@@ -12,18 +12,6 @@ public class Entity
 {
 	protected static final Random random = new Random();
 	private List<Sprite> sprites = new ArrayList<Sprite>();
-
-
-
-
-	public Sprite sprite = new Sprite(Texture.noTex);
-	// TODO: turn sprites into a single sprite.
-    // -- change mobs constructor to set mob.sprite.textures
-    // -- change render sprites function to get mob.sprite.texture
-    // -- sprites can be used to hold different animation set sprites for different mob states (attacking, hurt, etc)
-
-
-    protected int animTime = 5;
     public int spriteIndex = 0;
 
 	public Level level;
@@ -56,26 +44,10 @@ public class Entity
         sprites.clear();
     }
 
-	protected void spriteTick() {
-        if (animTime > 0) {
-            animTime--;
-            return;
-        }
-
-        int i = spriteIndex;
-        i++;
-        if (i >= countSprites()) {
-            i = 0;
-        }
-
-        spriteIndex = i;
-        animTime = 5;
-    }
-
 	public void tick() {
-        spriteTick();
-
-//        rotation = correctRotation(rotation);
+        for (int i = 0; i < countSprites(); i++) {
+            sprites.get(i).tick();
+        }
 	}
 
     public void setPosition(double x, double z) {

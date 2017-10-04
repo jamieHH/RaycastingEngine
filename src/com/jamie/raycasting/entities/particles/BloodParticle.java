@@ -1,5 +1,6 @@
 package com.jamie.raycasting.entities.particles;
 
+import com.jamie.raycasting.graphics.Render;
 import com.jamie.raycasting.graphics.SpriteParticle;
 import com.jamie.raycasting.graphics.Texture;
 
@@ -8,14 +9,15 @@ public class BloodParticle extends Particle
     public BloodParticle(double x, double z) {
         super(x, z);
 
-        textures.clear();
-        textures.add(Texture.blood0);
-        textures.add(Texture.blood1);
-        textures.add(Texture.blood2);
-        textures.add(Texture.blood3);
-        int i = random.nextInt(textures.size());
+        Render[] ts = {
+                Texture.blood0,
+                Texture.blood1,
+                Texture.blood2,
+                Texture.blood3,
+        };
 
-        SpriteParticle tex = new SpriteParticle(textures.get(i), 0, 0.5, 0);
-        addSprite(tex);
+        SpriteParticle particle = new SpriteParticle(ts[random.nextInt(ts.length)], 0, 0.5, 0);
+
+        addSprite(particle);
     }
 }
