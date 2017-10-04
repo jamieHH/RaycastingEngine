@@ -9,12 +9,11 @@ public class FountainBlock extends Block
     private int i = 0;
 
 	public FountainBlock() {
+		blocksMotion = true;
 		floorTex = Texture.grass;
 
 		Sprite sprite = new Sprite(Texture.fountain, 0, 0, 0);
 		addSprite(sprite);
-		
-		blocksMotion = true;
 	}
 
     public void tick() {

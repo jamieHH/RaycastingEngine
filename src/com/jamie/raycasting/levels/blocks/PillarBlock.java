@@ -6,9 +6,10 @@ import com.jamie.raycasting.graphics.Texture;
 public class PillarBlock extends Block
 {
 	public PillarBlock() {
+		blocksMotion = true;
+
 		Sprite sprite = new Sprite(Texture.pillar, 0, 0, 0);
 		addSprite(sprite);
-		
-		blocksMotion = true;
+
 	}
 }

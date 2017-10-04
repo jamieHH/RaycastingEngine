@@ -23,6 +23,10 @@ public class WaterBlock extends Block
 		floorTextures.add(Texture.water2);
 	}
 
+    public void tick() {
+        texTick();
+    }
+
     public void texTick() {
         if (animTime > 0) {
             animTime--;
@@ -38,9 +42,5 @@ public class WaterBlock extends Block
         floorTexIndex = i;
         animTime = 20;
         floorTex = floorTextures.get(floorTexIndex);
-    }
-
-	public void tick() {
-        texTick();
     }
 }

@@ -252,8 +252,10 @@ public class Render3D extends Render
             for (int zBlock = zBlockStart; zBlock <= zBlockEnd; zBlock++) {
                 Block block = p.level.getBlock(xBlock, zBlock);
                 for (int i = 0; i < block.countSprites(); i++) {
-					Sprite sprite = block.getSprite(block.spriteIndex);
-                    renderSprite((xBlock + 0.5) + sprite.x, sprite.y, (zBlock + 0.5) + sprite.z, sprite.getTexture(sprite.index));
+					Sprite sprite = block.getSprite(i);
+                    if (sprite.countTextures() > 0) {
+                        renderSprite((xBlock + 0.5) + sprite.x, sprite.y, (zBlock + 0.5) + sprite.z, sprite.getTexture(sprite.index));
+                    }
                 }
 			}
 		}

@@ -9,8 +9,8 @@ public class BoardsBlock extends Block
 	private boolean smashed = false;
 
 	public BoardsBlock() {
-		solidRender = false;
-		blocksMotion = true;
+        solidRender = false;
+        blocksMotion = true;
 
         Sprite sprite = new Sprite(Texture.boards, 0, 0, 0);
         addSprite(sprite);

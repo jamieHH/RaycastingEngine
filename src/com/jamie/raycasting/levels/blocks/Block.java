@@ -48,8 +48,10 @@ public class Block
 	}
 
 	public void tick() {
-
-    }
+		for (int i = 0; i < countSprites(); i++) {
+			getSprite(i).tick();
+		}
+	}
 
     public boolean use() {
         return false;
