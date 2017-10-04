@@ -253,9 +253,7 @@ public class Render3D extends Render
                 Block block = p.level.getBlock(xBlock, zBlock);
                 for (int i = 0; i < block.countSprites(); i++) {
 					Sprite sprite = block.getSprite(i);
-                    if (sprite.countTextures() > 0) {
-                        renderSprite((xBlock + 0.5) + sprite.x, sprite.y, (zBlock + 0.5) + sprite.z, sprite.getTexture(sprite.index));
-                    }
+                    renderSprite((xBlock + 0.5) + sprite.x, sprite.y, (zBlock + 0.5) + sprite.z, sprite.getTexture(sprite.index));
                 }
 			}
 		}
@@ -264,9 +262,7 @@ public class Render3D extends Render
 			Entity entity = p.level.getEntity(i);
             for (int b = 0; b < entity.countSprites(); b++) {
                 Sprite sprite = entity.getSprite(b);
-                if (sprite.countTextures() > 0) {
-                    renderSprite((entity.posX + sprite.x) / 16, entity.posY + sprite.y, (entity.posZ + sprite.z) / 16, sprite.getTexture(sprite.index));
-                }
+                renderSprite((entity.posX + sprite.x) / 16, entity.posY + sprite.y, (entity.posZ + sprite.z) / 16, sprite.getTexture(sprite.index));
             }
 		}
 	}
