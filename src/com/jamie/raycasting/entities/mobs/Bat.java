@@ -43,24 +43,29 @@ public class Bat extends Mob
         addIdleSprite(new Sprite(ts));
 
         Render[] ts2 = {
-                Texture.grave,
-                Texture.drip3,
+                Texture.batAtt0,
+//                Texture.batAtt1,
+//                Texture.batAtt2`,
+//                Texture.batAtt3,
         };
 
         addActionSprite(new Sprite(ts2));
 
         Render[] ts3 = {
-                Texture.grass,
-                Texture.leaves,
+                Texture.batHurt0,
+//                Texture.batHurt1,
+//                Texture.batHurt2,
         };
 
         addHurtSprite(new Sprite(ts3));
 
         Render[] ts4 = {
-                Texture.splat,
+                Texture.splat0,
+//                Texture.splat1,
+//                Texture.splat2,
         };
 
-        addDeathSprite(new Sprite(ts4));
+        addDeathSprite(new Sprite(ts4, 5));
     }
 
     public void tick() {

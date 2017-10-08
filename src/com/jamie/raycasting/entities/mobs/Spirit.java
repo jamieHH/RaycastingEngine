@@ -61,10 +61,12 @@ public class Spirit extends Mob
         addHurtSprite(new Sprite(ts3));
 
         Render[] ts4 = {
-                Texture.splat,
+                Texture.splat0,
+                Texture.splat1,
+                Texture.splat2,
         };
 
-        addDeathSprite(new Sprite(ts4));
+        addDeathSprite(new Sprite(ts4, 10));
     }
 
     public void tick() {

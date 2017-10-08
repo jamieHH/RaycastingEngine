@@ -33,6 +33,13 @@ public class Texture
     public static final Render bat0 = loadBitmap("/textures/bat0.png");
     public static final Render bat1 = loadBitmap("/textures/bat1.png");
     public static final Render bat2 = loadBitmap("/textures/bat2.png");
+    public static final Render batAtt0 = loadBitmap("/textures/batAtt0.png");
+    public static final Render batAtt1 = loadBitmap("/textures/batAtt1.png");
+    public static final Render batAtt2 = loadBitmap("/textures/batAtt2.png");
+    public static final Render batAtt3 = loadBitmap("/textures/batAtt3.png");
+    public static final Render batHurt0 = loadBitmap("/textures/batHurt0.png");
+    public static final Render batHurt1 = loadBitmap("/textures/batHurt1.png");
+    public static final Render batHurt2 = loadBitmap("/textures/batHurt2.png");
     public static final Render spirit0 = loadBitmap("/textures/spirit0.png");
     public static final Render spirit1 = loadBitmap("/textures/spirit1.png");
     public static final Render spirit2 = loadBitmap("/textures/spirit2.png");
@@ -44,7 +51,9 @@ public class Texture
     public static final Render boardsSmashed = loadBitmap("/textures/boardsSmashed.png");
     public static final Render tree = loadBitmap("/textures/tree.png");
     public static final Render fountain = loadBitmap("/textures/fountain.png");
-    public static final Render splat = loadBitmap("/textures/splat.png");
+    public static final Render splat0 = loadBitmap("/textures/splat0.png");
+    public static final Render splat1 = loadBitmap("/textures/splat1.png");
+    public static final Render splat2 = loadBitmap("/textures/splat2.png");
     public static final Render drip0 = loadBitmap("/textures/drip0.png");
     public static final Render drip1 = loadBitmap("/textures/drip1.png");
     public static final Render drip2 = loadBitmap("/textures/drip2.png");
