@@ -21,6 +21,11 @@ public class Mob extends Entity
     protected Particle hurtParticle;
     protected int hurtParticleCount = 2;
 
+    private List<Sprite> idleSprites = new ArrayList<Sprite>();
+    private List<Sprite> actionSprites = new ArrayList<Sprite>();
+    private List<Sprite> hurtSprites = new ArrayList<Sprite>();
+    private List<Sprite> deathSprites = new ArrayList<Sprite>();
+
     // distances
     public int useDist = 24;
     public int viewDist = 64;
@@ -58,6 +63,8 @@ public class Mob extends Entity
     public Mob(InputHandler input) {
         input.setMob(this);
         this.input = input;
+
+        setSprites(idleSprites);
     }
 
     public void tick() {
@@ -67,13 +74,12 @@ public class Mob extends Entity
         if (damageTime > 0) damageTime--;
         if (useTime > 0) useTime--;
 
-        if (health <= 0) isDieing = true;
-        if (isDieing && !isDead) dieTick();
-
-        if (isDead || isDieing) {
+        if (isDieing) {
             camY = -6.0;
             if (isDead) {
                 remove();
+            } else {
+                dieTick();
             }
             return;
         }
@@ -89,21 +95,36 @@ public class Mob extends Entity
         doMovements();
     }
 
+    public void addIdleSprite(Sprite s) {
+        idleSprites.add(s);
+    }
+
+    public void addHurtSprite(Sprite s) {
+        hurtSprites.add(s);
+    }
+
+    public void addActionSprite(Sprite s) {
+        actionSprites.add(s);
+    }
+
+    public void addDeathSprite(Sprite s) {
+        deathSprites.add(s);
+    }
+
+    private void die() {
+        setSprites(deathSprites);
+        isDieing = true;
+    }
+
     private void dieTick() {
         dieTime--;
-
-        clearSprites();
-
-        Sprite sprite = new Sprite(Texture.splat);
-        addSprite(sprite);
-
         if (dieTime <= 0) {
             isDead = true;
 
             for (int i = 0; i < 6 ; i++) {
-                PoofParticle poofParticle = new PoofParticle(posX, posZ);
-                poofParticle.level = level;
-                level.addEntity(poofParticle);
+                PoofParticle particle = new PoofParticle(posX, posZ);
+                particle.level = level;
+                level.addEntity(particle);
             }
         }
     }
@@ -254,9 +275,9 @@ public class Mob extends Entity
 
     public void hurt(Mob source, int damage) {
         if (damageTime > 0 || damage <= 0 || isDieing) return;
+        swapSprites(hurtSprites, 20);
 
         yBob -= 6;
-
         health -= damage;
         damageTime = 30;
 
@@ -271,9 +292,14 @@ public class Mob extends Entity
             BloodParticle p = new BloodParticle(posX, posZ);
             level.addEntity(p);
         }
+
+        if (health <= 0) {
+            die();
+        }
     }
 
     private void activate() {
+        swapSprites(actionSprites, 20);
         List<Entity> closeEnts = new ArrayList<Entity>();
         for (int e = 0; e < level.countEntities(); e++) {
             Entity ent = level.getEntity(e);

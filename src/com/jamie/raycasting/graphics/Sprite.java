@@ -44,6 +44,24 @@ public class Sprite
         this.isAnimated = true;
     }
 
+    public Sprite(Render[] ts, int interval, double xOffs, double yOffs, double zOffs) {
+        x = xOffs;
+        y = yOffs;
+        z = zOffs;
+        this.interval = interval;
+        addTextures(ts);
+        this.isAnimated = true;
+    }
+
+    public Sprite(Render[] ts, int interval) {
+        x = 0;
+        y = 0;
+        z = 0;
+        this.interval = interval;
+        addTextures(ts);
+        this.isAnimated = true;
+    }
+
 	public void addTexture(Render t) {
 	    textures.add(t);
     }

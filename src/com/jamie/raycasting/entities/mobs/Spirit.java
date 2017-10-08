@@ -30,7 +30,7 @@ public class Spirit extends Mob
         camHeightMod = 2.0;
         crouchHeightMod = 4.0;
 
-        maxHealth = 100;
+        maxHealth = 10;
 //        maxHealth = 100;
         health = maxHealth;
 
@@ -44,7 +44,27 @@ public class Spirit extends Mob
                 Texture.spirit1,
         };
 
-        addSprite(new Sprite(ts));
+        addIdleSprite(new Sprite(ts));
+
+        Render[] ts2 = {
+                Texture.grave,
+                Texture.drip3,
+        };
+
+        addActionSprite(new Sprite(ts2));
+
+        Render[] ts3 = {
+                Texture.grass,
+                Texture.leaves,
+        };
+
+        addHurtSprite(new Sprite(ts3));
+
+        Render[] ts4 = {
+                Texture.splat,
+        };
+
+        addDeathSprite(new Sprite(ts4));
     }
 
     public void tick() {

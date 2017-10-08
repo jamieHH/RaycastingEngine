@@ -10,10 +10,11 @@ import java.util.Random;
 public class Entity
 {
 	protected static final Random random = new Random();
-	private List<Sprite> sprites = new ArrayList<Sprite>();
 
-	// TODO: Make a way for animated sprites to be swapped in and out of visible sprites array!
-    private List<Sprite> tmpSprites = new ArrayList<Sprite>(); // could this work????
+	private List<Sprite> sprites = new ArrayList<Sprite>();
+    private List<Sprite> tmpSprites = new ArrayList<Sprite>();
+    private int swapSpriteTicks = 0;
+    private boolean spritesAreSwapped = false;
 
 	public Level level;
     public boolean solid = true;
@@ -29,7 +30,12 @@ public class Entity
         removed = true;
 	}
 
-	public void addSprite(Sprite s) {
+	public void setSprites(List<Sprite> ss) {
+        resetSprites();
+        sprites = ss;
+    }
+
+    public void addSprite(Sprite s) {
         sprites.add(s);
     }
 
@@ -49,7 +55,29 @@ public class Entity
         for (int i = 0; i < countSprites(); i++) {
             sprites.get(i).tick();
         }
+
+        if (swapSpriteTicks > 0) {
+            swapSpriteTicks--;
+        } else if (swapSpriteTicks == 0 && spritesAreSwapped) {
+            resetSprites();
+        }
 	}
+
+	private void resetSprites() {
+        if (spritesAreSwapped) {
+            spritesAreSwapped = false;
+            swapSpriteTicks = 0;
+            this.sprites = tmpSprites;
+        }
+    }
+
+    protected void swapSprites(List<Sprite> sprites, int ticks) {
+        if (spritesAreSwapped) return;
+        swapSpriteTicks = ticks;
+        spritesAreSwapped = true;
+        tmpSprites = this.sprites;
+        this.sprites = sprites;
+    }
 
     public void setPosition(double x, double z) {
         posX = x;
