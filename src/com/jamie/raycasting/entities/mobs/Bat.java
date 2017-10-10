@@ -39,32 +39,21 @@ public class Bat extends Mob
                 Texture.bat2,
                 Texture.bat1,
         };
-
         addIdleSprite(new Sprite(ts));
 
         Render[] ts2 = {
                 Texture.batAtt0,
-//                Texture.batAtt1,
-//                Texture.batAtt2`,
-//                Texture.batAtt3,
         };
-
         addActionSprite(new Sprite(ts2));
 
         Render[] ts3 = {
                 Texture.batHurt0,
-//                Texture.batHurt1,
-//                Texture.batHurt2,
         };
-
         addHurtSprite(new Sprite(ts3));
 
         Render[] ts4 = {
-                Texture.splat0,
-//                Texture.splat1,
-//                Texture.splat2,
+                Texture.splat1,
         };
-
         addDeathSprite(new Sprite(ts4, 5));
     }
 
@@ -72,6 +61,7 @@ public class Bat extends Mob
         super.tick();
 
         if (level.player != null) { // stop gap fix
+            input.resetInfluence();
             if (squareDistanceFrom(level.player.posX, level.player.posZ) < viewDist) {
 
                 // TODO: this function needs be replaced
@@ -84,8 +74,6 @@ public class Bat extends Mob
                 input.forwardInf = 100;
                 input.backInf = 25;
                 if (squareDistanceFrom(level.player.posX, level.player.posZ) < useDist) {
-                    input.forwardInf = 50;
-                    input.backInf = 50;
                     input.action = true;
                 } else {
                     input.action = false;

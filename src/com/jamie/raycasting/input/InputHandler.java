@@ -34,6 +34,15 @@ public class InputHandler
         }
 	}
 
+	public void resetInfluence() {
+        forwardInf = 50;
+        backInf = 50;
+        leftInf = 50;
+        rightInf = 50;
+        rotLeftInf = 50;
+        rotRightInf = 50;
+    }
+
     protected void disableInputs() {
         forward = false;
         back  = false;

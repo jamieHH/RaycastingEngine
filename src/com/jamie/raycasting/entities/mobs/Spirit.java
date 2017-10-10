@@ -43,29 +43,21 @@ public class Spirit extends Mob
                 Texture.spirit2,
                 Texture.spirit1,
         };
-
         addIdleSprite(new Sprite(ts));
 
         Render[] ts2 = {
-                Texture.grave,
-                Texture.drip3,
+                Texture.spiritAtt0,
         };
-
         addActionSprite(new Sprite(ts2));
 
         Render[] ts3 = {
-                Texture.grass,
-                Texture.leaves,
+                Texture.spiritHurt0,
         };
-
         addHurtSprite(new Sprite(ts3));
 
         Render[] ts4 = {
-                Texture.splat0,
                 Texture.splat1,
-                Texture.splat2,
         };
-
         addDeathSprite(new Sprite(ts4, 10));
     }
 
@@ -85,6 +77,7 @@ public class Spirit extends Mob
         }
 
         if (level.player != null) { // stop gap fix
+            input.resetInfluence();
             if (squareDistanceFrom(level.player.posX, level.player.posZ) < viewDist) {
                 lookTowards(level.player.posX, level.player.posZ);
                 input.forwardInf = 100;
@@ -92,8 +85,6 @@ public class Spirit extends Mob
                 input.leftInf = 75;
                 input.rightInf = 0;
                 if (squareDistanceFrom(level.player.posX, level.player.posZ) < useDist) {
-                    input.forwardInf = 50;
-                    input.backInf = 50;
                     input.action = true;
                 } else {
                     input.action = false;

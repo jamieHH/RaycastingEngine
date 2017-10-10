@@ -43,6 +43,8 @@ public class Texture
     public static final Render spirit0 = loadBitmap("/textures/spirit0.png");
     public static final Render spirit1 = loadBitmap("/textures/spirit1.png");
     public static final Render spirit2 = loadBitmap("/textures/spirit2.png");
+    public static final Render spiritAtt0 = loadBitmap("/textures/spiritAtt0.png");
+    public static final Render spiritHurt0 = loadBitmap("/textures/spiritHurt0.png");
     public static final Render spinningDummy = loadBitmap("/textures/spinningDummy.png");
     public static final Render pillar = loadBitmap("/textures/pillar.png");
     public static final Render bars = loadBitmap("/textures/bars.png");
