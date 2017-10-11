@@ -276,6 +276,7 @@ public class Mob extends Entity
     public void hurt(Mob source, int damage) {
         if (damageTime > 0 || damage <= 0 || isDieing) return;
         swapSprites(hurtSprites, 20);
+//        runAnimSprite(hurtSprites);
 
         yBob -= 6;
         health -= damage;
@@ -300,6 +301,7 @@ public class Mob extends Entity
 
     private void activate() {
         swapSprites(actionSprites, 20);
+//        runAnimSprite(actionSprites);
         List<Entity> closeEnts = new ArrayList<Entity>();
         for (int e = 0; e < level.countEntities(); e++) {
             Entity ent = level.getEntity(e);

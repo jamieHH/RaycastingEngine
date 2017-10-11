@@ -12,7 +12,7 @@ public class Sprite
 	private List<Render> textures = new ArrayList<Render>();
     public int index = 0;
     private int animTick = 0;
-    private int interval = 5;
+    public int interval = 5;
 
 	public Sprite(Render t, double xOffs, double yOffs, double zOffs) {
 		x = xOffs;
@@ -85,22 +85,18 @@ public class Sprite
     }
 
     public void tick() {
-	    if (!isAnimated) {
-	        return;
-        }
+	    if (!isAnimated) return;
 
         if (animTick > 0) {
             animTick--;
-            return;
-        }
+        } else {
+            if (index >= countTextures() - 1) {
+                index = 0;
+            } else {
+                index++;
+            }
 
-        int i = index;
-        i++;
-        if (i >= countTextures()) {
-            i = 0;
+            animTick = interval;
         }
-
-        index = i;
-        animTick = interval;
     }
 }

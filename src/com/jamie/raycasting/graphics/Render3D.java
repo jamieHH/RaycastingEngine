@@ -211,7 +211,7 @@ public class Render3D extends Render
 		double iz0 = 1 / rotLeftSideZ;
 		double iz1 = 1 / rotRightSideZ;
 		double itx0 = xt0 / rotLeftSideZ;
-		double itxa = xt1 / rotRightSideZ - itx0;
+		double itx1 = xt1 / rotRightSideZ - itx0;
 
 		double iw = 1 / (xPixelRight - xPixelLeft);
 		for (int x = xPixelLeftInt; x < xPixelRightInt; x++) {
@@ -220,9 +220,7 @@ public class Render3D extends Render
 
 			if (zBufferWall[x] > zWall) continue;
 			zBufferWall[x] = zWall;
-            int xTexture = (int) ((itx0 + itxa * pixelRotation) / zWall);
-
-            if (xt1 < 0) xTexture -= 1; // corrects texture shift from negative tex1
+            int xTexture = (int) Math.floor((itx0 + itx1 * pixelRotation) / zWall);
 
 			double yPixelTop = yPixelLeftTop + (yPixelRightTop - yPixelLeftTop) * pixelRotation; // + 0.5??
 			double yPixelBottom = yPixelLeftBottom + (yPixelRightBottom - yPixelLeftBottom) * pixelRotation;
@@ -236,7 +234,7 @@ public class Render3D extends Render
             double ih = 1 / (yPixelBottom - yPixelTop);
 			for (int y = yPixelTopInt; y < yPixelBottomInt; y++) {
 				double pixelRotationY = (y - yPixelTop) * ih;
-				int yTexture = (int) (16 * pixelRotationY);
+				int yTexture = (int) Math.floor(16 * pixelRotationY);
 
                 int colour = texture.pixels[(xTexture & 15) + (yTexture & 15) * 16];
                 if (colour != 0xffff00ff) {

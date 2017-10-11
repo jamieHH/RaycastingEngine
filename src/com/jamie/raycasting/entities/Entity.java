@@ -79,6 +79,22 @@ public class Entity
         this.sprites = sprites;
     }
 
+    protected void runAnimSprite(List<Sprite> sprites) {
+        if (spritesAreSwapped) return;
+
+        int flushTime = 0;
+        for (int i = 0; i < sprites.size(); i++) {
+            int time = sprites.get(i).countTextures() * sprites.get(i).interval;
+            if (time > flushTime) flushTime = time;
+        }
+
+        swapSpriteTicks = flushTime;
+
+        spritesAreSwapped = true;
+        tmpSprites = this.sprites;
+        this.sprites = sprites;
+    }
+
     public void setPosition(double x, double z) {
         posX = x;
         posZ = z;
