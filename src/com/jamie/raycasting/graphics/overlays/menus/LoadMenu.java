@@ -38,7 +38,7 @@ public class LoadMenu extends Menu
         if (game.userInput.action) {
             game.pauseTime = 10;
             if (options.get(optionIndex) == "Main Menu") {
-                game.setActiveMenu(game.mainMenu);
+                game.setActiveOverlay(game.mainMenu);
             }
         }
     }

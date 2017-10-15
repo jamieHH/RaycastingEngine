@@ -8,7 +8,6 @@ import java.util.List;
 
 public class Menu extends Overlay
 {
-    public int pauseTime = 0;
     public final int textMarginX = 12;
     public final int selectedTextMarginX = 6;
 

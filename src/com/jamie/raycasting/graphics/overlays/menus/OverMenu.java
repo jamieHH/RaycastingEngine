@@ -17,7 +17,7 @@ public class OverMenu extends Menu
 
         if (game.userInput.pause && pauseTime == 0) {
             game.pauseTime = 10;
-            game.activeMenu = null;
+            game.activeOverlay = null;
         }
 
         if (game.userInput.forward) {
@@ -36,7 +36,7 @@ public class OverMenu extends Menu
         if (game.userInput.action) {
             game.pauseTime = 10;
             if (options.get(optionIndex) == "Main Menu") {
-                game.setActiveMenu(game.mainMenu);
+                game.setActiveOverlay(game.mainMenu);
             } else if (options.get(optionIndex) == "Quit Game") {
                 System.exit(0);
             }

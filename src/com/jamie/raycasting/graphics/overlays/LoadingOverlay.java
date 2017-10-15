@@ -2,17 +2,18 @@ package com.jamie.raycasting.graphics.overlays;
 
 import com.jamie.raycasting.app.Game;
 import com.jamie.raycasting.graphics.Screen;
-import com.jamie.raycasting.graphics.overlays.menus.Menu;
 
-public class LoadingOverlay extends Menu
+public class LoadingOverlay extends Overlay
 {
+    public int pauseTime = 0;
+
     public void tick(Game game) {
         if (pauseTime > 0) {
             pauseTime--;
             return;
         }
 
-        game.activeMenu = null;
+        game.activeOverlay = null;
     }
 
     public void render(Screen screen, String levelName) {

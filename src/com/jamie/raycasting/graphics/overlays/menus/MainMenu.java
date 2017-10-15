@@ -37,9 +37,9 @@ public class MainMenu extends Menu
             if (options.get(optionIndex) == "New Game") {
                 game.newGame();
             } else if (options.get(optionIndex) == "Load Game") {
-                game.setActiveMenu(game.loadMenu);
+                game.setActiveOverlay(game.loadMenu);
             } else if (options.get(optionIndex) == "Options") {
-                game.setActiveMenu(game.optionsMenu);
+                game.setActiveOverlay(game.optionsMenu);
             } else if (options.get(optionIndex) == "Quit") {
                 System.exit(0);
             }

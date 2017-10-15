@@ -79,11 +79,11 @@ public class Screen extends Render
     }
 	
 	public void render(Game game) {
-		if (game.activeMenu != null) {
-		    if (game.activeMenu instanceof LoadingOverlay) {
-                ((LoadingOverlay) game.activeMenu).render(this, game.level.name);
+		if (game.activeOverlay != null) {
+		    if (game.activeOverlay instanceof LoadingOverlay) {
+                ((LoadingOverlay) game.activeOverlay).render(this, game.level.name);
             } else {
-                game.activeMenu.render(this);
+                game.activeOverlay.render(this);
             }
 		    return;
         }

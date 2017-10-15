@@ -16,7 +16,7 @@ public class PauseMenu extends Menu
 
         if (game.userInput.pause && pauseTime == 0) {
             game.pauseTime = 10;
-            game.activeMenu = null;
+            game.activeOverlay = null;
         }
 
         if (game.userInput.forward) {
@@ -35,9 +35,9 @@ public class PauseMenu extends Menu
         if (game.userInput.action) {
             game.pauseTime = 10;
             if (options.get(optionIndex) == "Resume") {
-                game.activeMenu = null;
+                game.activeOverlay = null;
             } else if (options.get(optionIndex) == "Main Menu") {
-                game.setActiveMenu(game.mainMenu);
+                game.setActiveOverlay(game.mainMenu);
             }
         }
     }

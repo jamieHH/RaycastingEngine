@@ -112,7 +112,7 @@ public class OptionsMenu extends Menu
                     App.newHeight = resolutions4x3[resolutionIndex][1];
                 }
                 App.setNewOptions = true;
-                game.setActiveMenu(game.mainMenu);
+                game.setActiveOverlay(game.mainMenu);
             }
         }
     }
