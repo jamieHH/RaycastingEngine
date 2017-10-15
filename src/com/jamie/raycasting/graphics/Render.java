@@ -7,9 +7,9 @@ public class Render
 	public int[] pixels;
 
 	private static final String chars = "" + //
-			"ABCDEFGHIJKLMNOPQRSTUVWXYZ.,!?\"'/\\<>()[]{}" + //
-			"abcdefghijklmnopqrstuvwxyz_               " + //
-			"0123456789+-=*:;                          " + //
+			"ABCDEFGHIJKLMNOPQRSTUVWXYZ.,!?\"'/\\<>()[]{}" +
+			"abcdefghijklmnopqrstuvwxyz_               " +
+			"0123456789+-=*:;                          " +
 			"";
 	
 	public Render(int width, int height) {
