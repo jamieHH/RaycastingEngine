@@ -13,6 +13,7 @@ public class Texture
     public static final Render noTex = loadBitmap("/textures/noTex.png");
     public static final Render logo = loadBitmap("/textures/logo.png");
     public static final Render sky = new Render(400, 150);
+    public static final Render none = new Render(16, 16);
 
     // surfaces
 	public static final Render floor = loadBitmap("/textures/floor.png");
@@ -92,6 +93,11 @@ public class Texture
             } else {
                 sky.pixels[i] = 0;
             }
+        }
+
+        // Generate none texture
+        for (int i = 0; i < none.pixels.length; i++) {
+            none.pixels[i] = 0;
         }
     }
 
