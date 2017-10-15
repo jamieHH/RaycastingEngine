@@ -35,14 +35,15 @@ public class SpriteParticle extends Sprite
         super.tick();
         time++;
 
-        ya -= ((time / 10) * 0.125) * gravity;
-
         x += xa * 0.5;
-        y += ya * 0.125;
+        y += ya * 0.5;
         z += za * 0.5;
 
-        if (y < 0) {
+        y -= ((time * 0.125) * gravity) * 0.0625;
+
+        if (y <= 0) {
             y = 0;
+            ya *= -1;
             xa *= 0.75;
             za *= 0.75;
         }
