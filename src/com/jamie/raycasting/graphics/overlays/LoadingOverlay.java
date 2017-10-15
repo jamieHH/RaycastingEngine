@@ -5,8 +5,6 @@ import com.jamie.raycasting.graphics.Screen;
 
 public class LoadingOverlay extends Overlay
 {
-    public int pauseTime = 0;
-
     public void tick(Game game) {
         if (pauseTime > 0) {
             pauseTime--;

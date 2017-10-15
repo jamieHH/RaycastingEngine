@@ -6,7 +6,7 @@ public class Render
 	public int height;
 	public int[] pixels;
 
-	private static final String chars = "" + //
+	private static final String chars = "" +
 			"ABCDEFGHIJKLMNOPQRSTUVWXYZ.,!?\"'/\\<>()[]{}" +
 			"abcdefghijklmnopqrstuvwxyz_               " +
 			"0123456789+-=*:;                          " +
