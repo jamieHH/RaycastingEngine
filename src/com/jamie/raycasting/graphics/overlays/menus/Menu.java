@@ -1,6 +1,5 @@
 package com.jamie.raycasting.graphics.overlays.menus;
 
-import com.jamie.raycasting.app.Game;
 import com.jamie.raycasting.graphics.overlays.Overlay;
 
 import java.util.ArrayList;
@@ -18,11 +17,5 @@ public class Menu extends Overlay
         options.clear();
         options.add("Option 1");
         options.add("Option 2");
-    }
-
-    public void tick(Game game) {
-        if (pauseTime > 0) {
-            pauseTime--;
-        }
     }
 }
