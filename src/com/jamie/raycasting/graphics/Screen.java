@@ -12,14 +12,14 @@ public class Screen extends Render
     private Mob p = new Mob(new InputHandler());
 
     private Render3D render;
+    private Render viewPunch;
 	private Render equippedItem;
 	private Render hudBar;
 
 	private Render healthBarIcon;
 	private Render healthBarBorder;
 	private Render healthBar;
-
-    private Render viewPunch;
+	private Render itemName;
 
     public Render menuBackground;
 
@@ -44,6 +44,8 @@ public class Screen extends Render
         // 3D render
         render = new Render3D(width, height - (hudBar.height));
 
+        viewPunch = new Render(width, height - hudBar.height);
+
 
         // HUD Items
         healthBarIcon = new Render(6, 4);
@@ -59,9 +61,10 @@ public class Screen extends Render
 
         healthBar = new Render(30, 2);
 
-		viewPunch = new Render(width, height - hudBar.height);
+        itemName = new Render(64, 7);
 
-		// Overlay Background
+
+        // Overlay Background
 		menuBackground = new Render(width, height);
 
 		int pBannerXSt = menuBackground.width * (int) (menuBackground.height * 0.2);
@@ -113,12 +116,15 @@ public class Screen extends Render
         draw(healthBarIcon, 2, (height - hudBar.height) + 3);
         draw(healthBarBorder, 8, (height - hudBar.height) + 3);
         draw(healthBar, 9, (height - hudBar.height) + 4);
+        if (p.getRightHandItem() != null) {
+            draw(p.getRightHandItem().name, width - (p.getRightHandItem().name.length() * 6) - 2, (height - hudBar.height) + 1, 0x909090);
+        }
 
-        if (p.damageTime >= 0) {
-            double percentage = p.damageTime / 60.0;
+        if (p.hurtTime >= 0) {
+            double percentage = p.hurtTime / 60.0;
             for (int i = 0; i < viewPunch.pixels.length; i++) {
-                double xp = ((i % width) - viewPunch.width / 2.0) / width * 2;
-                double yp = ((i / width) - viewPunch.height / 2.0) / viewPunch.height * 2;
+                double xp = ((i % width) - viewPunch.width / 2.0) / width * 4;
+                double yp = ((i / width) - viewPunch.height / 2.0) / viewPunch.height * 4;
                 if (random.nextDouble() < percentage * Math.sqrt(xp * xp + yp * yp)) {
                     if (random.nextBoolean()) {
                         viewPunch.pixels[i] = 0x101010;

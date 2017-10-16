@@ -14,7 +14,7 @@ public class Bat extends Mob
 //        wallCollide = false;
 //        entCollide = false;
 
-        useDist = 12;
+        baseReach = 12;
         viewDist = 64;
 
         radius = 4;
@@ -73,7 +73,7 @@ public class Bat extends Mob
 
                 input.forwardInf = 100;
                 input.backInf = 25;
-                if (squareDistanceFrom(level.player.posX, level.player.posZ) < useDist) {
+                if (squareDistanceFrom(level.player.posX, level.player.posZ) < getRightHandReach()) {
                     input.action = true;
                 } else {
                     input.action = false;

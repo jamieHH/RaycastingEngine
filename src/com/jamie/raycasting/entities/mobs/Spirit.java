@@ -17,7 +17,7 @@ public class Spirit extends Mob
         wallCollide = false;
         entCollide = false;
 
-        useDist = 24;
+        baseReach = 24;
         viewDist = 256;
 
         radius = 4;
@@ -84,7 +84,7 @@ public class Spirit extends Mob
                 input.backInf = 0;
                 input.leftInf = 75;
                 input.rightInf = 0;
-                if (squareDistanceFrom(level.player.posX, level.player.posZ) < useDist) {
+                if (squareDistanceFrom(level.player.posX, level.player.posZ) < getRightHandReach()) {
                     input.action = true;
                 } else {
                     input.action = false;

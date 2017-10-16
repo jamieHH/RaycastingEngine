@@ -2,6 +2,7 @@ package com.jamie.raycasting.entities.mobs;
 
 import com.jamie.raycasting.entities.particles.BloodParticle;
 import com.jamie.raycasting.input.InputHandler;
+import com.jamie.raycasting.items.weapons.SpearWeapon;
 
 public class Player extends Mob
 {
@@ -11,7 +12,7 @@ public class Player extends Mob
 //        wallCollide = false;
 //        entCollide = false;
 
-	    useDist = 32;
+	    baseReach = 32;
 	    viewDist = 4096;
 
 	    radius = 4;
@@ -29,5 +30,7 @@ public class Player extends Mob
         health = maxHealth;
 
         hurtParticle = new BloodParticle(0, 0);
+
+        addItem(new SpearWeapon());
     }
 }

@@ -5,8 +5,8 @@ import com.jamie.raycasting.entities.particles.BloodParticle;
 import com.jamie.raycasting.entities.particles.Particle;
 import com.jamie.raycasting.entities.particles.PoofParticle;
 import com.jamie.raycasting.graphics.Sprite;
-import com.jamie.raycasting.graphics.Texture;
 import com.jamie.raycasting.input.InputHandler;
+import com.jamie.raycasting.items.Item;
 import com.jamie.raycasting.levels.blocks.Block;
 
 import java.util.ArrayList;
@@ -27,7 +27,7 @@ public class Mob extends Entity
     private List<Sprite> deathSprites = new ArrayList<Sprite>();
 
     // distances
-    public int useDist = 24;
+    public int baseReach = 24;
     public int viewDist = 64;
 
     // actions
@@ -52,13 +52,19 @@ public class Mob extends Entity
     private int bobTime = 0;
 
 	// stats
-	public int damageTime = 0;
+    private int baseDamage = 1;
+
+	public int hurtTime = 0;
 	public int maxHealth = 10;
 	public int health = 10;
 
 	private int dieTime = 30;
 	private boolean isDieing = false;
     public boolean isDead = false;
+
+    // items
+    private List<Item> items = new  ArrayList<Item>();
+    private int rightHandItemIndex = 0;
 
     public Mob(InputHandler input) {
         input.setMob(this);
@@ -71,7 +77,7 @@ public class Mob extends Entity
         super.tick();
         input.tick();
 
-        if (damageTime > 0) damageTime--;
+        if (hurtTime > 0) hurtTime--;
         if (useTime > 0) useTime--;
 
         if (isDieing) {
@@ -95,6 +101,37 @@ public class Mob extends Entity
         doMovements();
     }
 
+    public void addItem(Item i) {
+        items.add(i);
+    }
+
+    public Item getItem(int i) {
+        return items.get(i);
+    }
+
+    public int countItems() {
+        return items.size();
+    }
+
+    public void clearItems(Item i) {
+        items.clear();
+    }
+
+    public Item getRightHandItem() {
+        if (countItems() > 0) {
+            return items.get(rightHandItemIndex);
+        }
+        return null;
+    }
+
+    public int getRightHandReach() {
+        if (countItems() > 0) {
+            return baseReach + getRightHandItem().reach;
+        }
+        return baseReach;
+    }
+
+
     public void addIdleSprite(Sprite s) {
         idleSprites.add(s);
     }
@@ -110,6 +147,7 @@ public class Mob extends Entity
     public void addDeathSprite(Sprite s) {
         deathSprites.add(s);
     }
+
 
     private void die() {
         setSprites(deathSprites);
@@ -196,8 +234,12 @@ public class Mob extends Entity
         move(moveX * Math.cos(rotation) + moveZ * Math.sin(rotation), moveZ * Math.cos(rotation) - moveX * Math.sin(rotation));
     }
 
-
-
+    public int getDamage() {
+        if (countItems() > 0) {
+            return baseDamage + getRightHandItem().damage;
+        }
+        return baseDamage;
+    }
 
     private void moveWallEntColl(double nextX, double nextZ) {
         if (!isFree(posX + nextX, posZ) || !isEntityFree(posX + nextX, posZ)) {
@@ -274,13 +316,13 @@ public class Mob extends Entity
     }
 
     public void hurt(Mob source, int damage) {
-        if (damageTime > 0 || damage <= 0 || isDieing) return;
+        if (hurtTime > 0 || damage <= 0 || isDieing) return;
         swapSprites(hurtSprites, 20);
 //        runAnimSprite(hurtSprites);
 
         yBob -= 6;
         health -= damage;
-        damageTime = 30;
+        hurtTime = 30;
 
         double mx = (posX - source.posX) / 2;
         double mz = (posZ - source.posZ) / 2;
@@ -305,14 +347,14 @@ public class Mob extends Entity
         List<Entity> closeEnts = new ArrayList<Entity>();
         for (int e = 0; e < level.countEntities(); e++) {
             Entity ent = level.getEntity(e);
-            if (distanceFrom(ent.posX, ent.posZ) < useDist) {
+            if (distanceFrom(ent.posX, ent.posZ) < getRightHandReach()) {
                 closeEnts.add(ent);
             }
         }
 
 
-        double blockUseDist = ((double) useDist) / 16;
-        int divs = useDist;
+        double blockUseDist = ((double) getRightHandReach()) / 16;
+        int divs = getRightHandReach();
         double xa = (blockUseDist * Math.sin(rotation));
         double za = (blockUseDist * Math.cos(rotation));
 
@@ -323,7 +365,7 @@ public class Mob extends Entity
                 Entity ent = closeEnts.get(b);
                 if (ent instanceof Mob && ent != this) {
                     if (closeEnts.get(b).contains(xx, zz)) {
-                        ((Mob) ent).hurt(this, 1); // change based on equipped tool
+                        ((Mob) ent).hurt(this, getDamage());
                         return;
                     }
                 }
