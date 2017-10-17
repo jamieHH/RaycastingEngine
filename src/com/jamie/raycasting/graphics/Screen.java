@@ -123,8 +123,8 @@ public class Screen extends Render
         if (p.hurtTime >= 0) {
             double percentage = p.hurtTime / 60.0;
             for (int i = 0; i < viewPunch.pixels.length; i++) {
-                double xp = ((i % width) - viewPunch.width / 2.0) / width * 4;
-                double yp = ((i / width) - viewPunch.height / 2.0) / viewPunch.height * 4;
+                double xp = ((i % width) - viewPunch.width / 2.0) / width * 2;
+                double yp = ((i / width) - viewPunch.height / 2.0) / viewPunch.height * 2;
                 if (random.nextDouble() < percentage * Math.sqrt(xp * xp + yp * yp)) {
                     if (random.nextBoolean()) {
                         viewPunch.pixels[i] = 0x101010;
