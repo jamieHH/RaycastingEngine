@@ -33,6 +33,23 @@ public class Level
 	protected Game game;
 	public Mob player;
 
+
+	// static blocks. TODO: check if is performance optimal.
+	private static final Block Block = new Block();
+	private static final NullBlock NullBlock = new NullBlock();
+	private static final SolidBlock SolidBlock = new SolidBlock();
+    private static final PillarBlock PillarBlock = new PillarBlock();
+    private static final BarsBlock BarsBlock = new BarsBlock();
+    private static final CobwebBlock CobwebBlock = new CobwebBlock();
+    private static final TreeBlock TreeBlock = new TreeBlock();
+    private static final GrassBlock GrassBlock = new GrassBlock();
+    private static final ShrubsBlock ShrubsBlock = new ShrubsBlock();
+    private static final StonePathBlock StonePathBlock = new StonePathBlock();
+    private static final GraveBlock GraveBlock = new GraveBlock();
+//    private final WaterBlock WaterBlock = new WaterBlock(); // test if this can be used at all if there are performance benefits?
+    // could just this one instance of the block be ticked in order to update all blocks of the same type in the level?
+
+
 	private void setupLevelClass(Game game, String name, int sizeX, int sizeZ, int[] pixels) {
 		this.name = name;
 		this.game = game;
@@ -133,32 +150,33 @@ public class Level
 	
 	public Block getBlock(int x, int z) {
 		if (x < 0 || z < 0 || x >= sizeX || z >= sizeZ) {
-			return Block.boundaryBlock;
+			return NullBlock;
 		}
 		
 		return blocks[x + z * sizeX];
 	}
 	
 	private Block getBlockByColour(int col) {
-		if (col == 0xFFFFFF) return new SolidBlock();
-		if (col == 0x808080) return new PillarBlock();
-		if (col == 0xC0C0C0) return new BarsBlock();
-		if (col == 0xA3723A) return new SpinningDummyBlock();
-		if (col == 0xA48080) return new DoorBlock();
-		if (col == 0xE0E0E0) return new CobwebBlock();
-		if (col == 0x0094FF) return new WaterBlock();
-		if (col == 0xB27400) return new TreeBlock();
-		if (col == 0xB8ECBE) return new GrassBlock();
-		if (col == 0x7F8800) return new ShrubsBlock();
-		if (col == 0x8BB28F) return new StonePathBlock();
-		if (col == 0xE1AE4A) return new BoardsBlock();
-		if (col == 0x217F74) return new CeilDripBlock();
-		if (col == 0x7EC0C0) return new FountainBlock();
-		if (col == 0x9A9A9A) return new GraveBlock();
+		if (col == 0xFFFFFF) return SolidBlock;
+		if (col == 0x808080) return PillarBlock;
+		if (col == 0xC0C0C0) return BarsBlock;
+		if (col == 0xE0E0E0) return CobwebBlock;
+        if (col == 0xB27400) return TreeBlock;
+        if (col == 0xB8ECBE) return GrassBlock;
+        if (col == 0x7F8800) return ShrubsBlock;
+        if (col == 0x8BB28F) return StonePathBlock;
+        if (col == 0x9A9A9A) return GraveBlock;
+        if (col == 0xA3723A) return new SpinningDummyBlock();
+        if (col == 0xA48080) return new DoorBlock();
+        if (col == 0x0094FF) return new WaterBlock();
+//        if (col == 0x0094FF) return WaterBlock;
+        if (col == 0xE1AE4A) return new BoardsBlock();
+        if (col == 0x217F74) return new CeilDripBlock();
+        if (col == 0x7EC0C0) return new FountainBlock();
 
         if (col == 0xFF6A00) return new LadderBlock(false);
         if (col == 0xB24700) return new LadderBlock(true);
-		return new Block();
+		return Block;
 	}
 
     private Mob getMobByColour(int col) {
