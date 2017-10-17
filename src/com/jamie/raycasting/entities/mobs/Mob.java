@@ -327,6 +327,8 @@ public class Mob extends Entity
         double mx = (posX - source.posX) / 2;
         double mz = (posZ - source.posZ) / 2;
         push(mx, mz);
+        rotationMove += (Math.random() - 0.5);
+
 
         for (int i = 0; i < hurtParticleCount; i++) {
 //            Particle p = hurtParticle;
