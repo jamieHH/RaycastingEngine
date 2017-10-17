@@ -15,7 +15,7 @@ public class Block
 	public boolean solidRender = false;
 	public boolean blocksMotion = false;
 
-	public Render wallTex = Texture.wall;
+	public Render wallTex = Texture.none;
 	public Render floorTex = Texture.floor;
 	public Render ceilTex = Texture.floor;
 
@@ -28,8 +28,13 @@ public class Block
 	public int id;
 
 	public static final Block boundaryBlock = new Block();
+//	public static final Block boundaryBlock = new NullBlock();
 
 	private List<Sprite> sprites = new ArrayList<Sprite>();
+
+	public Block() {
+
+    }
 
 	public void addSprite(Sprite s) {
 		sprites.add(s);
