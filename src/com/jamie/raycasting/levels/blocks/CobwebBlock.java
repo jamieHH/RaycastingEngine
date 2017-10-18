@@ -5,5 +5,6 @@ public class CobwebBlock extends Block
 	public CobwebBlock() {
 		solidRender = false;
 		blocksMotion = false;
+		isStatic = true;
 	}
 }

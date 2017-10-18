@@ -7,6 +7,7 @@ public class ShrubsBlock extends Block
 	public ShrubsBlock() {
 		solidRender = true;
 		blocksMotion = true;
+		isStatic = true;
 
 		floorTex = Texture.grass;
 		wallTex = Texture.leaves;

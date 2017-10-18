@@ -28,6 +28,7 @@ public class App extends Canvas implements Runnable
 	private Boolean running = false;
 	private final UserInputHandler input;
 	private int[] pixels;
+	private int ups;
 	private int fps;
 
 	public static boolean setNewOptions = false;
@@ -91,6 +92,7 @@ public class App extends Canvas implements Runnable
 	}
 	
 	public void run() {
+		int updates = 0;
 		int frames = 0;
 		double unprocessedSeconds = 0;
 		long previousTime = System.nanoTime();
@@ -111,8 +113,10 @@ public class App extends Canvas implements Runnable
 				ticked = true;
 				tickCount++;
 				if (tickCount % 60 == 0) {
+					ups = updates;
 					fps = frames;
 					previousTime += 1000;
+					updates = 0;
 					frames = 0;
 				}
 			}
@@ -124,6 +128,7 @@ public class App extends Canvas implements Runnable
 
 //			render();
 //			frames++;
+			updates++;
 		}
 	}
 	
@@ -159,7 +164,8 @@ public class App extends Canvas implements Runnable
 		g.setFont(new Font("Verdana", Font.PLAIN, fontSize));
 		g.setColor(Color.YELLOW);
 		
-		g.drawString(fps + "fps", 0, fontSize);
+		g.drawString("UPS: " + ups, 0, fontSize);
+		g.drawString("FPS: " + fps , 0, (fontSize * 2));
 
 //		g.drawString("Clip:" + ((game.player.clipping) ? "YES" : "NO"), 0, (height * scale) - (fontSize * 2) - 4);
 //		g.drawString("X:" + game.player.posX, 0, (height * scale) - fontSize - 4);

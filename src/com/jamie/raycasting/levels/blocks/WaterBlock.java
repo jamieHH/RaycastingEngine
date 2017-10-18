@@ -15,6 +15,7 @@ public class WaterBlock extends Block
 	public WaterBlock() {
 		solidRender = false;
 		blocksMotion = true;
+		isStatic = true;
 
 		floorTex = Texture.water0;
 		ceilTex = Texture.floor;

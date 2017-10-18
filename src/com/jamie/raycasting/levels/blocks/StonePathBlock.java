@@ -7,6 +7,7 @@ public class StonePathBlock extends Block
 	public StonePathBlock() {
 		solidRender = false;
 		blocksMotion = false;
+		isStatic = true;
 
 		floorTex = Texture.stonePath;
 		ceilTex = Texture.floor;

@@ -8,6 +8,7 @@ public class SolidBlock extends Block
 	public SolidBlock() {
 		solidRender = true;
 		blocksMotion = true;
+		isStatic = true;
 
 		wallTex = Texture.wall;
 	}

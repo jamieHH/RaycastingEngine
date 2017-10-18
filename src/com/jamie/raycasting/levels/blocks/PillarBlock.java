@@ -7,6 +7,7 @@ public class PillarBlock extends Block
 {
 	public PillarBlock() {
 		blocksMotion = true;
+		isStatic = true;
 
 		Sprite sprite = new Sprite(Texture.pillar);
 		addSprite(sprite);

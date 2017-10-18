@@ -7,6 +7,7 @@ public class GraveBlock extends Block
 {
 	public GraveBlock() {
 		blocksMotion = false;
+		isStatic = true;
 
 		floorTex = Texture.dirt;
 

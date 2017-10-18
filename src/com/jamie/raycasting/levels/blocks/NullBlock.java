@@ -8,6 +8,7 @@ public class NullBlock extends Block
 	    super();
 		solidRender = false;
 		blocksMotion = false;
+		isStatic = true;
 
 		wallTex = Texture.none;
 		floorTex = Texture.none;

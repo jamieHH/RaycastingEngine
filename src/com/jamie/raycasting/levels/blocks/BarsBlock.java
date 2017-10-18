@@ -7,6 +7,7 @@ public class BarsBlock extends Block
 {
 	public BarsBlock() {
 		blocksMotion = true;
+		isStatic = true;
 
 		Sprite sprite = new Sprite(Texture.bars);
 		addSprite(sprite);

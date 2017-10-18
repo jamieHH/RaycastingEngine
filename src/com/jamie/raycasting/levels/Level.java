@@ -46,7 +46,7 @@ public class Level
     private static final ShrubsBlock ShrubsBlock = new ShrubsBlock();
     private static final StonePathBlock StonePathBlock = new StonePathBlock();
     private static final GraveBlock GraveBlock = new GraveBlock();
-//    private final WaterBlock WaterBlock = new WaterBlock(); // test if this can be used at all if there are performance benefits?
+    private static final WaterBlock WaterBlock = new WaterBlock(); // test if this can be used at all if there are performance benefits?
     // could just this one instance of the block be ticked in order to update all blocks of the same type in the level?
 
 
@@ -71,9 +71,11 @@ public class Level
                     ladderCount++;
                 }
 
-				block.level = this;
-				block.gridX = x;
-				block.gridZ = z;
+                if (!block.isStatic) {
+                    block.level = this;
+                    block.gridX = x;
+                    block.gridZ = z;
+                }
                 blocks[x + z * sizeX] = block;
 				
 				decorateBlock(x, z, block, col);
@@ -97,8 +99,11 @@ public class Level
 	}
 	
 	public void tick() {
+	    WaterBlock.tick();
         for (int i = 0; i < blocks.length; i++) {
-            blocks[i].tick();
+            if (! blocks[i].isStatic) {
+                blocks[i].tick();
+            }
         }
 
 		for (int i = 0; i < countEntities(); i++) {
@@ -166,10 +171,10 @@ public class Level
         if (col == 0x7F8800) return ShrubsBlock;
         if (col == 0x8BB28F) return StonePathBlock;
         if (col == 0x9A9A9A) return GraveBlock;
+        if (col == 0x0094FF) return WaterBlock;
+//        if (col == 0x0094FF) return new WaterBlock();
         if (col == 0xA3723A) return new SpinningDummyBlock();
         if (col == 0xA48080) return new DoorBlock();
-        if (col == 0x0094FF) return new WaterBlock();
-//        if (col == 0x0094FF) return WaterBlock;
         if (col == 0xE1AE4A) return new BoardsBlock();
         if (col == 0x217F74) return new CeilDripBlock();
         if (col == 0x7EC0C0) return new FountainBlock();

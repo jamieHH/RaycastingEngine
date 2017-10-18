@@ -14,6 +14,7 @@ public class Block
 
 	public boolean solidRender = false;
 	public boolean blocksMotion = false;
+    public boolean isStatic = false;
 
 	public Render wallTex = Texture.none;
 	public Render floorTex = Texture.floor;

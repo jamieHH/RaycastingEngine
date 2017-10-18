@@ -7,6 +7,7 @@ public class TreeBlock extends Block
 {
 	public TreeBlock() {
 		blocksMotion = true;
+		isStatic = true;
 
 		floorTex = Texture.grass;
 
