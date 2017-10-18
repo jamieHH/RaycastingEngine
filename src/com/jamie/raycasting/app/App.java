@@ -121,6 +121,7 @@ public class App extends Canvas implements Runnable
 				}
 			}
 
+			updates++;
 			if (ticked) {
 				render();
 				frames++;
@@ -128,7 +129,6 @@ public class App extends Canvas implements Runnable
 
 //			render();
 //			frames++;
-			updates++;
 		}
 	}
 	
