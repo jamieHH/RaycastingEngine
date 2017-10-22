@@ -28,15 +28,4 @@ public class PoofParticle extends Particle
 
         addSprite(particle);
     }
-
-    public void tick() {
-        super.tick();
-        life -= 1;
-        if (life <= 0) {
-            remove();
-        }
-        for (int i = 0; i < countSprites(); i++) {
-            getSprite(i).tick();
-        }
-    }
 }
