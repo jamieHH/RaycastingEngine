@@ -11,15 +11,17 @@ public class ButtonBlock extends Block
 		blocksMotion = true;
 		isStatic = true;
 
-		wallTex = Texture.wall;
+		wallTex = Texture.button0;
 	}
 
 	public boolean use() {
         if (useWait > 0) {
+			wallTex = Texture.button0;
             return false;
         }
 
         useWait = 10;
+        wallTex = Texture.button1;
         level.activateBlock(id, "?instanceType");
 		return true;
 	}

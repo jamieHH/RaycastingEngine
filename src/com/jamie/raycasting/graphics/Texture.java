@@ -29,6 +29,8 @@ public class Texture
     public static final Render water0 = loadBitmap("/textures/water0.png");
     public static final Render water1 = loadBitmap("/textures/water1.png");
     public static final Render water2 = loadBitmap("/textures/water2.png");
+    public static final Render button0 = loadBitmap("/textures/button0.png");
+    public static final Render button1 = loadBitmap("/textures/button1.png");
 
 	// sprites
     public static final Render bat0 = loadBitmap("/textures/bat0.png");
