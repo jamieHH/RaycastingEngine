@@ -134,7 +134,7 @@ public class Level
         for (int i = 0; i < blocks.length; i++) {
             // if instance of type
             if (blocks[i].id == id && blocks[i] instanceof DoorBlock) {
-                blocks[i].use();
+                blocks[i].trigger();
             }
         }
     }
@@ -201,7 +201,7 @@ public class Level
         if (col == 0xE1AE4A) return new BoardsBlock();
         if (col == 0x217F74) return new CeilDripBlock();
         if (col == 0x7EC0C0) return new FountainBlock();
-
+        if (col == 0xC80000) return new ButtonBlock();
         if (col == 0xFF6A00) return new LadderBlock(false);
         if (col == 0xB24700) return new LadderBlock(true);
         return Block;

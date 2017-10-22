@@ -18,13 +18,13 @@ public class BoardsBlock extends Block
 
 	public boolean use() {
         if (!smashed) {
-            smash();
+            trigger();
             return true;
         }
         return false;
     }
 
-    private void smash() {
+    public void trigger() {
         smashed = true;
         blocksMotion = false;
 

@@ -23,8 +23,12 @@ public class DoorBlock extends Block
         }
 
         useWait = 10;
-	    open = !open;
+        trigger();
 	    return true;
+    }
+
+    public void trigger() {
+        open = !open;
     }
 
     public void tick() {

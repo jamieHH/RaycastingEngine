@@ -59,4 +59,6 @@ public class Block
     public boolean use() {
         return false;
     }
+
+	public void trigger() {}
 }
