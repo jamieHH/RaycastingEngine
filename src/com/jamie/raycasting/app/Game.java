@@ -64,8 +64,8 @@ public class Game
 			time++;
 
             if (userInput.nextMob) { // for fun :)
-//				switchPlayer();
-                possessNextMob();
+				switchPerspective();
+//                possessNextMob();
             }
 
             if (player.isDead) {
@@ -144,28 +144,9 @@ public class Game
 		loaded.clear();
 	}
 
-	private void switchPlayer() {
+	private void switchPerspective() {
         pauseTime = 10;
 
-        List<Mob> mobs = new ArrayList<Mob>();
-        for (int e = 0; e < level.countEntities(); e++) {
-            Entity ent = level.getEntity(e);
-            if (ent instanceof Mob) {
-                mobs.add((Mob) ent);
-            }
-        }
-
-        int i = level.getEntities().indexOf(player);
-        if (i + 1 >= mobs.size()) {
-            player = mobs.get(0);
-        } else {
-            player = mobs.get(i + 1);
-        }
-	}
-
-	private void possessNextMob() {
-	    // build upon this functionality
-		pauseTime = 10;
 
 		List<Mob> mobs = level.getMobEntities();
 
@@ -173,6 +154,33 @@ public class Game
 		i++;
 		if (i >= level.countMobs()) i = 0;
 
+		player = level.getMobEntity(i);
+
+
+//        List<Mob> mobs = new ArrayList<Mob>();
+//        for (int e = 0; e < level.countEntities(); e++) {
+//            Entity ent = level.getEntity(e);
+//            if (ent instanceof Mob) {
+//                mobs.add((Mob) ent);
+//            }
+//        }
+//
+//        int i = level.getEntities().indexOf(player);
+//        if (i + 1 >= mobs.size()) {
+//            player = mobs.get(0);
+//        } else {
+//            player = mobs.get(i + 1);
+//        }
+	}
+
+	private void possessNextMob() {
+		pauseTime = 10;
+
+		List<Mob> mobs = level.getMobEntities();
+
+		int i = mobs.indexOf(player);
+		i++;
+		if (i >= level.countMobs()) i = 0;
 
         // check logic here
         player.input = temporaryInput;

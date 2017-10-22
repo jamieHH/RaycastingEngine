@@ -1,7 +1,6 @@
 package com.jamie.raycasting.levels.blocks;
 
 import com.jamie.raycasting.graphics.Texture;
-import com.jamie.raycasting.levels.blocks.Block;
 
 public class SolidBlock extends Block
 {
