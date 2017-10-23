@@ -5,7 +5,7 @@ import com.jamie.raycasting.graphics.Texture;
 
 public class DoorBlock extends Block
 {
-	private boolean open = false;
+	protected boolean open = false;
 
     private int useTicks = 0;
     private int useWait = 10;
@@ -38,7 +38,7 @@ public class DoorBlock extends Block
         updateOpenness();
     }
 
-    private void updateOpenness() {
+    protected void updateOpenness() {
         if (open) openness += 0.1;
         else openness -= 0.1;
         if (openness < 0) openness = 0;
