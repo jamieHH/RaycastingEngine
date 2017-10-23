@@ -3,6 +3,7 @@ package com.jamie.raycasting.levels.blocks;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.graphics.Render;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
@@ -56,7 +57,9 @@ public class Block
 		}
 	}
 
-    public boolean use() {
+    public boolean use(Mob source) {
         return false;
     }
+
+	public void trigger() {}
 }

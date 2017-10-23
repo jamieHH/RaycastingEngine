@@ -46,8 +46,7 @@ public class Level
     private static final ShrubsBlock ShrubsBlock = new ShrubsBlock();
     private static final StonePathBlock StonePathBlock = new StonePathBlock();
     private static final GraveBlock GraveBlock = new GraveBlock();
-    private static final WaterBlock WaterBlock = new WaterBlock(); // test if this can be used at all if there are performance benefits?
-    // could just this one instance of the block be ticked in order to update all blocks of the same type in the level?
+    private static final WaterBlock WaterBlock = new WaterBlock();
 
 
     private void setupLevelClass(Game game, String name, int sizeX, int sizeZ, int[] pixels) {
@@ -91,7 +90,7 @@ public class Level
 
                 blocks[x + z * sizeX] = block;
 
-                decorateBlock(x, z, block, col);
+                setDefaultSpawn(x, z, col);
             }
         }
 
@@ -104,8 +103,7 @@ public class Level
                     addEntity(mob);
                     mob.level = this;
 
-                    mob.posX = (xb * 16) + 8;
-                    mob.posZ = (zb * 16) + 8;
+                    mob.setPosition((xb * 16) + 8, (zb * 16) + 8);
                 }
             }
         }
@@ -134,7 +132,7 @@ public class Level
         for (int i = 0; i < blocks.length; i++) {
             // if instance of type
             if (blocks[i].id == id && blocks[i] instanceof DoorBlock) {
-                blocks[i].use();
+                blocks[i].trigger();
             }
         }
     }
@@ -201,7 +199,7 @@ public class Level
         if (col == 0xE1AE4A) return new BoardsBlock();
         if (col == 0x217F74) return new CeilDripBlock();
         if (col == 0x7EC0C0) return new FountainBlock();
-
+        if (col == 0xC80000) return new ButtonBlock();
         if (col == 0xFF6A00) return new LadderBlock(false);
         if (col == 0xB24700) return new LadderBlock(true);
         return Block;
@@ -213,7 +211,7 @@ public class Level
         return null;
     }
 
-    private void decorateBlock(int x, int z, Block block, int col) {
+    private void setDefaultSpawn(int x, int z, int col) {
         if (col == 0xFFFF00) {
             spawnX = (x * 16) + 8;
             spawnZ = (z * 16) + 8;

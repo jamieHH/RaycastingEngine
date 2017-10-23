@@ -1,5 +1,6 @@
 package com.jamie.raycasting.levels.blocks;
 
+import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.entities.particles.WoodParticle;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
@@ -16,15 +17,15 @@ public class BoardsBlock extends Block
         addSprite(sprite);
 	}
 
-	public boolean use() {
+	public boolean use(Mob source) {
         if (!smashed) {
-            smash();
+            trigger();
             return true;
         }
         return false;
     }
 
-    private void smash() {
+    public void trigger() {
         smashed = true;
         blocksMotion = false;
 

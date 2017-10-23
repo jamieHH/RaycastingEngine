@@ -32,8 +32,8 @@ public class Mob extends Entity
 
     // actions
     public InputHandler input;
-    private int useTime = 0;
-    private int useDelay = 30;
+    private int useTicks = 0;
+    protected int useWait = 30;
 
     // movement
 	private double rotationMove;
@@ -52,7 +52,7 @@ public class Mob extends Entity
     private int bobTime = 0;
 
 	// stats
-    private int baseDamage = 1;
+    protected int baseDamage = 1;
 
 	public int hurtTime = 0;
 	public int maxHealth = 10;
@@ -78,7 +78,7 @@ public class Mob extends Entity
         input.tick();
 
         if (hurtTime > 0) hurtTime--;
-        if (useTime > 0) useTime--;
+        if (useTicks > 0) useTicks--;
 
         if (isDieing) {
             camY = -6.0;
@@ -91,8 +91,8 @@ public class Mob extends Entity
         }
 
         if (input.action) {
-            if (useTime <= 0) {
-                useTime = useDelay;
+            if (useTicks <= 0) {
+                useTicks = useWait;
 
                 activate();
             }
@@ -377,7 +377,7 @@ public class Mob extends Entity
             int zb = (int) (zz / 16);
             if (xb != (int) (posX / 16) || zb != (int) (posZ / 16)) {
                 Block block = level.getBlock(xb, zb);
-                if (block.use()) return;
+                if (block.use(this)) return;
 
                 if (block.blocksMotion) return;
             }

@@ -1,12 +1,14 @@
 package com.jamie.raycasting.levels.blocks;
 
+import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.graphics.Texture;
 
 public class DoorBlock extends Block
 {
 	private boolean open = false;
 
-    private int useWait = 0;
+    private int useTicks = 0;
+    private int useWait = 10;
 
 	public double openness = 0;
 	private double openLimit = 7 / 8.0;
@@ -17,18 +19,22 @@ public class DoorBlock extends Block
 		wallTex = Texture.door;
 	}
 
-	public boolean use() {
-        if (useWait > 0) {
+	public boolean use(Mob source) {
+        if (useTicks > 0) {
             return false;
         }
 
-        useWait = 10;
-	    open = !open;
+        useTicks = useWait;
+        trigger();
 	    return true;
     }
 
+    public void trigger() {
+        open = !open;
+    }
+
     public void tick() {
-	    if (useWait > 0) useWait--;
+	    if (useTicks > 0) useTicks--;
         updateOpenness();
     }
 

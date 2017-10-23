@@ -12,6 +12,6 @@ public class PrisonLevel extends Level
     }
 
     public void activateBlock(int id, String type) {
-        if (id == 1) super.activateBlock(1, type);
+        if (id == 1) super.activateBlock(2, type);
     }
 }
