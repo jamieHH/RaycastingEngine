@@ -21,6 +21,7 @@ public class Texture
 	public static final Render wall = loadBitmap("/textures/wall.png");
 	public static final Render cobweb = loadBitmap("/textures/cobweb.png");
 	public static final Render door = loadBitmap("/textures/door.png");
+	public static final Render strongDoor = loadBitmap("/textures/strongDoor.png");
 	public static final Render grass = loadBitmap("/textures/grass.png");
 	public static final Render dirt = loadBitmap("/textures/dirt.png");
 	public static final Render leaves = loadBitmap("/textures/leaves.png");
