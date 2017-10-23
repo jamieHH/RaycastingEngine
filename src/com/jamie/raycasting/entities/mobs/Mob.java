@@ -377,7 +377,7 @@ public class Mob extends Entity
             int zb = (int) (zz / 16);
             if (xb != (int) (posX / 16) || zb != (int) (posZ / 16)) {
                 Block block = level.getBlock(xb, zb);
-                if (block.use()) return;
+                if (block.use(this)) return;
 
                 if (block.blocksMotion) return;
             }

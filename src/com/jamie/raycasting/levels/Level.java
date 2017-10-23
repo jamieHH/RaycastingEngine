@@ -46,8 +46,7 @@ public class Level
     private static final ShrubsBlock ShrubsBlock = new ShrubsBlock();
     private static final StonePathBlock StonePathBlock = new StonePathBlock();
     private static final GraveBlock GraveBlock = new GraveBlock();
-    private static final WaterBlock WaterBlock = new WaterBlock(); // test if this can be used at all if there are performance benefits?
-    // could just this one instance of the block be ticked in order to update all blocks of the same type in the level?
+    private static final WaterBlock WaterBlock = new WaterBlock();
 
 
     private void setupLevelClass(Game game, String name, int sizeX, int sizeZ, int[] pixels) {
@@ -104,8 +103,7 @@ public class Level
                     addEntity(mob);
                     mob.level = this;
 
-                    mob.posX = (xb * 16) + 8;
-                    mob.posZ = (zb * 16) + 8;
+                    mob.setPosition((xb * 16) + 8, (zb * 16) + 8);
                 }
             }
         }

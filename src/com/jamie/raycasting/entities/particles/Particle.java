@@ -7,8 +7,7 @@ public abstract class Particle extends Entity
     protected int life = 120;
 
     public Particle(double x, double z) {
-        this.posX = x;
-        this.posZ = z;
+        setPosition(x, z);
         solid = false;
     }
 

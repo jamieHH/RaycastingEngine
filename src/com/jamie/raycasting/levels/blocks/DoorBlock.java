@@ -1,5 +1,6 @@
 package com.jamie.raycasting.levels.blocks;
 
+import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.graphics.Texture;
 
 public class DoorBlock extends Block
@@ -18,7 +19,7 @@ public class DoorBlock extends Block
 		wallTex = Texture.door;
 	}
 
-	public boolean use() {
+	public boolean use(Mob source) {
         if (useTicks > 0) {
             return false;
         }

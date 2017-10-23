@@ -101,9 +101,8 @@ public class Game
 		player = new Player(userInput);
 
 		level = Level.getLoadLevel(this, "prison");
-		
-		player.posX = level.spawnX;
-		player.posZ = level.spawnZ;
+
+		player.setPosition(level.spawnX, level.spawnZ);
 		player.rotation = 1.9;
 		
 		player.level = level;
@@ -126,8 +125,7 @@ public class Game
 		}
 		level.setSpawn(id);
 
-		player.posX = level.spawnX;
-		player.posZ = level.spawnZ;
+		player.setPosition(level.spawnX, level.spawnZ);
 
 		Block spawnBlock = level.getBlock((int) (level.spawnX - 8) / 16, (int) (level.spawnZ - 8) / 16);
 
@@ -147,7 +145,6 @@ public class Game
 	private void switchPerspective() {
         pauseTime = 10;
 
-
 		List<Mob> mobs = level.getMobEntities();
 
 		int i = mobs.indexOf(player);
@@ -155,22 +152,6 @@ public class Game
 		if (i >= level.countMobs()) i = 0;
 
 		player = level.getMobEntity(i);
-
-
-//        List<Mob> mobs = new ArrayList<Mob>();
-//        for (int e = 0; e < level.countEntities(); e++) {
-//            Entity ent = level.getEntity(e);
-//            if (ent instanceof Mob) {
-//                mobs.add((Mob) ent);
-//            }
-//        }
-//
-//        int i = level.getEntities().indexOf(player);
-//        if (i + 1 >= mobs.size()) {
-//            player = mobs.get(0);
-//        } else {
-//            player = mobs.get(i + 1);
-//        }
 	}
 
 	private void possessNextMob() {
@@ -182,7 +163,6 @@ public class Game
 		i++;
 		if (i >= level.countMobs()) i = 0;
 
-        // check logic here
         player.input = temporaryInput;
         player = level.getMobEntity(i);
         temporaryInput = player.input;
