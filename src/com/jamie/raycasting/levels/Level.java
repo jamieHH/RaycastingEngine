@@ -91,7 +91,7 @@ public class Level
 
                 blocks[x + z * sizeX] = block;
 
-                decorateBlock(x, z, block, col);
+                setDefaultSpawn(x, z, col);
             }
         }
 
@@ -213,7 +213,7 @@ public class Level
         return null;
     }
 
-    private void decorateBlock(int x, int z, Block block, int col) {
+    private void setDefaultSpawn(int x, int z, int col) {
         if (col == 0xFFFF00) {
             spawnX = (x * 16) + 8;
             spawnZ = (z * 16) + 8;
