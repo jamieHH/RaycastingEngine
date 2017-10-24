@@ -47,7 +47,7 @@ public class Mob extends Entity
     protected double camHeightMod = 2.0;
     protected double crouchHeightMod = 4.0;
 
-    public double camY = 0;
+    public double camY = camHeightMod;
     private double yBob = 0;
     private int bobTime = 0;
 
