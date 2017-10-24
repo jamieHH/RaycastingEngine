@@ -50,20 +50,20 @@ public class OptionsMenu extends Menu
         super.tick(game);
 
         if (game.userInput.forward) {
-            game.pauseTime = 10;
+            game.userInput.setKeyGroupState("forward", false);
             if ((optionIndex > 0)) {
                 optionIndex--;
             }
         }
         if (game.userInput.back) {
-            game.pauseTime = 10;
+            game.userInput.setKeyGroupState("back", false);
             if ((optionIndex < options.size() - 1)) {
                 optionIndex++;
             }
         }
 
         if (game.userInput.left || game.userInput.rotLeft) {
-            game.pauseTime = 10;
+            game.userInput.setKeyGroupState("rotLeft", false);
             if (options.get(optionIndex) == "Aspect Ratio") {
                 if ((aspectRatioIndex > 0)) {
                     aspectRatioIndex--;
@@ -80,7 +80,7 @@ public class OptionsMenu extends Menu
         }
 
         if (game.userInput.right || game.userInput.rotRight) {
-            game.pauseTime = 10;
+            game.userInput.setKeyGroupState("rotRight", false);
             if (options.get(optionIndex) == "Aspect Ratio") {
                 if ((aspectRatioIndex < aspectRatios.length - 1)) {
                     aspectRatioIndex++;
@@ -97,7 +97,7 @@ public class OptionsMenu extends Menu
         }
 
         if (game.userInput.action) {
-            game.pauseTime = 10;
+            game.userInput.setKeyGroupState("action", false);
             if (options.get(optionIndex) == "Reset Defaults") {
                 aspectRatioIndex = 0;
                 resolutionIndex = 1;

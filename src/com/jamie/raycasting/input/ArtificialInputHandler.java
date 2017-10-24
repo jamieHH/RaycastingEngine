@@ -7,11 +7,12 @@ public class ArtificialInputHandler extends InputHandler
     private boolean allowMovement = true;
 
 	private final Random random = new Random();
-	private int changeTimer = 20;
+	private int changeTicks = 0;
+	private int changeWait = 20;
 
 	public void tick() {
-        changeTimer--;
-        if (changeTimer > 0) {
+        changeTicks--;
+        if (changeTicks > 0) {
             return;
         }
 
@@ -24,6 +25,6 @@ public class ArtificialInputHandler extends InputHandler
             rotRight = (random.nextInt(100) < rotRightInf); //false;
         }
 
-        changeTimer = 20;
+        changeTicks = changeWait;
 	}
 }

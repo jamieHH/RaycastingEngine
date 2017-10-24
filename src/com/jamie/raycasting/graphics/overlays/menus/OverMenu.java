@@ -16,25 +16,25 @@ public class OverMenu extends Menu
         super.tick(game);
 
         if (game.userInput.pause && pauseTime == 0) {
-            game.pauseTime = 10;
+            game.userInput.setKeyGroupState("pause", false);
             game.activeOverlay = null;
         }
 
         if (game.userInput.forward) {
-            game.pauseTime = 10;
+            game.userInput.setKeyGroupState("forward", false);
             if ((optionIndex > 0)) {
                 optionIndex--;
             }
         }
         if (game.userInput.back) {
-            game.pauseTime = 10;
+            game.userInput.setKeyGroupState("back", false);
             if ((optionIndex < options.size() - 1)) {
                 optionIndex++;
             }
         }
 
         if (game.userInput.action) {
-            game.pauseTime = 10;
+            game.userInput.setKeyGroupState("action", false);
             if (options.get(optionIndex) == "Main Menu") {
                 game.setActiveOverlay(game.mainMenu);
             } else if (options.get(optionIndex) == "Quit Game") {

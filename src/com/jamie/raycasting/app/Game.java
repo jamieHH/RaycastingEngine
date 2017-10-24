@@ -1,11 +1,9 @@
 package com.jamie.raycasting.app;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.jamie.raycasting.entities.Entity;
 import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.entities.mobs.Player;
 import com.jamie.raycasting.graphics.overlays.LoadingOverlay;
@@ -77,8 +75,8 @@ public class Game
             }
 
             if (userInput.pause) {
+				userInput.setKeyGroupState("pause", false);
                 setActiveOverlay(pauseMenu);
-                activeOverlay.pauseTime = 10;
             }
 
             if (userInput.randomLevel) {
