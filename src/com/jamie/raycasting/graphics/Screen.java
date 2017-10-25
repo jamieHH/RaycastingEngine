@@ -23,6 +23,8 @@ public class Screen extends Render
 
     public Render menuBackground;
 
+    public Render screenCapture = new Render(width, height);
+
     private Random random = new Random();
 
 	public Screen(int width, int height, Game game) {
@@ -90,6 +92,7 @@ public class Screen extends Render
             }
         } else {
             for (int i = 0; i < (width * height); i++) {
+                screenCapture.pixels[i] = pixels[i]; // Do performance tests!!
                 pixels[i] = 0;
             }
 

@@ -2,6 +2,7 @@ package com.jamie.raycasting.entities.mobs;
 
 import com.jamie.raycasting.entities.particles.BloodParticle;
 import com.jamie.raycasting.input.InputHandler;
+import com.jamie.raycasting.items.weapons.AxeWeapon;
 import com.jamie.raycasting.items.weapons.SpearWeapon;
 
 public class Player extends Mob
@@ -32,5 +33,6 @@ public class Player extends Mob
         hurtParticle = new BloodParticle(0, 0);
 
         addItem(new SpearWeapon());
+        addItem(new AxeWeapon());
     }
 }

@@ -14,7 +14,7 @@ public class PauseMenu extends Menu
     public void tick(Game game) {
         super.tick(game);
 
-        if (game.userInput.pause && pauseTime == 0) {
+        if (game.userInput.pause) {
             game.userInput.setKeyGroupState("pause", false);
             game.activeOverlay = null;
         }

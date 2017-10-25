@@ -13,7 +13,7 @@ public class UserInputHandler extends InputHandler implements KeyListener, Focus
 
     private Map<String, int[]> keyGroups = new HashMap<String, int[]>();
 
-    public boolean randomLevel, loadLevel, nextMob, pause, yKey;
+    public boolean randomLevel, loadLevel, nextMob, inventory, pause, yKey;
 
     public UserInputHandler() {
         int[] forwardKeys = {KeyEvent.VK_W, KeyEvent.VK_UP};
@@ -24,6 +24,7 @@ public class UserInputHandler extends InputHandler implements KeyListener, Focus
         int[] rotRightKeys = {KeyEvent.VK_RIGHT};
         int[] crouchKeys = {KeyEvent.VK_CONTROL};
         int[] actionKeys = {KeyEvent.VK_ENTER, KeyEvent.VK_SPACE};
+        int[] inventoryKeys = {KeyEvent.VK_E};
         int[] pauseKeys = {KeyEvent.VK_ESCAPE};
 
         keyGroups.put("forward", forwardKeys);
@@ -34,6 +35,7 @@ public class UserInputHandler extends InputHandler implements KeyListener, Focus
         keyGroups.put("rotRight", rotRightKeys);
         keyGroups.put("crouch", crouchKeys);
         keyGroups.put("action", actionKeys);
+        keyGroups.put("inventory", inventoryKeys);
         keyGroups.put("pause", pauseKeys);
     }
 
@@ -71,18 +73,8 @@ public class UserInputHandler extends InputHandler implements KeyListener, Focus
 		rotRight = checkKeyGroup(keyGroups.get("rotRight"));
         crouch = checkKeyGroup(keyGroups.get("crouch"));
         action = checkKeyGroup(keyGroups.get("action"));
+		inventory = checkKeyGroup(keyGroups.get("inventory"));
 		pause = checkKeyGroup(keyGroups.get("pause"));
-
-
-//		forward = key[KeyEvent.VK_W] || key[KeyEvent.VK_UP];
-//		back = key[KeyEvent.VK_S] || key[KeyEvent.VK_DOWN];
-//		left = key[KeyEvent.VK_A];
-//		right = key[KeyEvent.VK_D];
-//		rotLeft = key[KeyEvent.VK_LEFT];
-//		rotRight = key[KeyEvent.VK_RIGHT];
-//		crouch = key[KeyEvent.VK_CONTROL];
-//		action = key[KeyEvent.VK_ENTER] || key[KeyEvent.VK_SPACE];
-//      pause = key[KeyEvent.VK_ESCAPE];
 
 //		run = key[KeyEvent.VK_SHIFT];
 

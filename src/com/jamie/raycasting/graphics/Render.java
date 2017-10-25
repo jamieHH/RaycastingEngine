@@ -64,4 +64,12 @@ public class Render
             draw(Texture.font, x + i * 6, y, xx * 6, yy * 8, 5, 8, col);
         }
     }
+
+	public void fill(int x0, int y0, int x1, int y1, int color) {
+		for (int y = y0; y < y1; y++) {
+			for (int x = x0; x < x1; x++) {
+				pixels[x + y * width] = color;
+			}
+		}
+	}
 }

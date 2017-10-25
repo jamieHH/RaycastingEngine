@@ -66,6 +66,7 @@ public abstract class Mob extends Entity
     // items
     private List<Item> items = new  ArrayList<Item>();
     private int rightHandItemIndex = 0;
+    public boolean rightHandEmpty = true;
 
     public Mob(InputHandler input) {
         input.setMob(this);
@@ -110,6 +111,10 @@ public abstract class Mob extends Entity
         items.add(i);
     }
 
+    public List<Item> getItems() {
+        return items;
+    }
+
     public Item getItem(int i) {
         return items.get(i);
     }
@@ -123,19 +128,39 @@ public abstract class Mob extends Entity
     }
 
     public Item getRightHandItem() {
-        if (countItems() > 0) {
+        if (countItems() > 0 && !rightHandEmpty) {
             return items.get(rightHandItemIndex);
         }
         return null;
     }
 
+    public int getRightHandItemIndex() {
+        return rightHandItemIndex;
+    }
+
+    public void setRightHandItemIndex(int i) {
+        if (i < 0) {
+            rightHandEmpty = true;
+            rightHandItemIndex = 0;
+        } else {
+            rightHandEmpty = false;
+            rightHandItemIndex = i;
+        }
+    }
+
     public int getRightHandReach() {
-        if (countItems() > 0) {
+        if (countItems() > 0 && !rightHandEmpty) {
             return baseReach + getRightHandItem().reach;
         }
         return baseReach;
     }
 
+    public int getDamage() {
+        if (getRightHandItem() != null) {
+            return baseDamage + getRightHandItem().damage;
+        }
+        return baseDamage;
+    }
 
     public void addIdleSprite(Sprite s) {
         idleSprites.add(s);
@@ -236,13 +261,6 @@ public abstract class Mob extends Entity
         rotationMove *= 0.5;
 
         move(moveX * Math.cos(rotation) + moveZ * Math.sin(rotation), moveZ * Math.cos(rotation) - moveX * Math.sin(rotation));
-    }
-
-    public int getDamage() {
-        if (countItems() > 0) {
-            return baseDamage + getRightHandItem().damage;
-        }
-        return baseDamage;
     }
 
     private void moveWallEntColl(double nextX, double nextZ) {
