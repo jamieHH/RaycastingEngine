@@ -6,6 +6,7 @@ import com.jamie.raycasting.entities.particles.Particle;
 import com.jamie.raycasting.entities.particles.PoofParticle;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.input.InputHandler;
+import com.jamie.raycasting.input.UserInputHandler;
 import com.jamie.raycasting.items.Item;
 import com.jamie.raycasting.levels.blocks.Block;
 
@@ -75,30 +76,34 @@ public abstract class Mob extends Entity
 
     public void tick() {
         super.tick();
-        input.tick();
+
+        if (!(input instanceof UserInputHandler)) {
+            input.tick();
+        }
 
         if (hurtTime > 0) hurtTime--;
         if (useTicks > 0) useTicks--;
 
         if (isDieing) {
             camY = -6.0;
-            if (isDead) {
-                remove();
-            } else {
+            if (!isDead) {
                 dieTick();
+            } else {
+                if (!(this instanceof Player)) {
+                    remove();
+                }
             }
-            return;
-        }
+        } else {
+            if (input.action) {
+                if (useTicks <= 0) {
+                    useTicks = useWait;
 
-        if (input.action) {
-            if (useTicks <= 0) {
-                useTicks = useWait;
-
-                activate();
+                    activate();
+                }
             }
-        }
 
-        doMovements();
+            doMovements();
+        }
     }
 
     public void addItem(Item i) {
