@@ -49,13 +49,13 @@ public class Render3D extends Render
 
         fov = height;
 
-        floor();
+        renderFloor();
         renderWalls();
         renderSprites();
         renderDistanceLimiter();
 	}
 
-    private void floor() {
+    private void renderFloor() {
         for (int y = 0; y < height; y++) {
             double yDist = (y - height / 2.0) / height;
 

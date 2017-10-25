@@ -3,7 +3,7 @@ package com.jamie.raycasting.graphics.overlays;
 import com.jamie.raycasting.app.Game;
 import com.jamie.raycasting.graphics.Screen;
 
-public class Overlay
+public abstract class Overlay
 {
     public int pauseTime = 0;
 

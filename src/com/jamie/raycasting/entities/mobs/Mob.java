@@ -12,7 +12,7 @@ import com.jamie.raycasting.levels.blocks.Block;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Mob extends Entity
+public abstract class Mob extends Entity
 {
     protected boolean wallCollide = true;
     protected boolean entCollide = true;
@@ -161,7 +161,6 @@ public class Mob extends Entity
 
             for (int i = 0; i < 6 ; i++) {
                 PoofParticle particle = new PoofParticle(posX, posZ);
-                particle.level = level;
                 level.addEntity(particle);
             }
         }

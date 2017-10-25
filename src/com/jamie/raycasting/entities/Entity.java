@@ -17,14 +17,15 @@ public class Entity
     private boolean spritesAreSwapped = false;
 
 	public Level level;
+    public boolean removed = false;
+
     public boolean solid = true;
     public double radius = 6.0;
 
     public double rotation;
-	public double posX, posZ;
-	public double posY;
+    public double posX, posZ;
+    public double posY;
 
-	public Boolean removed = false;
 
 	protected void remove() {
         removed = true;

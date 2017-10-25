@@ -9,7 +9,7 @@ import com.jamie.raycasting.input.InputHandler;
 
 public class Screen extends Render
 {
-    private Mob p = new Mob(new InputHandler());
+    private Mob p;
 
     private Render3D render;
     private Render viewPunch;
@@ -88,56 +88,55 @@ public class Screen extends Render
             } else {
                 game.activeOverlay.render(this);
             }
-		    return;
-        }
-
-        for (int i = 0; i < (width * height); i++ ) {
-            pixels[i] = 0;
-        }
-
-        // 3D Render objects
-        p = game.player;
-        render.render(p);
-
-        draw(render, 0, 0);
-
-        draw(hudBar, 0, height - hudBar.height);
-
-        double healthBarWidth = ((double) p.health / (double) p.maxHealth) * (double) healthBar.width;
-
-        for (int i = 0; i < healthBar.pixels.length; i++) {
-            if (i < healthBarWidth || (i >= healthBar.width && i < (healthBarWidth + healthBar.width))) {
-                healthBar.pixels[i] = 0xF00000;
-            } else {
-                healthBar.pixels[i] = 0xD07070;
+        } else {
+            for (int i = 0; i < (width * height); i++) {
+                pixels[i] = 0;
             }
-        }
 
-        draw(healthBarIcon, 2, (height - hudBar.height) + 3);
-        draw(healthBarBorder, 8, (height - hudBar.height) + 3);
-        draw(healthBar, 9, (height - hudBar.height) + 4);
-        if (p.getRightHandItem() != null) {
-            draw(p.getRightHandItem().name, width - (p.getRightHandItem().name.length() * 6) - 2, (height - hudBar.height) + 1, 0x909090);
-        }
+            // 3D Render objects
+            p = game.player;
+            render.render(p);
 
-        if (p.hurtTime >= 0) {
-            double percentage = p.hurtTime / 60.0;
-            for (int i = 0; i < viewPunch.pixels.length; i++) {
-                double xp = ((i % width) - viewPunch.width / 2.0) / width * 2;
-                double yp = ((i / width) - viewPunch.height / 2.0) / viewPunch.height * 2;
-                if (random.nextDouble() < percentage * Math.sqrt(xp * xp + yp * yp)) {
-                    if (random.nextBoolean()) {
-                        viewPunch.pixels[i] = 0x101010;
-                    } else {
-                        viewPunch.pixels[i] = 0x801010;
-                    }
+            draw(render, 0, 0);
+
+            draw(hudBar, 0, height - hudBar.height);
+
+            double healthBarWidth = ((double) p.health / (double) p.maxHealth) * (double) healthBar.width;
+
+            for (int i = 0; i < healthBar.pixels.length; i++) {
+                if (i < healthBarWidth || (i >= healthBar.width && i < (healthBarWidth + healthBar.width))) {
+                    healthBar.pixels[i] = 0xF00000;
                 } else {
-                    viewPunch.pixels[i] = 0;
+                    healthBar.pixels[i] = 0xD07070;
                 }
             }
-            draw(viewPunch, 0, 0);
-        }
 
-//        draw(equippedItem, 0, render.height - equippedItem.height);
+            draw(healthBarIcon, 2, (height - hudBar.height) + 3);
+            draw(healthBarBorder, 8, (height - hudBar.height) + 3);
+            draw(healthBar, 9, (height - hudBar.height) + 4);
+            if (p.getRightHandItem() != null) {
+                draw(p.getRightHandItem().name, width - (p.getRightHandItem().name.length() * 6) - 2, (height - hudBar.height) + 1, 0x909090);
+            }
+
+            if (p.hurtTime >= 0) {
+                double percentage = p.hurtTime / 60.0;
+                for (int i = 0; i < viewPunch.pixels.length; i++) {
+                    double xp = ((i % width) - viewPunch.width / 2.0) / width * 2;
+                    double yp = ((i / width) - viewPunch.height / 2.0) / viewPunch.height * 2;
+                    if (random.nextDouble() < percentage * Math.sqrt(xp * xp + yp * yp)) {
+                        if (random.nextBoolean()) {
+                            viewPunch.pixels[i] = 0x101010;
+                        } else {
+                            viewPunch.pixels[i] = 0x801010;
+                        }
+                    } else {
+                        viewPunch.pixels[i] = 0;
+                    }
+                }
+                draw(viewPunch, 0, 0);
+            }
+
+//            draw(equippedItem, 0, render.height - equippedItem.height);
+        }
     }
 }

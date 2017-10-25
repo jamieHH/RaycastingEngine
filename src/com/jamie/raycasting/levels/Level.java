@@ -16,7 +16,7 @@ import com.jamie.raycasting.entities.mobs.Spirit;
 import com.jamie.raycasting.input.ArtificialInputHandler;
 import com.jamie.raycasting.levels.blocks.*;
 
-public class Level
+public abstract class Level
 {
     public String name = "";
 
@@ -101,7 +101,6 @@ public class Level
                 Mob mob = getMobByColour(col);
                 if (mob != null) {
                     addEntity(mob);
-                    mob.level = this;
 
                     mob.setPosition((xb * 16) + 8, (zb * 16) + 8);
                 }
@@ -139,6 +138,7 @@ public class Level
 
     public void addEntity(Entity e) {
         entities.add(e);
+        e.level = this;
     }
 
     public List<Entity> getEntities() {
@@ -169,6 +169,7 @@ public class Level
 
     public void removeEntity(Entity e) {
         entities.remove(e);
+        e.level = null;
     }
 
     public int countEntities() {

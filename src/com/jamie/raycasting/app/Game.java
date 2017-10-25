@@ -95,17 +95,17 @@ public class Game
 	
 	public void newGame() {
 		clearLoadedLevels();
-		activeOverlay = null;
 		player = new Player(userInput);
 
 		level = Level.getLoadLevel(this, "prison");
 
 		player.setPosition(level.spawnX, level.spawnZ);
 		player.rotation = 1.9;
-		
-		player.level = level;
+
 		level.addEntity(player);
 		level.player = player;
+
+		activeOverlay = null;
 	}
 	
 	
@@ -116,8 +116,8 @@ public class Game
 		level.removeEntity(player);
 		level.player = null;
 		if (name == "random") {
-			level = new Level();
-			level.generateRandomLevel(200, 200);
+//		    Level level = new Level();
+//			level.generateRandomLevel(200, 200);
 		} else {
 			level = Level.getLoadLevel(this, name);
 		}
@@ -130,8 +130,7 @@ public class Game
 		if (spawnBlock instanceof LadderBlock) {
             ((LadderBlock) spawnBlock).disabled = true;
         }
-		
-		player.level = level;
+
 		level.addEntity(player);
 		level.player = player;
 	}

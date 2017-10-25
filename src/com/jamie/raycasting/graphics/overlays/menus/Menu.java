@@ -5,7 +5,7 @@ import com.jamie.raycasting.graphics.overlays.Overlay;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Menu extends Overlay
+public abstract class Menu extends Overlay
 {
     public final int textMarginX = 12;
     public final int selectedTextMarginX = 6;

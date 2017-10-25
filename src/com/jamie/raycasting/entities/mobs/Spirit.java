@@ -71,7 +71,6 @@ public class Spirit extends Mob
 
             for (int i = 0; i < 1 ; i++) {
                 PoofParticle particle = new PoofParticle(posX, posZ);
-                particle.level = level;
                 level.addEntity(particle);
             }
         }
