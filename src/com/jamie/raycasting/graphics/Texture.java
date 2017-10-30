@@ -15,9 +15,14 @@ public class Texture
     public static final Render sky = new Render(400, 150);
     public static final Render none = new Render(16, 16);
 
+    // private overlays
+    private static final Render stoneOverlay = loadBitmap("/textures/stoneOverlay.png");
+    private static final Render puddleOverlay = loadBitmap("/textures/puddleOverlay.png");
+    private static final Render buttonOverlay0 = loadBitmap("/textures/buttonOverlay0.png");
+    private static final Render buttonOverlay1 = loadBitmap("/textures/buttonOverlay1.png");
+
     // surfaces
 	public static final Render floor = loadBitmap("/textures/floor.png");
-	public static final Render wetFloor = loadBitmap("/textures/wetFloor.png");
 	public static final Render wall = loadBitmap("/textures/wall.png");
 	public static final Render cobweb = loadBitmap("/textures/cobweb.png");
 	public static final Render door = loadBitmap("/textures/door.png");
@@ -25,13 +30,16 @@ public class Texture
 	public static final Render grass = loadBitmap("/textures/grass.png");
 	public static final Render dirt = loadBitmap("/textures/dirt.png");
 	public static final Render leaves = loadBitmap("/textures/leaves.png");
-	public static final Render stonePath = loadBitmap("/textures/stonePath.png");
 	public static final Render ladderHole = loadBitmap("/textures/ladderHole.png");
     public static final Render water0 = loadBitmap("/textures/water0.png");
     public static final Render water1 = loadBitmap("/textures/water1.png");
     public static final Render water2 = loadBitmap("/textures/water2.png");
-    public static final Render button0 = loadBitmap("/textures/button0.png");
-    public static final Render button1 = loadBitmap("/textures/button1.png");
+
+    // merged textures
+    public static final Render stonePath = mergeBitmap(grass, stoneOverlay);
+    public static final Render wetFloor = mergeBitmap(floor, puddleOverlay);
+    public static final Render button0 = mergeBitmap(wall, buttonOverlay0);
+    public static final Render button1 = mergeBitmap(wall, buttonOverlay1);
 
 	// sprites
     public static final Render bat0 = loadBitmap("/textures/bat0.png");
@@ -127,4 +135,17 @@ public class Texture
 			throw new RuntimeException(e);
 		}
 	}
+
+    private static Render mergeBitmap(Render tex0, Render tex1) {
+        Render texture = new Render(tex0.width, tex0.height);
+        for (int i = 0; i < tex1.pixels.length; i++) {
+            if (-tex1.pixels[i] != 65281) {
+                texture.pixels[i] = tex1.pixels[i];
+            } else {
+                texture.pixels[i] = tex0.pixels[i];
+            }
+        }
+
+        return texture;
+    }
 }
