@@ -308,47 +308,31 @@ public class Render3D extends Render
 	}
 
 	private void renderDistanceLimiter() {
-//        int renderDist = p.viewDist;
-//        int renderDist = 4092;
-//		int dropOfMult = 512;
 		for (int i = 0; i < width * height; i++) {
 			int colour = pixels[i];
 			double iBuff = zBuffer[i];
 
-			if (false && iBuff > p.viewDist) {
-//                int xx = ((int) Math.floor((i % width) - p.rotation * 512 / (Math.PI * 2))) & 511;
-//                int yy = i / width;
-//                pixels[i] = Texture.sky.pixels[xx + yy * 512];
+//            if (iBuff > p.viewDist) {
+//                pixels[i] = 0x000020;
+//            } else {
+            // TODO: Incorporate p.viewDistance into this equation
 
-                pixels[i] = 0x000020;
-            } else {
-//                int xp = (i % width);
-//				int yp = (i / width) * 14;
-				double xx = ((i % width - width / 2.0) / width);
+            double xx = ((i % width - width / 2.0) / width);
+            int brightness = (int) (256 - ((iBuff) * (((xx * xx) * 2) + 2)));
 
-				// TODO: Incorporate p.viewDistance into this equation
-                int brightness = (int) (256 - ((iBuff) * (((xx * xx) * 2) + 2)));
-//				int brightness = (int) ((renderDist / iBuff) / (((xx * xx) * 2) + 2));
-//                brightness = (brightness + ((xp + yp) & 3) * 4) >> 5 << 4;
-//                brightness = (brightness + ((xp + yp) & 3) * 4) >> 4 << 2;
-//                brightness = (brightness + ((xp + yp) & 3) * 4) >> 4 << 2;
+            if (brightness < 0) brightness = 0;
+            else if (brightness > 255) brightness = 255;
 
-//				int brightness = (int) (renderDist / iBuff);
-//				brightness = brightness - (int) (iBuff / dropOfMult);
+            int r = (colour >> 16) & 0xff;
+            int g = (colour >> 8) & 0xff;
+            int b = (colour) & 0xff;
 
-				if (brightness < 0) brightness = 0;
-                else if (brightness > 255) brightness = 255;
+            r = r * brightness / 255;
+            g = g * brightness / 255;
+            b = b * brightness / 255;
 
-                int r = (colour >> 16) & 0xff;
-                int g = (colour >> 8) & 0xff;
-                int b = (colour) & 0xff;
-
-                r = r * brightness / 255;
-                g = g * brightness / 255;
-                b = b * brightness / 255;
-
-                pixels[i] = r << 16 | g << 8 | b;
-            }
+            pixels[i] = r << 16 | g << 8 | b;
+//            }
 		}
 	}
 }

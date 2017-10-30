@@ -101,38 +101,29 @@ public class Screen extends Render
             // 3D Render objects
             p = game.player;
 
-
-//            render.render(p);
-//            ///
-            superSampleRender.render(p);
-            int[] sspx = superSampleRender.pixels;
-
-            int h;
-            for (int i = 0; i < render.pixels.length; i++) {
-                h = (i / render.width);
-
-                int i0 = (int) (((h * render.width) + i) * 2);
-                int i1 = (int) ((((h + 1) * render.width) + i) * 2);
-
-                int pix0 = sspx[i0];
-                int pix1 = sspx[i0 + 1];
-                int pix2 = sspx[i1];
-                int pix3 = sspx[i1 + 1];
-
-                int pix = (pix0 + pix1 + pix2 + pix3) / 4;
-
-//                System.out.println(pix);
-
-                render.pixels[i] = pix;
-            }
-            ///
-
-
-            // 01,23,45,67
-            // 89,1011,1213,1415
-
-
-
+//            if (true) {
+            render.render(p);
+//            } else {
+//                superSampleRender.render(p);
+//                int[] sspx = superSampleRender.pixels;
+//
+//                int h;
+//                for (int i = 0; i < render.pixels.length; i++) {
+//                    h = (i / render.width);
+//
+//                    int i0 = (((h * render.width) + i) * 2);
+//                    int i1 = ((((h + 1) * render.width) + i) * 2);
+//
+//                    int pix0 = sspx[i0];
+//                    int pix1 = sspx[i0 + 1];
+//                    int pix2 = sspx[i1];
+//                    int pix3 = sspx[i1 + 1];
+//
+//                    int pix = (pix0 + pix1 + pix2 + pix3) / 4;
+//
+//                    render.pixels[i] = pix;
+//                }
+//            }
 
             draw(render, 0, 0);
 
