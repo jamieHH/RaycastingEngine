@@ -74,6 +74,11 @@ public class Game
                 return;
             }
 
+			if (userInput.inventory) {
+				userInput.setKeyGroupState("inventory", false);
+				setActiveOverlay(new InventoryOverlay(this));
+			}
+
             if (userInput.pause) {
 				userInput.setKeyGroupState("pause", false);
                 setActiveOverlay(pauseMenu);
