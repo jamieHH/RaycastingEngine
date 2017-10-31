@@ -12,14 +12,14 @@ public class ButtonBlock extends Block
 		solidRender = true;
 		blocksMotion = true;
 
-		wallTex = Texture.button0;
+		wallTex = Texture.wallButton0;
 	}
 
 	public void tick() {
         if (useTicks > 0) {
             useTicks--;
         } else if (useTicks == 0) {
-            wallTex = Texture.button0;
+            wallTex = Texture.wallButton0;
         }
     }
 
@@ -34,7 +34,7 @@ public class ButtonBlock extends Block
 	}
 
 	public void trigger() {
-        wallTex = Texture.button1;
+        wallTex = Texture.wallButton1;
         level.activateBlock(id, "?instanceType");
     }
 }

@@ -20,6 +20,8 @@ public class Texture
     private static final Render puddleOverlay = loadBitmap("/textures/puddleOverlay.png");
     private static final Render buttonOverlay0 = loadBitmap("/textures/buttonOverlay0.png");
     private static final Render buttonOverlay1 = loadBitmap("/textures/buttonOverlay1.png");
+    private static final Render switchOverlay0 = loadBitmap("/textures/switchOverlay1.png");
+    private static final Render switchOverlay1 = loadBitmap("/textures/switchOverlay1.png");
 
     // surfaces
 	public static final Render floor = loadBitmap("/textures/floor.png");
@@ -38,8 +40,10 @@ public class Texture
     // merged textures
     public static final Render stonePath = mergeBitmap(grass, stoneOverlay);
     public static final Render wetFloor = mergeBitmap(floor, puddleOverlay);
-    public static final Render button0 = mergeBitmap(wall, buttonOverlay0);
-    public static final Render button1 = mergeBitmap(wall, buttonOverlay1);
+    public static final Render wallButton0 = mergeBitmap(wall, buttonOverlay0);
+    public static final Render wallButton1 = mergeBitmap(wall, buttonOverlay1);
+    public static final Render wallSwitch0 = mergeBitmap(wall, switchOverlay0);
+    public static final Render wallSwitch1 = mergeBitmap(wall, switchOverlay1);
 
 	// sprites
     public static final Render bat0 = loadBitmap("/textures/bat0.png");
