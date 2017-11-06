@@ -1,5 +1,7 @@
 package com.jamie.raycasting.graphics;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import com.jamie.raycasting.app.Game;
@@ -14,25 +16,19 @@ public class Screen extends Render
     private Render3D render;
     private Render3D superSampleRender;
     private Render viewPunch;
-	private Render equippedItem;
 	private Render hudBar;
 
 	private Render healthBarIcon;
 	private Render healthBarBorder;
 	private Render healthBar;
-	private Render itemName;
 
     public Render menuBackground;
-
-    public Render screenCapture = new Render(width, height);
 
     private Random random = new Random();
 
 	public Screen(int width, int height, Game game) {
 		super(width, height);
 		p = game.player;
-
-        equippedItem = Texture.screenSpear0;
 
         // HUD
         hudBar = new Render(width, 9);
@@ -65,8 +61,6 @@ public class Screen extends Render
 
         healthBar = new Render(30, 2);
 
-        itemName = new Render(64, 7);
-
 
         // Overlay Background
 		menuBackground = new Render(width, height);
@@ -94,7 +88,6 @@ public class Screen extends Render
             }
         } else {
             for (int i = 0; i < (width * height); i++) {
-                screenCapture.pixels[i] = pixels[i]; // Do performance tests!!
                 pixels[i] = 0;
             }
 
@@ -164,7 +157,9 @@ public class Screen extends Render
                 draw(viewPunch, 0, 0);
             }
 
-//            draw(equippedItem, 0, render.height - equippedItem.height);
+            for (int i = 0; i < p.hudHeadings.size(); i++) {
+                draw(p.hudHeadings.get(i), (render.width - 2) - (p.hudHeadings.get(i).length() * 6), (i * 10) + 2, 0xF0F070);
+            }
         }
     }
 }

@@ -68,6 +68,10 @@ public abstract class Mob extends Entity
     private int rightHandItemIndex = 0;
     public boolean rightHandEmpty = true;
 
+
+    public ArrayList<String> hudHeadings = new ArrayList<String>();
+    public int hudHeadingsTicks = 120;
+
     public Mob(InputHandler input) {
         input.setMob(this);
         this.input = input;
@@ -84,6 +88,14 @@ public abstract class Mob extends Entity
 
         if (hurtTime > 0) hurtTime--;
         if (useTicks > 0) useTicks--;
+        if (hudHeadingsTicks > 0) {
+            hudHeadingsTicks--;
+        } else {
+            hudHeadingsTicks = 120;
+            if (hudHeadings.size() != 0) {
+                hudHeadings.remove(0);
+            }
+        }
 
         if (isDieing) {
             camY = -6.0;
@@ -103,12 +115,26 @@ public abstract class Mob extends Entity
                 }
             }
 
+            for (int i = 0; i < level.countDrops(); i++) {
+                if (contains(level.getDropEntity(i).posX, level.getDropEntity(i).posZ)) {
+                    addItem(level.getDropEntity(i).item);
+                    level.getDropEntity(i).remove();
+                }
+            }
+
             doMovements();
         }
     }
 
+    public void addHudHeading(String s) {
+        hudHeadings.add(s);
+        hudHeadingsTicks = 120;
+    }
+
     public void addItem(Item i) {
         items.add(i);
+        addHudHeading("Picked up " + i.name);
+
     }
 
     public List<Item> getItems() {

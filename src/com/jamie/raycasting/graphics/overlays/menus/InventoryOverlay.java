@@ -51,32 +51,35 @@ public class InventoryOverlay extends Overlay
     }
 
     public void render(Screen screen) {
-        for (int i = 0; i < (screen.width * screen.height); i++) {
-            screen.pixels[i] = screen.screenCapture.pixels[i];
-        } // TODO: Change to use a render.fill for background behind text.
+        int pad = 2;
+
+        int x0 = screen.width / 8;
+        int y0 = screen.height / 4;
+        int x1 = screen.width - x0;
+        int y1 = screen.height - y0;
+
+        screen.fill(x0, y0, x1, y1, 0x202020);
+
+        screen.fill(x0 + pad, (y0 + pad) + (itemIndex * 12), x1 - pad, (y0 + pad) + ((itemIndex + 1) * 12), 0x404040);
 
         for (int i = 0; i < game.player.getItems().size(); i++) {
-
-//            screen.fill(8, 8 + (i * 10), 8, 8 + (i * 10), 0x80FF80);
-            // Fix this method.
-
             String string;
-            int col;
+            int colour;
 
             if (game.player.getRightHandItemIndex() == i && !game.player.rightHandEmpty) {
                 string = "-> " + game.player.getItems().get(i).name;
-                col = 0xF0F070;
+                colour = 0xF0F070;
                 if (itemIndex == i) {
-                    col = 0xF0F0F0;
+                    colour = 0xF0F0F0;
                 }
-                screen.draw(string, 2, 8 + (i * 10), col);
+                screen.draw(string, x0 + pad, (y0 + pad) + (i * 12) + 2, colour);
             } else {
-                string = game.player.getItems().get(i).name;
-                col = 0x707070;
+                string = "  " +game.player.getItems().get(i).name;
+                colour = 0x707070;
                 if (itemIndex == i) {
-                    col = 0xF0F0F0;
+                    colour = 0xF0F0F0;
                 }
-                screen.draw(string, 8, 8 + (i * 10), col);
+                screen.draw(string, x0 + pad, (y0 + pad) + (i * 12) + 2, colour);
             }
         }
     }

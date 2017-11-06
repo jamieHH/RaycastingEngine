@@ -1,9 +1,13 @@
 package com.jamie.raycasting.levels;
 
+import com.jamie.raycasting.entities.drops.AxeDrop;
+
 public class PrisonLevel extends Level
 {
 	public PrisonLevel() {
-		name = "Prison";
+        name = "Prison";
+
+        addEntity(new AxeDrop(194, 264));
 	}
 
     public void switchLevel(int id) {

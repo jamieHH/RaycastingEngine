@@ -11,6 +11,7 @@ public class StrongDoorBlock extends DoorBlock
 	}
 
 	public boolean use(Mob source) {
+	    source.addHudHeading("The door wont budge");
 	    return false;
     }
 

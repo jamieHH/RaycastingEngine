@@ -4,6 +4,7 @@ import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.entities.particles.WoodParticle;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
+import com.jamie.raycasting.items.weapons.AxeWeapon;
 
 public class BoardsBlock extends Block
 {
@@ -19,8 +20,12 @@ public class BoardsBlock extends Block
 
 	public boolean use(Mob source) {
         if (!smashed) {
-            trigger();
-            return true;
+            if (source.getRightHandItem() instanceof AxeWeapon) {
+                trigger();
+                return true;
+            }
+
+            source.addHudHeading("You need an axe");
         }
         return false;
     }

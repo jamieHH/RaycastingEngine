@@ -27,7 +27,7 @@ public class Entity
     public double posY;
 
 
-	protected void remove() {
+	public void remove() {
         removed = true;
 	}
 

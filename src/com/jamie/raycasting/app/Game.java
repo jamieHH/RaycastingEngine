@@ -61,7 +61,7 @@ public class Game
 			level.tick();
 			time++;
 
-            if (userInput.nextMob) { // for fun :)
+            if (userInput.nextMob) {
 				switchPerspective();
 //                possessNextMob();
             }
@@ -120,12 +120,12 @@ public class Game
 
 		level.removeEntity(player);
 		level.player = null;
-		if (name == "random") {
+//		if (name == "random") {
 //		    Level level = new Level();
 //			level.generateRandomLevel(200, 200);
-		} else {
-			level = Level.getLoadLevel(this, name);
-		}
+//		} else {
+        level = Level.getLoadLevel(this, name);
+//		}
 		level.setSpawn(id);
 
 		player.setPosition(level.spawnX, level.spawnZ);
@@ -147,9 +147,7 @@ public class Game
 	private void switchPerspective() {
         pauseTime = 10;
 
-		List<Mob> mobs = level.getMobEntities();
-
-		int i = mobs.indexOf(player);
+		int i = level.getMobEntities().indexOf(player);
 		i++;
 		if (i >= level.countMobs()) i = 0;
 

@@ -10,6 +10,7 @@ import javax.imageio.ImageIO;
 
 import com.jamie.raycasting.app.Game;
 import com.jamie.raycasting.entities.Entity;
+import com.jamie.raycasting.entities.drops.Drop;
 import com.jamie.raycasting.entities.mobs.Bat;
 import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.entities.mobs.Spirit;
@@ -145,6 +146,20 @@ public abstract class Level
         return entities;
     }
 
+    public Entity getEntity(int i) {
+        return getEntities().get(i);
+    }
+
+    public void removeEntity(Entity e) {
+        entities.remove(e);
+        e.level = null;
+    }
+
+    public int countEntities() {
+        return entities.size();
+    }
+
+
     public List<Mob> getMobEntities() {
         List<Mob> mobs = new ArrayList<Mob>();
         for (int i = 0; i < countEntities(); i++) {
@@ -156,25 +171,32 @@ public abstract class Level
     }
 
     public Mob getMobEntity(int i) {
-        return (Mob) (entities.get(i));
+        return getMobEntities().get(i);
     }
 
     public int countMobs() {
         return getMobEntities().size();
     }
 
-    public Entity getEntity(int i) {
-        return entities.get(i);
+
+    public List<Drop> getDropEntities() {
+        List<Drop> drops = new ArrayList<Drop>();
+        for (int i = 0; i < countEntities(); i++) {
+            if (getEntity(i) instanceof Drop) {
+                drops.add((Drop) (getEntity(i)));
+            }
+        }
+        return drops;
     }
 
-    public void removeEntity(Entity e) {
-        entities.remove(e);
-        e.level = null;
+    public Drop getDropEntity(int i) {
+        return getDropEntities().get(i);
     }
 
-    public int countEntities() {
-        return entities.size();
+    public int countDrops() {
+        return getDropEntities().size();
     }
+
 
     public Block getBlock(int x, int z) {
         if (x < 0 || z < 0 || x >= sizeX || z >= sizeZ) {
@@ -217,6 +239,8 @@ public abstract class Level
         if (col == 0xFFFF00) {
             spawnX = (x * 16) + 8;
             spawnZ = (z * 16) + 8;
+
+            System.out.println("Spawn: (" + spawnX + ", " + spawnZ + ")");
         }
     }
 
