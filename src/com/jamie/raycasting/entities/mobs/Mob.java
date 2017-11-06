@@ -128,6 +128,11 @@ public abstract class Mob extends Entity
 
     public void addHudHeading(String s) {
         hudHeadings.add(s);
+
+        if (hudHeadings.size() > 5) {
+            hudHeadings.remove(0);
+        }
+
         hudHeadingsTicks = 120;
     }
 
