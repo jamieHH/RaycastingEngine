@@ -11,7 +11,6 @@ public class Texture
     // special
     public static final Render font = loadBitmap("/gui/font2.png");
     public static final Render noTex = loadBitmap("/textures/noTex.png");
-    public static final Render logo = loadBitmap("/textures/logo.png");
     public static final Render sky = new Render(400, 150);
     public static final Render none = new Render(16, 16);
 
@@ -61,7 +60,11 @@ public class Texture
     public static final Render spirit2 = loadBitmap("/textures/spirit2.png");
     public static final Render spiritAtt0 = loadBitmap("/textures/spiritAtt0.png");
     public static final Render spiritHurt0 = loadBitmap("/textures/spiritHurt0.png");
-    public static final Render spinningDummy = loadBitmap("/textures/spinningDummy.png");
+    public static final Render spinningDummy0 = loadBitmap("/textures/spinningDummy0.png");
+    public static final Render spinningDummy1 = loadBitmap("/textures/spinningDummy1.png");
+    public static final Render spinningDummy2 = loadBitmap("/textures/spinningDummy2.png");
+    public static final Render spinningDummy3 = loadBitmap("/textures/spinningDummy3.png");
+    public static final Render spinningDummy4 = loadBitmap("/textures/spinningDummy4.png");
     public static final Render pillar = loadBitmap("/textures/pillar.png");
     public static final Render bars = loadBitmap("/textures/bars.png");
     public static final Render ladder = loadBitmap("/textures/ladder.png");

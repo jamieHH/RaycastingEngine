@@ -29,27 +29,4 @@ public class CeilDripBlock extends Block
         Sprite sprite = new Sprite(ts);
         addSprite(sprite);
 	}
-
-	public void tick() {
-	    // TODO: why does standing code to the sprite kill the cpu? render issue??
-        super.tick();
-	    texTick();
-    }
-
-    private void texTick() {
-	    // TODO: generify this to apply to all block types
-        if (animTime > 0) {
-            animTime--;
-            return;
-        }
-
-        int i = spriteIndex;
-        i++;
-        if (i >= countSprites()) {
-            i = 0;
-        }
-
-        spriteIndex = i;
-        animTime = 5;
-    }
 }
