@@ -19,7 +19,6 @@ public class RunGame
 		frame.pack();
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
-        frame.setFocusable(true);
 		
 		game.start();
 	}
@@ -33,6 +32,5 @@ public class RunGame
         frame.setResizable(false);
         frame.pack();
         frame.setVisible(true);
-        frame.setFocusable(true);
     }
 }

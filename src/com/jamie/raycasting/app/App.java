@@ -66,7 +66,8 @@ public class App extends Canvas implements Runnable
         runGame.frame.setMinimumSize(size);
         runGame.frame.setMaximumSize(size);
         runGame.frame.setLocationRelativeTo(null);
-        runGame.frame.requestFocusInWindow();
+
+		requestFocus();
 
 		screen = new Screen(width, height, game);
 		img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
