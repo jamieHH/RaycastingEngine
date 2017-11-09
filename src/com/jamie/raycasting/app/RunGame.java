@@ -1,10 +1,25 @@
 package com.jamie.raycasting.app;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.*;
+import java.io.FileInputStream;
+import java.io.IOException;
 
 public class RunGame
 {
     public JFrame frame;
+
+    private Image getAppIcon() {
+		Image img = null;
+		try {
+			img = ImageIO.read(new FileInputStream("res/textures/strongDoor.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return img;
+	}
 
 	public RunGame() {
 		// BufferedImage cursor, cursor blank ??
@@ -13,6 +28,9 @@ public class RunGame
 
 		frame = new JFrame();
 		frame.add(game);
+
+		frame.setIconImage(getAppIcon());
+
 		frame.setTitle(App.TITLE);
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		frame.setResizable(false);
@@ -27,6 +45,9 @@ public class RunGame
         frame.dispose();
 
         frame = new JFrame();
+
+		frame.setIconImage(getAppIcon());
+
         frame.setTitle(App.TITLE);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setResizable(false);
