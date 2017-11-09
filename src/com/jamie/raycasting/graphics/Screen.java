@@ -1,13 +1,10 @@
 package com.jamie.raycasting.graphics;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 import com.jamie.raycasting.app.Game;
 import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.graphics.overlays.LoadingOverlay;
-import com.jamie.raycasting.input.InputHandler;
 
 public class Screen extends Render
 {
@@ -97,7 +94,7 @@ public class Screen extends Render
             // 3D Render objects
             p = game.player;
 
-            int theCase = 2;
+            int theCase = 0;
 
             if (theCase == 0) {
                 render.render(p);

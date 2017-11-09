@@ -24,7 +24,6 @@ public class InputHandler
 	public void tick() {
         if (pauseTime > 0) {
             pauseTime--;
-            return;
         }
 	}
 
