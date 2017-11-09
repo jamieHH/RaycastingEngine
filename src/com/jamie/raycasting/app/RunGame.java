@@ -13,7 +13,7 @@ public class RunGame
     private Image getAppIcon() {
 		Image img = null;
 		try {
-			img = ImageIO.read(new FileInputStream("res/textures/strongDoor.png"));
+			img = ImageIO.read(new FileInputStream("res/logo.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
