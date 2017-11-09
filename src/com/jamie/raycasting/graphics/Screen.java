@@ -15,6 +15,8 @@ public class Screen extends Render
 
     private Render3D render;
     private Render3D superSampleRender;
+    private Render3D downSampleRender;
+
     private Render viewPunch;
 	private Render hudBar;
 
@@ -43,6 +45,7 @@ public class Screen extends Render
         // 3D render
         render = new Render3D(width, height - hudBar.height);
         superSampleRender = new Render3D(render.width * 2, render.height * 2);
+        downSampleRender = new Render3D(render.width / 2, render.height / 2);
 
         viewPunch = new Render(width, height - hudBar.height);
 
@@ -94,31 +97,48 @@ public class Screen extends Render
             // 3D Render objects
             p = game.player;
 
-//            if (true) {
-            render.render(p);
-//            } else {
-//                superSampleRender.render(p);
-//                int[] sspx = superSampleRender.pixels;
-//
-//                int h;
-//                for (int i = 0; i < render.pixels.length; i++) {
-//                    h = (i / render.width);
-//
-//                    int i0 = (((h * render.width) + i) * 2);
-//                    int i1 = ((((h + 1) * render.width) + i) * 2);
-//
-//                    int pix0 = sspx[i0];
-//                    int pix1 = sspx[i0 + 1];
-//                    int pix2 = sspx[i1];
-//                    int pix3 = sspx[i1 + 1];
-//
-//                    int pix = (pix0 + pix1 + pix2 + pix3) / 4;
-//
-//                    render.pixels[i] = pix;
-//                }
-//            }
+            int theCase = 2;
 
+            if (theCase == 0) {
+                render.render(p);
+            } else if (theCase == 1) {
+                superSampleRender.render(p);
+                int[] sspx = superSampleRender.pixels;
+
+                for (int i = 0; i < render.pixels.length; i++) {
+                    int h = (i / render.width);
+                    int i0 = (((h * render.width) + i) * 2);
+                    int i1 = ((((h + 1) * render.width) + i) * 2);
+
+                    int pix0 = sspx[i0];
+                    int pix1 = sspx[i0 + 1];
+                    int pix2 = sspx[i1];
+                    int pix3 = sspx[i1 + 1];
+
+                    int pix = (pix0 + pix1 + pix2 + pix3) / 4;
+
+                    render.pixels[i] = pix;
+                }
+            } else if (theCase == 2) {
+                downSampleRender.render(p);
+                int[] dspx = downSampleRender.pixels;
+
+                for (int i = 0; i < downSampleRender.pixels.length; i++) {
+                    int h = (i / downSampleRender.width);
+                    int i0 = (((h * downSampleRender.width) + i) * 2);
+                    int i1 = ((((h + 1) * downSampleRender.width) + i) * 2);
+
+                    int pix = dspx[i];
+
+                    render.pixels[i0] = pix;
+                    render.pixels[i0 + 1] = pix;
+                    render.pixels[i1] = pix;
+                    render.pixels[i1 + 1] = pix;
+                }
+            }
             draw(render, 0, 0);
+
+
 
             draw(hudBar, 0, height - hudBar.height);
 
