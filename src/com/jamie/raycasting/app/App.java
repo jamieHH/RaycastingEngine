@@ -62,7 +62,8 @@ public class App extends Canvas implements Runnable
 
         runGame.refreshFrame();
         runGame.frame.add(this);
-        runGame.frame.setPreferredSize(size);
+		runGame.frame.pack();
+		runGame.frame.setPreferredSize(size);
         runGame.frame.setMinimumSize(size);
         runGame.frame.setMaximumSize(size);
         runGame.frame.setLocationRelativeTo(null);

@@ -51,7 +51,6 @@ public class RunGame
         frame.setTitle(App.TITLE);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setResizable(false);
-        frame.pack();
         frame.setVisible(true);
     }
 }
