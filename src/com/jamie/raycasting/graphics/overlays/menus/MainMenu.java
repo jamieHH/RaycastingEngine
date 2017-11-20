@@ -6,7 +6,6 @@ import com.jamie.raycasting.graphics.Screen;
 public class MainMenu extends Menu
 {
     public MainMenu() {
-        options.clear();
         options.add("New Game");
         options.add("Load Game");
         options.add("Options");
@@ -35,9 +34,9 @@ public class MainMenu extends Menu
             if (options.get(optionIndex) == "New Game") {
                 game.newGame();
             } else if (options.get(optionIndex) == "Load Game") {
-                game.setActiveOverlay(game.loadMenu);
+                game.setActiveOverlay(new LoadMenu());
             } else if (options.get(optionIndex) == "Options") {
-                game.setActiveOverlay(game.optionsMenu);
+                game.setActiveOverlay(new OptionsMenu());
             } else if (options.get(optionIndex) == "Quit") {
                 System.exit(0);
             }

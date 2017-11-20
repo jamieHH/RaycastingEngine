@@ -38,7 +38,6 @@ public class OptionsMenu extends Menu
     private int scaleIndex = 1;
 
     public OptionsMenu() {
-        options.clear();
         options.add("Aspect Ratio");
         options.add("Resolution");
         options.add("Scaling");
@@ -112,7 +111,7 @@ public class OptionsMenu extends Menu
                     App.newHeight = resolutions4x3[resolutionIndex][1];
                 }
                 App.setNewOptions = true;
-                game.setActiveOverlay(game.mainMenu);
+                game.setActiveOverlay(new MainMenu());
             }
         }
     }

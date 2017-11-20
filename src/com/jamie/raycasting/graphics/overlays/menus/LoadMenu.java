@@ -12,7 +12,6 @@ public class LoadMenu extends Menu
     };
 
     public LoadMenu() {
-        options.clear();
         options.add("Save Slot 1");
         options.add("Save Slot 2");
         options.add("Save Slot 3");
@@ -38,7 +37,7 @@ public class LoadMenu extends Menu
         if (game.userInput.action) {
             game.userInput.setKeyGroupState("action", false);
             if (options.get(optionIndex) == "Main Menu") {
-                game.setActiveOverlay(game.mainMenu);
+                game.setActiveOverlay(new MainMenu());
             }
         }
     }

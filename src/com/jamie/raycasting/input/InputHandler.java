@@ -6,7 +6,7 @@ public class InputHandler
 {
     protected Mob mob;
 
-	public boolean forward, back, left, right, rotLeft, rotRight, crouch, run, action;
+	public boolean forward, back, left, right, rotLeft, rotRight, crouch, run, action, inventory, pause;
 
     public int forwardInf = 50;
     public int backInf = 50;
@@ -26,6 +26,8 @@ public class InputHandler
             pauseTime--;
         }
 	}
+
+    public void setKeyGroupState(String keyGroup, boolean state) {}
 
 	public void resetInfluence() {
         forwardInf = 50;

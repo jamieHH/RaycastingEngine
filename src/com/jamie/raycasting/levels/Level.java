@@ -32,7 +32,6 @@ public abstract class Level
     public double spawnZ;
 
     protected Game game;
-    public Mob player;
 
 
     // static blocks. TODO: check if is performance optimal.
@@ -55,7 +54,6 @@ public abstract class Level
         this.game = game;
         this.sizeX = sizeX;
         this.sizeZ = sizeZ;
-        player = game.player;
 
         blocks = new Block[sizeX * sizeZ];
 
@@ -112,7 +110,7 @@ public abstract class Level
     public void tick() {
         WaterBlock.tick();
         for (int i = 0; i < blocks.length; i++) {
-            if (! blocks[i].isStatic) {
+            if (!blocks[i].isStatic) {
                 blocks[i].tick();
             }
         }
@@ -120,6 +118,7 @@ public abstract class Level
         for (int i = 0; i < countEntities(); i++) {
             getEntity(i).tick();
 
+            System.out.println(i);
             if (getEntity(i).removed) {
                 removeEntity(getEntity(i));
             }
@@ -138,6 +137,9 @@ public abstract class Level
     }
 
     public void addEntity(Entity e) {
+        if (e.removed) {
+            e.removed = false;
+        }
         entities.add(e);
         e.level = this;
     }
@@ -150,7 +152,7 @@ public abstract class Level
         return getEntities().get(i);
     }
 
-    public void removeEntity(Entity e) {
+    private void removeEntity(Entity e) {
         entities.remove(e);
         e.level = null;
     }

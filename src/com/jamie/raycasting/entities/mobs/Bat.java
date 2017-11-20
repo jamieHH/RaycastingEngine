@@ -60,25 +60,26 @@ public class Bat extends Mob
     public void tick() {
         super.tick();
 
-        if (level.player != null) { // stop gap fix
-            input.resetInfluence();
-            if (squareDistanceFrom(level.player.posX, level.player.posZ) < viewDist) {
-
-                // TODO: this function needs be replaced
-                // - because rotation now returns to 0 after 360 degrees
-                // - put this function in the input handler and make the mob input turn to face the target
-                // - this might be achieved by checking if the rotation of the mob is more or less than the rotation that lookTowards() calculates
-                // - improve input handler to target particular mobs!!
-                lookTowards(level.player.posX, level.player.posZ);
-
-                input.forwardInf = 100;
-                input.backInf = 25;
-                if (squareDistanceFrom(level.player.posX, level.player.posZ) < getRightHandReach()) {
-                    input.action = true;
-                } else {
-                    input.action = false;
-                }
-            }
-        }
+        // TODO: add mob chase targeting system to find its closest enemy and then do this:
+//        if (level.player != null) { // stop gap fix
+//            input.resetInfluence();
+//            if (squareDistanceFrom(level.player.posX, level.player.posZ) < viewDist) {
+//
+//                // TODO: this function needs be replaced
+//                // - because rotation now returns to 0 after 360 degrees
+//                // - put this function in the input handler and make the mob input turn to face the target
+//                // - this might be achieved by checking if the rotation of the mob is more or less than the rotation that lookTowards() calculates
+//                // - improve input handler to target particular mobs!!
+//                lookTowards(level.player.posX, level.player.posZ);
+//
+//                input.forwardInf = 100;
+//                input.backInf = 25;
+//                if (squareDistanceFrom(level.player.posX, level.player.posZ) < getRightHandReach()) {
+//                    input.action = true;
+//                } else {
+//                    input.action = false;
+//                }
+//            }
+//        }
     }
 }

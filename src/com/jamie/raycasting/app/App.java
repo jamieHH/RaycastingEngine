@@ -10,6 +10,7 @@ import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 
 import com.jamie.raycasting.graphics.Screen;
+import com.jamie.raycasting.graphics.overlays.Overlay;
 import com.jamie.raycasting.input.UserInputHandler;
 
 public class App extends Canvas implements Runnable
@@ -23,7 +24,7 @@ public class App extends Canvas implements Runnable
 	
 	private Thread thread;
 	private Screen screen;
-	private Game game;
+	public static Game game;
 	private BufferedImage img;
 	private Boolean running = false;
 	private final UserInputHandler input;
@@ -177,6 +178,10 @@ public class App extends Canvas implements Runnable
 		
 		g.dispose();
 		bs.show();
+	}
+
+	public static void setGameActiveOverlay(Overlay overlay) {
+		game.setActiveOverlay(overlay);
 	}
 	
 	public static void main(String args[]) {

@@ -1,5 +1,7 @@
 package com.jamie.raycasting.levels.blocks;
 
+import com.jamie.raycasting.entities.mobs.Mob;
+import com.jamie.raycasting.entities.mobs.Player;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
 
@@ -27,16 +29,22 @@ public class LadderBlock extends Block
 	}
 
 	public void tick() {
-        if (level.player != null) { // stopgap for null player exception
-            if (disabled) {
-                if (level.player.squareDistanceFrom((gridX * 16) + 8, (gridZ * 16) + 8) > 16) {
-                    disabled = false;
-                }
-            } else {
-                if (level.player.squareDistanceFrom((gridX * 16) + 8, (gridZ * 16) + 8) < 16) {
-                    level.switchLevel(id);
+        for (int i = 0; i < level.countMobs(); i++) {
+
+            Mob mob = level.getMobEntity(i);
+
+            if (mob instanceof Player) {
+                if (disabled) {
+                    if (mob.squareDistanceFrom((gridX * 16) + 8, (gridZ * 16) + 8) > 16) {
+                        disabled = false;
+                    }
+                } else {
+                    if (mob.squareDistanceFrom((gridX * 16) + 8, (gridZ * 16) + 8) < 16) {
+                        level.switchLevel(id);
+                    }
                 }
             }
+
         }
     }
 }

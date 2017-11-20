@@ -1,51 +1,52 @@
 package com.jamie.raycasting.graphics.overlays.menus;
 
 import com.jamie.raycasting.app.Game;
+import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.graphics.Screen;
 import com.jamie.raycasting.graphics.overlays.Overlay;
 
 public class InventoryOverlay extends Overlay
 {
-    private Game game;
+    private Mob mob;
     private int itemIndex = 0;
 
-    public InventoryOverlay(Game game) {
-        this.game = game;
-        if (game.player.getRightHandItem() != null) {
-            itemIndex = game.player.getRightHandItemIndex();
+    public InventoryOverlay(Mob mob) {
+        this.mob = mob;
+        if (mob.getRightHandItem() != null) {
+            itemIndex = mob.getRightHandItemIndex();
         } else {
             itemIndex = 0;
         }
     }
 
-    public void tick(Game game) {
-        if (game.userInput.inventory || game.userInput.pause) {
-            game.userInput.setKeyGroupState("inventory", false);
-            game.userInput.setKeyGroupState("pause", false);
-            game.setActiveOverlay(null);
+    public void tick(Mob mob) {
+        if (mob.input.inventory || mob.input.pause) {
+            mob.input.setKeyGroupState("inventory", false);
+            mob.input.setKeyGroupState("pause", false);
+            mob.setActiveOverlay(null);
         }
 
-        if (game.userInput.forward) {
-            game.userInput.setKeyGroupState("forward", false);
+        if (mob.input.forward) {
+            mob.input.setKeyGroupState("forward", false);
             if ((itemIndex > 0)) {
                 itemIndex--;
             }
         }
-        if (game.userInput.back) {
-            game.userInput.setKeyGroupState("back", false);
+        if (mob.input.back) {
+            mob.input.setKeyGroupState("back", false);
 
-            if ((itemIndex < game.player.getItems().size() - 1)) {
+            if ((itemIndex < mob.getItems().size() - 1)) {
                 itemIndex++;
             }
         }
 
-        if (game.userInput.action) {
-            game.userInput.setKeyGroupState("action", false);
-            if (game.player.getRightHandItem() != game.player.getItem(itemIndex)) {
+        if (mob.input.action) {
+            mob.input.setKeyGroupState("action", false);
+            if (mob.getRightHandItem() != mob.getItem(itemIndex)) {
                 // Tidy this if.
-                game.player.setRightHandItemIndex(itemIndex);
+                mob.setRightHandItemIndex(itemIndex);
             } else {
-                game.player.setRightHandItemIndex(-1);
+                mob.setRightHandItemIndex(-1);
             }
         }
     }
@@ -62,19 +63,19 @@ public class InventoryOverlay extends Overlay
 
         screen.fill(x0 + pad, (y0 + pad) + (itemIndex * 12), x1 - pad, (y0 + pad) + ((itemIndex + 1) * 12), 0x404040);
 
-        for (int i = 0; i < game.player.getItems().size(); i++) {
+        for (int i = 0; i < mob.getItems().size(); i++) {
             String string;
             int colour;
 
-            if (game.player.getRightHandItemIndex() == i && !game.player.rightHandEmpty) {
-                string = "-> " + game.player.getItems().get(i).name;
+            if (mob.getRightHandItemIndex() == i && !mob.rightHandEmpty) {
+                string = "-> " + mob.getItems().get(i).name;
                 colour = 0xF0F070;
                 if (itemIndex == i) {
                     colour = 0xF0F0F0;
                 }
                 screen.draw(string, x0 + pad, (y0 + pad) + (i * 12) + 2, colour);
             } else {
-                string = "  " +game.player.getItems().get(i).name;
+                string = "  " + mob.getItems().get(i).name;
                 colour = 0x707070;
                 if (itemIndex == i) {
                     colour = 0xF0F0F0;

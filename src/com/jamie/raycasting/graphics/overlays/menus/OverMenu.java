@@ -1,42 +1,41 @@
 package com.jamie.raycasting.graphics.overlays.menus;
 
 import com.jamie.raycasting.app.Game;
+import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.graphics.Screen;
 
 public class OverMenu extends Menu
 {
     public OverMenu() {
-        options.clear();
         options.add("Load Game");
         options.add("Main Menu");
         options.add("Quit Game");
     }
 
-    public void tick(Game game) {
-        super.tick(game);
+    public void tick(Mob mob) {
+        super.tick(mob);
 
-        if (game.userInput.pause && pauseTime == 0) {
-            game.userInput.setKeyGroupState("pause", false);
-            game.activeOverlay = null;
+        if (mob.input.pause && pauseTime == 0) {
+            mob.input.setKeyGroupState("pause", false);
         }
 
-        if (game.userInput.forward) {
-            game.userInput.setKeyGroupState("forward", false);
+        if (mob.input.forward) {
+            mob.input.setKeyGroupState("forward", false);
             if ((optionIndex > 0)) {
                 optionIndex--;
             }
         }
-        if (game.userInput.back) {
-            game.userInput.setKeyGroupState("back", false);
+        if (mob.input.back) {
+            mob.input.setKeyGroupState("back", false);
             if ((optionIndex < options.size() - 1)) {
                 optionIndex++;
             }
         }
 
-        if (game.userInput.action) {
-            game.userInput.setKeyGroupState("action", false);
+        if (mob.input.action) {
+            mob.input.setKeyGroupState("action", false);
             if (options.get(optionIndex) == "Main Menu") {
-                game.setActiveOverlay(game.mainMenu);
+                mob.setActiveOverlay(new MainMenu());
             } else if (options.get(optionIndex) == "Quit Game") {
                 System.exit(0);
             }

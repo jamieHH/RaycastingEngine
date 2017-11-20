@@ -1,17 +1,18 @@
 package com.jamie.raycasting.graphics.overlays;
 
 import com.jamie.raycasting.app.Game;
+import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.graphics.Screen;
 
 public class LoadingOverlay extends Overlay
 {
-    public void tick(Game game) {
+    public void tick(Mob mob) {
         if (pauseTime > 0) {
             pauseTime--;
             return;
         }
 
-        game.activeOverlay = null;
+        mob.setActiveOverlay(null);
     }
 
     public void render(Screen screen, String levelName) {

@@ -1,14 +1,23 @@
 package com.jamie.raycasting.entities.mobs;
 
+import com.jamie.raycasting.app.App;
 import com.jamie.raycasting.entities.Entity;
 import com.jamie.raycasting.entities.particles.BloodParticle;
 import com.jamie.raycasting.entities.particles.Particle;
 import com.jamie.raycasting.entities.particles.PoofParticle;
 import com.jamie.raycasting.graphics.Sprite;
+import com.jamie.raycasting.graphics.overlays.LoadingOverlay;
+import com.jamie.raycasting.graphics.overlays.Overlay;
+import com.jamie.raycasting.graphics.overlays.menus.InventoryOverlay;
+import com.jamie.raycasting.graphics.overlays.menus.Menu;
+import com.jamie.raycasting.graphics.overlays.menus.OverMenu;
+import com.jamie.raycasting.graphics.overlays.menus.PauseMenu;
 import com.jamie.raycasting.input.InputHandler;
 import com.jamie.raycasting.input.UserInputHandler;
 import com.jamie.raycasting.items.Item;
+import com.jamie.raycasting.levels.Level;
 import com.jamie.raycasting.levels.blocks.Block;
+import com.jamie.raycasting.levels.blocks.LadderBlock;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,9 +77,11 @@ public abstract class Mob extends Entity
     private int rightHandItemIndex = 0;
     public boolean rightHandEmpty = true;
 
-
     public ArrayList<String> hudHeadings = new ArrayList<String>();
     public int hudHeadingsTicks = 120;
+
+    public Overlay activeOverlay = null;
+
 
     public Mob(InputHandler input) {
         input.setMob(this);
@@ -105,24 +116,94 @@ public abstract class Mob extends Entity
                 if (!(this instanceof Player)) {
                     remove();
                 }
+
+                if (activeOverlay != null) {
+                    activeOverlay.tick(this);
+                } else {
+                    if (input.action || input.pause) {
+                        setActiveOverlay(new OverMenu());
+                        input.setKeyGroupState("pause", false);
+                        input.setKeyGroupState("action", false);
+                    }
+                }
             }
         } else {
-            if (input.action) {
-                if (useTicks <= 0) {
-                    useTicks = useWait;
+            if (activeOverlay != null) {
+                activeOverlay.tick(this);
+            } else {
 
-                    activate();
+                if (input.inventory) {
+                    input.setKeyGroupState("inventory", false);
+                    setActiveOverlay(new InventoryOverlay(this));
                 }
-            }
 
-            for (int i = 0; i < level.countDrops(); i++) {
-                if (contains(level.getDropEntity(i).posX, level.getDropEntity(i).posZ)) {
-                    addItem(level.getDropEntity(i).item);
-                    level.getDropEntity(i).remove();
+                if (input.pause) {
+                    input.setKeyGroupState("pause", false);
+                    setActiveOverlay(new PauseMenu());
                 }
-            }
 
-            doMovements();
+
+                if (input.action) {
+                    if (useTicks <= 0) {
+                        useTicks = useWait;
+
+                        activate();
+                    }
+                }
+
+                //
+                if (input instanceof UserInputHandler) {
+                    if (((UserInputHandler) (input)).randomLevel) {
+                        rotation = 0.2;
+//                switchLevel("random", 999);
+                        switchLevel("test", 999);
+                    }
+
+                    if (((UserInputHandler) (input)).loadLevel) {
+                        rotation = 0.2;
+                        switchLevel("island", 999);
+                    }
+                }
+                //
+
+                for (int i = 0; i < level.countDrops(); i++) {
+                    if (contains(level.getDropEntity(i).posX, level.getDropEntity(i).posZ)) {
+                        addItem(level.getDropEntity(i).item);
+                        level.getDropEntity(i).remove();
+                    }
+                }
+
+                doMovements();
+            }
+        }
+    }
+
+
+
+    public void switchLevel(String name, int id) {
+        setActiveOverlay(new LoadingOverlay());
+
+        remove();
+        level = Level.getLoadLevel(App.game, name);
+        level.setSpawn(id);
+
+        setPosition(level.spawnX, level.spawnZ);
+
+        Block spawnBlock = level.getBlock((int) (level.spawnX - 8) / 16, (int) (level.spawnZ - 8) / 16);
+
+        if (spawnBlock instanceof LadderBlock) {
+            ((LadderBlock) spawnBlock).disabled = true;
+        }
+
+        level.addEntity(this);
+    }
+
+
+
+    public void setActiveOverlay(Overlay activeOverlay) {
+        this.activeOverlay = activeOverlay;
+        if (activeOverlay instanceof Menu) {
+            ((Menu) this.activeOverlay).optionIndex = 0;
         }
     }
 

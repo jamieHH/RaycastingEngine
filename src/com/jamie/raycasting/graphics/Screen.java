@@ -86,6 +86,13 @@ public class Screen extends Render
             } else {
                 game.activeOverlay.render(this);
             }
+        } else if (game.player.activeOverlay != null) {
+            if (game.player.activeOverlay instanceof LoadingOverlay) {
+                ((LoadingOverlay) game.player.activeOverlay).render(this, game.level.name);
+            } else {
+                game.player.activeOverlay.render(this);
+            }
+
         } else {
             for (int i = 0; i < (width * height); i++) {
                 pixels[i] = 0;

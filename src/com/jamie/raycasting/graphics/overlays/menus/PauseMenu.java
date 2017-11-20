@@ -1,44 +1,47 @@
 package com.jamie.raycasting.graphics.overlays.menus;
 
+import com.jamie.raycasting.app.App;
 import com.jamie.raycasting.app.Game;
+import com.jamie.raycasting.entities.mobs.Mob;
+import com.jamie.raycasting.entities.mobs.Player;
 import com.jamie.raycasting.graphics.Screen;
 
 public class PauseMenu extends Menu
 {
     public PauseMenu() {
-        options.clear();
         options.add("Resume");
         options.add("Main Menu");
     }
 
-    public void tick(Game game) {
-        super.tick(game);
+    public void tick(Mob mob) {
+        super.tick(mob);
 
-        if (game.userInput.pause) {
-            game.userInput.setKeyGroupState("pause", false);
-            game.activeOverlay = null;
+        if (mob.input.pause) {
+            mob.input.setKeyGroupState("pause", false);
+            mob.setActiveOverlay(null);
         }
 
-        if (game.userInput.forward) {
-            game.userInput.setKeyGroupState("forward", false);
+        if (mob.input.forward) {
+            mob.input.setKeyGroupState("forward", false);
             if ((optionIndex > 0)) {
                 optionIndex--;
             }
         }
-        if (game.userInput.back) {
-            game.userInput.setKeyGroupState("back", false);
+        if (mob.input.back) {
+            mob.input.setKeyGroupState("back", false);
 
             if ((optionIndex < options.size() - 1)) {
                 optionIndex++;
             }
         }
 
-        if (game.userInput.action) {
-            game.userInput.setKeyGroupState("action", false);
+        if (mob.input.action) {
+            mob.input.setKeyGroupState("action", false);
             if (options.get(optionIndex) == "Resume") {
-                game.activeOverlay = null;
+                mob.setActiveOverlay(null);
             } else if (options.get(optionIndex) == "Main Menu") {
-                game.setActiveOverlay(game.mainMenu);
+                App.setGameActiveOverlay(new MainMenu());
+                // TODO: this should trigger something to remove the the client from the game.
             }
         }
     }

@@ -13,7 +13,7 @@ public class UserInputHandler extends InputHandler implements KeyListener, Focus
 
     private Map<String, int[]> keyGroups = new HashMap<String, int[]>();
 
-    public boolean randomLevel, loadLevel, nextMob, inventory, pause, yKey;
+    public boolean randomLevel, loadLevel, nextMob, yKey;
 
     public UserInputHandler() {
         int[] forwardKeys = {KeyEvent.VK_W, KeyEvent.VK_UP};
@@ -39,6 +39,31 @@ public class UserInputHandler extends InputHandler implements KeyListener, Focus
         keyGroups.put("pause", pauseKeys);
     }
 
+    public void tick() {
+        if (pauseTime > 0) {
+            pauseTime--;
+            return;
+        }
+
+        forward = checkKeyGroup(keyGroups.get("forward"));
+        back = checkKeyGroup(keyGroups.get("back"));
+        left = checkKeyGroup(keyGroups.get("left"));
+        right = checkKeyGroup(keyGroups.get("right"));
+        rotLeft = checkKeyGroup(keyGroups.get("rotLeft"));
+        rotRight = checkKeyGroup(keyGroups.get("rotRight"));
+        crouch = checkKeyGroup(keyGroups.get("crouch"));
+        action = checkKeyGroup(keyGroups.get("action"));
+        inventory = checkKeyGroup(keyGroups.get("inventory"));
+        pause = checkKeyGroup(keyGroups.get("pause"));
+
+//		run = key[KeyEvent.VK_SHIFT];
+
+        randomLevel = key[KeyEvent.VK_R];
+        loadLevel = key[KeyEvent.VK_P];
+        nextMob = key[KeyEvent.VK_G];
+        yKey = key[KeyEvent.VK_Y];
+    }
+
     private boolean checkKeyGroup(int[] keys) {
         for (int i = 0; i < keys.length; i++) {
             if (key[keys[i]]) {
@@ -57,31 +82,6 @@ public class UserInputHandler extends InputHandler implements KeyListener, Focus
 
     public void setKeyGroupState(String keyGroup, boolean state) {
         setKeyState(keyGroups.get(keyGroup), state);
-    }
-
-	public void tick() {
-        if (pauseTime > 0) {
-            pauseTime--;
-            return;
-        }
-
-		forward = checkKeyGroup(keyGroups.get("forward"));
-		back = checkKeyGroup(keyGroups.get("back"));
-		left = checkKeyGroup(keyGroups.get("left"));
-		right = checkKeyGroup(keyGroups.get("right"));
-		rotLeft = checkKeyGroup(keyGroups.get("rotLeft"));
-		rotRight = checkKeyGroup(keyGroups.get("rotRight"));
-        crouch = checkKeyGroup(keyGroups.get("crouch"));
-        action = checkKeyGroup(keyGroups.get("action"));
-		inventory = checkKeyGroup(keyGroups.get("inventory"));
-		pause = checkKeyGroup(keyGroups.get("pause"));
-
-//		run = key[KeyEvent.VK_SHIFT];
-
-        randomLevel = key[KeyEvent.VK_R];
-        loadLevel = key[KeyEvent.VK_P];
-        nextMob = key[KeyEvent.VK_G];
-        yKey = key[KeyEvent.VK_Y];
     }
 
 	@Override
