@@ -13,9 +13,5 @@ public abstract class Menu extends Overlay
     public List<String> options = new ArrayList<String>();
     public int optionIndex = 0;
 
-    public Menu() {
-        options.clear();
-        options.add("Option 1");
-        options.add("Option 2");
-    }
+    public Menu() {}
 }

@@ -12,7 +12,6 @@ public class LoadMenu extends Menu
     };
 
     public LoadMenu() {
-        options.clear();
         options.add("Save Slot 1");
         options.add("Save Slot 2");
         options.add("Save Slot 3");

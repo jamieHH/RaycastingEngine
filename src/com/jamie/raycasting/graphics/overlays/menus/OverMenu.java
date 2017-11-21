@@ -6,7 +6,6 @@ import com.jamie.raycasting.graphics.Screen;
 public class OverMenu extends Menu
 {
     public OverMenu() {
-        options.clear();
         options.add("Load Game");
         options.add("Main Menu");
         options.add("Quit Game");
@@ -17,7 +16,7 @@ public class OverMenu extends Menu
 
         if (game.userInput.pause && pauseTime == 0) {
             game.userInput.setKeyGroupState("pause", false);
-            game.activeOverlay = null;
+            game.setActiveOverlay(null);
         }
 
         if (game.userInput.forward) {

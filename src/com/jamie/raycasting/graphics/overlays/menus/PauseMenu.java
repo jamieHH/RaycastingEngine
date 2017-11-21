@@ -6,7 +6,6 @@ import com.jamie.raycasting.graphics.Screen;
 public class PauseMenu extends Menu
 {
     public PauseMenu() {
-        options.clear();
         options.add("Resume");
         options.add("Main Menu");
     }
@@ -16,7 +15,7 @@ public class PauseMenu extends Menu
 
         if (game.userInput.pause) {
             game.userInput.setKeyGroupState("pause", false);
-            game.activeOverlay = null;
+            game.setActiveOverlay(null);
         }
 
         if (game.userInput.forward) {
@@ -36,7 +35,7 @@ public class PauseMenu extends Menu
         if (game.userInput.action) {
             game.userInput.setKeyGroupState("action", false);
             if (options.get(optionIndex) == "Resume") {
-                game.activeOverlay = null;
+                game.setActiveOverlay(null);
             } else if (options.get(optionIndex) == "Main Menu") {
                 game.setActiveOverlay(game.mainMenu);
             }

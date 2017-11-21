@@ -6,7 +6,6 @@ import com.jamie.raycasting.graphics.Screen;
 public class MainMenu extends Menu
 {
     public MainMenu() {
-        options.clear();
         options.add("New Game");
         options.add("Load Game");
         options.add("Options");

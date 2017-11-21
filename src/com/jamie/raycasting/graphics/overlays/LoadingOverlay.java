@@ -11,7 +11,7 @@ public class LoadingOverlay extends Overlay
             return;
         }
 
-        game.activeOverlay = null;
+        game.setActiveOverlay(null);
     }
 
     public void render(Screen screen, String levelName) {
