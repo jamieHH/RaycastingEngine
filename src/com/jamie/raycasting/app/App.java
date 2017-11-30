@@ -59,14 +59,11 @@ public class App extends Canvas implements Runnable
 	    App.width = width;
 	    App.height = height;
         Dimension size = new Dimension(width * scale, height * scale);
+		setPreferredSize(size);
+		setMinimumSize(size);
+		setMaximumSize(size);
 
-        runGame.refreshFrame();
-        runGame.frame.add(this);
-		runGame.frame.pack();
-		runGame.frame.setPreferredSize(size);
-        runGame.frame.setMinimumSize(size);
-        runGame.frame.setMaximumSize(size);
-        runGame.frame.setLocationRelativeTo(null);
+        runGame.refreshFrame(this);
 
 		requestFocus();
 

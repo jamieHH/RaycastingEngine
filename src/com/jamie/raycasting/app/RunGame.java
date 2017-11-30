@@ -23,11 +23,11 @@ public class RunGame
 
 	public RunGame() {
 		// BufferedImage cursor, cursor blank ??
-		App game = new App();
+		App app = new App();
 		App.runGame = this;
 
 		frame = new JFrame();
-		frame.add(game);
+		frame.add(app);
 
 		frame.setIconImage(getAppIcon());
 
@@ -38,19 +38,22 @@ public class RunGame
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 		
-		game.start();
+		app.start();
 	}
 
-	public void refreshFrame() {
+	public void refreshFrame(App app) {
         frame.dispose();
 
         frame = new JFrame();
+        frame.add(app);
 
 		frame.setIconImage(getAppIcon());
 
         frame.setTitle(App.TITLE);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setResizable(false);
-        frame.setVisible(true);
+		frame.pack();
+		frame.setLocationRelativeTo(null);
+		frame.setVisible(true);
     }
 }
