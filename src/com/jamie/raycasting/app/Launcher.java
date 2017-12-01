@@ -34,7 +34,7 @@ public class Launcher extends JFrame
 //			  App.width = 800;
 //			  App.height = 600;
 //			  App.scale = 1;
-			new RunGame();
+			new RunApp();
 		} else {
 			try {
 				UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -63,7 +63,7 @@ public class Launcher extends JFrame
 		play.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				new RunGame();
+				new RunApp();
 			}
 		});
 
