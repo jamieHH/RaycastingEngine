@@ -3,6 +3,7 @@ package com.jamie.raycasting.app;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.io.IOException;
 
@@ -38,6 +39,7 @@ public class RunApp
 		f.pack();
 		f.setLocationRelativeTo(null);
 		f.setVisible(true);
+		f.setCursor(Toolkit.getDefaultToolkit().createCustomCursor(new BufferedImage(16, 16, BufferedImage.TYPE_INT_ARGB), new Point(0, 0), "empty"));
 
 		return f;
 	}
