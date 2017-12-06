@@ -95,6 +95,7 @@ public class Texture
 
     // screen
     public static final Render screenSpear0 = loadBitmap("/textures/screenSpear0.png");
+    public static final Render screenSpear1 = loadBitmap("/textures/screenSpear1.png");
 
     private final Random random = new Random();
 

@@ -19,7 +19,6 @@ public class Render
 	}
 	
 	public void draw(Render render, int xOffs, int yOffs) {
-	    // TODO: fix to render Texture static classes;
 		for (int y = 0; y < render.height; y++) {
 			int yPix = y + yOffs;
 			if (yPix < 0 || yPix >= height) continue;
@@ -30,6 +29,9 @@ public class Render
 
 				int alpha = render.pixels[x + y * render.width];
 				if (alpha > 0) {
+					pixels[xPix + yPix * width] = alpha;
+				} else if (-alpha != 65281 && alpha != 0) {
+					// raw texture pixels are negative hex. Fix.
 					pixels[xPix + yPix * width] = alpha;
 				}
 			}
@@ -45,9 +47,9 @@ public class Render
                 int xPix = x + xOffs;
                 if (xPix < 0 || xPix >= width) continue;
 
-                int src = -render.pixels[(x + xo) + (y + yo) * render.width];
-                if (src != 65281) {
-                    pixels[xPix + yPix * width] = src * col;
+                int alpha = render.pixels[(x + xo) + (y + yo) * render.width];
+                if (-alpha != 65281) {
+                    pixels[xPix + yPix * width] = -alpha * col;
                 }
             }
         }

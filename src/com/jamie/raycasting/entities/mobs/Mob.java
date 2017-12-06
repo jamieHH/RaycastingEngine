@@ -34,7 +34,7 @@ public abstract class Mob extends Entity
     // actions
     public InputHandler input;
     private int useTicks = 0;
-    protected int useWait = 30;
+    protected int useWait = 15;
 
     // movement
 	private double rotationMove;
@@ -49,7 +49,7 @@ public abstract class Mob extends Entity
     protected double crouchHeightMod = 4.0;
 
     public double camY = camHeightMod;
-    private double yBob = 0;
+    public double yBob = 0;
     private int bobTime = 0;
 
 	// stats
@@ -82,6 +82,10 @@ public abstract class Mob extends Entity
     public void tick() {
         super.tick();
 
+        for (int i = 0; i < items.size(); i++) {
+            getItem(i).tick();
+        }
+
         if (!(input instanceof UserInputHandler)) {
             input.tick();
         }
@@ -108,8 +112,8 @@ public abstract class Mob extends Entity
             }
         } else {
             if (input.action) {
-                if (useTicks <= 0) {
-                    useTicks = useWait;
+                if (useTicks == 0) {
+                    useTicks = getUseWait();
 
                     activate();
                 }
@@ -397,6 +401,10 @@ public abstract class Mob extends Entity
     }
 
     private void activate() {
+        if (getRightHandItem() != null) {
+            getRightHandItem().use();
+        }
+
         swapSprites(actionSprites, 20);
 //        runAnimSprite(actionSprites);
         List<Entity> closeEnts = new ArrayList<Entity>();
@@ -435,5 +443,12 @@ public abstract class Mob extends Entity
                 if (block.blocksMotion) return;
             }
         }
+    }
+
+    public int getUseWait() {
+        if (getRightHandItem() != null) {
+            return getRightHandItem().useWait;
+        }
+        return useWait;
     }
 }

@@ -18,7 +18,7 @@ public class ButtonBlock extends Block
 	public void tick() {
         if (useTicks > 0) {
             useTicks--;
-        } else if (useTicks == 0) {
+        } else {
             wallTex = Texture.wallButton0;
         }
     }

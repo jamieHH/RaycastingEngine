@@ -136,6 +136,11 @@ public class Screen extends Render
             draw(render, 0, 0);
 
 
+            if (p.getRightHandItem() != null) {
+                Render rightItemTex = p.getRightHandItem().getTexture();
+                draw(rightItemTex, render.width - rightItemTex.width, (render.height - rightItemTex.height) + ((int) (p.yBob * 4)) + 4);
+            }
+
 
             draw(hudBar, 0, height - hudBar.height);
 
