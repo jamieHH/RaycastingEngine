@@ -36,7 +36,7 @@ public class App extends Canvas implements Runnable
     public static int newHeight;
     public static int newScale;
 
-	public static RunGame runGame;
+	public static RunApp runApp;
 	
 	public App() {
 		Dimension size = new Dimension(width * scale, height * scale);
@@ -63,7 +63,7 @@ public class App extends Canvas implements Runnable
 		setMinimumSize(size);
 		setMaximumSize(size);
 
-        runGame.refreshFrame(this);
+        runApp.refreshFrame(this);
 
 		requestFocus();
 
@@ -177,6 +177,7 @@ public class App extends Canvas implements Runnable
 	}
 	
 	public static void main(String args[]) {
-		new Launcher(0);
+//		new Launcher(0);
+		new RunApp();
 	}
 }
