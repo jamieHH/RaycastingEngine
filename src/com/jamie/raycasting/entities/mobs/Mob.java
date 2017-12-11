@@ -231,36 +231,6 @@ public abstract class Mob extends Entity
         }
     }
 
-    private boolean isFree(double x, double z) {
-        int x0 = (int) (Math.floor((x + radius) / 16));
-        int x1 = (int) (Math.floor((x - radius) / 16));
-        int z0 = (int) (Math.floor((z + radius) / 16));
-        int z1 = (int) (Math.floor((z - radius) / 16));
-
-        if (level.getBlock(x0, z0).blocksMotion) return false;
-        if (level.getBlock(x1, z0).blocksMotion) return false;
-        if (level.getBlock(x0, z1).blocksMotion) return false;
-        if (level.getBlock(x1, z1).blocksMotion) return false;
-        return true;
-    }
-
-    private boolean isEntityFree(double x, double z) {
-        for (int i = 0; i < level.countEntities(); i++) {
-            Entity e = level.getEntity(i);
-            if (e.solid) {
-                double entX = e.posX;
-                double entZ = e.posZ;
-                double entRadius = e.radius;
-                if (level.getEntity(i) != this) {
-                    if (((Math.abs(x - entX)) - entRadius < radius) && ((Math.abs(z - entZ)) - entRadius < radius)) {
-                        return false;
-                    }
-                }
-            }
-        }
-        return true;
-    }
-
     private void doMovements() {
         camY = camHeightMod;
 
@@ -298,14 +268,44 @@ public abstract class Mob extends Entity
         move(moveX * Math.cos(rotation) + moveZ * Math.sin(rotation), moveZ * Math.cos(rotation) - moveX * Math.sin(rotation));
     }
 
+    private boolean isWallBlocked(double x, double z) {
+        int x0 = (int) (Math.floor((x + radius) / 16));
+        int x1 = (int) (Math.floor((x - radius) / 16));
+        int z0 = (int) (Math.floor((z + radius) / 16));
+        int z1 = (int) (Math.floor((z - radius) / 16));
+
+        if (level.getBlock(x0, z0).blocksMotion) return true;
+        if (level.getBlock(x1, z0).blocksMotion) return true;
+        if (level.getBlock(x0, z1).blocksMotion) return true;
+        if (level.getBlock(x1, z1).blocksMotion) return true;
+        return false;
+    }
+
+    private boolean isEntityBlocked(double x, double z) {
+        for (int i = 0; i < level.countEntities(); i++) {
+            Entity e = level.getEntity(i);
+            if (e.solid) {
+                double entX = e.posX;
+                double entZ = e.posZ;
+                double entRadius = e.radius;
+                if (level.getEntity(i) != this) {
+                    if (((Math.abs(x - entX)) - entRadius < radius) && ((Math.abs(z - entZ)) - entRadius < radius)) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
     private void moveWallEntColl(double nextX, double nextZ) {
-        if (!isFree(posX + nextX, posZ) || !isEntityFree(posX + nextX, posZ)) {
+        if (isWallBlocked(posX + nextX, posZ) || isEntityBlocked(posX + nextX, posZ)) {
             nextX = 0;
         }
         posX += nextX;
 
         if (wallCollide) {
-            if (!isFree(posX, posZ + nextZ) || !isEntityFree(posX, posZ + nextZ)) {
+            if (isWallBlocked(posX, posZ + nextZ) || isEntityBlocked(posX, posZ + nextZ)) {
                 nextZ = 0;
             }
         }
@@ -313,13 +313,13 @@ public abstract class Mob extends Entity
     }
 
     private void moveWallColl(double nextX, double nextZ) {
-        if (!isFree(posX + nextX, posZ)) {
+        if (isWallBlocked(posX + nextX, posZ)) {
             nextX = 0;
         }
         posX += nextX;
 
 
-        if (!isFree(posX, posZ + nextZ)) {
+        if (isWallBlocked(posX, posZ + nextZ)) {
             nextZ = 0;
         }
 
@@ -327,12 +327,12 @@ public abstract class Mob extends Entity
     }
 
     private void moveEntColl(double nextX, double nextZ) {
-        if (!isEntityFree(posX + nextX, posZ)) {
+        if (isEntityBlocked(posX + nextX, posZ)) {
             nextX = 0;
         }
         posX += nextX;
 
-        if (!isEntityFree(posX, posZ + nextZ)) {
+        if (isEntityBlocked(posX, posZ + nextZ)) {
             nextZ = 0;
         }
         posZ += nextZ;
@@ -344,14 +344,18 @@ public abstract class Mob extends Entity
     }
 
 	private void move(double nextX, double nextZ) {
-	    if (wallCollide && entCollide) {
-	        moveWallEntColl(nextX, nextZ);
-        } else if (wallCollide && !entCollide) {
-            moveWallColl(nextX, nextZ);
-        } else if (!wallCollide && entCollide) {
-            moveEntColl(nextX, nextZ);
+        if (wallCollide) {
+            if (entCollide) {
+                moveWallEntColl(nextX, nextZ);
+            } else {
+                moveWallColl(nextX, nextZ);
+            }
         } else {
-            moveNoColl(nextX, nextZ);
+            if (entCollide) {
+                moveEntColl(nextX, nextZ);
+            } else {
+                moveNoColl(nextX, nextZ);
+            }
         }
 
         moveX *= 0.5;
