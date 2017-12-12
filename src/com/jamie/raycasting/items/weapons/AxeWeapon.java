@@ -5,11 +5,11 @@ import com.jamie.raycasting.graphics.Texture;
 
 public class AxeWeapon extends Weapon
 {
-    public Sprite idleSprite = new Sprite(Texture.screenSpear0);
-    public Sprite useSprite = new Sprite(Texture.screenSpear1);
-
     public AxeWeapon() {
         super();
+
+        idleSprite = new Sprite(Texture.screenAxe0);
+        useSprite = new Sprite(Texture.screenAxe1);
 
         name = "Hatchet";
         reach = 4;

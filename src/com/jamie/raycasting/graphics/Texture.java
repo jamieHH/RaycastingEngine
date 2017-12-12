@@ -96,29 +96,10 @@ public class Texture
     // screen
     public static final Render screenSpear0 = loadBitmap("/textures/screenSpear0.png");
     public static final Render screenSpear1 = loadBitmap("/textures/screenSpear1.png");
+    public static final Render screenAxe0 = loadBitmap("/textures/screenAxe0.png");
+    public static final Render screenAxe1 = loadBitmap("/textures/screenAxe1.png");
 
     private final Random random = new Random();
-
-	public Texture () {
-	    // Generate sky texture
-        double percentage = (0.05);
-        for (int i = 0; i < sky.width * sky.height; i++) {
-            if (random.nextInt(sky.width * sky.height) < ((percentage / 8) * (sky.width * sky.height))) {
-                if (random.nextBoolean()) {
-                    sky.pixels[i] = 0x909090;
-                } else {
-                    sky.pixels[i] = 0x404040;
-                }
-            } else {
-                sky.pixels[i] = 0;
-            }
-        }
-
-        // Generate none texture
-        for (int i = 0; i < none.pixels.length; i++) {
-            none.pixels[i] = 0;
-        }
-    }
 
 	private static Render loadBitmap(String fileName) {
 		try {
