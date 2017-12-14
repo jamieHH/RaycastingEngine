@@ -139,17 +139,13 @@ public class Entity
         if (posX + radius <= x2) return false;
         if (posX - radius >= x2) return false;
 
-        if (posZ + radius <= z2) return false;
-        if (posZ - radius >= z2) return false;
-        return true;
+        return !(posZ + radius <= z2) && !(posZ - radius >= z2);
     }
 
     public boolean isInside(double x0, double z0, double x1, double z1) {
         if (posX + radius <= x0) return false;
         if (posX - radius >= x1) return false;
 
-        if (posZ + radius <= z0) return false;
-        if (posZ - radius >= z1) return false;
-        return true;
+        return !(posZ + radius <= z0) && !(posZ - radius >= z1);
     }
 }

@@ -2,7 +2,6 @@ package com.jamie.raycasting.graphics;
 
 import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
-import java.util.Random;
 
 import javax.imageio.ImageIO;
 
@@ -98,8 +97,6 @@ public class Texture
     public static final Render screenSpear1 = loadBitmap("/textures/screenSpear1.png");
     public static final Render screenAxe0 = loadBitmap("/textures/screenAxe0.png");
     public static final Render screenAxe1 = loadBitmap("/textures/screenAxe1.png");
-
-    private final Random random = new Random();
 
 	private static Render loadBitmap(String fileName) {
 		try {

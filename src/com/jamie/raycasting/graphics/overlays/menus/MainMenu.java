@@ -3,6 +3,8 @@ package com.jamie.raycasting.graphics.overlays.menus;
 import com.jamie.raycasting.app.Game;
 import com.jamie.raycasting.graphics.Screen;
 
+import java.util.Objects;
+
 public class MainMenu extends Menu
 {
     public MainMenu() {
@@ -31,13 +33,13 @@ public class MainMenu extends Menu
 
         if (game.userInput.action) {
             game.userInput.setKeyGroupState("action", false);
-            if (options.get(optionIndex) == "New Game") {
+            if (Objects.equals(options.get(optionIndex), "New Game")) {
                 game.newGame();
-            } else if (options.get(optionIndex) == "Load Game") {
+            } else if (Objects.equals(options.get(optionIndex), "Load Game")) {
                 game.setActiveOverlay(game.loadMenu);
-            } else if (options.get(optionIndex) == "Options") {
+            } else if (Objects.equals(options.get(optionIndex), "Options")) {
                 game.setActiveOverlay(game.optionsMenu);
-            } else if (options.get(optionIndex) == "Quit") {
+            } else if (Objects.equals(options.get(optionIndex), "Quit")) {
                 System.exit(0);
             }
         }

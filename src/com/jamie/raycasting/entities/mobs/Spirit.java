@@ -84,11 +84,7 @@ public class Spirit extends Mob
                 input.backInf = 0;
                 input.leftInf = 75;
                 input.rightInf = 0;
-                if (squareDistanceFrom(level.player.posX, level.player.posZ) < getRightHandReach()) {
-                    input.action = true;
-                } else {
-                    input.action = false;
-                }
+                input.action = squareDistanceFrom(level.player.posX, level.player.posZ) < getRightHandReach();
             }
         }
     }

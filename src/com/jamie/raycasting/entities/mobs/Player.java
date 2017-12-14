@@ -2,7 +2,6 @@ package com.jamie.raycasting.entities.mobs;
 
 import com.jamie.raycasting.entities.particles.BloodParticle;
 import com.jamie.raycasting.input.InputHandler;
-import com.jamie.raycasting.items.weapons.AxeWeapon;
 import com.jamie.raycasting.items.weapons.SpearWeapon;
 
 public class Player extends Mob

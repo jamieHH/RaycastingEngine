@@ -100,8 +100,8 @@ public class Screen extends Render
                 render.render(p);
             } else if (theCase == 1) {
                 superSampleRender.render(p);
-                int[] sspx = superSampleRender.pixels;
 
+                int[] sspx = superSampleRender.pixels;
                 for (int i = 0; i < render.pixels.length; i++) {
                     int h = (i / render.width);
                     int i0 = (((h * render.width) + i) * 2);
@@ -118,8 +118,8 @@ public class Screen extends Render
                 }
             } else if (theCase == 2) {
                 downSampleRender.render(p);
-                int[] dspx = downSampleRender.pixels;
 
+                int[] dspx = downSampleRender.pixels;
                 for (int i = 0; i < downSampleRender.pixels.length; i++) {
                     int h = (i / downSampleRender.width);
                     int i0 = (((h * downSampleRender.width) + i) * 2);
@@ -135,17 +135,18 @@ public class Screen extends Render
             }
             draw(render, 0, 0);
 
-
+            // Render held items
             if (p.getRightHandItem() != null) {
                 Render rightItemTex = p.getRightHandItem().getTexture();
-                draw(rightItemTex, render.width - rightItemTex.width, (render.height - rightItemTex.height) + ((int) (p.yBob * 4)) + 4);
+                if (rightItemTex != null) {
+                    draw(rightItemTex, render.width - rightItemTex.width, (render.height - rightItemTex.height) + ((int) (p.yBob * 4)) + 4);
+                }
             }
 
-
+            // render hudbar
             draw(hudBar, 0, height - hudBar.height);
 
             double healthBarWidth = ((double) p.health / (double) p.maxHealth) * (double) healthBar.width;
-
             for (int i = 0; i < healthBar.pixels.length; i++) {
                 if (i < healthBarWidth || (i >= healthBar.width && i < (healthBarWidth + healthBar.width))) {
                     healthBar.pixels[i] = 0xF00000;
@@ -161,6 +162,7 @@ public class Screen extends Render
                 draw(p.getRightHandItem().name, width - (p.getRightHandItem().name.length() * 6) - 2, (height - hudBar.height) + 1, 0x909090);
             }
 
+            // Render pain
             if (p.hurtTime >= 0) {
                 double percentage = p.hurtTime / 60.0;
                 for (int i = 0; i < viewPunch.pixels.length; i++) {
@@ -179,6 +181,7 @@ public class Screen extends Render
                 draw(viewPunch, 0, 0);
             }
 
+            // Render hud headings
             for (int i = 0; i < p.hudHeadings.size(); i++) {
                 draw(p.hudHeadings.get(i), (render.width - 2) - (p.hudHeadings.get(i).length() * 6), (i * 10) + 2, 0xF0F070);
             }

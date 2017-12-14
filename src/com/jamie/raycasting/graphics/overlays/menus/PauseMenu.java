@@ -3,6 +3,8 @@ package com.jamie.raycasting.graphics.overlays.menus;
 import com.jamie.raycasting.app.Game;
 import com.jamie.raycasting.graphics.Screen;
 
+import java.util.Objects;
+
 public class PauseMenu extends Menu
 {
     public PauseMenu() {
@@ -34,9 +36,9 @@ public class PauseMenu extends Menu
 
         if (game.userInput.action) {
             game.userInput.setKeyGroupState("action", false);
-            if (options.get(optionIndex) == "Resume") {
+            if (Objects.equals(options.get(optionIndex), "Resume")) {
                 game.setActiveOverlay(null);
-            } else if (options.get(optionIndex) == "Main Menu") {
+            } else if (Objects.equals(options.get(optionIndex), "Main Menu")) {
                 game.setActiveOverlay(game.mainMenu);
             }
         }

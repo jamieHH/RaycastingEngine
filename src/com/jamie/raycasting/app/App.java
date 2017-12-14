@@ -55,7 +55,7 @@ public class App extends Canvas implements Runnable
 		addFocusListener(input);
 	}
 
-	public void changeResolution(int width, int height) {
+	private void changeResolution(int width, int height) {
 	    App.width = width;
 	    App.height = height;
         Dimension size = new Dimension(width * scale, height * scale);
@@ -152,10 +152,8 @@ public class App extends Canvas implements Runnable
 		int fontSize = 16;
 		
 		screen.render(game);
-		
-		for (int i = 0; i < width * height; i++) {
-			pixels[i] = screen.pixels[i];
-		}
+
+		System.arraycopy(screen.pixels, 0, pixels, 0, width * height);
 		
 		Graphics g = bs.getDrawGraphics();
 		g.drawImage(img, 0, 0, width * scale, height * scale, null);

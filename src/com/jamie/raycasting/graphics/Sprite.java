@@ -1,6 +1,7 @@
 package com.jamie.raycasting.graphics;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Sprite
@@ -67,9 +68,7 @@ public class Sprite
     }
 
     public void addTextures(Render[] ts) {
-        for (int i = 0; i < ts.length; i++) {
-            textures.add(ts[i]);
-        }
+        Collections.addAll(textures, ts);
     }
 
     public Render getTexture(int i) {

@@ -2,13 +2,12 @@ package com.jamie.raycasting.items;
 
 import com.jamie.raycasting.graphics.Render;
 import com.jamie.raycasting.graphics.Sprite;
-import com.jamie.raycasting.graphics.Texture;
 
 public abstract class Item
 {
     public String name = "Item";
-    public Sprite idleSprite = new Sprite(Texture.screenSpear0);
-    public Sprite useSprite = new Sprite(Texture.screenSpear1);
+    public Sprite idleSprite;
+    public Sprite useSprite;
     public int weight = 1;
     public int damage = 1;
     public int value = 0;

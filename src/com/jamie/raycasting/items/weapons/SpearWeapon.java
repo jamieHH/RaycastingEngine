@@ -5,11 +5,11 @@ import com.jamie.raycasting.graphics.Texture;
 
 public class SpearWeapon extends Weapon
 {
-    public Sprite idleSprite = new Sprite(Texture.screenSpear0);
-    public Sprite useSprite = new Sprite(Texture.screenSpear1);
-
     public SpearWeapon() {
         super();
+
+        idleSprite = new Sprite(Texture.screenSpear0);
+        useSprite = new Sprite(Texture.screenSpear1);
 
         name = "Spear";
         reach = 16;

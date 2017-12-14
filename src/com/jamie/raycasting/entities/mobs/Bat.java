@@ -73,11 +73,7 @@ public class Bat extends Mob
 
                 input.forwardInf = 100;
                 input.backInf = 25;
-                if (squareDistanceFrom(level.player.posX, level.player.posZ) < getRightHandReach()) {
-                    input.action = true;
-                } else {
-                    input.action = false;
-                }
+                input.action = squareDistanceFrom(level.player.posX, level.player.posZ) < getRightHandReach();
             }
         }
     }

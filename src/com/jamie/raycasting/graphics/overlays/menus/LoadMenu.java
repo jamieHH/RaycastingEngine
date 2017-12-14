@@ -3,6 +3,8 @@ package com.jamie.raycasting.graphics.overlays.menus;
 import com.jamie.raycasting.app.Game;
 import com.jamie.raycasting.graphics.Screen;
 
+import java.util.Objects;
+
 public class LoadMenu extends Menu
 {
     private final String[] saves = {
@@ -36,7 +38,7 @@ public class LoadMenu extends Menu
 
         if (game.userInput.action) {
             game.userInput.setKeyGroupState("action", false);
-            if (options.get(optionIndex) == "Main Menu") {
+            if (Objects.equals(options.get(optionIndex), "Main Menu")) {
                 game.setActiveOverlay(game.mainMenu);
             }
         }
@@ -51,26 +53,26 @@ public class LoadMenu extends Menu
             if (optionIndex == i) {
                 screen.draw("-> " + options.get(i), selectedTextMarginX, 10 + (int) ((screen.height * 0.2) + 8) + (i * 10), 0xD0D0D0);
 
-                if (options.get(optionIndex) == "Save Slot 1") {
+                if (Objects.equals(options.get(optionIndex), "Save Slot 1")) {
                     String string = "< " + saves[optionIndex] + " >";
                     screen.draw(string, screen.width - ((string.length() * 6) + selectedTextMarginX), 10 + (int) ((screen.height * 0.2) + 8) + (i * 10), 0xD0D0D0);
-                } else if (options.get(optionIndex) == "Save Slot 2") {
+                } else if (Objects.equals(options.get(optionIndex), "Save Slot 2")) {
                     String string = "< " + saves[optionIndex] + " >";
                     screen.draw(string, screen.width - ((string.length() * 6) + selectedTextMarginX), 10 + (int) ((screen.height * 0.2) + 8) + (i * 10), 0xD0D0D0);
-                } else if (options.get(optionIndex) == "Save Slot 3") {
+                } else if (Objects.equals(options.get(optionIndex), "Save Slot 3")) {
                     String string = "< " + saves[optionIndex] + " >";
                     screen.draw(string, screen.width - ((string.length() * 6) + selectedTextMarginX), 10 + (int) ((screen.height * 0.2) + 8) + (i * 10), 0xD0D0D0);
                 }
             } else {
                 screen.draw(options.get(i), textMarginX, 10 + (int) ((screen.height * 0.2) + 8) + (i * 10), 0x707070);
 
-                if (options.get(i) == "Save Slot 1") {
+                if (Objects.equals(options.get(i), "Save Slot 1")) {
                     String string = "< " + saves[i] + " >";
                     screen.draw(string, screen.width - ((string.length() * 6) + textMarginX), 10 + (int) ((screen.height * 0.2) + 8) + (i * 10), 0x707070);
-                } else if (options.get(i) == "Save Slot 2") {
+                } else if (Objects.equals(options.get(i), "Save Slot 2")) {
                     String string = "< " + saves[i] + " >";
                     screen.draw(string, screen.width - ((string.length() * 6) + textMarginX), 10 + (int) ((screen.height * 0.2) + 8) + (i * 10), 0x707070);
-                } else if (options.get(i) == "Save Slot 3") {
+                } else if (Objects.equals(options.get(i), "Save Slot 3")) {
                     String string = "< " + saves[i] + " >";
                     screen.draw(string, screen.width - ((string.length() * 6) + textMarginX), 10 + (int) ((screen.height * 0.2) + 8) + (i * 10), 0x707070);
                 }
