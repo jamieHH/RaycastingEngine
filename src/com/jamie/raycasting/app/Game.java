@@ -86,13 +86,13 @@ public class Game
 
             if (userInput.randomLevel) {
 				player.rotation = 0.2;
-//                switchLevel("random", 999);
-                switchLevel("test", 999);
+                switchLevel("random", 999);
             }
 
             if (userInput.loadLevel) {
 				player.rotation = 0.2;
                 switchLevel("island", 999);
+//                switchLevel("test", 999);
             }
         }
 	}
@@ -120,12 +120,11 @@ public class Game
 
 		level.removeEntity(player);
 		level.player = null;
-//		if (name == "random") {
-//		    Level level = new Level();
-//			level.generateRandomLevel(200, 200);
-//		} else {
-        level = Level.getLoadLevel(this, name);
-//		}
+		if (name == "random") {
+		    level = Level.generateRandomLevel(1000, 1000);
+		} else {
+        	level = Level.getLoadLevel(this, name);
+		}
 		level.setSpawn(id);
 
 		player.setPosition(level.spawnX, level.spawnZ);
@@ -149,7 +148,9 @@ public class Game
 
 		int i = level.getMobEntities().indexOf(player);
 		i++;
-		if (i >= level.countMobs()) i = 0;
+		if (i >= level.countMobs()) {
+			i = 0;
+		}
 
 		player = level.getMobEntity(i);
 	}
@@ -161,7 +162,9 @@ public class Game
 
 		int i = mobs.indexOf(player);
 		i++;
-		if (i >= level.countMobs()) i = 0;
+		if (i >= level.countMobs()) {
+			i = 0;
+		}
 
         player.input = temporaryInput;
         player = level.getMobEntity(i);

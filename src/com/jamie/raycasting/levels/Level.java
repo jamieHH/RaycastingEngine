@@ -91,7 +91,9 @@ public abstract class Level
 
                 blocks[x + z * sizeX] = block;
 
-                setDefaultSpawn(x, z, col);
+                if (col == 0xFFFF00) {
+                    setDefaultSpawn(x, z);
+                }
             }
         }
 
@@ -235,13 +237,9 @@ public abstract class Level
         return null;
     }
 
-    private void setDefaultSpawn(int x, int z, int col) {
-        if (col == 0xFFFF00) {
-            spawnX = (x * 16) + 8;
-            spawnZ = (z * 16) + 8;
-
-            System.out.println("Spawn: (" + spawnX + ", " + spawnZ + ")");
-        }
+    private void setDefaultSpawn(int x, int z) {
+        spawnX = (x * 16) + 8;
+        spawnZ = (z * 16) + 8;
     }
 
     public void setSpawn(int id) {
@@ -306,14 +304,15 @@ public abstract class Level
         }
     }
 
-    public void generateRandomLevel(int sizeX, int sizeZ) {
-        this.sizeX = sizeX;
-        this.sizeZ = sizeZ;
+    public static Level generateRandomLevel(int sizeX, int sizeZ) {
+        Level level = new RandomLevel();
+        level.sizeX = sizeX;
+        level.sizeZ = sizeZ;
 
-        spawnX = 8;
-        spawnZ = 8;
+        level.setDefaultSpawn(8, 8);
 
-        blocks = new Block[sizeX * sizeZ];
+        level.blocks = new Block[sizeX * sizeZ];
+
         Random random = new Random();
         for (int z = 0; z < sizeZ; z++) {
             for (int x = 0; x < sizeX; x++) {
@@ -327,8 +326,10 @@ public abstract class Level
                         block = new Block();
                     }
                 }
-                blocks[x + z * sizeX] = block;
+                level.blocks[x + z * sizeX] = block;
             }
         }
+
+        return level;
     }
 }
