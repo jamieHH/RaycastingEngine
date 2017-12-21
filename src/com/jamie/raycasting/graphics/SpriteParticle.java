@@ -11,7 +11,7 @@ public class SpriteParticle extends Sprite
         super(texture, xOffs, yOffs, zOffs);
 
         xa = Math.random() - 0.5;
-        ya = Math.random() - 0.5;
+        ya = (Math.random() - 0.5) / 2;
         za = Math.random() - 0.5;
     }
 
@@ -19,7 +19,7 @@ public class SpriteParticle extends Sprite
         super(t);
 
         xa = Math.random() - 0.5;
-        ya = Math.random() - 0.5;
+        ya = (Math.random() - 0.5) / 2;
         za = Math.random() - 0.5;
     }
 
@@ -27,7 +27,7 @@ public class SpriteParticle extends Sprite
         super(ts);
 
         xa = Math.random() - 0.5;
-        ya = Math.random() - 0.5;
+        ya = (Math.random() - 0.5) / 2;
         za = Math.random() - 0.5;
     }
 

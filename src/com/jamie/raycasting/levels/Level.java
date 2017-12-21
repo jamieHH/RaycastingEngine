@@ -1,12 +1,8 @@
 package com.jamie.raycasting.levels;
 
-import java.awt.image.BufferedImage;
-import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
-import javax.imageio.ImageIO;
 
 import com.jamie.raycasting.app.Game;
 import com.jamie.raycasting.entities.Entity;
@@ -50,8 +46,7 @@ public abstract class Level
     private static final WaterBlock WaterBlock = new WaterBlock();
 
 
-    private void setupLevelClass(Game game, String name, int sizeX, int sizeZ, int[] pixels) {
-        this.name = name;
+    public void create(Game game, int sizeX, int sizeZ, int[] pixels) {
         this.game = game;
         this.sizeX = sizeX;
         this.sizeZ = sizeZ;
@@ -272,29 +267,7 @@ public abstract class Level
         return false;
     }
 
-    public static Level getLoadLevel(Game game, String name) {
-        if (game.loaded.containsKey(name)) return game.loaded.get(name);
-
-        try {
-            BufferedImage img = ImageIO.read(new FileInputStream("res/levels/" + name + ".png"));
-
-            int w = img.getWidth();
-            int h = img.getHeight();
-            int[] pixels = new int[w * h];
-            img.getRGB(0, 0, w, h, pixels, 0, w);
-
-            Level level = Level.getByName(name);
-            level.setupLevelClass(game, name, w, h, pixels);
-            game.loaded.put(name, level);
-
-            return level;
-        } catch (Exception e) {
-            System.out.println("Failed to load level: " + name + "!");
-            throw new RuntimeException(e);
-        }
-    }
-
-    private static Level getByName(String name) {
+    public static Level getByName(String name) {
         try {
             name = name.substring(0, 1).toUpperCase() + name.substring(1);
             return (Level) Class.forName("com.jamie.raycasting.levels." + name + "Level").newInstance();
@@ -304,7 +277,7 @@ public abstract class Level
         }
     }
 
-    public static Level generateRandomLevel(int sizeX, int sizeZ) {
+    public static Level makeRandomLevel(int sizeX, int sizeZ) {
         Level level = new RandomLevel();
         level.sizeX = sizeX;
         level.sizeZ = sizeZ;

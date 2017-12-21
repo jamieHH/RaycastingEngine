@@ -1,5 +1,7 @@
 package com.jamie.raycasting.app;
 
+import java.awt.image.BufferedImage;
+import java.io.FileInputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +16,8 @@ import com.jamie.raycasting.input.UserInputHandler;
 import com.jamie.raycasting.levels.Level;
 import com.jamie.raycasting.levels.blocks.Block;
 import com.jamie.raycasting.levels.blocks.LadderBlock;
+
+import javax.imageio.ImageIO;
 
 public class Game
 {
@@ -102,7 +106,7 @@ public class Game
 		clearLoadedLevels();
 		player = new Player(userInput);
 
-		level = Level.getLoadLevel(this, "prison");
+		level = getLoadLevel("prison");
 
 		player.setPosition(level.spawnX, level.spawnZ);
 		player.rotation = 1.9;
@@ -121,9 +125,9 @@ public class Game
 		level.removeEntity(player);
 		level.player = null;
 		if (name == "random") {
-		    level = Level.generateRandomLevel(1000, 1000);
+		    level = Level.makeRandomLevel(1000, 1000);
 		} else {
-        	level = Level.getLoadLevel(this, name);
+        	level = getLoadLevel(name);
 		}
 		level.setSpawn(id);
 
@@ -143,11 +147,34 @@ public class Game
 		loaded.clear();
 	}
 
+	public Level getLoadLevel(String name) {
+		if (loaded.containsKey(name)) {
+			return loaded.get(name);
+		}
+
+		try {
+			BufferedImage img = ImageIO.read(new FileInputStream("res/levels/" + name + ".png"));
+
+			int w = img.getWidth();
+			int h = img.getHeight();
+			int[] pixels = new int[w * h];
+			img.getRGB(0, 0, w, h, pixels, 0, w);
+
+			Level level = Level.getByName(name);
+			level.create(this, w, h, pixels);
+			loaded.put(name, level);
+
+			return level;
+		} catch (Exception e) {
+			System.out.println("Failed to load level: " + name + "!");
+			throw new RuntimeException(e);
+		}
+	}
+
 	private void switchPerspective() {
         pauseTime = 10;
 
-		int i = level.getMobEntities().indexOf(player);
-		i++;
+		int i = level.getMobEntities().indexOf(player) + 1;
 		if (i >= level.countMobs()) {
 			i = 0;
 		}
@@ -160,8 +187,7 @@ public class Game
 
 		List<Mob> mobs = level.getMobEntities();
 
-		int i = mobs.indexOf(player);
-		i++;
+		int i = mobs.indexOf(player) + 1;
 		if (i >= level.countMobs()) {
 			i = 0;
 		}
