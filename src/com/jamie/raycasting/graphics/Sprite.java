@@ -11,7 +11,7 @@ public class Sprite
 
 	private boolean isAnimated = false;
 	private List<Render> textures = new ArrayList<Render>();
-    public int index = 0;
+    private int index = 0;
     private int animTick = 0;
     public int interval = 5;
 
@@ -71,8 +71,8 @@ public class Sprite
         Collections.addAll(textures, ts);
     }
 
-    public Render getTexture(int i) {
-        return textures.get(i);
+    public Render render() {
+	    return textures.get(index);
     }
 
     public int countTextures() {

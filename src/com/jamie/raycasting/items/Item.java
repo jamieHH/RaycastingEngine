@@ -32,9 +32,9 @@ public abstract class Item
 
     public Render getTexture() {
         if (useTicks > 0) {
-            return useSprite.getTexture(useSprite.index);
+            return useSprite.render();
         }
 
-        return idleSprite.getTexture(idleSprite.index);
+        return idleSprite.render();
     }
 }
