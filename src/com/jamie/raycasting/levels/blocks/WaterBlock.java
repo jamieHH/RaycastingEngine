@@ -13,8 +13,8 @@ public class WaterBlock extends Block
     private ArrayList<Render> floorTextures = new ArrayList<>();
 
 	public WaterBlock() {
-		solidRender = false;
-		blocksMotion = true;
+		isOpaque = false;
+		isSolid = true;
 		isStatic = true;
 
 		floorTex = Texture.water0;

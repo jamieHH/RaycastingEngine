@@ -5,8 +5,8 @@ import com.jamie.raycasting.graphics.Texture;
 public class StonePathBlock extends Block
 {
 	public StonePathBlock() {
-		solidRender = false;
-		blocksMotion = false;
+		isOpaque = false;
+		isSolid = false;
 		isStatic = true;
 
 		floorTex = Texture.stonePath;

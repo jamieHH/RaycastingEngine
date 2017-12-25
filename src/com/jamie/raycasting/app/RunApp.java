@@ -12,7 +12,6 @@ public class RunApp
     public JFrame frame;
 
 	public RunApp() {
-		// BufferedImage cursor, cursor blank ??
 		App app = new App();
 		App.runApp = this;
 

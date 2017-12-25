@@ -11,8 +11,8 @@ public class BoardsBlock extends Block
 	private boolean smashed = false;
 
 	public BoardsBlock() {
-        solidRender = false;
-        blocksMotion = true;
+        isOpaque = false;
+        isSolid = true;
 
         Sprite sprite = new Sprite(Texture.boards);
         addSprite(sprite);
@@ -32,7 +32,7 @@ public class BoardsBlock extends Block
 
     public void trigger() {
         smashed = true;
-        blocksMotion = false;
+        isSolid = false;
 
         clearSprites();
 

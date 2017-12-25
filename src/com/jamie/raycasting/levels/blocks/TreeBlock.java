@@ -6,7 +6,7 @@ import com.jamie.raycasting.graphics.Texture;
 public class TreeBlock extends Block
 {
 	public TreeBlock() {
-		blocksMotion = true;
+		isSolid = true;
 		isStatic = true;
 
 		floorTex = Texture.grass;

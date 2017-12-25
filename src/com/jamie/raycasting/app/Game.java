@@ -70,34 +70,33 @@ public class Game
 //                possessNextMob();
             }
 
-            if (player.isDead) {
-                if (userInput.action || userInput.pause) {
-                    setActiveOverlay(overMenu);
-                    activeOverlay.pauseTime = 10;
-                }
-                return;
-            }
+            if (!player.isDead) {
+				if (userInput.inventory) {
+					userInput.setKeyGroupState("inventory", false);
+					setActiveOverlay(new InventoryOverlay(this));
+				}
 
-			if (userInput.inventory) {
-				userInput.setKeyGroupState("inventory", false);
-				setActiveOverlay(new InventoryOverlay(this));
-			}
+				if (userInput.pause) {
+					userInput.setKeyGroupState("pause", false);
+					setActiveOverlay(pauseMenu);
+				}
 
-            if (userInput.pause) {
-				userInput.setKeyGroupState("pause", false);
-                setActiveOverlay(pauseMenu);
-            }
+				if (userInput.randomLevel) {
+					player.rotation = 0.2;
+					switchLevel("random", 999);
+				}
 
-            if (userInput.randomLevel) {
-				player.rotation = 0.2;
-                switchLevel("random", 999);
-            }
-
-            if (userInput.loadLevel) {
-				player.rotation = 0.2;
-                switchLevel("island", 999);
+				if (userInput.loadLevel) {
+					player.rotation = 0.2;
+					switchLevel("island", 999);
 //                switchLevel("test", 999);
-            }
+				}
+            } else {
+				if (userInput.action || userInput.pause) {
+					setActiveOverlay(overMenu);
+					activeOverlay.pauseTime = 10;
+				}
+			}
         }
 	}
 	
@@ -147,7 +146,7 @@ public class Game
 		loaded.clear();
 	}
 
-	public Level getLoadLevel(String name) {
+	private Level getLoadLevel(String name) {
 		if (loaded.containsKey(name)) {
 			return loaded.get(name);
 		}

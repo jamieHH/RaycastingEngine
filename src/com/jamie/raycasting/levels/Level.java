@@ -30,7 +30,6 @@ public abstract class Level
     protected Game game;
     public Mob player;
 
-
     // static blocks. TODO: check if is performance optimal.
     private static final Block Block = new Block();
     private static final NullBlock NullBlock = new NullBlock();
@@ -109,7 +108,7 @@ public abstract class Level
     public void tick() {
         WaterBlock.tick();
         for (int i = 0; i < blocks.length; i++) {
-            if (! blocks[i].isStatic) {
+            if (!blocks[i].isStatic) {
                 blocks[i].tick();
             }
         }
@@ -125,7 +124,7 @@ public abstract class Level
 
     public void switchLevel(int id) {}
 
-    public void activateBlock(int id, String type) {
+    public void activateBlock(int id) {
         for (int i = 0; i < blocks.length; i++) {
             // if instance of type
             if (blocks[i].id == id && blocks[i] instanceof DoorBlock) {

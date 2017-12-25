@@ -6,7 +6,7 @@ import com.jamie.raycasting.graphics.Texture;
 public class GraveBlock extends Block
 {
 	public GraveBlock() {
-		blocksMotion = false;
+		isSolid = false;
 		isStatic = true;
 
 		floorTex = Texture.dirt;

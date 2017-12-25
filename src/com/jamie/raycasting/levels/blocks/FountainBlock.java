@@ -9,7 +9,7 @@ public class FountainBlock extends Block
     private int i = 0;
 
 	public FountainBlock() {
-		blocksMotion = true;
+		isSolid = true;
 		floorTex = Texture.grass;
 
 		Sprite sprite = new Sprite(Texture.fountain);

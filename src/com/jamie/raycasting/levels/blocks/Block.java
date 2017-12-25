@@ -13,8 +13,8 @@ public class Block
 {
     public Level level;
 
-	public boolean solidRender = false;
-	public boolean blocksMotion = false;
+	public boolean isOpaque = false;
+	public boolean isSolid = false;
     public boolean isStatic = false;
 
 	public Render wallTex = Texture.none;
@@ -30,10 +30,6 @@ public class Block
 	public int id;
 
 	private List<Sprite> sprites = new ArrayList<Sprite>();
-
-	public Block() {
-
-    }
 
 	public void addSprite(Sprite s) {
 		sprites.add(s);

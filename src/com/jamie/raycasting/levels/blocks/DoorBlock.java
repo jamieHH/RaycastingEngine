@@ -14,8 +14,8 @@ public class DoorBlock extends Block
 	private double openLimit = 7 / 8.0;
 
 	public DoorBlock() {
-		solidRender = false;
-		blocksMotion = true;
+		isOpaque = false;
+		isSolid = true;
 		wallTex = Texture.door;
 	}
 
@@ -44,13 +44,13 @@ public class DoorBlock extends Block
         if (openness < 0) openness = 0;
         if (openness > 1) openness = 1;
 
-        if (openness < openLimit && !open && !blocksMotion) {
+        if (openness < openLimit && !open && !isSolid) {
             if (level.blockContainsEntity(gridX, gridZ)) {
                 openness = openLimit;
                 return;
             }
         }
 
-        blocksMotion = openness < openLimit;
+        isSolid = openness < openLimit;
     }
 }

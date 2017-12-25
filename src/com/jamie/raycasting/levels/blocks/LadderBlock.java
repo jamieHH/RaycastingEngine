@@ -8,8 +8,8 @@ public class LadderBlock extends Block
     public boolean disabled = false;
 
 	public LadderBlock(boolean ladderUp) {
-		solidRender = false;
-		blocksMotion = false;
+		isOpaque = false;
+		isSolid = false;
 
 		if  (ladderUp) {
 			floorTex = Texture.floor;

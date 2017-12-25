@@ -274,10 +274,10 @@ public abstract class Mob extends Entity
         int z0 = (int) (Math.floor((z + radius) / 16));
         int z1 = (int) (Math.floor((z - radius) / 16));
 
-        if (level.getBlock(x0, z0).blocksMotion) return true;
-        if (level.getBlock(x1, z0).blocksMotion) return true;
-        if (level.getBlock(x0, z1).blocksMotion) return true;
-        if (level.getBlock(x1, z1).blocksMotion) return true;
+        if (level.getBlock(x0, z0).isSolid) return true;
+        if (level.getBlock(x1, z0).isSolid) return true;
+        if (level.getBlock(x0, z1).isSolid) return true;
+        if (level.getBlock(x1, z1).isSolid) return true;
         return false;
     }
 
@@ -444,7 +444,7 @@ public abstract class Mob extends Entity
                 Block block = level.getBlock(xb, zb);
                 if (block.use(this)) return;
 
-                if (block.blocksMotion) return;
+                if (block.isSolid) return;
             }
         }
     }

@@ -67,8 +67,6 @@ public class Render3D extends Render
             }
 
             for (int x = 0; x < width; x++) {
-//                if (zBuffer[x + y * width] < yDist) continue; // ????
-
                 double xDist = (x - width / 2.0) / height;
                 xDist *= zDist;
 
@@ -276,7 +274,7 @@ public class Render3D extends Render
                     double rr = 1 / 4.0;
                     double openness = 1 - ((DoorBlock) block).openness * 7 / 8;
 
-                    if (east.solidRender) {
+                    if (east.isOpaque) {
                         renderWall(xBlock + openness, zBlock + 1 - rr, xBlock - 1 + openness, zBlock + 1 - rr, 0.5, block.wallTex);
                         renderWall(xBlock - 1 + openness, zBlock + rr, xBlock + openness, zBlock + rr, 0.5, block.wallTex);
                         renderWall(xBlock + openness, zBlock + rr, xBlock + openness, zBlock + 1 - rr, 0.5, block.wallTex);
@@ -288,18 +286,18 @@ public class Render3D extends Render
                     }
                 }
 
-                if (block.solidRender) {
-                    if (!east.solidRender) {
+                if (block.isOpaque) {
+                    if (!east.isOpaque) {
                         renderWall(xBlock + 1, zBlock, xBlock + 1, zBlock + 1, 0.5, block.wallTex);
                     }
-                    if (!south.solidRender) {
+                    if (!south.isOpaque) {
                         renderWall(xBlock + 1, zBlock + 1, xBlock, zBlock + 1, 0.5, block.wallTex);
                     }
                 } else {
-                    if (east.solidRender) {
+                    if (east.isOpaque) {
                         renderWall(xBlock + 1, zBlock + 1, xBlock + 1, zBlock, 0.5, east.wallTex);
                     }
-                    if (south.solidRender) {
+                    if (south.isOpaque) {
                         renderWall(xBlock, zBlock + 1, xBlock + 1, zBlock + 1, 0.5, south.wallTex);
                     }
                 }

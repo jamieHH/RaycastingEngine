@@ -9,8 +9,8 @@ public class ButtonBlock extends Block
     private int useWait = 10;
 
 	public ButtonBlock() {
-		solidRender = true;
-		blocksMotion = true;
+		isOpaque = true;
+		isSolid = true;
 
 		wallTex = Texture.wallButton0;
 	}
@@ -35,6 +35,6 @@ public class ButtonBlock extends Block
 
 	public void trigger() {
         wallTex = Texture.wallButton1;
-        level.activateBlock(id, "?instanceType");
+        level.activateBlock(id);
     }
 }

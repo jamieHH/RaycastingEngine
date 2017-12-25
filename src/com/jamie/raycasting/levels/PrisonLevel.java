@@ -15,7 +15,7 @@ public class PrisonLevel extends Level
         if (id == 2) game.switchLevel("dungeon", 1);
     }
 
-    public void activateBlock(int id, String type) {
-        if (id == 1) super.activateBlock(2, type);
+    public void activateBlock(int id) {
+        if (id == 1) super.activateBlock(2);
     }
 }

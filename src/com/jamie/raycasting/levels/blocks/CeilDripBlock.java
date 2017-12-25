@@ -10,7 +10,7 @@ public class CeilDripBlock extends Block
 //    public int spriteIndex = 0;
 
 	public CeilDripBlock() {
-        blocksMotion = false;
+        isSolid = false;
 
         floorTex = Texture.wetFloor;
         ceilTex = Texture.wetFloor;

@@ -5,8 +5,8 @@ import com.jamie.raycasting.graphics.Texture;
 public class GrassBlock extends Block
 {
 	public GrassBlock() {
-		solidRender = false;
-		blocksMotion = false;
+		isOpaque = false;
+		isSolid = false;
 		isStatic = true;
 
 		floorTex = Texture.grass;

@@ -5,8 +5,8 @@ import com.jamie.raycasting.graphics.Texture;
 public class ShrubsBlock extends Block
 {
 	public ShrubsBlock() {
-		solidRender = true;
-		blocksMotion = true;
+		isOpaque = true;
+		isSolid = true;
 		isStatic = true;
 
 		floorTex = Texture.grass;
