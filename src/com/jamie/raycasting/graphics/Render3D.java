@@ -22,13 +22,13 @@ public class Render3D extends Render
 	private double fov;
 
 	private Mob p;
-	
+
 	protected Render3D(int width, int height) {
 		super(width, height);
 		zBuffer = new double[width * height];
 		zBufferWall = new double[width];
 	}
-	
+
 	protected void render(Mob p) {
 	    this.p = p;
 
@@ -74,8 +74,8 @@ public class Render3D extends Render
 
                 int xTexture = (int) (xx + p.posX);
                 int zTexture = (int) (zz + p.posZ);
-                int xTile = (xTexture >> 2);
-                int zTile = (zTexture >> 2);
+                int xTile = xTexture >> 2;
+                int zTile = zTexture >> 2;
 
                 zBuffer[x + y * width] = zDist;
 
@@ -87,7 +87,7 @@ public class Render3D extends Render
                     tex = block.ceilTex;
                 }
 
-                pixels[x + y * width] = tex.pixels[(xTexture & 7) + (zTexture & 7)];
+                pixels[x + y * width] = tex.pixels[(xTexture & 15) + (zTexture & 15)];
 //                pixels[x + y * width] = 0xFFFFFF;
 
                 zBufferWall[x] = 0;
