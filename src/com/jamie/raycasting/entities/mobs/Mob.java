@@ -385,8 +385,8 @@ public abstract class Mob extends Entity
         health -= damage;
         hurtTime = 30;
 
-        double mx = (posX - source.posX) / 2;
-        double mz = (posZ - source.posZ) / 2;
+        double mx = (posX - source.posX) / 4;
+        double mz = (posZ - source.posZ) / 4;
         push(mx, mz);
         rotationMove += (Math.random() - 0.5);
 

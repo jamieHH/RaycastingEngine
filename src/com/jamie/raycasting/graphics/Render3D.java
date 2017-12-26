@@ -74,8 +74,8 @@ public class Render3D extends Render
 
                 int xTexture = (int) (xx + p.posX);
                 int zTexture = (int) (zz + p.posZ);
-                int xTile = (xTexture >> 8);
-                int zTile = (zTexture >> 8);
+                int xTile = (xTexture >> 2);
+                int zTile = (zTexture >> 2);
 
                 zBuffer[x + y * width] = zDist;
 
@@ -87,7 +87,7 @@ public class Render3D extends Render
                     tex = block.ceilTex;
                 }
 
-                pixels[x + y * width] = tex.pixels[(xTexture & 15) + (zTexture & 15) * 16];
+                pixels[x + y * width] = tex.pixels[(xTexture & 7) + (zTexture & 7)];
 //                pixels[x + y * width] = 0xFFFFFF;
 
                 zBufferWall[x] = 0;

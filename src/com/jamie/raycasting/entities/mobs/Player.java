@@ -9,13 +9,13 @@ public class Player extends Mob
 	public Player(InputHandler input) {
         super(input);
 
-        wallCollide = false;
-        entCollide = false;
+//        wallCollide = false;
+//        entCollide = false;
 
 	    baseReach = 2;
 	    viewDist = 32;
 
-	    radius = 0.5;
+	    radius = 0.2;
 
         rotationSpeed = 0.03;
         walkSpeed = 0.04; // disabling walking
