@@ -28,7 +28,7 @@ public abstract class Mob extends Entity
     private List<Sprite> deathSprites = new ArrayList<Sprite>();
 
     // distances
-    public double baseReach = 2.5;
+    public double baseReach = 1.5;
     public double viewDist = 4;
 
     // actions
@@ -45,8 +45,8 @@ public abstract class Mob extends Entity
     protected double runSpeed = 0.4;
     protected double crouchSpeed = 0.15;
 
-    protected double camHeightMod = 0.2;
-    protected double crouchHeightMod = 0.4;
+    protected double camHeightMod = 0.75;
+    protected double crouchHeightMod = 0.25;
 
     public double camY = camHeightMod;
     public double yBob = 0;

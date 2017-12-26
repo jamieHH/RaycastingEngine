@@ -59,7 +59,7 @@ public class Render3D extends Render
             double yDist = (y - height / 2.0) / height;
 
             boolean isFloor = true;
-            double zDist = (0.5 + p.camY) / yDist;
+            double zDist = (0.5 + (p.camY - 0)) / yDist;
             if (yDist < 0) {
                 isFloor = false;
                 zDist = (ceilingHeight - p.camY) / -yDist;
@@ -72,10 +72,10 @@ public class Render3D extends Render
                 double xx = xDist * cosine + zDist * sine;
                 double zz = zDist * cosine - xDist * sine;
 
-                int xTexture = (int) (xx + p.posX);
-                int zTexture = (int) (zz + p.posZ);
-                int xTile = xTexture >> 2;
-                int zTile = zTexture >> 2;
+                int xTexture = (int) ((xx + p.posX) * 16);
+                int zTexture = (int) ((zz + p.posZ) * 16);
+                int xTile = xTexture >> 4;
+                int zTile = zTexture >> 4;
 
                 zBuffer[x + y * width] = zDist;
 
@@ -87,7 +87,7 @@ public class Render3D extends Render
                     tex = block.ceilTex;
                 }
 
-                pixels[x + y * width] = tex.pixels[(xTexture & 15) + (zTexture & 15)];
+                pixels[x + y * width] = tex.pixels[(xTexture & 15) + (zTexture & 15) * 16];
 //                pixels[x + y * width] = 0xFFFFFF;
 
                 zBufferWall[x] = 0;

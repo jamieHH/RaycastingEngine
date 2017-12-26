@@ -17,15 +17,15 @@ public class Bat extends Mob
         baseReach = 1.5;
         viewDist = 4;
 
-        radius = 0.5;
+        radius = 0.25;
 
         rotationSpeed = 0.03;
         walkSpeed = 0.025;
         runSpeed = 0.025;
         crouchSpeed = 0.025;
 
-        camHeightMod = 2.0;
-        crouchHeightMod = 4.0;
+        camHeightMod = 0.025;
+        crouchHeightMod = 0.25;
 
         maxHealth = 10;
 //        maxHealth = 100;

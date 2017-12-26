@@ -18,18 +18,18 @@ public class Spirit extends Mob
         entCollide = false;
         solid = false;
 
-        baseReach = 24;
-        viewDist = 256;
+        baseReach = 1.5;
+        viewDist = 16;
 
-        radius = 4;
+        radius = 0.25;
 
         rotationSpeed = 0.03;
-        walkSpeed = 0.2;
-        runSpeed = 0.2;
-        crouchSpeed = 0.075;
+        walkSpeed = 0.0;
+        runSpeed = 0.0;
+        crouchSpeed = 0.025;
 
-        camHeightMod = 2.0;
-        crouchHeightMod = 4.0;
+        camHeightMod = 0.025;
+        crouchHeightMod = 0.25;
 
         maxHealth = 10;
 //        maxHealth = 100;
