@@ -9,21 +9,21 @@ public class Player extends Mob
 	public Player(InputHandler input) {
         super(input);
 
-//        wallCollide = false;
-//        entCollide = false;
+        wallCollide = false;
+        entCollide = false;
 
-	    baseReach = 32;
-	    viewDist = 4096;
+	    baseReach = 2;
+	    viewDist = 32;
 
-	    radius = 4;
+	    radius = 0.5;
 
         rotationSpeed = 0.03;
-        walkSpeed = 0.4; // disabling walking
-        runSpeed = 0.4;
-        crouchSpeed = 0.15;
+        walkSpeed = 0.04; // disabling walking
+        runSpeed = 0.04;
+        crouchSpeed = 0.01;
 
-        camHeightMod = 2.0;
-        crouchHeightMod = 4.0;
+        camHeightMod = 0.025;
+        crouchHeightMod = 0.4;
 
 //        maxHealth = 10;
         maxHealth = 100;

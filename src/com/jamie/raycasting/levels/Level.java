@@ -22,7 +22,7 @@ public abstract class Level
 
     private int sizeX;
     private int sizeZ;
-    public int levelHeight = 8;
+    public double levelHeight = 0.5;
 
     public double spawnX;
     public double spawnZ;
@@ -99,7 +99,7 @@ public abstract class Level
                 if (mob != null) {
                     addEntity(mob);
 
-                    mob.setPosition((xb * 16) + 8, (zb * 16) + 8);
+                    mob.setPosition(xb + 0.5, zb + 0.5);
                 }
             }
         }
@@ -231,9 +231,9 @@ public abstract class Level
         return null;
     }
 
-    private void setDefaultSpawn(int x, int z) {
-        spawnX = (x * 16) + 8;
-        spawnZ = (z * 16) + 8;
+    private void setDefaultSpawn(double x, double z) {
+        spawnX = x + 0.5;
+        spawnZ = z + 0.5;
     }
 
     public void setSpawn(int id) {
@@ -241,8 +241,8 @@ public abstract class Level
             for (int x = 0; x < sizeX; x++) {
                 Block b = blocks[x + z * sizeX];
                 if (b.id == id && b instanceof LadderBlock) {
-                    spawnX = (x * 16) + 8;
-                    spawnZ = (z * 16) + 8;
+                    spawnX = x + 0.5;
+                    spawnZ = z + 0.5;
                     return;
                 }
             }
@@ -251,10 +251,10 @@ public abstract class Level
 
     public boolean blockContainsEntity(int x, int z) {
         Block block = getBlock(x, z);
-        int bX0 = block.gridX * 16;
-        int bX1 = (block.gridX * 16) + 16;
-        int bZ0 = block.gridZ * 16;
-        int bZ1 = (block.gridZ * 16) + 16;
+        int bX0 = block.gridX;
+        int bX1 = block.gridX + 1;
+        int bZ0 = block.gridZ;
+        int bZ1 = block.gridZ + 1;
         for (int i = 0; i < countEntities(); i++) {
             Entity e = getEntity(i);
             if (e.solid) {
@@ -281,7 +281,7 @@ public abstract class Level
         level.sizeX = sizeX;
         level.sizeZ = sizeZ;
 
-        level.setDefaultSpawn(8, 8);
+        level.setDefaultSpawn(0.5, 0.5);
 
         level.blocks = new Block[sizeX * sizeZ];
 

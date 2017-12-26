@@ -28,8 +28,8 @@ public abstract class Mob extends Entity
     private List<Sprite> deathSprites = new ArrayList<Sprite>();
 
     // distances
-    public int baseReach = 24;
-    public int viewDist = 64;
+    public double baseReach = 2.5;
+    public double viewDist = 4;
 
     // actions
     public InputHandler input;
@@ -45,8 +45,8 @@ public abstract class Mob extends Entity
     protected double runSpeed = 0.4;
     protected double crouchSpeed = 0.15;
 
-    protected double camHeightMod = 2.0;
-    protected double crouchHeightMod = 4.0;
+    protected double camHeightMod = 0.2;
+    protected double crouchHeightMod = 0.4;
 
     public double camY = camHeightMod;
     public double yBob = 0;
@@ -183,7 +183,7 @@ public abstract class Mob extends Entity
         }
     }
 
-    public int getRightHandReach() {
+    public double getRightHandReach() {
         if (countItems() > 0 && !rightHandEmpty) {
             return baseReach + getRightHandItem().reach;
         }
@@ -253,10 +253,10 @@ public abstract class Mob extends Entity
 
         // View bob:
         if ((input.forward ^ input.back) || (input.left ^ input.right)) {
-            bobTime++;
-            yBob += Math.sin(bobTime / (7 - (moveSpeed * 10))) * 0.25;
+//            bobTime++;
+//            yBob += Math.sin(bobTime / (7 - (moveSpeed * 10))) * 0.25;
         } else {
-            bobTime = 0;
+//            bobTime = 0;
         }
         camY += yBob;
         yBob *= 0.75;
@@ -269,10 +269,10 @@ public abstract class Mob extends Entity
     }
 
     private boolean isWallBlocked(double x, double z) {
-        int x0 = (int) (Math.floor((x + radius) / 16));
-        int x1 = (int) (Math.floor((x - radius) / 16));
-        int z0 = (int) (Math.floor((z + radius) / 16));
-        int z1 = (int) (Math.floor((z - radius) / 16));
+        int x0 = (int) (Math.floor(x + radius));
+        int x1 = (int) (Math.floor(x - radius));
+        int z0 = (int) (Math.floor(z + radius));
+        int z1 = (int) (Math.floor(z - radius));
 
         if (level.getBlock(x0, z0).isSolid) return true;
         if (level.getBlock(x1, z0).isSolid) return true;
@@ -381,7 +381,7 @@ public abstract class Mob extends Entity
         swapSprites(hurtSprites, 20);
 //        runAnimSprite(hurtSprites);
 
-        yBob -= 6;
+        yBob -= 0.8;
         health -= damage;
         hurtTime = 30;
 
@@ -420,14 +420,14 @@ public abstract class Mob extends Entity
         }
 
 
-        double blockUseDist = ((double) getRightHandReach()) / 16;
-        int divs = getRightHandReach();
-        double xa = (blockUseDist * Math.sin(rotation));
-        double za = (blockUseDist * Math.cos(rotation));
+        double blockUseDist = getRightHandReach();
+        int divs = (int) (getRightHandReach() * 100);
+        double xa = blockUseDist * Math.sin(rotation);
+        double za = blockUseDist * Math.cos(rotation);
 
         for (int i = 0; i < divs; i++) {
-            double xx = posX + xa * (i * 16) / divs;
-            double zz = posZ + za * (i * 16) / divs;
+            double xx = posX + xa * i / divs;
+            double zz = posZ + za * i / divs;
             for (int b = 0; b < closeEnts.size(); b++) {
                 Entity ent = closeEnts.get(b);
                 if (ent instanceof Mob && ent != this) {
@@ -438,9 +438,9 @@ public abstract class Mob extends Entity
                 }
             }
 
-            int xb = (int) (xx / 16);
-            int zb = (int) (zz / 16);
-            if (xb != (int) (posX / 16) || zb != (int) (posZ / 16)) {
+            int xb = (int) xx;
+            int zb = (int) zz;
+            if (xb != (int) (posX) || zb != (int) (posZ)) {
                 Block block = level.getBlock(xb, zb);
                 if (block.use(this)) return;
 

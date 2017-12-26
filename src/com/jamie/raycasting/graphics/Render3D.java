@@ -12,8 +12,7 @@ public class Render3D extends Render
     private double xCentre = width / 2.0;
     private double yCentre = height / 2.0;
 
-    private double floorDepth = 8.0;
-    private double ceilingHeight = 8.0;
+    private double ceilingHeight = 1;
 
 	private double cosine, sine;
 
@@ -35,14 +34,14 @@ public class Render3D extends Render
 
         ceilingHeight = p.level.levelHeight;
 
-        displacedCamX = p.posX / 16;
-        displacedCamY = -p.camY / 16;
-        displacedCamZ = p.posZ / 16;
+        displacedCamX = p.posX;
+        displacedCamY = -p.camY;
+        displacedCamZ = p.posZ;
 
-	    xBlockStart = (int) (p.posX / 16) - 24;
-	    xBlockEnd = (int) (p.posX / 16) + 24;
-	    zBlockStart = (int) (p.posZ / 16) - 24;
-	    zBlockEnd = (int) (p.posZ / 16) + 24;
+	    xBlockStart = (int) (p.posX) - 160;
+	    xBlockEnd = (int) (p.posX) + 160;
+	    zBlockStart = (int) (p.posZ) - 160;
+	    zBlockEnd = (int) (p.posZ) + 160;
 
         cosine = Math.cos(p.rotation);
         sine = Math.sin(p.rotation);
@@ -60,7 +59,7 @@ public class Render3D extends Render
             double yDist = (y - height / 2.0) / height;
 
             boolean isFloor = true;
-            double zDist = (floorDepth + p.camY) / yDist;
+            double zDist = (0.5 + p.camY) / yDist;
             if (yDist < 0) {
                 isFloor = false;
                 zDist = (ceilingHeight - p.camY) / -yDist;
@@ -75,8 +74,8 @@ public class Render3D extends Render
 
                 int xTexture = (int) (xx + p.posX);
                 int zTexture = (int) (zz + p.posZ);
-                int xTile = (xTexture >> 4);
-                int zTile = (zTexture >> 4);
+                int xTile = (xTexture >> 8);
+                int zTile = (zTexture >> 8);
 
                 zBuffer[x + y * width] = zDist;
 
@@ -125,7 +124,7 @@ public class Render3D extends Render
 		if (yPixelLInt < 0) yPixelLInt = 0;
 		if (yPixelRInt > height) yPixelRInt = height;
 
-		double distBuffer = rotZ * 8;
+		double distBuffer = rotZ * 0.5;
 
 		int scale = tex.width; // 16 // use to implement texture scales
 
@@ -237,7 +236,7 @@ public class Render3D extends Render
                 int colour = texture.pixels[(xTexture & 15) + (yTexture & 15) * 16];
                 if (colour != 0xffff00ff) {
                     pixels[x + y * width] = pixels[x + y * width] = colour;
-                    zBuffer[x + y * width] = 1 / zWall * 8;
+                    zBuffer[x + y * width] = 1 / zWall * 0.5;
                 }
 			}
 		}
@@ -258,7 +257,7 @@ public class Render3D extends Render
 			Entity entity = p.level.getEntity(i);
             for (int b = 0; b < entity.countSprites(); b++) {
                 Sprite sprite = entity.getSprite(b);
-                renderSprite((entity.posX + sprite.x) / 16, entity.posY + sprite.y, (entity.posZ + sprite.z) / 16, sprite.render());
+                renderSprite(entity.posX + sprite.x, entity.posY + sprite.y, entity.posZ + sprite.z, sprite.render());
             }
 		}
 	}

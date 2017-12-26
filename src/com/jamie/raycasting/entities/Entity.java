@@ -20,7 +20,7 @@ public class Entity
     public boolean removed = false;
 
     public boolean solid = true;
-    public double radius = 6.0;
+    public double radius = 0.8;
 
     public double rotation;
     public double posX, posZ;
