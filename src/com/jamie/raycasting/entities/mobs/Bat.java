@@ -14,15 +14,15 @@ public class Bat extends Mob
 //        wallCollide = false;
 //        entCollide = false;
 
-        baseReach = 1.5;
+        baseReach = 1;
         viewDist = 4;
 
         radius = 0.25;
 
         rotationSpeed = 0.03;
-        walkSpeed = 0.025;
-        runSpeed = 0.025;
-        crouchSpeed = 0.025;
+        walkSpeed = 0.0125;
+        runSpeed = 0.0125;
+        crouchSpeed = 0.0125;
 
         camHeightMod = 0.025;
         crouchHeightMod = 0.25;

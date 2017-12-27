@@ -84,18 +84,18 @@ public class Sprite
     }
 
     public void tick() {
-	    if (!isAnimated) return;
-
-        if (animTick > 0) {
-            animTick--;
-        } else {
-            if (index >= countTextures() - 1) {
-                index = 0;
+        if (isAnimated) {
+            if (animTick > 0) {
+                animTick--;
             } else {
-                index++;
-            }
+                if (index >= countTextures() - 1) {
+                    index = 0;
+                } else {
+                    index++;
+                }
 
-            animTick = interval;
+                animTick = interval;
+            }
         }
     }
 }
