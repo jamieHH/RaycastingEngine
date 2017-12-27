@@ -17,7 +17,6 @@ public class Render3D extends Render
 	private double cosine, sine;
 
 	private int xBlockStart, xBlockEnd, zBlockStart, zBlockEnd;
-	private double displacedCamX, displacedCamY, displacedCamZ;
 
 	private double fov;
 
@@ -33,10 +32,6 @@ public class Render3D extends Render
 	    this.p = p;
 
         ceilingHeight = p.level.levelHeight;
-
-        displacedCamX = p.posX;
-        displacedCamY = -p.camY;
-        displacedCamZ = p.posZ;
 
 	    xBlockStart = (int) (p.posX) - 160;
 	    xBlockEnd = (int) (p.posX) + 160;
@@ -59,10 +54,10 @@ public class Render3D extends Render
             double yDist = (y - height / 2.0) / height;
 
             boolean isFloor = true;
-            double zDist = (0.5 + (p.camY - 0)) / yDist;
+            double zDist = (0.5 + (p.camY - 0.5)) / yDist;
             if (yDist < 0) {
                 isFloor = false;
-                zDist = (ceilingHeight - p.camY) / -yDist;
+                zDist = (ceilingHeight - (p.camY - 0.5)) / -yDist;
             }
 
             for (int x = 0; x < width; x++) {
@@ -96,9 +91,9 @@ public class Render3D extends Render
     }
 
 	private void renderSprite(double x, double y, double z, Render tex) {
-		double xc = (x - displacedCamX) * 2.0;
-		double yc = (-y - displacedCamY) * 2.0;
-		double zc = (z - displacedCamZ) * 2.0;
+		double xc = (x - p.posX) * 2.0;
+		double yc = (y + (p.camY - 0.5)) * 2.0;
+		double zc = (z - p.posZ) * 2.0;
 
 		double rotX = xc * cosine - zc * sine;
 		double rotY = yc;
@@ -147,29 +142,34 @@ public class Render3D extends Render
 	}
 
 
-	private void renderWall(double xLeft, double zLeft, double xRight, double zRight, double yHeight, Render texture) {
-		double xcLeft = (xLeft - displacedCamX) * 2;
-		double zcLeft = (zLeft - displacedCamZ) * 2;
+	private void renderWall(double xLeft, double zLeft, double xRight, double zRight, Render texture) {
+	    double yB = 0; // Bottom y position.
+
+		double xcLeft = (xLeft - p.posX) * 2;
+		double zcLeft = (zLeft - p.posZ) * 2;
 
 		double rotLeftSideX = xcLeft * cosine - zcLeft * sine;
-		double yCornerTL = (-yHeight - displacedCamY) * 2;
-		double yCornerBL = (yHeight - displacedCamY) * 2;
+        double yCornerTL = (-yB + (p.camY - 1)) * 2.0;
+        double yCornerBL = (-yB + p.camY) * 2.0;
 		double rotLeftSideZ = zcLeft * cosine + xcLeft * sine;
 
-		double xcRight = (xRight - displacedCamX) * 2;
-		double zcRight = (zRight - displacedCamZ) * 2;
+		double xcRight = (xRight - p.posX) * 2;
+		double zcRight = (zRight - p.posZ) * 2;
 
 		double rotRightSideX = xcRight * cosine - zcRight * sine;
-		double yCornerTR = (-yHeight - displacedCamY) * 2;
-		double yCornerBR = (yHeight - displacedCamY) * 2;
+        double yCornerTR = (-yB + (p.camY - 1)) * 2.0;
+        double yCornerBR = (-yB + p.camY) * 2.0;
 		double rotRightSideZ = zcRight * cosine + xcRight * sine;
 
 		double xt0 = 0;
-        double xt1 = 16;
+        double xt1;
 
         // below flips textures on opposite surfaces
-        if (xRight - xLeft == 0) xt1 = (zLeft - zRight) * 16;
-        else if (zRight - zLeft == 0) xt1 = (xRight - xLeft) * 16;
+        if (xRight - xLeft == 0) {
+            xt1 = (zLeft - zRight) * 16;
+        } else {
+            xt1 = (xRight - xLeft) * 16;
+        }
 
 		double clip = 0.2;
 
@@ -274,30 +274,30 @@ public class Render3D extends Render
                     double openness = 1 - ((DoorBlock) block).openness * 7 / 8;
 
                     if (east.isOpaque) {
-                        renderWall(xBlock + openness, zBlock + 1 - rr, xBlock - 1 + openness, zBlock + 1 - rr, 0.5, block.wallTex);
-                        renderWall(xBlock - 1 + openness, zBlock + rr, xBlock + openness, zBlock + rr, 0.5, block.wallTex);
-                        renderWall(xBlock + openness, zBlock + rr, xBlock + openness, zBlock + 1 - rr, 0.5, block.wallTex);
+                        renderWall(xBlock + openness, zBlock + 1 - rr, xBlock - 1 + openness, zBlock + 1 - rr, block.wallTex);
+                        renderWall(xBlock - 1 + openness, zBlock + rr, xBlock + openness, zBlock + rr, block.wallTex);
+                        renderWall(xBlock + openness, zBlock + rr, xBlock + openness, zBlock + 1 - rr, block.wallTex);
                     } else {
                         openness = 2 - openness;
-                        renderWall(xBlock + 1 - rr, zBlock - 1 + openness, xBlock + 1 - rr, zBlock + openness, 0.5, block.wallTex);
-                        renderWall(xBlock + rr, zBlock + openness, xBlock + rr, zBlock - 1 + openness, 0.5, block.wallTex);
-                        renderWall(xBlock + rr, zBlock - 1 + openness, xBlock + 1 - rr, zBlock - 1 + openness, 0.5, block.wallTex);
+                        renderWall(xBlock + 1 - rr, zBlock - 1 + openness, xBlock + 1 - rr, zBlock + openness, block.wallTex);
+                        renderWall(xBlock + rr, zBlock + openness, xBlock + rr, zBlock - 1 + openness, block.wallTex);
+                        renderWall(xBlock + rr, zBlock - 1 + openness, xBlock + 1 - rr, zBlock - 1 + openness, block.wallTex);
                     }
                 }
 
                 if (block.isOpaque) {
                     if (!east.isOpaque) {
-                        renderWall(xBlock + 1, zBlock, xBlock + 1, zBlock + 1, 0.5, block.wallTex);
+                        renderWall(xBlock + 1, zBlock, xBlock + 1, zBlock + 1, block.wallTex);
                     }
                     if (!south.isOpaque) {
-                        renderWall(xBlock + 1, zBlock + 1, xBlock, zBlock + 1, 0.5, block.wallTex);
+                        renderWall(xBlock + 1, zBlock + 1, xBlock, zBlock + 1, block.wallTex);
                     }
                 } else {
                     if (east.isOpaque) {
-                        renderWall(xBlock + 1, zBlock + 1, xBlock + 1, zBlock, 0.5, east.wallTex);
+                        renderWall(xBlock + 1, zBlock + 1, xBlock + 1, zBlock, east.wallTex);
                     }
                     if (south.isOpaque) {
-                        renderWall(xBlock, zBlock + 1, xBlock + 1, zBlock + 1, 0.5, south.wallTex);
+                        renderWall(xBlock, zBlock + 1, xBlock + 1, zBlock + 1, south.wallTex);
                     }
                 }
 			}

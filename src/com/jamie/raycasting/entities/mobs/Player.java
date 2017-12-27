@@ -22,8 +22,8 @@ public class Player extends Mob
         runSpeed = 0.04;
         crouchSpeed = 0.01;
 
-        camHeightMod = 0; // 0.75
-        crouchHeightMod = 0.25;
+        camHeightMod = 0.625;
+        crouchHeightMod = 0.5;
 
 //        maxHealth = 10;
         maxHealth = 100;
