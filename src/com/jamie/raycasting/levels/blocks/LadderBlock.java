@@ -15,13 +15,13 @@ public class LadderBlock extends Block
 			floorTex = Texture.floor;
 			ceilTex = Texture.ladderHole;
 
-            Sprite sprite = new Sprite(Texture.ladder, 0, 0.2, 0);
+            Sprite sprite = new Sprite(Texture.ladder, 0, 0.125, 0);
             addSprite(sprite);
 		} else {
             floorTex = Texture.ladderHole;
             ceilTex = Texture.floor;
 
-            Sprite sprite = new Sprite(Texture.ladder, 0, -0.15, 0);
+            Sprite sprite = new Sprite(Texture.ladder, 0, -0.125, 0);
             addSprite(sprite);
         }
 	}
@@ -29,11 +29,11 @@ public class LadderBlock extends Block
 	public void tick() {
         if (level.player != null) { // stopgap for null player exception
             if (disabled) {
-                if (level.player.squareDistanceFrom((gridX * 16) + 8, (gridZ * 16) + 8) > 16) {
+                if (level.player.squareDistanceFrom(gridX + 0.5, gridZ + 0.5) > 1) {
                     disabled = false;
                 }
             } else {
-                if (level.player.squareDistanceFrom((gridX * 16) + 8, (gridZ * 16) + 8) < 16) {
+                if (level.player.squareDistanceFrom(gridX + 0.5, gridZ + 0.5) < 1) {
                     level.switchLevel(id);
                 }
             }

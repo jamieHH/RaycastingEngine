@@ -92,7 +92,7 @@ public class Render3D extends Render
 
 	private void renderSprite(double x, double y, double z, Render tex) {
 		double xc = (x - p.posX) * 2.0;
-		double yc = (y + (p.camY - 0.5)) * 2.0;
+		double yc = (-y + (p.camY - 0.5)) * 2.0;
 		double zc = (z - p.posZ) * 2.0;
 
 		double rotX = xc * cosine - zc * sine;

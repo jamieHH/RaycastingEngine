@@ -7,7 +7,7 @@ public class PrisonLevel extends Level
 	public PrisonLevel() {
         name = "Prison";
 
-        addEntity(new AxeDrop(194, 264));
+        addEntity(new AxeDrop(16.5, 20.5));
 	}
 
     public void switchLevel(int id) {

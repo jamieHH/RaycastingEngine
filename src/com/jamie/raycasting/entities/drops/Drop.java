@@ -7,7 +7,7 @@ public abstract class Drop extends Entity
 {
     public Item item;
 
-    public Drop(int x, int z) {
+    public Drop(double x, double z) {
         setPosition(x, z);
         posY = 0.5;
         radius = 1;

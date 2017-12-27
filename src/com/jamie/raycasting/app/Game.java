@@ -132,7 +132,7 @@ public class Game
 
 		player.setPosition(level.spawnX, level.spawnZ);
 
-		Block spawnBlock = level.getBlock((int) (level.spawnX - 8) / 16, (int) (level.spawnZ - 8) / 16);
+		Block spawnBlock = level.getBlock((int) level.spawnX, (int) level.spawnZ); // find a better way to disable the ladder block
 
 		if (spawnBlock instanceof LadderBlock) {
             ((LadderBlock) spawnBlock).disabled = true;
