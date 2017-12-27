@@ -314,11 +314,18 @@ public class Render3D extends Render
 //            } else {
             // TODO: Incorporate p.viewDistance into this equation
 
-            double xx = ((i % width - width / 2.0) / width);
-            int brightness = (int) (256 - ((iBuff) * (((xx * xx) * 2) + 2)));
+            int factor = 4;
+            int i0 = factor * 1;
+            int i1 = factor * 8;
 
-            if (brightness < 0) brightness = 0;
-            else if (brightness > 255) brightness = 255;
+            double xx = ((i % width - width / 2.0) / width) * i0;
+            int brightness = (int) (256 - ((iBuff) * (((xx * xx) * 2) + i1)));
+
+            if (brightness < 0) {
+                brightness = 0;
+            } else if (brightness > 255) {
+                brightness = 255;
+            }
 
             int r = (colour >> 16) & 0xff;
             int g = (colour >> 8) & 0xff;
