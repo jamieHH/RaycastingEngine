@@ -139,7 +139,7 @@ public class Screen extends Render
             if (p.getRightHandItem() != null) {
                 Render rightItemTex = p.getRightHandItem().getTexture();
                 if (rightItemTex != null) {
-                    draw(rightItemTex, render.width - rightItemTex.width, (render.height - rightItemTex.height) + ((int) (p.yBob * 4)) + 4);
+                    draw(rightItemTex, render.width - rightItemTex.width, (render.height - rightItemTex.height) + ((int) (p.yBob * 100)) + 4);
                 }
             }
 

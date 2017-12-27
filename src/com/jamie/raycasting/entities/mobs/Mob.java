@@ -253,10 +253,10 @@ public abstract class Mob extends Entity
 
         // View bob:
         if ((input.forward ^ input.back) || (input.left ^ input.right)) {
-//            bobTime++;
-//            yBob += Math.sin(bobTime / (7 - (moveSpeed * 10))) * 0.25;
+            bobTime++;
+            yBob += Math.sin(bobTime / (3 - (moveSpeed * 10))) * 0.01;
         } else {
-//            bobTime = 0;
+            bobTime = 0;
         }
         camY += yBob;
         yBob *= 0.75;
