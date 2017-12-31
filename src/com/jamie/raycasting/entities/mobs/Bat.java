@@ -13,6 +13,7 @@ public class Bat extends Mob
 
 //        wallCollide = false;
 //        entCollide = false;
+        isSolid = true;
 
         baseReach = 1;
         viewDist = 4;
@@ -24,8 +25,8 @@ public class Bat extends Mob
         runSpeed = 0.0125;
         crouchSpeed = 0.0125;
 
-        camHeightMod = 0.025;
-        crouchHeightMod = 0.25;
+        camHeightMod = 0.652;
+        crouchHeightMod = 0.5;
 
         maxHealth = 10;
 //        maxHealth = 100;

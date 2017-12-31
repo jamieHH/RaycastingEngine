@@ -284,7 +284,7 @@ public abstract class Mob extends Entity
     private boolean isEntityBlocked(double x, double z) {
         for (int i = 0; i < level.countEntities(); i++) {
             Entity e = level.getEntity(i);
-            if (e.solid) {
+            if (e.isSolid) {
                 double entX = e.posX;
                 double entZ = e.posZ;
                 double entRadius = e.radius;

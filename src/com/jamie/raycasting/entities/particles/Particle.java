@@ -8,7 +8,7 @@ public abstract class Particle extends Entity
 
     public Particle(double x, double z) {
         setPosition(x, z);
-        solid = false;
+        isSolid = false;
     }
 
     public void tick() {

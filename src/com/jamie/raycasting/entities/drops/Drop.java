@@ -11,7 +11,7 @@ public abstract class Drop extends Entity
         setPosition(x, z);
         posY = 0.5;
         radius = 1;
-        solid = false;
+        isSolid = false;
     }
 
     public void tick() {

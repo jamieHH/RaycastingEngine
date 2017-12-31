@@ -19,7 +19,7 @@ public class Entity
 	public Level level;
     public boolean removed = false;
 
-    public boolean solid = true;
+    public boolean isSolid = true;
     public double radius = 0.8;
 
     public double rotation;

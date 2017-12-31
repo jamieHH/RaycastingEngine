@@ -9,8 +9,9 @@ public class Player extends Mob
 	public Player(InputHandler input) {
         super(input);
 
-        wallCollide = false;
-        entCollide = false;
+//        wallCollide = false;
+//        entCollide = false;
+        isSolid = true;
 
 	    baseReach = 2;
 	    viewDist = 32;

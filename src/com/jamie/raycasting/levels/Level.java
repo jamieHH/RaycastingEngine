@@ -86,7 +86,7 @@ public abstract class Level
                 blocks[x + z * sizeX] = block;
 
                 if (col == 0xFFFF00) {
-                    setDefaultSpawn(x, z);
+                    setDefaultSpawn(x + 0.5, z + 0.5);
                 }
             }
         }
@@ -232,8 +232,8 @@ public abstract class Level
     }
 
     private void setDefaultSpawn(double x, double z) {
-        spawnX = x + 0.5;
-        spawnZ = z + 0.5;
+        spawnX = x;
+        spawnZ = z;
     }
 
     public void setSpawn(int id) {
@@ -257,7 +257,7 @@ public abstract class Level
         int bZ1 = block.gridZ + 1;
         for (int i = 0; i < countEntities(); i++) {
             Entity e = getEntity(i);
-            if (e.solid) {
+            if (e.isSolid) {
                 if ((e.posX + e.radius > bX0 && e.posX - e.radius < bX1) && (e.posZ + e.radius > bZ0 && e.posZ - e.radius < bZ1)) {
                     return true;
                 }

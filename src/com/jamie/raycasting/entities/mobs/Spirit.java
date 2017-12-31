@@ -16,27 +16,26 @@ public class Spirit extends Mob
 
         wallCollide = false;
         entCollide = false;
-        solid = false;
+        isSolid = false;
 
-        baseReach = 1.5;
-        viewDist = 16;
+        baseReach = 1;
+        viewDist = 4;
 
         radius = 0.25;
 
         rotationSpeed = 0.03;
-        walkSpeed = 0.0;
-        runSpeed = 0.0;
-        crouchSpeed = 0.025;
+        walkSpeed = 0.0125;
+        runSpeed = 0.0125;
+        crouchSpeed = 0.0125;
 
-        camHeightMod = 0.025;
-        crouchHeightMod = 0.25;
+        camHeightMod = 0.625;
+        crouchHeightMod = 0.5;
 
         maxHealth = 10;
 //        maxHealth = 100;
         health = maxHealth;
 
         hurtParticle = new DustParticle(0, 0);
-        hurtParticleCount = 2;
 
         Render[] ts = {
                 Texture.spirit0,
