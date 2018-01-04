@@ -1,6 +1,7 @@
 package com.jamie.raycasting.entities;
 
 import com.jamie.raycasting.graphics.Sprite;
+import com.jamie.raycasting.graphics.SpriteSet;
 import com.jamie.raycasting.levels.Level;
 
 import java.util.ArrayList;
@@ -11,10 +12,7 @@ public class Entity
 {
 	protected static final Random random = new Random();
 
-	private List<Sprite> sprites = new ArrayList<Sprite>();
-    private List<Sprite> tmpSprites = new ArrayList<Sprite>();
-    private int swapSpriteTicks = 0;
-    private boolean spritesAreSwapped = false;
+    private SpriteSet spriteSet = new SpriteSet();
 
 	public Level level;
     public boolean removed = false;
@@ -31,69 +29,38 @@ public class Entity
         removed = true;
 	}
 
-	public void setSprites(List<Sprite> ss) {
-        resetSprites();
-        sprites = ss;
+    public List<Sprite> getSprites() {
+        return spriteSet.getSprites();
     }
 
-    public void addSprite(Sprite s) {
-        sprites.add(s);
+    public void addIdleSprite(Sprite s) {
+        List<Sprite> set = new ArrayList<Sprite>();
+        set.add(s);
+        addSpriteSet("idle", set);
     }
 
     public Sprite getSprite(int i) {
-        return sprites.get(i);
+        return getSprites().get(i);
     }
 
     public int countSprites() {
-        return sprites.size();
+        return getSprites().size();
     }
 
-    public void clearSprites() {
-        sprites.clear();
+    public void addSpriteSet(String name, List<Sprite> sprites) {
+	    spriteSet.addSet(name, sprites);
     }
 
-	public void tick() {
-        for (int i = 0; i < countSprites(); i++) {
-            sprites.get(i).tick();
-        }
-
-        if (swapSpriteTicks > 0) {
-            swapSpriteTicks--;
-        } else if (swapSpriteTicks == 0 && spritesAreSwapped) {
-            resetSprites();
-        }
-	}
-
-	private void resetSprites() {
-        if (spritesAreSwapped) {
-            spritesAreSwapped = false;
-            swapSpriteTicks = 0;
-            this.sprites = tmpSprites;
-        }
+    protected void switchSpriteSet(String name) {
+        spriteSet.switchSet(name);
     }
 
-    protected void swapSprites(List<Sprite> sprites, int ticks) {
-        if (spritesAreSwapped) return;
-        swapSpriteTicks = ticks;
-        spritesAreSwapped = true;
-        tmpSprites = this.sprites;
-        this.sprites = sprites;
+    protected void runSpriteSet(String name) {
+        spriteSet.runSet(name);
     }
 
-    protected void runAnimSprite(List<Sprite> sprites) {
-        if (spritesAreSwapped) return;
-
-        int flushTime = 0;
-        for (int i = 0; i < sprites.size(); i++) {
-            int time = sprites.get(i).countTextures() * sprites.get(i).interval;
-            if (time > flushTime) flushTime = time;
-        }
-
-        swapSpriteTicks = flushTime;
-
-        spritesAreSwapped = true;
-        tmpSprites = this.sprites;
-        this.sprites = sprites;
+    public void tick() {
+        spriteSet.tick();
     }
 
     public void setPosition(double x, double z) {

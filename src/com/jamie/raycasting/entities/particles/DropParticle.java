@@ -15,6 +15,6 @@ public class DropParticle extends Particle
 
         SpriteParticle particle = new SpriteParticle(t, 0, 1, 0);
 
-        addSprite(particle);
+        addIdleSprite(particle);
     }
 }

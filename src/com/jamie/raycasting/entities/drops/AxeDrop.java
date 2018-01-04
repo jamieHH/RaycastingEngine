@@ -9,6 +9,6 @@ public class AxeDrop extends Drop
     public AxeDrop(double x, double z) {
         super(x, z);
         item = new AxeWeapon();
-        addSprite(new Sprite(Texture.blood0));
+        addIdleSprite(new Sprite(Texture.blood0));
     }
 }

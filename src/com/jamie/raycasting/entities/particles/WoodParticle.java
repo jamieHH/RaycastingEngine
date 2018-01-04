@@ -15,7 +15,7 @@ public class WoodParticle extends Particle
 //        int i = random.nextInt(textures.size());
 //
 //        SpriteParticle tex = new SpriteParticle(textures.get(i), 0, 0.5, 0);
-//        addSprite(tex);
+//        addIdleSprite(tex);
 
         Render[] ts = {
                 Texture.splinter0,
@@ -24,6 +24,6 @@ public class WoodParticle extends Particle
 
         SpriteParticle particle = new SpriteParticle(ts[random.nextInt(ts.length)], 0, 0.5, 0);
 
-        addSprite(particle);
+        addIdleSprite(particle);
     }
 }

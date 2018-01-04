@@ -55,7 +55,7 @@ public class Bat extends Mob
         Render[] ts4 = {
                 Texture.splat1,
         };
-        addDeathSprite(new Sprite(ts4, 5));
+        addDeathSprite(new Sprite(ts4, 10));
     }
 
     public void tick() {

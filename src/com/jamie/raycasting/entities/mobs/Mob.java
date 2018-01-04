@@ -5,6 +5,7 @@ import com.jamie.raycasting.entities.particles.BloodParticle;
 import com.jamie.raycasting.entities.particles.Particle;
 import com.jamie.raycasting.entities.particles.PoofParticle;
 import com.jamie.raycasting.graphics.Sprite;
+import com.jamie.raycasting.graphics.Texture;
 import com.jamie.raycasting.input.InputHandler;
 import com.jamie.raycasting.input.UserInputHandler;
 import com.jamie.raycasting.items.Item;
@@ -21,11 +22,6 @@ public abstract class Mob extends Entity
     // details
     protected Particle hurtParticle;
     protected int hurtParticleCount = 2;
-
-    private List<Sprite> idleSprites = new ArrayList<Sprite>();
-    private List<Sprite> actionSprites = new ArrayList<Sprite>();
-    private List<Sprite> hurtSprites = new ArrayList<Sprite>();
-    private List<Sprite> deathSprites = new ArrayList<Sprite>();
 
     // distances
     public double baseReach = 1.5;
@@ -76,7 +72,10 @@ public abstract class Mob extends Entity
         input.setMob(this);
         this.input = input;
 
-        setSprites(idleSprites);
+        addIdleSprite(new Sprite(Texture.none));
+        addActionSprite(new Sprite(Texture.none));
+        addHurtSprite(new Sprite(Texture.none));
+        addDeathSprite(new Sprite(Texture.none));
     }
 
     public void tick() {
@@ -90,8 +89,14 @@ public abstract class Mob extends Entity
             input.tick();
         }
 
-        if (hurtTime > 0) hurtTime--;
-        if (useTicks > 0) useTicks--;
+        if (hurtTime > 0) {
+            hurtTime--;
+        }
+
+        if (useTicks > 0) {
+            useTicks--;
+        }
+
         if (hudHeadingsTicks > 0) {
             hudHeadingsTicks--;
         } else {
@@ -104,7 +109,15 @@ public abstract class Mob extends Entity
         if (isDieing) {
             camY = -6.0;
             if (!isDead) {
-                dieTick();
+                dieTime--;
+                if (dieTime == 0) {
+                    for (int i = 0; i < 6 ; i++) {
+                        PoofParticle particle = new PoofParticle(posX, posZ);
+                        level.addEntity(particle);
+                    }
+
+                    isDead = true;
+                }
             } else {
                 if (!(this instanceof Player)) {
                     remove();
@@ -128,6 +141,11 @@ public abstract class Mob extends Entity
 
             doMovements();
         }
+    }
+
+    private void die() {
+        switchSpriteSet("death");
+        isDieing = true;
     }
 
     public void addHudHeading(String s) {
@@ -156,10 +174,6 @@ public abstract class Mob extends Entity
 
     public int countItems() {
         return items.size();
-    }
-
-    public void clearItems(Item i) {
-        items.clear();
     }
 
     public Item getRightHandItem() {
@@ -197,38 +211,22 @@ public abstract class Mob extends Entity
         return baseDamage;
     }
 
-    public void addIdleSprite(Sprite s) {
-        idleSprites.add(s);
-    }
-
     public void addHurtSprite(Sprite s) {
-        hurtSprites.add(s);
+        List<Sprite> set = new ArrayList<Sprite>();
+        set.add(s);
+        addSpriteSet("hurt", set);
     }
 
     public void addActionSprite(Sprite s) {
-        actionSprites.add(s);
+        List<Sprite> set = new ArrayList<Sprite>();
+        set.add(s);
+        addSpriteSet("action", set);
     }
 
     public void addDeathSprite(Sprite s) {
-        deathSprites.add(s);
-    }
-
-
-    private void die() {
-        setSprites(deathSprites);
-        isDieing = true;
-    }
-
-    private void dieTick() {
-        dieTime--;
-        if (dieTime <= 0) {
-            isDead = true;
-
-            for (int i = 0; i < 6 ; i++) {
-                PoofParticle particle = new PoofParticle(posX, posZ);
-                level.addEntity(particle);
-            }
-        }
+        List<Sprite> set = new ArrayList<Sprite>();
+        set.add(s);
+        addSpriteSet("death", set);
     }
 
     private void doMovements() {
@@ -378,8 +376,8 @@ public abstract class Mob extends Entity
 
     public void hurt(Mob source, int damage) {
         if (hurtTime > 0 || damage <= 0 || isDieing) return;
-        swapSprites(hurtSprites, 20);
-//        runAnimSprite(hurtSprites);
+
+        runSpriteSet("hurt");
 
         yBob -= 0.8;
         health -= damage;
@@ -409,8 +407,8 @@ public abstract class Mob extends Entity
             getRightHandItem().use();
         }
 
-        swapSprites(actionSprites, 20);
-//        runAnimSprite(actionSprites);
+        runSpriteSet("action");
+
         List<Entity> closeEnts = new ArrayList<Entity>();
         for (int e = 0; e < level.countEntities(); e++) {
             Entity ent = level.getEntity(e);
