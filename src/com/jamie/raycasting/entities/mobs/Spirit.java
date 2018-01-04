@@ -48,17 +48,17 @@ public class Spirit extends Mob
         Render[] ts2 = {
                 Texture.spiritAtt0,
         };
-        addActionSprite(new Sprite(ts2));
+        addActionSprite(new Sprite(ts2, 15));
 
         Render[] ts3 = {
                 Texture.spiritHurt0,
         };
-        addHurtSprite(new Sprite(ts3));
+        addHurtSprite(new Sprite(ts3, 15));
 
         Render[] ts4 = {
                 Texture.splat1,
         };
-        addDeathSprite(new Sprite(ts4, 10));
+        addDeathSprite(new Sprite(ts4, 30));
     }
 
     public void tick() {

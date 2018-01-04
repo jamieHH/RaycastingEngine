@@ -9,7 +9,7 @@ public class SpriteSet
 {
     private Map<String, List<Sprite>> set = new HashMap<String, List<Sprite>>();
     public String setKey = "idle";
-    private String previousSetKey;
+    public String defaultKey = "idle";
     private int setSwapTicks = 0;
     private boolean setIsSwapped = false;
 
@@ -21,31 +21,16 @@ public class SpriteSet
         set.put(name, sprites);
     }
 
-    public void addSpriteToSet(String name, Sprite sprite) {
-        set.get(name).add(sprite);
-    }
-
-    public List<Sprite> getSet(String name) {
-        return set.get(name);
-    }
-
-    public Sprite getSpriteInSet(String name, int index) {
-        return set.get(name).get(index);
-    }
-
     public void switchSet(String key) {
+        set.get(key).get(0).reset();
         setKey = key;
     }
 
     public void runSet(String key) {
-        previousSetKey = setKey;
         switchSet(key);
 
-        // TODO: check setSwapTicks is adding all of the sprites intervals together properly.
-        setSwapTicks = 0;
-        for (int i = 0; i < set.get(key).size(); i++) {
-            setSwapTicks += set.get(key).get(i).interval;
-        }
+        setSwapTicks = 0; // setSwapTicks is defined by the fist sprite list in the set.
+        setSwapTicks += set.get(key).get(0).countTextures() * set.get(key).get(0).interval;
 
         setIsSwapped = true;
     }
@@ -59,16 +44,11 @@ public class SpriteSet
             getSprites().get(i).tick();
         }
 
-        // Looks like not all textures are being rendered on runSet animations
-
         if (setIsSwapped) {
             if (setSwapTicks > 0) {
-                System.out.println(setSwapTicks);
                 setSwapTicks--;
             } else {
-                System.out.println("done");
-                switchSet(previousSetKey);
-                previousSetKey = null;
+                switchSet(defaultKey);
                 setIsSwapped = false;
             }
         }

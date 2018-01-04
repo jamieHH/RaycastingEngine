@@ -144,7 +144,7 @@ public abstract class Mob extends Entity
     }
 
     private void die() {
-        switchSpriteSet("death");
+        runSpriteSet("death");
         isDieing = true;
     }
 

@@ -79,8 +79,8 @@ public class Sprite
         return textures.size();
     }
 
-    public void clearTextures() {
-        textures.clear();
+    public void reset() {
+	    index = 0;
     }
 
     public void tick() {
