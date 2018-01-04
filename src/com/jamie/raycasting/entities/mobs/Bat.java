@@ -44,15 +44,15 @@ public class Bat extends Mob
 
         Render[] ts2 = {
                 Texture.batAtt0,
+                Texture.batAtt1,
                 Texture.batAtt2,
-                Texture.batAtt3,
         };
         addActionSprite(new Sprite(ts2));
 
         Render[] ts3 = {
                 Texture.batHurt0,
-                Texture.batHurt0,
                 Texture.batHurt1,
+                Texture.batHurt2,
         };
         addHurtSprite(new Sprite(ts3));
 

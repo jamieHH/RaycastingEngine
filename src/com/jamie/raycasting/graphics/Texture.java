@@ -50,7 +50,6 @@ public class Texture
     public static final Render batAtt0 = loadBitmap("/textures/batAtt0.png");
     public static final Render batAtt1 = loadBitmap("/textures/batAtt1.png");
     public static final Render batAtt2 = loadBitmap("/textures/batAtt2.png");
-    public static final Render batAtt3 = loadBitmap("/textures/batAtt3.png");
     public static final Render batHurt0 = loadBitmap("/textures/batHurt0.png");
     public static final Render batHurt1 = loadBitmap("/textures/batHurt1.png");
     public static final Render batHurt2 = loadBitmap("/textures/batHurt2.png");
