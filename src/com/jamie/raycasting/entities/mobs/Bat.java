@@ -57,7 +57,7 @@ public class Bat extends Mob
         addHurtSprite(new Sprite(ts3));
 
         Render[] ts4 = {
-                Texture.splat0,
+                Texture.splat1,
         };
         addDeathSprite(new Sprite(ts4, 30));
     }
