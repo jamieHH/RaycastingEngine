@@ -28,12 +28,8 @@ public class Spirit extends Mob
         runSpeed = 0.0125;
         crouchSpeed = 0.0125;
 
-        camHeightMod = 0.625;
-        crouchHeightMod = 0.5;
-
         maxHealth = 10;
 //        maxHealth = 100;
-        health = maxHealth;
 
         hurtParticle = new DustParticle(0, 0);
 

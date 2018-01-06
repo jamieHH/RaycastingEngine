@@ -18,7 +18,7 @@ public class Entity
     public boolean removed = false;
 
     public boolean isSolid = true;
-    public double radius = 0.8;
+    public double radius = 0.25;
 
     public double rotation;
     public double posX, posZ;

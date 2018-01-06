@@ -37,14 +37,14 @@ public abstract class Mob extends Entity
     private double moveX, moveZ;
 
     protected double rotationSpeed = 0.03;
-    protected double walkSpeed = 0.3;
-    protected double runSpeed = 0.4;
-    protected double crouchSpeed = 0.15;
+    protected double walkSpeed = 0.0125;
+    protected double runSpeed = 0.0125;
+    protected double crouchSpeed = 0.0125;
 
-    protected double camHeightMod = 0.75;
+    protected double camHeightMod = 0.652;
     protected double crouchHeightMod = 0.25;
 
-    public double camY = camHeightMod;
+    public double camY = 0;
     public double yBob = 0;
     private int bobTime = 0;
 
@@ -71,6 +71,9 @@ public abstract class Mob extends Entity
     public Mob(InputHandler input) {
         input.setMob(this);
         this.input = input;
+
+        health = maxHealth;
+        camY = camHeightMod;
 
         addIdleSprite(new Sprite(Texture.none));
         addActionSprite(new Sprite(Texture.none));
@@ -107,7 +110,7 @@ public abstract class Mob extends Entity
         }
 
         if (isDieing) {
-            camY = -6.0;
+            camY = 0.125;
             if (!isDead) {
                 dieTime--;
                 if (dieTime == 0) {
