@@ -45,7 +45,7 @@ public class InventoryOverlay extends Overlay
                 // Tidy this if.
                 game.player.setRightHandItemIndex(itemIndex);
             } else {
-                game.player.setRightHandItemIndex(-1);
+                game.player.unequipRightHand();
             }
         }
     }

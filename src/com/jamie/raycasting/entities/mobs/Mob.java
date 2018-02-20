@@ -110,6 +110,7 @@ public abstract class Mob extends Entity
         }
 
         if (isDieing) {
+            unequipRightHand();
             camY = 0.125;
 
             if (!isDead) {
@@ -185,6 +186,10 @@ public abstract class Mob extends Entity
             return getItems().get(rightHandItemIndex);
         }
         return null;
+    }
+
+    public void unequipRightHand() {
+        setRightHandItemIndex(-1);
     }
 
     public int getRightHandItemIndex() {
