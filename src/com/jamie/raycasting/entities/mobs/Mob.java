@@ -111,6 +111,7 @@ public abstract class Mob extends Entity
 
         if (isDieing) {
             camY = 0.125;
+
             if (!isDead) {
                 dieTime--;
                 if (dieTime == 0) {
@@ -181,7 +182,7 @@ public abstract class Mob extends Entity
 
     public Item getRightHandItem() {
         if (countItems() > 0 && !rightHandEmpty) {
-            return items.get(rightHandItemIndex);
+            return getItems().get(rightHandItemIndex);
         }
         return null;
     }

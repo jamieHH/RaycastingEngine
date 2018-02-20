@@ -81,6 +81,7 @@ public class Sprite
 
     public void reset() {
 	    index = 0;
+        animTick = interval;
     }
 
     public void tick() {

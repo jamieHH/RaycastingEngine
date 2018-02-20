@@ -13,6 +13,11 @@ public class Texture
     public static final Render sky = new Render(400, 150);
     public static final Render none = new Render(16, 16);
 
+    public static final Render one = loadBitmap("textures/1.png");
+    public static final Render two = loadBitmap("textures/2.png");
+    public static final Render three = loadBitmap("textures/3.png");
+    public static final Render four = loadBitmap("textures/4.png");
+
     // private overlays
     private static final Render stoneOverlay = loadBitmap("/textures/stoneOverlay.png");
     private static final Render puddleOverlay = loadBitmap("/textures/puddleOverlay.png");
@@ -94,6 +99,7 @@ public class Texture
     // screen
     public static final Render screenSpear0 = loadBitmap("/textures/screenSpear0.png");
     public static final Render screenSpear1 = loadBitmap("/textures/screenSpear1.png");
+    public static final Render screenSpear2 = loadBitmap("/textures/screenSpear2.png");
     public static final Render screenAxe0 = loadBitmap("/textures/screenAxe0.png");
     public static final Render screenAxe1 = loadBitmap("/textures/screenAxe1.png");
 

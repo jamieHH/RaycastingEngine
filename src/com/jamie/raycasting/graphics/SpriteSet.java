@@ -21,26 +21,30 @@ public class SpriteSet
         set.put(name, sprites);
     }
 
+    public List<Sprite> getSet(String key) {
+        return set.get(key);
+    }
+
     public void switchSet(String key) {
-        set.get(key).get(0).reset();
+        getSet(key).get(0).reset();
         setKey = key;
     }
 
     public void runSet(String key) {
         switchSet(key);
 
-        setSwapTicks = 0; // setSwapTicks is defined by the fist sprite list in the set.
-        setSwapTicks += set.get(key).get(0).countTextures() * set.get(key).get(0).interval;
+        // setSwapTicks is defined by the fist sprite list in the set.
+        setSwapTicks = getSet(key).get(0).countTextures() * getSet(key).get(0).interval;
 
         setIsSwapped = true;
     }
 
     public List<Sprite> getSprites() {
-        return set.get(setKey);
+        return getSet(setKey);
     }
 
     public void tick() {
-        for (int i = 0; i < set.get(setKey).size(); i++) {
+        for (int i = 0; i < getSet(setKey).size(); i++) {
             getSprites().get(i).tick();
         }
 
