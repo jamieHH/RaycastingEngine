@@ -63,7 +63,6 @@ public abstract class Item
 
     public void use() {
         runSpriteSet("use");
-
         useTicks = useWait;
     }
 

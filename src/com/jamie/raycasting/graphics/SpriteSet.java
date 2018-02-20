@@ -8,8 +8,8 @@ import java.util.Map;
 public class SpriteSet
 {
     private Map<String, List<Sprite>> set = new HashMap<String, List<Sprite>>();
-    public String setKey = "idle";
-    public String defaultKey = "idle";
+    private String setKey = "idle";
+    private String defaultKey = "idle";
     private int setSwapTicks = 0;
     private boolean setIsSwapped = false;
 
@@ -35,7 +35,6 @@ public class SpriteSet
 
         // setSwapTicks is defined by the fist sprite list in the set.
         setSwapTicks = getSet(key).get(0).countTextures() * getSet(key).get(0).interval;
-
         setIsSwapped = true;
     }
 

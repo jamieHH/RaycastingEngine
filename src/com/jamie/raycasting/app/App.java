@@ -125,9 +125,6 @@ public class App extends Canvas implements Runnable
 				render();
 				frames++;
 			}
-
-//			render();
-//			frames++;
 		}
 	}
 	

@@ -42,7 +42,6 @@ public class InventoryOverlay extends Overlay
         if (game.userInput.action) {
             game.userInput.setKeyGroupState("action", false);
             if (game.player.getRightHandItem() != game.player.getItem(itemIndex)) {
-                // Tidy this if.
                 game.player.setRightHandItemIndex(itemIndex);
             } else {
                 game.player.unequipRightHand();
