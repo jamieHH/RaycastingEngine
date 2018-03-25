@@ -54,10 +54,10 @@ public class Render3D extends Render
             double yDist = (y - height / 2.0) / height;
 
             boolean isFloor = true;
-            double zDist = (0.5 + (p.camY - 0.5)) / yDist;
+            double zDist = p.camY / yDist;
             if (yDist < 0) {
                 isFloor = false;
-                zDist = (ceilingHeight - (p.camY - 0.5)) / -yDist;
+                zDist = (ceilingHeight - p.camY) / -yDist;
             }
 
             for (int x = 0; x < width; x++) {

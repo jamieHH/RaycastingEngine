@@ -22,7 +22,7 @@ public abstract class Level
 
     private int sizeX;
     private int sizeZ;
-    public double levelHeight = 0.5;
+    public double levelHeight = 1;
 
     public double spawnX;
     public double spawnZ;
@@ -56,23 +56,24 @@ public abstract class Level
         int ladderCount = 1;
         int doorCount = 1;
         int buttonCount = 1;
+
         for (int z = 0; z < sizeZ; z++) {
             for (int x = 0; x < sizeX; x++) {
                 int col = pixels[z + x * sizeX] & 0xFFFFFF;
 
                 Block block = getBlockByColour(col);
 
-                if (block instanceof LadderBlock) {
+                if (block instanceof LadderBlock) { // ladders
                     block.id = ladderCount;
                     ladderCount++;
                 }
 
-                if (block instanceof DoorBlock) {
+                if (block instanceof DoorBlock) { // doors
                     block.id = doorCount;
                     doorCount++;
                 }
 
-                if (block instanceof ButtonBlock) {
+                if (block instanceof ButtonBlock) { // buttons
                     block.id = buttonCount;
                     buttonCount++;
                 }
