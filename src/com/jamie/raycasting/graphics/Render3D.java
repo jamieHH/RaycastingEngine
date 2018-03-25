@@ -12,8 +12,6 @@ public class Render3D extends Render
     private double xCentre = width / 2.0;
     private double yCentre = height / 2.0;
 
-    private double ceilingHeight = 1;
-
 	private double cosine, sine;
 
 	private int xBlockStart, xBlockEnd, zBlockStart, zBlockEnd;
@@ -30,8 +28,6 @@ public class Render3D extends Render
 
 	protected void render(Mob p) {
 	    this.p = p;
-
-        ceilingHeight = p.level.levelHeight;
 
 	    xBlockStart = (int) (p.posX) - 160;
 	    xBlockEnd = (int) (p.posX) + 160;
@@ -57,7 +53,7 @@ public class Render3D extends Render
             double zDist = p.camY / yDist;
             if (yDist < 0) {
                 isFloor = false;
-                zDist = (ceilingHeight - p.camY) / -yDist;
+                zDist = (p.level.height - p.camY) / -yDist;
             }
 
             for (int x = 0; x < width; x++) {

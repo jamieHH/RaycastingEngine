@@ -22,7 +22,7 @@ public abstract class Level
 
     private int sizeX;
     private int sizeZ;
-    public double levelHeight = 1;
+    public int height = 1;
 
     public double spawnX;
     public double spawnZ;

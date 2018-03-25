@@ -4,7 +4,7 @@ public class IslandLevel extends Level
 {
 	public IslandLevel() {
 		name = "Island";
-		levelHeight = 8192;
+		height = 8192;
 	}
 
     public void switchLevel(int id) {
