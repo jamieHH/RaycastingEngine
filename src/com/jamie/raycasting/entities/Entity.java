@@ -2,7 +2,7 @@ package com.jamie.raycasting.entities;
 
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.SpriteSet;
-import com.jamie.raycasting.levels.Level;
+import com.jamie.raycasting.world.levels.Level;
 
 import java.util.ArrayList;
 import java.util.List;

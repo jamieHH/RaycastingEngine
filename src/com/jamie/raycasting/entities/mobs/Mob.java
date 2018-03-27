@@ -9,7 +9,7 @@ import com.jamie.raycasting.graphics.Texture;
 import com.jamie.raycasting.input.InputHandler;
 import com.jamie.raycasting.input.UserInputHandler;
 import com.jamie.raycasting.items.Item;
-import com.jamie.raycasting.levels.blocks.Block;
+import com.jamie.raycasting.world.blocks.Block;
 
 import java.util.ArrayList;
 import java.util.List;

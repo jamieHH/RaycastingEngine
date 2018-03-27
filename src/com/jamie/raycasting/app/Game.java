@@ -1,10 +1,6 @@
 package com.jamie.raycasting.app;
 
-import java.awt.image.BufferedImage;
-import java.io.FileInputStream;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.entities.mobs.Player;
@@ -13,12 +9,10 @@ import com.jamie.raycasting.graphics.overlays.Overlay;
 import com.jamie.raycasting.graphics.overlays.menus.*;
 import com.jamie.raycasting.input.InputHandler;
 import com.jamie.raycasting.input.UserInputHandler;
-import com.jamie.raycasting.levels.Level;
-import com.jamie.raycasting.levels.World;
-import com.jamie.raycasting.levels.blocks.Block;
-import com.jamie.raycasting.levels.blocks.LadderBlock;
-
-import javax.imageio.ImageIO;
+import com.jamie.raycasting.world.levels.Level;
+import com.jamie.raycasting.world.World;
+import com.jamie.raycasting.world.blocks.Block;
+import com.jamie.raycasting.world.blocks.LadderBlock;
 
 public class Game
 {

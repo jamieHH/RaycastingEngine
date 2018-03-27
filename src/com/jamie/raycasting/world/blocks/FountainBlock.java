@@ -1,0 +1,31 @@
+package com.jamie.raycasting.world.blocks;
+
+import com.jamie.raycasting.entities.particles.DropParticle;
+import com.jamie.raycasting.graphics.Sprite;
+import com.jamie.raycasting.graphics.Texture;
+
+public class FountainBlock extends Block
+{
+    private int i = 0;
+
+	public FountainBlock() {
+		isSolid = true;
+		floorTex = Texture.grass;
+
+		Sprite sprite = new Sprite(Texture.fountain);
+		addSprite(sprite);
+	}
+
+    public void tick() {
+
+	    if (i > 0) {
+	        i--;
+	        return;
+        }
+
+        DropParticle dropParticle = new DropParticle(gridX + 0.5, gridZ + 0.5);
+        level.addEntity(dropParticle);
+
+        i = 10;
+    }
+}
