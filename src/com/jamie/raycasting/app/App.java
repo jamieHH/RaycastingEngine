@@ -15,7 +15,7 @@ import com.jamie.raycasting.input.UserInputHandler;
 public class App extends Canvas implements Runnable
 {
 	private static final long serialVersionUID = 1L;
-	
+	// hate
 	public static final String TITLE = "raycasting_engine_pre_0.74";
 	public static int width = 200;
 	public static int height = 150;
