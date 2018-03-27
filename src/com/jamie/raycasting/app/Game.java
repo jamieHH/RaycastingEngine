@@ -109,30 +109,10 @@ public class Game
 			((Menu) this.activeOverlay).optionIndex = 0;
 		}
 	}
-	
+
 	public void switchLevel(String name, int id) {
-	    setActiveOverlay(loadingOverlay);
-		activeOverlay.pauseTime = 30;
-
-		world.level.removeEntity(player);
-		world.level.player = null;
-		if (name == "random") {
-		    world.level = Level.makeRandomLevel(1000, 1000);
-		} else {
-        	world.level = world.getLoadLevel(name);
-		}
-		world.level.setSpawn(id);
-
-		player.setPosition(world.level.spawnX, world.level.spawnZ);
-
-		Block spawnBlock = world.level.getBlock((int) world.level.spawnX, (int) world.level.spawnZ); // find a better way to disable the ladder block
-
-		if (spawnBlock instanceof LadderBlock) {
-            ((LadderBlock) spawnBlock).disabled = true;
-        }
-
-		world.level.addEntity(player);
-		world.level.player = player;
+	    // TODO: switch non player mobs
+		world.switchLevel(name, id);
 	}
 
 	private void switchPerspective() {

@@ -4,5 +4,6 @@ public class TestLevel extends Level
 {
 	public TestLevel() {
 		name = "Test";
+		height = 2;
 	}
 }

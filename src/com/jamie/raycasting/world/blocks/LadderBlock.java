@@ -1,7 +1,10 @@
 package com.jamie.raycasting.world.blocks;
 
+import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
+
+import java.util.List;
 
 public class LadderBlock extends Block
 {
@@ -27,15 +30,15 @@ public class LadderBlock extends Block
 	}
 
 	public void tick() {
-        if (level.player != null) { // stopgap for null player exception
-            if (disabled) {
-                if (level.player.squareDistanceFrom(gridX + 0.5, gridZ + 0.5) > 1) {
-                    disabled = false;
-                }
-            } else {
-                if (level.player.squareDistanceFrom(gridX + 0.5, gridZ + 0.5) < 1) {
-                    level.switchLevel(id);
-                }
+        List<Mob> mobs = level.getMobsWithin(gridX, gridZ, gridX + 1, gridZ + 1);
+
+        if (disabled) {
+            if (mobs.size() == 0) {
+                disabled = false;
+            }
+        } else {
+            for (int i = 0; i < mobs.size(); i++) {
+                level.switchLevel(id);
             }
         }
     }

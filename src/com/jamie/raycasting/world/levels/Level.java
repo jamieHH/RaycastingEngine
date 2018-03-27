@@ -84,11 +84,11 @@ public abstract class Level
                     block.gridZ = z;
                 }
 
-                blocks[x + z * sizeX] = block;
-
                 if (col == 0xFFFF00) {
                     setDefaultSpawn(x + 0.5, z + 0.5);
                 }
+
+                blocks[x + z * sizeX] = block;
             }
         }
 
@@ -202,6 +202,17 @@ public abstract class Level
         return blocks[x + z * sizeX];
     }
 
+    public LadderBlock getLadderBlockById(int id) {
+        for (int i = 0; i < blocks.length; i++) {
+            Block b = blocks[i];
+            if (b.id == id && b instanceof LadderBlock) {
+                return (LadderBlock) b;
+            }
+        }
+
+        return null;
+    }
+
     private Block getBlockByColour(int col) {
         if (col == 0xFFFFFF) return SolidBlock;
         if (col == 0x808080) return PillarBlock;
@@ -236,34 +247,29 @@ public abstract class Level
         spawnZ = z;
     }
 
-    public void setSpawn(int id) {
-        for (int z = 0; z < sizeZ; z++) {
-            for (int x = 0; x < sizeX; x++) {
-                Block b = blocks[x + z * sizeX];
-                if (b.id == id && b instanceof LadderBlock) {
-                    spawnX = x + 0.5;
-                    spawnZ = z + 0.5;
-                    return;
-                }
-            }
-        }
-    }
-
     public boolean blockContainsEntity(int x, int z) {
-        Block block = getBlock(x, z);
-        int bX0 = block.gridX;
-        int bX1 = block.gridX + 1;
-        int bZ0 = block.gridZ;
-        int bZ1 = block.gridZ + 1;
         for (int i = 0; i < countEntities(); i++) {
             Entity e = getEntity(i);
             if (e.isSolid) {
-                if ((e.posX + e.radius > bX0 && e.posX - e.radius < bX1) && (e.posZ + e.radius > bZ0 && e.posZ - e.radius < bZ1)) {
+                if (e.isInside(x, z, x + 1, z + 1)) {
                     return true;
                 }
             }
         }
+
         return false;
+    }
+
+    public List<Mob> getMobsWithin(double x0, double z0, double x1, double z1) {
+        List<Mob> mobs = new ArrayList<Mob>();
+
+        for (int i = 0; i < getMobEntities().size(); i++) {
+            if (getMobEntities().get(i).isInside(x0, z0, x1, z1)) {
+                mobs.add(getMobEntities().get(i));
+            }
+        }
+
+        return mobs;
     }
 
     public static Level makeRandomLevel(int sizeX, int sizeZ) {

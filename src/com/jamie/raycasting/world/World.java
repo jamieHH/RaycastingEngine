@@ -1,6 +1,8 @@
 package com.jamie.raycasting.world;
 
 import com.jamie.raycasting.app.Game;
+import com.jamie.raycasting.entities.mobs.Mob;
+import com.jamie.raycasting.world.blocks.LadderBlock;
 import com.jamie.raycasting.world.levels.Level;
 
 import javax.imageio.ImageIO;
@@ -62,5 +64,29 @@ public class World
 
     public void clearLoadedLevels() {
         loaded.clear();
+    }
+
+    public void switchLevel(String name, int id) {
+        Mob thisMob = game.player; // TODO: change this to be whatever object is to be teleported;
+
+        game.setActiveOverlay(game.loadingOverlay); //make overlays mob specific
+        game.activeOverlay.pauseTime = 30;
+
+        level.removeEntity(thisMob);
+        level.player = null;
+
+//        level = Level.makeRandomLevel(1000, 1000);
+        level = getLoadLevel(name);
+
+        level.addEntity(thisMob);
+        level.player = thisMob;
+
+        LadderBlock spawnBlock = level.getLadderBlockById(id);
+        if (spawnBlock != null) {
+            thisMob.setPosition(spawnBlock.gridX + 0.5, spawnBlock.gridZ + 0.5);
+            spawnBlock.disabled = true;
+        } else {
+            thisMob.setPosition(level.spawnX, level.spawnZ);
+        }
     }
 }
