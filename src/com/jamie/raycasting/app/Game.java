@@ -71,7 +71,7 @@ public class Game
 
 				if (userInput.randomLevel) {
 					player.rotation = 0.2;
-					switchLevel("random", 999);
+					switchLevel("test", 999);
 				}
 
 				if (userInput.loadLevel) {

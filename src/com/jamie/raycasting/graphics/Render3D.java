@@ -29,10 +29,10 @@ public class Render3D extends Render
 	protected void render(Mob p) {
 	    this.p = p;
 
-	    xBlockStart = (int) (p.posX) - 160;
-	    xBlockEnd = (int) (p.posX) + 160;
-	    zBlockStart = (int) (p.posZ) - 160;
-	    zBlockEnd = (int) (p.posZ) + 160;
+	    xBlockStart = (int) (p.posX) - 16;
+	    xBlockEnd = (int) (p.posX) + 16;
+	    zBlockStart = (int) (p.posZ) - 16;
+	    zBlockEnd = (int) (p.posZ) + 16;
 
         cosine = Math.cos(p.rotation);
         sine = Math.sin(p.rotation);
@@ -70,7 +70,6 @@ public class Render3D extends Render
 
                 zBuffer[x + y * width] = zDist;
 
-
                 Block block = p.level.getBlock(xTile, zTile);
                 Render tex = block.floorTex;
 
@@ -79,7 +78,6 @@ public class Render3D extends Render
                 }
 
                 pixels[x + y * width] = tex.pixels[(xTexture & 15) + (zTexture & 15) * 16];
-//                pixels[x + y * width] = 0xFFFFFF;
 
                 zBufferWall[x] = 0;
             }
@@ -215,7 +213,7 @@ public class Render3D extends Render
 			zBufferWall[x] = zWall;
             int xTexture = (int) Math.floor((itx0 + itx1 * pixelRotation) / zWall);
 
-			double yPixelTop = yPixelLeftTop + (yPixelRightTop - yPixelLeftTop) * pixelRotation; // + 0.5??
+			double yPixelTop = yPixelLeftTop + (yPixelRightTop - yPixelLeftTop) * pixelRotation;
 			double yPixelBottom = yPixelLeftBottom + (yPixelRightBottom - yPixelLeftBottom) * pixelRotation;
 
 			int yPixelTopInt = (int) Math.ceil(yPixelTop);
@@ -251,10 +249,12 @@ public class Render3D extends Render
 
 		for (int i = 0; i < p.level.countEntities(); i++) {
 			Entity entity = p.level.getEntity(i);
-            for (int b = 0; b < entity.countSprites(); b++) {
-                Sprite sprite = entity.getSprite(b);
-                renderSprite(entity.posX + sprite.x, entity.posY + sprite.y, entity.posZ + sprite.z, sprite.render());
-            }
+			if (entity.isInside(xBlockStart, zBlockStart, xBlockEnd, zBlockEnd)) {
+				for (int b = 0; b < entity.countSprites(); b++) {
+					Sprite sprite = entity.getSprite(b);
+					renderSprite(entity.posX + sprite.x, entity.posY + sprite.y, entity.posZ + sprite.z, sprite.render());
+				}
+			}
 		}
 	}
 
