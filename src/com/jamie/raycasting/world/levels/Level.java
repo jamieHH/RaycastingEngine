@@ -49,7 +49,7 @@ public abstract class Level
         this.game = game;
         this.sizeX = sizeX;
         this.sizeZ = sizeZ;
-        player = game.player;
+        this.player = game.player;
 
         blocks = new Block[sizeX * sizeZ];
 
@@ -194,7 +194,6 @@ public abstract class Level
         return getDropEntities().size();
     }
 
-
     public Block getBlock(int x, int z) {
         if (x < 0 || z < 0 || x >= sizeX || z >= sizeZ) {
             return NullBlock;
@@ -265,16 +264,6 @@ public abstract class Level
             }
         }
         return false;
-    }
-
-    public static Level getByName(String name) {
-        try {
-            name = name.substring(0, 1).toUpperCase() + name.substring(1);
-            return (Level) Class.forName("com.jamie.raycasting.world.levels." + name + "Level").newInstance();
-        } catch (Exception e) {
-            System.out.println("Failed to get level by name: " + name + "!");
-            throw new RuntimeException(e);
-        }
     }
 
     public static Level makeRandomLevel(int sizeX, int sizeZ) {

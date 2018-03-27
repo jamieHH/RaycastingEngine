@@ -26,6 +26,16 @@ public class World
         level.tick();
     }
 
+    public static Level getByName(String name) {
+        try {
+            name = name.substring(0, 1).toUpperCase() + name.substring(1);
+            return (Level) Class.forName("com.jamie.raycasting.world.levels." + name + "Level").newInstance();
+        } catch (Exception e) {
+            System.out.println("Failed to get level by name: " + name + "!");
+            throw new RuntimeException(e);
+        }
+    }
+
     public Level getLoadLevel(String name) {
         if (loaded.containsKey(name)) {
             return loaded.get(name);
@@ -39,7 +49,7 @@ public class World
             int[] pixels = new int[w * h];
             img.getRGB(0, 0, w, h, pixels, 0, w);
 
-            Level level = Level.getByName(name);
+            Level level = getByName(name);
             level.create(this.game, w, h, pixels);
             loaded.put(name, level);
 
