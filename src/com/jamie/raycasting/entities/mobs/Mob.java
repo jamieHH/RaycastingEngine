@@ -32,6 +32,9 @@ public abstract class Mob extends Entity
     private int useTicks = 0;
     protected int useWait = 15;
 
+    private List<String> factions = new ArrayList<String>();
+    protected Mob target;
+
     // movement
 	private double rotationMove;
     private double moveX, moveZ;
@@ -461,5 +464,13 @@ public abstract class Mob extends Entity
             return getRightHandItem().useWait;
         }
         return useWait;
+    }
+
+    public List<String> getFactions() {
+        return factions;
+    }
+
+    public void addFaction(String faction) {
+        this.factions.add(faction);
     }
 }

@@ -29,5 +29,7 @@ public class Player extends Mob
         hurtParticle = new BloodParticle(0, 0);
 
         addItem(new SpearWeapon());
+
+        addFaction("human");
     }
 }

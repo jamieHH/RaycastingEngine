@@ -73,13 +73,11 @@ public class World
         game.activeOverlay.pauseTime = 30;
 
         level.removeEntity(thisMob);
-        level.player = null;
 
 //        level = Level.makeRandomLevel(1000, 1000);
         level = getLoadLevel(name);
 
         level.addEntity(thisMob);
-        level.player = thisMob;
 
         LadderBlock spawnBlock = level.getLadderBlockById(id);
         if (spawnBlock != null) {

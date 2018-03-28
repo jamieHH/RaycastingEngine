@@ -26,7 +26,6 @@ public abstract class Level
     public double spawnX;
     public double spawnZ;
 
-    public Mob player;
     public World world;
 
     // static blocks. TODO: check if is performance optimal.
@@ -47,7 +46,6 @@ public abstract class Level
     public void create(Game game, int sizeX, int sizeZ, int[] pixels) {
         this.sizeX = sizeX;
         this.sizeZ = sizeZ;
-        this.player = game.player;
         this.world = game.world;
 
         blocks = new Block[sizeX * sizeZ];

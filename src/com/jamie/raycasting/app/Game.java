@@ -98,7 +98,6 @@ public class Game
 		player.rotation = 1.9;
 
 		world.level.addEntity(player);
-		world.level.player = player;
 
 		activeOverlay = null;
 	}

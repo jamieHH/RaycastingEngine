@@ -55,10 +55,13 @@ public class Spirit extends Mob
                 Texture.splat1,
         };
         addDeathSprite(new Sprite(ts4, 30));
+
+        addFaction("beast");
     }
 
     public void tick() {
         super.tick();
+        input.resetInfluence();
 
         if (poofTick > 0) {
             poofTick--;
@@ -71,15 +74,25 @@ public class Spirit extends Mob
             }
         }
 
-        if (level.player != null) { // stop gap fix
-            input.resetInfluence();
-            if (squareDistanceFrom(level.player.posX, level.player.posZ) < viewDist) {
-                lookTowards(level.player.posX, level.player.posZ);
-                input.forwardInf = 100;
-                input.backInf = 0;
-                input.leftInf = 75;
-                input.rightInf = 0;
-                input.action = squareDistanceFrom(level.player.posX, level.player.posZ) < getRightHandReach();
+        for (int i = 0; i < level.getMobEntities().size(); i++) {
+            if (level.getMobEntities().get(i).getFactions().contains("human")) {
+                target = level.getMobEntities().get(i);
+
+                if (squareDistanceFrom(target.posX, target.posZ) < viewDist) {
+
+                    // TODO: this function needs be replaced
+                    // - because rotation now returns to 0 after 360 degrees
+                    // - put this function in the input handler and make the mob input turn to face the target
+                    // - this might be achieved by checking if the rotation of the mob is more or less than the rotation that lookTowards() calculates
+                    // - improve input handler to target particular mobs!!
+                    lookTowards(target.posX, target.posZ);
+
+                    input.forwardInf = 100;
+                    input.backInf = 0;
+                    input.leftInf = 75;
+                    input.rightInf = 0;
+                    input.action = squareDistanceFrom(target.posX, target.posZ) < getRightHandReach();
+                }
             }
         }
     }
