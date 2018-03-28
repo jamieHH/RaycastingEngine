@@ -79,12 +79,6 @@ public class Spirit extends Mob
                 target = level.getMobEntities().get(i);
 
                 if (squareDistanceFrom(target.posX, target.posZ) < viewDist) {
-
-                    // TODO: this function needs be replaced
-                    // - because rotation now returns to 0 after 360 degrees
-                    // - put this function in the input handler and make the mob input turn to face the target
-                    // - this might be achieved by checking if the rotation of the mob is more or less than the rotation that lookTowards() calculates
-                    // - improve input handler to target particular mobs!!
                     lookTowards(target.posX, target.posZ);
 
                     input.forwardInf = 100;

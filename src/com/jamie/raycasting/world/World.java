@@ -67,7 +67,7 @@ public class World
     }
 
     public void switchLevel(String name, int id) {
-        Mob thisMob = game.player; // TODO: change this to be whatever object is to be teleported;
+        Mob thisMob = game.player;
 
         game.setActiveOverlay(game.loadingOverlay); //make overlays mob specific
         game.activeOverlay.pauseTime = 30;
