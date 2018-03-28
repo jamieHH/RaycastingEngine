@@ -71,12 +71,12 @@ public class Game
 
 				if (userInput.randomLevel) {
 					player.rotation = 0.2;
-					switchLevel("test", 999);
+					world.switchLevel("test", 999);
 				}
 
 				if (userInput.loadLevel) {
 					player.rotation = 0.2;
-					switchLevel("island", 999);
+					world.switchLevel("island", 999);
 //                switchLevel("test", 999);
 				}
             } else {
@@ -108,11 +108,6 @@ public class Game
 		if (activeOverlay instanceof Menu) {
 			((Menu) this.activeOverlay).optionIndex = 0;
 		}
-	}
-
-	public void switchLevel(String name, int id) {
-	    // TODO: switch non player mobs
-		world.switchLevel(name, id);
 	}
 
 	private void switchPerspective() {

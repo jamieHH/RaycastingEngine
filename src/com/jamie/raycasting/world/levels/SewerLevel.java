@@ -7,7 +7,7 @@ public class SewerLevel extends Level
 	}
 
     public void switchLevel(int id) {
-        if (id == 1) game.switchLevel("prison", 1);
-        if (id == 2) game.switchLevel("island", 2);
+        if (id == 1) world.switchLevel("prison", 1);
+        if (id == 2) world.switchLevel("island", 2);
     }
 }

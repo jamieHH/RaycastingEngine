@@ -1,8 +1,6 @@
 package com.jamie.raycasting.world.levels;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 import com.jamie.raycasting.app.Game;
 import com.jamie.raycasting.entities.Entity;
@@ -11,6 +9,7 @@ import com.jamie.raycasting.entities.mobs.Bat;
 import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.entities.mobs.Spirit;
 import com.jamie.raycasting.input.ArtificialInputHandler;
+import com.jamie.raycasting.world.World;
 import com.jamie.raycasting.world.blocks.*;
 
 public abstract class Level
@@ -27,8 +26,8 @@ public abstract class Level
     public double spawnX;
     public double spawnZ;
 
-    protected Game game;
     public Mob player;
+    public World world;
 
     // static blocks. TODO: check if is performance optimal.
     private static final Block Block = new Block();
@@ -46,10 +45,10 @@ public abstract class Level
 
 
     public void create(Game game, int sizeX, int sizeZ, int[] pixels) {
-        this.game = game;
         this.sizeX = sizeX;
         this.sizeZ = sizeZ;
         this.player = game.player;
+        this.world = game.world;
 
         blocks = new Block[sizeX * sizeZ];
 

@@ -7,6 +7,6 @@ public class DungeonLevel extends Level
 	}
 
     public void switchLevel(int id) {
-        if (id == 1) game.switchLevel("prison", 1);
+        if (id == 1) world.switchLevel("prison", 1);
     }
 }
