@@ -25,7 +25,7 @@ public abstract class Item
         addUseSprite(new Sprite(Texture.none));
     }
 
-    private void addSpriteSet(String name, Sprite sprite) {
+    public void addSpriteSet(String name, Sprite sprite) {
         spriteSet.addSet(name, sprite);
     }
 
@@ -41,17 +41,13 @@ public abstract class Item
         return spriteSet.getSprite();
     }
 
-    protected void runSpriteSet(String name) {
-        spriteSet.runSet(name);
-    }
-
     public void tick() {
         spriteSet.tick();
         if (useTicks > 0) useTicks--;
     }
 
     public void use() {
-        runSpriteSet("use");
+        spriteSet.runSet("use");
         useTicks = useWait;
     }
 

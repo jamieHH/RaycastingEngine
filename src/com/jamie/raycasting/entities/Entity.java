@@ -31,14 +31,13 @@ public class Entity
         return spriteSet.getSprite();
     }
 
+    protected void addSpriteSet(String name, Sprite sprite) {
+        spriteSet.addSet(name, sprite);
+    }
+
     public void addIdleSprite(Sprite s) {
         addSpriteSet("idle", s);
     }
-
-    protected void addSpriteSet(String name, Sprite sprite) {
-	    spriteSet.addSet(name, sprite);
-    }
-
     protected void runSpriteSet(String name) {
         spriteSet.runSet(name);
     }

@@ -71,10 +71,9 @@ public class Sprite
             if (animTick > 0) {
                 animTick--;
             } else {
-                if (index >= countTextures() - 1) {
+                index++;
+                if (index == countTextures()) {
                     index = 0;
-                } else {
-                    index++;
                 }
 
                 animTick = interval;

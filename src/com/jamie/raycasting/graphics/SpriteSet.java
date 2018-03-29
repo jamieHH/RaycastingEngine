@@ -15,31 +15,6 @@ public class SpriteSet
         addSet("idle", new Sprite(Texture.none));
     }
 
-    public void addSet(String name, Sprite sprite) {
-        set.put(name, sprite);
-    }
-
-    public Sprite getSet(String key) {
-        return set.get(key);
-    }
-
-    public void switchSet(String key) {
-        getSet(key).reset();
-        setKey = key;
-    }
-
-    public void runSet(String key) {
-        switchSet(key);
-
-        // setSwapTicks is defined by the fist sprite list in the set.
-        setSwapTicks = getSet(key).countTextures() * getSet(key).interval;
-        setIsSwapped = true;
-    }
-
-    public Sprite getSprite() {
-        return getSet(setKey);
-    }
-
     public void tick() {
         getSprite().tick();
 
@@ -51,5 +26,26 @@ public class SpriteSet
                 setIsSwapped = false;
             }
         }
+    }
+
+    public void addSet(String name, Sprite sprite) {
+        set.put(name, sprite);
+    }
+
+    public Sprite getSprite() {
+        return set.get(setKey);
+    }
+
+    public void switchSet(String key) {
+        set.get(key).reset();
+        setKey = key;
+    }
+
+    public void runSet(String key) {
+        switchSet(key);
+
+        // setSwapTicks is defined by the fist sprite list in the set.
+        setSwapTicks = set.get(key).countTextures() * set.get(key).interval;
+        setIsSwapped = true;
     }
 }
