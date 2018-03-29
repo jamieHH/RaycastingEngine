@@ -45,27 +45,6 @@ public class Sprite
         this.isAnimated = true;
     }
 
-	public void addTexture(Render t) {
-	    textures.add(t);
-    }
-
-    public void addTextures(Render[] ts) {
-        Collections.addAll(textures, ts);
-    }
-
-    public Render render() {
-	    return textures.get(index);
-    }
-
-    public int countTextures() {
-        return textures.size();
-    }
-
-    public void reset() {
-	    index = 0;
-        animTick = interval;
-    }
-
     public void tick() {
         if (isAnimated) {
             if (animTick > 0) {
@@ -79,5 +58,27 @@ public class Sprite
                 animTick = interval;
             }
         }
+    }
+
+	public void addTexture(Render t) {
+	    textures.add(t);
+    }
+
+    public void addTextures(Render[] ts) {
+        Collections.addAll(textures, ts);
+    }
+
+    public int countTextures() {
+        return textures.size();
+    }
+
+    public Render render() {
+        return textures.get(index);
+    }
+
+    public void reset() {
+        index = 0;
+        animTick = interval;
+
     }
 }
