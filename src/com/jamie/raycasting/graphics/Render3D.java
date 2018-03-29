@@ -63,8 +63,8 @@ public class Render3D extends Render
                 double xx = xDist * cosine + zDist * sine;
                 double zz = zDist * cosine - xDist * sine;
 
-                int xTexture = (int) ((xx + p.posX) * 16);
-                int zTexture = (int) ((zz + p.posZ) * 16);
+                int xTexture = (int) Math.floor((xx + p.posX) * 16);
+                int zTexture = (int) Math.floor((zz + p.posZ) * 16);
                 int xTile = xTexture >> 4;
                 int zTile = zTexture >> 4;
 
