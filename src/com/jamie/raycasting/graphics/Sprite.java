@@ -7,7 +7,6 @@ import java.util.List;
 public class Sprite
 {
 	public double x, y, z;
-	private int colour = 0x202020;
 
 	private boolean isAnimated = false;
 	private List<Render> textures = new ArrayList<Render>();
@@ -29,27 +28,10 @@ public class Sprite
         addTexture(t);
     }
 
-    public Sprite(Render[] ts, double xOffs, double yOffs, double zOffs) {
-        x = xOffs;
-        y = yOffs;
-        z = zOffs;
-        addTextures(ts);
-        this.isAnimated = true;
-    }
-
     public Sprite(Render[] ts) {
         x = 0;
         y = 0;
         z = 0;
-        addTextures(ts);
-        this.isAnimated = true;
-    }
-
-    public Sprite(Render[] ts, int interval, double xOffs, double yOffs, double zOffs) {
-        x = xOffs;
-        y = yOffs;
-        z = zOffs;
-        this.interval = interval;
         addTextures(ts);
         this.isAnimated = true;
     }

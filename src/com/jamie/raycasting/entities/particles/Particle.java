@@ -18,8 +18,6 @@ public abstract class Particle extends Entity
             remove();
         }
 
-        for (int i = 0; i < countSprites(); i++) {
-            getSprite(i).tick();
-        }
+        getSprite().tick();
     }
 }

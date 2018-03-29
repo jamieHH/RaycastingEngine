@@ -224,21 +224,15 @@ public abstract class Mob extends Entity
     }
 
     public void addHurtSprite(Sprite s) {
-        List<Sprite> set = new ArrayList<Sprite>();
-        set.add(s);
-        addSpriteSet("hurt", set);
+        addSpriteSet("hurt", s);
     }
 
     public void addActionSprite(Sprite s) {
-        List<Sprite> set = new ArrayList<Sprite>();
-        set.add(s);
-        addSpriteSet("action", set);
+        addSpriteSet("action", s);
     }
 
     public void addDeathSprite(Sprite s) {
-        List<Sprite> set = new ArrayList<Sprite>();
-        set.add(s);
-        addSpriteSet("death", set);
+        addSpriteSet("death", s);
     }
 
     private void doMovements() {

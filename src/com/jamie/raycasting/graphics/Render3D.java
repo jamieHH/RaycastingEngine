@@ -250,10 +250,8 @@ public class Render3D extends Render
 		for (int i = 0; i < p.level.countEntities(); i++) {
 			Entity entity = p.level.getEntity(i);
 			if (entity.isInside(xBlockStart, zBlockStart, xBlockEnd, zBlockEnd)) {
-				for (int b = 0; b < entity.countSprites(); b++) {
-					Sprite sprite = entity.getSprite(b);
-					renderSprite(entity.posX + sprite.x, entity.posY + sprite.y, entity.posZ + sprite.z, sprite.render());
-				}
+				Sprite sprite = entity.getSprite();
+				renderSprite(entity.posX + sprite.x, entity.posY + sprite.y, entity.posZ + sprite.z, sprite.render());
 			}
 		}
 	}
@@ -311,7 +309,7 @@ public class Render3D extends Render
             // TODO: Incorporate p.viewDistance into this equation
 
             int factor = 4;
-            int i0 = factor * 1;
+            int i0 = factor;
             int i1 = factor * 8;
 
             double xx = ((i % width - width / 2.0) / width) * i0;

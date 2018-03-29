@@ -1,32 +1,30 @@
 package com.jamie.raycasting.graphics;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class SpriteSet
 {
-    private Map<String, List<Sprite>> set = new HashMap<String, List<Sprite>>();
+    private Map<String, Sprite> set = new HashMap<String, Sprite>();
     private String setKey = "idle";
     private String defaultKey = "idle";
     private int setSwapTicks = 0;
     private boolean setIsSwapped = false;
 
     public SpriteSet() {
-        addSet("idle", new ArrayList<Sprite>());
+        addSet("idle", new Sprite(Texture.none));
     }
 
-    public void addSet(String name, List<Sprite> sprites) {
-        set.put(name, sprites);
+    public void addSet(String name, Sprite sprite) {
+        set.put(name, sprite);
     }
 
-    public List<Sprite> getSet(String key) {
+    public Sprite getSet(String key) {
         return set.get(key);
     }
 
     public void switchSet(String key) {
-        getSet(key).get(0).reset();
+        getSet(key).reset();
         setKey = key;
     }
 
@@ -34,18 +32,16 @@ public class SpriteSet
         switchSet(key);
 
         // setSwapTicks is defined by the fist sprite list in the set.
-        setSwapTicks = getSet(key).get(0).countTextures() * getSet(key).get(0).interval;
+        setSwapTicks = getSet(key).countTextures() * getSet(key).interval;
         setIsSwapped = true;
     }
 
-    public List<Sprite> getSprites() {
+    public Sprite getSprite() {
         return getSet(setKey);
     }
 
     public void tick() {
-        for (int i = 0; i < getSet(setKey).size(); i++) {
-            getSprites().get(i).tick();
-        }
+        getSprite().tick();
 
         if (setIsSwapped) {
             if (setSwapTicks > 0) {

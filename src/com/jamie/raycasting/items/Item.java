@@ -5,9 +5,6 @@ import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.SpriteSet;
 import com.jamie.raycasting.graphics.Texture;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public abstract class Item
 {
     public String name = "Item";
@@ -28,28 +25,20 @@ public abstract class Item
         addUseSprite(new Sprite(Texture.none));
     }
 
-    public void addSpriteSet(String name, List<Sprite> sprites) {
-        spriteSet.addSet(name, sprites);
+    private void addSpriteSet(String name, Sprite sprite) {
+        spriteSet.addSet(name, sprite);
     }
 
     public void addIdleSprite(Sprite s) {
-        List<Sprite> set = new ArrayList<Sprite>();
-        set.add(s);
-        addSpriteSet("idle", set);
+        addSpriteSet("idle", s);
     }
 
     public void addUseSprite(Sprite s) {
-        List<Sprite> set = new ArrayList<Sprite>();
-        set.add(s);
-        addSpriteSet("use", set);
+        addSpriteSet("use", s);
     }
 
-    public List<Sprite> getSprites() {
-        return spriteSet.getSprites();
-    }
-
-    public Sprite getSprite(int i) {
-        return getSprites().get(i);
+    public Sprite getSprite() {
+        return spriteSet.getSprite();
     }
 
     protected void runSpriteSet(String name) {
@@ -67,6 +56,6 @@ public abstract class Item
     }
 
     public Render render() {
-        return getSprite(0).render();
+        return getSprite().render();
     }
 }

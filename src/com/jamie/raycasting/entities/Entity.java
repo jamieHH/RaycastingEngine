@@ -4,8 +4,6 @@ import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.SpriteSet;
 import com.jamie.raycasting.world.levels.Level;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class Entity
@@ -29,30 +27,16 @@ public class Entity
         removed = true;
 	}
 
-    public List<Sprite> getSprites() {
-        return spriteSet.getSprites();
+    public Sprite getSprite() {
+        return spriteSet.getSprite();
     }
 
     public void addIdleSprite(Sprite s) {
-        List<Sprite> set = new ArrayList<Sprite>();
-        set.add(s);
-        addSpriteSet("idle", set);
+        addSpriteSet("idle", s);
     }
 
-    public Sprite getSprite(int i) {
-        return getSprites().get(i);
-    }
-
-    public int countSprites() {
-        return getSprites().size();
-    }
-
-    public void addSpriteSet(String name, List<Sprite> sprites) {
-	    spriteSet.addSet(name, sprites);
-    }
-
-    protected void switchSpriteSet(String name) {
-        spriteSet.switchSet(name);
+    protected void addSpriteSet(String name, Sprite sprite) {
+	    spriteSet.addSet(name, sprite);
     }
 
     protected void runSpriteSet(String name) {
@@ -66,28 +50,6 @@ public class Entity
     public void setPosition(double x, double z) {
         posX = x;
         posZ = z;
-    }
-
-	public double correctRotation(double rotation) {
-	    // TODO: normalise rotation between: 0 - 6.28319
-
-//        double pi = 6.28319;
-//        while (rotation > pi) {
-//            rotation -= 2 * pi;
-//        }
-//        while (rotation < -pi) {
-//            rotation += 2 * pi;
-//        }
-
-//        ???
-
-//        if (rotation > 6.28319) {
-//            return rotation - 6.28319;
-//        } else if (rotation < 0) {
-//            return 6.28319 - rotation;
-//        }
-//
-        return rotation;
     }
 
 	protected double distanceFrom(double x, double z) {
