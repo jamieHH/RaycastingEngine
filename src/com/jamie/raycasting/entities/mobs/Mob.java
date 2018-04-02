@@ -2,6 +2,7 @@ package com.jamie.raycasting.entities.mobs;
 
 import com.jamie.raycasting.entities.Entity;
 import com.jamie.raycasting.entities.particles.BloodParticle;
+import com.jamie.raycasting.entities.particles.HealthParticle;
 import com.jamie.raycasting.entities.particles.Particle;
 import com.jamie.raycasting.entities.particles.PoofParticle;
 import com.jamie.raycasting.graphics.Sprite;
@@ -22,7 +23,6 @@ public abstract class Mob extends Entity
 
     // details
     protected Particle hurtParticle;
-    protected int hurtParticleCount = 2;
 
     // distances
     public double baseReach = 1.5;
@@ -407,10 +407,7 @@ public abstract class Mob extends Entity
         rotationMove += (Math.random() - 0.5);
 
 
-        for (int i = 0; i < hurtParticleCount; i++) {
-//            Particle p = hurtParticle;
-//            p.setPosition(posX, posZ);
-            // TODO: using above looks bad. Fix.
+        for (int i = 0; i < 2; i++) {
             BloodParticle p = new BloodParticle(posX, posZ);
             level.addEntity(p);
         }
@@ -421,15 +418,15 @@ public abstract class Mob extends Entity
     }
 
     private void activate() {
-        if (getRightHandItem() != null) {
-            getRightHandItem().use();
+            if (getRightHandItem() != null) {
+                getRightHandItem().use();
+            }
+
             if (getRightHandItem() instanceof Consumable) {
-                runSpriteSet("heal");
                 return;
             } else {
                 runSpriteSet("action");
             }
-        }
 
 
         List<Entity> closeEnts = new ArrayList<Entity>();
@@ -486,6 +483,12 @@ public abstract class Mob extends Entity
     }
 
     public void addHealth(int modifier) {
+        runSpriteSet("heal");
+        for (int i = 0; i < 4; i++) {
+            HealthParticle p = new HealthParticle(posX, posZ);
+            level.addEntity(p);
+        }
+
         if (health + modifier > maxHealth) {
             health = maxHealth;
         } else {

@@ -10,6 +10,7 @@ import com.jamie.raycasting.input.InputHandler;
 public class Spirit extends Mob
 {
     private int poofTick = 0;
+    private int healTick = 0;
 
     public Spirit(InputHandler input) {
         super(input);
@@ -56,6 +57,11 @@ public class Spirit extends Mob
         };
         addDeathSprite(new Sprite(ts4, 30));
 
+        Render[] ts5 = {
+                Texture.spiritHeal0,
+        };
+        addHealSprite(new Sprite(ts5, 30));
+
         addFaction("beast");
     }
 
@@ -73,6 +79,15 @@ public class Spirit extends Mob
                 level.addEntity(particle);
             }
         }
+
+        if (healTick > 0) {
+            healTick--;
+        } else {
+            healTick = 400;
+            addHealth(2);
+        }
+
+
 
         for (int i = 0; i < level.getMobEntities().size(); i++) {
             if (level.getMobEntities().get(i).getFactions().contains("human")) {

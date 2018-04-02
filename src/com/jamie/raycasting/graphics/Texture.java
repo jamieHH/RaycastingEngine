@@ -63,6 +63,7 @@ public class Texture
     public static final Render spirit2 = loadBitmap("/textures/spirit2.png");
     public static final Render spiritAtt0 = loadBitmap("/textures/spiritAtt0.png");
     public static final Render spiritHurt0 = loadBitmap("/textures/spiritHurt0.png");
+    public static final Render spiritHeal0 = loadBitmap("/textures/spiritHeal0.png");
     public static final Render spinningDummy0 = loadBitmap("/textures/spinningDummy0.png");
     public static final Render spinningDummy1 = loadBitmap("/textures/spinningDummy1.png");
     public static final Render spinningDummy2 = loadBitmap("/textures/spinningDummy2.png");
@@ -92,6 +93,8 @@ public class Texture
     public static final Render blood3 = loadBitmap("/textures/blood3.png");
     public static final Render poof0 = loadBitmap("/textures/poof0.png");
     public static final Render poof1 = loadBitmap("/textures/poof1.png");
+    public static final Render health0 = loadBitmap("/textures/health0.png");
+    public static final Render health1 = loadBitmap("/textures/health1.png");
     public static final Render splinter0 = loadBitmap("/textures/splinter0.png");
     public static final Render splinter1 = loadBitmap("/textures/splinter1.png");
     public static final Render drop = loadBitmap("/textures/drop.png");
