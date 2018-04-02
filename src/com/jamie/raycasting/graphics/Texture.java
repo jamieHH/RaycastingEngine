@@ -102,6 +102,8 @@ public class Texture
     public static final Render screenSpear2 = loadBitmap("/textures/screenSpear2.png");
     public static final Render screenAxe0 = loadBitmap("/textures/screenAxe0.png");
     public static final Render screenAxe1 = loadBitmap("/textures/screenAxe1.png");
+    public static final Render screenHealthPotion0 = loadBitmap("/textures/hudHealthPotion0.png");
+    public static final Render screenHealthPotion1 = loadBitmap("/textures/hudHealthPotion1.png");
 
 	private static Render loadBitmap(String fileName) {
 		try {

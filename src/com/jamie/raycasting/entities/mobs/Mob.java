@@ -9,6 +9,7 @@ import com.jamie.raycasting.graphics.Texture;
 import com.jamie.raycasting.input.InputHandler;
 import com.jamie.raycasting.input.UserInputHandler;
 import com.jamie.raycasting.items.Item;
+import com.jamie.raycasting.items.consumables.Consumable;
 import com.jamie.raycasting.world.blocks.Block;
 
 import java.util.ArrayList;
@@ -82,6 +83,7 @@ public abstract class Mob extends Entity
         addActionSprite(new Sprite(Texture.none));
         addHurtSprite(new Sprite(Texture.none));
         addDeathSprite(new Sprite(Texture.none));
+        addHealSprite(new Sprite(Texture.none));
     }
 
     public void tick() {
@@ -166,10 +168,16 @@ public abstract class Mob extends Entity
         hudHeadingsTicks = 120;
     }
 
-    public void addItem(Item i) {
-        items.add(i);
-        addHudHeading("Picked up " + i.name);
+    public void addItem(Item item) {
+        items.add(item);
+        item.setUser(this);
+        addHudHeading("Picked up " + item.name);
+    }
 
+    public void removeItem(Item item) {
+        items.remove(item);
+        item.setUser(null);
+        addHudHeading(item.name + " removed");
     }
 
     public List<Item> getItems() {
@@ -233,6 +241,10 @@ public abstract class Mob extends Entity
 
     public void addDeathSprite(Sprite s) {
         addSpriteSet("death", s);
+    }
+
+    public void addHealSprite(Sprite s) {
+        addSpriteSet("heal", s);
     }
 
     private void doMovements() {
@@ -411,9 +423,14 @@ public abstract class Mob extends Entity
     private void activate() {
         if (getRightHandItem() != null) {
             getRightHandItem().use();
+            if (getRightHandItem() instanceof Consumable) {
+                runSpriteSet("heal");
+                return;
+            } else {
+                runSpriteSet("action");
+            }
         }
 
-        runSpriteSet("action");
 
         List<Entity> closeEnts = new ArrayList<Entity>();
         for (int e = 0; e < level.countEntities(); e++) {
@@ -466,5 +483,13 @@ public abstract class Mob extends Entity
 
     public void addFaction(String faction) {
         this.factions.add(faction);
+    }
+
+    public void addHealth(int modifier) {
+        if (health + modifier > maxHealth) {
+            health = maxHealth;
+        } else {
+            health += modifier;
+        }
     }
 }

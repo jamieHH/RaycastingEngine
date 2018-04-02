@@ -38,6 +38,7 @@ public class Entity
     public void addIdleSprite(Sprite s) {
         addSpriteSet("idle", s);
     }
+
     protected void runSpriteSet(String name) {
         spriteSet.runSet(name);
     }

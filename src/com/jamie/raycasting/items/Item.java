@@ -1,5 +1,7 @@
 package com.jamie.raycasting.items;
 
+import com.jamie.raycasting.entities.mobs.Mob;
+import com.jamie.raycasting.entities.mobs.Player;
 import com.jamie.raycasting.graphics.Render;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.SpriteSet;
@@ -14,6 +16,9 @@ public abstract class Item
     public int damage = 1;
     public int value = 0;
     public int reach = 0;
+
+    protected Mob user;
+    protected int useCount = 0;
 
     public int useTicks = 0;
     public int useWait = 15;
@@ -48,10 +53,23 @@ public abstract class Item
 
     public void use() {
         spriteSet.runSet("use");
+        useCount++;
         useTicks = useWait;
     }
 
     public Render render() {
         return getSprite().render();
+    }
+
+    public Mob getUser() {
+        return user;
+    }
+
+    public void setUser(Mob mob) {
+        user = mob;
+    }
+
+    public void remove() {
+        user.removeItem(this);
     }
 }
