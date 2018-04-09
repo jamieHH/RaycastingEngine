@@ -27,22 +27,6 @@ public class Entity
         removed = true;
 	}
 
-    public Sprite getSprite() {
-        return spriteSet.getSprite();
-    }
-
-    protected void addSpriteSet(String name, Sprite sprite) {
-        spriteSet.addSet(name, sprite);
-    }
-
-    public void addIdleSprite(Sprite s) {
-        addSpriteSet("idle", s);
-    }
-
-    protected void runSpriteSet(String name) {
-        spriteSet.runSet(name);
-    }
-
     public void tick() {
         spriteSet.tick();
     }
@@ -76,5 +60,25 @@ public class Entity
         if (posX - radius >= x1) return false;
 
         return !(posZ + radius <= z0) && !(posZ - radius >= z1);
+    }
+
+    protected void addSpriteSet(String name, Sprite sprite) {
+        spriteSet.addSet(name, sprite);
+    }
+
+    protected void runSpriteSet(String name) {
+        spriteSet.runSet(name);
+    }
+
+    protected void switchSpriteSet(String name) {
+        spriteSet.switchSet(name);
+    }
+
+    public Sprite getSprite() {
+        return spriteSet.getSprite();
+    }
+
+    public void addIdleSprite(Sprite sprite) {
+        addSpriteSet("idle", sprite);
     }
 }

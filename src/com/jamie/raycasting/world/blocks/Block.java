@@ -1,11 +1,9 @@
 package com.jamie.raycasting.world.blocks;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.graphics.Render;
 import com.jamie.raycasting.graphics.Sprite;
+import com.jamie.raycasting.graphics.SpriteSet;
 import com.jamie.raycasting.graphics.Texture;
 import com.jamie.raycasting.world.levels.Level;
 
@@ -21,36 +19,15 @@ public class Block
 	public Render floorTex = Texture.floor;
 	public Render ceilTex = Texture.floor;
 
-	public int animTime = 5;
-	public int spriteIndex = 0;
-
 	public int gridX;
 	public int gridZ;
 	
 	public int id;
 
-	private List<Sprite> sprites = new ArrayList<Sprite>();
-
-	public void addSprite(Sprite s) {
-		sprites.add(s);
-	}
-
-	public Sprite getSprite(int i) {
-		return sprites.get(i);
-	}
-
-	public int countSprites() {
-		return sprites.size();
-	}
-
-	public void clearSprites() {
-		sprites.clear();
-	}
+	private SpriteSet spriteSet = new SpriteSet();
 
 	public void tick() {
-		for (int i = 0; i < countSprites(); i++) {
-			getSprite(i).tick();
-		}
+		spriteSet.tick();
 	}
 
     public boolean use(Mob source) {
@@ -58,4 +35,24 @@ public class Block
     }
 
 	public void trigger() {}
+
+	public void addSpriteSet(String name, Sprite sprite) {
+		spriteSet.addSet(name, sprite);
+	}
+
+	protected void runSpriteSet(String name) {
+		spriteSet.runSet(name);
+	}
+
+	protected void switchSpriteSet(String name) {
+		spriteSet.switchSet(name);
+	}
+
+	public Sprite getSprite() {
+		return spriteSet.getSprite();
+	}
+
+	public void addIdleSprite(Sprite sprite) {
+		addSpriteSet("idle", sprite);
+	}
 }

@@ -11,19 +11,17 @@ public class SpriteSet
     private int swapTicks = 0;
     private boolean isSetSwapped = false;
 
-    public SpriteSet() {
-        addSet("idle", new Sprite(Texture.none));
-    }
-
     public void tick() {
-        getSprite().tick();
+        if (getSprite() != null) {
+            getSprite().tick();
 
-        if (isSetSwapped) {
-            if (swapTicks > 0) {
-                swapTicks--;
-            } else {
-                switchSet(defaultKey);
-                isSetSwapped = false;
+            if (isSetSwapped) {
+                if (swapTicks > 0) {
+                    swapTicks--;
+                } else {
+                    switchSet(defaultKey);
+                    isSetSwapped = false;
+                }
             }
         }
     }

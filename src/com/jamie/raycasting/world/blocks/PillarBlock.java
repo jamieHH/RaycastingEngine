@@ -1,5 +1,6 @@
 package com.jamie.raycasting.world.blocks;
 
+import com.jamie.raycasting.graphics.Render;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
 
@@ -9,8 +10,9 @@ public class PillarBlock extends Block
 		isSolid = true;
 		isStatic = true;
 
-		Sprite sprite = new Sprite(Texture.pillar);
-		addSprite(sprite);
-
+		Render[] ts0 = {
+				Texture.pillar,
+		};
+		addIdleSprite(new Sprite(ts0));
 	}
 }

@@ -7,7 +7,7 @@ import com.jamie.raycasting.graphics.Texture;
 public class SpinningDummyBlock extends Block
 {
 	public SpinningDummyBlock() {
-	    Render ts[] = {
+	    Render ts0[] = {
                 Texture.spinningDummy0,
                 Texture.spinningDummy1,
                 Texture.spinningDummy2,
@@ -15,7 +15,6 @@ public class SpinningDummyBlock extends Block
                 Texture.spinningDummy4,
         };
 
-		Sprite sprite = new Sprite(ts);
-		addSprite(sprite);
+		addIdleSprite(new Sprite(ts0));
 	}
 }

@@ -1,6 +1,7 @@
 package com.jamie.raycasting.world.blocks;
 
 import com.jamie.raycasting.entities.particles.DropParticle;
+import com.jamie.raycasting.graphics.Render;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
 
@@ -12,8 +13,10 @@ public class FountainBlock extends Block
 		isSolid = true;
 		floorTex = Texture.grass;
 
-		Sprite sprite = new Sprite(Texture.fountain);
-		addSprite(sprite);
+		Render[] ts0 = {
+				Texture.fountain,
+		};
+		addIdleSprite(new Sprite(ts0));
 	}
 
     public void tick() {

@@ -1,5 +1,6 @@
 package com.jamie.raycasting.world.blocks;
 
+import com.jamie.raycasting.graphics.Render;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
 
@@ -11,8 +12,9 @@ public class TreeBlock extends Block
 
 		floorTex = Texture.grass;
 
-		Sprite sprite = new Sprite(Texture.tree);
-		addSprite(sprite);
-
+		Render[] ts0 = {
+				Texture.tree,
+		};
+		addIdleSprite(new Sprite(ts0));
 	}
 }

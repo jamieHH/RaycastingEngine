@@ -34,8 +34,8 @@ public abstract class Item
         spriteSet.addSet(name, sprite);
     }
 
-    public void addIdleSprite(Sprite s) {
-        addSpriteSet("idle", s);
+    public void addIdleSprite(Sprite sprite) {
+        addSpriteSet("idle", sprite);
     }
 
     public void addUseSprite(Sprite s) {

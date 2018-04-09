@@ -125,7 +125,7 @@ public class Render3D extends Render
 				int xTexture = (int) (pixelRotationX * scale); // 16
 
 				if (zBuffer[xp + yp * width] > distBuffer) {
-					int colour = tex.pixels[(xTexture &15) + (yTexture &15) * scale]; // TODO: shrink smaller textures to relative size asif 16px is standard per block
+					int colour = tex.pixels[(xTexture &15) + (yTexture &15) * scale]; // TODO: shrink smaller textures to relative size as if 16px is standard per block
 					if (colour != 0xffff00ff) {
 						pixels[xp + yp * width] = colour;
 						zBuffer[xp + yp * width] = distBuffer;
@@ -239,11 +239,10 @@ public class Render3D extends Render
 	private void renderSprites() {
         for (int xBlock = xBlockStart; xBlock <= xBlockEnd; xBlock++) {
             for (int zBlock = zBlockStart; zBlock <= zBlockEnd; zBlock++) {
-                Block block = p.level.getBlock(xBlock, zBlock);
-                for (int i = 0; i < block.countSprites(); i++) {
-					Sprite sprite = block.getSprite(i);
-                    renderSprite((xBlock + 0.5) + sprite.x, sprite.y, (zBlock + 0.5) + sprite.z, sprite.render());
-                }
+				Sprite sprite = p.level.getBlock(xBlock, zBlock).getSprite();
+				if (sprite != null) {
+					renderSprite((xBlock + 0.5) + sprite.x, sprite.y, (zBlock + 0.5) + sprite.z, sprite.render());
+				}
 			}
 		}
 

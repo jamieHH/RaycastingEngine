@@ -6,16 +6,13 @@ import com.jamie.raycasting.graphics.Texture;
 
 public class CeilDripBlock extends Block
 {
-//    public int animTime = 5;
-//    public int spriteIndex = 0;
-
 	public CeilDripBlock() {
         isSolid = false;
 
         floorTex = Texture.wetFloor;
         ceilTex = Texture.wetFloor;
 
-		Render[] ts = {
+		Render[] ts0 = {
                 Texture.drip0,
                 Texture.drip0,
                 Texture.drip1,
@@ -26,7 +23,6 @@ public class CeilDripBlock extends Block
                 Texture.drip0,
 		};
 
-        Sprite sprite = new Sprite(ts);
-        addSprite(sprite);
+        addIdleSprite(new Sprite(ts0));
 	}
 }

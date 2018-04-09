@@ -2,6 +2,7 @@ package com.jamie.raycasting.world.blocks;
 
 import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.entities.particles.WoodParticle;
+import com.jamie.raycasting.graphics.Render;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
 import com.jamie.raycasting.items.weapons.AxeWeapon;
@@ -14,8 +15,15 @@ public class BoardsBlock extends Block
         isOpaque = false;
         isSolid = true;
 
-        Sprite sprite = new Sprite(Texture.boards);
-        addSprite(sprite);
+        Render[] ts0 = {
+                Texture.boards,
+        };
+        addIdleSprite(new Sprite(ts0));
+
+        Render[] ts1 = {
+                Texture.boardsSmashed,
+        };
+        addSpriteSet("broken", new Sprite(ts1));
 	}
 
 	public boolean use(Mob source) {
@@ -34,10 +42,7 @@ public class BoardsBlock extends Block
         smashed = true;
         isSolid = false;
 
-        clearSprites();
-
-        Sprite sprite = new Sprite(Texture.boardsSmashed);
-        addSprite(sprite);
+        switchSpriteSet("broken");
 
         for (int i = 0; i < 6 ; i++) {
             level.addEntity(new WoodParticle(gridX + 0.5, gridZ + 0.5));
