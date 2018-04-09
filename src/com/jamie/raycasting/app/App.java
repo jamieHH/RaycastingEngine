@@ -16,7 +16,7 @@ public class App extends Canvas implements Runnable
 {
 	private static final long serialVersionUID = 1L;
 
-	public static final String TITLE = "raycasting_engine_pre_0.74";
+	public static final String TITLE = "raycasting_engine_pre_0.81";
 	public static int width = 200;
 	public static int height = 150;
 	public static int scale = 4;
@@ -140,7 +140,7 @@ public class App extends Canvas implements Runnable
 	}
 	
 	private void render() {
-		BufferStrategy bs = this.getBufferStrategy();
+		BufferStrategy bs = getBufferStrategy();
 		if (bs == null) {
 			createBufferStrategy(3);
 			return;
