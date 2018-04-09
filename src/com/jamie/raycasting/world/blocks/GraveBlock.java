@@ -15,6 +15,6 @@ public class GraveBlock extends Block
 		Render[] ts0 = {
 				Texture.grave,
 		};
-		addIdleSprite(new Sprite(ts0));
+		setIdleSprite(new Sprite(ts0));
 	}
 }

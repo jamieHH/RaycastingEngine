@@ -16,7 +16,7 @@ public class FountainBlock extends Block
 		Render[] ts0 = {
 				Texture.fountain,
 		};
-		addIdleSprite(new Sprite(ts0));
+		setIdleSprite(new Sprite(ts0));
 	}
 
     public void tick() {

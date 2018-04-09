@@ -18,12 +18,12 @@ public class LadderBlock extends Block
 			floorTex = Texture.floor;
 			ceilTex = Texture.ladderHole;
 
-            addIdleSprite(new Sprite(Texture.ladder, 0, 0.125, 0));
+            setIdleSprite(new Sprite(Texture.ladder, 0, 0.125, 0));
 		} else {
             floorTex = Texture.ladderHole;
             ceilTex = Texture.floor;
 
-            addIdleSprite(new Sprite(Texture.ladder, 0, -0.125, 0));
+            setIdleSprite(new Sprite(Texture.ladder, 0, -0.125, 0));
         }
 	}
 

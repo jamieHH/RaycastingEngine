@@ -40,27 +40,27 @@ public class Spirit extends Mob
                 Texture.spirit2,
                 Texture.spirit1,
         };
-        addIdleSprite(new Sprite(ts));
+        setIdleSprite(new Sprite(ts));
 
         Render[] ts2 = {
                 Texture.spiritAtt0,
         };
-        addActionSprite(new Sprite(ts2, 15));
+        setActionSprite(new Sprite(ts2, 15));
 
         Render[] ts3 = {
                 Texture.spiritHurt0,
         };
-        addHurtSprite(new Sprite(ts3, 15));
+        setHurtSprite(new Sprite(ts3, 15));
 
         Render[] ts4 = {
                 Texture.splat1,
         };
-        addDeathSprite(new Sprite(ts4, 30));
+        setDeathSprite(new Sprite(ts4, 30));
 
         Render[] ts5 = {
                 Texture.spiritHeal0,
         };
-        addHealSprite(new Sprite(ts5, 30));
+        setHealSprite(new Sprite(ts5, 30));
 
         addFaction("beast");
     }

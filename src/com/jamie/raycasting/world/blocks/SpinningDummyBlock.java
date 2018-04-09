@@ -15,6 +15,6 @@ public class SpinningDummyBlock extends Block
                 Texture.spinningDummy4,
         };
 
-		addIdleSprite(new Sprite(ts0));
+		setIdleSprite(new Sprite(ts0));
 	}
 }

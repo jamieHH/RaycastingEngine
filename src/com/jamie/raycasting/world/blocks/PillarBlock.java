@@ -13,6 +13,6 @@ public class PillarBlock extends Block
 		Render[] ts0 = {
 				Texture.pillar,
 		};
-		addIdleSprite(new Sprite(ts0));
+		setIdleSprite(new Sprite(ts0));
 	}
 }

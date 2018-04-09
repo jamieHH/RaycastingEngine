@@ -15,6 +15,6 @@ public class TreeBlock extends Block
 		Render[] ts0 = {
 				Texture.tree,
 		};
-		addIdleSprite(new Sprite(ts0));
+		setIdleSprite(new Sprite(ts0));
 	}
 }

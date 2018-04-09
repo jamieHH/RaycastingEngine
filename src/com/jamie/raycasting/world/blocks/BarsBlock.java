@@ -13,6 +13,6 @@ public class BarsBlock extends Block
 		Render[] ts0 = {
 				Texture.bars,
 		};
-		addIdleSprite(new Sprite(ts0));
+		setIdleSprite(new Sprite(ts0));
 	}
 }

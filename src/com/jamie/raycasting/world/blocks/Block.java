@@ -36,8 +36,8 @@ public class Block
 
 	public void trigger() {}
 
-	public void addSpriteSet(String name, Sprite sprite) {
-		spriteSet.addSet(name, sprite);
+	public void setSpriteSet(String name, Sprite sprite) {
+		spriteSet.putSet(name, sprite);
 	}
 
 	protected void runSpriteSet(String name) {
@@ -52,7 +52,7 @@ public class Block
 		return spriteSet.getSprite();
 	}
 
-	public void addIdleSprite(Sprite sprite) {
-		addSpriteSet("idle", sprite);
+	public void setIdleSprite(Sprite sprite) {
+		setSpriteSet("idle", sprite);
 	}
 }

@@ -12,13 +12,13 @@ public class HealthPotion extends Consumable
         Render[] ts = {
                 Texture.screenHealthPotion0,
         };
-        addIdleSprite(new Sprite(ts));
+        setIdleSprite(new Sprite(ts));
 
 
         Render[] ts1 = {
                 Texture.screenHealthPotion1,
         };
-        addUseSprite(new Sprite(ts1));
+        setUseSprite(new Sprite(ts1));
 
         name = "Health Potion";
     }

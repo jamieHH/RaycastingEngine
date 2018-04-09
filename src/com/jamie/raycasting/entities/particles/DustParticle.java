@@ -17,6 +17,6 @@ public class DustParticle extends Particle
         SpriteParticle particle = new SpriteParticle(ts[random.nextInt(ts.length)], 0, 0.5, 0);
         particle.gravity = 0;
 
-        addIdleSprite(particle);
+        setIdleSprite(particle);
     }
 }

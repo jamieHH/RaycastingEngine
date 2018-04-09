@@ -12,7 +12,7 @@ public class SpearWeapon extends Weapon
         Render[] ts = {
                 Texture.screenSpear0,
         };
-        addIdleSprite(new Sprite(ts));
+        setIdleSprite(new Sprite(ts));
 
 
         Render[] ts1 = {
@@ -20,7 +20,7 @@ public class SpearWeapon extends Weapon
             Texture.screenSpear2
         };
 
-        addUseSprite(new Sprite(ts1));
+        setUseSprite(new Sprite(ts1));
 
         name = "Spear";
         reach = 16;

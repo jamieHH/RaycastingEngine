@@ -26,23 +26,31 @@ public class SpriteSet
         }
     }
 
-    public Sprite getSprite() {
-        return set.get(setKey);
+    public Sprite getSet(String key) {
+        return set.get(key);
     }
 
-    public void addSet(String name, Sprite sprite) {
+    public void putSet(String name, Sprite sprite) {
         set.put(name, sprite);
     }
 
     public void switchSet(String key) {
-        set.get(key).reset();
+        if (getSet(key) != null) {
+            getSet(key).reset();
+        }
         setKey = key;
     }
 
     public void runSet(String key) {
-        switchSet(key);
-        isSetSwapped = true;
+        if (getSet(key) != null) {
+            switchSet(key);
+            isSetSwapped = true;
 
-        swapTicks = set.get(key).countTextures() * set.get(key).interval;
+            swapTicks = getSet(key).countTextures() * getSet(key).interval;
+        }
+    }
+
+    public Sprite getSprite() {
+        return getSet(setKey);
     }
 }

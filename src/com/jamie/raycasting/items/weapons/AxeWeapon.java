@@ -12,13 +12,13 @@ public class AxeWeapon extends Weapon
         Render[] ts = {
                 Texture.screenAxe0,
         };
-        addIdleSprite(new Sprite(ts));
+        setIdleSprite(new Sprite(ts));
 
 
         Render[] ts1 = {
                 Texture.screenAxe1,
         };
-        addUseSprite(new Sprite(ts1));
+        setUseSprite(new Sprite(ts1));
 
         name = "Hatchet";
         reach = 4;

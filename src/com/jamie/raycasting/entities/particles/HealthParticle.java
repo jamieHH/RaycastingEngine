@@ -17,6 +17,6 @@ public class HealthParticle extends Particle
         SpriteParticle particle = new SpriteParticle(ts[random.nextInt(ts.length)], 0, 0, 0);
         particle.gravity = -0.125;
 
-        addIdleSprite(particle);
+        setIdleSprite(particle);
     }
 }

@@ -36,26 +36,26 @@ public class Bat extends Mob
                 Texture.bat2,
                 Texture.bat1,
         };
-        addIdleSprite(new Sprite(ts));
+        setIdleSprite(new Sprite(ts));
 
         Render[] ts2 = {
                 Texture.batAtt0,
                 Texture.batAtt1,
                 Texture.batAtt2,
         };
-        addActionSprite(new Sprite(ts2));
+        setActionSprite(new Sprite(ts2));
 
         Render[] ts3 = {
                 Texture.batHurt0,
                 Texture.batHurt1,
                 Texture.batHurt2,
         };
-        addHurtSprite(new Sprite(ts3));
+        setHurtSprite(new Sprite(ts3));
 
         Render[] ts4 = {
                 Texture.splat1,
         };
-        addDeathSprite(new Sprite(ts4, 30));
+        setDeathSprite(new Sprite(ts4, 30));
 
         addFaction("beast");
     }

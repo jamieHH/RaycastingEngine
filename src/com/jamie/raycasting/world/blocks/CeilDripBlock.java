@@ -23,6 +23,6 @@ public class CeilDripBlock extends Block
                 Texture.drip0,
 		};
 
-        addIdleSprite(new Sprite(ts0));
+        setIdleSprite(new Sprite(ts0));
 	}
 }

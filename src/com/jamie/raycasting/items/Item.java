@@ -1,7 +1,6 @@
 package com.jamie.raycasting.items;
 
 import com.jamie.raycasting.entities.mobs.Mob;
-import com.jamie.raycasting.entities.mobs.Player;
 import com.jamie.raycasting.graphics.Render;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.SpriteSet;
@@ -26,20 +25,20 @@ public abstract class Item
     public Render icon = new Render(8, 8);
 
     public Item() {
-        addIdleSprite(new Sprite(Texture.none));
-        addUseSprite(new Sprite(Texture.none));
+        setIdleSprite(new Sprite(Texture.none));
+        setUseSprite(new Sprite(Texture.none));
     }
 
-    public void addSpriteSet(String name, Sprite sprite) {
-        spriteSet.addSet(name, sprite);
+    public void setSpriteSet(String name, Sprite sprite) {
+        spriteSet.putSet(name, sprite);
     }
 
-    public void addIdleSprite(Sprite sprite) {
-        addSpriteSet("idle", sprite);
+    public void setIdleSprite(Sprite sprite) {
+        setSpriteSet("idle", sprite);
     }
 
-    public void addUseSprite(Sprite s) {
-        addSpriteSet("use", s);
+    public void setUseSprite(Sprite s) {
+        setSpriteSet("use", s);
     }
 
     public Sprite getSprite() {
@@ -59,10 +58,6 @@ public abstract class Item
 
     public Render render() {
         return getSprite().render();
-    }
-
-    public Mob getUser() {
-        return user;
     }
 
     public void setUser(Mob mob) {

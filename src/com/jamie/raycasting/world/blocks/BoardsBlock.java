@@ -18,12 +18,12 @@ public class BoardsBlock extends Block
         Render[] ts0 = {
                 Texture.boards,
         };
-        addIdleSprite(new Sprite(ts0));
+        setIdleSprite(new Sprite(ts0));
 
         Render[] ts1 = {
                 Texture.boardsSmashed,
         };
-        addSpriteSet("broken", new Sprite(ts1));
+        setSpriteSet("broken", new Sprite(ts1));
 	}
 
 	public boolean use(Mob source) {

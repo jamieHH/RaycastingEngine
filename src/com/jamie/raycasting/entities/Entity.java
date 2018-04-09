@@ -4,14 +4,11 @@ import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.SpriteSet;
 import com.jamie.raycasting.world.levels.Level;
 
-import java.util.Random;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Entity
 {
-	protected static final Random random = new Random();
-
-    private SpriteSet spriteSet = new SpriteSet();
-
 	public Level level;
     public boolean removed = false;
 
@@ -22,10 +19,7 @@ public class Entity
     public double posX, posZ;
     public double posY;
 
-
-	public void remove() {
-        removed = true;
-	}
+    private SpriteSet spriteSet = new SpriteSet();
 
     public void tick() {
         spriteSet.tick();
@@ -34,6 +28,10 @@ public class Entity
     public void setPosition(double x, double z) {
         posX = x;
         posZ = z;
+    }
+
+    public void remove() {
+        removed = true;
     }
 
 	protected double distanceFrom(double x, double z) {
@@ -62,8 +60,20 @@ public class Entity
         return !(posZ + radius <= z0) && !(posZ - radius >= z1);
     }
 
-    protected void addSpriteSet(String name, Sprite sprite) {
-        spriteSet.addSet(name, sprite);
+    public List<Entity> getEntitiesInRadius(double radius) {
+        List<Entity> entities = new ArrayList<Entity>();
+        for (int e = 0; e < level.countEntities(); e++) {
+            Entity ent = level.getEntity(e);
+            if (distanceFrom(ent.posX, ent.posZ) < radius) {
+                entities.add(ent);
+            }
+        }
+
+        return entities;
+    }
+
+    protected void setSpriteSet(String name, Sprite sprite) {
+        spriteSet.putSet(name, sprite);
     }
 
     protected void runSpriteSet(String name) {
@@ -78,7 +88,7 @@ public class Entity
         return spriteSet.getSprite();
     }
 
-    public void addIdleSprite(Sprite sprite) {
-        addSpriteSet("idle", sprite);
+    public void setIdleSprite(Sprite sprite) {
+        setSpriteSet("idle", sprite);
     }
 }

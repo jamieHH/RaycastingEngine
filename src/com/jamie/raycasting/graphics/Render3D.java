@@ -250,7 +250,9 @@ public class Render3D extends Render
 			Entity entity = p.level.getEntity(i);
 			if (entity.isInside(xBlockStart, zBlockStart, xBlockEnd, zBlockEnd)) {
 				Sprite sprite = entity.getSprite();
-				renderSprite(entity.posX + sprite.x, entity.posY + sprite.y, entity.posZ + sprite.z, sprite.render());
+				if (sprite != null) {
+					renderSprite(entity.posX + sprite.x, entity.posY + sprite.y, entity.posZ + sprite.z, sprite.render());
+				}
 			}
 		}
 	}

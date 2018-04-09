@@ -6,7 +6,6 @@ import com.jamie.raycasting.entities.particles.HealthParticle;
 import com.jamie.raycasting.entities.particles.Particle;
 import com.jamie.raycasting.entities.particles.PoofParticle;
 import com.jamie.raycasting.graphics.Sprite;
-import com.jamie.raycasting.graphics.Texture;
 import com.jamie.raycasting.input.InputHandler;
 import com.jamie.raycasting.input.UserInputHandler;
 import com.jamie.raycasting.items.Item;
@@ -78,12 +77,6 @@ public abstract class Mob extends Entity
 
         health = maxHealth;
         camY = camHeightMod;
-
-        addIdleSprite(new Sprite(Texture.none));
-        addActionSprite(new Sprite(Texture.none));
-        addHurtSprite(new Sprite(Texture.none));
-        addDeathSprite(new Sprite(Texture.none));
-        addHealSprite(new Sprite(Texture.none));
     }
 
     public void tick() {
@@ -231,20 +224,20 @@ public abstract class Mob extends Entity
         return baseDamage;
     }
 
-    public void addHurtSprite(Sprite s) {
-        addSpriteSet("hurt", s);
+    public void setHurtSprite(Sprite s) {
+        setSpriteSet("hurt", s);
     }
 
-    public void addActionSprite(Sprite s) {
-        addSpriteSet("action", s);
+    public void setActionSprite(Sprite s) {
+        setSpriteSet("action", s);
     }
 
-    public void addDeathSprite(Sprite s) {
-        addSpriteSet("death", s);
+    public void setDeathSprite(Sprite s) {
+        setSpriteSet("death", s);
     }
 
-    public void addHealSprite(Sprite s) {
-        addSpriteSet("heal", s);
+    public void setHealSprite(Sprite s) {
+        setSpriteSet("heal", s);
     }
 
     private void doMovements() {
@@ -418,25 +411,17 @@ public abstract class Mob extends Entity
     }
 
     private void activate() {
-            if (getRightHandItem() != null) {
-                getRightHandItem().use();
-            }
-
-            if (getRightHandItem() instanceof Consumable) {
-                return;
-            } else {
-                runSpriteSet("action");
-            }
-
-
-        List<Entity> closeEnts = new ArrayList<Entity>();
-        for (int e = 0; e < level.countEntities(); e++) {
-            Entity ent = level.getEntity(e);
-            if (distanceFrom(ent.posX, ent.posZ) < getRightHandReach()) {
-                closeEnts.add(ent);
-            }
+        if (getRightHandItem() != null) {
+            getRightHandItem().use();
         }
 
+        if (getRightHandItem() instanceof Consumable) {
+            return;
+        } else {
+            runSpriteSet("action");
+        }
+
+        List<Entity> closeEntities = getEntitiesInRadius(getRightHandReach());
 
         double blockUseDist = getRightHandReach();
         int divs = (int) (getRightHandReach() * 100);
@@ -446,10 +431,10 @@ public abstract class Mob extends Entity
         for (int i = 0; i < divs; i++) {
             double xx = posX + xa * i / divs;
             double zz = posZ + za * i / divs;
-            for (int b = 0; b < closeEnts.size(); b++) {
-                Entity ent = closeEnts.get(b);
+            for (int b = 0; b < closeEntities.size(); b++) {
+                Entity ent = closeEntities.get(b);
                 if (ent instanceof Mob && ent != this) {
-                    if (closeEnts.get(b).contains(xx, zz)) {
+                    if (closeEntities.get(b).contains(xx, zz)) {
                         ((Mob) ent).hurt(this, getDamage());
                         return;
                     }
