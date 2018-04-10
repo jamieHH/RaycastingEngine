@@ -7,6 +7,9 @@ import com.jamie.raycasting.graphics.Texture;
 public class SpinningDummyBlock extends Block
 {
 	public SpinningDummyBlock() {
+		floorTex = Texture.floor;
+		ceilTex = Texture.floor;
+
 	    Render ts0[] = {
                 Texture.spinningDummy0,
                 Texture.spinningDummy1,

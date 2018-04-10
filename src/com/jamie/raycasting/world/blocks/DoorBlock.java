@@ -16,7 +16,10 @@ public class DoorBlock extends Block
 	public DoorBlock() {
 		isOpaque = false;
 		isSolid = true;
+
 		wallTex = Texture.door;
+		floorTex = Texture.floor;
+		ceilTex = Texture.floor;
 	}
 
 	public boolean use(Mob source) {
@@ -34,6 +37,7 @@ public class DoorBlock extends Block
     }
 
     public void tick() {
+	    super.tick();
 	    if (useTicks > 0) useTicks--;
         updateOpenness();
     }

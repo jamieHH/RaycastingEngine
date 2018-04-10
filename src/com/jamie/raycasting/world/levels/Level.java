@@ -30,8 +30,8 @@ public abstract class Level
 
     // static blocks. TODO: check if is performance optimal.
     private static final Block Block = new Block();
-    private static final NullBlock NullBlock = new NullBlock();
-    private static final SolidBlock SolidBlock = new SolidBlock();
+    private static final AirBlock AirBlock = new AirBlock();
+    private static final WallBlock WallBlock = new WallBlock();
     private static final PillarBlock PillarBlock = new PillarBlock();
     private static final BarsBlock BarsBlock = new BarsBlock();
     private static final CobwebBlock CobwebBlock = new CobwebBlock();
@@ -124,8 +124,7 @@ public abstract class Level
 
     public void activateBlock(int id) {
         for (int i = 0; i < blocks.length; i++) {
-            // if instance of type
-            if (blocks[i].id == id && blocks[i] instanceof DoorBlock) {
+            if (blocks[i].id == id) {
                 blocks[i].trigger();
             }
         }
@@ -193,7 +192,7 @@ public abstract class Level
 
     public Block getBlock(int x, int z) {
         if (x < 0 || z < 0 || x >= sizeX || z >= sizeZ) {
-            return NullBlock;
+            return Block;
         }
 
         return blocks[x + z * sizeX];
@@ -211,7 +210,7 @@ public abstract class Level
     }
 
     private Block getBlockByColour(int col) {
-        if (col == 0xFFFFFF) return SolidBlock;
+        if (col == 0xFFFFFF) return WallBlock;
         if (col == 0x808080) return PillarBlock;
         if (col == 0xC0C0C0) return BarsBlock;
         if (col == 0xE0E0E0) return CobwebBlock;
@@ -230,7 +229,7 @@ public abstract class Level
         if (col == 0xC80000) return new ButtonBlock();
         if (col == 0xFF6A00) return new LadderBlock(false);
         if (col == 0xB24700) return new LadderBlock(true);
-        return Block;
+        return AirBlock;
     }
 
     private Mob getMobByColour(int col) {
@@ -283,7 +282,7 @@ public abstract class Level
             for (int x = 0; x < sizeX; x++) {
                 Block block;
                 if (random.nextInt(4) == 0) {
-                    block = new SolidBlock();
+                    block = new WallBlock();
                 } else {
                     if (random.nextInt(8) == 0) {
                         block = new PillarBlock();

@@ -10,6 +10,5 @@ public class GrassBlock extends Block
 		isStatic = true;
 
 		floorTex = Texture.grass;
-		ceilTex = Texture.floor;
 	}
 }

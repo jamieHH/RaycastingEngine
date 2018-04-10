@@ -10,6 +10,9 @@ public class PillarBlock extends Block
 		isSolid = true;
 		isStatic = true;
 
+		floorTex = Texture.floor;
+		ceilTex = Texture.floor;
+
 		Render[] ts0 = {
 				Texture.pillar,
 		};

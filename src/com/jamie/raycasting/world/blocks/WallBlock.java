@@ -2,9 +2,9 @@ package com.jamie.raycasting.world.blocks;
 
 import com.jamie.raycasting.graphics.Texture;
 
-public class SolidBlock extends Block
+public class WallBlock extends Block
 {
-	public SolidBlock() {
+	public WallBlock() {
 		isOpaque = true;
 		isSolid = true;
 		isStatic = true;

@@ -11,6 +11,7 @@ public class FountainBlock extends Block
 
 	public FountainBlock() {
 		isSolid = true;
+
 		floorTex = Texture.grass;
 
 		Render[] ts0 = {

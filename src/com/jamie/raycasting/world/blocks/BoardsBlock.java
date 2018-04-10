@@ -15,6 +15,9 @@ public class BoardsBlock extends Block
         isOpaque = false;
         isSolid = true;
 
+        floorTex = Texture.floor;
+        ceilTex = Texture.floor;
+
         Render[] ts0 = {
                 Texture.boards,
         };

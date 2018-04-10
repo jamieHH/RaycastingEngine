@@ -7,6 +7,7 @@ public class StrongDoorBlock extends DoorBlock
 {
 	public StrongDoorBlock() {
 	    super();
+
 		wallTex = Texture.strongDoor;
 	}
 

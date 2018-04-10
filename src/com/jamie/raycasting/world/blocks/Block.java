@@ -16,8 +16,8 @@ public class Block
     public boolean isStatic = false;
 
 	public Render wallTex = Texture.none;
-	public Render floorTex = Texture.floor;
-	public Render ceilTex = Texture.floor;
+	public Render floorTex = Texture.none;
+	public Render ceilTex = Texture.none;
 
 	public int gridX;
 	public int gridZ;
