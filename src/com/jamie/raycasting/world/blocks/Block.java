@@ -34,8 +34,6 @@ public class Block
         return false;
     }
 
-	public void trigger() {}
-
 	public void setSpriteSet(String name, Sprite sprite) {
 		spriteSet.putSet(name, sprite);
 	}

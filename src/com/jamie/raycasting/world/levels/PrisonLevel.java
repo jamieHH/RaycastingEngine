@@ -15,7 +15,7 @@ public class PrisonLevel extends Level
         if (id == 2) world.switchLevel("dungeon", 1);
     }
 
-    public void activateBlock(int id) {
-        if (id == 1) super.activateBlock(2);
+    public void triggerBlock(int id) {
+        if (id == 1) super.triggerBlock(2);
     }
 }

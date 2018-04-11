@@ -3,7 +3,7 @@ package com.jamie.raycasting.world.blocks;
 import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.graphics.Texture;
 
-public class DoorBlock extends Block
+public class DoorBlock extends TriggerableBlock
 {
 	protected boolean open = false;
 

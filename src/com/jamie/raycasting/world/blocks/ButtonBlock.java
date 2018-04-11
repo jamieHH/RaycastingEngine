@@ -29,12 +29,9 @@ public class ButtonBlock extends Block
         }
 
         useTicks = useWait;
-        trigger();
+        wallTex = Texture.wallButton1;
+        level.triggerBlock(id);
+
 		return true;
 	}
-
-	public void trigger() {
-        wallTex = Texture.wallButton1;
-        level.activateBlock(id);
-    }
 }

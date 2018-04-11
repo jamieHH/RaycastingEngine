@@ -7,7 +7,7 @@ import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
 import com.jamie.raycasting.items.weapons.AxeWeapon;
 
-public class BoardsBlock extends Block
+public class BoardsBlock extends TriggerableBlock
 {
 	private boolean smashed = false;
 

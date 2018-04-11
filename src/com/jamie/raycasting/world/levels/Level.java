@@ -122,10 +122,10 @@ public abstract class Level
 
     public void switchLevel(int id) {}
 
-    public void activateBlock(int id) {
+    public void triggerBlock(int id) {
         for (int i = 0; i < blocks.length; i++) {
-            if (blocks[i].id == id) {
-                blocks[i].trigger();
+            if (blocks[i].id == id && blocks[i] instanceof TriggerableBlock) {
+                ((TriggerableBlock) blocks[i]).trigger();
             }
         }
     }

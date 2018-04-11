@@ -10,7 +10,7 @@ public class BarracksLevel extends Level
 		if (id == 1) world.switchLevel("castleHall", 2);
 	}
 
-    public void activateBlock(int id) {
-        if (id == 1) super.activateBlock(1);
+    public void triggerBlock(int id) {
+        if (id == 1) super.triggerBlock(1);
     }
 }
