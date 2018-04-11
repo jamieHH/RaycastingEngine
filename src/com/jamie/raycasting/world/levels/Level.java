@@ -210,6 +210,7 @@ public abstract class Level
     }
 
     private Block getBlockByColour(int col) {
+        if (col == 0x000000) return Block;
         if (col == 0xFFFFFF) return WallBlock;
         if (col == 0x808080) return PillarBlock;
         if (col == 0xC0C0C0) return BarsBlock;
@@ -287,7 +288,7 @@ public abstract class Level
                     if (random.nextInt(8) == 0) {
                         block = new PillarBlock();
                     } else {
-                        block = new Block();
+                        block = new AirBlock();
                     }
                 }
                 level.blocks[x + z * sizeX] = block;

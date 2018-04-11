@@ -10,5 +10,7 @@ public class WallBlock extends Block
 		isStatic = true;
 
 		wallTex = Texture.wall;
+		floorTex = Texture.floor;
+		ceilTex = Texture.floor;
 	}
 }
