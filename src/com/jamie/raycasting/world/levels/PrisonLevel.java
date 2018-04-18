@@ -6,9 +6,11 @@ public class PrisonLevel extends Level
 {
 	public PrisonLevel() {
         name = "Prison";
-
-        addEntity(new AxeDrop(16.5, 20.5));
 	}
+
+	protected void postCreate() {
+        addEntity(new AxeDrop(16.5, 20.5));
+    }
 
     public void switchLevel(int id) {
         if (id == 1) world.switchLevel("sewer", 1);

@@ -48,7 +48,7 @@ public abstract class Level
         this.sizeZ = sizeZ;
         this.world = game.world;
 
-        blocks = new Block[sizeX * sizeZ];
+        this.blocks = new Block[sizeX * sizeZ];
 
         int ladderCount = 1;
         int doorCount = 1;
@@ -57,6 +57,9 @@ public abstract class Level
         for (int z = 0; z < sizeZ; z++) {
             for (int x = 0; x < sizeX; x++) {
                 int col = pixels[z + x * sizeX] & 0xFFFFFF;
+                if (col == 0xFFFF00) {
+                    setDefaultSpawn(x + 0.5, z + 0.5);
+                }
 
                 Block block = getBlockByColour(col);
 
@@ -75,17 +78,7 @@ public abstract class Level
                     buttonCount++;
                 }
 
-                if (!block.isStatic) {
-                    block.level = this;
-                    block.gridX = x;
-                    block.gridZ = z;
-                }
-
-                if (col == 0xFFFF00) {
-                    setDefaultSpawn(x + 0.5, z + 0.5);
-                }
-
-                blocks[x + z * sizeX] = block;
+                setBlock(x, z, block);
             }
         }
 
@@ -101,6 +94,12 @@ public abstract class Level
                 }
             }
         }
+
+        postCreate();
+    }
+
+    protected void postCreate() {
+
     }
 
     public void tick() {
@@ -118,6 +117,16 @@ public abstract class Level
                 removeEntity(getEntity(i));
             }
         }
+    }
+
+    public void setBlock(int gridX, int gridZ, Block block) {
+        if (!block.isStatic) {
+            block.level = this;
+            block.gridX = gridX;
+            block.gridZ = gridZ;
+        }
+
+        blocks[gridX + gridZ * sizeX] = block;
     }
 
     public void switchLevel(int id) {}
@@ -291,7 +300,8 @@ public abstract class Level
                         block = new AirBlock();
                     }
                 }
-                level.blocks[x + z * sizeX] = block;
+
+                level.setBlock(x, z, block);
             }
         }
 

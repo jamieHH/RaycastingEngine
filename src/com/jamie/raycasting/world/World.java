@@ -74,8 +74,11 @@ public class World
 
         level.removeEntity(thisMob);
 
-//        level = Level.makeRandomLevel(1000, 1000);
-        level = getLoadLevel(name);
+        if (name != "random") {
+            level = getLoadLevel(name);
+        } else {
+            level = Level.makeRandomLevel(2000, 2000);
+        }
 
         level.addEntity(thisMob);
 

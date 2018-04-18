@@ -33,6 +33,8 @@ public class TeleporterBlock extends Block
     }
 
 	public void tick() {
+	    super.tick();
+
         List<Mob> mobs = level.getMobsWithin(gridX, gridZ, gridX + 1, gridZ + 1);
 
         if (disabled) {
@@ -43,7 +45,7 @@ public class TeleporterBlock extends Block
             for (int i = 0; i < mobs.size(); i++) {
                 mobs.get(i).setPosition(destX, destZ);
                 for (int x = 0; x < 4; x++) {
-                    PoofParticle p = new PoofParticle(mobs.get(x).posX, mobs.get(x).posZ);
+                    PoofParticle p = new PoofParticle(mobs.get(i).posX, mobs.get(i).posZ);
                     level.addEntity(p);
                 }
             }
