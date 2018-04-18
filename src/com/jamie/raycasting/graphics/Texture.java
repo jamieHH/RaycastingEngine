@@ -72,6 +72,10 @@ public class Texture
     public static final Render pillar = loadBitmap("/textures/pillar.png");
     public static final Render bars = loadBitmap("/textures/bars.png");
     public static final Render ladder = loadBitmap("/textures/ladder.png");
+    public static final Render portal0 = loadBitmap("/textures/portal0.png"); // TODO: portal textures
+    public static final Render portal1 = loadBitmap("/textures/portal1.png");
+    public static final Render portal2 = loadBitmap("/textures/portal2.png");
+    public static final Render portal3 = loadBitmap("/textures/portal3.png");
     public static final Render boards = loadBitmap("/textures/boards.png");
     public static final Render boardsSmashed = loadBitmap("/textures/boardsSmashed.png");
     public static final Render tree = loadBitmap("/textures/tree.png");
