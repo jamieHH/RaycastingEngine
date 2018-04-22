@@ -1,5 +1,6 @@
 package com.jamie.raycasting.entities;
 
+import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.SpriteSet;
 import com.jamie.raycasting.world.levels.Level;
@@ -28,6 +29,10 @@ public class Entity
     public void setPosition(double x, double z) {
         posX = x;
         posZ = z;
+    }
+
+    public void setRotation(double rotation) {
+        this.rotation = rotation;
     }
 
     public void remove() {
@@ -70,6 +75,18 @@ public class Entity
         }
 
         return entities;
+    }
+
+    public List<Mob> getMobsInRadius(double radius) {
+        List<Mob> mobs = new ArrayList<Mob>();
+        for (int e = 0; e < level.countEntities(); e++) {
+            Entity ent = level.getEntity(e);
+            if (distanceFrom(ent.posX, ent.posZ) < radius && ent instanceof Mob) {
+                mobs.add((Mob) ent);
+            }
+        }
+
+        return mobs;
     }
 
     protected void setSpriteSet(String name, Sprite sprite) {

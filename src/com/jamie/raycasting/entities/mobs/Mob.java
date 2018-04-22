@@ -279,8 +279,8 @@ public abstract class Mob extends Entity
 
     private boolean isWallBlocked(double x, double z) {
         int x0 = (int) (Math.floor(x + radius));
-        int x1 = (int) (Math.floor(x - radius));
         int z0 = (int) (Math.floor(z + radius));
+        int x1 = (int) (Math.floor(x - radius));
         int z1 = (int) (Math.floor(z - radius));
 
         if (level.getBlock(x0, z0).isSolid) return true;
@@ -383,7 +383,7 @@ public abstract class Mob extends Entity
         moveZ += nextZ;
     }
 
-    public void hurt(Mob source, int damage) {
+    public void hurt(Entity source, int damage) {
         if (hurtTime > 0 || damage <= 0 || isDieing) return;
 
         runSpriteSet("hurt");
@@ -413,39 +413,37 @@ public abstract class Mob extends Entity
             getRightHandItem().use();
         }
 
-        if (getRightHandItem() instanceof Consumable) {
-            return;
-        } else {
+        if (getRightHandItem() == null || getRightHandItem().canStrike) {
             runSpriteSet("action");
-        }
 
-        List<Entity> closeEntities = getEntitiesInRadius(getRightHandReach());
+            List<Entity> closeEntities = getEntitiesInRadius(getRightHandReach());
 
-        double blockUseDist = getRightHandReach();
-        int divs = (int) (getRightHandReach() * 100);
-        double xa = blockUseDist * Math.sin(rotation);
-        double za = blockUseDist * Math.cos(rotation);
+            double blockUseDist = getRightHandReach();
+            int divs = (int) (getRightHandReach() * 100);
+            double xa = blockUseDist * Math.sin(rotation);
+            double za = blockUseDist * Math.cos(rotation);
 
-        for (int i = 0; i < divs; i++) {
-            double xx = posX + xa * i / divs;
-            double zz = posZ + za * i / divs;
-            for (int b = 0; b < closeEntities.size(); b++) {
-                Entity ent = closeEntities.get(b);
-                if (ent instanceof Mob && ent != this) {
-                    if (closeEntities.get(b).contains(xx, zz)) {
-                        ((Mob) ent).hurt(this, getDamage());
-                        return;
+            for (int i = 0; i < divs; i++) {
+                double xx = posX + xa * i / divs;
+                double zz = posZ + za * i / divs;
+                for (int b = 0; b < closeEntities.size(); b++) {
+                    Entity ent = closeEntities.get(b);
+                    if (ent instanceof Mob && ent != this) {
+                        if (closeEntities.get(b).contains(xx, zz)) {
+                            ((Mob) ent).hurt(this, getDamage());
+                            return;
+                        }
                     }
                 }
-            }
 
-            int xb = (int) xx;
-            int zb = (int) zz;
-            if (xb != (int) (posX) || zb != (int) (posZ)) {
-                Block block = level.getBlock(xb, zb);
-                if (block.use(this)) return;
+                int xb = (int) xx;
+                int zb = (int) zz;
+                if (xb != (int) (posX) || zb != (int) (posZ)) {
+                    Block block = level.getBlock(xb, zb);
+                    if (block.use(this)) return;
 
-                if (block.isSolid) return;
+                    if (block.isSolid) return;
+                }
             }
         }
     }

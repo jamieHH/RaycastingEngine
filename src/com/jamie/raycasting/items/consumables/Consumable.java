@@ -7,6 +7,7 @@ public class Consumable extends Item
     public Consumable() {
         super();
 
+        canStrike = false;
         name = "Consumable";
     }
 

@@ -21,6 +21,7 @@ public abstract class Item
 
     public int useTicks = 0;
     public int useWait = 15;
+    public boolean canStrike = true;
 
     public Render icon = new Render(8, 8);
 
