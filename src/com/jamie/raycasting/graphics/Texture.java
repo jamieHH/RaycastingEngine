@@ -89,6 +89,8 @@ public class Texture
     public static final Render drip3 = loadBitmap("/textures/drip3.png");
     public static final Render drip4 = loadBitmap("/textures/drip4.png");
     public static final Render grave = loadBitmap("/textures/grave.png");
+    public static final Render fireball0 = loadBitmap("/textures/fireball0.png");
+    public static final Render fireball1 = loadBitmap("/textures/fireball1.png");
 
 	// particles
     public static final Render blood0 = loadBitmap("/textures/blood0.png");
@@ -109,6 +111,8 @@ public class Texture
     public static final Render screenSpear2 = loadBitmap("/textures/screenSpear2.png");
     public static final Render screenAxe0 = loadBitmap("/textures/screenAxe0.png");
     public static final Render screenAxe1 = loadBitmap("/textures/screenAxe1.png");
+    public static final Render screenWand0 = loadBitmap("/textures/screenWand0.png");
+    public static final Render screenWand1 = loadBitmap("/textures/screenWand1.png");
     public static final Render screenHealthPotion0 = loadBitmap("/textures/hudHealthPotion0.png");
     public static final Render screenHealthPotion1 = loadBitmap("/textures/hudHealthPotion1.png");
 

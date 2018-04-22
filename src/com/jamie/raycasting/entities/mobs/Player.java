@@ -4,6 +4,7 @@ import com.jamie.raycasting.entities.particles.BloodParticle;
 import com.jamie.raycasting.input.InputHandler;
 import com.jamie.raycasting.items.consumables.HealthPotion;
 import com.jamie.raycasting.items.weapons.SpearWeapon;
+import com.jamie.raycasting.items.weapons.WandWeapon;
 
 public class Player extends Mob
 {
@@ -31,6 +32,7 @@ public class Player extends Mob
 
         addItem(new SpearWeapon());
         addItem(new HealthPotion());
+        addItem(new WandWeapon());
 
         addFaction("human");
     }
