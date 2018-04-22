@@ -30,8 +30,8 @@ public class WandWeapon extends Weapon
     public void use() {
         super.use();
 
-        double nextX = 0 * Math.cos(user.rotation) + 1 * Math.sin(user.rotation);
-        double nextZ = 1 * Math.cos(user.rotation) - 0 * Math.sin(user.rotation);
+        double nextX = Math.sin(user.rotation);
+        double nextZ = Math.cos(user.rotation);
 
         FireballProjectile f = new FireballProjectile();
         f.setPosition(user.posX + nextX, user.posZ + nextZ);
