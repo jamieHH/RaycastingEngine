@@ -313,10 +313,8 @@ public abstract class Mob extends Entity
         }
         posX += nextX;
 
-        if (wallCollide) {
-            if (isWallBlocked(posX, posZ + nextZ) || isEntityBlocked(posX, posZ + nextZ)) {
-                nextZ = 0;
-            }
+        if (isWallBlocked(posX, posZ + nextZ) || isEntityBlocked(posX, posZ + nextZ)) {
+            nextZ = 0;
         }
         posZ += nextZ;
     }
