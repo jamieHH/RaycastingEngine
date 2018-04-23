@@ -26,6 +26,6 @@ public class HealthPotion extends Consumable
     public void use() {
         super.use();
 
-        user.addHealth(8);
+        user.modHealth(8);
     }
 }

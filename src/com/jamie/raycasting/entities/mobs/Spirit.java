@@ -83,7 +83,7 @@ public class Spirit extends Mob
             healTick--;
         } else {
             healTick = 400;
-            addHealth(2);
+            modHealth(2);
         }
 
 

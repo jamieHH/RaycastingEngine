@@ -434,15 +434,19 @@ public abstract class Mob extends Entity
         this.factions.add(faction);
     }
 
-    public void addHealth(int modifier) {
+    public void modHealth(int modifier) {
         runSpriteSet("heal");
-        for (int i = 0; i < 4; i++) {
-            HealthParticle p = new HealthParticle(posX, posZ);
-            level.addEntity(p);
+        if (modifier > 0) {
+            for (int i = 0; i < 4; i++) {
+                HealthParticle p = new HealthParticle(posX, posZ);
+                level.addEntity(p);
+            }
         }
 
         if (health + modifier > maxHealth) {
             health = maxHealth;
+        } else if (health + modifier < 0) {
+            health = 0;
         } else {
             health += modifier;
         }
