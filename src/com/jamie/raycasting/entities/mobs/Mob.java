@@ -19,6 +19,7 @@ public abstract class Mob extends Entity
 {
     protected boolean wallCollide = true;
     protected boolean entCollide = true;
+    protected boolean isFloating = false;
 
     // details
     protected Particle hurtParticle;
@@ -283,10 +284,22 @@ public abstract class Mob extends Entity
         int x1 = (int) (Math.floor(x - radius));
         int z1 = (int) (Math.floor(z - radius));
 
-        if (level.getBlock(x0, z0).isSolid) return true;
-        if (level.getBlock(x1, z0).isSolid) return true;
-        if (level.getBlock(x0, z1).isSolid) return true;
-        if (level.getBlock(x1, z1).isSolid) return true;
+        Block block00 = level.getBlock(x0, z0);
+        Block block10 = level.getBlock(x1, z0);
+        Block block01 = level.getBlock(x0, z1);
+        Block block11 = level.getBlock(x1, z1);
+
+        if (block00.isSolid) return true;
+        if (block10.isSolid) return true;
+        if (block01.isSolid) return true;
+        if (block11.isSolid) return true;
+
+        if (!this.isFloating) {
+            if (!block00.isWalkable) return true;
+            if (!block10.isWalkable) return true;
+            if (!block01.isWalkable) return true;
+            if (!block11.isWalkable) return true;
+        }
         return false;
     }
 

@@ -13,6 +13,7 @@ public class Bat extends Mob
 
 //        wallCollide = false;
 //        entCollide = false;
+        isFloating = true;
         isSolid = true;
 
         baseReach = 1;

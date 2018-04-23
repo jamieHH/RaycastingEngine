@@ -17,6 +17,7 @@ public class Spirit extends Mob
 
         wallCollide = false;
         entCollide = false;
+        isFloating = true;
         isSolid = false;
 
         baseReach = 1;
