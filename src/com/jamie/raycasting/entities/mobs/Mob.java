@@ -1,6 +1,7 @@
 package com.jamie.raycasting.entities.mobs;
 
 import com.jamie.raycasting.entities.Entity;
+import com.jamie.raycasting.entities.mobs.mobEffects.MobEffect;
 import com.jamie.raycasting.entities.particles.BloodParticle;
 import com.jamie.raycasting.entities.particles.HealthParticle;
 import com.jamie.raycasting.entities.particles.Particle;
@@ -36,7 +37,7 @@ public abstract class Mob extends Entity
     // movement
 	private double rotationMove;
     private double moveX, moveZ;
-    private double friction = 0.75;
+    private double friction = 0.25;
 
 
     protected double rotationSpeed = 0.03;
@@ -67,6 +68,7 @@ public abstract class Mob extends Entity
     private int rightHandItemIndex = 0;
     public boolean rightHandEmpty = true;
 
+    public List<MobEffect> mobEffects = new ArrayList<MobEffect>();
 
     public ArrayList<String> hudHeadings = new ArrayList<String>();
     public int hudHeadingsTicks = 120;
@@ -84,6 +86,18 @@ public abstract class Mob extends Entity
 
         for (int i = 0; i < items.size(); i++) {
             getItem(i).tick();
+
+            if (items.get(i).removed) {
+                removeItem(items.get(i));
+            }
+        }
+
+        for (int i = 0; i < mobEffects.size(); i++) {
+            mobEffects.get(i).tick();
+
+            if (mobEffects.get(i).removed) {
+                removeMobEffect(mobEffects.get(i));
+            }
         }
 
         if (!(input instanceof UserInputHandler)) {
@@ -274,6 +288,17 @@ public abstract class Mob extends Entity
         items.remove(item);
         item.setUser(null);
         addHudHeading(item.name + " removed");
+    }
+
+    public void addMobEffect(MobEffect mobEffect) {
+        mobEffects.add(mobEffect);
+        mobEffect.setMob(this);
+        addHudHeading(mobEffect.name +" effect added");
+    }
+
+    public void removeMobEffect(MobEffect mobEffect) {
+        mobEffects.remove(mobEffect);
+        mobEffect.setMob(null);
     }
 
     public List<Item> getItems() {

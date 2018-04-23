@@ -17,6 +17,7 @@ public abstract class Item
     public int reach = 0;
 
     protected Mob user;
+    public boolean removed = false;
     protected int useCount = 0;
 
     public int useTicks = 0;
@@ -66,6 +67,6 @@ public abstract class Item
     }
 
     public void remove() {
-        user.removeItem(this);
+        removed = true;
     }
 }
