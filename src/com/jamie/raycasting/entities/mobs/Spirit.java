@@ -15,8 +15,6 @@ public class Spirit extends Mob
     public Spirit(InputHandler input) {
         super(input);
 
-        wallCollide = false;
-        entCollide = false;
         isFloating = true;
         isSolid = false;
 

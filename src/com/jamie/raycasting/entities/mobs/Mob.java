@@ -9,7 +9,6 @@ import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.input.InputHandler;
 import com.jamie.raycasting.input.UserInputHandler;
 import com.jamie.raycasting.items.Item;
-import com.jamie.raycasting.items.consumables.Consumable;
 import com.jamie.raycasting.world.blocks.Block;
 
 import java.util.ArrayList;
@@ -17,8 +16,6 @@ import java.util.List;
 
 public abstract class Mob extends Entity
 {
-    protected boolean wallCollide = true;
-    protected boolean entCollide = true;
     protected boolean isFloating = false;
 
     // details
@@ -279,48 +276,56 @@ public abstract class Mob extends Entity
     }
 
     private boolean isWallBlocked(double x, double z) {
-        int x0 = (int) (Math.floor(x + radius));
-        int z0 = (int) (Math.floor(z + radius));
-        int x1 = (int) (Math.floor(x - radius));
-        int z1 = (int) (Math.floor(z - radius));
+        if (isSolid) {
+            int x0 = (int) (Math.floor(x + radius));
+            int z0 = (int) (Math.floor(z + radius));
+            int x1 = (int) (Math.floor(x - radius));
+            int z1 = (int) (Math.floor(z - radius));
 
-        Block block00 = level.getBlock(x0, z0);
-        Block block10 = level.getBlock(x1, z0);
-        Block block01 = level.getBlock(x0, z1);
-        Block block11 = level.getBlock(x1, z1);
+            Block block00 = level.getBlock(x0, z0);
+            Block block10 = level.getBlock(x1, z0);
+            Block block01 = level.getBlock(x0, z1);
+            Block block11 = level.getBlock(x1, z1);
 
-        if (block00.isSolid) return true;
-        if (block10.isSolid) return true;
-        if (block01.isSolid) return true;
-        if (block11.isSolid) return true;
+            if (block00.isSolid) return true;
+            if (block10.isSolid) return true;
+            if (block01.isSolid) return true;
+            if (block11.isSolid) return true;
 
-        if (!this.isFloating) {
-            if (!block00.isWalkable) return true;
-            if (!block10.isWalkable) return true;
-            if (!block01.isWalkable) return true;
-            if (!block11.isWalkable) return true;
+            if (!this.isFloating) {
+                if (!block00.isWalkable) return true;
+                if (!block10.isWalkable) return true;
+                if (!block01.isWalkable) return true;
+                if (!block11.isWalkable) return true;
+            }
+            return false;
         }
+
         return false;
     }
 
     private boolean isEntityBlocked(double x, double z) {
-        for (int i = 0; i < level.countEntities(); i++) {
-            Entity e = level.getEntity(i);
-            if (e.isSolid) {
-                double entX = e.posX;
-                double entZ = e.posZ;
-                double entRadius = e.radius;
-                if (level.getEntity(i) != this) {
-                    if (((Math.abs(x - entX)) - entRadius < radius) && ((Math.abs(z - entZ)) - entRadius < radius)) {
-                        return true;
+        if (isSolid) {
+            for (int i = 0; i < level.countEntities(); i++) {
+                Entity e = level.getEntity(i);
+                if (e.isSolid) {
+                    double entX = e.posX;
+                    double entZ = e.posZ;
+                    double entRadius = e.radius;
+                    if (level.getEntity(i) != this) {
+                        if (((Math.abs(x - entX)) - entRadius < radius) && ((Math.abs(z - entZ)) - entRadius < radius)) {
+                            return true;
+                        }
                     }
                 }
             }
+            return false;
         }
+
         return false;
     }
 
-    private void moveWallEntColl(double nextX, double nextZ) {
+	private void move(double nextX, double nextZ) {
         if (isWallBlocked(posX + nextX, posZ) || isEntityBlocked(posX + nextX, posZ)) {
             nextX = 0;
         }
@@ -330,53 +335,6 @@ public abstract class Mob extends Entity
             nextZ = 0;
         }
         posZ += nextZ;
-    }
-
-    private void moveWallColl(double nextX, double nextZ) {
-        if (isWallBlocked(posX + nextX, posZ)) {
-            nextX = 0;
-        }
-        posX += nextX;
-
-
-        if (isWallBlocked(posX, posZ + nextZ)) {
-            nextZ = 0;
-        }
-
-        posZ += nextZ;
-    }
-
-    private void moveEntColl(double nextX, double nextZ) {
-        if (isEntityBlocked(posX + nextX, posZ)) {
-            nextX = 0;
-        }
-        posX += nextX;
-
-        if (isEntityBlocked(posX, posZ + nextZ)) {
-            nextZ = 0;
-        }
-        posZ += nextZ;
-    }
-
-    private void moveNoColl(double nextX, double nextZ) {
-        posX += nextX;
-        posZ += nextZ;
-    }
-
-	private void move(double nextX, double nextZ) {
-        if (wallCollide) {
-            if (entCollide) {
-                moveWallEntColl(nextX, nextZ);
-            } else {
-                moveWallColl(nextX, nextZ);
-            }
-        } else {
-            if (entCollide) {
-                moveEntColl(nextX, nextZ);
-            } else {
-                moveNoColl(nextX, nextZ);
-            }
-        }
 
         moveX *= 0.5;
         moveZ *= 0.5;

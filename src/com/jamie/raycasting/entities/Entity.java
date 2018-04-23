@@ -43,8 +43,7 @@ public class Entity
         return Math.hypot(Math.abs(posX - x), Math.abs(posZ - z));
     }
 
-    public double squareDistanceFrom(double x, double z)
-    {
+    public double squareDistanceFrom(double x, double z) {
         double xDist = Math.abs(posX - x);
         double zDist = Math.abs(posZ - z);
 

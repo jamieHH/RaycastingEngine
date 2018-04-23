@@ -11,8 +11,6 @@ public class Bat extends Mob
     public Bat(InputHandler input) {
         super(input);
 
-//        wallCollide = false;
-//        entCollide = false;
         isFloating = true;
         isSolid = true;
 
@@ -28,6 +26,8 @@ public class Bat extends Mob
 
         maxHealth = 10;
 //        maxHealth = 100;
+
+//        baseDamage = 0;
 
         hurtParticle = new BloodParticle(0, 0);
 
