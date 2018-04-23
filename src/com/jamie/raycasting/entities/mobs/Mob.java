@@ -479,4 +479,8 @@ public abstract class Mob extends Entity
             health += modifier;
         }
     }
+
+    public void modSpeed(double modifier) {
+        walkSpeed += modifier;
+    }
 }

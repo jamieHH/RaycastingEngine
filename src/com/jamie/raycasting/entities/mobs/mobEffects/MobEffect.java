@@ -10,16 +10,17 @@ public abstract class MobEffect
     // the effect may be interval based if it increases health over time
     // mobs will have an arraylist of effects active on the mob
 
-    protected Mob mob;
+    public String name = "Effect";
     public boolean removed = false;
 
+    protected Mob mob;
     private int interval = 60;
     private int duration = 240;
     public int magnitude;
-    public String name = "Effect";
 
 
-    public MobEffect(int duration, int magnitude) {
+    public MobEffect(Mob mob, int duration, int magnitude) {
+        this.mob = mob;
         this.duration = duration;
         this.magnitude = magnitude;
     }

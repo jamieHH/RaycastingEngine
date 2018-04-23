@@ -1,13 +1,13 @@
 package com.jamie.raycasting.items.consumables;
 
-import com.jamie.raycasting.entities.mobs.mobEffects.ModHealthEffect;
+import com.jamie.raycasting.entities.mobs.mobEffects.ModSpeedEffect;
 import com.jamie.raycasting.graphics.Render;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
 
-public class HealthPotion extends Consumable
+public class SpeedPotion extends Consumable
 {
-    public HealthPotion() {
+    public SpeedPotion() {
         super();
 
         Render[] ts = {
@@ -21,11 +21,12 @@ public class HealthPotion extends Consumable
         };
         setUseSprite(new Sprite(ts1));
 
-        name = "Health Potion";
+        name = "Speed Potion";
     }
 
     public void use() {
         super.use();
-        user.addMobEffect(new ModHealthEffect(user, 240, 1));
+
+        user.addMobEffect(new ModSpeedEffect(user, 240, 100));
     }
 }
