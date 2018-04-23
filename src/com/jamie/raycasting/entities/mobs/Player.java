@@ -19,9 +19,9 @@ public class Player extends Mob
 	    radius = 0.25;
 
         rotationSpeed = 0.03;
-        walkSpeed = 0.04; // disabling walking
-        runSpeed = 0.04;
-        crouchSpeed = 0.01;
+        walkSpeed = 0.1;
+        runSpeed = 0.1;
+        crouchSpeed = 0.1;
 
         maxHealth = 10;
 //        maxHealth = 100;

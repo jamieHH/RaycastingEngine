@@ -24,9 +24,9 @@ public class Spirit extends Mob
         radius = 0.25;
 
         rotationSpeed = 0.03;
-        walkSpeed = 0.0125;
-        runSpeed = 0.0125;
-        crouchSpeed = 0.0125;
+        walkSpeed = 0.03;
+        runSpeed = 0.03;
+        crouchSpeed = 0.03;
 
         maxHealth = 10;
 //        maxHealth = 100;

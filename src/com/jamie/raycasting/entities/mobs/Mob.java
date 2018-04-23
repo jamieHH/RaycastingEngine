@@ -36,11 +36,13 @@ public abstract class Mob extends Entity
     // movement
 	private double rotationMove;
     private double moveX, moveZ;
+    private double friction = 0.75;
+
 
     protected double rotationSpeed = 0.03;
-    protected double walkSpeed = 0.0125;
-    protected double runSpeed = 0.0125;
-    protected double crouchSpeed = 0.0125;
+    protected double walkSpeed = 0.03;
+    protected double runSpeed = 0.03;
+    protected double crouchSpeed = 0.03;
 
     protected double camHeightMod = 0.652;
     protected double crouchHeightMod = 0.25;
@@ -144,6 +146,109 @@ public abstract class Mob extends Entity
         }
     }
 
+    private void doMovements() {
+        camY = camHeightMod;
+
+        double moveSpeed;
+        if (input.crouch) {
+            camY -= crouchHeightMod;
+            moveSpeed = crouchSpeed;
+        } else if (input.run) {
+            moveSpeed = runSpeed;
+        } else {
+            moveSpeed = walkSpeed;
+        }
+        moveSpeed *= friction;
+
+        if (input.forward) moveZ += moveSpeed;
+        if (input.back) moveZ -= moveSpeed;
+        if (input.left) moveX -= moveSpeed;
+        if (input.right) moveX += moveSpeed;
+        if (input.rotLeft) rotationMove -= rotationSpeed;
+        if (input.rotRight) rotationMove += rotationSpeed;
+
+        // View bob:
+        if ((input.forward ^ input.back) || (input.left ^ input.right)) {
+            bobTime++;
+            yBob += Math.sin(bobTime / (3 - (moveSpeed * 10))) * 0.01;
+        } else {
+            bobTime = 0;
+        }
+        camY += yBob;
+        yBob *= 0.75;
+
+        // Do movements:
+        rotation += rotationMove;
+        rotationMove *= 0.6;
+
+        move(moveX * Math.cos(rotation) + moveZ * Math.sin(rotation), moveZ * Math.cos(rotation) - moveX * Math.sin(rotation));
+    }
+
+    private boolean isWallBlocked(double x, double z) {
+        if (isSolid) {
+            int x0 = (int) (Math.floor(x + radius));
+            int z0 = (int) (Math.floor(z + radius));
+            int x1 = (int) (Math.floor(x - radius));
+            int z1 = (int) (Math.floor(z - radius));
+
+            Block block00 = level.getBlock(x0, z0);
+            Block block10 = level.getBlock(x1, z0);
+            Block block01 = level.getBlock(x0, z1);
+            Block block11 = level.getBlock(x1, z1);
+
+            if (block00.isSolid) return true;
+            if (block10.isSolid) return true;
+            if (block01.isSolid) return true;
+            if (block11.isSolid) return true;
+
+            if (!this.isFloating) {
+                if (!block00.isWalkable) return true;
+                if (!block10.isWalkable) return true;
+                if (!block01.isWalkable) return true;
+                if (!block11.isWalkable) return true;
+            }
+            return false;
+        }
+
+        return false;
+    }
+
+    private boolean isEntityBlocked(double x, double z) {
+        if (isSolid) {
+            for (int i = 0; i < level.countEntities(); i++) {
+                Entity e = level.getEntity(i);
+                if (e.isSolid) {
+                    double entX = e.posX;
+                    double entZ = e.posZ;
+                    double entRadius = e.radius;
+                    if (level.getEntity(i) != this) {
+                        if (((Math.abs(x - entX)) - entRadius < radius) && ((Math.abs(z - entZ)) - entRadius < radius)) {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
+        return false;
+    }
+
+    private void move(double nextX, double nextZ) {
+        if (isWallBlocked(posX + nextX, posZ) || isEntityBlocked(posX + nextX, posZ)) {
+            nextX = 0;
+        }
+        posX += nextX;
+
+        if (isWallBlocked(posX, posZ + nextZ) || isEntityBlocked(posX, posZ + nextZ)) {
+            nextZ = 0;
+        }
+        posZ += nextZ;
+
+        moveX *= 1 - friction;
+        moveZ *= 1 - friction;
+    }
+
     private void die() {
         runSpriteSet("death");
         isDieing = true;
@@ -237,108 +342,6 @@ public abstract class Mob extends Entity
     public void setHealSprite(Sprite s) {
         setSpriteSet("heal", s);
     }
-
-    private void doMovements() {
-        camY = camHeightMod;
-
-        double moveSpeed;
-        if (input.crouch) {
-            camY -= crouchHeightMod;
-            moveSpeed = crouchSpeed;
-        } else if (input.run) {
-            moveSpeed = runSpeed;
-        } else {
-            moveSpeed = walkSpeed;
-        }
-
-        if (input.forward) moveZ += moveSpeed;
-        if (input.back) moveZ -= moveSpeed;
-        if (input.left) moveX -= moveSpeed;
-        if (input.right) moveX += moveSpeed;
-        if (input.rotLeft) rotationMove -= rotationSpeed;
-        if (input.rotRight) rotationMove += rotationSpeed;
-
-        // View bob:
-        if ((input.forward ^ input.back) || (input.left ^ input.right)) {
-            bobTime++;
-            yBob += Math.sin(bobTime / (3 - (moveSpeed * 10))) * 0.01;
-        } else {
-            bobTime = 0;
-        }
-        camY += yBob;
-        yBob *= 0.75;
-
-        // Do movements:
-        rotation += rotationMove;
-        rotationMove *= 0.5;
-
-        move(moveX * Math.cos(rotation) + moveZ * Math.sin(rotation), moveZ * Math.cos(rotation) - moveX * Math.sin(rotation));
-    }
-
-    private boolean isWallBlocked(double x, double z) {
-        if (isSolid) {
-            int x0 = (int) (Math.floor(x + radius));
-            int z0 = (int) (Math.floor(z + radius));
-            int x1 = (int) (Math.floor(x - radius));
-            int z1 = (int) (Math.floor(z - radius));
-
-            Block block00 = level.getBlock(x0, z0);
-            Block block10 = level.getBlock(x1, z0);
-            Block block01 = level.getBlock(x0, z1);
-            Block block11 = level.getBlock(x1, z1);
-
-            if (block00.isSolid) return true;
-            if (block10.isSolid) return true;
-            if (block01.isSolid) return true;
-            if (block11.isSolid) return true;
-
-            if (!this.isFloating) {
-                if (!block00.isWalkable) return true;
-                if (!block10.isWalkable) return true;
-                if (!block01.isWalkable) return true;
-                if (!block11.isWalkable) return true;
-            }
-            return false;
-        }
-
-        return false;
-    }
-
-    private boolean isEntityBlocked(double x, double z) {
-        if (isSolid) {
-            for (int i = 0; i < level.countEntities(); i++) {
-                Entity e = level.getEntity(i);
-                if (e.isSolid) {
-                    double entX = e.posX;
-                    double entZ = e.posZ;
-                    double entRadius = e.radius;
-                    if (level.getEntity(i) != this) {
-                        if (((Math.abs(x - entX)) - entRadius < radius) && ((Math.abs(z - entZ)) - entRadius < radius)) {
-                            return true;
-                        }
-                    }
-                }
-            }
-            return false;
-        }
-
-        return false;
-    }
-
-	private void move(double nextX, double nextZ) {
-        if (isWallBlocked(posX + nextX, posZ) || isEntityBlocked(posX + nextX, posZ)) {
-            nextX = 0;
-        }
-        posX += nextX;
-
-        if (isWallBlocked(posX, posZ + nextZ) || isEntityBlocked(posX, posZ + nextZ)) {
-            nextZ = 0;
-        }
-        posZ += nextZ;
-
-        moveX *= 0.5;
-        moveZ *= 0.5;
-	}
 
     public void lookTowards(double x, double z) {
         double xDiff = x - posX;
