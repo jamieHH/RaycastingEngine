@@ -28,6 +28,7 @@ public abstract class Mob extends Entity
 
     // actions
     public InputHandler input;
+    public boolean isUsingMenu = false;
     private int useTicks = 0;
     protected int useWait = 15;
 
@@ -38,7 +39,6 @@ public abstract class Mob extends Entity
 	private double rotationMove;
     private double moveX, moveZ;
     private double friction = 0.25;
-
 
     protected double rotationSpeed = 0.03;
     protected double walkSpeed = 0.03;
@@ -84,6 +84,10 @@ public abstract class Mob extends Entity
     public void tick() {
         super.tick();
 
+        if (!(input instanceof UserInputHandler)) {
+            input.tick();
+        }
+
         for (int i = 0; i < items.size(); i++) {
             getItem(i).tick();
 
@@ -98,10 +102,6 @@ public abstract class Mob extends Entity
             if (mobEffects.get(i).removed) {
                 removeMobEffect(mobEffects.get(i));
             }
-        }
-
-        if (!(input instanceof UserInputHandler)) {
-            input.tick();
         }
 
         if (hurtTime > 0) {
@@ -141,14 +141,6 @@ public abstract class Mob extends Entity
                 }
             }
         } else {
-            if (input.action) {
-                if (useTicks == 0) {
-                    useTicks = getUseWait();
-
-                    activate();
-                }
-            }
-
             for (int i = 0; i < level.countDrops(); i++) {
                 if (contains(level.getDropEntity(i).posX, level.getDropEntity(i).posZ)) {
                     addItem(level.getDropEntity(i).item);
@@ -156,17 +148,32 @@ public abstract class Mob extends Entity
                 }
             }
 
-            doMovements();
+            if (!isUsingMenu) {
+                if (input.action) {
+                    if (useTicks == 0) {
+                        useTicks = getUseWait();
+
+                        activate();
+                    }
+                }
+
+                doMovements();
+            }
         }
     }
 
+    private void reciveInput() {
+        // TODO: move inputs to here
+    }
+
     private void doMovements() {
+        // TODO: change this to only handle the physical movements of then entity
         camY = camHeightMod;
 
-        double moveSpeed;
+        double moveSpeed; // make property
         if (input.crouch) {
             camY -= crouchHeightMod;
-            moveSpeed = crouchSpeed;
+            moveSpeed = crouchSpeed; // change to moveSpeed multipliers
         } else if (input.run) {
             moveSpeed = runSpeed;
         } else {

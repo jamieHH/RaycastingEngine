@@ -20,11 +20,6 @@ public class InventoryOverlay extends Overlay
     }
 
     public void tick(Game game) {
-        if (game.userInput.inventory || game.userInput.pause) {
-            game.userInput.setKeyGroupState("inventory", false);
-            game.userInput.setKeyGroupState("pause", false);
-            game.setActiveOverlay(null);
-        }
 
         if (game.userInput.forward) {
             game.userInput.setKeyGroupState("forward", false);
@@ -42,7 +37,7 @@ public class InventoryOverlay extends Overlay
 
         if (game.userInput.action) {
             game.userInput.setKeyGroupState("action", false);
-            if (!(game.player.getItems().get(itemIndex) instanceof Consumable)) {
+            if (!(game.player.getItems().get(itemIndex) instanceof Consumable)) { // TODO: fix empty selection crash
                 if (game.player.getRightHandItem() != game.player.getItem(itemIndex)) {
                     game.player.setRightHandItemIndex(itemIndex);
                 } else {
@@ -50,7 +45,6 @@ public class InventoryOverlay extends Overlay
                 }
             } else {
                 game.player.getItems().get(itemIndex).use();
-                // TODO: make menus fluent with world / mob tick to fix item not disappearing
             }
         }
     }

@@ -49,29 +49,45 @@ public class Game
 
 		if (activeOverlay != null) {
 		    activeOverlay.tick(this);
-        } else {
-			world.tick();
-			time++;
+        }
 
-            if (userInput.nextMob) {
+		world.tick();
+		time++;
+
+		if (player != null) {
+			if (activeOverlay != null) {
+				player.isUsingMenu = true;
+			} else {
+				player.isUsingMenu = false;
+			}
+
+			if (userInput.nextMob) {
 				switchPerspective();
-//                possessNextMob();
-            }
+//				possessNextMob();
+			}
 
-            if (!player.isDead) {
+			if (!player.isDead) {
 				if (userInput.inventory) {
 					userInput.setKeyGroupState("inventory", false);
-					setActiveOverlay(new InventoryOverlay(this));
+					if (activeOverlay == null) {
+						setActiveOverlay(new InventoryOverlay(this));
+					} else {
+						setActiveOverlay(null);
+					}
 				}
 
 				if (userInput.pause) {
 					userInput.setKeyGroupState("pause", false);
-					setActiveOverlay(pauseMenu);
+					if (activeOverlay == null) {
+						setActiveOverlay(pauseMenu);
+					} else {
+						setActiveOverlay(null);
+					}
 				}
 
 				if (userInput.randomLevel) {
 					player.rotation = 0.2;
-//					world.switchLevel("random", 999);
+//						world.switchLevel("random", 999);
 					world.switchLevel("test", 999);
 				}
 
@@ -79,13 +95,13 @@ public class Game
 					player.rotation = 0.2;
 					world.switchLevel("island", 999);
 				}
-            } else {
+			} else {
 				if (userInput.action || userInput.pause) {
 					setActiveOverlay(overMenu);
 					activeOverlay.pauseTime = 10;
 				}
 			}
-        }
+		}
 	}
 	
 	public void newGame() {
@@ -99,7 +115,14 @@ public class Game
 
 		world.level.addEntity(player);
 
-		activeOverlay = null;
+		setActiveOverlay(null);
+	}
+
+	public void stopGame() {
+		world.clearLoadedLevels();
+		player = null;
+		world = new World(this);
+		setActiveOverlay(mainMenu);
 	}
 
 	public void setActiveOverlay(Overlay activeOverlay) {

@@ -16,11 +16,6 @@ public class OverMenu extends Menu
     public void tick(Game game) {
         super.tick(game);
 
-        if (game.userInput.pause && pauseTime == 0) {
-            game.userInput.setKeyGroupState("pause", false);
-            game.setActiveOverlay(null);
-        }
-
         if (game.userInput.forward) {
             game.userInput.setKeyGroupState("forward", false);
             if ((optionIndex > 0)) {
@@ -36,9 +31,9 @@ public class OverMenu extends Menu
 
         if (game.userInput.action) {
             game.userInput.setKeyGroupState("action", false);
-            if (Objects.equals(options.get(optionIndex), "Main Menu")) {
-                game.setActiveOverlay(game.mainMenu);
-            } else if (Objects.equals(options.get(optionIndex), "Quit Game")) {
+            if (options.get(optionIndex) == "Main Menu") {
+                game.stopGame();
+            } else if (options.get(optionIndex) == "Quit Game") {
                 System.exit(0);
             }
         }

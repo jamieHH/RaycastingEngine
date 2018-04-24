@@ -15,11 +15,6 @@ public class PauseMenu extends Menu
     public void tick(Game game) {
         super.tick(game);
 
-        if (game.userInput.pause) {
-            game.userInput.setKeyGroupState("pause", false);
-            game.setActiveOverlay(null);
-        }
-
         if (game.userInput.forward) {
             game.userInput.setKeyGroupState("forward", false);
             if ((optionIndex > 0)) {
@@ -36,10 +31,10 @@ public class PauseMenu extends Menu
 
         if (game.userInput.action) {
             game.userInput.setKeyGroupState("action", false);
-            if (Objects.equals(options.get(optionIndex), "Resume")) {
+            if (options.get(optionIndex) == "Resume") {
                 game.setActiveOverlay(null);
-            } else if (Objects.equals(options.get(optionIndex), "Main Menu")) {
-                game.setActiveOverlay(game.mainMenu);
+            } else if (options.get(optionIndex) == "Main Menu") {
+                game.stopGame();
             }
         }
     }

@@ -25,7 +25,9 @@ public class World
     }
 
     public void tick() {
-        level.tick();
+        if (level != null) {
+            level.tick();
+        }
     }
 
     public static Level getByName(String name) {

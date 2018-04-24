@@ -12,7 +12,6 @@ public class MainMenu extends Menu
         options.add("Load Game");
         options.add("Options");
         options.add("Quit");
-
     }
 
     public void tick(Game game) {
