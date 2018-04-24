@@ -11,12 +11,9 @@ public class Consumable extends Item
         name = "Consumable";
     }
 
-    public void tick() {
-        super.tick();
+    public void use() {
+        super.use();
 
-        if (useCount > 0 && useTicks <= 0) {
-            user.unequipRightHand();
-            remove();
-        }
+        remove();
     }
 }

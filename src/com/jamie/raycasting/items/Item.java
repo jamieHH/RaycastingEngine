@@ -10,6 +10,7 @@ public abstract class Item
 {
     public String name = "Item";
     private SpriteSet spriteSet = new SpriteSet();
+    public Render icon = new Render(8, 8);
 
     public int weight = 1;
     public int damage = 1;
@@ -24,12 +25,6 @@ public abstract class Item
     public int useWait = 15;
     public boolean canStrike = true;
 
-    public Render icon = new Render(8, 8);
-
-    public Item() {
-        setIdleSprite(new Sprite(Texture.none));
-        setUseSprite(new Sprite(Texture.none));
-    }
 
     public void setSpriteSet(String name, Sprite sprite) {
         spriteSet.putSet(name, sprite);

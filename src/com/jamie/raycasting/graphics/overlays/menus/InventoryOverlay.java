@@ -3,6 +3,7 @@ package com.jamie.raycasting.graphics.overlays.menus;
 import com.jamie.raycasting.app.Game;
 import com.jamie.raycasting.graphics.Screen;
 import com.jamie.raycasting.graphics.overlays.Overlay;
+import com.jamie.raycasting.items.consumables.Consumable;
 
 public class InventoryOverlay extends Overlay
 {
@@ -41,10 +42,15 @@ public class InventoryOverlay extends Overlay
 
         if (game.userInput.action) {
             game.userInput.setKeyGroupState("action", false);
-            if (game.player.getRightHandItem() != game.player.getItem(itemIndex)) {
-                game.player.setRightHandItemIndex(itemIndex);
+            if (!(game.player.getItems().get(itemIndex) instanceof Consumable)) {
+                if (game.player.getRightHandItem() != game.player.getItem(itemIndex)) {
+                    game.player.setRightHandItemIndex(itemIndex);
+                } else {
+                    game.player.unequipRightHand();
+                }
             } else {
-                game.player.unequipRightHand();
+                game.player.getItems().get(itemIndex).use();
+                // TODO: make menus fluent with world / mob tick to fix item not disappearing
             }
         }
     }
@@ -73,7 +79,7 @@ public class InventoryOverlay extends Overlay
                 }
                 screen.draw(string, x0 + pad, (y0 + pad) + (i * 12) + 2, colour);
             } else {
-                string = "  " +game.player.getItems().get(i).name;
+                string = "  " + game.player.getItems().get(i).name;
                 colour = 0x707070;
                 if (itemIndex == i) {
                     colour = 0xF0F0F0;
