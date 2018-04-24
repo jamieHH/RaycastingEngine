@@ -64,7 +64,7 @@ public abstract class Mob extends Entity
     public boolean isDead = false;
 
     // items
-    private List<Item> items = new  ArrayList<Item>();
+    private List<Item> items = new ArrayList<Item>();
     private int rightHandItemIndex = 0;
     public boolean rightHandEmpty = true;
 
@@ -278,6 +278,17 @@ public abstract class Mob extends Entity
         hudHeadingsTicks = 120;
     }
 
+    public void addMobEffect(MobEffect mobEffect) {
+        mobEffects.add(mobEffect);
+        mobEffect.setMob(this);
+        addHudHeading(mobEffect.name +" effect added");
+    }
+
+    public void removeMobEffect(MobEffect mobEffect) {
+        mobEffects.remove(mobEffect);
+        mobEffect.setMob(null);
+    }
+
     public void addItem(Item item) {
         items.add(item);
         item.setUser(this);
@@ -288,17 +299,6 @@ public abstract class Mob extends Entity
         items.remove(item);
         item.setUser(null);
         addHudHeading(item.name + " removed");
-    }
-
-    public void addMobEffect(MobEffect mobEffect) {
-        mobEffects.add(mobEffect);
-        mobEffect.setMob(this);
-        addHudHeading(mobEffect.name +" effect added");
-    }
-
-    public void removeMobEffect(MobEffect mobEffect) {
-        mobEffects.remove(mobEffect);
-        mobEffect.setMob(null);
     }
 
     public List<Item> getItems() {
@@ -320,10 +320,6 @@ public abstract class Mob extends Entity
         return null;
     }
 
-    public void unequipRightHand() {
-        setRightHandItemIndex(-1);
-    }
-
     public int getRightHandItemIndex() {
         return rightHandItemIndex;
     }
@@ -336,6 +332,10 @@ public abstract class Mob extends Entity
             rightHandEmpty = false;
             rightHandItemIndex = i;
         }
+    }
+
+    public void unequipRightHand() {
+        setRightHandItemIndex(-1);
     }
 
     public double getRightHandReach() {
