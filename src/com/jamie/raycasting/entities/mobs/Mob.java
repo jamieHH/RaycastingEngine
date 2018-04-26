@@ -149,28 +149,23 @@ public abstract class Mob extends Entity
             }
 
             if (!isUsingMenu) {
-                if (input.action) {
-                    if (useTicks == 0) {
-                        useTicks = getUseWait();
-
-                        activate();
-                    }
-                }
-
-                doMovements();
+                reciveInput();
             }
+
+            doMovements();
         }
     }
 
     private void reciveInput() {
-        // TODO: move inputs to here
-    }
+        if (input.action) {
+            if (useTicks == 0) {
+                useTicks = getUseWait();
 
-    private void doMovements() {
-        // TODO: change this to only handle the physical movements of then entity
-        camY = camHeightMod;
+                activate();
+            }
+        }
 
-        double moveSpeed; // make property
+        double moveSpeed;
         if (input.crouch) {
             camY -= crouchHeightMod;
             moveSpeed = crouchSpeed; // change to moveSpeed multipliers
@@ -195,14 +190,19 @@ public abstract class Mob extends Entity
         } else {
             bobTime = 0;
         }
+    }
+
+    private void doMovements() {
+        camY = camHeightMod;
         camY += yBob;
         yBob *= 0.75;
 
-        // Do movements:
         rotation += rotationMove;
         rotationMove *= 0.6;
 
         move(moveX * Math.cos(rotation) + moveZ * Math.sin(rotation), moveZ * Math.cos(rotation) - moveX * Math.sin(rotation));
+        moveX *= 1 - friction;
+        moveZ *= 1 - friction;
     }
 
     private boolean isWallBlocked(double x, double z) {
@@ -265,9 +265,6 @@ public abstract class Mob extends Entity
             nextZ = 0;
         }
         posZ += nextZ;
-
-        moveX *= 1 - friction;
-        moveZ *= 1 - friction;
     }
 
     private void die() {
