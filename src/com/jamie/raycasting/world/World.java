@@ -73,7 +73,7 @@ public class World
     public void switchLevel(String name, int id) {
         Mob thisMob = game.player;
 
-        game.setActiveOverlay(new LoadingOverlay(App.width, App.height, name)); //make overlays mob specific
+        game.setActiveOverlay(new LoadingOverlay(App.width, App.height, name));
         game.activeOverlay.pauseTime = 30;
 
         level.removeEntity(thisMob);
