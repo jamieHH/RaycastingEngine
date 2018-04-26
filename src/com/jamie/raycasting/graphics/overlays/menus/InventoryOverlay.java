@@ -10,7 +10,8 @@ public class InventoryOverlay extends Overlay
     private Game game;
     private int itemIndex = 0;
 
-    public InventoryOverlay(Game game) {
+    public InventoryOverlay(int width, int height, Game game) {
+        super(width, height);
         this.game = game;
         if (game.player.getRightHandItem() != null) {
             itemIndex = game.player.getRightHandItemIndex();
@@ -20,7 +21,6 @@ public class InventoryOverlay extends Overlay
     }
 
     public void tick(Game game) {
-
         if (game.userInput.forward) {
             game.userInput.setKeyGroupState("forward", false);
             if ((itemIndex > 0)) {
@@ -49,17 +49,12 @@ public class InventoryOverlay extends Overlay
         }
     }
 
-    public void render(Screen screen) {
-        int pad = 2;
+    public void update() {
+        fill(0, 0, width, height, 0x202020);
 
-        int x0 = screen.width / 8;
-        int y0 = screen.height / 4;
-        int x1 = screen.width - x0;
-        int y1 = screen.height - y0;
+        draw("  Items", borderPadding, borderPadding, 0xF0F0F0);
 
-        screen.fill(x0, y0, x1, y1, 0x202020);
-
-        screen.fill(x0 + pad, (y0 + pad) + (itemIndex * 12), x1 - pad, (y0 + pad) + ((itemIndex + 1) * 12), 0x404040);
+        fill(borderPadding, borderPadding + 10 + (itemIndex * 12), width - borderPadding, borderPadding + 10 + ((itemIndex + 1) * 12), 0x404040);
 
         for (int i = 0; i < game.player.getItems().size(); i++) {
             String string;
@@ -71,14 +66,14 @@ public class InventoryOverlay extends Overlay
                 if (itemIndex == i) {
                     colour = 0xF0F0F0;
                 }
-                screen.draw(string, x0 + pad, (y0 + pad) + (i * 12) + 2, colour);
+                draw(string, borderPadding, borderPadding + 10 + (i * 12) + 2, colour);
             } else {
-                string = "  " + game.player.getItems().get(i).name;
+                string = " " + game.player.getItems().get(i).name;
                 colour = 0x707070;
                 if (itemIndex == i) {
                     colour = 0xF0F0F0;
                 }
-                screen.draw(string, x0 + pad, (y0 + pad) + (i * 12) + 2, colour);
+                draw(string, borderPadding, borderPadding + 10 + (i * 12) + 2, colour);
             }
         }
     }

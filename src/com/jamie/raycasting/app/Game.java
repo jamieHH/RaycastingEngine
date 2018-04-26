@@ -25,12 +25,12 @@ public class Game
 	public UserInputHandler userInput;
 	private InputHandler temporaryInput = new InputHandler();
 
-	public final Menu mainMenu = new MainMenu();
-    public final Menu loadMenu = new LoadMenu();
-    public final Menu optionsMenu = new OptionsMenu();
-    public final Menu pauseMenu = new PauseMenu();
-    public final Menu overMenu = new OverMenu();
-    public final Overlay loadingOverlay = new LoadingOverlay();
+	public final Menu mainMenu = new MainMenu(App.width, (int) (App.height * 0.6));
+    public final Menu loadMenu = new LoadMenu(App.width, (int) (App.height * 0.6));
+    public final Menu optionsMenu = new OptionsMenu(App.width, (int) (App.height * 0.6));
+    public final Menu pauseMenu = new PauseMenu(App.width, (int) (App.height * 0.6));
+    public final Menu overMenu = new OverMenu(App.width, (int) (App.height * 0.6));
+    public final Overlay loadingOverlay = new LoadingOverlay(App.width, App.height, "blar");
 
 	public Overlay activeOverlay;
 	
@@ -70,7 +70,7 @@ public class Game
 				if (userInput.inventory) {
 					userInput.setKeyGroupState("inventory", false);
 					if (activeOverlay == null) {
-						setActiveOverlay(new InventoryOverlay(this));
+						setActiveOverlay(new InventoryOverlay((int) (App.width * 0.8), (int) (App.height * 0.6), this));
 					} else {
 						setActiveOverlay(null);
 					}

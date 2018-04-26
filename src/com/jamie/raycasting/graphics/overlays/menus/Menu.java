@@ -7,11 +7,10 @@ import java.util.List;
 
 public abstract class Menu extends Overlay
 {
-    public final int textMarginX = 12;
-    public final int selectedTextMarginX = 6;
-
     public List<String> options = new ArrayList<String>();
     public int optionIndex = 0;
 
-    public Menu() {}
+    public Menu(int width, int height) {
+        super(width, height);
+    }
 }

@@ -30,7 +30,7 @@ public class Render
 				int alpha = render.pixels[x + y * render.width];
 				if (alpha > 0) {
 					pixels[xPix + yPix * width] = alpha;
-				} else if (-alpha != 65281 && alpha != 0) {
+				} else if (alpha != -65281 && alpha != 0) {
 					// raw texture pixels are negative hex. Fix.
 					pixels[xPix + yPix * width] = alpha;
 				}
@@ -48,7 +48,7 @@ public class Render
                 if (xPix < 0 || xPix >= width) continue;
 
                 int alpha = render.pixels[(x + xo) + (y + yo) * render.width];
-                if (-alpha != 65281) {
+                if (alpha != -65281) {
                     pixels[xPix + yPix * width] = -alpha * col;
                 }
             }
@@ -62,7 +62,7 @@ public class Render
 
             int xx = ch % 42;
             int yy = ch / 42;
-            draw(Texture.font, (x + i * 6) + 1, y + 1, xx * 6, yy * 8, 5, 8, 0x000000);
+            draw(Texture.font, (x + i * 6) + 1, y + 1, xx * 6, yy * 8, 5, 8, 0x020202);
             draw(Texture.font, x + i * 6, y, xx * 6, yy * 8, 5, 8, col);
         }
     }
