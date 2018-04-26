@@ -30,7 +30,6 @@ public class Game
     public final Menu optionsMenu = new OptionsMenu(App.width, (int) (App.height * 0.6));
     public final Menu pauseMenu = new PauseMenu(App.width, (int) (App.height * 0.6));
     public final Menu overMenu = new OverMenu(App.width, (int) (App.height * 0.6));
-    public final Overlay loadingOverlay = new LoadingOverlay(App.width, App.height, "blar");
 
 	public Overlay activeOverlay;
 	

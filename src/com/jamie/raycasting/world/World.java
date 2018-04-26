@@ -1,7 +1,9 @@
 package com.jamie.raycasting.world;
 
+import com.jamie.raycasting.app.App;
 import com.jamie.raycasting.app.Game;
 import com.jamie.raycasting.entities.mobs.Mob;
+import com.jamie.raycasting.graphics.overlays.LoadingOverlay;
 import com.jamie.raycasting.world.blocks.LadderBlock;
 import com.jamie.raycasting.world.levels.Level;
 
@@ -71,7 +73,7 @@ public class World
     public void switchLevel(String name, int id) {
         Mob thisMob = game.player;
 
-        game.setActiveOverlay(game.loadingOverlay); //make overlays mob specific
+        game.setActiveOverlay(new LoadingOverlay(App.width, App.height, name)); //make overlays mob specific
         game.activeOverlay.pauseTime = 30;
 
         level.removeEntity(thisMob);
