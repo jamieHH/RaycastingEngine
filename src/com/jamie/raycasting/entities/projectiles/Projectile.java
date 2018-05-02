@@ -1,14 +1,10 @@
 package com.jamie.raycasting.entities.projectiles;
 
 import com.jamie.raycasting.entities.Entity;
-import com.jamie.raycasting.entities.mobs.Mob;
-import com.jamie.raycasting.entities.particles.PoofParticle;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
 
-import java.util.List;
-
-public class Projectile extends Entity {
+public abstract class Projectile extends Entity {
     protected double moveSpeed = 0.25;
     protected int life = 1200;
 
@@ -34,12 +30,14 @@ public class Projectile extends Entity {
 
             if (isWallBlocked(posX + nextX, posZ) || isEntityBlocked(posX + nextX, posZ)) {
                 detonate();
+                remove();
                 return;
             }
             posX += nextX;
 
             if (isWallBlocked(posX, posZ + nextZ) || isEntityBlocked(posX, posZ + nextZ)) {
                 detonate();
+                remove();
                 return;
             }
             posZ += nextZ;
@@ -77,15 +75,6 @@ public class Projectile extends Entity {
     }
 
     public void detonate() {
-        List<Mob> mobs = getMobsInRadius(detonationRadius);
 
-        for (int i = 0; i < mobs.size(); i++) {
-            mobs.get(i).hurt(this, detonationMagnitude);
-        }
-
-        for (int i = 0; i < 6; i++) {
-            level.addEntity(new PoofParticle(posX, posZ));
-        }
-        this.remove();
     }
 }
