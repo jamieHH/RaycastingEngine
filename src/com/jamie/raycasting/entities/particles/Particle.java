@@ -17,8 +17,9 @@ public abstract class Particle extends Entity
     public void tick() {
         super.tick();
 
-        life -= 1;
-        if (life <= 0) {
+        if (life > 0) {
+            life --;
+        } else {
             remove();
         }
     }
