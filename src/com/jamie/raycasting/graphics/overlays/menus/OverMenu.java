@@ -45,7 +45,7 @@ public class OverMenu extends Menu
             if (optionIndex == i) {
                 draw("-> " + options.get(i), borderPadding, borderPadding + 10 + (i * 10), 0xD0D0D0);
             } else {
-                draw("-> " + options.get(i), borderPadding, borderPadding + 10 + (i * 10), 0x707070);
+                draw(" " + options.get(i), borderPadding, borderPadding + 10 + (i * 10), 0x707070);
             }
         }
     }
