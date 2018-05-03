@@ -1,23 +1,17 @@
 package com.jamie.raycasting.entities.environmentalEffects;
 
 import com.jamie.raycasting.entities.mobs.Mob;
-import com.jamie.raycasting.entities.particles.PoofParticle;
+import com.jamie.raycasting.entities.particles.EmberParticle;
 import com.jamie.raycasting.world.levels.Level;
 
 import java.util.List;
 
 public class ExplosionEffect extends EnvironmentalEffect
 {
-    public ExplosionEffect(Level level, int duration, double radius, int magnitude) {
-        super(level, duration, radius, magnitude);
+    public ExplosionEffect(Level level, double radius, int magnitude) {
+        super(level, radius, magnitude);
 
         name = "Explosion";
-    }
-
-    public void tick() {
-        super.tick();
-
-        activate();
     }
 
     public void activate() {
@@ -27,10 +21,8 @@ public class ExplosionEffect extends EnvironmentalEffect
             mobs.get(i).hurt(this, magnitude);
         }
 
-        for (int i = 0; i < 6; i++) {
-            level.addEntity(new PoofParticle(posX, posZ));
+        for (int i = 0; i < 8; i++) {
+            level.addEntity(new EmberParticle(posX, posZ));
         }
-
-        remove();
     }
 }
