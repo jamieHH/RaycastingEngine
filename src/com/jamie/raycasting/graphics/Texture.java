@@ -35,7 +35,7 @@ public class Texture
 	public static final Render grass = loadBitmap("/textures/grass.png");
 	public static final Render dirt = loadBitmap("/textures/dirt.png");
 	public static final Render leaves = loadBitmap("/textures/leaves.png");
-	public static final Render ladderHole = loadBitmap("/textures/ladderHole.png");
+    public static final Render ladderHole = loadBitmap("/textures/ladderHole.png");
     public static final Render water0 = loadBitmap("/textures/water0.png");
     public static final Render water1 = loadBitmap("/textures/water1.png");
     public static final Render water2 = loadBitmap("/textures/water2.png");
@@ -72,10 +72,18 @@ public class Texture
     public static final Render pillar = loadBitmap("/textures/pillar.png");
     public static final Render bars = loadBitmap("/textures/bars.png");
     public static final Render ladder = loadBitmap("/textures/ladder.png");
-    public static final Render portal0 = loadBitmap("/textures/portal0.png"); // TODO: portal textures
+    public static final Render portal0 = loadBitmap("/textures/portal0.png");
     public static final Render portal1 = loadBitmap("/textures/portal1.png");
     public static final Render portal2 = loadBitmap("/textures/portal2.png");
     public static final Render portal3 = loadBitmap("/textures/portal3.png");
+    public static final Render explode0 = loadBitmap("/textures/explode0.png");
+    public static final Render explode1 = loadBitmap("/textures/explode1.png");
+    public static final Render explode2 = loadBitmap("/textures/explode2.png");
+    public static final Render explode3 = loadBitmap("/textures/explode3.png");
+    public static final Render fire0 = loadBitmap("/textures/fire0.png");
+    public static final Render fire1 = loadBitmap("/textures/fire1.png");
+    public static final Render fire2 = loadBitmap("/textures/fire2.png");
+    public static final Render fire3 = loadBitmap("/textures/fire3.png");
     public static final Render boards = loadBitmap("/textures/boards.png");
     public static final Render boardsSmashed = loadBitmap("/textures/boardsSmashed.png");
     public static final Render tree = loadBitmap("/textures/tree.png");
@@ -99,6 +107,8 @@ public class Texture
     public static final Render blood3 = loadBitmap("/textures/blood3.png");
     public static final Render poof0 = loadBitmap("/textures/poof0.png");
     public static final Render poof1 = loadBitmap("/textures/poof1.png");
+    public static final Render ember0 = loadBitmap("/textures/ember0.png");
+    public static final Render ember1 = loadBitmap("/textures/ember1.png");
     public static final Render health0 = loadBitmap("/textures/health0.png");
     public static final Render health1 = loadBitmap("/textures/health1.png");
     public static final Render splinter0 = loadBitmap("/textures/splinter0.png");
@@ -113,8 +123,6 @@ public class Texture
     public static final Render screenAxe1 = loadBitmap("/textures/screenAxe1.png");
     public static final Render screenWand0 = loadBitmap("/textures/screenWand0.png");
     public static final Render screenWand1 = loadBitmap("/textures/screenWand1.png");
-    public static final Render screenHealthPotion0 = loadBitmap("/textures/hudHealthPotion0.png");
-    public static final Render screenHealthPotion1 = loadBitmap("/textures/hudHealthPotion1.png");
 
 	private static Render loadBitmap(String fileName) {
 		try {
