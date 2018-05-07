@@ -1,7 +1,6 @@
 package com.jamie.raycasting.graphics.overlays.menus;
 
 import com.jamie.raycasting.app.Game;
-import com.jamie.raycasting.graphics.Screen;
 import com.jamie.raycasting.graphics.overlays.Overlay;
 import com.jamie.raycasting.items.consumables.Consumable;
 
@@ -35,21 +34,23 @@ public class InventoryOverlay extends Overlay
             }
         }
 
-        if (game.userInput.action) {
-            game.userInput.setKeyGroupState("action", false);
-            if (!(game.player.getItems().get(itemIndex) instanceof Consumable)) {
-                if (game.player.getRightHandItem() != game.player.getItem(itemIndex)) {
-                    game.player.setRightHandItemIndex(itemIndex);
+        if (game.player.getItems().size() > 0) {
+            if (game.userInput.action) {
+                game.userInput.setKeyGroupState("action", false);
+                if (!(game.player.getItems().get(itemIndex) instanceof Consumable)) {
+                    if (game.player.getRightHandItem() != game.player.getItem(itemIndex)) {
+                        game.player.setRightHandItemIndex(itemIndex);
+                    } else {
+                        game.player.unequipRightHand();
+                    }
                 } else {
-                    game.player.unequipRightHand();
+                    game.player.getItems().get(itemIndex).use();
                 }
-            } else {
-                game.player.getItems().get(itemIndex).use();
             }
         }
 
         if (itemIndex >= game.player.getItems().size()) {
-            itemIndex--;
+            itemIndex--; // fix from changing to -1 from other empty mobs
         }
     }
 
@@ -58,26 +59,29 @@ public class InventoryOverlay extends Overlay
 
         draw("  Items", borderPadding, borderPadding, 0xF0F0F0);
 
-        fill(borderPadding, borderPadding + 10 + (itemIndex * 12), width - borderPadding, borderPadding + 10 + ((itemIndex + 1) * 12), 0x404040);
+        fill(borderPadding, borderPadding + 10, width - borderPadding, height - borderPadding, 0x101010);
 
-        for (int i = 0; i < game.player.getItems().size(); i++) {
-            String string;
-            int colour;
+        if (game.player.getItems().size() > 0) {
+            fill(borderPadding, borderPadding + 10 + (itemIndex * 12), width - borderPadding, borderPadding + 10 + ((itemIndex + 1) * 12), 0x404040);
+            for (int i = 0; i < game.player.getItems().size(); i++) {
+                String string;
+                int colour;
 
-            if (game.player.getRightHandItemIndex() == i && !game.player.rightHandEmpty) {
-                string = "-> " + game.player.getItems().get(i).name;
-                colour = 0xF0F070;
-                if (itemIndex == i) {
-                    colour = 0xF0F0F0;
+                if (game.player.getRightHandItemIndex() == i && !game.player.rightHandEmpty) {
+                    string = "-> " + game.player.getItems().get(i).name;
+                    colour = 0xF0F070;
+                    if (itemIndex == i) {
+                        colour = 0xF0F0F0;
+                    }
+                    draw(string, borderPadding, borderPadding + 10 + (i * 12) + 2, colour);
+                } else {
+                    string = " " + game.player.getItems().get(i).name;
+                    colour = 0x707070;
+                    if (itemIndex == i) {
+                        colour = 0xF0F0F0;
+                    }
+                    draw(string, borderPadding, borderPadding + 10 + (i * 12) + 2, colour);
                 }
-                draw(string, borderPadding, borderPadding + 10 + (i * 12) + 2, colour);
-            } else {
-                string = " " + game.player.getItems().get(i).name;
-                colour = 0x707070;
-                if (itemIndex == i) {
-                    colour = 0xF0F0F0;
-                }
-                draw(string, borderPadding, borderPadding + 10 + (i * 12) + 2, colour);
             }
         }
     }
