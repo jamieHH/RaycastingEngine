@@ -92,6 +92,11 @@ public abstract class Mob extends Entity
             getItem(i).tick();
 
             if (items.get(i).removed) {
+                if (i <= rightHandItemIndex) {
+                    // prevent out of bounds held item exception
+                    rightHandItemIndex--;
+                }
+
                 removeItem(items.get(i));
             }
         }
@@ -467,8 +472,8 @@ public abstract class Mob extends Entity
     }
 
     public void modHealth(int modifier) {
-        runSpriteSet("heal");
         if (modifier > 0) {
+            runSpriteSet("heal");
             for (int i = 0; i < 4; i++) {
                 HealthParticle p = new HealthParticle(posX, posZ);
                 level.addEntity(p);

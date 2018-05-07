@@ -37,7 +37,7 @@ public class InventoryOverlay extends Overlay
 
         if (game.userInput.action) {
             game.userInput.setKeyGroupState("action", false);
-            if (!(game.player.getItems().get(itemIndex) instanceof Consumable)) { // TODO: fix empty selection crash
+            if (!(game.player.getItems().get(itemIndex) instanceof Consumable)) {
                 if (game.player.getRightHandItem() != game.player.getItem(itemIndex)) {
                     game.player.setRightHandItemIndex(itemIndex);
                 } else {
@@ -46,6 +46,10 @@ public class InventoryOverlay extends Overlay
             } else {
                 game.player.getItems().get(itemIndex).use();
             }
+        }
+
+        if (itemIndex >= game.player.getItems().size()) {
+            itemIndex--;
         }
     }
 
