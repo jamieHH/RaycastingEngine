@@ -4,12 +4,6 @@ import com.jamie.raycasting.entities.mobs.Mob;
 
 public abstract class MobEffect
 {
-    // TODO: build this base class to make effects that interact with a mob
-    // such as, igniteEffect, modifyHealthEffect, modifySpeedEffect, desolidifyEffect, stunEffect, etc
-    // effects will have a duration of active effect and be removed afterwards
-    // the effect may be interval based if it increases health over time
-    // mobs will have an arraylist of effects active on the mob
-
     public String name = "Effect";
     public boolean removed = false;
 

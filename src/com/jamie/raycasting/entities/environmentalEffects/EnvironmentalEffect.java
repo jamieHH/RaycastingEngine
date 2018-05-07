@@ -40,7 +40,7 @@ public class EnvironmentalEffect extends Entity
                 activate();
                 remove();
             } else {
-                if (duration % interval == 0) { // TODO: check if instant (one off) or lingering effect
+                if (duration % interval == 0) {
                     activate();
                 }
 
