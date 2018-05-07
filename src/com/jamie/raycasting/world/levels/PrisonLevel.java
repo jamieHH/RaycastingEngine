@@ -1,6 +1,6 @@
 package com.jamie.raycasting.world.levels;
 
-import com.jamie.raycasting.entities.drops.AxeDrop;
+import com.jamie.raycasting.entities.drops.HealthPotionDrop;
 
 public class PrisonLevel extends Level
 {
@@ -9,7 +9,7 @@ public class PrisonLevel extends Level
 	}
 
 	protected void postCreate() {
-        addEntity(new AxeDrop(16.5, 20.5));
+        addEntity(new HealthPotionDrop(16.5, 20.5));
     }
 
     public void switchLevel(int id) {
