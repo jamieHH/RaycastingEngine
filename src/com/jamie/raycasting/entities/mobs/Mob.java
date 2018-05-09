@@ -9,6 +9,7 @@ import com.jamie.raycasting.entities.particles.PoofParticle;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.input.InputHandler;
 import com.jamie.raycasting.input.UserInputHandler;
+import com.jamie.raycasting.items.Inventory;
 import com.jamie.raycasting.items.Item;
 import com.jamie.raycasting.world.blocks.Block;
 
@@ -64,7 +65,7 @@ public abstract class Mob extends Entity
     public boolean isDead = false;
 
     // items
-    private List<Item> items = new ArrayList<Item>();
+    public Inventory inventory = new Inventory();
     private int rightHandItemIndex = 0;
     public boolean rightHandEmpty = true;
 
@@ -88,16 +89,17 @@ public abstract class Mob extends Entity
             input.tick();
         }
 
-        for (int i = 0; i < items.size(); i++) {
-            getItem(i).tick();
+        // inventory tick
+        for (int i = 0; i < inventory.countItems(); i++) {
+            inventory.getItem(i).tick(); // TODO: does each item need to tick (NO IT SHOULDENTS)
 
-            if (items.get(i).removed) {
+            if (inventory.getItem(i).removed) {
                 if (i <= rightHandItemIndex) {
                     // prevent out of bounds held item exception
                     rightHandItemIndex--;
                 }
 
-                removeItem(items.get(i));
+                removeItem(inventory.getItem(i));
             }
         }
 
@@ -299,32 +301,20 @@ public abstract class Mob extends Entity
     }
 
     public void addItem(Item item) {
-        items.add(item);
+        inventory.addItem(item);
         item.setUser(this);
         addHudHeading("Picked up " + item.name);
     }
 
     public void removeItem(Item item) {
-        items.remove(item);
+        inventory.removeItem(item);
         item.setUser(null);
         addHudHeading(item.name + " removed");
     }
 
-    public List<Item> getItems() {
-        return items;
-    }
-
-    public Item getItem(int i) {
-        return items.get(i);
-    }
-
-    public int countItems() {
-        return items.size();
-    }
-
     public Item getRightHandItem() {
-        if (countItems() > 0 && !rightHandEmpty) {
-            return getItems().get(rightHandItemIndex);
+        if (inventory.countItems() > 0 && !rightHandEmpty) {
+            return inventory.getItems().get(rightHandItemIndex);
         }
         return null;
     }
@@ -348,7 +338,7 @@ public abstract class Mob extends Entity
     }
 
     public double getRightHandReach() {
-        if (countItems() > 0 && !rightHandEmpty) {
+        if (inventory.countItems() > 0 && !rightHandEmpty) {
             return baseReach + getRightHandItem().reach;
         }
         return baseReach;

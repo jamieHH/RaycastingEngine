@@ -29,27 +29,27 @@ public class InventoryOverlay extends Overlay
         if (game.userInput.back) {
             game.userInput.setKeyGroupState("back", false);
 
-            if ((itemIndex < game.player.getItems().size() - 1)) {
+            if ((itemIndex < game.player.inventory.getItems().size() - 1)) {
                 itemIndex++;
             }
         }
 
-        if (game.player.getItems().size() > 0) {
+        if (game.player.inventory.getItems().size() > 0) {
             if (game.userInput.action) {
                 game.userInput.setKeyGroupState("action", false);
-                if (!(game.player.getItems().get(itemIndex) instanceof Consumable)) {
-                    if (game.player.getRightHandItem() != game.player.getItem(itemIndex)) {
+                if (!(game.player.inventory.getItems().get(itemIndex) instanceof Consumable)) {
+                    if (game.player.getRightHandItem() != game.player.inventory.getItem(itemIndex)) {
                         game.player.setRightHandItemIndex(itemIndex);
                     } else {
                         game.player.unequipRightHand();
                     }
                 } else {
-                    game.player.getItems().get(itemIndex).use();
+                    game.player.inventory.getItems().get(itemIndex).use();
                 }
             }
         }
 
-        if (itemIndex >= game.player.getItems().size()) {
+        if (itemIndex >= game.player.inventory.getItems().size()) {
             itemIndex--; // fix from changing to -1 from other empty mobs
         }
     }
@@ -61,21 +61,21 @@ public class InventoryOverlay extends Overlay
 
         fill(borderPadding, borderPadding + 10, width - borderPadding, height - borderPadding, 0x101010);
 
-        if (game.player.getItems().size() > 0) {
+        if (game.player.inventory.getItems().size() > 0) {
             fill(borderPadding, borderPadding + 10 + (itemIndex * 12), width - borderPadding, borderPadding + 10 + ((itemIndex + 1) * 12), 0x404040);
-            for (int i = 0; i < game.player.getItems().size(); i++) {
+            for (int i = 0; i < game.player.inventory.getItems().size(); i++) {
                 String string;
                 int colour;
 
                 if (game.player.getRightHandItemIndex() == i && !game.player.rightHandEmpty) {
-                    string = "-> " + game.player.getItems().get(i).name;
+                    string = "-> " + game.player.inventory.getItems().get(i).name;
                     colour = 0xF0F070;
                     if (itemIndex == i) {
                         colour = 0xF0F0F0;
                     }
                     draw(string, borderPadding, borderPadding + 10 + (i * 12) + 2, colour);
                 } else {
-                    string = " " + game.player.getItems().get(i).name;
+                    string = " " + game.player.inventory.getItems().get(i).name;
                     colour = 0x707070;
                     if (itemIndex == i) {
                         colour = 0xF0F0F0;
