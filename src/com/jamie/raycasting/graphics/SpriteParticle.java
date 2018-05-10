@@ -20,8 +20,20 @@ public class SpriteParticle extends Sprite
         setMomentum();
     }
 
+    public SpriteParticle(Render t, int interval) {
+        super(t, interval);
+
+        setMomentum();
+    }
+
     public SpriteParticle(Render[] ts) {
         super(ts);
+
+        setMomentum();
+    }
+
+    public SpriteParticle(Render[] ts, int interval) {
+        super(ts, interval);
 
         setMomentum();
     }

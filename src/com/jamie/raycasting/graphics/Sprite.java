@@ -28,6 +28,14 @@ public class Sprite
         addTexture(t);
     }
 
+    public Sprite(Render t, int interval) {
+        x = 0;
+        y = 0;
+        z = 0;
+        this.interval = interval;
+        addTexture(t);
+    }
+
     public Sprite(Render[] ts) {
         x = 0;
         y = 0;
