@@ -15,9 +15,19 @@ public class FireballProjectile extends Projectile
         };
 
         setIdleSprite(new Sprite(ts1));
+
+        Render[] ts2 = {
+                Texture.explode0,
+                Texture.explode1,
+                Texture.explode2,
+                Texture.explode3,
+        };
+
+        setDetonationSprite(new Sprite(ts2));
     }
 
     public void detonate() {
+        super.detonate();
         ExplosionEffect effect = new ExplosionEffect(level, detonationRadius, detonationMagnitude);
 //        ExplosionEffect effect = new ExplosionEffect(level, 2, 5);
 //        FireEffect effect = new FireEffect(level, 3200, 1, 1);

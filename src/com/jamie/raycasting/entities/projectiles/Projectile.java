@@ -11,37 +11,47 @@ public abstract class Projectile extends Entity {
     public double detonationRadius = 2;
     public int detonationMagnitude = 1;
 
+    private int dieTime = 20;
+    private boolean isDetonating = false;
+
     public Projectile() {
         radius = 0.1;
         isSolid = false;
-
-        setIdleSprite(new Sprite(Texture.poof0));
     }
 
     public void tick() {
         super.tick();
 
-        life -= 1;
-        if (life <= 0) {
-            remove();
+        if (!isDetonating) {
+            life -= 1;
+            if (life <= 0) {
+                remove();
+            } else {
+                double nextX = moveSpeed * Math.sin(rotation);
+                double nextZ = moveSpeed * Math.cos(rotation);
+
+                if (isWallBlocked(posX + nextX, posZ) || isEntityBlocked(posX + nextX, posZ)) {
+                    detonate();
+                    return;
+                }
+                posX += nextX;
+
+                if (isWallBlocked(posX, posZ + nextZ) || isEntityBlocked(posX, posZ + nextZ)) {
+                    detonate();
+                    return;
+                }
+                posZ += nextZ;
+            }
         } else {
-            double nextX = moveSpeed * Math.sin(rotation);
-            double nextZ = moveSpeed * Math.cos(rotation);
-
-            if (isWallBlocked(posX + nextX, posZ) || isEntityBlocked(posX + nextX, posZ)) {
-                detonate();
+            dieTime--;
+            if (dieTime == 0) {
                 remove();
-                return;
             }
-            posX += nextX;
-
-            if (isWallBlocked(posX, posZ + nextZ) || isEntityBlocked(posX, posZ + nextZ)) {
-                detonate();
-                remove();
-                return;
-            }
-            posZ += nextZ;
         }
+    }
+
+    public void setDetonationSprite(Sprite s) {
+        setSpriteSet("detonation", s);
     }
 
     private boolean isWallBlocked(double x, double z) {
@@ -60,14 +70,12 @@ public abstract class Projectile extends Entity {
     private boolean isEntityBlocked(double x, double z) {
         for (int i = 0; i < level.countEntities(); i++) {
             Entity e = level.getEntity(i);
-            if (e.isSolid) {
+            if (e != this && e.isSolid) {
                 double entX = e.posX;
                 double entZ = e.posZ;
                 double entRadius = e.radius;
-                if (level.getEntity(i) != this) {
-                    if (((Math.abs(x - entX)) - entRadius < radius) && ((Math.abs(z - entZ)) - entRadius < radius)) {
-                        return true;
-                    }
+                if (((Math.abs(x - entX)) - entRadius < radius) && ((Math.abs(z - entZ)) - entRadius < radius)) {
+                    return true;
                 }
             }
         }
@@ -75,6 +83,7 @@ public abstract class Projectile extends Entity {
     }
 
     public void detonate() {
-
+        runSpriteSet("detonation");
+        isDetonating = true;
     }
 }

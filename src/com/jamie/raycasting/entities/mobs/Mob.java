@@ -103,14 +103,6 @@ public abstract class Mob extends Entity
             }
         }
 
-        for (int i = 0; i < mobEffects.size(); i++) {
-            mobEffects.get(i).tick();
-
-            if (mobEffects.get(i).removed) {
-                removeMobEffect(mobEffects.get(i));
-            }
-        }
-
         if (hurtTime > 0) {
             hurtTime--;
         }
@@ -148,6 +140,14 @@ public abstract class Mob extends Entity
                 }
             }
         } else {
+            for (int i = 0; i < mobEffects.size(); i++) {
+                mobEffects.get(i).tick();
+
+                if (mobEffects.get(i).removed) {
+                    removeMobEffect(mobEffects.get(i));
+                }
+            }
+
             for (int i = 0; i < level.countDrops(); i++) {
                 if (contains(level.getDropEntity(i).posX, level.getDropEntity(i).posZ)) {
                     addItem(level.getDropEntity(i).item);
@@ -245,18 +245,15 @@ public abstract class Mob extends Entity
         if (isSolid) {
             for (int i = 0; i < level.countEntities(); i++) {
                 Entity e = level.getEntity(i);
-                if (e.isSolid) {
+                if (e != this && e.isSolid) {
                     double entX = e.posX;
                     double entZ = e.posZ;
                     double entRadius = e.radius;
-                    if (level.getEntity(i) != this) {
-                        if (((Math.abs(x - entX)) - entRadius < radius) && ((Math.abs(z - entZ)) - entRadius < radius)) {
-                            return true;
-                        }
+                    if (((Math.abs(x - entX)) - entRadius < radius) && ((Math.abs(z - entZ)) - entRadius < radius)) {
+                        return true;
                     }
                 }
             }
-            return false;
         }
 
         return false;

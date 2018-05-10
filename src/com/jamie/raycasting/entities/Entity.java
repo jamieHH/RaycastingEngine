@@ -76,6 +76,10 @@ public class Entity
         return entities;
     }
 
+    public List<Entity> getTouchingEntities() {
+        return getEntitiesInRadius(this.radius);
+    }
+
     public List<Mob> getMobsInRadius(double radius) {
         List<Mob> mobs = new ArrayList<Mob>();
         for (int e = 0; e < level.countEntities(); e++) {
@@ -86,6 +90,10 @@ public class Entity
         }
 
         return mobs;
+    }
+
+    public List<Mob> getTouchingMobs() {
+        return getMobsInRadius(this.radius);
     }
 
     protected void setSpriteSet(String name, Sprite sprite) {
