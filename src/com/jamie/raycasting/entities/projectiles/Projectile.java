@@ -1,8 +1,8 @@
 package com.jamie.raycasting.entities.projectiles;
 
 import com.jamie.raycasting.entities.Entity;
+import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.graphics.Sprite;
-import com.jamie.raycasting.graphics.Texture;
 
 public abstract class Projectile extends Entity {
     protected double moveSpeed = 0.25;
@@ -10,6 +10,7 @@ public abstract class Projectile extends Entity {
 
     public double detonationRadius = 2;
     public int detonationMagnitude = 1;
+    public int damage = 0;
 
     private int dieTime = 20;
     private boolean isDetonating = false;
@@ -27,20 +28,16 @@ public abstract class Projectile extends Entity {
             if (life <= 0) {
                 remove();
             } else {
-                double nextX = moveSpeed * Math.sin(rotation);
-                double nextZ = moveSpeed * Math.cos(rotation);
+                posX += moveSpeed * Math.sin(rotation);
+                posZ += moveSpeed * Math.cos(rotation);
 
-                if (isWallBlocked(posX + nextX, posZ) || isEntityBlocked(posX + nextX, posZ)) {
+                if (getBlockingMob(posX, posZ) != null) {
+                    getBlockingMob(posX, posZ).hurt(this, damage);
                     detonate();
-                    return;
                 }
-                posX += nextX;
-
-                if (isWallBlocked(posX, posZ + nextZ) || isEntityBlocked(posX, posZ + nextZ)) {
+                if (isWallBlocked(posX, posZ)) {
                     detonate();
-                    return;
                 }
-                posZ += nextZ;
             }
         } else {
             dieTime--;
@@ -67,19 +64,19 @@ public abstract class Projectile extends Entity {
         return false;
     }
 
-    private boolean isEntityBlocked(double x, double z) {
-        for (int i = 0; i < level.countEntities(); i++) {
-            Entity e = level.getEntity(i);
-            if (e != this && e.isSolid) {
+    private Mob getBlockingMob(double x, double z) {
+        for (int i = 0; i < level.countMobs(); i++) {
+            Mob e = level.getMobEntity(i);
+            if (e.isSolid) {
                 double entX = e.posX;
                 double entZ = e.posZ;
                 double entRadius = e.radius;
                 if (((Math.abs(x - entX)) - entRadius < radius) && ((Math.abs(z - entZ)) - entRadius < radius)) {
-                    return true;
+                    return e;
                 }
             }
         }
-        return false;
+        return null;
     }
 
     public void detonate() {
