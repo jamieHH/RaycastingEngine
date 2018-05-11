@@ -9,7 +9,7 @@ public class Texture
 {
     // special
     public static final Render font = loadBitmap("/gui/font2.png");
-    public static final Render noTex = loadBitmap("/textures/noTex.png");
+    public static final Render invisible = setInvisible();
     public static final Render sky = new Render(400, 150);
     public static final Render none = new Render(16, 16);
 
@@ -99,6 +99,7 @@ public class Texture
     public static final Render grave = loadBitmap("/textures/grave.png");
     public static final Render fireball0 = loadBitmap("/textures/fireball0.png");
     public static final Render fireball1 = loadBitmap("/textures/fireball1.png");
+    public static final Render boltProjectile0 = loadBitmap("/textures/boltProjectile0.png");
 
 	// particles
     public static final Render blood0 = loadBitmap("/textures/blood0.png");
@@ -123,6 +124,8 @@ public class Texture
     public static final Render screenAxe1 = loadBitmap("/textures/screenAxe1.png");
     public static final Render screenWand0 = loadBitmap("/textures/screenWand0.png");
     public static final Render screenWand1 = loadBitmap("/textures/screenWand1.png");
+    public static final Render screenXbow0 = loadBitmap("/textures/screenXbow0.png");
+    public static final Render screenXbow1 = loadBitmap("/textures/screenXbow1.png");
 
 	private static Render loadBitmap(String fileName) {
 		try {
@@ -147,6 +150,15 @@ public class Texture
 			throw new RuntimeException(e);
 		}
 	}
+
+	private static Render setInvisible() {
+        Render render = new Render(16, 16);
+        for (int i = 0; i < render.pixels.length; i++) {
+            render.pixels[i] = -65281;
+        }
+
+        return render;
+    }
 
     private static Render mergeBitmap(Render tex0, Render tex1) {
         Render texture = new Render(tex0.width, tex0.height);

@@ -6,6 +6,7 @@ import com.jamie.raycasting.items.consumables.HealthPotion;
 import com.jamie.raycasting.items.weapons.AxeWeapon;
 import com.jamie.raycasting.items.weapons.SpearWeapon;
 import com.jamie.raycasting.items.weapons.WandWeapon;
+import com.jamie.raycasting.items.weapons.XbowWeapon;
 
 public class Player extends Mob
 {
@@ -31,6 +32,7 @@ public class Player extends Mob
 
         addItem(new SpearWeapon());
         addItem(new WandWeapon());
+        addItem(new XbowWeapon());
         addItem(new AxeWeapon());
         addItem(new HealthPotion());
 

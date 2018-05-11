@@ -1,21 +1,21 @@
 package com.jamie.raycasting.items.weapons;
 
-import com.jamie.raycasting.entities.projectiles.FireballProjectile;
+import com.jamie.raycasting.entities.projectiles.ArrowProjectile;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
 
-public class WandWeapon extends Weapon
+public class XbowWeapon extends Weapon
 {
-    public WandWeapon() {
+    public XbowWeapon() {
         super();
 
         canStrike = false;
 
-        setIdleSprite(new Sprite(Texture.screenWand0));
+        setIdleSprite(new Sprite(Texture.screenXbow0));
 
-        setUseSprite(new Sprite(Texture.screenWand1, 10));
+        setUseSprite(new Sprite(Texture.screenXbow1));
 
-        name = "Wand";
+        name = "Crossbow";
     }
 
     public void use() {
@@ -24,7 +24,7 @@ public class WandWeapon extends Weapon
         double nextX = Math.sin(user.rotation);
         double nextZ = Math.cos(user.rotation);
 
-        FireballProjectile f = new FireballProjectile();
+        ArrowProjectile f = new ArrowProjectile();
         f.setPosition(user.posX + nextX, user.posZ + nextZ);
         f.setRotation(user.rotation);
 

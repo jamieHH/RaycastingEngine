@@ -260,6 +260,7 @@ public abstract class Mob extends Entity
     }
 
     private void move(double nextX, double nextZ) {
+        // TODO: add 100 divs do make collision more accurate
         if (isWallBlocked(posX + nextX, posZ) || isEntityBlocked(posX + nextX, posZ)) {
             nextX = 0;
         }
@@ -371,6 +372,7 @@ public abstract class Mob extends Entity
     }
 
     public void push(double x, double z) {
+        // TODO: fix this damn pushing algorithm!! NOW!!
         double nextZ = z * Math.cos(-rotation) - x * Math.sin(-rotation);
         double nextX = x * Math.cos(-rotation) + z * Math.sin(-rotation);
 
