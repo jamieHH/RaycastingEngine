@@ -9,6 +9,7 @@ public class Texture
 {
     // special
     public static final Render font = loadBitmap("/gui/font2.png");
+    public static final Render noTex = loadBitmap("/textures/noTex.png");
     public static final Render invisible = setInvisible();
     public static final Render sky = new Render(400, 150);
     public static final Render none = new Render(16, 16);
