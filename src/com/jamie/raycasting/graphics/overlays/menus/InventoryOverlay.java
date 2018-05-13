@@ -65,23 +65,22 @@ public class InventoryOverlay extends Overlay
             fill(borderPadding, borderPadding + 10 + (itemIndex * 12), width - borderPadding, borderPadding + 10 + ((itemIndex + 1) * 12), 0x404040);
             for (int i = 0; i < game.player.inventory.getItems().size(); i++) {
                 String string;
+                String string2 = game.player.inventory.getItemsInfo().get(i).get("damage") + " ";
                 int colour;
 
                 if (game.player.getRightHandItemIndex() == i && !game.player.rightHandEmpty) {
-                    string = "-> " + game.player.inventory.getItems().get(i).name;
+                    string = "-> " + game.player.inventory.getItemsInfo().get(i).get("name");
                     colour = 0xF0F070;
-                    if (itemIndex == i) {
-                        colour = 0xF0F0F0;
-                    }
-                    draw(string, borderPadding, borderPadding + 10 + (i * 12) + 2, colour);
                 } else {
-                    string = " " + game.player.inventory.getItems().get(i).name;
+                    string = " " + game.player.inventory.getItemsInfo().get(i).get("name");
                     colour = 0x707070;
-                    if (itemIndex == i) {
-                        colour = 0xF0F0F0;
-                    }
-                    draw(string, borderPadding, borderPadding + 10 + (i * 12) + 2, colour);
                 }
+
+                if (itemIndex == i) {
+                    colour = 0xF0F0F0;
+                }
+                draw(string, borderPadding, borderPadding + 10 + (i * 12) + 2, colour);
+                draw(string2, width - borderPadding - (6 * string2.length()), borderPadding + 10 + (i * 12) + 2, colour);
             }
         }
     }

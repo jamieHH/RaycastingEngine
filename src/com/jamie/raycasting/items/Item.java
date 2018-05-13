@@ -4,7 +4,9 @@ import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.graphics.Render;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.SpriteSet;
-import com.jamie.raycasting.graphics.Texture;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public abstract class Item
 {
@@ -63,5 +65,15 @@ public abstract class Item
 
     public void remove() {
         removed = true;
+    }
+
+    public Map<String, String> getInfo(){
+        Map<String, String> info = new HashMap<String, String>();
+        info.put("name", name);
+        info.put("damage", Integer.toString(damage));
+        info.put("weight", Integer.toString(weight));
+        info.put("value", Integer.toString(value));
+        info.put("reach", Integer.toString(reach));
+        return info;
     }
 }

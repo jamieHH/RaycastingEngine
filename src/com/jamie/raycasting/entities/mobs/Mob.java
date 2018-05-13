@@ -301,13 +301,13 @@ public abstract class Mob extends Entity
     public void addItem(Item item) {
         inventory.addItem(item);
         item.setUser(this);
-        addHudHeading("Picked up " + item.name);
+        addHudHeading("Picked up " + item.getInfo().get("name"));
     }
 
     public void removeItem(Item item) {
         inventory.removeItem(item);
         item.setUser(null);
-        addHudHeading(item.name + " removed");
+        addHudHeading(item.getInfo().get("name") + " removed");
     }
 
     public Item getRightHandItem() {
@@ -409,16 +409,16 @@ public abstract class Mob extends Entity
         if (getRightHandItem() != null) {
             getRightHandItem().use();
         }
+        // TODO: do not use() a ranged weapon if a block is being triggered
 
         if (getRightHandItem() == null || getRightHandItem().canStrike) {
             runSpriteSet("action");
 
             List<Entity> closeEntities = getEntitiesInRadius(getRightHandReach());
 
-            double blockUseDist = getRightHandReach();
             int divs = (int) (getRightHandReach() * 100);
-            double xa = blockUseDist * Math.sin(rotation);
-            double za = blockUseDist * Math.cos(rotation);
+            double xa = getRightHandReach() * Math.sin(rotation);
+            double za = getRightHandReach() * Math.cos(rotation);
 
             for (int i = 0; i < divs; i++) {
                 double xx = posX + xa * i / divs;

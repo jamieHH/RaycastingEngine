@@ -23,6 +23,7 @@ public class SpearWeapon extends Weapon
         setUseSprite(new Sprite(ts1));
 
         name = "Spear";
+        damage = 2;
         reach = 16;
     }
 }

@@ -21,6 +21,7 @@ public class AxeWeapon extends Weapon
         setUseSprite(new Sprite(ts1));
 
         name = "Hatchet";
+        damage = 3;
         reach = 4;
     }
 }
