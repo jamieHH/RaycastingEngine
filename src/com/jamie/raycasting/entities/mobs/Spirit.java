@@ -1,6 +1,5 @@
 package com.jamie.raycasting.entities.mobs;
 
-import com.jamie.raycasting.entities.particles.PoofParticle;
 import com.jamie.raycasting.graphics.Render;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
@@ -8,7 +7,6 @@ import com.jamie.raycasting.input.InputHandler;
 
 public class Spirit extends Mob
 {
-    private int poofTick = 0;
     private int healTick = 0;
 
     public Spirit(InputHandler input) {
@@ -64,17 +62,6 @@ public class Spirit extends Mob
     public void tick() {
         super.tick();
         input.resetInfluence();
-
-        if (poofTick > 0) {
-            poofTick--;
-        } else {
-            poofTick = 20;
-
-            for (int i = 0; i < 1 ; i++) {
-                PoofParticle particle = new PoofParticle(posX, posZ);
-                level.addEntity(particle);
-            }
-        }
 
         if (healTick > 0) {
             healTick--;

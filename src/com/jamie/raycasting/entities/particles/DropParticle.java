@@ -1,8 +1,12 @@
 package com.jamie.raycasting.entities.particles;
 
 import com.jamie.raycasting.graphics.Render;
+import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.SpriteParticle;
 import com.jamie.raycasting.graphics.Texture;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DropParticle extends Particle
 {
@@ -11,10 +15,17 @@ public class DropParticle extends Particle
 
         life = 20;
 
-        Render t = Texture.drop;
+        Render[] ts = {
+                Texture.drop
+        };
 
-        SpriteParticle particle = new SpriteParticle(t, 0, 1, 0);
+        List<Sprite> set = new ArrayList<Sprite>();
+        for (int i = 0; i < 2; i++) {
+            SpriteParticle particle = new SpriteParticle(ts[random.nextInt(ts.length)], 0, 1, 0);
+            particle.gravity = 1;
 
-        setIdleSprite(particle);
+            set.add(particle);
+        }
+        setSpriteParticles(set);
     }
 }

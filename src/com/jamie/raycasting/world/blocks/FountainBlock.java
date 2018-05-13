@@ -21,15 +21,14 @@ public class FountainBlock extends Block
 	}
 
     public void tick() {
-
 	    if (i > 0) {
 	        i--;
-	        return;
-        }
+        } else {
+			i = 5;
 
-        DropParticle dropParticle = new DropParticle(gridX + 0.5, gridZ + 0.5);
-        level.addEntity(dropParticle);
+			DropParticle dropParticle = new DropParticle(gridX + 0.5, gridZ + 0.5);
+			level.addEntity(dropParticle);
 
-        i = 10;
+		}
     }
 }

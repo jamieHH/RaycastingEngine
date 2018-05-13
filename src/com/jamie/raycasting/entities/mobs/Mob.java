@@ -124,10 +124,8 @@ public abstract class Mob extends Entity
             if (!isDead) {
                 dieTime--;
                 if (dieTime == 0) {
-                    for (int i = 0; i < 6 ; i++) {
-                        PoofParticle particle = new PoofParticle(posX, posZ);
-                        level.addEntity(particle);
-                    }
+                    PoofParticle particle = new PoofParticle(posX, posZ);
+                    level.addEntity(particle);
 
                     isDead = true;
                 }
@@ -395,11 +393,8 @@ public abstract class Mob extends Entity
         push(mx, mz);
         rotationMove += (Math.random() - 0.5);
 
-
-        for (int i = 0; i < 2; i++) {
-            BloodParticle p = new BloodParticle(posX, posZ);
-            level.addEntity(p);
-        }
+        BloodParticle p = new BloodParticle(posX, posZ);
+        level.addEntity(p);
 
         if (health <= 0) {
             die();
@@ -464,10 +459,9 @@ public abstract class Mob extends Entity
     public void modHealth(int modifier) {
         if (modifier > 0) {
             runSpriteSet("heal");
-            for (int i = 0; i < 4; i++) {
-                HealthParticle p = new HealthParticle(posX, posZ);
-                level.addEntity(p);
-            }
+
+            HealthParticle p = new HealthParticle(posX, posZ);
+            level.addEntity(p);
         }
 
         if (health + modifier > maxHealth) {

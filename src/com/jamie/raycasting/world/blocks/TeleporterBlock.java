@@ -44,10 +44,9 @@ public class TeleporterBlock extends Block
         } else {
             for (int i = 0; i < mobs.size(); i++) {
                 mobs.get(i).setPosition(destX, destZ);
-                for (int x = 0; x < 4; x++) {
-                    PoofParticle p = new PoofParticle(mobs.get(i).posX, mobs.get(i).posZ);
-                    level.addEntity(p);
-                }
+
+                PoofParticle p = new PoofParticle(mobs.get(i).posX, mobs.get(i).posZ);
+                level.addEntity(p);
             }
         }
     }

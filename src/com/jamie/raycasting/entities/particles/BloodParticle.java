@@ -1,8 +1,12 @@
 package com.jamie.raycasting.entities.particles;
 
 import com.jamie.raycasting.graphics.Render;
+import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.SpriteParticle;
 import com.jamie.raycasting.graphics.Texture;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class BloodParticle extends Particle
 {
@@ -16,8 +20,13 @@ public class BloodParticle extends Particle
                 Texture.blood3,
         };
 
-        SpriteParticle particle = new SpriteParticle(ts[random.nextInt(ts.length)], 0, 0.5, 0);
+        List<Sprite> set = new ArrayList<Sprite>();
+        for (int i = 0; i < 2; i++) {
+            SpriteParticle particle = new SpriteParticle(ts[random.nextInt(ts.length)], 0, 0.5, 0);
+//            particle.gravity = 1;
 
-        setIdleSprite(particle);
+            set.add(particle);
+        }
+        setSpriteParticles(set);
     }
 }
