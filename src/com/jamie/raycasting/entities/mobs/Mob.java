@@ -20,9 +20,6 @@ public abstract class Mob extends Entity
 {
     protected boolean isFloating = false;
 
-    // details
-    protected Particle hurtParticle;
-
     // distances
     public double baseReach = 1.5;
     public double viewDist = 4;

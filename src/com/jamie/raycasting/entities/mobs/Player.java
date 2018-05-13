@@ -28,8 +28,6 @@ public class Player extends Mob
         maxHealth = 10;
 //        maxHealth = 100;
 
-        hurtParticle = new BloodParticle(0, 0);
-
         addItem(new SpearWeapon());
         addItem(new WandWeapon());
         addItem(new XbowWeapon());

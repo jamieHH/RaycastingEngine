@@ -29,8 +29,6 @@ public class Bat extends Mob
 
 //        baseDamage = 0;
 
-        hurtParticle = new BloodParticle(0, 0);
-
         Render[] ts = {
                 Texture.bat0,
                 Texture.bat1,

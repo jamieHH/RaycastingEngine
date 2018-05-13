@@ -1,6 +1,5 @@
 package com.jamie.raycasting.entities.mobs;
 
-import com.jamie.raycasting.entities.particles.DustParticle;
 import com.jamie.raycasting.entities.particles.PoofParticle;
 import com.jamie.raycasting.graphics.Render;
 import com.jamie.raycasting.graphics.Sprite;
@@ -30,8 +29,6 @@ public class Spirit extends Mob
 
         maxHealth = 10;
 //        maxHealth = 100;
-
-        hurtParticle = new DustParticle(0, 0);
 
         Render[] ts = {
                 Texture.spirit0,
