@@ -28,16 +28,44 @@ public abstract class Projectile extends Entity {
             if (life <= 0) {
                 remove();
             } else {
-                posX += moveSpeed * Math.sin(rotation);
-                posZ += moveSpeed * Math.cos(rotation);
+                int divs = 1; // increase this to improve accuracy of collision
+                for (int i = 0; i < divs; i++) {
+                    double nextX = (moveSpeed * Math.sin(rotation)) / divs;
+                    if (getBlockingMob(posX + nextX, posZ) != null) {
+                        getBlockingMob(posX + nextX, posZ).hurt(this, damage);
+                        detonate();
+                        break;
+                    }
+                    if (isWallBlocked(posX + nextX, posZ)) {
+                        detonate();
+                        break;
+                    }
+                    posX += nextX;
 
-                if (getBlockingMob(posX, posZ) != null) {
-                    getBlockingMob(posX, posZ).hurt(this, damage);
-                    detonate();
+                    double nextZ = (moveSpeed * Math.cos(rotation)) / divs;
+                    if (getBlockingMob(posX, posZ + nextZ) != null) {
+                        getBlockingMob(posX, posZ + nextZ).hurt(this, damage);
+                        detonate();
+                        break;
+                    }
+                    if (isWallBlocked(posX, posZ + nextZ)) {
+                        detonate();
+                        break;
+                    }
+                    posZ += nextZ;
                 }
-                if (isWallBlocked(posX, posZ)) {
-                    detonate();
-                }
+
+
+//                posX += moveSpeed * Math.sin(rotation);
+//                posZ += moveSpeed * Math.cos(rotation);
+//
+//                if (getBlockingMob(posX, posZ) != null) {
+//                    getBlockingMob(posX, posZ).hurt(this, damage);
+//                    detonate();
+//                }
+//                if (isWallBlocked(posX, posZ)) {
+//                    detonate();
+//                }
             }
         } else {
             dieTime--;

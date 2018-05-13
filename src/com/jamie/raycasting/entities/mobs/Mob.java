@@ -259,17 +259,21 @@ public abstract class Mob extends Entity
         return false;
     }
 
-    private void move(double nextX, double nextZ) {
-        // TODO: add 100 divs do make collision more accurate
-        if (isWallBlocked(posX + nextX, posZ) || isEntityBlocked(posX + nextX, posZ)) {
-            nextX = 0;
-        }
-        posX += nextX;
+    private void move(double nX, double nZ) {
+        int divs = 100;
+        for (int i = 0; i < divs; i++) {
+            double nextX = nX / divs;
+            if (isWallBlocked(posX + nextX, posZ) || isEntityBlocked(posX + nextX, posZ)) {
+                nextX = 0;
+            }
+            posX += nextX;
 
-        if (isWallBlocked(posX, posZ + nextZ) || isEntityBlocked(posX, posZ + nextZ)) {
-            nextZ = 0;
+            double nextZ = nZ / divs;
+            if (isWallBlocked(posX, posZ + nextZ) || isEntityBlocked(posX, posZ + nextZ)) {
+                nextZ = 0;
+            }
+            posZ += nextZ;
         }
-        posZ += nextZ;
     }
 
     private void die() {
