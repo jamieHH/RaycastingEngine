@@ -2,6 +2,7 @@ package com.jamie.raycasting.graphics;
 
 import com.jamie.raycasting.entities.Entity;
 import com.jamie.raycasting.entities.mobs.Mob;
+import com.jamie.raycasting.entities.particles.Particle;
 import com.jamie.raycasting.world.blocks.*;
 
 public class Render3D extends Render
@@ -252,6 +253,13 @@ public class Render3D extends Render
 				Sprite sprite = entity.getSprite();
 				if (sprite != null) {
 					renderSprite(entity.posX + sprite.x, entity.posY + sprite.y, entity.posZ + sprite.z, sprite.render());
+				}
+
+				if (entity instanceof Particle) {
+					for (int j = 0; j < ((Particle) entity).getSpriteParticles().size(); j++) {
+						Sprite spriteParticles = ((Particle) entity).getSpriteParticles().get(j);
+						renderSprite(entity.posX + spriteParticles.x, entity.posY + spriteParticles.y, entity.posZ + spriteParticles.z, spriteParticles.render());
+					}
 				}
 			}
 		}

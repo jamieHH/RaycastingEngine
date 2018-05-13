@@ -21,8 +21,6 @@ public class ExplosionEffect extends EnvironmentalEffect
             mobs.get(i).hurt(this, magnitude);
         }
 
-        for (int i = 0; i < 8; i++) {
-            level.addEntity(new EmberParticle(posX, posZ));
-        }
+        level.addEntity(new EmberParticle(posX, posZ));
     }
 }
