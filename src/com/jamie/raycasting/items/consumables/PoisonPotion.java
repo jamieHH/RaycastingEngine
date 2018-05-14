@@ -2,16 +2,16 @@ package com.jamie.raycasting.items.consumables;
 
 import com.jamie.raycasting.entities.mobs.mobEffects.ModHealthEffect;
 
-public class HealthPotion extends Consumable
+public class PoisonPotion extends Consumable
 {
-    public HealthPotion() {
+    public PoisonPotion() {
         super();
 
-        name = "Health Potion";
+        name = "Poison Potion";
     }
 
     public void use() {
         super.use();
-        user.addMobEffect(new ModHealthEffect(user, 480, 1));
+        user.addMobEffect(new ModHealthEffect(user, 240, -1));
     }
 }

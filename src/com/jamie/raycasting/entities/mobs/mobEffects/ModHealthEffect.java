@@ -9,11 +9,12 @@ public class ModHealthEffect extends MobEffect
         super(mob, duration, magnitude);
 
         name = "Mod Health";
-        effectHudColour = 0xF0F040;
 
         if (magnitude < 0) {
+            effectHudColour = 0x408040;
             effectHudIcon = Texture.poisonIcon;
         } else {
+            effectHudColour = 0xF0F040;
             effectHudIcon = Texture.heartIcon;
         }
     }

@@ -380,6 +380,16 @@ public abstract class Mob extends Entity
         moveZ += nextZ;
     }
 
+    public void heal(int magnitude) {
+        if (health + magnitude > maxHealth) {
+            health = maxHealth;
+        } else if (health + magnitude < 0) {
+            health = 0;
+        } else {
+            health += magnitude;
+        }
+    }
+
     public void hurt(Entity source, int damage) {
         hurt(source, damage, "hurt");
     }
@@ -404,6 +414,7 @@ public abstract class Mob extends Entity
         level.addEntity(p);
 
         if (health <= 0) {
+            health = 0;
             die();
         }
     }
@@ -469,14 +480,10 @@ public abstract class Mob extends Entity
 
             HealthParticle p = new HealthParticle(posX, posZ);
             level.addEntity(p);
-        }
 
-        if (health + modifier > maxHealth) {
-            health = maxHealth;
-        } else if (health + modifier < 0) {
-            health = 0;
+            heal(modifier);
         } else {
-            health += modifier;
+            hurt(this, -modifier, "poison");
         }
     }
 

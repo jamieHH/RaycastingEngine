@@ -1,8 +1,8 @@
 package com.jamie.raycasting.entities.mobs;
 
-import com.jamie.raycasting.entities.particles.BloodParticle;
 import com.jamie.raycasting.input.InputHandler;
 import com.jamie.raycasting.items.consumables.HealthPotion;
+import com.jamie.raycasting.items.consumables.PoisonPotion;
 import com.jamie.raycasting.items.weapons.AxeWeapon;
 import com.jamie.raycasting.items.weapons.SpearWeapon;
 import com.jamie.raycasting.items.weapons.WandWeapon;
@@ -33,6 +33,7 @@ public class Player extends Mob
         addItem(new XbowWeapon());
         addItem(new AxeWeapon());
         addItem(new HealthPotion());
+        addItem(new PoisonPotion());
 
         addFaction("human");
     }
