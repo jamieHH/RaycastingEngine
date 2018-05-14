@@ -1,6 +1,7 @@
 package com.jamie.raycasting.graphics.overlays.menus;
 
 import com.jamie.raycasting.app.Game;
+import com.jamie.raycasting.graphics.Render;
 import com.jamie.raycasting.graphics.overlays.Overlay;
 import com.jamie.raycasting.items.consumables.Consumable;
 
@@ -8,6 +9,10 @@ public class InventoryOverlay extends Overlay
 {
     private Game game;
     private int itemIndex = 0;
+    private String[] itemCategories = {
+        "Items", "Weapons", "Consumables"
+    };
+    private int itemCategoryIndex = 0;
 
     public InventoryOverlay(int width, int height, Game game) {
         super(width, height);
@@ -34,6 +39,23 @@ public class InventoryOverlay extends Overlay
             }
         }
 
+        if (game.userInput.left || game.userInput.rotLeft) {
+            game.userInput.setKeyGroupState("left", false);
+            game.userInput.setKeyGroupState("rotLeft", false);
+
+            if ((itemCategoryIndex > 0)) {
+                itemCategoryIndex--;
+            }
+        }
+        if (game.userInput.right || game.userInput.rotRight) {
+            game.userInput.setKeyGroupState("right", false);
+            game.userInput.setKeyGroupState("rotRight", false);
+
+            if ((itemCategoryIndex < itemCategories.length - 1)) {
+                itemCategoryIndex++;
+            }
+        }
+
         if (game.player.inventory.getItems().size() > 0) {
             if (game.userInput.action) {
                 game.userInput.setKeyGroupState("action", false);
@@ -57,7 +79,30 @@ public class InventoryOverlay extends Overlay
     public void update() {
         fill(0, 0, width, height, 0x202020);
 
-        draw("  Items", borderPadding, borderPadding, 0xF0F0F0);
+        String catString = itemCategories[itemCategoryIndex];
+        if (itemCategoryIndex == 0) {
+            draw("< ", borderPadding, borderPadding, 0x404040);
+        } else {
+            draw("< ", borderPadding, borderPadding, 0xF0F0F0);
+        }
+        draw(itemCategories[itemCategoryIndex], borderPadding + 12, borderPadding, 0xF0F0F0);
+        if (itemCategoryIndex == itemCategories.length - 1) {
+            draw(" >", borderPadding + 12 + (catString.length() * 6), borderPadding, 0x404040);
+        } else {
+            draw(" >", borderPadding + 12 + (catString.length() * 6), borderPadding, 0xF0F0F0);
+        }
+
+        for (int i = 0; i < itemCategories.length; i++) {
+            Render blip = new Render(2, 2);
+            if (i == itemCategoryIndex) {
+                blip.fill(0, 0, blip.width, blip.height, 0xF0F0F0);
+            } else {
+                blip.fill(0, 0, blip.width, blip.height, 0x404040);
+            }
+            draw(blip, (width - borderPadding - 4) - ((itemCategories.length - i - 1) * 6), borderPadding + 3);
+        }
+
+
 
         fill(borderPadding, borderPadding + 10, width - borderPadding, height - borderPadding, 0x101010);
 
