@@ -26,10 +26,6 @@ public class TeleporterBlock extends Block
         };
 
         setIdleSprite(new Sprite(ts0));
-
-        // tmp positioning
-        destX = gridX + 2;
-        destZ = gridZ + 2;
     }
 
 	public void tick() {
@@ -43,10 +39,15 @@ public class TeleporterBlock extends Block
             }
         } else {
             for (int i = 0; i < mobs.size(); i++) {
-                mobs.get(i).setPosition(destX, destZ);
+                mobs.get(i).setPosition(gridX - 1, gridZ - 1); // tmp positioning
 
-                PoofParticle p = new PoofParticle(mobs.get(i).posX, mobs.get(i).posZ);
-                level.addEntity(p);
+                PoofParticle p0 = new PoofParticle(mobs.get(i).posX, mobs.get(i).posZ);
+                level.addEntity(p0);
+
+                PoofParticle p1 = new PoofParticle(gridX + 0.5, gridZ + 0.5);
+                level.addEntity(p1);
+
+                disabled = true;
             }
         }
     }
