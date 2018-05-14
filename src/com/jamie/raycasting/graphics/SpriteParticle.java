@@ -4,13 +4,23 @@ public class SpriteParticle extends Sprite
 {
     private int time = 0;
 
-    public double gravity = 1;
-    private double xa, ya, za;
+    private double moveX, moveY, moveZ;
     private double yg = 0;
+
+    public double speed = 1;
+    public double gravity = 1;
+    public double friction = 0.05;
 
     public SpriteParticle(Render texture, double xOffs, double yOffs, double zOffs) {
         super(texture, xOffs, yOffs, zOffs);
 
+        setMomentum();
+    }
+
+    public SpriteParticle(Render texture, double xOffs, double yOffs, double zOffs, double speed) {
+        super(texture, xOffs, yOffs, zOffs);
+
+        this.speed = speed;
         setMomentum();
     }
 
@@ -20,9 +30,10 @@ public class SpriteParticle extends Sprite
         setMomentum();
     }
 
-    public SpriteParticle(Render t, int interval) {
-        super(t, interval);
+    public SpriteParticle(Render t, double speed) {
+        super(t);
 
+        this.speed = speed;
         setMomentum();
     }
 
@@ -32,16 +43,17 @@ public class SpriteParticle extends Sprite
         setMomentum();
     }
 
-    public SpriteParticle(Render[] ts, int interval) {
-        super(ts, interval);
+    public SpriteParticle(Render[] ts, double speed) {
+        super(ts);
 
+        this.speed = speed;
         setMomentum();
     }
 
     private void setMomentum() {
-        xa = (Math.random() - 0.5) / 2;
-        ya = (Math.random() - 0.5) / 2;
-        za = (Math.random() - 0.5) / 2;
+        moveX = ((Math.random() - 0.5) / 2) * speed;
+        moveY = ((Math.random() - 0.5) / 2) * speed;
+        moveZ = ((Math.random() - 0.5) / 2) * speed;
     }
 
     public void tick() {
@@ -51,20 +63,18 @@ public class SpriteParticle extends Sprite
         yg -= ((time * 0.125) * gravity) * 0.0125;
         y += yg;
 
-        xa *= 0.99;
-        ya *= 0.99;
-        za *= 0.99;
+        x += moveX * 0.25;
+        y += moveY * 0.25;
+        z += moveZ * 0.25;
 
-        x += xa * 0.25;
-        y += ya * 0.25;
-        z += za * 0.25;
-
-
+        moveX *= 1 - friction;
+        moveY *= 1 - friction;
+        moveZ *= 1 - friction;
 
         if (y <= 0) {
             y = 0;
-            xa *= 0.75;
-            za *= 0.75;
+            moveX *= 0.75;
+            moveZ *= 0.75;
         }
     }
 }

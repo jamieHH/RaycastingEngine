@@ -20,10 +20,20 @@ public class EmberParticle extends Particle
 
         List<Sprite> set = new ArrayList<Sprite>();
         for (int i = 0; i < 8; i++) {
-            SpriteParticle particle = new SpriteParticle(ts[random.nextInt(ts.length)], 0, 0.5, 0);
-            particle.gravity = -0.5;
+            Render[] rts = {
+                    ts[random.nextInt(ts.length)],
+                    ts[random.nextInt(ts.length)]
+            };
 
+            SpriteParticle particle = new SpriteParticle(rts, 2);
+            particle.setOffset( 0, 0.5, 0);
+            particle.gravity = -0.25;
             set.add(particle);
+
+            SpriteParticle particle2 = new SpriteParticle(rts, 4);
+            particle2.setOffset( 0, 0.5, 0);
+            particle2.gravity = -0.125;
+            set.add(particle2);
         }
         setSpriteParticles(set);
     }
