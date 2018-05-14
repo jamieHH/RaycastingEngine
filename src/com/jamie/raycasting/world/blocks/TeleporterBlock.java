@@ -37,7 +37,7 @@ public class TeleporterBlock extends Block
         List<Entity> entities = level.getEntitiesWithin(gridX, gridZ, gridX + 1, gridZ + 1);
         for (int i = 0; i < entities.size(); i++) {
             if (entities.get(i) instanceof Particle || entities.get(i) instanceof EnvironmentalEffect) {
-                System.out.println(entities.get(i)); // particles removed
+//                System.out.println(entities.get(i)); // particles removed
                 entities.remove(i);
             }
         }
