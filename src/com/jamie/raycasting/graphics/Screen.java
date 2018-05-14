@@ -4,7 +4,9 @@ import java.util.Random;
 
 import com.jamie.raycasting.app.Game;
 import com.jamie.raycasting.entities.mobs.Mob;
+import com.jamie.raycasting.graphics.overlays.HudBarOverlay;
 import com.jamie.raycasting.graphics.overlays.StatBarOverlay;
+import com.jamie.raycasting.graphics.overlays.ViewPunchOverlay;
 import com.jamie.raycasting.graphics.overlays.menus.InventoryOverlay;
 import com.jamie.raycasting.graphics.overlays.menus.Menu;
 
@@ -14,8 +16,8 @@ public class Screen extends Render
 
     private Render3D render;
 
-    private Render viewPunch;
-	private Render hudBar;
+    private ViewPunchOverlay viewPunch;
+	private HudBarOverlay hudBar;
 
 	private Render healthBarIcon;
 	private StatBarOverlay healthBar;
@@ -27,29 +29,17 @@ public class Screen extends Render
 		p = game.player;
 
         // HUD
-        hudBar = new Render(width, 9);
-        for (int i = 0; i < hudBar.pixels.length; i++) {
-            if (i < hudBar.pixels.length - (hudBar.pixels.length - hudBar.width)) {
-                hudBar.pixels[i] = 0x404040;
-            } else {
-                hudBar.pixels[i] = 0x606060;
-            }
-        }
-
-        // 3D render
-        render = new Render3D(width, height - hudBar.height);
-
-        viewPunch = new Render(width, height - hudBar.height);
-
-
-        // HUD Items
+        hudBar = new HudBarOverlay(width, 9);
         healthBarIcon = new Render(6, 4);
         int[] iconPixels = {1, 3, 6, 7, 8, 9, 10, 13, 14, 15, 20};
         for (int i = 0; i < iconPixels.length; i++) {
             healthBarIcon.pixels[iconPixels[i]] = 0xF00000;
         }
-
         healthBar = new StatBarOverlay(40, 4, healthBarIcon);
+
+        // 3D render
+        render = new Render3D(width, height - hudBar.height);
+        viewPunch = new ViewPunchOverlay(width, height - hudBar.height);
     }
 	
 	public void render(Game game) {
@@ -72,32 +62,19 @@ public class Screen extends Render
             }
 
             // render hudbar
+            if (p.getRightHandItem() != null) {
+                hudBar.update(p.getRightHandItem().name);
+            } else {
+                hudBar.update("");
+            }
             draw(hudBar, 0, height - hudBar.height);
-            draw(healthBarIcon, 2, (height - hudBar.height) + 3);
 
             healthBar.update((double) (p.health) / (double) (p.maxHealth), 0xF00000);
             draw(healthBar, 2, (height - hudBar.height) + 3);
 
-            if (p.getRightHandItem() != null) {
-                draw(p.getRightHandItem().name, width - (p.getRightHandItem().name.length() * 6) - 2, (height - hudBar.height) + 1, 0x909090);
-            }
-
             // Render pain
             if (p.hurtTime >= 0) {
-                double percentage = p.hurtTime / 60.0;
-                for (int i = 0; i < viewPunch.pixels.length; i++) {
-                    double xp = ((i % width) - viewPunch.width / 2.0) / width * 2;
-                    double yp = ((i / width) - viewPunch.height / 2.0) / viewPunch.height * 2;
-                    if (random.nextDouble() < percentage * Math.sqrt(xp * xp + yp * yp)) {
-                        if (random.nextBoolean()) {
-                            viewPunch.pixels[i] = 0x101010;
-                        } else {
-                            viewPunch.pixels[i] = 0x801010;
-                        }
-                    } else {
-                        viewPunch.pixels[i] = 0;
-                    }
-                }
+                viewPunch.update(p.hurtTime / 60.0, p.hurtType);
                 draw(viewPunch, 0, 0);
             }
 
@@ -119,7 +96,7 @@ public class Screen extends Render
                 cornerX = (int) (width * 0.1);
                 cornerY = (int) (height * 0.2);
             }
-            draw(game.activeOverlay, cornerX, cornerY); // find out why no draw
+            draw(game.activeOverlay, cornerX, cornerY);
         }
     }
 }

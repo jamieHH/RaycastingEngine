@@ -54,6 +54,7 @@ public abstract class Mob extends Entity
     protected int baseDamage = 1;
 
 	public int hurtTime = 0;
+	public String hurtType = "hurt";
 	public int maxHealth = 10;
 	public int health = 10;
 
@@ -380,6 +381,10 @@ public abstract class Mob extends Entity
     }
 
     public void hurt(Entity source, int damage) {
+        hurt(source, damage, "hurt");
+    }
+
+    public void hurt(Entity source, int damage, String damageType) {
         if (hurtTime > 0 || damage <= 0 || isDieing) return;
 
         runSpriteSet("hurt");
@@ -387,6 +392,8 @@ public abstract class Mob extends Entity
         yBob -= 0.8;
         health -= damage;
         hurtTime = 30;
+        hurtType = damageType; // change to blunt if armor protects some damage
+        // implement armour protection
 
         double mx = (posX - source.posX) / 4;
         double mz = (posZ - source.posZ) / 4;

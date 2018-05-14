@@ -32,7 +32,7 @@ public class FireEffect extends EnvironmentalEffect
         List<Mob> mobs = getMobsInRadius(radius);
 
         for (int i = 0; i < mobs.size(); i++) {
-            mobs.get(i).hurt(this, magnitude);
+            mobs.get(i).hurt(this, magnitude, "fire");
         }
 
         for (int i = 0; i < 2; i++) {

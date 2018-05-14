@@ -4,18 +4,7 @@ import com.jamie.raycasting.graphics.Render;
 
 public class StatBarOverlay extends Overlay
 {
-    private int showTime = 30;
-
     private int barWidth, barHeight, barXStart;
-
-    public StatBarOverlay(int width, int height) {
-        super(width, height);
-        barHeight = height;
-        barWidth = width;
-        barXStart = 0;
-
-        fill(0, 0 , width, height, 0x808080);
-    }
 
     public StatBarOverlay(int width, int height, Render icon) {
         super(width, height);
@@ -30,7 +19,7 @@ public class StatBarOverlay extends Overlay
     public void update(double fullness, int colour) {
         int fillWidth = (int) (fullness * (barWidth - 2));
 
-        fill(barXStart + 1, 1 , barWidth - 1, barHeight - 1, 0);
+        fill(barXStart + 1, 1 , barXStart + barWidth - 1, barHeight - 1, 0);
         fill(barXStart + 1, 1, barXStart + fillWidth + 1, barHeight - 1, colour);
     }
 }
