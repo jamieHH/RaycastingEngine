@@ -30,9 +30,9 @@ public class Player extends Mob
 
         addItem(new SpearWeapon());
         addItem(new WandWeapon());
+        addItem(new HealthPotion());
         addItem(new XbowWeapon());
         addItem(new AxeWeapon());
-        addItem(new HealthPotion());
         addItem(new PoisonPotion());
 
         addFaction("human");
