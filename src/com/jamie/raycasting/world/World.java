@@ -74,7 +74,6 @@ public class World
         Mob thisMob = game.player;
 
         game.setActiveOverlay(new LoadingOverlay(App.width, App.height, name));
-        game.activeOverlay.pauseTime = 30;
 
         level.removeEntity(thisMob);
 

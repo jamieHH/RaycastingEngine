@@ -97,7 +97,6 @@ public class Game
 			} else {
 				if (userInput.action || userInput.pause) {
 					setActiveOverlay(overMenu);
-					activeOverlay.pauseTime = 10;
 				}
 			}
 		}
