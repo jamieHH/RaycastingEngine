@@ -8,5 +8,6 @@ public abstract class Weapon extends Item
         super();
 
         name = "Weapon";
+        type = "weapon";
     }
 }

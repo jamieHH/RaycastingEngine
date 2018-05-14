@@ -9,6 +9,7 @@ public class Consumable extends Item
 
         canStrike = false;
         name = "Consumable";
+        type = "consumable";
     }
 
     public void use() {

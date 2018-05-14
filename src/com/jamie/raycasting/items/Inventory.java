@@ -20,6 +20,26 @@ public class Inventory
         items.remove(item);
     }
 
+    public List<Item> getItemsByType(String type) {
+        List<Item> items = new ArrayList<Item>();
+        for (int i = 0; i < countItems(); i++) {
+            if (getItem(i).getInfo().get("type") == type) {
+                items.add(getItem(i));
+            }
+        }
+        return items;
+    }
+
+    public int getIndexOf(Item item) {
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i) == item) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
     // All Items
     public List<Item> getItems() {
         return items;

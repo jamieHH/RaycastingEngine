@@ -11,6 +11,7 @@ import java.util.Map;
 public abstract class Item
 {
     public String name = "Item";
+    public String type = "item";
     private SpriteSet spriteSet = new SpriteSet();
     public Render icon = new Render(8, 8);
 
@@ -70,6 +71,7 @@ public abstract class Item
     public Map<String, String> getInfo(){
         Map<String, String> info = new HashMap<String, String>();
         info.put("name", name);
+        info.put("type", type);
         info.put("damage", Integer.toString(damage));
         info.put("weight", Integer.toString(weight));
         info.put("value", Integer.toString(value));
