@@ -4,6 +4,7 @@ import java.util.Random;
 
 import com.jamie.raycasting.app.Game;
 import com.jamie.raycasting.entities.mobs.Mob;
+import com.jamie.raycasting.graphics.overlays.StatBarOverlay;
 import com.jamie.raycasting.graphics.overlays.menus.InventoryOverlay;
 import com.jamie.raycasting.graphics.overlays.menus.Menu;
 
@@ -17,8 +18,7 @@ public class Screen extends Render
 	private Render hudBar;
 
 	private Render healthBarIcon;
-	private Render healthBarBorder;
-	private Render healthBar;
+	private StatBarOverlay healthBar;
 
     private Random random = new Random();
 
@@ -49,12 +49,7 @@ public class Screen extends Render
             healthBarIcon.pixels[iconPixels[i]] = 0xF00000;
         }
 
-        healthBarBorder = new Render(32, 4);
-        for (int i = 0; i < healthBarBorder.pixels.length; i++) {
-            healthBarBorder.pixels[i] = 0x808080;
-        }
-
-        healthBar = new Render(30, 2);
+        healthBar = new StatBarOverlay(40, 4, healthBarIcon);
     }
 	
 	public void render(Game game) {
@@ -78,19 +73,11 @@ public class Screen extends Render
 
             // render hudbar
             draw(hudBar, 0, height - hudBar.height);
-
-            double healthBarWidth = ((double) p.health / (double) p.maxHealth) * (double) healthBar.width;
-            for (int i = 0; i < healthBar.pixels.length; i++) {
-                if (i < healthBarWidth || (i >= healthBar.width && i < (healthBarWidth + healthBar.width))) {
-                    healthBar.pixels[i] = 0xF00000;
-                } else {
-                    healthBar.pixels[i] = 0xD07070;
-                }
-            }
-
             draw(healthBarIcon, 2, (height - hudBar.height) + 3);
-            draw(healthBarBorder, 8, (height - hudBar.height) + 3);
-            draw(healthBar, 9, (height - hudBar.height) + 4);
+
+            healthBar.update((double) (p.health) / (double) (p.maxHealth), 0xF00000);
+            draw(healthBar, 2, (height - hudBar.height) + 3);
+
             if (p.getRightHandItem() != null) {
                 draw(p.getRightHandItem().name, width - (p.getRightHandItem().name.length() * 6) - 2, (height - hudBar.height) + 1, 0x909090);
             }
