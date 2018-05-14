@@ -34,6 +34,10 @@ public class SpriteSet
         set.put(name, sprite);
     }
 
+    public String getActiveSetKey() {
+        return setKey;
+    }
+
     public void switchSet(String key) {
         if (getSet(key) != null) {
             getSet(key).reset();

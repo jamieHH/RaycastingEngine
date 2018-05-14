@@ -37,6 +37,10 @@ public class Block
         return false;
     }
 
+    public String getActiveSetKey() {
+		return spriteSet.getActiveSetKey();
+	}
+
 	public void setSpriteSet(String name, Sprite sprite) {
 		spriteSet.putSet(name, sprite);
 	}

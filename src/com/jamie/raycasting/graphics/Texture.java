@@ -77,6 +77,7 @@ public class Texture
     public static final Render portal1 = loadBitmap("/textures/portal1.png");
     public static final Render portal2 = loadBitmap("/textures/portal2.png");
     public static final Render portal3 = loadBitmap("/textures/portal3.png");
+    public static final Render portalDisabled0 = loadBitmap("/textures/portalDisabled0.png");
     public static final Render explode0 = loadBitmap("/textures/explode0.png");
     public static final Render explode1 = loadBitmap("/textures/explode1.png");
     public static final Render explode2 = loadBitmap("/textures/explode2.png");
