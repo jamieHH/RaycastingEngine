@@ -54,18 +54,6 @@ public abstract class Projectile extends Entity {
                     }
                     posZ += nextZ;
                 }
-
-
-//                posX += moveSpeed * Math.sin(rotation);
-//                posZ += moveSpeed * Math.cos(rotation);
-//
-//                if (getBlockingMob(posX, posZ) != null) {
-//                    getBlockingMob(posX, posZ).hurt(this, damage);
-//                    detonate();
-//                }
-//                if (isWallBlocked(posX, posZ)) {
-//                    detonate();
-//                }
             }
         } else {
             dieTime--;

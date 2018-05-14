@@ -23,6 +23,7 @@ public class Block
 
 	public int gridX;
 	public int gridZ;
+	public String reference;
 	
 	public int id;
 
@@ -54,5 +55,9 @@ public class Block
 
 	public void setIdleSprite(Sprite sprite) {
 		setSpriteSet("idle", sprite);
+	}
+
+	public void setReference(String reference) {
+		this.reference = reference;
 	}
 }

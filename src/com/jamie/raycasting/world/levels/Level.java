@@ -207,6 +207,16 @@ public abstract class Level
         return blocks[x + z * sizeX];
     }
 
+    public Block getBlockByReference(String reference) {
+        for (int i = 0; i < blocks.length; i++) {
+            if (blocks[i].reference == reference) {
+                return blocks[i];
+            }
+        }
+
+        return null;
+    }
+
     public LadderBlock getLadderBlockById(int id) {
         for (int i = 0; i < blocks.length; i++) {
             Block b = blocks[i];
@@ -264,6 +274,18 @@ public abstract class Level
         }
 
         return false;
+    }
+
+    public List<Entity> getEntitiesWithin(double x0, double z0, double x1, double z1) {
+        List<Entity> entities = new ArrayList<Entity>();
+
+        for (int i = 0; i < getEntities().size(); i++) {
+            if (getEntities().get(i).isInside(x0, z0, x1, z1)) {
+                entities.add(getEntities().get(i));
+            }
+        }
+
+        return entities;
     }
 
     public List<Mob> getMobsWithin(double x0, double z0, double x1, double z1) {

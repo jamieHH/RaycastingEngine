@@ -1,6 +1,8 @@
 package com.jamie.raycasting.world.blocks;
 
+import com.jamie.raycasting.entities.Entity;
 import com.jamie.raycasting.entities.mobs.Mob;
+import com.jamie.raycasting.entities.particles.Particle;
 import com.jamie.raycasting.entities.particles.PoofParticle;
 import com.jamie.raycasting.graphics.Render;
 import com.jamie.raycasting.graphics.Sprite;
@@ -11,8 +13,7 @@ import java.util.List;
 public class TeleporterBlock extends Block
 {
     public boolean disabled = false;
-    public double destX;
-    public double destZ;
+    public Block target;
 
 	public TeleporterBlock() {
         isOpaque = false;
@@ -31,24 +32,39 @@ public class TeleporterBlock extends Block
 	public void tick() {
 	    super.tick();
 
-        List<Mob> mobs = level.getMobsWithin(gridX, gridZ, gridX + 1, gridZ + 1);
+        List<Entity> entities = level.getEntitiesWithin(gridX, gridZ, gridX + 1, gridZ + 1);
+        for (int i = 0; i < entities.size(); i++) {
+            if (entities.get(i) instanceof Particle) {
+                entities.remove(i);
+            }
+        }
 
         if (disabled) {
-            if (mobs.size() == 0) {
+            if (entities.size() == 0) {
                 disabled = false;
             }
         } else {
-            for (int i = 0; i < mobs.size(); i++) {
-                mobs.get(i).setPosition(gridX - 1, gridZ - 1); // tmp positioning
+            if (entities.size() > 0) {
+                for (int i = 0; i < entities.size(); i++) {
+                    entities.get(i).setPosition(target.gridX + 0.5, target.gridZ + 0.5);
 
-                PoofParticle p0 = new PoofParticle(mobs.get(i).posX, mobs.get(i).posZ);
-                level.addEntity(p0);
+                    // TODO: find out why these particles still disable the teleporters
+//                    PoofParticle p0 = new PoofParticle(entities.get(i).posX, entities.get(i).posZ);
+//                    level.addEntity(p0);
+//
+//                    PoofParticle p1 = new PoofParticle(gridX + 0.5, gridZ + 0.5);
+//                    level.addEntity(p1);
+                }
 
-                PoofParticle p1 = new PoofParticle(gridX + 0.5, gridZ + 0.5);
-                level.addEntity(p1);
-
+                if (target instanceof TeleporterBlock) {
+                    ((TeleporterBlock) target).disabled = true;
+                }
                 disabled = true;
             }
         }
+    }
+
+    public void setTarget(Block target) {
+        this.target = target;
     }
 }

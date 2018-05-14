@@ -12,9 +12,18 @@ public class IslandLevel extends Level
 
 	protected void postCreate() {
 		TeleporterBlock teleporter0 = new TeleporterBlock();
+		teleporter0.setReference("teleporter0");
 		teleporter0.floorTex = Texture.grass;
+		setBlock(30, 33, teleporter0);
 
-		setBlock(29, 29, teleporter0);
+		TeleporterBlock teleporter1 = new TeleporterBlock();
+		teleporter1.setReference("teleporter1");
+		teleporter1.floorTex = Texture.grass;
+		setBlock(34, 32, teleporter1);
+
+		teleporter0.setTarget(getBlockByReference("teleporter1"));
+		teleporter1.setTarget(getBlockByReference("teleporter0"));
+
 	}
 
     public void switchLevel(int id) {
