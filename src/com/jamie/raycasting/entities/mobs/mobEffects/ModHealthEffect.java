@@ -1,6 +1,7 @@
 package com.jamie.raycasting.entities.mobs.mobEffects;
 
 import com.jamie.raycasting.entities.mobs.Mob;
+import com.jamie.raycasting.graphics.Texture;
 
 public class ModHealthEffect extends MobEffect
 {
@@ -8,6 +9,13 @@ public class ModHealthEffect extends MobEffect
         super(mob, duration, magnitude);
 
         name = "Mod Health";
+        effectHudColour = 0xF0F040;
+
+        if (magnitude < 0) {
+            effectHudIcon = Texture.poisonIcon;
+        } else {
+            effectHudIcon = Texture.heartIcon;
+        }
     }
 
     public void effect() {

@@ -1,6 +1,8 @@
 package com.jamie.raycasting.entities.mobs.mobEffects;
 
 import com.jamie.raycasting.entities.mobs.Mob;
+import com.jamie.raycasting.graphics.Render;
+import com.jamie.raycasting.graphics.Texture;
 
 public abstract class MobEffect
 {
@@ -9,12 +11,17 @@ public abstract class MobEffect
 
     protected Mob mob;
     private int interval = 60;
-    private int duration = 240;
+    public int maxDuration;
+    public int duration;
     public int magnitude;
+
+    public int effectHudColour = 0xFFFFFF;
+    public Render effectHudIcon = Texture.poisonIcon;
 
 
     public MobEffect(Mob mob, int duration, int magnitude) {
         this.mob = mob;
+        this.maxDuration = duration;
         this.duration = duration;
         this.magnitude = magnitude;
     }

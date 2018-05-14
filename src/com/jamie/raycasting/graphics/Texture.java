@@ -14,6 +14,10 @@ public class Texture
     public static final Render sky = new Render(400, 150);
     public static final Render none = new Render(16, 16);
 
+    public static final Render heartIcon = loadBitmap("/gui/heartIcon.png");
+    public static final Render speedIcon = loadBitmap("/gui/speedIcon.png");
+    public static final Render poisonIcon = loadBitmap("/gui/poisonIcon.png");
+
     public static final Render one = loadBitmap("textures/1.png");
     public static final Render two = loadBitmap("textures/2.png");
     public static final Render three = loadBitmap("textures/3.png");

@@ -1,6 +1,7 @@
 package com.jamie.raycasting.entities.mobs.mobEffects;
 
 import com.jamie.raycasting.entities.mobs.Mob;
+import com.jamie.raycasting.graphics.Texture;
 
 public class ModSpeedEffect extends MobEffect
 {
@@ -8,6 +9,8 @@ public class ModSpeedEffect extends MobEffect
         super(mob, duration, magnitude);
 
         name = "Mod Speed";
+        effectHudColour = 0x4040F0;
+        effectHudIcon = Texture.speedIcon;
 
         mob.modSpeed(magnitude / 100);
     }

@@ -1,7 +1,5 @@
 package com.jamie.raycasting.graphics;
 
-import java.util.Random;
-
 import com.jamie.raycasting.app.Game;
 import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.graphics.overlays.HudBarOverlay;
@@ -19,10 +17,7 @@ public class Screen extends Render
     private ViewPunchOverlay viewPunch;
 	private HudBarOverlay hudBar;
 
-	private Render healthBarIcon;
 	private StatBarOverlay healthBar;
-
-    private Random random = new Random();
 
 	public Screen(int width, int height, Game game) {
 		super(width, height);
@@ -30,12 +25,7 @@ public class Screen extends Render
 
         // HUD
         hudBar = new HudBarOverlay(width, 9);
-        healthBarIcon = new Render(6, 4);
-        int[] iconPixels = {1, 3, 6, 7, 8, 9, 10, 13, 14, 15, 20};
-        for (int i = 0; i < iconPixels.length; i++) {
-            healthBarIcon.pixels[iconPixels[i]] = 0xF00000;
-        }
-        healthBar = new StatBarOverlay(40, 4, healthBarIcon);
+        healthBar = new StatBarOverlay(40, 4, Texture.heartIcon);
 
         // 3D render
         render = new Render3D(width, height - hudBar.height);
@@ -69,13 +59,20 @@ public class Screen extends Render
             }
             draw(hudBar, 0, height - hudBar.height);
 
-            healthBar.update((double) (p.health) / (double) (p.maxHealth), 0xF00000);
+            healthBar.update((double) p.health / (double) p.maxHealth, 0xF00000);
             draw(healthBar, 2, (height - hudBar.height) + 3);
 
             // Render pain
             if (p.hurtTime >= 0) {
                 viewPunch.update(p.hurtTime / 60.0, p.hurtType);
                 draw(viewPunch, 0, 0);
+            }
+
+            // Render mobEffect bars
+            for (int i = 0; i < p.mobEffects.size(); i++) {
+                StatBarOverlay statBar = new StatBarOverlay(30, 4, p.mobEffects.get(i).effectHudIcon);
+                statBar.update((double) p.mobEffects.get(i).duration / (double) p.mobEffects.get(i).maxDuration, p.mobEffects.get(i).effectHudColour);
+                draw(statBar, 2, 2 + (i * 5));
             }
 
             // Render hud headings
