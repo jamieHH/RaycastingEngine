@@ -1,14 +1,15 @@
 package com.jamie.raycasting.entities.projectiles;
 
 import com.jamie.raycasting.entities.environmentalEffects.ExplosionEffect;
-import com.jamie.raycasting.entities.environmentalEffects.FireEffect;
 import com.jamie.raycasting.graphics.Render;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
 
 public class FireballProjectile extends Projectile
 {
-    public FireballProjectile() {
+    public FireballProjectile(double detonationRadius, int detonationMagnitude) {
+        super(detonationRadius, detonationMagnitude);
+
         Render[] ts1 = {
                 Texture.fireball0,
                 Texture.fireball1
@@ -29,8 +30,6 @@ public class FireballProjectile extends Projectile
     public void detonate() {
         super.detonate();
         ExplosionEffect effect = new ExplosionEffect(level, detonationRadius, detonationMagnitude);
-//        ExplosionEffect effect = new ExplosionEffect(level, 2, 5);
-//        FireEffect effect = new FireEffect(level, 3200, 1, 1);
         effect.setPosition(posX, posZ);
         level.addEntity(effect);
     }

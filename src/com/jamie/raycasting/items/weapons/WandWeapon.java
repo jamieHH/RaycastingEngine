@@ -16,6 +16,7 @@ public class WandWeapon extends Weapon
         setUseSprite(new Sprite(Texture.screenWand1, 10));
 
         name = "Wand";
+        damage = 4;
     }
 
     public void use() {
@@ -24,7 +25,7 @@ public class WandWeapon extends Weapon
         double nextX = Math.sin(user.rotation);
         double nextZ = Math.cos(user.rotation);
 
-        FireballProjectile f = new FireballProjectile();
+        FireballProjectile f = new FireballProjectile(2, damage);
         f.setPosition(user.posX + nextX, user.posZ + nextZ);
         f.setRotation(user.rotation);
 

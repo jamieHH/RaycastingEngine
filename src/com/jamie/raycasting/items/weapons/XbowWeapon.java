@@ -16,6 +16,7 @@ public class XbowWeapon extends Weapon
         setUseSprite(new Sprite(Texture.screenXbow1));
 
         name = "Crossbow";
+        damage = 2;
     }
 
     public void use() {
@@ -24,7 +25,7 @@ public class XbowWeapon extends Weapon
         double nextX = Math.sin(user.rotation);
         double nextZ = Math.cos(user.rotation);
 
-        ArrowProjectile f = new ArrowProjectile();
+        ArrowProjectile f = new ArrowProjectile(damage);
         f.setPosition(user.posX + nextX, user.posZ + nextZ);
         f.setRotation(user.rotation);
 

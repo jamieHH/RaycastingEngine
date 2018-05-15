@@ -15,9 +15,7 @@ public abstract class Item
     private SpriteSet spriteSet = new SpriteSet();
     public Render icon = new Render(8, 8);
 
-    public int weight = 1;
     public int damage = 1;
-    public int value = 0;
     public int reach = 0;
 
     protected Mob user;
@@ -73,8 +71,6 @@ public abstract class Item
         info.put("name", name);
         info.put("type", type);
         info.put("damage", Integer.toString(damage));
-        info.put("weight", Integer.toString(weight));
-        info.put("value", Integer.toString(value));
         info.put("reach", Integer.toString(reach));
         return info;
     }

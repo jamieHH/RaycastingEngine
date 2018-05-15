@@ -20,6 +20,19 @@ public abstract class Projectile extends Entity {
         isSolid = false;
     }
 
+    public Projectile(double detonationRadius, int detonationMagnitude) { // used for magic projectiles
+        super();
+
+        this.detonationRadius = detonationRadius;
+        this.detonationMagnitude = detonationMagnitude;
+    }
+
+    public Projectile(int damage) { // used for bolt projectiles
+        super();
+
+        this.damage = damage;
+    }
+
     public void tick() {
         super.tick();
 
