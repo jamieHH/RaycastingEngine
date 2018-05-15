@@ -22,6 +22,6 @@ public class AxeWeapon extends Weapon
 
         name = "Hatchet";
         damage = 3;
-        reach = 4;
+        reach = 1;
     }
 }

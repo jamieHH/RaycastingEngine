@@ -24,6 +24,6 @@ public class SpearWeapon extends Weapon
 
         name = "Spear";
         damage = 2;
-        reach = 16;
+        reach = 2;
     }
 }
