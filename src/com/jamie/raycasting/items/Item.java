@@ -29,6 +29,8 @@ public abstract class Item
     public int useWait = 15;
     public boolean canStrike = true;
 
+    protected Map<String, String> info = new HashMap<String, String>();
+
 
     public void setSpriteSet(String name, Sprite sprite) {
         spriteSet.putSet(name, sprite);
@@ -70,7 +72,6 @@ public abstract class Item
     }
 
     public Map<String, String> getInfo(){
-        Map<String, String> info = new HashMap<String, String>();
         info.put("name", name);
         info.put("type", type);
         info.put("damage", Integer.toString(damage));

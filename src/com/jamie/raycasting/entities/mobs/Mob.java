@@ -4,7 +4,6 @@ import com.jamie.raycasting.entities.Entity;
 import com.jamie.raycasting.entities.mobs.mobEffects.MobEffect;
 import com.jamie.raycasting.entities.particles.BloodParticle;
 import com.jamie.raycasting.entities.particles.HealthParticle;
-import com.jamie.raycasting.entities.particles.Particle;
 import com.jamie.raycasting.entities.particles.PoofParticle;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.input.InputHandler;
@@ -51,7 +50,7 @@ public abstract class Mob extends Entity
     private int bobTime = 0;
 
 	// stats
-    protected int baseDamage = 1;
+    public int baseDamage = 1;
 
 	public int hurtTime = 0;
 	public String hurtType = "hurt";
