@@ -16,8 +16,10 @@ public class Texture
 
     // icons
     public static final Render heartIcon = loadBitmap("/gui/heartIcon.png");
-    public static final Render speedIcon = loadBitmap("/gui/speedIcon.png");
     public static final Render poisonIcon = loadBitmap("/gui/poisonIcon.png");
+    public static final Render speedIcon = loadBitmap("/gui/speedIcon.png");
+    public static final Render slowIcon = loadBitmap("/gui/slowIcon.png");
+
     public static final Render nameIcon = loadBitmap("/gui/nameIcon.png");
     public static final Render damageIcon = loadBitmap("/gui/damageIcon.png");
     public static final Render rangeIcon = loadBitmap("/gui/rangeIcon.png");

@@ -2,14 +2,14 @@ package com.jamie.raycasting.items.consumables;
 
 import com.jamie.raycasting.entities.mobs.mobEffects.ModSpeedEffect;
 
-public class SpeedPotion extends Consumable
+public class SlowPotion extends Consumable
 {
-    public SpeedPotion() {
+    public SlowPotion() {
         super();
 
-        name = "Speed Potion";
-        duration = 920;
-        magnitude = 3;
+        name = "Slow Potion";
+        duration = 640;
+        magnitude = -3;
     }
 
     public void use() {

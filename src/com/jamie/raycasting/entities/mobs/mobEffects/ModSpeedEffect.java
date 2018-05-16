@@ -9,10 +9,16 @@ public class ModSpeedEffect extends MobEffect
         super(mob, duration, magnitude);
 
         name = "Mod Speed";
-        effectHudColour = 0x4040F0;
-        effectHudIcon = Texture.speedIcon;
 
-        mob.modSpeed(magnitude / 100);
+        if (magnitude < 0) {
+            effectHudColour = 0x507000;
+            effectHudIcon = Texture.slowIcon;
+        } else {
+            effectHudColour = 0x4040F0;
+            effectHudIcon = Texture.speedIcon;
+        }
+
+        mob.modSpeed((double) magnitude / 100.0);
     }
 
     public void effect() {
@@ -20,6 +26,6 @@ public class ModSpeedEffect extends MobEffect
     }
 
     public void deactivate() {
-        mob.modSpeed(-magnitude / 100);
+        mob.modSpeed((double) -magnitude / 100.0);
     }
 }

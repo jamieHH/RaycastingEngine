@@ -8,10 +8,12 @@ public class HealthPotion extends Consumable
         super();
 
         name = "Health Potion";
+        duration = 480;
+        magnitude = 1;
     }
 
     public void use() {
         super.use();
-        user.addMobEffect(new ModHealthEffect(user, 480, 1));
+        user.addMobEffect(new ModHealthEffect(user, duration, magnitude));
     }
 }

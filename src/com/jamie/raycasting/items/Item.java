@@ -75,7 +75,7 @@ public abstract class Item
         info.put("type", type);
         info.put("damage", Integer.toString(damage));
         info.put("reach", Integer.toString(reach));
-        info.put("duration", Integer.toString(duration));
+        info.put("duration", Integer.toString(duration / 60) + "s");
         info.put("magnitude", Integer.toString(magnitude));
         return info;
     }
