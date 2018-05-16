@@ -3,7 +3,7 @@ package com.jamie.raycasting.entities.environmentalEffects;
 import com.jamie.raycasting.entities.Entity;
 import com.jamie.raycasting.world.levels.Level;
 
-public class EnvironmentalEffect extends Entity
+public abstract class EnvironmentalEffect extends Entity
 {
     public String name = "Effect";
 

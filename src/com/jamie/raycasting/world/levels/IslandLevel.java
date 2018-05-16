@@ -1,5 +1,7 @@
 package com.jamie.raycasting.world.levels;
 
+import com.jamie.raycasting.entities.environmentalEffects.EnvironmentalEffect;
+import com.jamie.raycasting.entities.environmentalEffects.FireEffect;
 import com.jamie.raycasting.graphics.Texture;
 import com.jamie.raycasting.world.blocks.TeleporterBlock;
 
@@ -24,6 +26,9 @@ public class IslandLevel extends Level
 		teleporter0.setTarget(getBlockByReference("teleporter1"));
 		teleporter1.setTarget(getBlockByReference("teleporter0"));
 
+		EnvironmentalEffect effect = new FireEffect(this, 9000, 2, 1);
+		effect.setPosition(30.5, 31.5);
+		addEntity(effect);
 	}
 
     public void switchLevel(int id) {

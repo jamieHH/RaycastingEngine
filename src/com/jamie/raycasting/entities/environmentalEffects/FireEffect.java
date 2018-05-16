@@ -1,6 +1,7 @@
 package com.jamie.raycasting.entities.environmentalEffects;
 
 import com.jamie.raycasting.entities.mobs.Mob;
+import com.jamie.raycasting.entities.mobs.mobEffects.FireDamageEffect;
 import com.jamie.raycasting.entities.particles.EmberParticle;
 import com.jamie.raycasting.graphics.Render;
 import com.jamie.raycasting.graphics.Sprite;
@@ -15,7 +16,7 @@ public class FireEffect extends EnvironmentalEffect
         super(level, duration, radius, magnitude);
 
         isInstant = false;
-        interval = 15;
+        interval = 60;
 
         name = "Fire";
 
@@ -32,11 +33,9 @@ public class FireEffect extends EnvironmentalEffect
         List<Mob> mobs = getMobsInRadius(radius);
 
         for (int i = 0; i < mobs.size(); i++) {
-            mobs.get(i).hurt(this, magnitude, "fire");
+            mobs.get(i).addMobEffect(new FireDamageEffect(mobs.get(i), 60, magnitude));
         }
 
-        for (int i = 0; i < 2; i++) {
-            level.addEntity(new EmberParticle(posX, posZ));
-        }
+        level.addEntity(new EmberParticle(posX, posZ));
     }
 }
