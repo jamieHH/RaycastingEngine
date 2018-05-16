@@ -18,6 +18,9 @@ public abstract class Item
     public int damage = 1;
     public int reach = 0;
 
+    public int duration = 0;
+    public int magnitude = 0;
+
     protected Mob user;
     public boolean removed = false;
     protected int useCount = 0;
@@ -72,6 +75,8 @@ public abstract class Item
         info.put("type", type);
         info.put("damage", Integer.toString(damage));
         info.put("reach", Integer.toString(reach));
+        info.put("duration", Integer.toString(duration));
+        info.put("magnitude", Integer.toString(magnitude));
         return info;
     }
 }

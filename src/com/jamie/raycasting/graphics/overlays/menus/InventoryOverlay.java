@@ -2,6 +2,7 @@ package com.jamie.raycasting.graphics.overlays.menus;
 
 import com.jamie.raycasting.app.Game;
 import com.jamie.raycasting.graphics.Render;
+import com.jamie.raycasting.graphics.Texture;
 import com.jamie.raycasting.graphics.overlays.Overlay;
 import com.jamie.raycasting.items.Inventory;
 import com.jamie.raycasting.items.Item;
@@ -20,7 +21,7 @@ public class InventoryOverlay extends Overlay
     private String[] itemCategories = {
         "Items", "Weapons", "Consumables"
     };
-    private int itemCategoryIndex = 0;
+    private int itemCatIndex = 0;
 
     private List<Item> listedItems = new ArrayList<Item>();
     private List<Map<String, String>> listedItemsInfo = new ArrayList<Map<String, String>>();
@@ -38,13 +39,13 @@ public class InventoryOverlay extends Overlay
     }
 
     public void tick(Game game) {
-        if (itemCategories[itemCategoryIndex] == "Items") {
+        if (itemCategories[itemCatIndex] == "Items") {
             listedItems = inventory.getItems();
             listedItemsInfo = inventory.getItemsInfo();
-        } else if (itemCategories[itemCategoryIndex] == "Weapons") {
+        } else if (itemCategories[itemCatIndex] == "Weapons") {
             listedItems = inventory.getItemsByType("weapon");
             listedItemsInfo = inventory.getWeaponsInfo();
-        } else if (itemCategories[itemCategoryIndex] == "Consumables") {
+        } else if (itemCategories[itemCatIndex] == "Consumables") {
             listedItems = inventory.getItemsByType("consumable");
             listedItemsInfo = inventory.getConsumablesInfo();
         }
@@ -52,17 +53,17 @@ public class InventoryOverlay extends Overlay
         if (game.userInput.left || game.userInput.rotLeft) {
             game.userInput.setKeyGroupState("left", false);
             game.userInput.setKeyGroupState("rotLeft", false);
-            if ((itemCategoryIndex > 0)) {
+            if ((itemCatIndex > 0)) {
                 itemIndex = 0;
-                itemCategoryIndex--;
+                itemCatIndex--;
             }
         }
         if (game.userInput.right || game.userInput.rotRight) {
             game.userInput.setKeyGroupState("right", false);
             game.userInput.setKeyGroupState("rotRight", false);
-            if ((itemCategoryIndex < itemCategories.length - 1)) {
+            if ((itemCatIndex < itemCategories.length - 1)) {
                 itemIndex = 0;
-                itemCategoryIndex++;
+                itemCatIndex++;
             }
         }
 
@@ -111,21 +112,22 @@ public class InventoryOverlay extends Overlay
     public void update() {
         fill(0, 0, width, height, 0x202020);
 
-        String catString = itemCategories[itemCategoryIndex];
-        if (itemCategoryIndex == 0) {
+        // cat headings
+        String catString = itemCategories[itemCatIndex];
+        if (itemCatIndex == 0) {
             draw("< ", borderPadding, borderPadding, 0x404040);
         } else {
             draw("< ", borderPadding, borderPadding, 0xF0F0F0);
         }
-        draw(itemCategories[itemCategoryIndex], borderPadding + 12, borderPadding, 0xF0F0F0);
-        if (itemCategoryIndex == itemCategories.length - 1) {
+        draw(itemCategories[itemCatIndex], borderPadding + 12, borderPadding, 0xF0F0F0);
+        if (itemCatIndex == itemCategories.length - 1) {
             draw(" >", borderPadding + 12 + (catString.length() * 6), borderPadding, 0x404040);
         } else {
             draw(" >", borderPadding + 12 + (catString.length() * 6), borderPadding, 0xF0F0F0);
         }
         for (int i = 0; i < itemCategories.length; i++) {
             Render blip = new Render(2, 2);
-            if (i == itemCategoryIndex) {
+            if (i == itemCatIndex) {
                 blip.fill(0, 0, blip.width, blip.height, 0xF0F0F0);
             } else {
                 blip.fill(0, 0, blip.width, blip.height, 0x404040);
@@ -133,31 +135,57 @@ public class InventoryOverlay extends Overlay
             draw(blip, (width - borderPadding - 4) - ((itemCategories.length - i - 1) * 6), borderPadding + 3);
         }
 
-        fill(borderPadding, borderPadding + 10, width - borderPadding, height - borderPadding, 0x101010);
-        if (listedItems.size() > 0) {
-            fill(borderPadding, borderPadding + 10 + (itemIndex * 12), width - borderPadding, borderPadding + 10 + ((itemIndex + 1) * 12), 0x404040);
-            for (int i = 0; i < listedItems.size(); i++) {
-                String string0, string1;
-                if (listedItemsInfo.get(i).get("type") == "weapon" && listedItems.get(i).canStrike) {
-                    string1 = listedItemsInfo.get(i).get("damage") + " ";
-                } else {
-                    string1 = "";
-                }
-                int colour;
 
+        // column icons
+        List<Render> columns = new ArrayList<Render>();
+        List<String> columnInfo = new ArrayList<String>();
+        if (itemCategories[itemCatIndex] == "Weapons") {
+//            columns.add(Texture.healthIcon);
+            columns.add(Texture.damageIcon);
+            columnInfo.add("damage");
+            columns.add(Texture.rangeIcon);
+            columnInfo.add("reach");
+        } else if (itemCategories[itemCatIndex] == "Consumables") {
+            columns.add(Texture.magnitudeIcon);
+            columnInfo.add("magnitude");
+            columns.add(Texture.durationIcon);
+            columnInfo.add("duration");
+        }
+
+        draw(Texture.nameIcon, borderPadding + 6, borderPadding + 10);
+        for (int i = 0; i < columns.size(); i++) {
+            draw(columns.get(i), (width - borderPadding) - (i * 18) - 12, borderPadding + 10);
+        }
+
+
+        // listed items
+        int itemListStartY = borderPadding + 10 + 8;
+        fill(borderPadding, itemListStartY, width - borderPadding, height - borderPadding, 0x101010);
+        if (listedItems.size() > 0) {
+            fill(borderPadding, itemListStartY + (itemIndex * 12), width - borderPadding, itemListStartY + ((itemIndex + 1) * 12), 0x404040);
+            for (int i = 0; i < listedItems.size(); i++) {
+                int colour;
+                String itemName;
                 if (game.player.getRightHandItemIndex() == inventory.getIndexOf(listedItems.get(i)) && !game.player.rightHandEmpty) {
-                    string0 = "-> " + listedItemsInfo.get(i).get("name");
+                    itemName = "-> " + listedItemsInfo.get(i).get("name");
                     colour = 0xF0F070;
                 } else {
-                    string0 = " " + listedItemsInfo.get(i).get("name");
+                    itemName = " " + listedItemsInfo.get(i).get("name");
                     colour = 0x707070;
                 }
 
                 if (itemIndex == i) {
                     colour = 0xF0F0F0;
                 }
-                draw(string0, borderPadding, borderPadding + 10 + (i * 12) + 2, colour);
-                draw(string1, width - borderPadding - (6 * string1.length()), borderPadding + 10 + (i * 12) + 2, colour);
+                draw(itemName, borderPadding, itemListStartY + (i * 12) + 2, colour);
+
+                List<String> itemInfoData = new ArrayList<String>();
+                for (int b = 0; b < columnInfo.size(); b++) {
+                    itemInfoData.add(listedItemsInfo.get(i).get(columnInfo.get(b)) + " ");
+                }
+                for (int j = 0; j < itemInfoData.size(); j++) {
+                    draw(itemInfoData.get(j), (width - borderPadding) - (j * 18) - (itemInfoData.get(j).length() * 6), itemListStartY + (i * 12) + 2, colour); //////
+                }
             }
         }
     }
