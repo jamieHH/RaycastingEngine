@@ -19,6 +19,8 @@ public class Texture
     public static final Render poisonIcon = loadBitmap("/gui/poisonIcon.png");
     public static final Render speedIcon = loadBitmap("/gui/speedIcon.png");
     public static final Render slowIcon = loadBitmap("/gui/slowIcon.png");
+    public static final Render strengthIcon = loadBitmap("/gui/strengthIcon.png");
+    public static final Render weaknessIcon = loadBitmap("/gui/weaknessIcon.png");
 
     public static final Render nameIcon = loadBitmap("/gui/nameIcon.png");
     public static final Render damageIcon = loadBitmap("/gui/damageIcon.png");

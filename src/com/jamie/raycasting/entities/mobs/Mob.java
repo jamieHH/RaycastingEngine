@@ -489,4 +489,8 @@ public abstract class Mob extends Entity
     public void modSpeed(double modifier) {
         walkSpeed += modifier;
     }
+
+    public void modBaseDamage(double modifier) {
+        baseDamage += modifier;
+    }
 }
