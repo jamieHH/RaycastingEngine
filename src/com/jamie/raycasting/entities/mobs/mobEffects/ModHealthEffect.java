@@ -22,8 +22,4 @@ public class ModHealthEffect extends MobEffect
     public void effect() {
         mob.modHealth(magnitude);
     }
-
-    public void deactivate() {
-        // reset any mob variables changed to the original state
-    }
 }

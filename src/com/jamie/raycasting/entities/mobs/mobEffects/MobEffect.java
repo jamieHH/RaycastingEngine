@@ -10,7 +10,7 @@ public abstract class MobEffect
     public boolean removed = false;
 
     protected Mob mob;
-    private int interval = 60;
+    protected int interval = 60;
     public int maxDuration;
     public int duration;
     public int magnitude;

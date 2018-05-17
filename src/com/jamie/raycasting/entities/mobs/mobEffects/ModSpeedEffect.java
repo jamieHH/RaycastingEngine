@@ -21,10 +21,6 @@ public class ModSpeedEffect extends MobEffect
         mob.modSpeed((double) magnitude / 100.0);
     }
 
-    public void effect() {
-
-    }
-
     public void deactivate() {
         mob.modSpeed((double) -magnitude / 100.0);
     }

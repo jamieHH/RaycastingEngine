@@ -10,6 +10,7 @@ public class FireDamageEffect extends MobEffect
         super(mob, duration, magnitude);
 
         name = "Fire Damage";
+        interval = 30;
 
         effectHudColour = 0xFF7000;
         effectHudIcon = Texture.fireIcon;
@@ -18,9 +19,5 @@ public class FireDamageEffect extends MobEffect
     public void effect() {
         mob.hurt(mob, magnitude, "fire");
         mob.level.addEntity(new EmberParticle(mob.posX, mob.posZ));
-    }
-
-    public void deactivate() {
-        // reset any mob variables changed to the original state
     }
 }

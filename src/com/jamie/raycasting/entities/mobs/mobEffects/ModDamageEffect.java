@@ -21,10 +21,6 @@ public class ModDamageEffect extends MobEffect
         mob.modBaseDamage((double) magnitude);
     }
 
-    public void effect() {
-
-    }
-
     public void deactivate() {
         mob.modBaseDamage((double) -magnitude);
     }
