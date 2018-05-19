@@ -45,6 +45,7 @@ public class Texture
 
     // surfaces
 	public static final Render floor = loadBitmap("/textures/floor.png");
+	public static final Render bridge = loadBitmap("/textures/bridge.png");
 	public static final Render wall = loadBitmap("/textures/wall.png");
 	public static final Render cobweb = loadBitmap("/textures/cobweb.png");
 	public static final Render door = loadBitmap("/textures/door.png");

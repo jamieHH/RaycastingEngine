@@ -87,7 +87,8 @@ public class Game
 				if (userInput.randomLevel) {
 					player.rotation = 0.2;
 //						world.switchLevel("random", 999);
-					world.switchLevel("test", 999);
+//					world.switchLevel("test", 999);
+					world.switchLevel("realm", 999);
 				}
 
 				if (userInput.loadLevel) {
