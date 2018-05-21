@@ -23,8 +23,11 @@ public class InventoryOverlay extends Overlay
     };
     private int itemCatIndex = 0;
 
+    private int itemListYShift = 0;
+
     private List<Item> listedItems = new ArrayList<Item>();
     private List<Map<String, String>> listedItemsInfo = new ArrayList<Map<String, String>>();
+    private Render itemList = new Render(width - borderPadding - borderPadding, height - (borderPadding + 10 + 8 + borderPadding));
 
     public InventoryOverlay(int width, int height, Game game) {
         super(width, height);
@@ -140,7 +143,6 @@ public class InventoryOverlay extends Overlay
         List<Render> columns = new ArrayList<Render>();
         List<String> columnInfo = new ArrayList<String>();
         if (itemCategories[itemCatIndex] == "Weapons") {
-//            columns.add(Texture.healthIcon);
             columns.add(Texture.damageIcon);
             columnInfo.add("damage");
             columns.add(Texture.rangeIcon);
@@ -159,10 +161,10 @@ public class InventoryOverlay extends Overlay
 
 
         // listed items
-        int itemListStartY = borderPadding + 10 + 8;
-        fill(borderPadding, itemListStartY, width - borderPadding, height - borderPadding, 0x101010);
+        itemList.fill(0, 0, itemList.width, itemList.height, 0x101010);
+
         if (listedItems.size() > 0) {
-            fill(borderPadding, itemListStartY + (itemIndex * 12), width - borderPadding, itemListStartY + ((itemIndex + 1) * 12), 0x404040);
+            itemList.fill(0, itemListYShift + (itemIndex * 12), itemList.width, itemListYShift + ((itemIndex + 1) * 12), 0x404040);
             for (int i = 0; i < listedItems.size(); i++) {
                 int colour;
                 String itemName;
@@ -177,16 +179,17 @@ public class InventoryOverlay extends Overlay
                 if (itemIndex == i) {
                     colour = 0xF0F0F0;
                 }
-                draw(itemName, borderPadding, itemListStartY + (i * 12) + 2, colour);
+                itemList.draw(itemName, borderPadding, itemListYShift + (i * 12) + 2, colour);
 
                 List<String> itemInfoData = new ArrayList<String>();
                 for (int b = 0; b < columnInfo.size(); b++) {
                     itemInfoData.add(listedItemsInfo.get(i).get(columnInfo.get(b)) + " ");
                 }
                 for (int j = 0; j < itemInfoData.size(); j++) {
-                    draw(itemInfoData.get(j), (width - borderPadding) - (j * 18) - (itemInfoData.get(j).length() * 6), itemListStartY + (i * 12) + 2, colour); //////
+                    itemList.draw(itemInfoData.get(j), (itemList.width - borderPadding) - (j * 18) - (itemInfoData.get(j).length() * 6), itemListYShift + (i * 12) + 2, colour);
                 }
             }
         }
+        draw(itemList, borderPadding, borderPadding + 10 + 8);
     }
 }

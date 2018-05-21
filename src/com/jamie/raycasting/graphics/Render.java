@@ -69,7 +69,9 @@ public class Render
 
 	public void fill(int x0, int y0, int x1, int y1, int color) {
 		for (int y = y0; y < y1; y++) {
+			if (y < 0 || y >= height) continue;
 			for (int x = x0; x < x1; x++) {
+				if (x < 0 || x >= width) continue;
 				pixels[x + y * width] = color;
 			}
 		}
