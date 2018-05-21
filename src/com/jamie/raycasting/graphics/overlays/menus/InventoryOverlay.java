@@ -16,17 +16,19 @@ public class InventoryOverlay extends Overlay
 {
     private Game game;
     private Inventory inventory;
+
+    private List<Item> listedItems = new ArrayList<Item>();
+    private List<Map<String, String>> listedItemsInfo = new ArrayList<Map<String, String>>();
     private int listItemIndex = 0;
     private int inventoryItemIndex = 0;
+
     private String[] itemCategories = {
         "Items", "Weapons", "Consumables"
     };
     private int itemCatIndex = 0;
 
+    private Render itemListRender = new Render(width - borderPadding - borderPadding, height - (borderPadding + 10 + 8 + borderPadding));
     private int itemListYShift = 0;
-
-    private List<Item> listedItems = new ArrayList<Item>();
-    private Render itemList = new Render(width - borderPadding - borderPadding, height - (borderPadding + 10 + 8 + borderPadding));
 
     public InventoryOverlay(int width, int height, Game game) {
         super(width, height);
@@ -43,10 +45,13 @@ public class InventoryOverlay extends Overlay
     public void tick(Game game) {
         if (itemCategories[itemCatIndex] == "Items") {
             listedItems = inventory.getItems();
+            listedItemsInfo = inventory.getItemsInfo();
         } else if (itemCategories[itemCatIndex] == "Weapons") {
             listedItems = inventory.getItemsByType("weapon");
+            listedItemsInfo = inventory.getWeaponsInfo();
         } else if (itemCategories[itemCatIndex] == "Consumables") {
             listedItems = inventory.getItemsByType("consumable");
+            listedItemsInfo = inventory.getConsumablesInfo();
         }
 
         if (game.userInput.left || game.userInput.rotLeft) {
@@ -109,21 +114,18 @@ public class InventoryOverlay extends Overlay
     }
 
     public void update() {
-        List<Render> columns = new ArrayList<Render>();
-        List<String> columnInfo = new ArrayList<String>();
-        List<Map<String, String>> listedItemsInfo = inventory.getItemsInfo();
+        List<Render> statIcons = new ArrayList<Render>();
+        List<String> statNames = new ArrayList<String>();
         if (itemCategories[itemCatIndex] == "Weapons") {
-            listedItemsInfo = inventory.getWeaponsInfo();
-            columns.add(Texture.damageIcon);
-            columnInfo.add("damage");
-            columns.add(Texture.rangeIcon);
-            columnInfo.add("reach");
+            statIcons.add(Texture.damageIcon);
+            statNames.add("damage");
+            statIcons.add(Texture.rangeIcon);
+            statNames.add("reach");
         } else if (itemCategories[itemCatIndex] == "Consumables") {
-            listedItemsInfo = inventory.getConsumablesInfo();
-            columns.add(Texture.magnitudeIcon);
-            columnInfo.add("magnitude");
-            columns.add(Texture.durationIcon);
-            columnInfo.add("duration");
+            statIcons.add(Texture.magnitudeIcon);
+            statNames.add("magnitude");
+            statIcons.add(Texture.durationIcon);
+            statNames.add("duration");
         }
 
         fill(0, 0, width, height, 0x202020);
@@ -154,15 +156,15 @@ public class InventoryOverlay extends Overlay
 
         // column icons
         draw(Texture.nameIcon, borderPadding + 6, borderPadding + 10);
-        for (int i = 0; i < columns.size(); i++) {
-            draw(columns.get(i), (width - borderPadding) - (i * 18) - 12, borderPadding + 10);
+        for (int i = 0; i < statIcons.size(); i++) {
+            draw(statIcons.get(i), (width - borderPadding) - (i * 18) - 12, borderPadding + 10);
         }
 
 
         // listed items
-        itemList.fill(0, 0, itemList.width, itemList.height, 0x101010);
+        itemListRender.fill(0, 0, itemListRender.width, itemListRender.height, 0x101010);
         if (listedItems.size() > 0) {
-            itemList.fill(0, itemListYShift + (listItemIndex * 12), itemList.width, itemListYShift + ((listItemIndex + 1) * 12), 0x404040);
+            itemListRender.fill(0, itemListYShift + (listItemIndex * 12), itemListRender.width, itemListYShift + ((listItemIndex + 1) * 12), 0x404040);
             for (int i = 0; i < listedItems.size(); i++) {
                 int colour;
                 String itemName;
@@ -173,21 +175,20 @@ public class InventoryOverlay extends Overlay
                     itemName = " " + listedItemsInfo.get(i).get("name");
                     colour = 0x707070;
                 }
-
                 if (listItemIndex == i) {
                     colour = 0xF0F0F0;
                 }
-                itemList.draw(itemName, borderPadding, itemListYShift + (i * 12) + 2, colour);
+                itemListRender.draw(itemName, borderPadding, itemListYShift + (i * 12) + 2, colour);
 
-                List<String> itemInfoData = new ArrayList<String>();
-                for (int b = 0; b < columnInfo.size(); b++) {
-                    itemInfoData.add(listedItemsInfo.get(i).get(columnInfo.get(b)) + " ");
+                List<String> itemStats = new ArrayList<String>();
+                for (int b = 0; b < statNames.size(); b++) {
+                    itemStats.add(listedItemsInfo.get(i).get(statNames.get(b)) + " ");
                 }
-                for (int j = 0; j < itemInfoData.size(); j++) {
-                    itemList.draw(itemInfoData.get(j), (itemList.width - borderPadding) - (j * 18) - (itemInfoData.get(j).length() * 6), itemListYShift + (i * 12) + 2, colour);
+                for (int j = 0; j < itemStats.size(); j++) {
+                    itemListRender.draw(itemStats.get(j), (itemListRender.width - borderPadding) - (j * 18) - (itemStats.get(j).length() * 6), itemListYShift + (i * 12) + 2, colour);
                 }
             }
         }
-        draw(itemList, borderPadding, borderPadding + 10 + 8);
+        draw(itemListRender, borderPadding, borderPadding + 10 + 8);
     }
 }
