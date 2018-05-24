@@ -30,13 +30,13 @@ public class MainMenu extends Menu
 
         if (game.userInput.action) {
             game.userInput.setKeyGroupState("action", false);
-            if (options.get(optionIndex) == "New Game") {
+            if (options.get(optionIndex).equals("New Game")) {
                 game.newGame();
-            } else if (options.get(optionIndex) == "Load Game") {
+            } else if (options.get(optionIndex).equals("Load Game")) {
                 game.setActiveOverlay(game.loadMenu);
-            } else if (options.get(optionIndex) == "Options") {
+            } else if (options.get(optionIndex).equals("Options")) {
                 game.setActiveOverlay(game.optionsMenu);
-            } else if (options.get(optionIndex) == "Quit") {
+            } else if (options.get(optionIndex).equals("Quit")) {
                 System.exit(0);
             }
         }

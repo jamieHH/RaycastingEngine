@@ -43,13 +43,13 @@ public class InventoryOverlay extends Overlay
     }
 
     public void tick(Game game) {
-        if (itemCategories[itemCatIndex] == "Items") {
+        if (itemCategories[itemCatIndex].equals("Items")) {
             listedItems = inventory.getItems();
             listedItemsInfo = inventory.getItemsInfo();
-        } else if (itemCategories[itemCatIndex] == "Weapons") {
+        } else if (itemCategories[itemCatIndex].equals("Weapons")) {
             listedItems = inventory.getItemsByType("weapon");
             listedItemsInfo = inventory.getWeaponsInfo();
-        } else if (itemCategories[itemCatIndex] == "Consumables") {
+        } else if (itemCategories[itemCatIndex].equals("Consumables")) {
             listedItems = inventory.getItemsByType("consumable");
             listedItemsInfo = inventory.getConsumablesInfo();
         }
@@ -116,12 +116,12 @@ public class InventoryOverlay extends Overlay
     public void update() {
         List<Render> statIcons = new ArrayList<Render>();
         List<String> statNames = new ArrayList<String>();
-        if (itemCategories[itemCatIndex] == "Weapons") {
+        if (itemCategories[itemCatIndex].equals("Weapons")) {
             statIcons.add(Texture.damageIcon);
             statNames.add("damage");
             statIcons.add(Texture.rangeIcon);
             statNames.add("reach");
-        } else if (itemCategories[itemCatIndex] == "Consumables") {
+        } else if (itemCategories[itemCatIndex].equals("Consumables")) {
             statIcons.add(Texture.magnitudeIcon);
             statNames.add("magnitude");
             statIcons.add(Texture.durationIcon);

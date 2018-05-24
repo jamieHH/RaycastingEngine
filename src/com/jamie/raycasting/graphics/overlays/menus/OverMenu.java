@@ -29,9 +29,9 @@ public class OverMenu extends Menu
 
         if (game.userInput.action) {
             game.userInput.setKeyGroupState("action", false);
-            if (options.get(optionIndex) == "Main Menu") {
+            if (options.get(optionIndex).equals("Main Menu")) {
                 game.stopGame();
-            } else if (options.get(optionIndex) == "Quit Game") {
+            } else if (options.get(optionIndex).equals("Quit Game")) {
                 System.exit(0);
             }
         }

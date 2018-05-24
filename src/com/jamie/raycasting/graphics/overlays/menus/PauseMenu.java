@@ -29,9 +29,9 @@ public class PauseMenu extends Menu
 
         if (game.userInput.action) {
             game.userInput.setKeyGroupState("action", false);
-            if (options.get(optionIndex) == "Resume") {
+            if (options.get(optionIndex).equals("Resume")) {
                 game.setActiveOverlay(null);
-            } else if (options.get(optionIndex) == "Main Menu") {
+            } else if (options.get(optionIndex).equals("Main Menu")) {
                 game.stopGame();
             }
         }

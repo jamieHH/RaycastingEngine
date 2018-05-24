@@ -63,15 +63,15 @@ public class OptionsMenu extends Menu
 
         if (game.userInput.left || game.userInput.rotLeft) {
             game.userInput.setKeyGroupState("rotLeft", false);
-            if (options.get(optionIndex) == "Aspect Ratio") {
+            if (options.get(optionIndex).equals("Aspect Ratio")) {
                 if ((aspectRatioIndex > 0)) {
                     aspectRatioIndex--;
                 }
-            } else if (options.get(optionIndex) == "Resolution") {
+            } else if (options.get(optionIndex).equals("Resolution")) {
                 if ((resolutionIndex > 0)) {
                     resolutionIndex--;
                 }
-            } else if (options.get(optionIndex) == "Scaling") {
+            } else if (options.get(optionIndex).equals("Scaling")) {
                 if ((scaleIndex > 0)) {
                     scaleIndex--;
                 }
@@ -80,15 +80,15 @@ public class OptionsMenu extends Menu
 
         if (game.userInput.right || game.userInput.rotRight) {
             game.userInput.setKeyGroupState("rotRight", false);
-            if (options.get(optionIndex) == "Aspect Ratio") {
+            if (options.get(optionIndex).equals("Aspect Ratio")) {
                 if ((aspectRatioIndex < aspectRatios.length - 1)) {
                     aspectRatioIndex++;
                 }
-            } else if (options.get(optionIndex) == "Resolution") {
+            } else if (options.get(optionIndex).equals("Resolution")) {
                 if ((resolutionIndex < 4 - 1)) {
                     resolutionIndex++;
                 }
-            } else if (options.get(optionIndex) == "Scaling") {
+            } else if (options.get(optionIndex).equals("0Scaling")) {
                 if ((scaleIndex < scales.length - 1)) {
                     scaleIndex++;
                 }
@@ -97,16 +97,16 @@ public class OptionsMenu extends Menu
 
         if (game.userInput.action) {
             game.userInput.setKeyGroupState("action", false);
-            if (options.get(optionIndex) == "Reset Defaults") {
+            if (options.get(optionIndex).equals("Reset Defaults")) {
                 aspectRatioIndex = 0;
                 resolutionIndex = 1;
                 scaleIndex = 1;
-            } else if (options.get(optionIndex) == "Accept") {
+            } else if (options.get(optionIndex).equals("Accept")) {
                 App.newScale = scales[scaleIndex];
-                if (aspectRatios[aspectRatioIndex] == "16:9") {
+                if (aspectRatios[aspectRatioIndex].equals("16:9")) {
                     App.newWidth = resolutions16x9[resolutionIndex][0];
                     App.newHeight = resolutions16x9[resolutionIndex][1];
-                } else if (aspectRatios[aspectRatioIndex] == "4:3") {
+                } else if (aspectRatios[aspectRatioIndex].equals("4:3")) {
                     App.newWidth = resolutions4x3[resolutionIndex][0];
                     App.newHeight = resolutions4x3[resolutionIndex][1];
                 }
@@ -125,32 +125,32 @@ public class OptionsMenu extends Menu
             if (optionIndex == i) {
                 draw("-> " + options.get(i), borderPadding, borderPadding + 10 + (i * 10), 0xD0D0D0);
 
-                if (options.get(optionIndex) == "Aspect Ratio") {
+                if (options.get(optionIndex).equals("Aspect Ratio")) {
                     String string = "< " + aspectRatios[aspectRatioIndex] + " >";
                     draw(string, width - ((string.length() * 6) + borderPadding), borderPadding + 10 + (i * 10), 0xD0D0D0);
-                } else if (options.get(optionIndex) == "Resolution" && aspectRatios[aspectRatioIndex] == "4:3") {
+                } else if (options.get(optionIndex).equals("Resolution") && aspectRatios[aspectRatioIndex].equals("4:3")) {
                     String string = "< " + resolutions4x3[resolutionIndex][0] + ", " + resolutions4x3[resolutionIndex][1] + " >";
                     draw(string, width - ((string.length() * 6) + borderPadding), borderPadding + 10 + (i * 10), 0xD0D0D0);
-                } else if (options.get(optionIndex) == "Resolution" && aspectRatios[aspectRatioIndex] == "16:9") {
+                } else if (options.get(optionIndex).equals("Resolution") && aspectRatios[aspectRatioIndex].equals("16:9")) {
                     String string = "< " + resolutions16x9[resolutionIndex][0] + ", " + resolutions16x9[resolutionIndex][1] + " >";
                     draw(string, width - ((string.length() * 6) + borderPadding), borderPadding + 10 + (i * 10), 0xD0D0D0);
-                } else if (options.get(optionIndex) == "Scaling") {
+                } else if (options.get(optionIndex).equals("Scaling")) {
                     String string = "< " + scales[scaleIndex] + " >";
                     draw(string, width - ((string.length() * 6) + borderPadding), borderPadding + 10 + (i * 10), 0xD0D0D0);
                 }
             } else {
                 draw(" " + options.get(i), borderPadding, borderPadding + 10 + (i * 10), 0x707070);
 
-                if (options.get(i) == "Aspect Ratio") {
+                if (options.get(i).equals("Aspect Ratio")) {
                     String string = aspectRatios[aspectRatioIndex];
                     draw(string, width - ((string.length() * 6) + borderPadding), borderPadding + 10 + (i * 10), 0x707070);
-                } else if (options.get(i) == "Resolution" && aspectRatios[aspectRatioIndex] == "4:3") {
+                } else if (options.get(i).equals("Resolution") && aspectRatios[aspectRatioIndex].equals("4:3")) {
                     String string = resolutions4x3[resolutionIndex][0] + ", " + resolutions4x3[resolutionIndex][1];
                     draw(string, width - ((string.length() * 6) + borderPadding), borderPadding + 10 + (i * 10), 0x707070);
-                } else if (options.get(i) == "Resolution" && aspectRatios[aspectRatioIndex] == "16:9") {
+                } else if (options.get(i).equals("Resolution") && aspectRatios[aspectRatioIndex].equals("16:9")) {
                     String string = resolutions16x9[resolutionIndex][0] + ", " + resolutions16x9[resolutionIndex][1];
                     draw(string, width - ((string.length() * 6) + borderPadding), borderPadding + 10 + (i * 10), 0x707070);
-                } else if (options.get(i) == "Scaling") {
+                } else if (options.get(i).equals("Scaling")) {
                     String string = scales[scaleIndex] + "";
                     draw(string, width - ((string.length() * 6) + borderPadding), borderPadding + 10 + (i * 10), 0x707070);
                 }

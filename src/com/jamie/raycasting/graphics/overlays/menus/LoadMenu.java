@@ -36,7 +36,7 @@ public class LoadMenu extends Menu
 
         if (game.userInput.action) {
             game.userInput.setKeyGroupState("action", false);
-            if (options.get(optionIndex) == "Main Menu") {
+            if (options.get(optionIndex).equals("Main Menu")) {
                 game.setActiveOverlay(game.mainMenu);
             }
         }
@@ -50,26 +50,26 @@ public class LoadMenu extends Menu
             if (optionIndex == i) {
                 draw("-> " + options.get(i), borderPadding, borderPadding + 10 + (i * 10), 0xD0D0D0);
 
-                if (options.get(optionIndex) == "Save Slot 1") {
+                if (options.get(optionIndex).equals("Save Slot 1")) {
                     String string = "< " + saves[optionIndex] + " >";
                     draw(string, width - ((string.length() * 6) + borderPadding), borderPadding + 10 + (i * 10), 0xD0D0D0);
-                } else if (options.get(optionIndex) == "Save Slot 2") {
+                } else if (options.get(optionIndex).equals("Save Slot 2")) {
                     String string = "< " + saves[optionIndex] + " >";
                     draw(string, width - ((string.length() * 6) + borderPadding), borderPadding + 10 + (i * 10), 0xD0D0D0);
-                } else if (options.get(optionIndex) == "Save Slot 3") {
+                } else if (options.get(optionIndex).equals("Save Slot 3")) {
                     String string = "< " + saves[optionIndex] + " >";
                     draw(string, width - ((string.length() * 6) + borderPadding), borderPadding + 10 + (i * 10), 0xD0D0D0);
                 }
             } else {
                 draw(" " + options.get(i), borderPadding, borderPadding + 10 + (i * 10), 0x707070);
 
-                if (options.get(i) == "Save Slot 1") {
+                if (options.get(i).equals("Save Slot 1")) {
                     String string = "< " + saves[i] + " >";
                     draw(string, width - ((string.length() * 6) + borderPadding), borderPadding + 10 + (i * 10), 0x707070);
-                } else if (options.get(i) == "Save Slot 2") {
+                } else if (options.get(i).equals("Save Slot 2")) {
                     String string = "< " + saves[i] + " >";
                     draw(string, width - ((string.length() * 6) + borderPadding), borderPadding + 10 + (i * 10), 0x707070);
-                } else if (options.get(i) == "Save Slot 3") {
+                } else if (options.get(i).equals("Save Slot 3")) {
                     String string = "< " + saves[i] + " >";
                     draw(string, width - ((string.length() * 6) + borderPadding), borderPadding + 10 + (i * 10), 0x707070);
                 }
