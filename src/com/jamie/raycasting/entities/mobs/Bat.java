@@ -1,6 +1,5 @@
 package com.jamie.raycasting.entities.mobs;
 
-import com.jamie.raycasting.entities.particles.BloodParticle;
 import com.jamie.raycasting.graphics.Render;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
@@ -25,9 +24,6 @@ public class Bat extends Mob
         crouchSpeed = 0.03;
 
         maxHealth = 10;
-//        maxHealth = 100;
-
-//        baseDamage = 0;
 
         Render[] ts = {
                 Texture.bat0,

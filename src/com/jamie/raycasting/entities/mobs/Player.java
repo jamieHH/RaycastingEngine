@@ -12,6 +12,7 @@ public class Player extends Mob
 	public Player(InputHandler input) {
         super(input);
 
+        isFloating = false;
         isSolid = true;
 
 	    baseReach = 2;
@@ -25,7 +26,6 @@ public class Player extends Mob
         crouchSpeed = 0.1;
 
         maxHealth = 10;
-//        maxHealth = 100;
 
         addItem(new SpearWeapon());
         addItem(new StrengthPotion());

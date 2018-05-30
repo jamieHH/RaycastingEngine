@@ -1,0 +1,42 @@
+{
+  "isFloating": true,
+  "isSolid": false,
+  "baseReach": 1,
+  "viewDistance": 4,
+  "radius": 0.25,
+  "rotationSpeed": 0.03,
+  "walkSpeed": 0.03,
+  "runSpeed": 0.03,
+  "crouchSpeed": 0.03,
+  "maxHealth": 10,
+  "faction": "beast",
+  "spriteSets": {
+    "idle": [
+      "spirit0",
+      "spirit1",
+      "spirit2",
+      "spirit1"
+    ],
+    "action": [
+      "spiritAtt0",
+      "spiritAtt0",
+      "spiritAtt0"
+    ],
+    "hurt": [
+      "spiritHurt0",
+      "spiritHurt0",
+      "spiritHurt0"
+    ],
+    "death": [
+      "splat1",
+      "splat1",
+      "splat1",
+      "splat1",
+      "splat1",
+      "splat1"
+    ],
+    "heal": [
+      "spiritHeal0"
+    ]
+  }
+}

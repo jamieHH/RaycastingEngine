@@ -26,7 +26,6 @@ public class Spirit extends Mob
         crouchSpeed = 0.03;
 
         maxHealth = 10;
-//        maxHealth = 100;
 
         Render[] ts = {
                 Texture.spirit0,
