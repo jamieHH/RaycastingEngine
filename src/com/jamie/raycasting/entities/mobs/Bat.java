@@ -1,6 +1,5 @@
 package com.jamie.raycasting.entities.mobs;
 
-import com.jamie.raycasting.entities.particles.BloodParticle;
 import com.jamie.raycasting.graphics.Render;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
