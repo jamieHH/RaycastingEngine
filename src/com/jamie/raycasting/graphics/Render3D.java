@@ -310,19 +310,18 @@ public class Render3D extends Render
 	private void renderDistanceLimiter() {
 		for (int i = 0; i < width * height; i++) {
 			int colour = pixels[i];
-			double iBuff = zBuffer[i];
 
-//            if (iBuff > p.viewDist) {
+//            if (zBuffer[i] > p.viewDist) {
 //                pixels[i] = 0x000020;
 //            } else {
-            // TODO: Incorporate p.viewDistance into this equation
 
-            int factor = 4;
-            int i0 = factor;
-            int i1 = factor * 8;
+            int i0 = 4; // factor
+            int i1 = i0 * 8;
 
             double xx = ((i % width - width / 2.0) / width) * i0;
-            int brightness = (int) (256 - ((iBuff) * (((xx * xx) * 2) + i1)));
+
+            // 32 = one blocks dist
+            int brightness = (int) (256 - ((zBuffer[i]) * (((xx * xx) * 2) + i1))); // 256
 
             if (brightness < 0) {
                 brightness = 0;
