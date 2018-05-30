@@ -308,20 +308,26 @@ public class Render3D extends Render
 	}
 
 	private void renderDistanceLimiter() {
-		for (int i = 0; i < width * height; i++) {
-			int colour = pixels[i];
+        int i0 = 4; // factor
+        int i1 = 32; // 32
 
+        int dist = (32 * 8); // 16 blocks. 32 = one blocks dist
+        int thick = 1; // fog thickness
+
+        // dist = (32 * 8);
+        // thick = 1;
+        // or:___
+        // dist = (32 * 16);
+        // thick = 2;
+
+		for (int i = 0; i < width * height; i++) {
 //            if (zBuffer[i] > p.viewDist) {
 //                pixels[i] = 0x000020;
 //            } else {
-
-            int i0 = 4; // factor
-            int i1 = i0 * 8;
-
             double xx = ((i % width - width / 2.0) / width) * i0;
+            double x2x = (((xx * xx) * 2) + i1);
 
-            // 32 = one blocks dist
-            int brightness = (int) (256 - ((zBuffer[i]) * (((xx * xx) * 2) + i1))); // 256
+            int brightness = (int) ((dist / thick) - (zBuffer[i] / thick) * x2x); // 256
 
             if (brightness < 0) {
                 brightness = 0;
@@ -329,9 +335,9 @@ public class Render3D extends Render
                 brightness = 255;
             }
 
-            int r = (colour >> 16) & 0xff;
-            int g = (colour >> 8) & 0xff;
-            int b = (colour) & 0xff;
+            int r = (pixels[i] >> 16) & 0xff;
+            int g = (pixels[i] >> 8) & 0xff;
+            int b = (pixels[i]) & 0xff;
 
             r = r * brightness / 255;
             g = g * brightness / 255;
