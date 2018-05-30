@@ -24,9 +24,6 @@ public class Bat extends Mob
         crouchSpeed = 0.03;
 
         maxHealth = 10;
-//        maxHealth = 100;
-
-//        baseDamage = 0;
 
         Render[] ts = {
                 Texture.bat0,
