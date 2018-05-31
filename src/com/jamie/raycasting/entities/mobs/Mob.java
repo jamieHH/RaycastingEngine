@@ -87,9 +87,11 @@ public abstract class Mob extends Entity
         }
 
         // inventory tick
-        for (int i = 0; i < inventory.countItems(); i++) {
-            inventory.getItem(i).tick(); // TODO: does each item need to tick (NO IT SHOULDENTS)
+        if (getRightHandItem() != null) {
+            getRightHandItem().tick(); // TODO: does each item need to tick (NO IT SHOULDENTS)
+        }
 
+        for (int i = 0; i < inventory.countItems(); i++) {
             if (inventory.getItem(i).removed) {
                 if (i <= rightHandItemIndex) {
                     // prevent out of bounds held item exception
@@ -428,11 +430,9 @@ public abstract class Mob extends Entity
             runSpriteSet("action");
 
             List<Entity> closeEntities = getEntitiesInRadius(getRightHandReach());
-
-            int divs = (int) (getRightHandReach() * 100);
             double xa = getRightHandReach() * Math.sin(rotation);
             double za = getRightHandReach() * Math.cos(rotation);
-
+            int divs = (int) (getRightHandReach() * 100);
             for (int i = 0; i < divs; i++) {
                 double xx = posX + xa * i / divs;
                 double zz = posZ + za * i / divs;

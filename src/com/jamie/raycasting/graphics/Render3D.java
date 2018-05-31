@@ -7,6 +7,8 @@ import com.jamie.raycasting.world.blocks.*;
 
 public class Render3D extends Render
 {
+	public int blockViewDist = 8;
+
 	private double[] zBuffer;
 	private double[] zBufferWall;
 
@@ -30,10 +32,10 @@ public class Render3D extends Render
 	protected void render(Mob p) {
 	    this.p = p;
 
-	    xBlockStart = (int) (p.posX) - 16;
-	    xBlockEnd = (int) (p.posX) + 16;
-	    zBlockStart = (int) (p.posZ) - 16;
-	    zBlockEnd = (int) (p.posZ) + 16;
+	    xBlockStart = (int) (p.posX) - blockViewDist;
+	    xBlockEnd = (int) (p.posX) + blockViewDist;
+	    zBlockStart = (int) (p.posZ) - blockViewDist;
+	    zBlockEnd = (int) (p.posZ) + blockViewDist;
 
         cosine = Math.cos(p.rotation);
         sine = Math.sin(p.rotation);
@@ -308,26 +310,16 @@ public class Render3D extends Render
 	}
 
 	private void renderDistanceLimiter() {
-        int i0 = 4; // factor
-        int i1 = 32; // 32
-
-        int dist = (32 * 8); // 16 blocks. 32 = one blocks dist
-        int thick = 1; // fog thickness
-
-        // dist = (32 * 8);
-        // thick = 1;
-        // or:___
-        // dist = (32 * 16);
-        // thick = 2;
+        int dist = (32 * blockViewDist); // render dist. 32 = one blocks dist
 
 		for (int i = 0; i < width * height; i++) {
 //            if (zBuffer[i] > p.viewDist) {
 //                pixels[i] = 0x000020;
 //            } else {
-            double xx = ((i % width - width / 2.0) / width) * i0;
-            double x2x = (((xx * xx) * 2) + i1);
+            double xx = ((i % width - width / 2.0) / width) * 4;
+            double x2x = (((xx * xx) * 2) + 32);
 
-            int brightness = (int) ((dist / thick) - (zBuffer[i] / thick) * x2x); // 256
+            int brightness = (int) (dist - zBuffer[i] * x2x);
 
             if (brightness < 0) {
                 brightness = 0;
