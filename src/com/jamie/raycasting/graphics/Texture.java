@@ -37,6 +37,7 @@ public class Texture
 
     // private overlays
     private static final Render stoneOverlay = loadBitmap("/textures/stoneOverlay.png");
+    private static final Render altStoneOverlay = loadBitmap("/textures/altStoneOverlay.png");
     private static final Render puddleOverlay = loadBitmap("/textures/puddleOverlay.png");
     private static final Render buttonOverlay0 = loadBitmap("/textures/buttonOverlay0.png");
     private static final Render buttonOverlay1 = loadBitmap("/textures/buttonOverlay1.png");
@@ -60,6 +61,7 @@ public class Texture
 
     // merged textures
     public static final Render stonePath = mergeBitmap(grass, stoneOverlay);
+    public static final Render altStonePath = mergeBitmap(grass, altStoneOverlay);
     public static final Render wetFloor = mergeBitmap(floor, puddleOverlay);
     public static final Render wallButton0 = mergeBitmap(wall, buttonOverlay0);
     public static final Render wallButton1 = mergeBitmap(wall, buttonOverlay1);
@@ -88,6 +90,7 @@ public class Texture
     public static final Render spinningDummy3 = loadBitmap("/textures/spinningDummy3.png");
     public static final Render spinningDummy4 = loadBitmap("/textures/spinningDummy4.png");
     public static final Render pillar = loadBitmap("/textures/pillar.png");
+    public static final Render lamp = loadBitmap("/textures/lamp.png");
     public static final Render bars = loadBitmap("/textures/bars.png");
     public static final Render ladder = loadBitmap("/textures/ladder.png");
     public static final Render portal0 = loadBitmap("/textures/portal0.png");
