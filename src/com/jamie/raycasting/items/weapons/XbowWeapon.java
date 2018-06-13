@@ -1,6 +1,7 @@
 package com.jamie.raycasting.items.weapons;
 
 import com.jamie.raycasting.entities.projectiles.ArrowProjectile;
+import com.jamie.raycasting.graphics.Render;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
 
@@ -13,7 +14,12 @@ public class XbowWeapon extends Weapon
 
         setIdleSprite(new Sprite(Texture.screenXbow0));
 
-        setUseSprite(new Sprite(Texture.screenXbow1));
+        Render[] ts = {
+                Texture.screenXbow1,
+                Texture.screenXbow1
+        };
+
+        setUseSprite(new Sprite(ts));
 
         name = "Crossbow";
         damage = 2;
