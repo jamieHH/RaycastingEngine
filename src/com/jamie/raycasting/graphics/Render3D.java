@@ -47,41 +47,50 @@ public class Render3D extends Render
         renderSprites();
         renderDistanceLimiter();
 	}
-
     private void renderFloor() {
         for (int y = 0; y < height; y++) {
-            double yDist = (y - height / 2.0) / height;
 
-            boolean isFloor = true;
-            double zDist = p.camY / yDist;
+            double yDist = (y - height / 2.0) / height;
+			double zDist = p.camY / yDist;
+
+			boolean isFloor = true;
             if (yDist < 0) {
                 isFloor = false;
-                zDist = (p.level.height - p.camY) / -yDist;
+//				zDist = (p.level.height - p.camY) / -yDist; // ** Enabling this uses level height for ceilings **
             }
 
             for (int x = 0; x < width; x++) {
-                double xDist = (x - width / 2.0) / height;
-                xDist *= zDist;
+				double xDist = (x - width / 2.0) / height;
+				xDist *= zDist;
 
-                double xx = xDist * cosine + zDist * sine;
-                double zz = zDist * cosine - xDist * sine;
+				double xx = xDist * cosine + zDist * sine;
+				double zz = zDist * cosine - xDist * sine;
+				int xTexture = (int) Math.floor((xx + p.posX) * 16);
+				int zTexture = (int) Math.floor((zz + p.posZ) * 16);
+				int xTile = xTexture >> 4;
+				int zTile = zTexture >> 4;
 
-                int xTexture = (int) Math.floor((xx + p.posX) * 16);
-                int zTexture = (int) Math.floor((zz + p.posZ) * 16);
-                int xTile = xTexture >> 4;
-                int zTile = zTexture >> 4;
+				Block block = p.level.getBlock(xTile, zTile);
 
-                zBuffer[x + y * width] = zDist;
+				if (yDist < 0) {
+					// TODO: WHY THE FUCK DOES THIS FUCK UP THE 2 TOP LEFT COLUMNS!!?!!
+					zDist = (block.height - p.camY) / -yDist; // ** Enabling this uses block heights for ceilings **
+				}
 
-                Block block = p.level.getBlock(xTile, zTile);
-                Render tex = block.floorTex;
 
-                if (!isFloor) {
-                    tex = block.ceilTex;
-                }
+
+
+
+				Render tex;
+				if (isFloor) {
+					tex = block.floorTex;
+				} else {
+					tex = block.ceilTex;
+				}
 
                 pixels[x + y * width] = tex.pixels[(xTexture & 15) + (zTexture & 15) * 16];
 
+				zBuffer[x + y * width] = zDist;
                 zBufferWall[x] = 0;
             }
         }
