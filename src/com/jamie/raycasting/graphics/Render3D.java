@@ -7,6 +7,8 @@ import com.jamie.raycasting.world.blocks.*;
 
 public class Render3D extends Render
 {
+	public int blockViewDist = 8;
+
 	private double[] zBuffer;
 	private double[] zBufferWall;
 
@@ -30,10 +32,10 @@ public class Render3D extends Render
 	protected void render(Mob p) {
 	    this.p = p;
 
-	    xBlockStart = (int) (p.posX) - 16;
-	    xBlockEnd = (int) (p.posX) + 16;
-	    zBlockStart = (int) (p.posZ) - 16;
-	    zBlockEnd = (int) (p.posZ) + 16;
+	    xBlockStart = (int) (p.posX) - blockViewDist;
+	    xBlockEnd = (int) (p.posX) + blockViewDist;
+	    zBlockStart = (int) (p.posZ) - blockViewDist;
+	    zBlockEnd = (int) (p.posZ) + blockViewDist;
 
         cosine = Math.cos(p.rotation);
         sine = Math.sin(p.rotation);
@@ -45,41 +47,50 @@ public class Render3D extends Render
         renderSprites();
         renderDistanceLimiter();
 	}
-
     private void renderFloor() {
         for (int y = 0; y < height; y++) {
-            double yDist = (y - height / 2.0) / height;
 
-            boolean isFloor = true;
-            double zDist = p.camY / yDist;
+            double yDist = (y - height / 2.0) / height;
+			double zDist = p.camY / yDist;
+
+			boolean isFloor = true;
             if (yDist < 0) {
                 isFloor = false;
-                zDist = (p.level.height - p.camY) / -yDist;
+//				zDist = (p.level.height - p.camY) / -yDist; // ** Enabling this uses level height for ceilings **
             }
 
             for (int x = 0; x < width; x++) {
-                double xDist = (x - width / 2.0) / height;
-                xDist *= zDist;
+				double xDist = (x - width / 2.0) / height;
+				xDist *= zDist;
 
-                double xx = xDist * cosine + zDist * sine;
-                double zz = zDist * cosine - xDist * sine;
+				double xx = xDist * cosine + zDist * sine;
+				double zz = zDist * cosine - xDist * sine;
+				int xTexture = (int) Math.floor((xx + p.posX) * 16);
+				int zTexture = (int) Math.floor((zz + p.posZ) * 16);
+				int xTile = xTexture >> 4;
+				int zTile = zTexture >> 4;
 
-                int xTexture = (int) Math.floor((xx + p.posX) * 16);
-                int zTexture = (int) Math.floor((zz + p.posZ) * 16);
-                int xTile = xTexture >> 4;
-                int zTile = zTexture >> 4;
+				Block block = p.level.getBlock(xTile, zTile);
 
-                zBuffer[x + y * width] = zDist;
+				if (yDist < 0) {
+					// TODO: WHY THE FUCK DOES THIS FUCK UP THE 2 TOP LEFT COLUMNS!!?!!
+					zDist = (block.height - p.camY) / -yDist; // ** Enabling this uses block heights for ceilings **
+				}
 
-                Block block = p.level.getBlock(xTile, zTile);
-                Render tex = block.floorTex;
 
-                if (!isFloor) {
-                    tex = block.ceilTex;
-                }
+
+
+
+				Render tex;
+				if (isFloor) {
+					tex = block.floorTex;
+				} else {
+					tex = block.ceilTex;
+				}
 
                 pixels[x + y * width] = tex.pixels[(xTexture & 15) + (zTexture & 15) * 16];
 
+				zBuffer[x + y * width] = zDist;
                 zBufferWall[x] = 0;
             }
         }
@@ -308,21 +319,16 @@ public class Render3D extends Render
 	}
 
 	private void renderDistanceLimiter() {
-		for (int i = 0; i < width * height; i++) {
-			int colour = pixels[i];
-			double iBuff = zBuffer[i];
+        int dist = (32 * blockViewDist); // render dist. 32 = one blocks dist
 
-//            if (iBuff > p.viewDist) {
+		for (int i = 0; i < width * height; i++) {
+//            if (zBuffer[i] > p.viewDist) {
 //                pixels[i] = 0x000020;
 //            } else {
-            // TODO: Incorporate p.viewDistance into this equation
+            double xx = ((i % width - width / 2.0) / width) * 4;
+            double x2x = (((xx * xx) * 2) + 32);
 
-            int factor = 4;
-            int i0 = factor;
-            int i1 = factor * 8;
-
-            double xx = ((i % width - width / 2.0) / width) * i0;
-            int brightness = (int) (256 - ((iBuff) * (((xx * xx) * 2) + i1)));
+            int brightness = (int) (dist - zBuffer[i] * x2x);
 
             if (brightness < 0) {
                 brightness = 0;
@@ -330,9 +336,9 @@ public class Render3D extends Render
                 brightness = 255;
             }
 
-            int r = (colour >> 16) & 0xff;
-            int g = (colour >> 8) & 0xff;
-            int b = (colour) & 0xff;
+            int r = (pixels[i] >> 16) & 0xff;
+            int g = (pixels[i] >> 8) & 0xff;
+            int b = (pixels[i]) & 0xff;
 
             r = r * brightness / 255;
             g = g * brightness / 255;

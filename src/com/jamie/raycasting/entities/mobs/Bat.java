@@ -49,8 +49,13 @@ public class Bat extends Mob
 
         Render[] ts4 = {
                 Texture.splat1,
+                Texture.splat1,
+                Texture.splat1,
+                Texture.splat1,
+                Texture.splat1,
+                Texture.splat1
         };
-        setDeathSprite(new Sprite(ts4, 30));
+        setDeathSprite(new Sprite(ts4));
 
         addFaction("beast");
     }

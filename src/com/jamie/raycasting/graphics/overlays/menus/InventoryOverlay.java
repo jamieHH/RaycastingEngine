@@ -19,7 +19,7 @@ public class InventoryOverlay extends Overlay
 
     private List<Item> listedItems = new ArrayList<Item>();
     private List<Map<String, String>> listedItemsInfo = new ArrayList<Map<String, String>>();
-    private int listItemIndex = 0;
+    private int listItemIndex;
     private int inventoryItemIndex = 0;
 
     private String[] itemCategories = {
@@ -59,6 +59,7 @@ public class InventoryOverlay extends Overlay
             game.userInput.setKeyGroupState("rotLeft", false);
             if ((itemCatIndex > 0)) {
                 listItemIndex = 0;
+                itemListYShift = 0;
                 itemCatIndex--;
             }
         }
@@ -67,6 +68,7 @@ public class InventoryOverlay extends Overlay
             game.userInput.setKeyGroupState("rotRight", false);
             if ((itemCatIndex < itemCategories.length - 1)) {
                 listItemIndex = 0;
+                itemListYShift = 0;
                 itemCatIndex++;
             }
         }
@@ -111,6 +113,10 @@ public class InventoryOverlay extends Overlay
         } else {
             inventoryItemIndex = -1;
         }
+
+//        if (listItemIndex * 12 >= itemListRender.height) {
+//            itemListYShift = -(listItemIndex * 12 % itemListRender.height + 12);
+//        }
     }
 
     public void update() {

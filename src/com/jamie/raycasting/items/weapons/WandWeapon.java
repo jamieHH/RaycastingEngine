@@ -1,6 +1,7 @@
 package com.jamie.raycasting.items.weapons;
 
 import com.jamie.raycasting.entities.projectiles.FireballProjectile;
+import com.jamie.raycasting.graphics.Render;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
 
@@ -13,7 +14,12 @@ public class WandWeapon extends Weapon
 
         setIdleSprite(new Sprite(Texture.screenWand0));
 
-        setUseSprite(new Sprite(Texture.screenWand1, 10));
+        Render[] ts = {
+                Texture.screenWand1,
+                Texture.screenWand1
+        };
+
+        setUseSprite(new Sprite(ts));
 
         name = "Wand";
         damage = 4;

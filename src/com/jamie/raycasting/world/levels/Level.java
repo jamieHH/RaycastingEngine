@@ -33,6 +33,7 @@ public abstract class Level
     private static final AirBlock AirBlock = new AirBlock();
     private static final WallBlock WallBlock = new WallBlock();
     private static final PillarBlock PillarBlock = new PillarBlock();
+    private static final LampBlock LampBlock = new LampBlock();
     private static final BarsBlock BarsBlock = new BarsBlock();
     private static final CobwebBlock CobwebBlock = new CobwebBlock();
     private static final TreeBlock TreeBlock = new TreeBlock();
@@ -40,6 +41,7 @@ public abstract class Level
     private static final BridgeBlock BridgeBlock = new BridgeBlock();
     private static final ShrubsBlock ShrubsBlock = new ShrubsBlock();
     private static final StonePathBlock StonePathBlock = new StonePathBlock();
+    private static final AltStonePathBlock AltStonePathBlock = new AltStonePathBlock();
     private static final GraveBlock GraveBlock = new GraveBlock();
     private static final WaterBlock WaterBlock = new WaterBlock();
 
@@ -233,6 +235,7 @@ public abstract class Level
         if (col == 0x000000) return Block;
         if (col == 0xFFFFFF) return WallBlock;
         if (col == 0x808080) return PillarBlock;
+        if (col == 0x648480) return LampBlock;
         if (col == 0xC0C0C0) return BarsBlock;
         if (col == 0xE0E0E0) return CobwebBlock;
         if (col == 0xB27400) return TreeBlock;
@@ -240,6 +243,7 @@ public abstract class Level
         if (col == 0x7F3300) return BridgeBlock;
         if (col == 0x7F8800) return ShrubsBlock;
         if (col == 0x8BB28F) return StonePathBlock;
+        if (col == 0xA2AFA4) return AltStonePathBlock;
         if (col == 0x9A9A9A) return GraveBlock;
         if (col == 0x0094FF) return WaterBlock;
         if (col == 0xA3723A) return new SpinningDummyBlock();

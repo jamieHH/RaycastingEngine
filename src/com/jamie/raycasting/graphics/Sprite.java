@@ -12,7 +12,7 @@ public class Sprite
 	private List<Render> textures = new ArrayList<Render>();
     private int index = 0;
     private int animTick = 0;
-    public int interval = 5;
+    protected static final int INTERVAL = 5;
 
 	public Sprite(Render t, double xOffs, double yOffs, double zOffs) {
 		x = xOffs;
@@ -25,18 +25,7 @@ public class Sprite
         addTexture(t);
     }
 
-    public Sprite(Render t, int interval) {
-        this.interval = interval;
-        addTexture(t);
-    }
-
     public Sprite(Render[] ts) {
-        addTextures(ts);
-        this.isAnimated = true;
-    }
-
-    public Sprite(Render[] ts, int interval) {
-        this.interval = interval;
         addTextures(ts);
         this.isAnimated = true;
     }
@@ -51,7 +40,7 @@ public class Sprite
                     index = 0;
                 }
 
-                animTick = interval;
+                animTick = INTERVAL;
             }
         }
     }
@@ -62,14 +51,6 @@ public class Sprite
         z = zOffs;
     }
 
-	public void addTexture(Render t) {
-	    textures.add(t);
-    }
-
-    public void addTextures(Render[] ts) {
-        Collections.addAll(textures, ts);
-    }
-
     public int countTextures() {
         return textures.size();
     }
@@ -78,9 +59,17 @@ public class Sprite
         return textures.get(index);
     }
 
-    public void reset() {
+    protected void reset() {
         index = 0;
-        animTick = interval;
+        animTick = INTERVAL;
 
+    }
+
+    private void addTexture(Render t) {
+        textures.add(t);
+    }
+
+    private void addTextures(Render[] ts) {
+        Collections.addAll(textures, ts);
     }
 }

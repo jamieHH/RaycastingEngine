@@ -50,12 +50,6 @@ public class SpriteParticle extends Sprite
         setMomentum();
     }
 
-    private void setMomentum() {
-        moveX = ((Math.random() - 0.5) / 2) * speed;
-        moveY = ((Math.random() - 0.5) / 2) * speed;
-        moveZ = ((Math.random() - 0.5) / 2) * speed;
-    }
-
     public void tick() {
         super.tick();
         time++;
@@ -76,5 +70,11 @@ public class SpriteParticle extends Sprite
             moveX *= 0.75;
             moveZ *= 0.75;
         }
+    }
+
+    private void setMomentum() {
+        moveX = ((Math.random() - 0.5) / 2) * speed;
+        moveY = ((Math.random() - 0.5) / 2) * speed;
+        moveZ = ((Math.random() - 0.5) / 2) * speed;
     }
 }

@@ -26,10 +26,6 @@ public class SpriteSet
         }
     }
 
-    public Sprite getSet(String key) {
-        return set.get(key);
-    }
-
     public void putSet(String name, Sprite sprite) {
         set.put(name, sprite);
     }
@@ -50,11 +46,15 @@ public class SpriteSet
             switchSet(key);
             isSetSwapped = true;
 
-            swapTicks = getSet(key).countTextures() * getSet(key).interval;
+            swapTicks = getSet(key).countTextures() * Sprite.INTERVAL;
         }
     }
 
     public Sprite getSprite() {
         return getSet(setKey);
+    }
+
+    private Sprite getSet(String key) {
+        return set.get(key);
     }
 }
