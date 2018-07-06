@@ -402,7 +402,7 @@ public abstract class Mob extends Entity
 
         runSpriteSet("hurt");
 
-        pushDir(source.rotation, 0.25);
+        pushDir(source.rotation, 0.4);
 
         health -= damage;
         hurtTime = 30;
