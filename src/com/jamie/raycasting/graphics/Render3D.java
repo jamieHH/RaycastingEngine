@@ -56,7 +56,7 @@ public class Render3D extends Render
 			boolean isFloor = true;
             if (yDist < 0) {
                 isFloor = false;
-//				zDist = (p.level.height - p.camY) / -yDist; // ** Enabling this uses level height for ceilings **
+				zDist = (p.level.height - p.camY) / -yDist;
             }
 
             for (int x = 0; x < width; x++) {
@@ -71,15 +71,6 @@ public class Render3D extends Render
 				int zTile = zTexture >> 4;
 
 				Block block = p.level.getBlock(xTile, zTile);
-
-				if (yDist < 0) {
-					// TODO: WHY THE FUCK DOES THIS FUCK UP THE 2 TOP LEFT COLUMNS!!?!!
-					zDist = (block.height - p.camY) / -yDist; // ** Enabling this uses block heights for ceilings **
-				}
-
-
-
-
 
 				Render tex;
 				if (isFloor) {

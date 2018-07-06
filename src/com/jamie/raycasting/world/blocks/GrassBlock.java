@@ -12,6 +12,5 @@ public class GrassBlock extends Block
 		floorTex = Texture.grass;
 
 		ceilTex = Texture.noTex;
-		height = 1024;
 	}
 }

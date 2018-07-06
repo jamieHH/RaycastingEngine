@@ -27,8 +27,6 @@ public class Block
 	
 	public int id;
 
-	public int height = 1;
-
 	private SpriteSet spriteSet = new SpriteSet();
 
 	public void tick() {
