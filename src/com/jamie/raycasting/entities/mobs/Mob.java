@@ -372,10 +372,12 @@ public abstract class Mob extends Entity
         rotation = Math.atan2(xDiff, zDiff);
     }
 
-    public void push(double x, double z) {
-        // TODO: fix this damn pushing algorithm!! NOW!!
-        double nextZ = z * Math.cos(-rotation) - x * Math.sin(-rotation);
-        double nextX = x * Math.cos(-rotation) + z * Math.sin(-rotation);
+    public void pushDir(double direction, double force) {
+        double mx = Math.sin(direction) * force;
+        double mz = Math.cos(direction)* force;
+
+        double nextZ = mz * Math.cos(-rotation) - mx * Math.sin(-rotation);
+        double nextX = mx * Math.cos(-rotation) + mz * Math.sin(-rotation);
 
         moveX += nextX;
         moveZ += nextZ;
@@ -400,15 +402,14 @@ public abstract class Mob extends Entity
 
         runSpriteSet("hurt");
 
-        yBob -= 0.8;
+        pushDir(source.rotation, 0.25);
+
         health -= damage;
         hurtTime = 30;
         hurtType = damageType; // change to blunt if armor protects some damage
         // implement armour protection
 
-        double mx = (posX - source.posX) / 4;
-        double mz = (posZ - source.posZ) / 4;
-        push(mx, mz);
+        yBob -= 0.8;
         rotationMove += (Math.random() - 0.5);
 
         BloodParticle p = new BloodParticle(posX, posZ);
