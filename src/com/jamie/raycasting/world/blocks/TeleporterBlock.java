@@ -3,7 +3,6 @@ package com.jamie.raycasting.world.blocks;
 import com.jamie.raycasting.entities.Entity;
 import com.jamie.raycasting.entities.environmentalEffects.EnvironmentalEffect;
 import com.jamie.raycasting.entities.particles.Particle;
-import com.jamie.raycasting.entities.particles.PoofParticle;
 import com.jamie.raycasting.graphics.Render;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
@@ -13,7 +12,7 @@ import java.util.List;
 public class TeleporterBlock extends Block
 {
     public boolean disabled = false;
-    public Block target;
+    public String targetRef;
 
 	public TeleporterBlock() {
         isOpaque = false;
@@ -50,6 +49,8 @@ public class TeleporterBlock extends Block
             }
         } else {
             if (entities.size() > 0) {
+                TeleporterBlock target = (TeleporterBlock) level.getBlockByReference(targetRef);
+
                 for (int i = 0; i < entities.size(); i++) {
 //                    System.out.println(entities.get(i)); // entities being teleported
                     entities.get(i).setPosition(target.gridX + 0.5, target.gridZ + 0.5);
@@ -62,9 +63,7 @@ public class TeleporterBlock extends Block
 //                    level.addEntity(p1);
                 }
 
-                if (target instanceof TeleporterBlock) {
-                    ((TeleporterBlock) target).disable();
-                }
+                target.disable();
                 disable();
             }
         }
@@ -90,7 +89,7 @@ public class TeleporterBlock extends Block
 
 
 
-    public void setTarget(Block target) {
-        this.target = target;
+    public void setTargetRef(String targetRef) {
+        this.targetRef = targetRef;
     }
 }
