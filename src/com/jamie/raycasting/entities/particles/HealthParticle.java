@@ -10,8 +10,8 @@ import java.util.List;
 
 public class HealthParticle extends Particle
 {
-    public HealthParticle(double x, double z) {
-        super(x, z);
+    public HealthParticle() {
+        super();
 
         Render[] ts = {
                 Texture.health0,

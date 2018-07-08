@@ -6,8 +6,8 @@ import com.jamie.raycasting.items.weapons.AxeWeapon;
 
 public class AxeDrop extends Drop
 {
-    public AxeDrop(double x, double z) {
-        super(x, z);
+    public AxeDrop() {
+        super();
         item = new AxeWeapon();
         setIdleSprite(new Sprite(Texture.blood0));
     }

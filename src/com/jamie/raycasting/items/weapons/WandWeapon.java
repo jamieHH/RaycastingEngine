@@ -31,9 +31,9 @@ public class WandWeapon extends Weapon
         double nextX = Math.sin(user.rotation);
         double nextZ = Math.cos(user.rotation);
 
-        FireballProjectile f = new FireballProjectile(2, damage);
-        f.setRotation(user.rotation);
+        FireballProjectile p = new FireballProjectile(2, damage);
+        p.setRotation(user.rotation);
 
-        user.level.addEntity(f, user.posX + nextX, user.posZ + nextZ);
+        user.level.addEntity(p, user.posX + nextX, user.posZ + nextZ);
     }
 }

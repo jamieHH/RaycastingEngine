@@ -10,8 +10,8 @@ import java.util.List;
 
 public class BloodParticle extends Particle
 {
-    public BloodParticle(double x, double z) {
-        super(x, z);
+    public BloodParticle() {
+        super();
 
         Render[] ts = {
                 Texture.blood0,

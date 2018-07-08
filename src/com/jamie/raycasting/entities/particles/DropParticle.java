@@ -10,8 +10,8 @@ import java.util.List;
 
 public class DropParticle extends Particle
 {
-    public DropParticle(double x, double z) {
-        super(x, z);
+    public DropParticle() {
+        super();
 
         life = 20;
 

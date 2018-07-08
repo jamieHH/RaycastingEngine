@@ -9,7 +9,8 @@ public class PrisonLevel extends Level
 	}
 
 	protected void postCreate() {
-        addEntity(new HealthPotionDrop(16.5, 20.5));
+	    HealthPotionDrop d = new HealthPotionDrop();
+        addEntity(d, 16.5, 20.5);
     }
 
     public void switchLevel(int id) {

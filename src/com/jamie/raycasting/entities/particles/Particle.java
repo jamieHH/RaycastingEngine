@@ -14,8 +14,7 @@ public abstract class Particle extends Entity
 
     protected List<Sprite> spriteParticles = new ArrayList<Sprite>();
 
-    public Particle(double x, double z) {
-        setPosition(x, z);
+    public Particle() {
         isSolid = false;
     }
 

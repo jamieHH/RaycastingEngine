@@ -10,8 +10,8 @@ import java.util.List;
 
 public class WoodParticle extends Particle
 {
-    public WoodParticle(double x, double z) {
-        super(x, z);
+    public WoodParticle() {
+        super();
 
         Render[] ts = {
                 Texture.splinter0,

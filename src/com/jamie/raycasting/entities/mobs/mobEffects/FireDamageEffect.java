@@ -18,6 +18,8 @@ public class FireDamageEffect extends MobEffect
 
     public void effect() {
         mob.hurt(mob, magnitude, "fire");
-        mob.level.addEntity(new EmberParticle(mob.posX, mob.posZ));
+
+        EmberParticle e = new EmberParticle();
+        mob.level.addEntity(e, mob.posX, mob.posZ);
     }
 }

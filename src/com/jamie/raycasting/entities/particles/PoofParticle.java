@@ -10,8 +10,8 @@ import java.util.List;
 
 public class PoofParticle extends Particle
 {
-    public PoofParticle(double x, double z) {
-        super(x, z);
+    public PoofParticle() {
+        super();
 
         Render[] ts = {
                 Texture.poof0,

@@ -6,7 +6,9 @@ import java.util.List;
 
 public class Sprite
 {
-	public double x, y, z = 0;
+	public double x = 0;
+	public double y = 0;
+	public double z = 0;
 
 	private boolean isAnimated = false;
 	private List<Render> textures = new ArrayList<Render>();

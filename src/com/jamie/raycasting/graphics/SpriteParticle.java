@@ -4,7 +4,9 @@ public class SpriteParticle extends Sprite
 {
     private int time = 0;
 
-    private double moveX, moveY, moveZ;
+    private double moveX = 0;
+    private double moveY = 0;
+    private double moveZ = 0;
     private double yg = 0;
 
     public double speed = 1;

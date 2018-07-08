@@ -6,8 +6,8 @@ import com.jamie.raycasting.items.consumables.HealthPotion;
 
 public class HealthPotionDrop extends Drop
 {
-    public HealthPotionDrop(double x, double z) {
-        super(x, z);
+    public HealthPotionDrop() {
+        super();
         item = new HealthPotion();
         setIdleSprite(new Sprite(Texture.blood0));
     }

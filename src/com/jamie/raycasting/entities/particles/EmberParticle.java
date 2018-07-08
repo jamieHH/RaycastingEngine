@@ -10,8 +10,8 @@ import java.util.List;
 
 public class EmberParticle extends Particle
 {
-    public EmberParticle(double x, double z) {
-        super(x, z);
+    public EmberParticle() {
+        super();
 
         Render[] ts = {
                 Texture.ember0,

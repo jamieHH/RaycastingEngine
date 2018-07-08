@@ -36,6 +36,7 @@ public class FireEffect extends EnvironmentalEffect
             mobs.get(i).addMobEffect(new FireDamageEffect(mobs.get(i), 60, magnitude));
         }
 
-        level.addEntity(new EmberParticle(posX, posZ));
+        EmberParticle p = new EmberParticle();
+        level.addEntity(p, posX, posZ);
     }
 }
