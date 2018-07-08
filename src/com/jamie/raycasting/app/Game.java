@@ -107,13 +107,10 @@ public class Game
 	public void newGame() {
 		world.clearLoadedLevels();
 		player = new Player(userInput);
-
-		world.level = world.getLoadLevel("prison");
-
-		player.setPosition(world.level.spawnX, world.level.spawnZ);
 		player.rotation = 1.9;
 
-		world.level.addEntity(player);
+		world.level = world.getLoadLevel("prison");
+		world.level.addEntity(player, world.level.spawnX, world.level.spawnZ);
 
 		setActiveOverlay(null);
 	}

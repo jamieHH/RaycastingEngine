@@ -83,14 +83,12 @@ public class World
             level = Level.makeRandomLevel(2000, 2000);
         }
 
-        level.addEntity(thisMob);
-
         LadderBlock spawnBlock = level.getLadderBlockById(id);
         if (spawnBlock != null) {
-            thisMob.setPosition(spawnBlock.gridX + 0.5, spawnBlock.gridZ + 0.5);
+            level.addEntity(thisMob, spawnBlock.gridX + 0.5, spawnBlock.gridZ + 0.5);
             spawnBlock.disabled = true;
         } else {
-            thisMob.setPosition(level.spawnX, level.spawnZ);
+            level.addEntity(thisMob, level.spawnX, level.spawnZ);
         }
     }
 }

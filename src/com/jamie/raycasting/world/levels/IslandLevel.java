@@ -26,8 +26,7 @@ public class IslandLevel extends Level
 		setBlock(34, 32, teleporter1);
 
 		EnvironmentalEffect effect = new FireEffect(this, 9000, 2, 1);
-		effect.setPosition(30.5, 31.5);
-		addEntity(effect);
+		addEntity(effect, 30.5, 31.5);
 	}
 
     public void switchLevel(int id) {

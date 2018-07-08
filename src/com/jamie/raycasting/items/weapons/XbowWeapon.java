@@ -32,9 +32,8 @@ public class XbowWeapon extends Weapon
         double nextZ = Math.cos(user.rotation);
 
         ArrowProjectile f = new ArrowProjectile(damage);
-        f.setPosition(user.posX + nextX, user.posZ + nextZ);
         f.setRotation(user.rotation);
 
-        user.level.addEntity(f);
+        user.level.addEntity(f, user.posX + nextX, user.posZ + nextZ);
     }
 }

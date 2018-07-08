@@ -91,9 +91,7 @@ public abstract class Level
 
                 Mob mob = getMobByColour(col);
                 if (mob != null) {
-                    addEntity(mob);
-
-                    mob.setPosition(xb + 0.5, zb + 0.5);
+                    addEntity(mob, xb + 0.5, zb + 0.5);
                 }
             }
         }
@@ -143,6 +141,12 @@ public abstract class Level
     }
 
     public void addEntity(Entity e) {
+        entities.add(e);
+        e.level = this;
+    }
+
+    public void addEntity(Entity e, double x, double z) {
+        e.setPosition(x, z);
         entities.add(e);
         e.level = this;
     }
