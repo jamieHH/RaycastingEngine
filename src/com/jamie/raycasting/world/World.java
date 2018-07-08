@@ -4,7 +4,7 @@ import com.jamie.raycasting.app.App;
 import com.jamie.raycasting.app.Game;
 import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.graphics.overlays.LoadingOverlay;
-import com.jamie.raycasting.world.blocks.LadderBlock;
+import com.jamie.raycasting.world.blocks.LevelPortalBlock;
 import com.jamie.raycasting.world.levels.Level;
 
 import javax.imageio.ImageIO;
@@ -83,7 +83,7 @@ public class World
             level = Level.makeRandomLevel(2000, 2000);
         }
 
-        LadderBlock spawnBlock = level.getLadderBlockById(id);
+        LevelPortalBlock spawnBlock = level.getLevelPortalBlockById(id);
         if (spawnBlock != null) {
             level.addEntity(thisMob, spawnBlock.gridX + 0.5, spawnBlock.gridZ + 0.5);
             spawnBlock.disabled = true;

@@ -66,7 +66,7 @@ public abstract class Level
 
                 Block block = getBlockByColour(col);
 
-                if (block instanceof LadderBlock) { // ladders
+                if (block instanceof LevelPortalBlock) { // level portals
                     block.id = ladderCount;
                     ladderCount++;
                 }
@@ -224,11 +224,11 @@ public abstract class Level
         return null;
     }
 
-    public LadderBlock getLadderBlockById(int id) {
+    public LevelPortalBlock getLevelPortalBlockById(int id) {
         for (int i = 0; i < blocks.length; i++) {
             Block b = blocks[i];
-            if (b.id == id && b instanceof LadderBlock) {
-                return (LadderBlock) b;
+            if (b.id == id && b instanceof LevelPortalBlock) {
+                return (LevelPortalBlock) b;
             }
         }
 
@@ -257,6 +257,7 @@ public abstract class Level
         if (col == 0x217F74) return new CeilDripBlock();
         if (col == 0x7EC0C0) return new FountainBlock();
         if (col == 0xC80000) return new ButtonBlock();
+        if (col == 0x873800) return new LevelPortalBlock();
         if (col == 0xFF6A00) return new LadderBlock(false);
         if (col == 0xB24700) return new LadderBlock(true);
         return AirBlock;

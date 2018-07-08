@@ -30,7 +30,8 @@ public class IslandLevel extends Level
 	}
 
     public void switchLevel(int id) {
-        if (id == 1) world.switchLevel("castleHall", 1);
-        if (id == 2) world.switchLevel("sewer", 2);
+        if (id == 1) world.switchLevel("graveyard", 3);
+		if (id == 2) world.switchLevel("castleHall", 1);
+		if (id == 3) world.switchLevel("sewer", 2);
     }
 }

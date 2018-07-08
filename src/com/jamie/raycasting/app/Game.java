@@ -4,15 +4,11 @@ import java.util.List;
 
 import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.entities.mobs.Player;
-import com.jamie.raycasting.graphics.overlays.LoadingOverlay;
 import com.jamie.raycasting.graphics.overlays.Overlay;
 import com.jamie.raycasting.graphics.overlays.menus.*;
 import com.jamie.raycasting.input.InputHandler;
 import com.jamie.raycasting.input.UserInputHandler;
-import com.jamie.raycasting.world.levels.Level;
 import com.jamie.raycasting.world.World;
-import com.jamie.raycasting.world.blocks.Block;
-import com.jamie.raycasting.world.blocks.LadderBlock;
 
 public class Game
 {
