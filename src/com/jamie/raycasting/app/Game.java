@@ -89,7 +89,7 @@ public class Game
 //					world.switchLevel("random", 999);
 //					world.switchLevel("test", 999);
 					world.switchLevel("realm", 999);
-					world.switchLevel("dungeon", 999);
+//					world.switchLevel("dungeon", 999);
 				}
 
 				if (userInput.loadLevel) {
