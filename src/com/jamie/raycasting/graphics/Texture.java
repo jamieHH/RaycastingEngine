@@ -153,6 +153,8 @@ public class Texture
     public static final Render screenSpear2 = loadBitmap("tex/screenSpear2.png");
     public static final Render screenAxe0 = loadBitmap("tex/screenAxe0.png");
     public static final Render screenAxe1 = loadBitmap("tex/screenAxe1.png");
+    public static final Render screenPlank0 = loadBitmap("tex/screenPlank0.png");
+    public static final Render screenPlank1 = loadBitmap("tex/screenPlank1.png");
     public static final Render screenWand0 = loadBitmap("tex/screenWand0.png");
     public static final Render screenWand1 = loadBitmap("tex/screenWand1.png");
     public static final Render screenXbow0 = loadBitmap("tex/screenXbow0.png");

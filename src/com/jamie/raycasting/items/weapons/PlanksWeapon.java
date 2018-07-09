@@ -12,18 +12,18 @@ public class PlanksWeapon extends Weapon
         icon = Texture.planksIcon;
 
         Render[] ts = {
-                Texture.screenAxe0,
+                Texture.screenPlank0,
         };
         setIdleSprite(new Sprite(ts));
 
 
         Render[] ts1 = {
-                Texture.screenAxe1,
+                Texture.screenPlank1,
         };
         setUseSprite(new Sprite(ts1));
 
         name = "Planks";
-        damage = 3;
+        damage = 1;
         reach = 1;
     }
 }
