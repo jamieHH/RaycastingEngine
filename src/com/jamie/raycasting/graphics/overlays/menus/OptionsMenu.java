@@ -88,7 +88,7 @@ public class OptionsMenu extends Menu
                 if ((resolutionIndex < 4 - 1)) {
                     resolutionIndex++;
                 }
-            } else if (options.get(optionIndex).equals("0Scaling")) {
+            } else if (options.get(optionIndex).equals("Scaling")) {
                 if ((scaleIndex < scales.length - 1)) {
                     scaleIndex++;
                 }
