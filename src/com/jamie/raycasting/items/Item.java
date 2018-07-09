@@ -13,7 +13,7 @@ public abstract class Item
     public String name = "Item";
     public String type = "item";
     private SpriteSet spriteSet = new SpriteSet();
-    public Render icon = new Render(8, 8);
+    public Render icon = new Render(16, 16);
 
     public int damage = 1;
     public int reach = 0;

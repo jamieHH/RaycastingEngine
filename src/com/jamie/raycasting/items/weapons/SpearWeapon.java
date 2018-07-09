@@ -9,6 +9,8 @@ public class SpearWeapon extends Weapon
     public SpearWeapon() {
         super();
 
+        icon = Texture.spearIcon;
+
         Render[] ts = {
                 Texture.screenSpear0,
         };

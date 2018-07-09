@@ -27,7 +27,8 @@ public class SimpleInventoryOverlay extends Overlay
     };
     private int itemCatIndex = 0;
 
-    private Render itemListRender = new Render(width - borderPadding - borderPadding, height - (borderPadding + 10 + 8 + borderPadding));
+    private Render itemDetailsPane = new Render(48, height - (bp + 10 + 8 + bp));
+    private Render itemListRender = new Render(width - bp - bp - itemDetailsPane.width, height - (bp + 10 + 8 + bp));
     private int itemListYShift = 0;
 
     public SimpleInventoryOverlay(int width, int height, Game game) {
@@ -128,15 +129,15 @@ public class SimpleInventoryOverlay extends Overlay
         // cat headings
         String catString = itemCategories[itemCatIndex];
         if (itemCatIndex == 0) {
-            draw("< ", borderPadding, borderPadding, 0x404040);
+            draw("< ", bp, bp, 0x404040);
         } else {
-            draw("< ", borderPadding, borderPadding, 0xF0F0F0);
+            draw("< ", bp, bp, 0xF0F0F0);
         }
-        draw(itemCategories[itemCatIndex], borderPadding + 12, borderPadding, 0xF0F0F0);
+        draw(itemCategories[itemCatIndex], bp + 12, bp, 0xF0F0F0);
         if (itemCatIndex == itemCategories.length - 1) {
-            draw(" >", borderPadding + 12 + (catString.length() * 6), borderPadding, 0x404040);
+            draw(" >", bp + 12 + (catString.length() * 6), bp, 0x404040);
         } else {
-            draw(" >", borderPadding + 12 + (catString.length() * 6), borderPadding, 0xF0F0F0);
+            draw(" >", bp + 12 + (catString.length() * 6), bp, 0xF0F0F0);
         }
         for (int i = 0; i < itemCategories.length; i++) {
             Render blip = new Render(2, 2);
@@ -145,11 +146,11 @@ public class SimpleInventoryOverlay extends Overlay
             } else {
                 blip.fill(0, 0, blip.width, blip.height, 0x404040);
             }
-            draw(blip, (width - borderPadding - 4) - ((itemCategories.length - i - 1) * 6), borderPadding + 3);
+            draw(blip, (width - bp - 4) - ((itemCategories.length - i - 1) * 6), bp + 3);
         }
 
         // column title
-        draw(Texture.nameIcon, borderPadding + 6, borderPadding + 10);
+        draw(Texture.nameIcon, bp + 6, bp + 10);
 
         // listed items
         itemListRender.fill(0, 0, itemListRender.width, itemListRender.height, 0x101010);
@@ -168,9 +169,23 @@ public class SimpleInventoryOverlay extends Overlay
                 if (listItemIndex == i) {
                     colour = 0xF0F0F0;
                 }
-                itemListRender.draw(itemName, borderPadding, itemListYShift + (i * 12) + 2, colour);
+                itemListRender.draw(itemName, bp, itemListYShift + (i * 12) + 2, colour);
             }
         }
-        draw(itemListRender, borderPadding, borderPadding + 10 + 8);
+        draw(itemListRender, bp, bp + 10 + 8);
+
+        // item details pane
+        itemDetailsPane.fill(0, 0, itemListRender.width, itemListRender.height, 0x303030);
+
+        if (listedItems.size() > 0) {
+            Render icon = listedItems.get(listItemIndex).icon;
+            Render bground = new Render(18, 18);
+            bground.fill(0, 0, bground.width, bground.height, 0x202020);
+
+            itemDetailsPane.draw(bground, itemDetailsPane.width / 2 - bground.width / 2, bp);
+            itemDetailsPane.draw(icon, itemDetailsPane.width / 2 - icon.width / 2, bp + 1);
+        }
+
+        draw(itemDetailsPane, bp + itemListRender.width, bp + 10 + 8);
     }
 }

@@ -40,12 +40,12 @@ public class PauseMenu extends Menu
     public void update() {
         fill(0, 0, width, height, 0x202020);
 
-        draw("  Paused", borderPadding, borderPadding, 0xF0F0F0);
+        draw("  Paused", bp, bp, 0xF0F0F0);
         for (int i = 0; i < options.size(); i++) {
             if (optionIndex == i) {
-                draw("-> " + options.get(i), borderPadding, borderPadding + 10 + (i * 10), 0xD0D0D0);
+                draw("-> " + options.get(i), bp, bp + 10 + (i * 10), 0xD0D0D0);
             } else {
-                draw(" " + options.get(i), borderPadding, borderPadding + 10 + (i * 10), 0x707070);
+                draw(" " + options.get(i), bp, bp + 10 + (i * 10), 0x707070);
             }
         }
     }

@@ -5,7 +5,7 @@ import com.jamie.raycasting.graphics.Render;
 
 public abstract class Overlay extends Render
 {
-    protected int borderPadding = 2;
+    protected int bp = 2;
 
 
     public Overlay(int width, int height) {

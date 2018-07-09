@@ -9,6 +9,8 @@ public class AxeWeapon extends Weapon
     public AxeWeapon() {
         super();
 
+        icon = Texture.axeIcon;
+
         Render[] ts = {
                 Texture.screenAxe0,
         };

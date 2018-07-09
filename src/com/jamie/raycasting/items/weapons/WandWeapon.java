@@ -12,6 +12,8 @@ public class WandWeapon extends Weapon
 
         canStrike = false;
 
+        icon = Texture.wandIcon;
+
         setIdleSprite(new Sprite(Texture.screenWand0));
 
         Render[] ts = {

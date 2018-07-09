@@ -27,7 +27,7 @@ public class InventoryOverlay extends Overlay
     };
     private int itemCatIndex = 0;
 
-    private Render itemListRender = new Render(width - borderPadding - borderPadding, height - (borderPadding + 10 + 8 + borderPadding));
+    private Render itemListRender = new Render(width - bp - bp, height - (bp + 10 + 8 + bp));
     private int itemListYShift = 0;
 
     public InventoryOverlay(int width, int height, Game game) {
@@ -139,15 +139,15 @@ public class InventoryOverlay extends Overlay
         // cat headings
         String catString = itemCategories[itemCatIndex];
         if (itemCatIndex == 0) {
-            draw("< ", borderPadding, borderPadding, 0x404040);
+            draw("< ", bp, bp, 0x404040);
         } else {
-            draw("< ", borderPadding, borderPadding, 0xF0F0F0);
+            draw("< ", bp, bp, 0xF0F0F0);
         }
-        draw(itemCategories[itemCatIndex], borderPadding + 12, borderPadding, 0xF0F0F0);
+        draw(itemCategories[itemCatIndex], bp + 12, bp, 0xF0F0F0);
         if (itemCatIndex == itemCategories.length - 1) {
-            draw(" >", borderPadding + 12 + (catString.length() * 6), borderPadding, 0x404040);
+            draw(" >", bp + 12 + (catString.length() * 6), bp, 0x404040);
         } else {
-            draw(" >", borderPadding + 12 + (catString.length() * 6), borderPadding, 0xF0F0F0);
+            draw(" >", bp + 12 + (catString.length() * 6), bp, 0xF0F0F0);
         }
         for (int i = 0; i < itemCategories.length; i++) {
             Render blip = new Render(2, 2);
@@ -156,14 +156,14 @@ public class InventoryOverlay extends Overlay
             } else {
                 blip.fill(0, 0, blip.width, blip.height, 0x404040);
             }
-            draw(blip, (width - borderPadding - 4) - ((itemCategories.length - i - 1) * 6), borderPadding + 3);
+            draw(blip, (width - bp - 4) - ((itemCategories.length - i - 1) * 6), bp + 3);
         }
 
 
         // column icons
-        draw(Texture.nameIcon, borderPadding + 6, borderPadding + 10);
+        draw(Texture.nameIcon, bp + 6, bp + 10);
         for (int i = 0; i < statIcons.size(); i++) {
-            draw(statIcons.get(i), (width - borderPadding) - (i * 18) - 12, borderPadding + 10);
+            draw(statIcons.get(i), (width - bp) - (i * 18) - 12, bp + 10);
         }
 
 
@@ -184,17 +184,17 @@ public class InventoryOverlay extends Overlay
                 if (listItemIndex == i) {
                     colour = 0xF0F0F0;
                 }
-                itemListRender.draw(itemName, borderPadding, itemListYShift + (i * 12) + 2, colour);
+                itemListRender.draw(itemName, bp, itemListYShift + (i * 12) + 2, colour);
 
                 List<String> itemStats = new ArrayList<String>();
                 for (int b = 0; b < statNames.size(); b++) {
                     itemStats.add(listedItemsInfo.get(i).get(statNames.get(b)) + " ");
                 }
                 for (int j = 0; j < itemStats.size(); j++) {
-                    itemListRender.draw(itemStats.get(j), (itemListRender.width - borderPadding) - (j * 18) - (itemStats.get(j).length() * 6), itemListYShift + (i * 12) + 2, colour);
+                    itemListRender.draw(itemStats.get(j), (itemListRender.width - bp) - (j * 18) - (itemStats.get(j).length() * 6), itemListYShift + (i * 12) + 2, colour);
                 }
             }
         }
-        draw(itemListRender, borderPadding, borderPadding + 10 + 8);
+        draw(itemListRender, bp, bp + 10 + 8);
     }
 }

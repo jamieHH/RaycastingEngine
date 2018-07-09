@@ -119,40 +119,40 @@ public class OptionsMenu extends Menu
     public void update() {
         fill(0, 0, width, height, 0x202020);
 
-        draw("  Options", borderPadding, borderPadding, 0xF0F0F0);
+        draw("  Options", bp, bp, 0xF0F0F0);
 
         for (int i = 0; i < options.size(); i++) {
             if (optionIndex == i) {
-                draw("-> " + options.get(i), borderPadding, borderPadding + 10 + (i * 10), 0xD0D0D0);
+                draw("-> " + options.get(i), bp, bp + 10 + (i * 10), 0xD0D0D0);
 
                 if (options.get(optionIndex).equals("Aspect Ratio")) {
                     String string = "< " + aspectRatios[aspectRatioIndex] + " >";
-                    draw(string, width - ((string.length() * 6) + borderPadding), borderPadding + 10 + (i * 10), 0xD0D0D0);
+                    draw(string, width - ((string.length() * 6) + bp), bp + 10 + (i * 10), 0xD0D0D0);
                 } else if (options.get(optionIndex).equals("Resolution") && aspectRatios[aspectRatioIndex].equals("4:3")) {
                     String string = "< " + resolutions4x3[resolutionIndex][0] + ", " + resolutions4x3[resolutionIndex][1] + " >";
-                    draw(string, width - ((string.length() * 6) + borderPadding), borderPadding + 10 + (i * 10), 0xD0D0D0);
+                    draw(string, width - ((string.length() * 6) + bp), bp + 10 + (i * 10), 0xD0D0D0);
                 } else if (options.get(optionIndex).equals("Resolution") && aspectRatios[aspectRatioIndex].equals("16:9")) {
                     String string = "< " + resolutions16x9[resolutionIndex][0] + ", " + resolutions16x9[resolutionIndex][1] + " >";
-                    draw(string, width - ((string.length() * 6) + borderPadding), borderPadding + 10 + (i * 10), 0xD0D0D0);
+                    draw(string, width - ((string.length() * 6) + bp), bp + 10 + (i * 10), 0xD0D0D0);
                 } else if (options.get(optionIndex).equals("Scaling")) {
                     String string = "< " + scales[scaleIndex] + " >";
-                    draw(string, width - ((string.length() * 6) + borderPadding), borderPadding + 10 + (i * 10), 0xD0D0D0);
+                    draw(string, width - ((string.length() * 6) + bp), bp + 10 + (i * 10), 0xD0D0D0);
                 }
             } else {
-                draw(" " + options.get(i), borderPadding, borderPadding + 10 + (i * 10), 0x707070);
+                draw(" " + options.get(i), bp, bp + 10 + (i * 10), 0x707070);
 
                 if (options.get(i).equals("Aspect Ratio")) {
                     String string = aspectRatios[aspectRatioIndex];
-                    draw(string, width - ((string.length() * 6) + borderPadding), borderPadding + 10 + (i * 10), 0x707070);
+                    draw(string, width - ((string.length() * 6) + bp), bp + 10 + (i * 10), 0x707070);
                 } else if (options.get(i).equals("Resolution") && aspectRatios[aspectRatioIndex].equals("4:3")) {
                     String string = resolutions4x3[resolutionIndex][0] + ", " + resolutions4x3[resolutionIndex][1];
-                    draw(string, width - ((string.length() * 6) + borderPadding), borderPadding + 10 + (i * 10), 0x707070);
+                    draw(string, width - ((string.length() * 6) + bp), bp + 10 + (i * 10), 0x707070);
                 } else if (options.get(i).equals("Resolution") && aspectRatios[aspectRatioIndex].equals("16:9")) {
                     String string = resolutions16x9[resolutionIndex][0] + ", " + resolutions16x9[resolutionIndex][1];
-                    draw(string, width - ((string.length() * 6) + borderPadding), borderPadding + 10 + (i * 10), 0x707070);
+                    draw(string, width - ((string.length() * 6) + bp), bp + 10 + (i * 10), 0x707070);
                 } else if (options.get(i).equals("Scaling")) {
                     String string = scales[scaleIndex] + "";
-                    draw(string, width - ((string.length() * 6) + borderPadding), borderPadding + 10 + (i * 10), 0x707070);
+                    draw(string, width - ((string.length() * 6) + bp), bp + 10 + (i * 10), 0x707070);
                 }
             }
         }

@@ -45,33 +45,33 @@ public class LoadMenu extends Menu
     public void update() {
         fill(0, 0, width, height, 0x202020);
 
-        draw("  Load Game", borderPadding, borderPadding, 0xF0F0F0);
+        draw("  Load Game", bp, bp, 0xF0F0F0);
         for (int i = 0; i < options.size(); i++) {
             if (optionIndex == i) {
-                draw("-> " + options.get(i), borderPadding, borderPadding + 10 + (i * 10), 0xD0D0D0);
+                draw("-> " + options.get(i), bp, bp + 10 + (i * 10), 0xD0D0D0);
 
                 if (options.get(optionIndex).equals("Save Slot 1")) {
                     String string = "< " + saves[optionIndex] + " >";
-                    draw(string, width - ((string.length() * 6) + borderPadding), borderPadding + 10 + (i * 10), 0xD0D0D0);
+                    draw(string, width - ((string.length() * 6) + bp), bp + 10 + (i * 10), 0xD0D0D0);
                 } else if (options.get(optionIndex).equals("Save Slot 2")) {
                     String string = "< " + saves[optionIndex] + " >";
-                    draw(string, width - ((string.length() * 6) + borderPadding), borderPadding + 10 + (i * 10), 0xD0D0D0);
+                    draw(string, width - ((string.length() * 6) + bp), bp + 10 + (i * 10), 0xD0D0D0);
                 } else if (options.get(optionIndex).equals("Save Slot 3")) {
                     String string = "< " + saves[optionIndex] + " >";
-                    draw(string, width - ((string.length() * 6) + borderPadding), borderPadding + 10 + (i * 10), 0xD0D0D0);
+                    draw(string, width - ((string.length() * 6) + bp), bp + 10 + (i * 10), 0xD0D0D0);
                 }
             } else {
-                draw(" " + options.get(i), borderPadding, borderPadding + 10 + (i * 10), 0x707070);
+                draw(" " + options.get(i), bp, bp + 10 + (i * 10), 0x707070);
 
                 if (options.get(i).equals("Save Slot 1")) {
                     String string = "< " + saves[i] + " >";
-                    draw(string, width - ((string.length() * 6) + borderPadding), borderPadding + 10 + (i * 10), 0x707070);
+                    draw(string, width - ((string.length() * 6) + bp), bp + 10 + (i * 10), 0x707070);
                 } else if (options.get(i).equals("Save Slot 2")) {
                     String string = "< " + saves[i] + " >";
-                    draw(string, width - ((string.length() * 6) + borderPadding), borderPadding + 10 + (i * 10), 0x707070);
+                    draw(string, width - ((string.length() * 6) + bp), bp + 10 + (i * 10), 0x707070);
                 } else if (options.get(i).equals("Save Slot 3")) {
                     String string = "< " + saves[i] + " >";
-                    draw(string, width - ((string.length() * 6) + borderPadding), borderPadding + 10 + (i * 10), 0x707070);
+                    draw(string, width - ((string.length() * 6) + bp), bp + 10 + (i * 10), 0x707070);
                 }
             }
         }

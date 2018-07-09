@@ -9,6 +9,8 @@ public class PlanksWeapon extends Weapon
     public PlanksWeapon() {
         super();
 
+        icon = Texture.planksIcon;
+
         Render[] ts = {
                 Texture.screenAxe0,
         };

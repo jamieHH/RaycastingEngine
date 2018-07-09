@@ -12,6 +12,8 @@ public class XbowWeapon extends Weapon
 
         canStrike = false;
 
+        icon = Texture.xbowIcon;
+
         setIdleSprite(new Sprite(Texture.screenXbow0));
 
         Render[] ts = {

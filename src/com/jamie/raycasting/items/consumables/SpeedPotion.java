@@ -1,11 +1,14 @@
 package com.jamie.raycasting.items.consumables;
 
 import com.jamie.raycasting.entities.mobs.mobEffects.ModSpeedEffect;
+import com.jamie.raycasting.graphics.Texture;
 
 public class SpeedPotion extends Consumable
 {
     public SpeedPotion() {
         super();
+
+        icon = Texture.potionIcon;
 
         name = "Speed Potion";
         duration = 920;

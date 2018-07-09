@@ -15,6 +15,13 @@ public class Texture
     public static final Render none = new Render(16, 16);
 
     // icons
+    public static final Render spearIcon = loadBitmap("/gui/spearIcon.png");
+    public static final Render axeIcon = loadBitmap("/gui/axeIcon.png");
+    public static final Render planksIcon = loadBitmap("/gui/planksIcon.png");
+    public static final Render xbowIcon = loadBitmap("/gui/xbowIcon.png");
+    public static final Render wandIcon = loadBitmap("/gui/wandIcon.png");
+    public static final Render potionIcon = loadBitmap("/gui/potionIcon.png");
+
     public static final Render heartIcon = loadBitmap("/gui/heartIcon.png");
     public static final Render poisonIcon = loadBitmap("/gui/poisonIcon.png");
     public static final Render speedIcon = loadBitmap("/gui/speedIcon.png");
