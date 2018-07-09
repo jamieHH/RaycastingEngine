@@ -28,6 +28,7 @@ public class BridgeBlock extends TriggerableBlock
     public boolean use(Mob source) {
         if (broken) {
             if (source.getRightHandItem() instanceof PlanksWeapon) {
+                source.removeRightHandItem();
                 trigger();
                 source.addHudHeading("The bridge is mended");
                 return true;

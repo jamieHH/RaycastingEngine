@@ -306,9 +306,9 @@ public abstract class Mob extends Entity
     }
 
     public void removeItem(Item item) {
+        addHudHeading(item.getInfo().get("name") + " removed");
         inventory.removeItem(item);
         item.setUser(null);
-        addHudHeading(item.getInfo().get("name") + " removed");
     }
 
     public Item getRightHandItem() {
@@ -333,6 +333,11 @@ public abstract class Mob extends Entity
     }
 
     public void unequipRightHand() {
+        setRightHandItemIndex(-1);
+    }
+
+    public void removeRightHandItem() {
+        getRightHandItem().remove();
         setRightHandItemIndex(-1);
     }
 
