@@ -145,6 +145,7 @@ public class SimpleInventoryOverlay extends Overlay
             }
             draw(blip, (width - bp - 4) - ((itemCategories.length - i - 1) * 6), bp + 3);
         }
+        draw(Texture.nameIcon, bp * 2, bp + 10);
     }
 
     public void updateList() {
@@ -182,38 +183,28 @@ public class SimpleInventoryOverlay extends Overlay
             itemDetailsPane.draw(bground, itemDetailsPane.width / 2 - bground.width / 2, bp);
             itemDetailsPane.draw(icon, itemDetailsPane.width / 2 - icon.width / 2, bp + 1);
 
-
             int rowX = bp + bground.height + bp + 12;
             if (item.type.equals("weapon")) {
-                itemDetailsPane.draw(Texture.damageIcon, bp, rowX + 2);
+                itemDetailsPane.draw(Texture.damageIcon, bp, rowX + 1);
                 itemDetailsPane.draw(item.getInfo().get("damage"), bp + 12, rowX, 0xF0F0F0);
-
-                itemDetailsPane.draw(Texture.rangeIcon, bp, rowX + 10);
-                itemDetailsPane.draw(item.getInfo().get("reach"), bp + 12, rowX + 10, 0xF0F0F0);
+                rowX += 10;
+                itemDetailsPane.draw(Texture.rangeIcon, bp, rowX + 1);
+                itemDetailsPane.draw(item.getInfo().get("reach"), bp + 12, rowX, 0xF0F0F0);
             } else if (item.type.equals("consumable")) {
-                itemDetailsPane.draw(Texture.magnitudeIcon, bp, rowX + 2);
+                itemDetailsPane.draw(Texture.magnitudeIcon, bp, rowX + 1);
                 itemDetailsPane.draw(item.getInfo().get("magnitude"), bp + 12, rowX, 0xF0F0F0);
-
-                itemDetailsPane.draw(Texture.durationIcon, bp, rowX + 2 + 10);
-                itemDetailsPane.draw(item.getInfo().get("duration"), bp + 12, rowX + 10, 0xF0F0F0);
+                rowX += 10;
+                itemDetailsPane.draw(Texture.durationIcon, bp, rowX + 1);
+                itemDetailsPane.draw(item.getInfo().get("duration"), bp + 12, rowX, 0xF0F0F0);
             }
-
-
         }
-
         draw(itemDetailsPane, bp + itemListRender.width, bp + 10 + 8);
     }
 
     public void update() {
         fill(0, 0, width, height, 0x202020);
-
         updateCatHeadings();
-
-        // column title
-        draw(Texture.nameIcon, bp + 6, bp + 10);
-
         updateList();
-
         updateDetailsPain();
     }
 }
