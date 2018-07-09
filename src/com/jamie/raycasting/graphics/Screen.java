@@ -5,9 +5,8 @@ import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.graphics.overlays.HudBarOverlay;
 import com.jamie.raycasting.graphics.overlays.StatBarOverlay;
 import com.jamie.raycasting.graphics.overlays.ViewPunchOverlay;
-import com.jamie.raycasting.graphics.overlays.menus.InventoryOverlay;
 import com.jamie.raycasting.graphics.overlays.menus.Menu;
-import com.jamie.raycasting.graphics.overlays.menus.SimpleInventoryOverlay;
+import com.jamie.raycasting.graphics.overlays.menus.InventoryOverlay;
 
 public class Screen extends Render
 {
@@ -90,7 +89,7 @@ public class Screen extends Render
             if (game.activeOverlay instanceof Menu) {
                 cornerX = 0;
                 cornerY = (int) (height * 0.2);
-            } else if (game.activeOverlay instanceof SimpleInventoryOverlay) {
+            } else if (game.activeOverlay instanceof InventoryOverlay) {
                 cornerX = (int) (width * 0.1);
                 cornerY = (int) (height * 0.2);
             }
