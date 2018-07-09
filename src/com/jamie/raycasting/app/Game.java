@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.entities.mobs.Player;
+import com.jamie.raycasting.graphics.overlays.InventoryOverlay;
 import com.jamie.raycasting.graphics.overlays.Overlay;
 import com.jamie.raycasting.graphics.overlays.menus.*;
 import com.jamie.raycasting.input.InputHandler;

@@ -1,4 +1,4 @@
-package com.jamie.raycasting.graphics.overlays.menus;
+package com.jamie.raycasting.graphics.overlays;
 
 import com.jamie.raycasting.app.Game;
 import com.jamie.raycasting.graphics.Render;
@@ -75,8 +75,8 @@ public class InventoryOverlay extends Overlay
                 listItemIndex--;
             }
             int down = listItemIndex * 12;
-            if (down < (itemListYShift * -1)) {
-                itemListYShift = -(down % (-itemListYShift));
+            if (down < -itemListYShift) {
+                itemListYShift = -(down % -itemListYShift);
             }
         }
         if (game.userInput.back) {
@@ -95,7 +95,6 @@ public class InventoryOverlay extends Overlay
                 game.userInput.setKeyGroupState("action", false);
                 if (!(inventory.getItems().get(inventoryItemIndex) instanceof Consumable)) {
                     if (game.player.getRightHandItem() != inventory.getItem(inventoryItemIndex)) {
-
                         int inx = inventory.getIndexOf(inventory.getItem(inventoryItemIndex));
                         game.player.setRightHandItemIndex(inx);
                     } else {
@@ -105,10 +104,6 @@ public class InventoryOverlay extends Overlay
                     inventory.getItem(inventoryItemIndex).use();
                 }
             }
-        }
-
-        if (listItemIndex >= listedItems.size() && listItemIndex != 0) {
-            listItemIndex = listedItems.size() - 1;
         }
 
         if (listedItems.size() != 0) {
@@ -168,7 +163,6 @@ public class InventoryOverlay extends Overlay
 
     public void updateDetailsPain() {
         itemDetailsPane.fill(0, 0, itemListRender.width, itemListRender.height, 0x303030);
-
         if (listedItems.size() > 0) {
             Item item = listedItems.get(listItemIndex);
             Render icon = item.icon;

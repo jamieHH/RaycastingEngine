@@ -6,7 +6,7 @@ import com.jamie.raycasting.graphics.overlays.HudBarOverlay;
 import com.jamie.raycasting.graphics.overlays.StatBarOverlay;
 import com.jamie.raycasting.graphics.overlays.ViewPunchOverlay;
 import com.jamie.raycasting.graphics.overlays.menus.Menu;
-import com.jamie.raycasting.graphics.overlays.menus.InventoryOverlay;
+import com.jamie.raycasting.graphics.overlays.InventoryOverlay;
 
 public class Screen extends Render
 {
