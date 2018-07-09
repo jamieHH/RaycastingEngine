@@ -341,6 +341,8 @@ public abstract class Mob extends Entity
         setRightHandItemIndex(-1);
     }
 
+    // git fix
+
     public double getRightHandReach() {
         if (inventory.countItems() > 0 && !rightHandEmpty) {
             return baseReach + getRightHandItem().reach;
