@@ -123,10 +123,7 @@ public class SimpleInventoryOverlay extends Overlay
         }
     }
 
-    public void update() {
-        fill(0, 0, width, height, 0x202020);
-
-        // cat headings
+    public void updateCatHeadings() {
         String catString = itemCategories[itemCatIndex];
         if (itemCatIndex == 0) {
             draw("< ", bp, bp, 0x404040);
@@ -148,11 +145,9 @@ public class SimpleInventoryOverlay extends Overlay
             }
             draw(blip, (width - bp - 4) - ((itemCategories.length - i - 1) * 6), bp + 3);
         }
+    }
 
-        // column title
-        draw(Texture.nameIcon, bp + 6, bp + 10);
-
-        // listed items
+    public void updateList() {
         itemListRender.fill(0, 0, itemListRender.width, itemListRender.height, 0x101010);
         if (listedItems.size() > 0) {
             itemListRender.fill(0, itemListYShift + (listItemIndex * 12), itemListRender.width, itemListYShift + ((listItemIndex + 1) * 12), 0x404040);
@@ -173,19 +168,52 @@ public class SimpleInventoryOverlay extends Overlay
             }
         }
         draw(itemListRender, bp, bp + 10 + 8);
+    }
 
-        // item details pane
+    public void updateDetailsPain() {
         itemDetailsPane.fill(0, 0, itemListRender.width, itemListRender.height, 0x303030);
 
         if (listedItems.size() > 0) {
-            Render icon = listedItems.get(listItemIndex).icon;
+            Item item = listedItems.get(listItemIndex);
+            Render icon = item.icon;
             Render bground = new Render(18, 18);
             bground.fill(0, 0, bground.width, bground.height, 0x202020);
 
             itemDetailsPane.draw(bground, itemDetailsPane.width / 2 - bground.width / 2, bp);
             itemDetailsPane.draw(icon, itemDetailsPane.width / 2 - icon.width / 2, bp + 1);
+
+
+            int rowX = bp + bground.height + bp + 12;
+            if (item.type.equals("weapon")) {
+                itemDetailsPane.draw(Texture.damageIcon, bp, rowX + 2);
+                itemDetailsPane.draw(item.getInfo().get("damage"), bp + 12, rowX, 0xF0F0F0);
+
+                itemDetailsPane.draw(Texture.rangeIcon, bp, rowX + 10);
+                itemDetailsPane.draw(item.getInfo().get("reach"), bp + 12, rowX + 10, 0xF0F0F0);
+            } else if (item.type.equals("consumable")) {
+                itemDetailsPane.draw(Texture.magnitudeIcon, bp, rowX + 2);
+                itemDetailsPane.draw(item.getInfo().get("magnitude"), bp + 12, rowX, 0xF0F0F0);
+
+                itemDetailsPane.draw(Texture.durationIcon, bp, rowX + 2 + 10);
+                itemDetailsPane.draw(item.getInfo().get("duration"), bp + 12, rowX + 10, 0xF0F0F0);
+            }
+
+
         }
 
         draw(itemDetailsPane, bp + itemListRender.width, bp + 10 + 8);
+    }
+
+    public void update() {
+        fill(0, 0, width, height, 0x202020);
+
+        updateCatHeadings();
+
+        // column title
+        draw(Texture.nameIcon, bp + 6, bp + 10);
+
+        updateList();
+
+        updateDetailsPain();
     }
 }
