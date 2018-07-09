@@ -65,7 +65,7 @@ public class Game
 				if (userInput.inventory) {
 					userInput.setKeyGroupState("inventory", false);
 					if (activeOverlay == null) {
-						setActiveOverlay(new InventoryOverlay((int) (App.width * 0.8), (int) (App.height * 0.6), this));
+						setActiveOverlay(new SimpleInventoryOverlay((int) (App.width * 0.8), (int) (App.height * 0.6), this));
 					} else {
 						setActiveOverlay(null);
 					}
