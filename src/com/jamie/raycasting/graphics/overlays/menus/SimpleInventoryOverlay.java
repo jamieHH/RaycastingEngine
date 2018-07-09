@@ -78,7 +78,6 @@ public class SimpleInventoryOverlay extends Overlay
             if ((listItemIndex > 0)) {
                 listItemIndex--;
             }
-
             int down = listItemIndex * 12;
             if (down < (itemListYShift * -1)) {
                 itemListYShift = -(down % (-itemListYShift));
@@ -89,10 +88,9 @@ public class SimpleInventoryOverlay extends Overlay
             if ((listItemIndex < listedItems.size() - 1)) {
                 listItemIndex++;
             }
-
             int down = listItemIndex * 12;
-            if (down >= itemListRender.height - itemListYShift) {
-                itemListYShift = -(down % itemListRender.height + 12);
+            if (down + 12 >= itemListRender.height - itemListYShift) {
+                itemListYShift = -(down - itemListRender.height + 12);
             }
         }
 
