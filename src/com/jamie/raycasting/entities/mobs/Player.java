@@ -2,10 +2,7 @@ package com.jamie.raycasting.entities.mobs;
 
 import com.jamie.raycasting.input.InputHandler;
 import com.jamie.raycasting.items.consumables.*;
-import com.jamie.raycasting.items.weapons.AxeWeapon;
-import com.jamie.raycasting.items.weapons.SpearWeapon;
-import com.jamie.raycasting.items.weapons.WandWeapon;
-import com.jamie.raycasting.items.weapons.XbowWeapon;
+import com.jamie.raycasting.items.weapons.*;
 
 public class Player extends Mob
 {
@@ -37,6 +34,7 @@ public class Player extends Mob
         addItem(new XbowWeapon());
         addItem(new AxeWeapon());
         addItem(new PoisonPotion());
+        addItem(new PlanksWeapon());
 
         addFaction("human");
     }

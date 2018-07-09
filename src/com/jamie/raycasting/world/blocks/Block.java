@@ -14,6 +14,7 @@ public class Block
 	public boolean isOpaque = false;
 	public boolean isSolid = false;
 	public boolean isWalkable = true;
+	public boolean isUsable = false;
 
 	public boolean isStatic = false;
 

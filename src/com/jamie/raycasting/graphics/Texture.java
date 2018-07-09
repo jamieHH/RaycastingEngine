@@ -47,6 +47,7 @@ public class Texture
     // surfaces
 	public static final Render floor = loadBitmap("/textures/floor.png");
 	public static final Render bridge = loadBitmap("/textures/bridge.png");
+	public static final Render bridgeBroken = loadBitmap("/textures/bridgeBroken.png");
 	public static final Render wall = loadBitmap("/textures/wall.png");
 	public static final Render cobweb = loadBitmap("/textures/cobweb.png");
 	public static final Render door = loadBitmap("/textures/door.png");
@@ -65,6 +66,7 @@ public class Texture
     public static final Render wetFloor = mergeBitmap(floor, puddleOverlay);
     public static final Render wallButton0 = mergeBitmap(wall, buttonOverlay0);
     public static final Render wallButton1 = mergeBitmap(wall, buttonOverlay1);
+    public static final Render bridgeWaterBroken = mergeBitmap(water0, bridgeBroken);
     public static final Render wallSwitch0 = mergeBitmap(wall, switchOverlay0);
     public static final Render wallSwitch1 = mergeBitmap(wall, switchOverlay1);
 

@@ -38,7 +38,6 @@ public abstract class Level
     private static final CobwebBlock CobwebBlock = new CobwebBlock();
     private static final TreeBlock TreeBlock = new TreeBlock();
     private static final GrassBlock GrassBlock = new GrassBlock();
-    private static final BridgeBlock BridgeBlock = new BridgeBlock();
     private static final ShrubsBlock ShrubsBlock = new ShrubsBlock();
     private static final StonePathBlock StonePathBlock = new StonePathBlock();
     private static final AltStonePathBlock AltStonePathBlock = new AltStonePathBlock();
@@ -244,12 +243,13 @@ public abstract class Level
         if (col == 0xE0E0E0) return CobwebBlock;
         if (col == 0xB27400) return TreeBlock;
         if (col == 0xB8ECBE) return GrassBlock;
-        if (col == 0x7F3300) return BridgeBlock;
         if (col == 0x7F8800) return ShrubsBlock;
         if (col == 0x8BB28F) return StonePathBlock;
         if (col == 0xA2AFA4) return AltStonePathBlock;
         if (col == 0x9A9A9A) return GraveBlock;
         if (col == 0x0094FF) return WaterBlock;
+        if (col == 0x7F3300) return new BridgeBlock(false);
+        if (col == 0x7f334e) return new BridgeBlock(true);
         if (col == 0xA3723A) return new SpinningDummyBlock();
         if (col == 0xA48080) return new DoorBlock();
         if (col == 0x632A2A) return new StrongDoorBlock();

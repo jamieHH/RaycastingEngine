@@ -453,7 +453,7 @@ public abstract class Mob extends Entity
                     Block block = level.getBlock(xb, zb);
                     if (block.use(this)) return;
 
-                    if (block.isSolid) return;
+                    if (block.isSolid || block.isUsable) return;
                 }
             }
         }
