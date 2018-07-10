@@ -2,6 +2,7 @@ package com.jamie.raycasting.world;
 
 import com.jamie.raycasting.app.App;
 import com.jamie.raycasting.app.Game;
+import com.jamie.raycasting.app.Sound;
 import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.graphics.overlays.LoadingOverlay;
 import com.jamie.raycasting.world.blocks.LevelPortalBlock;
@@ -74,6 +75,7 @@ public class World
         Mob thisMob = game.player;
 
         game.setActiveOverlay(new LoadingOverlay(App.width, App.height, name));
+        Sound.switchLevel.play();
 
         level.removeEntity(thisMob);
 

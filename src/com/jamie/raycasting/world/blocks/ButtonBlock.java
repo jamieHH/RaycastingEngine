@@ -1,5 +1,6 @@
 package com.jamie.raycasting.world.blocks;
 
+import com.jamie.raycasting.app.Sound;
 import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.graphics.Texture;
 
@@ -27,6 +28,7 @@ public class ButtonBlock extends Block
         if (useTicks > 0) {
             return false;
         }
+        Sound.clickUp.play();
 
         useTicks = useWait;
         wallTex = Texture.wallButton1;

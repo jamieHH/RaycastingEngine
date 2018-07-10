@@ -14,6 +14,7 @@ public class Sound
     public static Sound smash = loadSound("sfx/smash.wav");
     public static Sound slideUp = loadSound("sfx/slideUp.wav");
     public static Sound slideDown = loadSound("sfx/slideDown.wav");
+    public static Sound switchLevel = loadSound("sfx/switchLevel.wav");
 
     private Clip clip;
 

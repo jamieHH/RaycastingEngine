@@ -109,6 +109,10 @@ public class InventoryOverlay extends Overlay
             }
         }
 
+        if (listItemIndex >= listedItems.size() && listItemIndex != 0) {
+            listItemIndex = listedItems.size() - 1;
+        }
+
         if (listedItems.size() != 0) {
             inventoryItemIndex = inventory.getIndexOf(listedItems.get(listItemIndex));
         } else {
