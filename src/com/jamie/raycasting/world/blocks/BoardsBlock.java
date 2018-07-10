@@ -1,5 +1,6 @@
 package com.jamie.raycasting.world.blocks;
 
+import com.jamie.raycasting.app.Sound;
 import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.entities.particles.WoodParticle;
 import com.jamie.raycasting.graphics.Render;
@@ -42,6 +43,7 @@ public class BoardsBlock extends TriggerableBlock
     }
 
     public void trigger() {
+	    Sound.smash.play();
         smashed = true;
         isSolid = false;
 

@@ -11,11 +11,14 @@ public class Sound
     public static Sound hit = loadSound("sfx/hit.wav");
     public static Sound pain = loadSound("sfx/pain.wav");
     public static Sound die = loadSound("sfx/die.wav");
+    public static Sound smash = loadSound("sfx/smash.wav");
+    public static Sound slideUp = loadSound("sfx/slideUp.wav");
+    public static Sound slideDown = loadSound("sfx/slideDown.wav");
 
     private Clip clip;
 
 
-    public static Sound loadSound(String fileName) {
+    private static Sound loadSound(String fileName) {
         Sound sound = new Sound();
         try {
             AudioInputStream ais = AudioSystem.getAudioInputStream(new File("res/" + fileName));

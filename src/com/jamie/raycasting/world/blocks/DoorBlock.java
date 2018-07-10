@@ -1,5 +1,6 @@
 package com.jamie.raycasting.world.blocks;
 
+import com.jamie.raycasting.app.Sound;
 import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.graphics.Texture;
 
@@ -34,6 +35,11 @@ public class DoorBlock extends TriggerableBlock
 
     public void trigger() {
         open = !open;
+        if (open) {
+            Sound.slideDown.play();
+        } else {
+            Sound.slideUp.play();
+        }
     }
 
     public void tick() {
