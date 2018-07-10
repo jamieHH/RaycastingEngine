@@ -65,20 +65,22 @@ public class Game
 			if (!player.isDead) {
 				if (userInput.inventory) {
 					userInput.setKeyGroupState("inventory", false);
-					Sound.clickAction.play();
 					if (activeOverlay == null) {
+						Sound.slideUp.play();
 						setActiveOverlay(new InventoryOverlay((int) (App.width * 0.8), (int) (App.height * 0.6), this));
 					} else {
+						Sound.slideDown.play();
 						setActiveOverlay(null);
 					}
 				}
 
 				if (userInput.pause) {
 					userInput.setKeyGroupState("pause", false);
-					Sound.clickAction.play();
 					if (activeOverlay == null) {
+						Sound.slideUp.play();
 						setActiveOverlay(pauseMenu);
 					} else {
+						Sound.slideDown.play();
 						setActiveOverlay(null);
 					}
 				}
