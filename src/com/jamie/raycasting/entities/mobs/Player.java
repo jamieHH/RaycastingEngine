@@ -1,5 +1,6 @@
 package com.jamie.raycasting.entities.mobs;
 
+import com.jamie.raycasting.app.Sound;
 import com.jamie.raycasting.input.InputHandler;
 import com.jamie.raycasting.items.consumables.*;
 import com.jamie.raycasting.items.weapons.*;
@@ -23,6 +24,8 @@ public class Player extends Mob
         crouchSpeed = 0.1;
 
         maxHealth = 10;
+
+        hurtSound = Sound.pain;
 
         addItem(new SpearWeapon());
         addItem(new StrengthPotion());

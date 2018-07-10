@@ -8,6 +8,9 @@ public class Sound
     public static Sound clickUp = loadSound("sfx/clickUp.wav");
     public static Sound clickDown = loadSound("sfx/clickDown.wav");
     public static Sound clickAction = loadSound("sfx/clickAction.wav");
+    public static Sound hit = loadSound("sfx/hit.wav");
+    public static Sound pain = loadSound("sfx/pain.wav");
+    public static Sound die = loadSound("sfx/die.wav");
 
     private Clip clip;
 

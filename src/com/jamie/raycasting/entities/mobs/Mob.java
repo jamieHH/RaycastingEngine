@@ -1,5 +1,6 @@
 package com.jamie.raycasting.entities.mobs;
 
+import com.jamie.raycasting.app.Sound;
 import com.jamie.raycasting.entities.Entity;
 import com.jamie.raycasting.entities.mobs.mobEffects.MobEffect;
 import com.jamie.raycasting.entities.particles.BloodParticle;
@@ -31,6 +32,9 @@ public abstract class Mob extends Entity
 
     private List<String> factions = new ArrayList<String>();
     protected Mob target;
+
+    protected Sound deathSound = Sound.die;
+    protected Sound hurtSound = Sound.hit;
 
     // movement
 	private double rotationMove;
@@ -70,6 +74,7 @@ public abstract class Mob extends Entity
 
     public ArrayList<String> hudHeadings = new ArrayList<String>();
     public int hudHeadingsTicks = 120;
+
 
     public Mob(InputHandler input) {
         input.setMob(this);
@@ -420,7 +425,10 @@ public abstract class Mob extends Entity
         BloodParticle p = new BloodParticle();
         level.addEntity(p, posX, posZ);
 
-        if (health <= 0) {
+        if (health > 0) {
+            hurtSound.play();
+        } else {
+            deathSound.play();
             health = 0;
             die();
         }
