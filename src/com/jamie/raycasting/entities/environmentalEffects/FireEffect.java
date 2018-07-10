@@ -33,7 +33,9 @@ public class FireEffect extends EnvironmentalEffect
         List<Mob> mobs = getMobsInRadius(radius);
 
         for (int i = 0; i < mobs.size(); i++) {
-            mobs.get(i).addMobEffect(new FireDamageEffect(mobs.get(i), 60, magnitude));
+            if (!mobs.get(i).isDead) {
+                mobs.get(i).addMobEffect(new FireDamageEffect(mobs.get(i), 60, magnitude));
+            }
         }
 
         EmberParticle p = new EmberParticle();
