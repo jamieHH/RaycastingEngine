@@ -2,6 +2,7 @@ package com.jamie.raycasting.graphics.overlays.menus;
 
 import com.jamie.raycasting.app.App;
 import com.jamie.raycasting.app.Game;
+import com.jamie.raycasting.app.Sound;
 
 public class OptionsMenu extends Menu
 {
@@ -51,12 +52,14 @@ public class OptionsMenu extends Menu
         if (game.userInput.forward) {
             game.userInput.setKeyGroupState("forward", false);
             if ((optionIndex > 0)) {
+                Sound.clickUp.play();
                 optionIndex--;
             }
         }
         if (game.userInput.back) {
             game.userInput.setKeyGroupState("back", false);
             if ((optionIndex < options.size() - 1)) {
+                Sound.clickDown.play();
                 optionIndex++;
             }
         }
@@ -97,6 +100,7 @@ public class OptionsMenu extends Menu
 
         if (game.userInput.action) {
             game.userInput.setKeyGroupState("action", false);
+            Sound.clickAction.play();
             if (options.get(optionIndex).equals("Reset Defaults")) {
                 aspectRatioIndex = 0;
                 resolutionIndex = 1;

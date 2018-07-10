@@ -1,9 +1,9 @@
 package com.jamie.raycasting.graphics.overlays;
 
 import com.jamie.raycasting.app.Game;
+import com.jamie.raycasting.app.Sound;
 import com.jamie.raycasting.graphics.Render;
 import com.jamie.raycasting.graphics.Texture;
-import com.jamie.raycasting.graphics.overlays.Overlay;
 import com.jamie.raycasting.items.Inventory;
 import com.jamie.raycasting.items.Item;
 import com.jamie.raycasting.items.consumables.Consumable;
@@ -72,6 +72,7 @@ public class InventoryOverlay extends Overlay
         if (game.userInput.forward) {
             game.userInput.setKeyGroupState("forward", false);
             if ((listItemIndex > 0)) {
+                Sound.clickUp.play();
                 listItemIndex--;
             }
             int down = listItemIndex * 12;
@@ -82,6 +83,7 @@ public class InventoryOverlay extends Overlay
         if (game.userInput.back) {
             game.userInput.setKeyGroupState("back", false);
             if ((listItemIndex < listedItems.size() - 1)) {
+                Sound.clickDown.play();
                 listItemIndex++;
             }
             int down = listItemIndex * 12;
@@ -93,6 +95,7 @@ public class InventoryOverlay extends Overlay
         if (listedItems.size() > 0) {
             if (game.userInput.action) {
                 game.userInput.setKeyGroupState("action", false);
+                Sound.clickAction.play();
                 if (!(inventory.getItems().get(inventoryItemIndex) instanceof Consumable)) {
                     if (game.player.getRightHandItem() != inventory.getItem(inventoryItemIndex)) {
                         int inx = inventory.getIndexOf(inventory.getItem(inventoryItemIndex));

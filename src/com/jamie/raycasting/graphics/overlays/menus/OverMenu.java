@@ -1,6 +1,7 @@
 package com.jamie.raycasting.graphics.overlays.menus;
 
 import com.jamie.raycasting.app.Game;
+import com.jamie.raycasting.app.Sound;
 
 public class OverMenu extends Menu
 {
@@ -17,18 +18,21 @@ public class OverMenu extends Menu
         if (game.userInput.forward) {
             game.userInput.setKeyGroupState("forward", false);
             if ((optionIndex > 0)) {
+                Sound.clickUp.play();
                 optionIndex--;
             }
         }
         if (game.userInput.back) {
             game.userInput.setKeyGroupState("back", false);
             if ((optionIndex < options.size() - 1)) {
+                Sound.clickDown.play();
                 optionIndex++;
             }
         }
 
         if (game.userInput.action) {
             game.userInput.setKeyGroupState("action", false);
+            Sound.clickAction.play();
             if (options.get(optionIndex).equals("Main Menu")) {
                 game.stopGame();
             } else if (options.get(optionIndex).equals("Quit Game")) {

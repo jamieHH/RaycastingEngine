@@ -65,6 +65,7 @@ public class Game
 			if (!player.isDead) {
 				if (userInput.inventory) {
 					userInput.setKeyGroupState("inventory", false);
+					Sound.clickAction.play();
 					if (activeOverlay == null) {
 						setActiveOverlay(new InventoryOverlay((int) (App.width * 0.8), (int) (App.height * 0.6), this));
 					} else {
@@ -74,6 +75,7 @@ public class Game
 
 				if (userInput.pause) {
 					userInput.setKeyGroupState("pause", false);
+					Sound.clickAction.play();
 					if (activeOverlay == null) {
 						setActiveOverlay(pauseMenu);
 					} else {
