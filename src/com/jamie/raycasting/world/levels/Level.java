@@ -146,8 +146,7 @@ public abstract class Level
 
     public void addEntity(Entity e, double x, double z) {
         e.setPosition(x, z);
-        entities.add(e);
-        e.level = this;
+        addEntity(e);
     }
 
     public List<Entity> getEntities() {

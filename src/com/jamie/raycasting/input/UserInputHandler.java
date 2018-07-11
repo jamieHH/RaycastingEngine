@@ -13,7 +13,7 @@ public class UserInputHandler extends InputHandler implements KeyListener, Focus
 
     private Map<String, int[]> keyGroups = new HashMap<String, int[]>();
 
-    public boolean randomLevel, loadLevel, nextMob, inventory, pause, yKey;
+    public boolean randomLevel, loadLevel, nextMob, inventory, pause;
 
     public UserInputHandler() {
         int[] forwardKeys = {KeyEvent.VK_W, KeyEvent.VK_UP};
@@ -60,11 +60,6 @@ public class UserInputHandler extends InputHandler implements KeyListener, Focus
     }
 
 	public void tick() {
-        if (pauseTime > 0) {
-            pauseTime--;
-            return;
-        }
-
 		forward = checkKeyGroup(keyGroups.get("forward"));
 		back = checkKeyGroup(keyGroups.get("back"));
 		left = checkKeyGroup(keyGroups.get("left"));
@@ -81,7 +76,6 @@ public class UserInputHandler extends InputHandler implements KeyListener, Focus
         randomLevel = key[KeyEvent.VK_R];
         loadLevel = key[KeyEvent.VK_P];
         nextMob = key[KeyEvent.VK_G];
-        yKey = key[KeyEvent.VK_Y];
     }
 
 	@Override

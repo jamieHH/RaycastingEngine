@@ -11,7 +11,7 @@ public class ViewPunchOverlay extends Overlay
     }
 
     public void update(double magnitude, String type) {
-        int colour0 = 0, colour1 = 0;
+        int colour0, colour1;
         switch (type) {
             case "blunt":
                 colour0 = 0x505020;

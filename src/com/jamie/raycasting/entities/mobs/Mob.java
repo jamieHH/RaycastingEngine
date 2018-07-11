@@ -77,7 +77,6 @@ public abstract class Mob extends Entity
 
 
     public Mob(InputHandler input) {
-        input.setMob(this);
         this.input = input;
 
         health = maxHealth;

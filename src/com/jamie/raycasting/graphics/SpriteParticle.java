@@ -19,29 +19,10 @@ public class SpriteParticle extends Sprite
         setMomentum();
     }
 
-    public SpriteParticle(Render texture, double xOffs, double yOffs, double zOffs, double speed) {
-        super(texture, xOffs, yOffs, zOffs);
-
-        this.speed = speed;
-        setMomentum();
-    }
-
-    public SpriteParticle(Render t) {
-        super(t);
-
-        setMomentum();
-    }
-
     public SpriteParticle(Render t, double speed) {
         super(t);
 
         this.speed = speed;
-        setMomentum();
-    }
-
-    public SpriteParticle(Render[] ts) {
-        super(ts);
-
         setMomentum();
     }
 

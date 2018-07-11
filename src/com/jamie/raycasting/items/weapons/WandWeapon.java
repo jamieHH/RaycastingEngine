@@ -11,7 +11,7 @@ public class WandWeapon extends Weapon
         super();
 
         name = "Wand";
-        damage = 4;
+        damage = 3;
         canStrike = false;
 
         icon = Texture.wandIcon;
@@ -34,7 +34,7 @@ public class WandWeapon extends Weapon
         double nextX = Math.sin(user.rotation);
         double nextZ = Math.cos(user.rotation);
 
-        FireballProjectile p = new FireballProjectile(2, damage);
+        FireballProjectile p = new FireballProjectile(1, damage);
         p.setRotation(user.rotation);
 
         user.level.addEntity(p, user.posX + nextX, user.posZ + nextZ);

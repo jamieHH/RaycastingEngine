@@ -1,11 +1,7 @@
 package com.jamie.raycasting.input;
 
-import com.jamie.raycasting.entities.mobs.Mob;
-
 public class InputHandler
 {
-    protected Mob mob;
-
 	public boolean forward, back, left, right, rotLeft, rotRight, crouch, run, action;
 
     public int forwardInf = 50;
@@ -15,17 +11,7 @@ public class InputHandler
     public int rotLeftInf = 50;
     public int rotRightInf = 50;
 
-	public int pauseTime = 0;
-
-	public void setMob(Mob mob) {
-        this.mob = mob;
-    }
-
-	public void tick() {
-        if (pauseTime > 0) {
-            pauseTime--;
-        }
-	}
+	public void tick() {}
 
 	public void resetInfluence() {
         forwardInf = 50;

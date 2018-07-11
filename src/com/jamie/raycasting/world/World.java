@@ -77,10 +77,10 @@ public class World
 
         level.removeEntity(mob);
 
-        if (name != "random") {
+        if (!name.equals("random")) {
             level = getLoadLevel(name);
         } else {
-            level = Level.makeRandomLevel(2000, 2000);
+            level = Level.makeRandomLevel(1000, 1000);
         }
 
         LevelPortalBlock spawnBlock = level.getLevelPortalBlockById(id);

@@ -13,8 +13,8 @@ import com.jamie.raycasting.world.World;
 
 public class Game
 {
-	public int time;
-	public int pauseTime;
+	private int time;
+	private int pauseTime;
 
 	public World world;
 
@@ -90,7 +90,7 @@ public class Game
 
 					if (userInput.randomLevel) {
 						player.rotation = 0.2;
-						world.switchLevel(player, "realm", 999);
+						world.switchLevel(player, "test", 999);
 					}
 
 					if (userInput.loadLevel) {

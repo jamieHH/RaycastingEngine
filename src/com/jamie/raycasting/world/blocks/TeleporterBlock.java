@@ -71,14 +71,14 @@ public class TeleporterBlock extends Block
 
     public void disable() {
 	    disabled = true;
-	    if (getActiveSetKey() != "disabled") {
+	    if (!getActiveSetKey().equals("disabled")) {
 	        runSpriteSet("disabled");
         }
     }
 
     public void enable() {
         disabled = false;
-        if (getActiveSetKey() != "idle") {
+        if (!getActiveSetKey().equals("idle")) {
             runSpriteSet("idle");
         }
     }

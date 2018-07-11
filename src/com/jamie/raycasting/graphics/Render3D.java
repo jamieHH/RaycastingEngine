@@ -7,7 +7,7 @@ import com.jamie.raycasting.world.blocks.*;
 
 public class Render3D extends Render
 {
-	public int blockViewDist = 8;
+	private int blockViewDist = 8;
 
 	private double[] zBuffer;
 	private double[] zBufferWall;

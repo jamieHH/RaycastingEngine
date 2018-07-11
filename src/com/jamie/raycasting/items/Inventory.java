@@ -23,7 +23,7 @@ public class Inventory
     public List<Item> getItemsByType(String type) {
         List<Item> items = new ArrayList<Item>();
         for (int i = 0; i < countItems(); i++) {
-            if (getItem(i).getInfo().get("type") == type) {
+            if (getItem(i).getInfo().get("type").equals(type)) {
                 items.add(getItem(i));
             }
         }

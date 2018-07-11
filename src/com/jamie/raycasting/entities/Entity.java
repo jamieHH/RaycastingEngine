@@ -51,18 +51,20 @@ public class Entity
         return (xDist > zDist) ? xDist: zDist;
     }
 
-    public boolean contains(double x2, double z2) {
-        if (posX + radius <= x2) return false;
-        if (posX - radius >= x2) return false;
-
-        return !(posZ + radius <= z2) && !(posZ - radius >= z2);
+    public boolean contains(double x, double z) {
+        if (posX + radius <= x) return false;
+        if (posX - radius >= x) return false;
+        if (posZ + radius <= z) return false;
+        if (posZ - radius >= z) return false;
+        return true;
     }
 
     public boolean isInside(double x0, double z0, double x1, double z1) {
         if (posX + radius <= x0) return false;
         if (posX - radius >= x1) return false;
-
-        return !(posZ + radius <= z0) && !(posZ - radius >= z1);
+        if (posZ + radius <= z0) return false;
+        if (posZ - radius >= z1) return false;
+        return true;
     }
 
     public List<Entity> getEntitiesInRadius(double radius) {
@@ -77,10 +79,6 @@ public class Entity
         return entities;
     }
 
-    public List<Entity> getTouchingEntities() {
-        return getEntitiesInRadius(this.radius);
-    }
-
     public List<Mob> getMobsInRadius(double radius) {
         List<Mob> mobs = new ArrayList<Mob>();
         for (int e = 0; e < level.countEntities(); e++) {
@@ -91,10 +89,6 @@ public class Entity
         }
 
         return mobs;
-    }
-
-    public List<Mob> getTouchingMobs() {
-        return getMobsInRadius(this.radius);
     }
 
     protected void setSpriteSet(String name, Sprite sprite) {
