@@ -42,8 +42,9 @@ public class OptionsMenu extends Menu
         options.add("Aspect Ratio");
         options.add("Resolution");
         options.add("Scaling");
-        options.add("Reset Defaults");
         options.add("Accept");
+        options.add("Reset Defaults");
+        options.add("Main Menu");
     }
 
     public void tick(Game game) {
@@ -115,6 +116,8 @@ public class OptionsMenu extends Menu
                     App.newHeight = resolutions4x3[resolutionIndex][1];
                 }
                 App.setNewOptions = true;
+                game.setActiveOverlay(game.mainMenu);
+            } else if (options.get(optionIndex).equals("Main Menu")) {
                 game.setActiveOverlay(game.mainMenu);
             }
         }
