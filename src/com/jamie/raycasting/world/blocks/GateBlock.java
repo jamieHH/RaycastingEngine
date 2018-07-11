@@ -13,13 +13,17 @@ public class GateBlock extends TriggerableBlock
     private int useTicks = 0;
     private int useWait = 10;
 
+    public String keyReference;
 
-	public GateBlock() {
+
+	public GateBlock(String keyReference) {
 		isOpaque = false;
 		isSolid = true;
 
 		floorTex = Texture.floor;
 		ceilTex = Texture.floor;
+
+		this.keyReference = keyReference;
 
         Render[] ts0 = {
                 Texture.gate0,
@@ -46,9 +50,14 @@ public class GateBlock extends TriggerableBlock
             return false;
         }
 
-        useTicks = useWait;
-        trigger();
-	    return true;
+        if (source.hasKey(keyReference)) {
+            useTicks = useWait;
+            trigger();
+            return true;
+        }
+
+        source.addHudHeading("The " + keyReference + " is required");
+        return false;
     }
 
     public void trigger() {

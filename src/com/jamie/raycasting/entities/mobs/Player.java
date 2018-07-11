@@ -39,7 +39,7 @@ public class Player extends Mob
         addItem(new AxeWeapon());
         addItem(new PoisonPotion());
         addItem(new PlanksWeapon());
-        addItem(new Key("Grey Key", "gateKey"));
+        addItem(new Key("Silver Key", "silver key"));
 
         addFaction("human");
     }

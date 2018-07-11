@@ -253,7 +253,7 @@ public abstract class Level
         if (col == 0xA48080) return new DoorBlock();
         if (col == 0x632A2A) return new StrongDoorBlock();
         if (col == 0xE1AE4A) return new BoardsBlock();
-        if (col == 0x4c4c65) return new GateBlock();
+        if (col == 0x4c4c65) return new GateBlock("grey key");
         if (col == 0x217F74) return new CeilDripBlock();
         if (col == 0x7EC0C0) return new FountainBlock();
         if (col == 0xC80000) return new ButtonBlock();

@@ -152,6 +152,7 @@ public abstract class Mob extends Entity
             for (int i = 0; i < level.countDrops(); i++) {
                 if (contains(level.getDropEntity(i).posX, level.getDropEntity(i).posZ)) {
                     addItem(level.getDropEntity(i).item);
+                    Sound.pickUp.play();
                     level.getDropEntity(i).remove();
                 }
             }
@@ -350,6 +351,15 @@ public abstract class Mob extends Entity
             return baseReach + getRightHandItem().reach;
         }
         return baseReach;
+    }
+
+    public boolean hasKey(String reference) {
+        for (int i = 0; i < inventory.countKeys(); i++) {
+            if (inventory.getKey(i).reference.equals(reference)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public int getDamage() {

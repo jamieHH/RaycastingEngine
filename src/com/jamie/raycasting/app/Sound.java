@@ -12,6 +12,7 @@ public class Sound
     public static Sound pain = loadSound("sfx/pain.wav");
     public static Sound die = loadSound("sfx/die.wav");
     public static Sound smash = loadSound("sfx/smash.wav");
+    public static Sound pickUp = loadSound("sfx/pickUp.wav");
     public static Sound slideUp = loadSound("sfx/slideUp.wav");
     public static Sound slideDown = loadSound("sfx/slideDown.wav");
     public static Sound switchLevel = loadSound("sfx/switchLevel.wav");

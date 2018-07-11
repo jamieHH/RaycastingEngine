@@ -121,4 +121,34 @@ public class Inventory
 
         return info;
     }
+
+    // Keys
+    public List<Key> getKeys() {
+        List<Key> list = new ArrayList<Key>();
+
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i) instanceof Key) {
+                list.add((Key) items.get(i));
+            }
+        }
+
+        return list;
+    }
+
+    public Key getKey(int i) {
+        return getKeys().get(i);
+    }
+
+    public int countKeys() {
+        return getKeys().size();
+    }
+
+    public List<Map<String, String>> getKeysInfo() {
+        List<Map<String, String>> info = new ArrayList<Map<String, String>>();
+        for (int i = 0; i < countKeys(); i++) {
+            info.add(getKey(i).getInfo());
+        }
+
+        return info;
+    }
 }
