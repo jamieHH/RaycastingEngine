@@ -71,7 +71,7 @@ public abstract class Item
         removed = true;
     }
 
-    public Map<String, String> getInfo(){
+    public Map<String, String> getInfo() {
         info.put("name", name);
         info.put("type", type);
         info.put("damage", Integer.toString(damage));

@@ -13,7 +13,7 @@ public abstract class Weapon extends Item
         type = "weapon";
     }
 
-    public Map<String, String> getInfo(){
+    public Map<String, String> getInfo() {
         info = super.getInfo();
         info.put("damage", Integer.toString(damage + user.baseDamage));
         return info;

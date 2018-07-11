@@ -14,11 +14,11 @@ public class DoorBlock extends TriggerableBlock
 	public double openness = 0;
 	private double openLimit = 7 / 8.0;
 
+
 	public DoorBlock() {
 		isOpaque = false;
 		isSolid = true;
 
-		wallTex = Texture.door;
 		floorTex = Texture.floor;
 		ceilTex = Texture.floor;
 	}
