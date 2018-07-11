@@ -19,6 +19,7 @@ public class DoorBlock extends TriggerableBlock
 		isOpaque = false;
 		isSolid = true;
 
+        wallTex = Texture.door;
 		floorTex = Texture.floor;
 		ceilTex = Texture.floor;
 	}

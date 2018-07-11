@@ -1,5 +1,7 @@
 package com.jamie.raycasting.items;
 
+import com.jamie.raycasting.graphics.Texture;
+
 import java.util.Map;
 
 public class Key extends Item
@@ -12,6 +14,8 @@ public class Key extends Item
         this.name = name;
         this.reference = reference;
         type = "key";
+
+        icon = Texture.keyIcon;
     }
 
     public Map<String, String> getInfo() {

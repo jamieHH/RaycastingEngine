@@ -7,6 +7,7 @@ import com.jamie.raycasting.graphics.Render;
 import com.jamie.raycasting.graphics.Texture;
 import com.jamie.raycasting.items.Inventory;
 import com.jamie.raycasting.items.Item;
+import com.jamie.raycasting.items.Key;
 import com.jamie.raycasting.items.consumables.Consumable;
 
 import java.util.ArrayList;
@@ -22,7 +23,7 @@ public class InventoryOverlay extends Overlay
     private int inventoryItemIndex = 0;
 
     private String[] itemCategories = {
-        "Items", "Weapons", "Consumables"
+        "Items", "Weapons", "Consumables", "Keys"
     };
     private int itemCatIndex = 0;
 
@@ -44,6 +45,8 @@ public class InventoryOverlay extends Overlay
             listedItems = inventory.getItemsByType("weapon");
         } else if (itemCategories[itemCatIndex].equals("Consumables")) {
             listedItems = inventory.getItemsByType("consumable");
+        } else if (itemCategories[itemCatIndex].equals("Keys")) {
+            listedItems = inventory.getItemsByType("key");
         }
 
         if (game.userInput.left || game.userInput.rotLeft) {
@@ -92,15 +95,17 @@ public class InventoryOverlay extends Overlay
             if (game.userInput.action) {
                 game.userInput.setKeyGroupState("action", false);
                 Sound.clickAction.play();
-                if (!(inventory.getItems().get(inventoryItemIndex) instanceof Consumable)) {
+                if (inventory.getItems().get(inventoryItemIndex) instanceof Consumable) {
+                    inventory.getItem(inventoryItemIndex).use();
+                } else if (inventory.getItems().get(inventoryItemIndex) instanceof Key) {
+                    // do nothing
+                } else {
                     if (mob.getRightHandItem() != inventory.getItem(inventoryItemIndex)) {
                         int inx = inventory.getIndexOf(inventory.getItem(inventoryItemIndex));
                         mob.setRightHandItemIndex(inx);
                     } else {
                         mob.unequipRightHand();
                     }
-                } else {
-                    inventory.getItem(inventoryItemIndex).use();
                 }
             }
         }
