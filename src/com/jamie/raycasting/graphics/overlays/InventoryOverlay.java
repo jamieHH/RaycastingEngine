@@ -2,6 +2,7 @@ package com.jamie.raycasting.graphics.overlays;
 
 import com.jamie.raycasting.app.Game;
 import com.jamie.raycasting.app.Sound;
+import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.graphics.Render;
 import com.jamie.raycasting.graphics.Texture;
 import com.jamie.raycasting.items.Inventory;
@@ -13,7 +14,7 @@ import java.util.List;
 
 public class InventoryOverlay extends Overlay
 {
-    private Game game;
+    private Mob mob;
     private Inventory inventory;
 
     private List<Item> listedItems = new ArrayList<Item>();
@@ -29,13 +30,13 @@ public class InventoryOverlay extends Overlay
     private Render itemListRender = new Render(width - bp - bp - itemDetailsPane.width, height - (bp + 10 + 8 + bp));
     private int itemListYShift = 0;
 
-    public InventoryOverlay(int width, int height, Game game) {
+    public InventoryOverlay(int width, int height, Mob mob) {
         super(width, height);
-        this.game = game;
-        this.inventory = game.player.inventory;
+        this.mob = mob;
+        this.inventory = mob.inventory;
 
-        if (game.player.getRightHandItem() != null) {
-            listItemIndex = game.player.getRightHandItemIndex();
+        if (mob.getRightHandItem() != null) {
+            listItemIndex = mob.getRightHandItemIndex();
         } else {
             listItemIndex = 0;
         }
@@ -97,11 +98,11 @@ public class InventoryOverlay extends Overlay
                 game.userInput.setKeyGroupState("action", false);
                 Sound.clickAction.play();
                 if (!(inventory.getItems().get(inventoryItemIndex) instanceof Consumable)) {
-                    if (game.player.getRightHandItem() != inventory.getItem(inventoryItemIndex)) {
+                    if (mob.getRightHandItem() != inventory.getItem(inventoryItemIndex)) {
                         int inx = inventory.getIndexOf(inventory.getItem(inventoryItemIndex));
-                        game.player.setRightHandItemIndex(inx);
+                        mob.setRightHandItemIndex(inx);
                     } else {
-                        game.player.unequipRightHand();
+                        mob.unequipRightHand();
                     }
                 } else {
                     inventory.getItem(inventoryItemIndex).use();
@@ -152,7 +153,7 @@ public class InventoryOverlay extends Overlay
             for (int i = 0; i < listedItems.size(); i++) {
                 int colour;
                 String itemName;
-                if (game.player.getRightHandItemIndex() == inventory.getIndexOf(listedItems.get(i)) && !game.player.rightHandEmpty) {
+                if (mob.getRightHandItemIndex() == inventory.getIndexOf(listedItems.get(i)) && !mob.rightHandEmpty) {
                     itemName = "-> " + listedItems.get(i).name;
                     colour = 0xF0F070;
                 } else {

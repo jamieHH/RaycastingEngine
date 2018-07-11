@@ -16,7 +16,7 @@ public class Game
 	public int time;
 	public int pauseTime;
 
-	public World world = new World(this);
+	public World world;
 
 	public Mob player;
 	public UserInputHandler userInput;
@@ -47,66 +47,66 @@ public class Game
 		    activeOverlay.tick(this);
         }
 
-		world.tick();
 		time++;
 
-		if (player != null) {
-			if (activeOverlay != null) {
-				player.isUsingMenu = true;
-			} else {
-				player.isUsingMenu = false;
-			}
+        if (world != null) {
+			world.tick();
 
-			if (userInput.nextMob) {
-				switchPerspective();
-//				possessNextMob();
-			}
+			if (player != null) {
+				if (activeOverlay != null) {
+					player.isUsingMenu = true;
+				} else {
+					player.isUsingMenu = false;
+				}
 
-			if (!player.isDead) {
-				if (userInput.inventory) {
-					userInput.setKeyGroupState("inventory", false);
-					if (activeOverlay == null) {
-						Sound.slideUp.play();
-						setActiveOverlay(new InventoryOverlay((int) (App.width * 0.8), (int) (App.height * 0.6), this));
-					} else {
-						Sound.slideDown.play();
-						setActiveOverlay(null);
+				if (userInput.nextMob) {
+					switchPerspective();
+	//				possessNextMob();
+				}
+
+				if (!player.isDead) {
+					if (userInput.inventory) {
+						userInput.setKeyGroupState("inventory", false);
+						if (activeOverlay == null) {
+							Sound.slideUp.play();
+							setActiveOverlay(new InventoryOverlay((int) (App.width * 0.8), (int) (App.height * 0.6), player));
+						} else {
+							Sound.slideDown.play();
+							setActiveOverlay(null);
+						}
 					}
-				}
 
-				if (userInput.pause) {
-					userInput.setKeyGroupState("pause", false);
-					if (activeOverlay == null) {
-						Sound.slideUp.play();
-						setActiveOverlay(pauseMenu);
-					} else {
-						Sound.slideDown.play();
-						setActiveOverlay(null);
+					if (userInput.pause) {
+						userInput.setKeyGroupState("pause", false);
+						if (activeOverlay == null) {
+							Sound.slideUp.play();
+							setActiveOverlay(pauseMenu);
+						} else {
+							Sound.slideDown.play();
+							setActiveOverlay(null);
+						}
 					}
-				}
 
-				if (userInput.randomLevel) {
-					player.rotation = 0.2;
-//					world.switchLevel(player, "random", 999);
-//					world.switchLevel(player, "test", 999);
-					world.switchLevel(player, "realm", 999);
-//					world.switchLevel(player, "dungeon", 999);
-				}
+					if (userInput.randomLevel) {
+						player.rotation = 0.2;
+						world.switchLevel(player, "realm", 999);
+					}
 
-				if (userInput.loadLevel) {
-					player.rotation = 0.2;
-					world.switchLevel(player, "island", 999);
-				}
-			} else {
-				if (userInput.action || userInput.pause) {
-					setActiveOverlay(overMenu);
+					if (userInput.loadLevel) {
+						player.rotation = 0.2;
+						world.switchLevel(player, "island", 999);
+					}
+				} else {
+					if (userInput.action || userInput.pause) {
+						setActiveOverlay(overMenu);
+					}
 				}
 			}
 		}
 	}
 	
 	public void newGame() {
-		world.clearLoadedLevels();
+		world = new World(this);
 		player = new Player(userInput);
 		player.rotation = 1.9;
 
@@ -118,8 +118,8 @@ public class Game
 
 	public void stopGame() {
 		world.clearLoadedLevels();
+		world = null;
 		player = null;
-		world = new World(this);
 		setActiveOverlay(mainMenu);
 	}
 
