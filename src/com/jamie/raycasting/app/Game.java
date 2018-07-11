@@ -27,6 +27,7 @@ public class Game
     public final Menu optionsMenu = new OptionsMenu(App.width, (int) (App.height * 0.6));
     public final Menu pauseMenu = new PauseMenu(App.width, (int) (App.height * 0.6));
     public final Menu overMenu = new OverMenu(App.width, (int) (App.height * 0.6));
+    public final Overlay inventoryOverlay = new InventoryOverlay((int) (App.width * 0.8), (int) (App.height * 0.6));
 
 	public Overlay activeOverlay;
 	
@@ -60,8 +61,8 @@ public class Game
 				}
 
 				if (userInput.nextMob) {
-					switchPerspective();
-	//				possessNextMob();
+//					switchPerspective();
+					possessNextMob();
 				}
 
 				if (!player.isDead) {
@@ -69,7 +70,7 @@ public class Game
 						userInput.setKeyGroupState("inventory", false);
 						if (activeOverlay == null) {
 							Sound.slideUp.play();
-							setActiveOverlay(new InventoryOverlay((int) (App.width * 0.8), (int) (App.height * 0.6), player));
+							setActiveOverlay(inventoryOverlay);
 						} else {
 							Sound.slideDown.play();
 							setActiveOverlay(null);

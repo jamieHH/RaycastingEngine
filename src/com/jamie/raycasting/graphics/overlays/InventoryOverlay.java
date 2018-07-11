@@ -18,7 +18,7 @@ public class InventoryOverlay extends Overlay
     private Inventory inventory;
 
     private List<Item> listedItems = new ArrayList<Item>();
-    private int listItemIndex;
+    private int listItemIndex = 0;
     private int inventoryItemIndex = 0;
 
     private String[] itemCategories = {
@@ -30,19 +30,14 @@ public class InventoryOverlay extends Overlay
     private Render itemListRender = new Render(width - bp - bp - itemDetailsPane.width, height - (bp + 10 + 8 + bp));
     private int itemListYShift = 0;
 
-    public InventoryOverlay(int width, int height, Mob mob) {
+    public InventoryOverlay(int width, int height) {
         super(width, height);
-        this.mob = mob;
-        this.inventory = mob.inventory;
-
-        if (mob.getRightHandItem() != null) {
-            listItemIndex = mob.getRightHandItemIndex();
-        } else {
-            listItemIndex = 0;
-        }
     }
 
     public void tick(Game game) {
+        this.mob = game.player;
+        this.inventory = game.player.inventory;
+
         if (itemCategories[itemCatIndex].equals("Items")) {
             listedItems = inventory.getItems();
         } else if (itemCategories[itemCatIndex].equals("Weapons")) {
