@@ -38,13 +38,11 @@ public class WaterBlock extends Block
             return;
         }
 
-        int i = floorTexIndex;
-        i++;
-        if (i >= floorTextures.size()) {
-            i = 0;
+        floorTexIndex++;
+        if (floorTexIndex >= floorTextures.size()) {
+            floorTexIndex = 0;
         }
 
-        floorTexIndex = i;
         animTime = 20;
         floorTex = floorTextures.get(floorTexIndex);
     }
