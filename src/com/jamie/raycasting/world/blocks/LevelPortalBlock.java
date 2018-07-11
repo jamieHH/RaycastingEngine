@@ -22,7 +22,7 @@ public class LevelPortalBlock extends Block
             }
         } else {
             for (int i = 0; i < mobs.size(); i++) {
-                level.switchLevel(id);
+                level.switchLevel(mobs.get(i), id);
             }
         }
     }

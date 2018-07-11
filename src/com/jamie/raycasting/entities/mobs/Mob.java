@@ -93,7 +93,7 @@ public abstract class Mob extends Entity
 
         // inventory tick
         if (getRightHandItem() != null) {
-            getRightHandItem().tick(); // TODO: does each item need to tick (NO IT SHOULDENTS)
+            getRightHandItem().tick();
         }
 
         for (int i = 0; i < inventory.countItems(); i++) {
@@ -394,6 +394,12 @@ public abstract class Mob extends Entity
     }
 
     public void heal(int magnitude) {
+        if (magnitude <= 0 || isDieing) return;
+
+        runSpriteSet("heal");
+        HealthParticle p = new HealthParticle();
+        level.addEntity(p, posX, posZ);
+
         if (health + magnitude > maxHealth) {
             health = maxHealth;
         } else if (health + magnitude < 0) {
@@ -403,30 +409,26 @@ public abstract class Mob extends Entity
         }
     }
 
-    public void hurt(Entity source, int damage) {
-        hurt(source, damage, "hurt");
+    public void hurt(Entity source, int magnitude) {
+        hurt(source, magnitude, "hurt");
     }
 
-    public void hurt(Entity source, int damage, String damageType) {
-        if (hurtTime > 0 || damage <= 0 || isDieing) return;
+    public void hurt(Entity source, int magnitude, String damageType) {
+        if (hurtTime > 0 || magnitude <= 0 || isDieing) return;
 
         runSpriteSet("hurt");
-
-        pushDir(source.rotation, 0.4);
-
-        health -= damage;
-        hurtTime = 30;
-        hurtType = damageType; // change to blunt if armor protects some damage
-        // implement armour protection
-
-        yBob -= 0.8;
-        rotationMove += (Math.random() - 0.5);
-
         BloodParticle p = new BloodParticle();
         level.addEntity(p, posX, posZ);
 
-        if (health > 0) {
+        if (health - magnitude > 0) {
             hurtSound.play();
+            health -= magnitude;
+            hurtType = damageType; // change to blunt if armor protects some damage
+            hurtTime = 30;
+
+            yBob -= 0.8;
+            pushDir(source.rotation, 0.4);
+            rotationMove += (Math.random() - 0.5);
         } else {
             deathSound.play();
             health = 0;
@@ -489,11 +491,6 @@ public abstract class Mob extends Entity
 
     public void modHealth(int modifier) {
         if (modifier > 0) {
-            runSpriteSet("heal");
-
-            HealthParticle p = new HealthParticle();
-            level.addEntity(p, posX, posZ);
-
             heal(modifier);
         } else {
             hurt(this, -modifier, "poison");

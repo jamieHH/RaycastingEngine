@@ -129,7 +129,7 @@ public abstract class Level
         blocks[gridX + gridZ * sizeX] = block;
     }
 
-    public void switchLevel(int id) {}
+    public void switchLevel(Mob mob, int id) {}
 
     public void triggerBlock(int id) {
         for (int i = 0; i < blocks.length; i++) {

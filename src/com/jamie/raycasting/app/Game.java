@@ -87,15 +87,15 @@ public class Game
 
 				if (userInput.randomLevel) {
 					player.rotation = 0.2;
-//					world.switchLevel("random", 999);
-//					world.switchLevel("test", 999);
-					world.switchLevel("realm", 999);
-//					world.switchLevel("dungeon", 999);
+//					world.switchLevel(player, "random", 999);
+//					world.switchLevel(player, "test", 999);
+					world.switchLevel(player, "realm", 999);
+//					world.switchLevel(player, "dungeon", 999);
 				}
 
 				if (userInput.loadLevel) {
 					player.rotation = 0.2;
-					world.switchLevel("island", 999);
+					world.switchLevel(player, "island", 999);
 				}
 			} else {
 				if (userInput.action || userInput.pause) {

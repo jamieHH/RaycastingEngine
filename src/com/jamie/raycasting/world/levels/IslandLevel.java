@@ -2,6 +2,7 @@ package com.jamie.raycasting.world.levels;
 
 import com.jamie.raycasting.entities.environmentalEffects.EnvironmentalEffect;
 import com.jamie.raycasting.entities.environmentalEffects.FireEffect;
+import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.graphics.Texture;
 import com.jamie.raycasting.world.blocks.TeleporterBlock;
 
@@ -29,9 +30,9 @@ public class IslandLevel extends Level
 		addEntity(effect, 30.5, 31.5);
 	}
 
-    public void switchLevel(int id) {
-        if (id == 1) world.switchLevel("graveyard", 3);
-		if (id == 2) world.switchLevel("castleHall", 1);
-		if (id == 3) world.switchLevel("sewer", 2);
+    public void switchLevel(Mob mob, int id) {
+        if (id == 1) world.switchLevel(mob, "graveyard", 3);
+		if (id == 2) world.switchLevel(mob, "castleHall", 1);
+		if (id == 3) world.switchLevel(mob, "sewer", 2);
     }
 }

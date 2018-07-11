@@ -6,12 +6,4 @@ public class RealmLevel extends Level
 		name = "Realm";
 		height = 8192;
 	}
-
-	protected void postCreate() {
-
-	}
-
-    public void switchLevel(int id) {
-
-    }
 }

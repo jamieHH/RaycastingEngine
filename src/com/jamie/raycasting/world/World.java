@@ -71,13 +71,11 @@ public class World
         loaded.clear();
     }
 
-    public void switchLevel(String name, int id) {
-        Mob thisMob = game.player;
-
+    public void switchLevel(Mob mob, String name, int id) {
         game.setActiveOverlay(new LoadingOverlay(App.width, App.height, name));
         Sound.switchLevel.play();
 
-        level.removeEntity(thisMob);
+        level.removeEntity(mob);
 
         if (name != "random") {
             level = getLoadLevel(name);
@@ -87,10 +85,10 @@ public class World
 
         LevelPortalBlock spawnBlock = level.getLevelPortalBlockById(id);
         if (spawnBlock != null) {
-            level.addEntity(thisMob, spawnBlock.gridX + 0.5, spawnBlock.gridZ + 0.5);
+            level.addEntity(mob, spawnBlock.gridX + 0.5, spawnBlock.gridZ + 0.5);
             spawnBlock.disabled = true;
         } else {
-            level.addEntity(thisMob, level.spawnX, level.spawnZ);
+            level.addEntity(mob, level.spawnX, level.spawnZ);
         }
     }
 }
