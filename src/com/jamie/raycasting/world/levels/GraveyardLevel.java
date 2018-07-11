@@ -11,7 +11,7 @@ public class GraveyardLevel extends Level
 	}
 
 	protected void postCreate() {
-		KeyDrop d = new KeyDrop("grey key", "grey key");
+		KeyDrop d = new KeyDrop("Grey Key", "grey key");
 		addEntity(d, 15.5, 58.5);
 	}
 
