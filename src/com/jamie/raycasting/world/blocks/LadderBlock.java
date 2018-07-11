@@ -8,16 +8,20 @@ public class LadderBlock extends LevelPortalBlock
 	public LadderBlock(boolean ladderUp) {
 	    super();
 
+	    Sprite sprite = new Sprite(Texture.ladder);
+
 		if (ladderUp) {
 			floorTex = Texture.floor;
 			ceilTex = Texture.ladderHole;
 
-            setIdleSprite(new Sprite(Texture.ladder, 0, 0.125, 0));
+			sprite.setOffset(0, 0.125, 0);
+            setIdleSprite(sprite);
 		} else {
             floorTex = Texture.ladderHole;
             ceilTex = Texture.floor;
 
-            setIdleSprite(new Sprite(Texture.ladder, 0, -0.125, 0));
+			sprite.setOffset(0, -0.125, 0);
+			setIdleSprite(sprite);
         }
 	}
 }

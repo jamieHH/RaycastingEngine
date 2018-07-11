@@ -13,8 +13,14 @@ public class SpriteParticle extends Sprite
     public double gravity = 1;
     public double friction = 0.05;
 
-    public SpriteParticle(Render texture, double xOffs, double yOffs, double zOffs) {
-        super(texture, xOffs, yOffs, zOffs);
+    public SpriteParticle(Render t) {
+        super(t);
+
+        setMomentum();
+    }
+
+    public SpriteParticle(Render[] ts) {
+        super(ts);
 
         setMomentum();
     }

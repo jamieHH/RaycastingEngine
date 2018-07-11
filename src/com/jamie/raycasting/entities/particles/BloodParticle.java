@@ -22,7 +22,8 @@ public class BloodParticle extends Particle
 
         List<Sprite> set = new ArrayList<Sprite>();
         for (int i = 0; i < 2; i++) {
-            SpriteParticle particle = new SpriteParticle(ts[random.nextInt(ts.length)], 0, 0.5, 0);
+            SpriteParticle particle = new SpriteParticle(ts[random.nextInt(ts.length)]);
+            particle.setOffset( 0, 0.5, 0);
             particle.gravity = 1;
 
             set.add(particle);

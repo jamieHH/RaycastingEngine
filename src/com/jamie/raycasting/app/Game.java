@@ -13,7 +13,6 @@ import com.jamie.raycasting.world.World;
 
 public class Game
 {
-	private int time;
 	private int pauseTime;
 
 	public World world;
@@ -45,10 +44,9 @@ public class Game
         }
 
 		if (activeOverlay != null) {
-		    activeOverlay.tick(this);
-        }
+			activeOverlay.tick(this);
+		}
 
-		time++;
 
         if (world != null) {
 			world.tick();

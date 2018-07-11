@@ -29,11 +29,6 @@ public class EmberParticle extends Particle
             particle.setOffset( 0, 0.5, 0);
             particle.gravity = -0.25;
             set.add(particle);
-
-            SpriteParticle particle2 = new SpriteParticle(rts, 4);
-            particle2.setOffset( 0, 0.5, 0);
-            particle2.gravity = -0.125;
-            set.add(particle2);
         }
         setSpriteParticles(set);
     }
