@@ -10,21 +10,22 @@ public class WandWeapon extends Weapon
     public WandWeapon() {
         super();
 
+        name = "Wand";
+        damage = 4;
         canStrike = false;
 
         icon = Texture.wandIcon;
 
-        setIdleSprite(new Sprite(Texture.screenWand0));
-
         Render[] ts = {
+                Texture.screenWand0,
+        };
+        setIdleSprite(new Sprite(ts));
+
+        Render[] ts1 = {
                 Texture.screenWand1,
                 Texture.screenWand1
         };
-
-        setUseSprite(new Sprite(ts));
-
-        name = "Wand";
-        damage = 4;
+        setUseSprite(new Sprite(ts1));
     }
 
     public void use() {

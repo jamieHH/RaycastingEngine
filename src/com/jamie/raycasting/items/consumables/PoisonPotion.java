@@ -8,15 +8,16 @@ public class PoisonPotion extends Consumable
     public PoisonPotion() {
         super();
 
-        icon = Texture.potionIcon;
-
         name = "Poison Potion";
         duration = 240;
         magnitude = -1;
+
+        icon = Texture.potionIcon;
     }
 
     public void use() {
         super.use();
+
         user.addMobEffect(new ModHealthEffect(user, duration, magnitude));
     }
 }

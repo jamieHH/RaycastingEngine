@@ -9,6 +9,10 @@ public class AxeWeapon extends Weapon
     public AxeWeapon() {
         super();
 
+        name = "Hatchet";
+        damage = 3;
+        reach = 1;
+
         icon = Texture.axeIcon;
 
         Render[] ts = {
@@ -16,14 +20,9 @@ public class AxeWeapon extends Weapon
         };
         setIdleSprite(new Sprite(ts));
 
-
         Render[] ts1 = {
                 Texture.screenAxe1,
         };
         setUseSprite(new Sprite(ts1));
-
-        name = "Hatchet";
-        damage = 3;
-        reach = 1;
     }
 }

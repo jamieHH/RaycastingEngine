@@ -8,11 +8,11 @@ public class SpeedPotion extends Consumable
     public SpeedPotion() {
         super();
 
-        icon = Texture.potionIcon;
-
         name = "Speed Potion";
         duration = 920;
         magnitude = 3;
+
+        icon = Texture.potionIcon;
     }
 
     public void use() {

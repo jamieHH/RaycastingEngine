@@ -9,6 +9,10 @@ public class PlanksWeapon extends Weapon
     public PlanksWeapon() {
         super();
 
+        name = "Planks";
+        damage = 1;
+        reach = 1;
+
         icon = Texture.planksIcon;
 
         Render[] ts = {
@@ -16,14 +20,9 @@ public class PlanksWeapon extends Weapon
         };
         setIdleSprite(new Sprite(ts));
 
-
         Render[] ts1 = {
                 Texture.screenPlank1,
         };
         setUseSprite(new Sprite(ts1));
-
-        name = "Planks";
-        damage = 1;
-        reach = 1;
     }
 }

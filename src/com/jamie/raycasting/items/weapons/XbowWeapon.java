@@ -10,21 +10,22 @@ public class XbowWeapon extends Weapon
     public XbowWeapon() {
         super();
 
+        name = "Crossbow";
+        damage = 2;
         canStrike = false;
 
         icon = Texture.xbowIcon;
 
-        setIdleSprite(new Sprite(Texture.screenXbow0));
-
         Render[] ts = {
+                Texture.screenXbow0,
+        };
+        setIdleSprite(new Sprite(ts));
+
+        Render[] ts1 = {
                 Texture.screenXbow1,
                 Texture.screenXbow1
         };
-
-        setUseSprite(new Sprite(ts));
-
-        name = "Crossbow";
-        damage = 2;
+        setUseSprite(new Sprite(ts1));
     }
 
     public void use() {

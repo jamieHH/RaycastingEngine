@@ -8,11 +8,11 @@ public class StrengthPotion extends Consumable
     public StrengthPotion() {
         super();
 
-        icon = Texture.potionIcon;
-
         name = "Strength Potion";
         duration = 920;
         magnitude = 4;
+
+        icon = Texture.potionIcon;
     }
 
     public void use() {

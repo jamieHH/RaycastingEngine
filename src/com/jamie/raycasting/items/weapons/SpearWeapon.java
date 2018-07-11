@@ -9,6 +9,10 @@ public class SpearWeapon extends Weapon
     public SpearWeapon() {
         super();
 
+        name = "Spear";
+        damage = 2;
+        reach = 2;
+
         icon = Texture.spearIcon;
 
         Render[] ts = {
@@ -16,16 +20,10 @@ public class SpearWeapon extends Weapon
         };
         setIdleSprite(new Sprite(ts));
 
-
         Render[] ts1 = {
             Texture.screenSpear1,
             Texture.screenSpear2
         };
-
         setUseSprite(new Sprite(ts1));
-
-        name = "Spear";
-        damage = 2;
-        reach = 2;
     }
 }

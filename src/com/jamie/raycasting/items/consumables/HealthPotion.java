@@ -8,15 +8,16 @@ public class HealthPotion extends Consumable
     public HealthPotion() {
         super();
 
-        icon = Texture.potionIcon;
-
         name = "Health Potion";
         duration = 480;
         magnitude = 1;
+
+        icon = Texture.potionIcon;
     }
 
     public void use() {
         super.use();
+
         user.addMobEffect(new ModHealthEffect(user, duration, magnitude));
     }
 }
