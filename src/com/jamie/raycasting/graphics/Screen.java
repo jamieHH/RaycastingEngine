@@ -81,9 +81,8 @@ public class Screen extends Render
 
         if (game.activeOverlay != null) {
             game.activeOverlay.update();
-
-            int cornerX = ((width / 2) - (game.activeOverlay).width / 2);
-            int cornerY = ((height / 2) - (game.activeOverlay).height / 2);
+            int cornerX = ((width / 2) - (game.activeOverlay.width / 2));
+            int cornerY = ((height / 2) - (game.activeOverlay.height / 2));
             draw(game.activeOverlay, cornerX, cornerY);
         }
     }
