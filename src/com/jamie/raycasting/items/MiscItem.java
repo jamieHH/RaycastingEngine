@@ -8,7 +8,9 @@ public class MiscItem extends Item
         super();
 
         this.name = name;
-        this.icon = icon;
         type = "misc";
+        canStrike = false;
+
+        this.icon = icon;
     }
 }

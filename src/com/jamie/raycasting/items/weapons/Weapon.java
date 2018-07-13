@@ -11,6 +11,7 @@ public abstract class Weapon extends Item
 
         name = "Weapon";
         type = "weapon";
+        canStrike = true;
     }
 
     public Map<String, String> getInfo() {
