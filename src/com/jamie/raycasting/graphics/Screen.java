@@ -5,8 +5,6 @@ import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.graphics.overlays.HudBarOverlay;
 import com.jamie.raycasting.graphics.overlays.StatBarOverlay;
 import com.jamie.raycasting.graphics.overlays.ViewPunchOverlay;
-import com.jamie.raycasting.graphics.overlays.menus.Menu;
-import com.jamie.raycasting.graphics.overlays.InventoryOverlay;
 
 public class Screen extends Render
 {
@@ -83,16 +81,9 @@ public class Screen extends Render
 
         if (game.activeOverlay != null) {
             game.activeOverlay.update();
-            int cornerX = 0;
-            int cornerY = 0;
 
-            if (game.activeOverlay instanceof Menu) {
-                cornerX = 0;
-                cornerY = (int) (height * 0.2);
-            } else if (game.activeOverlay instanceof InventoryOverlay) {
-                cornerX = (int) (width * 0.1);
-                cornerY = (int) (height * 0.2);
-            }
+            int cornerX = ((width / 2) - (game.activeOverlay).width / 2);
+            int cornerY = ((height / 2) - (game.activeOverlay).height / 2);
             draw(game.activeOverlay, cornerX, cornerY);
         }
     }
