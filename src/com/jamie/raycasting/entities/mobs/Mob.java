@@ -354,9 +354,9 @@ public abstract class Mob extends Entity
         return baseReach;
     }
 
-    public boolean hasKey(String reference) {
-        for (int i = 0; i < inventory.countKeys(); i++) {
-            if (inventory.getKey(i).reference.equals(reference)) {
+    public boolean hasItemByName(String name) {
+        for (int i = 0; i < inventory.countItems(); i++) {
+            if (inventory.getItem(i).name.equals(name)) {
                 return true;
             }
         }

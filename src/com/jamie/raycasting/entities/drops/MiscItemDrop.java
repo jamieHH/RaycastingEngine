@@ -2,13 +2,13 @@ package com.jamie.raycasting.entities.drops;
 
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
-import com.jamie.raycasting.items.Key;
+import com.jamie.raycasting.items.MiscItem;
 
-public class KeyDrop extends Drop
+public class MiscItemDrop extends Drop
 {
-    public KeyDrop(String name, String reference) {
+    public MiscItemDrop(String name) {
         super();
-        item = new Key(name, reference);
+        item = new MiscItem(name);
         setIdleSprite(new Sprite(Texture.blood0));
     }
 }

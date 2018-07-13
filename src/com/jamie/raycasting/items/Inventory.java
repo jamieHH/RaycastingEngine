@@ -123,30 +123,30 @@ public class Inventory
     }
 
     // Keys
-    public List<Key> getKeys() {
-        List<Key> list = new ArrayList<Key>();
+    public List<MiscItem> getMiscItems() {
+        List<MiscItem> list = new ArrayList<MiscItem>();
 
         for (int i = 0; i < items.size(); i++) {
-            if (items.get(i) instanceof Key) {
-                list.add((Key) items.get(i));
+            if (items.get(i) instanceof MiscItem) {
+                list.add((MiscItem) items.get(i));
             }
         }
 
         return list;
     }
 
-    public Key getKey(int i) {
-        return getKeys().get(i);
+    public MiscItem getMiscItem(int i) {
+        return getMiscItems().get(i);
     }
 
-    public int countKeys() {
-        return getKeys().size();
+    public int countMiscItems() {
+        return getMiscItems().size();
     }
 
-    public List<Map<String, String>> getKeysInfo() {
+    public List<Map<String, String>> getMiscItemsInfo() {
         List<Map<String, String>> info = new ArrayList<Map<String, String>>();
-        for (int i = 0; i < countKeys(); i++) {
-            info.add(getKey(i).getInfo());
+        for (int i = 0; i < countMiscItems(); i++) {
+            info.add(getMiscItem(i).getInfo());
         }
 
         return info;

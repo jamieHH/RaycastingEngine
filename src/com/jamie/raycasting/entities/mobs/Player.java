@@ -2,7 +2,7 @@ package com.jamie.raycasting.entities.mobs;
 
 import com.jamie.raycasting.app.Sound;
 import com.jamie.raycasting.input.InputHandler;
-import com.jamie.raycasting.items.Key;
+import com.jamie.raycasting.items.MiscItem;
 import com.jamie.raycasting.items.consumables.*;
 import com.jamie.raycasting.items.weapons.*;
 
@@ -39,7 +39,7 @@ public class Player extends Mob
         addItem(new AxeWeapon());
         addItem(new PoisonPotion());
         addItem(new PlanksWeapon());
-        addItem(new Key("Silver Key", "silver key"));
+        addItem(new MiscItem("Silver Key"));
 
         addFaction("human");
     }

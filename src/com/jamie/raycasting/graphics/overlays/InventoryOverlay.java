@@ -7,7 +7,7 @@ import com.jamie.raycasting.graphics.Render;
 import com.jamie.raycasting.graphics.Texture;
 import com.jamie.raycasting.items.Inventory;
 import com.jamie.raycasting.items.Item;
-import com.jamie.raycasting.items.Key;
+import com.jamie.raycasting.items.MiscItem;
 import com.jamie.raycasting.items.consumables.Consumable;
 
 import java.util.ArrayList;
@@ -97,7 +97,7 @@ public class InventoryOverlay extends Overlay
                 Sound.clickAction.play();
                 if (inventory.getItems().get(inventoryItemIndex) instanceof Consumable) {
                     inventory.getItem(inventoryItemIndex).use();
-                } else if (inventory.getItems().get(inventoryItemIndex) instanceof Key) {
+                } else if (inventory.getItems().get(inventoryItemIndex) instanceof MiscItem) {
                     // do nothing
                 } else {
                     if (mob.getRightHandItem() != inventory.getItem(inventoryItemIndex)) {
