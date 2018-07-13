@@ -38,8 +38,8 @@ public class Player extends Mob
         addItem(new XbowWeapon());
         addItem(new AxeWeapon());
         addItem(new PoisonPotion());
-        addItem(new PlanksWeapon());
         addItem(new MiscItem("Silver Key"));
+        addItem(new MiscItem("Planks"));
 
         addFaction("human");
     }

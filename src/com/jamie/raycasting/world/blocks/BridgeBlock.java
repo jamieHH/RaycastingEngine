@@ -2,7 +2,6 @@ package com.jamie.raycasting.world.blocks;
 
 import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.graphics.Texture;
-import com.jamie.raycasting.items.weapons.PlanksWeapon;
 
 public class BridgeBlock extends TriggerableBlock
 {
@@ -27,8 +26,8 @@ public class BridgeBlock extends TriggerableBlock
 
     public boolean use(Mob source) {
         if (broken) {
-            if (source.getRightHandItem() instanceof PlanksWeapon) {
-                source.removeRightHandItem();
+            if (source.hasItemByName("Planks")) {
+                source.getItemByName("Planks").remove();
                 trigger();
                 source.addHudHeading("The bridge is mended");
                 return true;

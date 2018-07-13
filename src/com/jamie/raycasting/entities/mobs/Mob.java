@@ -363,6 +363,15 @@ public abstract class Mob extends Entity
         return false;
     }
 
+    public Item getItemByName(String name) {
+        for (int i = 0; i < inventory.countItems(); i++) {
+            if (inventory.getItem(i).name.equals(name)) {
+                return inventory.getItem(i);
+            }
+        }
+        return null;
+    }
+
     public int getDamage() {
         if (getRightHandItem() != null) {
             return baseDamage + getRightHandItem().damage;
