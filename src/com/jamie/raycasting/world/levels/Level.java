@@ -4,7 +4,7 @@ import java.util.*;
 
 import com.jamie.raycasting.app.Game;
 import com.jamie.raycasting.entities.Entity;
-import com.jamie.raycasting.entities.drops.Drop;
+import com.jamie.raycasting.entities.Drop;
 import com.jamie.raycasting.entities.mobs.Bat;
 import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.entities.mobs.Spirit;

@@ -1,7 +1,8 @@
 package com.jamie.raycasting.world.levels;
 
-import com.jamie.raycasting.entities.drops.HealthPotionDrop;
+import com.jamie.raycasting.entities.Drop;
 import com.jamie.raycasting.entities.mobs.Mob;
+import com.jamie.raycasting.items.consumables.HealthPotion;
 
 public class PrisonLevel extends Level
 {
@@ -10,7 +11,7 @@ public class PrisonLevel extends Level
 	}
 
 	protected void postCreate() {
-	    HealthPotionDrop d = new HealthPotionDrop();
+	    Drop d = new Drop(new HealthPotion());
         addEntity(d, 16.5, 20.5);
     }
 

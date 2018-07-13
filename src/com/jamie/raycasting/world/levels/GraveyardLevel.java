@@ -1,8 +1,9 @@
 package com.jamie.raycasting.world.levels;
 
-import com.jamie.raycasting.entities.drops.MiscItemDrop;
+import com.jamie.raycasting.entities.Drop;
 import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.graphics.Texture;
+import com.jamie.raycasting.items.MiscItem;
 
 public class GraveyardLevel extends Level
 {
@@ -12,7 +13,7 @@ public class GraveyardLevel extends Level
 	}
 
 	protected void postCreate() {
-		MiscItemDrop d = new MiscItemDrop("Grey Key", Texture.keyIcon);
+		Drop d = new Drop(new MiscItem("Grey Key", Texture.keyIcon));
 		addEntity(d, 15.5, 58.5);
 	}
 
