@@ -1,15 +1,14 @@
 package com.jamie.raycasting.items;
 
-import com.jamie.raycasting.graphics.Texture;
+import com.jamie.raycasting.graphics.Render;
 
 public class MiscItem extends Item
 {
-    public MiscItem(String name) {
+    public MiscItem(String name, Render icon) {
         super();
 
         this.name = name;
-        type = "key";
-
-        icon = Texture.keyIcon;
+        this.icon = icon;
+        type = "misc";
     }
 }

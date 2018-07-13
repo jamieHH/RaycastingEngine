@@ -23,7 +23,7 @@ public class InventoryOverlay extends Overlay
     private int inventoryItemIndex = 0;
 
     private String[] itemCategories = {
-        "Items", "Weapons", "Consumables", "Keys"
+        "Items", "Weapons", "Consumables", "Misc"
     };
     private int itemCatIndex = 0;
 
@@ -45,8 +45,8 @@ public class InventoryOverlay extends Overlay
             listedItems = inventory.getItemsByType("weapon");
         } else if (itemCategories[itemCatIndex].equals("Consumables")) {
             listedItems = inventory.getItemsByType("consumable");
-        } else if (itemCategories[itemCatIndex].equals("Keys")) {
-            listedItems = inventory.getItemsByType("key");
+        } else if (itemCategories[itemCatIndex].equals("Misc")) {
+            listedItems = inventory.getItemsByType("misc");
         }
 
         if (game.userInput.left || game.userInput.rotLeft) {

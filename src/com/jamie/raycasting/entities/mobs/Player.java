@@ -1,6 +1,7 @@
 package com.jamie.raycasting.entities.mobs;
 
 import com.jamie.raycasting.app.Sound;
+import com.jamie.raycasting.graphics.Texture;
 import com.jamie.raycasting.input.InputHandler;
 import com.jamie.raycasting.items.MiscItem;
 import com.jamie.raycasting.items.consumables.*;
@@ -38,8 +39,8 @@ public class Player extends Mob
         addItem(new XbowWeapon());
         addItem(new AxeWeapon());
         addItem(new PoisonPotion());
-        addItem(new MiscItem("Silver Key"));
-        addItem(new MiscItem("Planks"));
+        addItem(new MiscItem("Silver Key", Texture.keyIcon));
+        addItem(new MiscItem("Planks", Texture.planksIcon));
 
         addFaction("human");
     }
