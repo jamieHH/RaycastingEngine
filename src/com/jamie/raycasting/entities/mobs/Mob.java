@@ -481,7 +481,7 @@ public abstract class Mob extends Entity
 
                 int xb = (int) xx;
                 int zb = (int) zz;
-                if (xb != (int) (posX) || zb != (int) (posZ)) {
+                if (xb != (int) posX || zb != (int) posZ) {
                     Block block = level.getBlock(xb, zb);
                     if (block.use(this)) return;
 
