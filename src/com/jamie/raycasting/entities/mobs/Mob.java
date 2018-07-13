@@ -342,8 +342,9 @@ public abstract class Mob extends Entity
     }
 
     public void removeRightHandItem() {
-        getRightHandItem().remove();
-        setRightHandItemIndex(-1);
+        Item item = getRightHandItem();
+        unequipRightHand();
+        item.remove();
     }
 
     public double getRightHandReach() {
