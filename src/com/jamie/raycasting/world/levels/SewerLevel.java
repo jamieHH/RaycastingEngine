@@ -10,6 +10,6 @@ public class SewerLevel extends Level
 
     public void switchLevel(Mob mob, int id) {
         if (id == 1) world.switchLevel(mob, "prison", 1);
-        if (id == 2) world.switchLevel(mob, "island", 3);
+        if (id == 2) world.switchLevel(mob, "island", 4);
     }
 }
