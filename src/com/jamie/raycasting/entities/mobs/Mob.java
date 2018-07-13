@@ -86,26 +86,6 @@ public abstract class Mob extends Entity
     public void tick() {
         super.tick();
 
-        if (!(input instanceof UserInputHandler)) {
-            input.tick();
-        }
-
-        // inventory tick
-        if (getRightHandItem() != null) {
-            getRightHandItem().tick();
-        }
-
-        for (int i = 0; i < inventory.countItems(); i++) {
-            if (inventory.getItem(i).removed) {
-                if (i <= rightHandItemIndex) {
-                    // prevent out of bounds held item exception
-                    rightHandItemIndex--;
-                }
-
-                removeItem(inventory.getItem(i));
-            }
-        }
-
         if (hurtTime > 0) {
             hurtTime--;
         }
@@ -123,24 +103,25 @@ public abstract class Mob extends Entity
             }
         }
 
-        if (isDieing) {
-            unequipRightHand();
-            camY = 0.125;
+        if (!isDieing) {
+            if (!(input instanceof UserInputHandler)) {
+                input.tick();
+            }
 
-            if (!isDead) {
-                dieTime--;
-                if (dieTime == 0) {
-                    PoofParticle p = new PoofParticle();
-                    level.addEntity(p, posX, posZ);
+            if (getRightHandItem() != null) {
+                getRightHandItem().tick();
+            }
 
-                    isDead = true;
-                }
-            } else {
-                if (!(this instanceof Player)) {
-                    remove();
+            for (int i = 0; i < inventory.countItems(); i++) {
+                if (inventory.getItem(i).removed) {
+                    if (i <= rightHandItemIndex) {
+                        rightHandItemIndex--;
+                    }
+
+                    removeItem(inventory.getItem(i));
                 }
             }
-        } else {
+
             for (int i = 0; i < mobEffects.size(); i++) {
                 mobEffects.get(i).tick();
 
@@ -158,14 +139,31 @@ public abstract class Mob extends Entity
             }
 
             if (!isUsingMenu) {
-                reciveInput();
+                receiveInput();
             }
 
             doMovements();
+        } else {
+            unequipRightHand();
+            camY = 0.125;
+
+            if (!isDead) {
+                dieTime--;
+                if (dieTime == 0) {
+                    PoofParticle p = new PoofParticle();
+                    level.addEntity(p, posX, posZ);
+
+                    isDead = true;
+                }
+            } else {
+                if (!(this instanceof Player)) {
+                    remove();
+                }
+            }
         }
     }
 
-    private void reciveInput() {
+    private void receiveInput() {
         if (input.action) {
             if (useTicks == 0) {
                 useTicks = getUseWait();
