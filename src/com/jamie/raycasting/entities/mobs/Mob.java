@@ -491,7 +491,7 @@ public abstract class Mob extends Entity
         }
     }
 
-    public int getUseWait() {
+    private int getUseWait() {
         if (getRightHandItem() != null) {
             return getRightHandItem().useWait;
         }
