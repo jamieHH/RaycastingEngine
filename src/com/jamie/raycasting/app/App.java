@@ -17,7 +17,7 @@ public class App extends Canvas implements Runnable
 {
 	private static final long serialVersionUID = 1L;
 
-	public static final String TITLE = "raycasting_engine_pre_0.92";
+	public static final String TITLE = "raycasting_engine_pre_0.96";
 	public static int width = 200;
 	public static int height = 150;
 	public static int scale = 4;
@@ -40,10 +40,7 @@ public class App extends Canvas implements Runnable
 
 
 	public App() {
-		Dimension size = new Dimension(width * scale, height * scale);
-		setPreferredSize(size);
-		setMinimumSize(size);
-		setMaximumSize(size);
+        setCanvas();
 
 		input = new UserInputHandler();
 		game = new Game(input);
@@ -62,13 +59,17 @@ public class App extends Canvas implements Runnable
         app.start();
     }
 
+    private void setCanvas() {
+        Dimension size = new Dimension(width * scale, height * scale);
+        setPreferredSize(size);
+        setMinimumSize(size);
+        setMaximumSize(size);
+    }
+
 	private void changeResolution(int width, int height) {
 	    App.width = width;
 	    App.height = height;
-        Dimension size = new Dimension(width * scale, height * scale);
-		setPreferredSize(size);
-		setMinimumSize(size);
-		setMaximumSize(size);
+        setCanvas();
 
         refreshFrame(this);
 		requestFocus();
@@ -79,21 +80,23 @@ public class App extends Canvas implements Runnable
     }
 
 	public void start() {
-		if (running) return;
-		running = true;
-		thread = new Thread(this);
-		thread.start();
+		if (!running) {
+            running = true;
+            thread = new Thread(this);
+            thread.start();
+        }
 	}
 
 	public void stop() {
-		if (!running) return;
-		running = false;
-		try {
-			thread.join();
-		} catch(Exception e) {
-			e.printStackTrace();
-			System.exit(0);
-		}
+		if (running) {
+            running = false;
+            try {
+                thread.join();
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.exit(0);
+            }
+        }
 	}
 
 	public void run() {
@@ -104,7 +107,7 @@ public class App extends Canvas implements Runnable
 		double secondsPerTick = 1/60.0;
 		int tickCount = 0;
 
-		requestFocusInWindow();
+		requestFocus();
 		while (running) {
 			long currentTime = System.nanoTime();
 			long passedTime = currentTime - previousTime;
@@ -139,9 +142,9 @@ public class App extends Canvas implements Runnable
 		game.tick();
 
         if (setNewOptions) {
+            setNewOptions = false;
             App.scale = newScale;
             changeResolution(newWidth, newHeight);
-            setNewOptions = false;
         }
 	}
 
@@ -155,8 +158,8 @@ public class App extends Canvas implements Runnable
         screen.render(game);
         System.arraycopy(screen.pixels, 0, pixels, 0, width * height);
 
-        Graphics g = bs.getDrawGraphics();
         int fontSize = 16;
+        Graphics g = bs.getDrawGraphics();
         g.drawImage(img, 0, 0, width * scale, height * scale, null);
 		g.setFont(new Font("Verdana", Font.PLAIN, fontSize));
 		g.setColor(Color.YELLOW);
