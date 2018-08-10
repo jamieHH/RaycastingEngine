@@ -42,8 +42,8 @@ public class OptionsMenu extends Menu
         options.add("Aspect Ratio");
         options.add("Resolution");
         options.add("Scaling");
-        options.add("Accept");
         options.add("Reset Defaults");
+        options.add("Accept");
         options.add("Main Menu");
     }
 
