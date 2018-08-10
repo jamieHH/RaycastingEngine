@@ -99,7 +99,7 @@ public class Texture
     public static final Render spinningDummy2 = loadBitmap("tex/spinningDummy2.png");
     public static final Render spinningDummy3 = loadBitmap("tex/spinningDummy3.png");
     public static final Render spinningDummy4 = loadBitmap("tex/spinningDummy4.png");
-    public static final Render pillar = loadBitmap("tex/pillarL.png");
+    public static final Render pillar = loadBitmap("tex/pillar.png");
     public static final Render lamp = loadBitmap("tex/lamp.png");
     public static final Render bars = loadBitmap("tex/bars.png");
     public static final Render ladder = loadBitmap("tex/ladder.png");
@@ -138,7 +138,7 @@ public class Texture
     public static final Render gate3 = loadBitmap("tex/gate3.png");
 
 	// particles
-    public static final Render blood0 = loadBitmap("tex/bloodS.png");
+    public static final Render blood0 = loadBitmap("tex/blood0.png");
     public static final Render blood1 = loadBitmap("tex/blood1.png");
     public static final Render blood2 = loadBitmap("tex/blood2.png");
     public static final Render blood3 = loadBitmap("tex/blood3.png");
