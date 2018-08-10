@@ -124,7 +124,7 @@ public class OptionsMenu extends Menu
     }
 
     public void update() {
-        fill(0, 0, width, height, 0x202020);
+        fill(0x202020);
 
         draw("  Options", bp, bp, 0xF0F0F0);
 

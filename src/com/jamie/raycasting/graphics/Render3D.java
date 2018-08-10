@@ -118,7 +118,16 @@ public class Render3D extends Render
 
 		double distBuffer = rotZ * 0.5;
 
-		int scale = tex.width; // use to implement texture scales
+		int scale = 16; // this will keep sprites to scale
+//		int scale = tex.width; // this will fill the block width
+		if (tex.width != scale || tex.height != scale) {
+			Render nTex = new Render(scale, scale);
+			nTex.fill(0xffff00ff);
+			nTex.draw(tex, (scale / 2) - (tex.width / 2), scale - tex.height);
+			tex = nTex; // makes a new texture to scale and draws the smaller one over top
+		}
+
+
 
 		for (int yp = yPixelLInt; yp < yPixelRInt; yp++) {
 			double pixelRotationY = (yp - yPixelL) / (yPixelR - yPixelL);
@@ -128,7 +137,7 @@ public class Render3D extends Render
 				int xTexture = (int) (pixelRotationX * scale); // 16
 
 				if (zBuffer[xp + yp * width] > distBuffer) {
-					int colour = tex.pixels[(xTexture &15) + (yTexture &15) * scale]; // TODO: shrink smaller textures to relative size as if 16px is standard per block
+					int colour = tex.pixels[xTexture + yTexture * scale]; // TODO: shrink smaller textures to relative size as if 16px is standard per block
 					if (colour != 0xffff00ff) {
 						pixels[xp + yp * width] = colour;
 						zBuffer[xp + yp * width] = distBuffer;

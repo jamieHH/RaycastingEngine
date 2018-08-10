@@ -47,7 +47,7 @@ public class LoadMenu extends Menu
     }
 
     public void update() {
-        fill(0, 0, width, height, 0x202020);
+        fill(0x202020);
 
         draw("  Load Game", bp, bp, 0xF0F0F0);
         for (int i = 0; i < options.size(); i++) {

@@ -67,6 +67,10 @@ public class Render
         }
     }
 
+    public void fill(int color) {
+		fill(0, 0, width, height, color);
+	}
+
 	public void fill(int x0, int y0, int x1, int y1, int color) {
 		for (int y = y0; y < y1; y++) {
 			if (y < 0 || y >= height) continue;

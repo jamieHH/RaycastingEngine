@@ -137,9 +137,9 @@ public class InventoryOverlay extends Overlay
         for (int i = 0; i < itemCategories.length; i++) {
             Render blip = new Render(2, 2);
             if (i == itemCatIndex) {
-                blip.fill(0, 0, blip.width, blip.height, 0xF0F0F0);
+                blip.fill(0xF0F0F0);
             } else {
-                blip.fill(0, 0, blip.width, blip.height, 0x404040);
+                blip.fill(0x404040);
             }
             draw(blip, (width - bp - 4) - ((itemCategories.length - i - 1) * 6), bp + 3);
         }
@@ -147,7 +147,7 @@ public class InventoryOverlay extends Overlay
     }
 
     public void updateList() {
-        itemListRender.fill(0, 0, itemListRender.width, itemListRender.height, 0x101010);
+        itemListRender.fill(0x101010);
         if (listedItems.size() > 0) {
             itemListRender.fill(0, itemListYShift + (listItemIndex * 12), itemListRender.width, itemListYShift + ((listItemIndex + 1) * 12), 0x404040);
             for (int i = 0; i < listedItems.size(); i++) {
@@ -170,12 +170,12 @@ public class InventoryOverlay extends Overlay
     }
 
     public void updateDetailsPain() {
-        itemDetailsPane.fill(0, 0, itemListRender.width, itemListRender.height, 0x303030);
+        itemDetailsPane.fill(0x303030);
         if (listedItems.size() > 0) {
             Item item = listedItems.get(listItemIndex);
             Render icon = item.icon;
             Render bground = new Render(18, 18);
-            bground.fill(0, 0, bground.width, bground.height, 0x202020);
+            bground.fill(0x202020);
 
             itemDetailsPane.draw(bground, itemDetailsPane.width / 2 - bground.width / 2, bp);
             itemDetailsPane.draw(icon, itemDetailsPane.width / 2 - icon.width / 2, bp + 1);
@@ -199,7 +199,7 @@ public class InventoryOverlay extends Overlay
     }
 
     public void update() {
-        fill(0, 0, width, height, 0x202020);
+        fill(0x202020);
         updateCatHeadings();
         updateList();
         updateDetailsPain();
