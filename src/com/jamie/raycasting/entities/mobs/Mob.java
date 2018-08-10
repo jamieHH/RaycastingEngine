@@ -104,6 +104,10 @@ public abstract class Mob extends Entity
         }
 
         if (!isDieing) {
+            if (health < 1) {
+                die();
+            }
+
             if (!(input instanceof UserInputHandler)) {
                 input.tick();
             }
@@ -277,6 +281,7 @@ public abstract class Mob extends Entity
     }
 
     private void die() {
+        deathSound.play();
         runSpriteSet("death");
         isDieing = true;
     }
@@ -394,35 +399,30 @@ public abstract class Mob extends Entity
     }
 
     public void lookTowards(double x, double z) {
-        double xDiff = x - posX;
-        double zDiff = z - posZ;
-        rotation = Math.atan2(xDiff, zDiff);
+        rotation = Math.atan2(x - posX, z - posZ);
     }
 
     public void pushDir(double direction, double force) {
         double mx = Math.sin(direction) * force;
         double mz = Math.cos(direction)* force;
 
-        double nextZ = mz * Math.cos(-rotation) - mx * Math.sin(-rotation);
-        double nextX = mx * Math.cos(-rotation) + mz * Math.sin(-rotation);
-
-        moveX += nextX;
-        moveZ += nextZ;
+        moveX += mx * Math.cos(-rotation) + mz * Math.sin(-rotation);
+        moveZ += mz * Math.cos(-rotation) - mx * Math.sin(-rotation);
     }
 
     public void heal(int magnitude) {
-        if (magnitude <= 0 || isDieing) return;
+        if (magnitude > 0 && !isDieing) {
+            runSpriteSet("heal");
+            HealthParticle p = new HealthParticle();
+            level.addEntity(p, posX, posZ);
 
-        runSpriteSet("heal");
-        HealthParticle p = new HealthParticle();
-        level.addEntity(p, posX, posZ);
-
-        if (health + magnitude > maxHealth) {
-            health = maxHealth;
-        } else if (health + magnitude < 0) {
-            health = 0;
-        } else {
-            health += magnitude;
+            if (health + magnitude > maxHealth) {
+                health = maxHealth;
+            } else if (health + magnitude < 0) {
+                health = 0;
+            } else {
+                health += magnitude;
+            }
         }
     }
 
@@ -431,25 +431,23 @@ public abstract class Mob extends Entity
     }
 
     public void hurt(Entity source, int magnitude, String damageType) {
-        if (hurtTime > 0 || magnitude <= 0 || isDieing) return;
+        if (magnitude > 0 && !isDieing && hurtTime < 1) {
+            runSpriteSet("hurt");
+            BloodParticle p = new BloodParticle();
+            level.addEntity(p, posX, posZ);
 
-        runSpriteSet("hurt");
-        BloodParticle p = new BloodParticle();
-        level.addEntity(p, posX, posZ);
+            if (health - magnitude > 0) {
+                hurtSound.play();
+                health -= magnitude;
+                hurtType = damageType; // change to blunt if armor protects some damage
+                hurtTime = 30;
 
-        if (health - magnitude > 0) {
-            hurtSound.play();
-            health -= magnitude;
-            hurtType = damageType; // change to blunt if armor protects some damage
-            hurtTime = 30;
-
-            yBob -= 0.8;
-            pushDir(source.rotation, 0.4);
-            rotationMove += (Math.random() - 0.5);
-        } else {
-            deathSound.play();
-            health = 0;
-            die();
+                yBob -= 0.8;
+                pushDir(source.rotation, 0.4);
+                rotationMove += (Math.random() - 0.5);
+            } else {
+                health = 0;
+            }
         }
     }
 
@@ -503,7 +501,7 @@ public abstract class Mob extends Entity
     }
 
     public void addFaction(String faction) {
-        this.factions.add(faction);
+        factions.add(faction);
     }
 
     public void modHealth(int modifier) {
