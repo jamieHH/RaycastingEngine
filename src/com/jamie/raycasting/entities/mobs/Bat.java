@@ -68,12 +68,18 @@ public class Bat extends Mob
             if (level.getMobEntities().get(i).getFactions().contains("human")) {
                 target = level.getMobEntities().get(i);
 
-                if (squareDistanceFrom(target.posX, target.posZ) < viewDist) {
-                    lookTowards(target.posX, target.posZ);
+                if (!target.isDead) {
+                    if (squareDistanceFrom(target.posX, target.posZ) < viewDist) {
+                        lookTowards(target.posX, target.posZ);
 
-                    input.forwardInf = 100;
-                    input.backInf = 25;
-                    input.action = squareDistanceFrom(target.posX, target.posZ) < getRightHandReach();
+                        input.forwardInf = 100;
+                        input.backInf = 25;
+                        input.action = squareDistanceFrom(target.posX, target.posZ) < getRightHandReach();
+                    } else {
+                        input.action = false;
+                    }
+                } else {
+                    input.action = false;
                 }
             }
         }
