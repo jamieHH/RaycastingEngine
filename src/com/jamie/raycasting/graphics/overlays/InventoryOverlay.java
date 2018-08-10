@@ -94,12 +94,13 @@ public class InventoryOverlay extends Overlay
         if (listedItems.size() > 0) {
             if (game.userInput.action) {
                 game.userInput.setKeyGroupState("action", false);
-                Sound.clickAction.play();
                 if (inventory.getItems().get(inventoryItemIndex) instanceof Consumable) {
+                    Sound.clickAction.play();
                     inventory.getItem(inventoryItemIndex).use();
                 } else if (inventory.getItems().get(inventoryItemIndex) instanceof MiscItem) {
                     // do nothing
                 } else {
+                    Sound.clickAction.play();
                     if (mob.getRightHandItem() != inventory.getItem(inventoryItemIndex)) {
                         int inx = inventory.getIndexOf(inventory.getItem(inventoryItemIndex));
                         mob.setRightHandItemIndex(inx);
