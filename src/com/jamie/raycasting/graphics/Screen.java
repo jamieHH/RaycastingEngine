@@ -80,14 +80,14 @@ public class Screen extends Render
             }
 
             // Hotkey items
-            for (int i = 1; i < 4; i++) {
+            for (int i = 1; i < p.getHotkeys().length + 1; i++) {
                 HotkeyOverlay hkIcon = new HotkeyOverlay();
                 if (p.getHotkey(i) != null) {
                     hkIcon.update(p.inventory.getItem(p.getHotkey(i)));
                 } else {
                     hkIcon.update(null);
                 }
-                draw(hkIcon, width - ((hkIcon.width + 1) * 4) + ((hkIcon.width + 1) * i), height - hkIcon.height);
+                draw(hkIcon, width - ((hkIcon.width + 1) * (p.getHotkeys().length + 1)) + ((hkIcon.width + 1) * i), height - hkIcon.height);
             }
         }
 

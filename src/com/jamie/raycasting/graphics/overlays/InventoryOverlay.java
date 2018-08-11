@@ -31,6 +31,7 @@ public class InventoryOverlay extends Overlay
     private Render itemListRender = new Render(width - bp - bp - itemDetailsPane.width, height - (bp + 10 + 8 + bp));
     private int itemListYShift = 0;
 
+
     public InventoryOverlay(int width, int height) {
         super(width, height);
     }

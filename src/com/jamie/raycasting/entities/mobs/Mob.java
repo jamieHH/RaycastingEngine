@@ -71,7 +71,7 @@ public abstract class Mob extends Entity
 
     // items
     public Inventory inventory = new Inventory();
-    private Map<Integer, Integer> hotKeys = new HashMap<Integer, Integer>();
+    private Integer[] hotKeys = new Integer[3];
     private int rightHandItemIndex = 0;
     public boolean rightHandEmpty = true;
 
@@ -376,12 +376,16 @@ public abstract class Mob extends Entity
         return baseReach;
     }
 
+    public Integer[] getHotkeys() {
+        return hotKeys;
+    }
+
     public Integer getHotkey(int slot) {
-        return hotKeys.get(slot);
+        return hotKeys[slot - 1];
     }
 
     public void setHotkey(int slot, Integer itemIndex) {
-        hotKeys.put(slot, itemIndex);
+        hotKeys[slot - 1] = itemIndex;
     }
 
     public Item getItemByName(String name) {
