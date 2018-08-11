@@ -71,7 +71,7 @@ public abstract class Mob extends Entity
 
     // items
     public Inventory inventory = new Inventory();
-    public Map<Integer, Integer> hotKeys = new HashMap<Integer, Integer>();
+    private Map<Integer, Integer> hotKeys = new HashMap<Integer, Integer>();
     private int rightHandItemIndex = 0;
     public boolean rightHandEmpty = true;
 
@@ -128,11 +128,11 @@ public abstract class Mob extends Entity
                     }
 
                     for (int j = 1; j < 4; j++) {
-                        if (hotKeys.get(j) != null) {
-                            if (i < hotKeys.get(j)) {
-                                hotKeys.put(j, hotKeys.get(j) - 1);
-                            } else if (i == hotKeys.get(j)) {
-                                hotKeys.put(j, null);
+                        if (getHotkey(j) != null) {
+                            if (i < getHotkey(j)) {
+                                setHotkey(j, getHotkey(j) - 1);
+                            } else if (i == getHotkey(j)) {
+                                setHotkey(j, null);
                             }
                         }
                     }
@@ -168,14 +168,14 @@ public abstract class Mob extends Entity
                     }
                 }
 
-                if (input.hot1 && hotKeys.get(1) != null) {
-                    useItemIndex(hotKeys.get(1));
+                if (input.hot1 && getHotkey(1) != null) {
+                    useItemIndex(getHotkey(1));
                 }
-                if (input.hot2 && hotKeys.get(2) != null) {
-                    useItemIndex(hotKeys.get(2));
+                if (input.hot2 && getHotkey(2) != null) {
+                    useItemIndex(getHotkey(2));
                 }
-                if (input.hot3 && hotKeys.get(3) != null) {
-                    useItemIndex(hotKeys.get(3));
+                if (input.hot3 && getHotkey(3) != null) {
+                    useItemIndex(getHotkey(3));
                 }
             }
 
@@ -374,6 +374,14 @@ public abstract class Mob extends Entity
             return baseReach + getRightHandItem().reach;
         }
         return baseReach;
+    }
+
+    public Integer getHotkey(int slot) {
+        return hotKeys.get(slot);
+    }
+
+    public void setHotkey(int slot, Integer itemIndex) {
+        hotKeys.put(slot, itemIndex);
     }
 
     public Item getItemByName(String name) {
