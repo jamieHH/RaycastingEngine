@@ -4,19 +4,21 @@ import com.jamie.raycasting.items.Item;
 
 public class HotkeyOverlay extends Overlay
 {
-    public HotkeyOverlay() {
-        super(16, 16);
+    private String id;
 
+    public HotkeyOverlay(String id) {
+        super(16, 16);
+        this.id = id;
         fill(0x404040);
     }
 
     public void update(Item item) {
         if (item != null) {
             draw(item.icon, 0, 0);
+        } else {
+            draw(id, (width / 2) - (3), (height / 2) - 4, 0x404040);
         }
-        fill(0, 0, width, 1, 0x606060);
-        fill(0, 0, 1, height, 0x606060);
-        fill(width -1, 1, width, height, 0x606060);
-        fill(1, height-1, width, height, 0x606060);
+
+        box(0, 0, width, height, 0x606060);
     }
 }

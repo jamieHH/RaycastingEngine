@@ -81,7 +81,7 @@ public class Screen extends Render
 
             // Hotkey items
             for (int i = 1; i < p.getHotkeys().length + 1; i++) {
-                HotkeyOverlay hkIcon = new HotkeyOverlay();
+                HotkeyOverlay hkIcon = new HotkeyOverlay(Integer.toString(i));
                 if (p.getHotkey(i) != null) {
                     hkIcon.update(p.inventory.getItem(p.getHotkey(i)));
                 } else {

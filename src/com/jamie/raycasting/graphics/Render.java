@@ -80,4 +80,11 @@ public class Render
 			}
 		}
 	}
+
+	public void box(int x0, int y0, int x1, int y1, int color) {
+		fill(x0, y0, x1, 1, color);
+		fill(x0, y0, 1, y1, color);
+		fill(x1 - 1, 1, x1, y1, color);
+		fill(1, y1 - 1, x1, y1, color);
+	}
 }
