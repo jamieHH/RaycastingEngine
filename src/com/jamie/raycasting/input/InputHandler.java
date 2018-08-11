@@ -2,7 +2,7 @@ package com.jamie.raycasting.input;
 
 public class InputHandler
 {
-	public boolean forward, back, left, right, rotLeft, rotRight, crouch, run, action;
+	public boolean forward, back, left, right, rotLeft, rotRight, crouch, run, action, hot1, hot2, hot3;
 
     public int forwardInf = 50;
     public int backInf = 50;

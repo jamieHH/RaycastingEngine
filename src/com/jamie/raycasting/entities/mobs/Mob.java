@@ -11,10 +11,14 @@ import com.jamie.raycasting.input.InputHandler;
 import com.jamie.raycasting.input.UserInputHandler;
 import com.jamie.raycasting.items.Inventory;
 import com.jamie.raycasting.items.Item;
+import com.jamie.raycasting.items.consumables.Consumable;
+import com.jamie.raycasting.items.weapons.Weapon;
 import com.jamie.raycasting.world.blocks.Block;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public abstract class Mob extends Entity
 {
@@ -67,6 +71,7 @@ public abstract class Mob extends Entity
 
     // items
     public Inventory inventory = new Inventory();
+    public Map<Integer, Integer> hotKeys = new HashMap<Integer, Integer>();
     private int rightHandItemIndex = 0;
     public boolean rightHandEmpty = true;
 
@@ -122,6 +127,16 @@ public abstract class Mob extends Entity
                         rightHandItemIndex--;
                     }
 
+                    if (hotKeys.get(1) != null && i == hotKeys.get(1)) {
+                        hotKeys.put(1, null);
+                    }
+                    if (hotKeys.get(2) != null && i == hotKeys.get(2)) {
+                        hotKeys.put(2, null);
+                    }
+                    if (hotKeys.get(3) != null && i == hotKeys.get(3)) {
+                        hotKeys.put(3, null);
+                    }
+
                     removeItem(inventory.getItem(i));
                 }
             }
@@ -143,7 +158,25 @@ public abstract class Mob extends Entity
             }
 
             if (!isUsingMenu) {
-                receiveInput();
+                receiveMovementInput();
+
+                if (input.action) {
+                    if (useTicks == 0) {
+                        useTicks = getUseWait();
+
+                        activate();
+                    }
+                }
+
+                if (input.hot1 && hotKeys.get(1) != null) {
+                    useItemIndex(hotKeys.get(1));
+                }
+                if (input.hot2 && hotKeys.get(2) != null) {
+                    useItemIndex(hotKeys.get(2));
+                }
+                if (input.hot3 && hotKeys.get(3) != null) {
+                    useItemIndex(hotKeys.get(3));
+                }
             }
 
             doMovements();
@@ -167,15 +200,7 @@ public abstract class Mob extends Entity
         }
     }
 
-    private void receiveInput() {
-        if (input.action) {
-            if (useTicks == 0) {
-                useTicks = getUseWait();
-
-                activate();
-            }
-        }
-
+    private void receiveMovementInput() {
         double moveSpeed;
         if (input.crouch) {
             camY -= crouchHeightMod;
@@ -358,6 +383,15 @@ public abstract class Mob extends Entity
             }
         }
         return null;
+    }
+
+    private void useItemIndex(int index) {
+        if (inventory.getItem(index) instanceof Consumable) {
+            inventory.getItem(index).use();
+        } else if (inventory.getItem(index) instanceof Weapon) {
+            unequipRightHand();
+            setRightHandItemIndex(index);
+        }
     }
 
     public int getDamage() {

@@ -25,6 +25,9 @@ public class UserInputHandler extends InputHandler implements KeyListener, Focus
         int[] crouchKeys = {KeyEvent.VK_CONTROL};
         int[] actionKeys = {KeyEvent.VK_ENTER, KeyEvent.VK_SPACE};
         int[] inventoryKeys = {KeyEvent.VK_E};
+        int[] hot1 = {KeyEvent.VK_1};
+        int[] hot2 = {KeyEvent.VK_2};
+        int[] hot3 = {KeyEvent.VK_3};
         int[] pauseKeys = {KeyEvent.VK_ESCAPE};
 
         keyGroups.put("forward", forwardKeys);
@@ -36,6 +39,9 @@ public class UserInputHandler extends InputHandler implements KeyListener, Focus
         keyGroups.put("crouch", crouchKeys);
         keyGroups.put("action", actionKeys);
         keyGroups.put("inventory", inventoryKeys);
+        keyGroups.put("hot1", hot1);
+        keyGroups.put("hot2", hot2);
+        keyGroups.put("hot3", hot3);
         keyGroups.put("pause", pauseKeys);
     }
 
@@ -69,7 +75,10 @@ public class UserInputHandler extends InputHandler implements KeyListener, Focus
         crouch = checkKeyGroup(keyGroups.get("crouch"));
         action = checkKeyGroup(keyGroups.get("action"));
 		inventory = checkKeyGroup(keyGroups.get("inventory"));
-		pause = checkKeyGroup(keyGroups.get("pause"));
+        hot1 = checkKeyGroup(keyGroups.get("hot1"));
+        hot2 = checkKeyGroup(keyGroups.get("hot2"));
+        hot3 = checkKeyGroup(keyGroups.get("hot3"));
+        pause = checkKeyGroup(keyGroups.get("pause"));
 
 //		run = key[KeyEvent.VK_SHIFT];
 

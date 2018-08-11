@@ -109,6 +109,19 @@ public class InventoryOverlay extends Overlay
                     }
                 }
             }
+
+            if (game.userInput.hot1) {
+                game.userInput.setKeyGroupState("hot1", false);
+                mob.hotKeys.put(1, inventoryItemIndex);
+            }
+            if (game.userInput.hot2) {
+                game.userInput.setKeyGroupState("hot2", false);
+                mob.hotKeys.put(2, inventoryItemIndex);
+            }
+            if (game.userInput.hot3) {
+                game.userInput.setKeyGroupState("hot3", false);
+                mob.hotKeys.put(3, inventoryItemIndex);
+            }
         }
 
         if (listItemIndex >= listedItems.size() && listItemIndex != 0) {
