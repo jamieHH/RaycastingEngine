@@ -433,10 +433,8 @@ public abstract class Mob extends Entity
     public void hurt(Entity source, int magnitude, String damageType) {
         if (magnitude > 0 && !isDieing && hurtTime < 1) {
             runSpriteSet("hurt");
-            if (damageType.equals("hurt")) {
-                BloodParticle p = new BloodParticle();
-                level.addEntity(p, posX, posZ);
-            }
+            BloodParticle p = new BloodParticle();
+            level.addEntity(p, posX, posZ);
 
             if (health - magnitude > 0) {
                 hurtSound.play();
@@ -446,9 +444,7 @@ public abstract class Mob extends Entity
 
                 yBob -= 0.8;
                 rotationMove += (Math.random() - 0.5);
-                if (damageType.equals("hurt")) {
-                    pushDir(source.rotation, 0.4);
-                }
+                pushDir(source.rotation, 0.4);
             } else {
                 health = 0;
             }
