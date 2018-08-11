@@ -38,6 +38,7 @@ public class Player extends Mob
         addItem(new HealthPotion());
         addItem(new XbowWeapon());
         addItem(new AxeWeapon());
+        addItem(new KnifeWeapon());
         addItem(new PoisonPotion());
         addItem(new MiscItem("Silver Key", Texture.keyIcon));
         addItem(new MiscItem("Planks", Texture.planksIcon));

@@ -17,6 +17,7 @@ public class Texture
     // icons
     public static final Render spearIcon = loadBitmap("/gui/spearIcon.png");
     public static final Render axeIcon = loadBitmap("/gui/axeIcon.png");
+    public static final Render knifeIcon = loadBitmap("/gui/knifeIcon.png");
     public static final Render planksIcon = loadBitmap("/gui/planksIcon.png");
     public static final Render xbowIcon = loadBitmap("/gui/xbowIcon.png");
     public static final Render wandIcon = loadBitmap("/gui/wandIcon.png");
@@ -158,6 +159,8 @@ public class Texture
     public static final Render screenSpear2 = loadBitmap("tex/screenSpear2.png");
     public static final Render screenAxe0 = loadBitmap("tex/screenAxe0.png");
     public static final Render screenAxe1 = loadBitmap("tex/screenAxe1.png");
+    public static final Render screenKnife0 = loadBitmap("tex/screenKnife0.png");
+    public static final Render screenKnife1 = loadBitmap("tex/screenKnife1.png");
     public static final Render screenWand0 = loadBitmap("tex/screenWand0.png");
     public static final Render screenWand1 = loadBitmap("tex/screenWand1.png");
     public static final Render screenXbow0 = loadBitmap("tex/screenXbow0.png");
