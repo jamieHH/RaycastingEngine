@@ -161,6 +161,7 @@ public class Texture
     public static final Render screenAxe1 = loadBitmap("tex/screenAxe1.png");
     public static final Render screenKnife0 = loadBitmap("tex/screenKnife0.png");
     public static final Render screenKnife1 = loadBitmap("tex/screenKnife1.png");
+    public static final Render screenKnife2 = loadBitmap("tex/screenKnife2.png");
     public static final Render screenWand0 = loadBitmap("tex/screenWand0.png");
     public static final Render screenWand1 = loadBitmap("tex/screenWand1.png");
     public static final Render screenXbow0 = loadBitmap("tex/screenXbow0.png");

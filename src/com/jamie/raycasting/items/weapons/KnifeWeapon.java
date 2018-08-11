@@ -11,7 +11,7 @@ public class KnifeWeapon extends Weapon
 
         name = "Knife";
         damage = 1;
-        reach = 1;
+        reach = 0;
 
         icon = Texture.knifeIcon;
 
@@ -22,6 +22,7 @@ public class KnifeWeapon extends Weapon
 
         Render[] ts1 = {
                 Texture.screenKnife1,
+                Texture.screenKnife2,
         };
         setUseSprite(new Sprite(ts1));
     }
