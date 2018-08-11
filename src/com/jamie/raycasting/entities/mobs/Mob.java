@@ -127,14 +127,14 @@ public abstract class Mob extends Entity
                         rightHandItemIndex--;
                     }
 
-                    if (hotKeys.get(1) != null && i == hotKeys.get(1)) {
-                        hotKeys.put(1, null);
-                    }
-                    if (hotKeys.get(2) != null && i == hotKeys.get(2)) {
-                        hotKeys.put(2, null);
-                    }
-                    if (hotKeys.get(3) != null && i == hotKeys.get(3)) {
-                        hotKeys.put(3, null);
+                    for (int j = 1; j < 4; j++) {
+                        if (hotKeys.get(j) != null) {
+                            if (i < hotKeys.get(j)) {
+                                hotKeys.put(j, hotKeys.get(j) - 1);
+                            } else if (i == hotKeys.get(j)) {
+                                hotKeys.put(j, null);
+                            }
+                        }
                     }
 
                     removeItem(inventory.getItem(i));
