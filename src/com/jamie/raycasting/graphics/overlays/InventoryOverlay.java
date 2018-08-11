@@ -112,15 +112,30 @@ public class InventoryOverlay extends Overlay
 
             if (game.userInput.hot1) {
                 game.userInput.setKeyGroupState("hot1", false);
-                mob.setHotkey(1, inventoryItemIndex);
+                Sound.clickAction.play();
+                if (mob.getHotkey(1) == null || mob.getHotkey(1) != inventoryItemIndex) {
+                    mob.setHotkey(1, inventoryItemIndex);
+                } else {
+                    mob.setHotkey(1, null);
+                }
             }
             if (game.userInput.hot2) {
                 game.userInput.setKeyGroupState("hot2", false);
-                mob.setHotkey(2, inventoryItemIndex);
+                Sound.clickAction.play();
+                if (mob.getHotkey(2) == null || mob.getHotkey(2) != inventoryItemIndex) {
+                    mob.setHotkey(2, inventoryItemIndex);
+                } else {
+                    mob.setHotkey(2, null);
+                }
             }
             if (game.userInput.hot3) {
                 game.userInput.setKeyGroupState("hot3", false);
-                mob.setHotkey(3, inventoryItemIndex);
+                Sound.clickAction.play();
+                if (mob.getHotkey(3) == null || mob.getHotkey(3) != inventoryItemIndex) {
+                    mob.setHotkey(3, inventoryItemIndex);
+                } else {
+                    mob.setHotkey(3, null);
+                }
             }
         }
 
@@ -135,7 +150,7 @@ public class InventoryOverlay extends Overlay
         }
     }
 
-    public void updateCatHeadings() {
+    private void updateCatHeadings() {
         String catString = itemCategories[itemCatIndex];
         if (itemCatIndex == 0) {
             draw("< ", bp, bp, 0x404040);
@@ -160,7 +175,7 @@ public class InventoryOverlay extends Overlay
         draw(Texture.nameIcon, bp * 2, bp + 10);
     }
 
-    public void updateList() {
+    private void updateList() {
         itemListRender.fill(0x101010);
         if (listedItems.size() > 0) {
             itemListRender.fill(0, itemListYShift + (listItemIndex * 12), itemListRender.width, itemListYShift + ((listItemIndex + 1) * 12), 0x404040);
@@ -183,7 +198,7 @@ public class InventoryOverlay extends Overlay
         draw(itemListRender, bp, bp + 10 + 8);
     }
 
-    public void updateDetailsPain() {
+    private void updateDetailsPain() {
         itemDetailsPane.fill(0x303030);
         if (listedItems.size() > 0) {
             Item item = listedItems.get(listItemIndex);
