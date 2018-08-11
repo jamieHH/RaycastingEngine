@@ -344,26 +344,11 @@ public abstract class Mob extends Entity
         setRightHandItemIndex(-1);
     }
 
-    public void removeRightHandItem() {
-        Item item = getRightHandItem();
-        unequipRightHand();
-        item.remove();
-    }
-
     public double getRightHandReach() {
         if (inventory.countItems() > 0 && !rightHandEmpty) {
             return baseReach + getRightHandItem().reach;
         }
         return baseReach;
-    }
-
-    public boolean hasItemByName(String name) {
-        for (int i = 0; i < inventory.countItems(); i++) {
-            if (inventory.getItem(i).name.equals(name)) {
-                return true;
-            }
-        }
-        return false;
     }
 
     public Item getItemByName(String name) {

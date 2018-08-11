@@ -26,7 +26,7 @@ public class BridgeBlock extends TriggerableBlock
 
     public boolean use(Mob source) {
         if (broken) {
-            if (source.hasItemByName("Planks")) {
+            if (source.getItemByName("Planks") != null) {
                 source.getItemByName("Planks").remove();
                 trigger();
                 source.addHudHeading("The bridge is mended");

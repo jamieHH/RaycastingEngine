@@ -50,7 +50,7 @@ public class GateBlock extends TriggerableBlock
             return false;
         }
 
-        if (source.hasItemByName(keyName)) {
+        if (source.getItemByName(keyName) != null) {
             useTicks = useWait;
             trigger();
             return true;
