@@ -2,6 +2,7 @@ package com.jamie.raycasting.graphics;
 
 import com.jamie.raycasting.app.Game;
 import com.jamie.raycasting.entities.mobs.Mob;
+import com.jamie.raycasting.graphics.overlays.HotkeyOverlay;
 import com.jamie.raycasting.graphics.overlays.HudBarOverlay;
 import com.jamie.raycasting.graphics.overlays.StatBarOverlay;
 import com.jamie.raycasting.graphics.overlays.ViewPunchOverlay;
@@ -76,6 +77,17 @@ public class Screen extends Render
             // Render hud headings
             for (int i = 0; i < p.hudHeadings.size(); i++) {
                 draw(p.hudHeadings.get(i), (render.width - 2) - (p.hudHeadings.get(i).length() * 6), (i * 10) + 2, 0xF0F070);
+            }
+
+            // Hotkey items
+            for (int i = 1; i < 4; i++) {
+                HotkeyOverlay hkIcon = new HotkeyOverlay();
+                if (p.hotKeys.get(i) != null) {
+                    hkIcon.update(p.inventory.getItem(p.hotKeys.get(i)));
+                } else {
+                    hkIcon.update(null);
+                }
+                draw(hkIcon, width - ((hkIcon.width + 1) * 4) + ((hkIcon.width + 1) * i), height - hkIcon.height);
             }
         }
 
