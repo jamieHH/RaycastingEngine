@@ -12,6 +12,7 @@ public class KnifeWeapon extends Weapon
         name = "Knife";
         damage = 1;
         reach = 0;
+        useWait = 15;
 
         icon = Texture.knifeIcon;
 

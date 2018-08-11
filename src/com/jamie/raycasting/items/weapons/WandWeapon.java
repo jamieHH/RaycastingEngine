@@ -12,6 +12,8 @@ public class WandWeapon extends Weapon
 
         name = "Wand";
         damage = 3;
+        reach = 0;
+        useWait = 30;
         canStrike = false;
 
         icon = Texture.wandIcon;
@@ -23,7 +25,9 @@ public class WandWeapon extends Weapon
 
         Render[] ts1 = {
                 Texture.screenWand1,
-                Texture.screenWand1
+                Texture.screenWand2,
+                Texture.screenWand3,
+                Texture.screenWand4,
         };
         setUseSprite(new Sprite(ts1));
     }

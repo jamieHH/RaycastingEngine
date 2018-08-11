@@ -12,6 +12,7 @@ public class AxeWeapon extends Weapon
         name = "Hatchet";
         damage = 3;
         reach = 1;
+        useWait = 20;
 
         icon = Texture.axeIcon;
 

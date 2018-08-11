@@ -12,6 +12,7 @@ public class SpearWeapon extends Weapon
         name = "Spear";
         damage = 2;
         reach = 2;
+        useWait = 20;
 
         icon = Texture.spearIcon;
 

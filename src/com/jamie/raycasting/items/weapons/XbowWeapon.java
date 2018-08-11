@@ -12,6 +12,8 @@ public class XbowWeapon extends Weapon
 
         name = "Crossbow";
         damage = 2;
+        reach = 0;
+        useWait = 15;
         canStrike = false;
 
         icon = Texture.xbowIcon;
