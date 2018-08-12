@@ -7,40 +7,36 @@ import com.jamie.raycasting.world.blocks.*;
 
 public class Render3D extends Render
 {
-	private int blockViewDist = 8;
+    private Mob p;
 
-	private double[] zBuffer;
-	private double[] zBufferWall;
+    private int blockViewDist = 8;
+    private int xBlockStart, xBlockEnd, zBlockStart, zBlockEnd;
+
+    private double[] zBuffer;
+    private double[] zBufferWall;
 
     private double xCentre = width / 2;
     private double yCentre = height / 2.5; // adjust to 'tilt' the horizon line
+    private double cosine, sine;
+    private double fov;
 
-	private double cosine, sine;
-
-	private int xBlockStart, xBlockEnd, zBlockStart, zBlockEnd;
-
-	private double fov;
-
-	private Mob p;
 
 	protected Render3D(int width, int height) {
 		super(width, height);
 		zBuffer = new double[width * height];
 		zBufferWall = new double[width];
+        fov = height;
 	}
 
 	protected void render(Mob p) {
-	    this.p = p;
-
-	    xBlockStart = (int) (p.posX) - blockViewDist;
-	    xBlockEnd = (int) (p.posX) + blockViewDist;
-	    zBlockStart = (int) (p.posZ) - blockViewDist;
-	    zBlockEnd = (int) (p.posZ) + blockViewDist;
+        this.p = p;
+        xBlockStart = (int) (p.posX) - blockViewDist;
+        xBlockEnd = (int) (p.posX) + blockViewDist;
+        zBlockStart = (int) (p.posZ) - blockViewDist;
+        zBlockEnd = (int) (p.posZ) + blockViewDist;
 
         cosine = Math.cos(p.rotation);
         sine = Math.sin(p.rotation);
-
-        fov = height;
 
         renderFloor();
         renderWalls();
@@ -49,7 +45,7 @@ public class Render3D extends Render
 	}
     private void renderFloor() {
         for (int y = 0; y < height; y++) {
-        	double yDist = (y - yCentre) / height;
+        	double yDist = (y - yCentre) / fov;
 			double zDist = p.camY / yDist;
 
 			boolean isFloor = true;
@@ -134,7 +130,7 @@ public class Render3D extends Render
 				int xTexture = (int) (pixelRotationX * scale); // tex.width
 
 				if (zBuffer[xp + yp * width] > distBuffer) {
-					int colour = tex.pixels[xTexture + yTexture * scale]; // TODO: shrink smaller textures to relative size as if 16px is standard per block
+					int colour = tex.pixels[xTexture + yTexture * scale];
 					if (colour != 0xffff00ff) {
 						pixels[xp + yp * width] = colour;
 						zBuffer[xp + yp * width] = distBuffer;
