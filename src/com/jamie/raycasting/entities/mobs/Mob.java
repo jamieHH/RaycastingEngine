@@ -483,40 +483,49 @@ public abstract class Mob extends Entity
     }
 
     private void activate() {
-        if (getRightHandItem() != null) {
-            getRightHandItem().use();
-        }
-        // TODO: do not use() a ranged weapon if a block is being triggered
+        runSpriteSet("action");
 
-        if (getRightHandItem() == null || getRightHandItem().canStrike) {
-            runSpriteSet("action");
+        List<Entity> closeEntities = getEntitiesInRadius(getRightHandReach());
+        double xa = getRightHandReach() * Math.sin(rotation);
+        double za = getRightHandReach() * Math.cos(rotation);
+        int divs = (int) (getRightHandReach() * 100);
 
-            List<Entity> closeEntities = getEntitiesInRadius(getRightHandReach());
-            double xa = getRightHandReach() * Math.sin(rotation);
-            double za = getRightHandReach() * Math.cos(rotation);
-            int divs = (int) (getRightHandReach() * 100);
-            for (int i = 0; i < divs; i++) {
-                double xx = posX + xa * i / divs;
-                double zz = posZ + za * i / divs;
-                for (int b = 0; b < closeEntities.size(); b++) {
-                    Entity ent = closeEntities.get(b);
-                    if (ent instanceof Mob && ent != this) {
-                        if (closeEntities.get(b).contains(xx, zz)) {
+        boolean hit = false;
+        for (int i = 0; i < divs && !hit; i++) {
+            double xx = posX + xa * i / divs;
+            double zz = posZ + za * i / divs;
+            for (int b = 0; b < closeEntities.size(); b++) {
+                Entity ent = closeEntities.get(b);
+                if (ent instanceof Mob && ent != this) {
+                    if (ent.contains(xx, zz)) {
+                        if (getRightHandItem() == null || getRightHandItem() != null && getRightHandItem().canStrike) {
                             ((Mob) ent).hurt(this, getDamage());
-                            return;
-                        }
+                        } // prevents ranged weapons from causing melee damage
+
+                        hit = true;
+                        break;
                     }
                 }
+            }
 
-                int xb = (int) xx;
-                int zb = (int) zz;
-                if (xb != (int) posX || zb != (int) posZ) {
-                    Block block = level.getBlock(xb, zb);
-                    if (block.use(this)) return;
+            if (hit) break;
 
-                    if (block.isSolid || block.isUsable) return;
+            int xb = (int) (posX + xa * i / divs);
+            int zb = (int) (posZ + za * i / divs);
+            if (xb != (int) posX || zb != (int) posZ) {
+                Block block = level.getBlock(xb, zb);
+                if (block.use(this) || block.isSolid || block.isUsable) {
+                    if (getRightHandItem() != null && !getRightHandItem().canStrike) {
+                        return;
+                    } // prevent ranged weapons firing when activating blocks
+
+                    hit = true;
                 }
             }
+        }
+
+        if (getRightHandItem() != null) {
+            getRightHandItem().use();
         }
     }
 
