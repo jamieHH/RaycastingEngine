@@ -29,6 +29,7 @@ public class UserInputHandler extends InputHandler implements KeyListener, Focus
         int[] hot2 = {KeyEvent.VK_2};
         int[] hot3 = {KeyEvent.VK_3};
         int[] pauseKeys = {KeyEvent.VK_ESCAPE};
+        int[] nextMob = {KeyEvent.VK_G};
 
         keyGroups.put("forward", forwardKeys);
         keyGroups.put("back", backKeys);
@@ -43,6 +44,7 @@ public class UserInputHandler extends InputHandler implements KeyListener, Focus
         keyGroups.put("hot2", hot2);
         keyGroups.put("hot3", hot3);
         keyGroups.put("pause", pauseKeys);
+        keyGroups.put("nextMob", nextMob);
     }
 
     private boolean checkKeyGroup(int[] keys) {
@@ -79,12 +81,12 @@ public class UserInputHandler extends InputHandler implements KeyListener, Focus
         hot2 = checkKeyGroup(keyGroups.get("hot2"));
         hot3 = checkKeyGroup(keyGroups.get("hot3"));
         pause = checkKeyGroup(keyGroups.get("pause"));
+        nextMob = checkKeyGroup(keyGroups.get("nextMob"));
 
 //		run = key[KeyEvent.VK_SHIFT];
 
         randomLevel = key[KeyEvent.VK_R];
         loadLevel = key[KeyEvent.VK_P];
-        nextMob = key[KeyEvent.VK_G];
     }
 
 	@Override

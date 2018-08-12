@@ -1,7 +1,5 @@
 package com.jamie.raycasting.app;
 
-import java.util.List;
-
 import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.entities.mobs.Player;
 import com.jamie.raycasting.graphics.overlays.InventoryOverlay;
@@ -59,6 +57,7 @@ public class Game
 				}
 
 				if (userInput.nextMob) {
+					userInput.setKeyGroupState("nextMob", false);
 //					switchPerspective();
 					possessNextMob();
 				}
@@ -130,8 +129,6 @@ public class Game
 	}
 
 	private void switchPerspective() {
-        pauseTime = 10;
-
 		int i = world.level.getMobEntities().indexOf(player) + 1;
 		if (i >= world.level.countMobs()) {
 			i = 0;
@@ -141,11 +138,7 @@ public class Game
 	}
 
 	private void possessNextMob() {
-		pauseTime = 10;
-
-		List<Mob> mobs = world.level.getMobEntities();
-
-		int i = mobs.indexOf(player) + 1;
+		int i = world.level.getMobEntities().indexOf(player) + 1;
 		if (i >= world.level.countMobs()) {
 			i = 0;
 		}
