@@ -6,7 +6,7 @@ import com.jamie.raycasting.graphics.Sprite;
 
 public abstract class Projectile extends Entity {
     protected double moveSpeed = 0.25;
-    protected int life = 1200;
+    protected int life = 600;
 
     public double detonationRadius = 2;
     public int detonationMagnitude = 1;
@@ -15,14 +15,12 @@ public abstract class Projectile extends Entity {
     private int dieTime = 20;
     private boolean isDetonating = false;
 
-    public Projectile() {
-        radius = 0.1;
-        isSolid = false;
-    }
 
     public Projectile(double detonationRadius, int detonationMagnitude) { // used for magic projectiles
         super();
 
+        radius = 0.1;
+        isSolid = false;
         this.detonationRadius = detonationRadius;
         this.detonationMagnitude = detonationMagnitude;
     }
@@ -30,6 +28,8 @@ public abstract class Projectile extends Entity {
     public Projectile(int damage) { // used for bolt projectiles
         super();
 
+        radius = 0.1;
+        isSolid = false;
         this.damage = damage;
     }
 
@@ -41,7 +41,7 @@ public abstract class Projectile extends Entity {
             if (life <= 0) {
                 remove();
             } else {
-                int divs = 1; // increase this to improve accuracy of collision
+                int divs = 10; // increase this to improve accuracy of collision
                 for (int i = 0; i < divs; i++) {
                     double nextX = (moveSpeed * Math.sin(rotation)) / divs;
                     if (getBlockingMob(posX + nextX, posZ) != null) {
