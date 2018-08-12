@@ -14,7 +14,6 @@ public class FireballProjectile extends Projectile
                 Texture.fireball0,
                 Texture.fireball1
         };
-
         setIdleSprite(new Sprite(ts1));
 
         Render[] ts2 = {
@@ -23,7 +22,6 @@ public class FireballProjectile extends Projectile
                 Texture.explode2,
                 Texture.explode3,
         };
-
         setDetonationSprite(new Sprite(ts2));
     }
 

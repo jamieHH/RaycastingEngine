@@ -9,15 +9,18 @@ public class ArrowProjectile extends Projectile
     public ArrowProjectile(int damage) {
         super(damage);
 
-        setIdleSprite(new Sprite(Texture.boltProjectile0));
+        Render r = new Render(1, 1);
+        r.fill(0xf8f8f8);
+        Sprite s = new Sprite(r);
+        s.setOffset(0, 0.5, 0);
+        setIdleSprite(s);
 
         Render[] ts = {
                 Texture.invisible,
                 Texture.invisible,
                 Texture.invisible,
                 Texture.invisible
-        };
-
+        }; // TODO: fix this nonsense ffs
         setDetonationSprite(new Sprite(ts));
     }
 }

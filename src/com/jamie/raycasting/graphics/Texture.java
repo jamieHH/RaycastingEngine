@@ -132,7 +132,6 @@ public class Texture
     public static final Render grave = loadBitmap("tex/grave.png");
     public static final Render fireball0 = loadBitmap("tex/fireball0.png");
     public static final Render fireball1 = loadBitmap("tex/fireball1.png");
-    public static final Render boltProjectile0 = loadBitmap("tex/boltProjectile0.png");
     public static final Render gate0 = loadBitmap("tex/gate0.png");
     public static final Render gate1 = loadBitmap("tex/gate1.png");
     public static final Render gate2 = loadBitmap("tex/gate2.png");
