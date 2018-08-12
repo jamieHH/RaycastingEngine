@@ -12,8 +12,8 @@ public class Render3D extends Render
 	private double[] zBuffer;
 	private double[] zBufferWall;
 
-    private double xCentre = width / 2.0;
-    private double yCentre = height / 2.0;
+    private double xCentre = width / 2;
+    private double yCentre = height / 2.5; // adjust to 'tilt' the horizon line
 
 	private double cosine, sine;
 
@@ -49,8 +49,7 @@ public class Render3D extends Render
 	}
     private void renderFloor() {
         for (int y = 0; y < height; y++) {
-
-            double yDist = (y - height / 2.0) / height;
+        	double yDist = (y - yCentre) / height;
 			double zDist = p.camY / yDist;
 
 			boolean isFloor = true;
@@ -60,7 +59,7 @@ public class Render3D extends Render
             }
 
             for (int x = 0; x < width; x++) {
-				double xDist = (x - width / 2.0) / height;
+				double xDist = (x - xCentre) / height;
 				xDist *= zDist;
 
 				double xx = xDist * cosine + zDist * sine;
@@ -88,9 +87,9 @@ public class Render3D extends Render
     }
 
 	private void renderSprite(double x, double y, double z, Render tex) {
-		double xc = (x - p.posX) * 2.0;
-		double yc = (-y + (p.camY - 0.5)) * 2.0;
-		double zc = (z - p.posZ) * 2.0;
+		double xc = (x - p.posX) * 2;
+		double yc = (-y + (p.camY - 0.5)) * 2;
+		double zc = (z - p.posZ) * 2;
 
 		double rotX = xc * cosine - zc * sine;
 		double rotY = yc;
@@ -153,16 +152,16 @@ public class Render3D extends Render
 		double zcLeft = (zLeft - p.posZ) * 2;
 
 		double rotLeftSideX = xcLeft * cosine - zcLeft * sine;
-        double yCornerTL = (-yB + (p.camY - 1)) * 2.0;
-        double yCornerBL = (-yB + p.camY) * 2.0;
+        double yCornerTL = (-yB + (p.camY - 1)) * 2;
+        double yCornerBL = (-yB + p.camY) * 2;
 		double rotLeftSideZ = zcLeft * cosine + xcLeft * sine;
 
 		double xcRight = (xRight - p.posX) * 2;
 		double zcRight = (zRight - p.posZ) * 2;
 
 		double rotRightSideX = xcRight * cosine - zcRight * sine;
-        double yCornerTR = (-yB + (p.camY - 1)) * 2.0;
-        double yCornerBR = (-yB + p.camY) * 2.0;
+        double yCornerTR = (-yB + (p.camY - 1)) * 2;
+        double yCornerBR = (-yB + p.camY) * 2;
 		double rotRightSideZ = zcRight * cosine + xcRight * sine;
 
 		double xt0 = 0;
@@ -195,8 +194,8 @@ public class Render3D extends Render
 		}
 		// End clipping algorithm
 
-		double xPixelLeft = (rotLeftSideX / rotLeftSideZ * height + width / 2);
-		double xPixelRight = (rotRightSideX / rotRightSideZ * height + width / 2);
+		double xPixelLeft = (rotLeftSideX / rotLeftSideZ * height + xCentre);
+		double xPixelRight = (rotRightSideX / rotRightSideZ * height + xCentre);
 
 		if (xPixelLeft >= xPixelRight) return;
 		int xPixelLeftInt = (int) Math.ceil(xPixelLeft);
@@ -323,7 +322,7 @@ public class Render3D extends Render
 //            if (zBuffer[i] > p.viewDist) {
 //                pixels[i] = 0x000020;
 //            } else {
-            double xx = ((i % width - width / 2.0) / width) * 4;
+            double xx = ((i % width - xCentre) / width) * 4;
             double x2x = (((xx * xx) * 2) + 32);
 
             int brightness = (int) (dist - zBuffer[i] * x2x);
