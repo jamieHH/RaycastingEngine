@@ -31,7 +31,7 @@ public class IslandLevel extends Level
 	}
 
     public void switchLevel(Mob mob, int id) {
-        if (id == 1) world.switchLevel(mob, "graveyard", 3);
+        if (id == 1) world.switchLevel(mob, "graveyard", 2);
 		if (id == 2) world.switchLevel(mob, "castleHall", 1);
 		if (id == 3) world.switchLevel(mob, "crypt", 1);
 		if (id == 4) world.switchLevel(mob, "sewer", 2);

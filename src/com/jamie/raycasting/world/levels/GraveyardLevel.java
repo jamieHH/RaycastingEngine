@@ -15,9 +15,12 @@ public class GraveyardLevel extends Level
 	protected void postCreate() {
 		Drop d = new Drop(new MiscItem("Grey Key", Texture.keyIcon));
 		addEntity(d, 15.5, 58.5);
+
+		Drop d1 = new Drop(new MiscItem("Planks", Texture.planksIcon));
+		addEntity(d1, 14.5, 44.5);
 	}
 
     public void switchLevel(Mob mob, int id) {
-        if (id == 3) world.switchLevel(mob, "island", 1);
+        if (id == 2) world.switchLevel(mob, "island", 1);
     }
 }
