@@ -37,10 +37,13 @@ public class Sound
         if (App.soundEnabled) {
             try {
                 if (clip != null) {
-                    // TODO: multi thread sound without using up all system handles. Check runability on windows
-                    clip.stop();
-                    clip.setFramePosition(0);
-                    clip.start();
+                    new Thread(() -> {
+                        synchronized (clip) {
+                            clip.stop();
+                            clip.setFramePosition(0);
+                            clip.start();
+                        }
+                    }).start(); // multithreading sound on linux causes the system to run out of sound handles
                 }
             } catch (Exception e) {
                 throw new RuntimeException(e);
