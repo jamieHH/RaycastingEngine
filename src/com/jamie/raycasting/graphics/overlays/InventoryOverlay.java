@@ -7,8 +7,6 @@ import com.jamie.raycasting.graphics.Render;
 import com.jamie.raycasting.graphics.Texture;
 import com.jamie.raycasting.items.Inventory;
 import com.jamie.raycasting.items.Item;
-import com.jamie.raycasting.items.MiscItem;
-import com.jamie.raycasting.items.consumables.Consumable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,8 +49,8 @@ public class InventoryOverlay extends Overlay
         }
 
         if (game.userInput.left || game.userInput.rotLeft) {
-            game.userInput.setKeyGroupState("left", false);
-            game.userInput.setKeyGroupState("rotLeft", false);
+            game.userInput.setInputState("left", false);
+            game.userInput.setInputState("rotLeft", false);
             if ((itemCatIndex > 0)) {
                 listItemIndex = 0;
                 itemListYShift = 0;
@@ -60,8 +58,8 @@ public class InventoryOverlay extends Overlay
             }
         }
         if (game.userInput.right || game.userInput.rotRight) {
-            game.userInput.setKeyGroupState("right", false);
-            game.userInput.setKeyGroupState("rotRight", false);
+            game.userInput.setInputState("right", false);
+            game.userInput.setInputState("rotRight", false);
             if ((itemCatIndex < itemCategories.length - 1)) {
                 listItemIndex = 0;
                 itemListYShift = 0;
@@ -70,7 +68,7 @@ public class InventoryOverlay extends Overlay
         }
 
         if (game.userInput.forward) {
-            game.userInput.setKeyGroupState("forward", false);
+            game.userInput.setInputState("forward", false);
             if ((listItemIndex > 0)) {
                 Sound.clickUp.play();
                 listItemIndex--;
@@ -81,7 +79,7 @@ public class InventoryOverlay extends Overlay
             }
         }
         if (game.userInput.back) {
-            game.userInput.setKeyGroupState("back", false);
+            game.userInput.setInputState("back", false);
             if ((listItemIndex < listedItems.size() - 1)) {
                 Sound.clickDown.play();
                 listItemIndex++;
@@ -94,25 +92,13 @@ public class InventoryOverlay extends Overlay
 
         if (listedItems.size() > 0) {
             if (game.userInput.action) {
-                game.userInput.setKeyGroupState("action", false);
-                if (inventory.getItems().get(inventoryItemIndex) instanceof Consumable) {
-                    Sound.clickAction.play();
-                    inventory.getItem(inventoryItemIndex).use();
-                } else if (inventory.getItems().get(inventoryItemIndex) instanceof MiscItem) {
-                    // do nothing
-                } else {
-                    Sound.clickAction.play();
-                    if (mob.getRightHandItem() != inventory.getItem(inventoryItemIndex)) {
-                        int inx = inventory.getIndexOf(inventory.getItem(inventoryItemIndex));
-                        mob.setRightHandItemIndex(inx);
-                    } else {
-                        mob.unequipRightHand();
-                    }
-                }
+                game.userInput.setInputState("action", false);
+                Sound.clickAction.play();
+                mob.useItemIndex(inventory.getIndexOf(inventory.getItem(inventoryItemIndex)));
             }
 
             if (game.userInput.hot1) {
-                game.userInput.setKeyGroupState("hot1", false);
+                game.userInput.setInputState("hot1", false);
                 Sound.clickAction.play();
                 if (mob.getHotkey(1) == null || mob.getHotkey(1) != inventoryItemIndex) {
                     mob.setHotkey(1, inventoryItemIndex);
@@ -121,7 +107,7 @@ public class InventoryOverlay extends Overlay
                 }
             }
             if (game.userInput.hot2) {
-                game.userInput.setKeyGroupState("hot2", false);
+                game.userInput.setInputState("hot2", false);
                 Sound.clickAction.play();
                 if (mob.getHotkey(2) == null || mob.getHotkey(2) != inventoryItemIndex) {
                     mob.setHotkey(2, inventoryItemIndex);
@@ -130,7 +116,7 @@ public class InventoryOverlay extends Overlay
                 }
             }
             if (game.userInput.hot3) {
-                game.userInput.setKeyGroupState("hot3", false);
+                game.userInput.setInputState("hot3", false);
                 Sound.clickAction.play();
                 if (mob.getHotkey(3) == null || mob.getHotkey(3) != inventoryItemIndex) {
                     mob.setHotkey(3, inventoryItemIndex);

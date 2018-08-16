@@ -4,16 +4,12 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.HashMap;
-import java.util.Map;
 
 public class UserInputHandler extends InputHandler implements KeyListener, FocusListener
 {
 	private final boolean[] key = new boolean[68836];
-
-    private Map<String, int[]> keyGroups = new HashMap<String, int[]>();
-
     public boolean randomLevel, loadLevel, nextMob, inventory, pause;
+
 
     public UserInputHandler() {
         int[] forwardKeys = {KeyEvent.VK_W, KeyEvent.VK_UP};
@@ -31,20 +27,20 @@ public class UserInputHandler extends InputHandler implements KeyListener, Focus
         int[] pauseKeys = {KeyEvent.VK_ESCAPE};
         int[] nextMob = {KeyEvent.VK_G};
 
-        keyGroups.put("forward", forwardKeys);
-        keyGroups.put("back", backKeys);
-        keyGroups.put("left", leftKeys);
-        keyGroups.put("right", rightKeys);
-        keyGroups.put("rotLeft", rotLeftKeys);
-        keyGroups.put("rotRight", rotRightKeys);
-        keyGroups.put("crouch", crouchKeys);
-        keyGroups.put("action", actionKeys);
-        keyGroups.put("inventory", inventoryKeys);
-        keyGroups.put("hot1", hot1);
-        keyGroups.put("hot2", hot2);
-        keyGroups.put("hot3", hot3);
-        keyGroups.put("pause", pauseKeys);
-        keyGroups.put("nextMob", nextMob);
+        inputGroups.put("forward", forwardKeys);
+        inputGroups.put("back", backKeys);
+        inputGroups.put("left", leftKeys);
+        inputGroups.put("right", rightKeys);
+        inputGroups.put("rotLeft", rotLeftKeys);
+        inputGroups.put("rotRight", rotRightKeys);
+        inputGroups.put("crouch", crouchKeys);
+        inputGroups.put("action", actionKeys);
+        inputGroups.put("inventory", inventoryKeys);
+        inputGroups.put("hot1", hot1);
+        inputGroups.put("hot2", hot2);
+        inputGroups.put("hot3", hot3);
+        inputGroups.put("pause", pauseKeys);
+        inputGroups.put("nextMob", nextMob);
     }
 
     private boolean checkKeyGroup(int[] keys) {
@@ -63,25 +59,25 @@ public class UserInputHandler extends InputHandler implements KeyListener, Focus
         }
     }
 
-    public void setKeyGroupState(String keyGroup, boolean state) {
-        setKeyState(keyGroups.get(keyGroup), state);
+    public void setInputState(String inputGroup, boolean state) {
+        setKeyState(inputGroups.get(inputGroup), state);
     }
 
 	public void tick() {
-		forward = checkKeyGroup(keyGroups.get("forward"));
-		back = checkKeyGroup(keyGroups.get("back"));
-		left = checkKeyGroup(keyGroups.get("left"));
-		right = checkKeyGroup(keyGroups.get("right"));
-		rotLeft = checkKeyGroup(keyGroups.get("rotLeft"));
-		rotRight = checkKeyGroup(keyGroups.get("rotRight"));
-        crouch = checkKeyGroup(keyGroups.get("crouch"));
-        action = checkKeyGroup(keyGroups.get("action"));
-		inventory = checkKeyGroup(keyGroups.get("inventory"));
-        hot1 = checkKeyGroup(keyGroups.get("hot1"));
-        hot2 = checkKeyGroup(keyGroups.get("hot2"));
-        hot3 = checkKeyGroup(keyGroups.get("hot3"));
-        pause = checkKeyGroup(keyGroups.get("pause"));
-        nextMob = checkKeyGroup(keyGroups.get("nextMob"));
+		forward = checkKeyGroup(inputGroups.get("forward"));
+		back = checkKeyGroup(inputGroups.get("back"));
+		left = checkKeyGroup(inputGroups.get("left"));
+		right = checkKeyGroup(inputGroups.get("right"));
+		rotLeft = checkKeyGroup(inputGroups.get("rotLeft"));
+		rotRight = checkKeyGroup(inputGroups.get("rotRight"));
+        crouch = checkKeyGroup(inputGroups.get("crouch"));
+        action = checkKeyGroup(inputGroups.get("action"));
+		inventory = checkKeyGroup(inputGroups.get("inventory"));
+        hot1 = checkKeyGroup(inputGroups.get("hot1"));
+        hot2 = checkKeyGroup(inputGroups.get("hot2"));
+        hot3 = checkKeyGroup(inputGroups.get("hot3"));
+        pause = checkKeyGroup(inputGroups.get("pause"));
+        nextMob = checkKeyGroup(inputGroups.get("nextMob"));
 
 //		run = key[KeyEvent.VK_SHIFT];
 

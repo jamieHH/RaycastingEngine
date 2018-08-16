@@ -169,12 +169,15 @@ public abstract class Mob extends Entity
                 }
 
                 if (input.hot1 && getHotkey(1) != null) {
+                    input.setInputState("hot1", false);
                     useItemIndex(getHotkey(1));
                 }
                 if (input.hot2 && getHotkey(2) != null) {
+                    input.setInputState("hot2", false);
                     useItemIndex(getHotkey(2));
                 }
                 if (input.hot3 && getHotkey(3) != null) {
+                    input.setInputState("hot3", false);
                     useItemIndex(getHotkey(3));
                 }
             }
@@ -397,12 +400,19 @@ public abstract class Mob extends Entity
         return null;
     }
 
-    private void useItemIndex(int index) {
+    public void useItemIndex(int index) {
         if (inventory.getItem(index) instanceof Consumable) {
             inventory.getItem(index).use();
         } else if (inventory.getItem(index) instanceof Weapon) {
-            unequipRightHand();
-            setRightHandItemIndex(index);
+            if (getRightHandItemIndex() != index) {
+                setRightHandItemIndex(index);
+            } else {
+                if (rightHandEmpty) {
+                    setRightHandItemIndex(index);
+                } else {
+                    unequipRightHand();
+                }
+            }
         }
     }
 

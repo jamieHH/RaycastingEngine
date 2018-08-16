@@ -15,14 +15,14 @@ public class PauseMenu extends Menu
         super.tick(game);
 
         if (game.userInput.forward) {
-            game.userInput.setKeyGroupState("forward", false);
+            game.userInput.setInputState("forward", false);
             if ((optionIndex > 0)) {
                 Sound.clickUp.play();
                 optionIndex--;
             }
         }
         if (game.userInput.back) {
-            game.userInput.setKeyGroupState("back", false);
+            game.userInput.setInputState("back", false);
             if ((optionIndex < options.size() - 1)) {
                 Sound.clickDown.play();
                 optionIndex++;
@@ -30,7 +30,7 @@ public class PauseMenu extends Menu
         }
 
         if (game.userInput.action) {
-            game.userInput.setKeyGroupState("action", false);
+            game.userInput.setInputState("action", false);
             Sound.clickAction.play();
             if (options.get(optionIndex).equals("Resume")) {
                 game.setActiveOverlay(null);

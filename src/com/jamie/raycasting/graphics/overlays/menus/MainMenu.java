@@ -17,14 +17,14 @@ public class MainMenu extends Menu
         super.tick(game);
 
         if (game.userInput.forward) {
-            game.userInput.setKeyGroupState("forward", false);
+            game.userInput.setInputState("forward", false);
             if ((optionIndex > 0)) {
                 optionIndex--;
                 Sound.clickUp.play();
             }
         }
         if (game.userInput.back) {
-            game.userInput.setKeyGroupState("back", false);
+            game.userInput.setInputState("back", false);
             if ((optionIndex < options.size() - 1)) {
                 optionIndex++;
                 Sound.clickDown.play();
@@ -32,7 +32,7 @@ public class MainMenu extends Menu
         }
 
         if (game.userInput.action) {
-            game.userInput.setKeyGroupState("action", false);
+            game.userInput.setInputState("action", false);
             Sound.clickAction.play();
             if (options.get(optionIndex).equals("New Game")) {
                 game.newGame();

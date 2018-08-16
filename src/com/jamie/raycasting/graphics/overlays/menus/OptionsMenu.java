@@ -53,14 +53,14 @@ public class OptionsMenu extends Menu
         super.tick(game);
 
         if (game.userInput.forward) {
-            game.userInput.setKeyGroupState("forward", false);
+            game.userInput.setInputState("forward", false);
             if ((optionIndex > 0)) {
                 Sound.clickUp.play();
                 optionIndex--;
             }
         }
         if (game.userInput.back) {
-            game.userInput.setKeyGroupState("back", false);
+            game.userInput.setInputState("back", false);
             if ((optionIndex < options.size() - 1)) {
                 Sound.clickDown.play();
                 optionIndex++;
@@ -68,7 +68,7 @@ public class OptionsMenu extends Menu
         }
 
         if (game.userInput.left || game.userInput.rotLeft) {
-            game.userInput.setKeyGroupState("rotLeft", false);
+            game.userInput.setInputState("rotLeft", false);
             if (options.get(optionIndex).equals("Aspect Ratio")) {
                 if ((aspectRatioIndex > 0)) {
                     aspectRatioIndex--;
@@ -87,7 +87,7 @@ public class OptionsMenu extends Menu
         }
 
         if (game.userInput.right || game.userInput.rotRight) {
-            game.userInput.setKeyGroupState("rotRight", false);
+            game.userInput.setInputState("rotRight", false);
             if (options.get(optionIndex).equals("Aspect Ratio")) {
                 if ((aspectRatioIndex < aspectRatios.length - 1)) {
                     aspectRatioIndex++;
@@ -106,7 +106,7 @@ public class OptionsMenu extends Menu
         }
 
         if (game.userInput.action) {
-            game.userInput.setKeyGroupState("action", false);
+            game.userInput.setInputState("action", false);
             Sound.clickAction.play();
             if (options.get(optionIndex).equals("Reset Defaults")) {
                 aspectRatioIndex = 0;

@@ -57,14 +57,14 @@ public class Game
 				}
 
 				if (userInput.nextMob) {
-					userInput.setKeyGroupState("nextMob", false);
+					userInput.setInputState("nextMob", false);
 //					switchPerspective();
 					possessNextMob();
 				}
 
 				if (!player.isDead) {
 					if (userInput.inventory) {
-						userInput.setKeyGroupState("inventory", false);
+						userInput.setInputState("inventory", false);
 						if (activeOverlay == null) {
 							Sound.slideUp.play();
 							setActiveOverlay(inventoryOverlay);
@@ -75,7 +75,7 @@ public class Game
 					}
 
 					if (userInput.pause) {
-						userInput.setKeyGroupState("pause", false);
+						userInput.setInputState("pause", false);
 						if (activeOverlay == null) {
 							Sound.slideUp.play();
 							setActiveOverlay(pauseMenu);
