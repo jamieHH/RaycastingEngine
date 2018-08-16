@@ -34,15 +34,17 @@ public class Sound
     }
 
     public void play() {
-        try {
-            if (clip != null) {
-                // TODO: multi thread sound without using up all system handles. Check runability on windows
-                clip.stop();
-                clip.setFramePosition(0);
-                clip.start();
+        if (App.soundEnabled) {
+            try {
+                if (clip != null) {
+                    // TODO: multi thread sound without using up all system handles. Check runability on windows
+                    clip.stop();
+                    clip.setFramePosition(0);
+                    clip.start();
+                }
+            } catch (Exception e) {
+                throw new RuntimeException(e);
             }
-        } catch (Exception e) {
-            throw new RuntimeException(e);
         }
     }
 }

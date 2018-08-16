@@ -21,6 +21,12 @@ public class App extends Canvas implements Runnable
 	public static int width = 200;
 	public static int height = 150;
 	public static int scale = 4;
+	public static boolean soundEnabled = true;
+
+	public static boolean setNewOptions = false;
+	public static int newWidth;
+	public static int newHeight;
+	public static int newScale;
 
     public static JFrame frame;
     private Thread thread;
@@ -32,11 +38,6 @@ public class App extends Canvas implements Runnable
     private int[] pixels;
     private int ups;
     private int fps;
-
-    public static boolean setNewOptions = false;
-    public static int newWidth;
-    public static int newHeight;
-    public static int newScale;
 
 
 	public App() {
