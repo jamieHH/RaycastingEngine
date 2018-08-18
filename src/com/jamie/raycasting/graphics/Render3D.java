@@ -1,14 +1,12 @@
 package com.jamie.raycasting.graphics;
 
 import com.jamie.raycasting.entities.Entity;
-import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.entities.particles.Particle;
 import com.jamie.raycasting.world.blocks.*;
+import com.jamie.raycasting.world.levels.Level;
 
 public class Render3D extends Render
 {
-    private Mob p;
-
     private int blockViewDist = 8;
     private int xBlockStart, xBlockEnd, zBlockStart, zBlockEnd;
 
@@ -20,6 +18,9 @@ public class Render3D extends Render
     private double cosine, sine;
     private double fov;
 
+    private double px, py, pz;
+    private Level level;
+
 
 	protected Render3D(int width, int height) {
 		super(width, height);
@@ -28,15 +29,18 @@ public class Render3D extends Render
         fov = height;
 	}
 
-	protected void render(Mob p) {
-        this.p = p;
-        xBlockStart = (int) (p.posX) - blockViewDist;
-        xBlockEnd = (int) (p.posX) + blockViewDist;
-        zBlockStart = (int) (p.posZ) - blockViewDist;
-        zBlockEnd = (int) (p.posZ) + blockViewDist;
+	protected void render(Level level, double x, double y, double z, double rotation) {
+		this.level = level;
+		px = x;
+		py = y;
+		pz = z;
+		cosine = Math.cos(rotation);
+		sine = Math.sin(rotation);
 
-        cosine = Math.cos(p.rotation);
-        sine = Math.sin(p.rotation);
+		xBlockStart = (int) (px) - blockViewDist;
+		xBlockEnd = (int) (px) + blockViewDist;
+		zBlockStart = (int) (pz) - blockViewDist;
+		zBlockEnd = (int) (pz) + blockViewDist;
 
         renderFloor();
         renderWalls();
@@ -46,12 +50,12 @@ public class Render3D extends Render
     private void renderFloor() {
         for (int y = 0; y < height; y++) {
         	double yDist = (y - yCentre) / fov;
-			double zDist = p.camY / yDist;
+			double zDist = py / yDist;
 
 			boolean isFloor = true;
             if (yDist < 0) {
                 isFloor = false;
-				zDist = (p.level.height - p.camY) / -yDist;
+				zDist = (level.height - py) / -yDist;
             }
 
             for (int x = 0; x < width; x++) {
@@ -60,12 +64,12 @@ public class Render3D extends Render
 
 				double xx = xDist * cosine + zDist * sine;
 				double zz = zDist * cosine - xDist * sine;
-				int xTexture = (int) Math.floor((xx + p.posX) * 16);
-				int zTexture = (int) Math.floor((zz + p.posZ) * 16);
+				int xTexture = (int) Math.floor((xx + px) * 16);
+				int zTexture = (int) Math.floor((zz + pz) * 16);
 				int xTile = xTexture >> 4;
 				int zTile = zTexture >> 4;
 
-				Block block = p.level.getBlock(xTile, zTile);
+				Block block = level.getBlock(xTile, zTile);
 
 				Render tex;
 				if (isFloor) {
@@ -83,9 +87,9 @@ public class Render3D extends Render
     }
 
 	private void renderSprite(double x, double y, double z, Render tex) {
-		double xc = (x - p.posX) * 2;
-		double yc = (-y + (p.camY - 0.5)) * 2;
-		double zc = (z - p.posZ) * 2;
+		double xc = (x - px) * 2;
+		double yc = (-y + (py - 0.5)) * 2;
+		double zc = (z - pz) * 2;
 
 		double rotX = xc * cosine - zc * sine;
 		double rotY = yc;
@@ -144,20 +148,20 @@ public class Render3D extends Render
 	private void renderWall(double xLeft, double zLeft, double xRight, double zRight, Render texture) {
 	    double yB = 0; // Bottom y position.
 
-		double xcLeft = (xLeft - p.posX) * 2;
-		double zcLeft = (zLeft - p.posZ) * 2;
+		double xcLeft = (xLeft - px) * 2;
+		double zcLeft = (zLeft - pz) * 2;
 
 		double rotLeftSideX = xcLeft * cosine - zcLeft * sine;
-        double yCornerTL = (-yB + (p.camY - 1)) * 2;
-        double yCornerBL = (-yB + p.camY) * 2;
+        double yCornerTL = (-yB + (py - 1)) * 2;
+        double yCornerBL = (-yB + py) * 2;
 		double rotLeftSideZ = zcLeft * cosine + xcLeft * sine;
 
-		double xcRight = (xRight - p.posX) * 2;
-		double zcRight = (zRight - p.posZ) * 2;
+		double xcRight = (xRight - px) * 2;
+		double zcRight = (zRight - pz) * 2;
 
 		double rotRightSideX = xcRight * cosine - zcRight * sine;
-        double yCornerTR = (-yB + (p.camY - 1)) * 2;
-        double yCornerBR = (-yB + p.camY) * 2;
+        double yCornerTR = (-yB + (py - 1)) * 2;
+        double yCornerBR = (-yB + py) * 2;
 		double rotRightSideZ = zcRight * cosine + xcRight * sine;
 
 		double xt0 = 0;
@@ -244,15 +248,15 @@ public class Render3D extends Render
 	private void renderSprites() {
         for (int xBlock = xBlockStart; xBlock <= xBlockEnd; xBlock++) {
             for (int zBlock = zBlockStart; zBlock <= zBlockEnd; zBlock++) {
-				Sprite sprite = p.level.getBlock(xBlock, zBlock).getSprite();
+				Sprite sprite = level.getBlock(xBlock, zBlock).getSprite();
 				if (sprite != null) {
 					renderSprite((xBlock + 0.5) + sprite.x, sprite.y, (zBlock + 0.5) + sprite.z, sprite.render());
 				}
 			}
 		}
 
-		for (int i = 0; i < p.level.countEntities(); i++) {
-			Entity entity = p.level.getEntity(i);
+		for (int i = 0; i < level.countEntities(); i++) {
+			Entity entity = level.getEntity(i);
 			if (entity.isInside(xBlockStart, zBlockStart, xBlockEnd, zBlockEnd)) {
 				Sprite sprite = entity.getSprite();
 				if (sprite != null) {
@@ -272,9 +276,9 @@ public class Render3D extends Render
 	private void renderWalls() {
         for (int xBlock = xBlockStart; xBlock <= xBlockEnd; xBlock++) {
             for (int zBlock = zBlockStart; zBlock <= zBlockEnd; zBlock++) {
-                Block block = p.level.getBlock(xBlock, zBlock);
-                Block east = p.level.getBlock(xBlock + 1, zBlock);
-                Block south = p.level.getBlock(xBlock, zBlock + 1);
+                Block block = level.getBlock(xBlock, zBlock);
+                Block east = level.getBlock(xBlock + 1, zBlock);
+                Block south = level.getBlock(xBlock, zBlock + 1);
 
                 if (block instanceof DoorBlock) {
                     double rr = 1 / 4.0;

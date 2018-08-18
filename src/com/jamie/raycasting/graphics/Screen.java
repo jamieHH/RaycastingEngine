@@ -39,7 +39,7 @@ public class Screen extends Render
         p = game.player;
 
         if (p != null) {
-            render.render(p);
+            render.render(p.level, p.posX, p.camY, p.posZ, p.rotation);
             draw(render, 0, 0);
 
             // Render held items
