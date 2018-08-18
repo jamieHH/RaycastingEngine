@@ -40,8 +40,6 @@ public class App extends Canvas implements Runnable
 	private Cursor emptyCursor, defaultCursor;
 
 
-
-
 	public App() {
         setCanvas();
 
