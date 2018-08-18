@@ -24,9 +24,7 @@ public class App extends Canvas implements Runnable
 	public static boolean soundEnabled = true;
 
 	public static boolean setNewOptions = false;
-	public static int newWidth;
-	public static int newHeight;
-	public static int newScale;
+	public static int newWidth, newHeight, newScale;
 
     public static JFrame frame;
     private Thread thread;
@@ -36,8 +34,12 @@ public class App extends Canvas implements Runnable
     private Boolean running = false;
     private final UserInputHandler input;
     private int[] pixels;
-    private int ups;
-    private int fps;
+    private int ups, fps;
+
+    private boolean hadFocus;
+	private Cursor emptyCursor, defaultCursor;
+
+
 
 
 	public App() {
@@ -49,6 +51,9 @@ public class App extends Canvas implements Runnable
 		screen = new Screen(width, height, game);
 		img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		pixels = ((DataBufferInt)img.getRaster().getDataBuffer()).getData();
+
+		emptyCursor = Toolkit.getDefaultToolkit().createCustomCursor(new BufferedImage(16, 16, BufferedImage.TYPE_INT_ARGB), new Point(0, 0), "empty");
+		defaultCursor = getCursor();
 
 		addKeyListener(input);
 		addFocusListener(input);
@@ -150,6 +155,11 @@ public class App extends Canvas implements Runnable
 	}
 
 	private void render() {
+		if (hadFocus != hasFocus()) {
+			hadFocus = !hadFocus;
+			setCursor(hadFocus ? emptyCursor : defaultCursor);
+		}
+
 		BufferStrategy bs = getBufferStrategy();
 		if (bs == null) {
 			createBufferStrategy(3);
@@ -190,8 +200,6 @@ public class App extends Canvas implements Runnable
         f.pack();
         f.setLocationRelativeTo(null);
         f.setVisible(true);
-        BufferedImage pointer = new BufferedImage(16, 16, BufferedImage.TYPE_INT_ARGB);
-        f.setCursor(Toolkit.getDefaultToolkit().createCustomCursor(pointer, new Point(0, 0), "empty"));
 		return f;
 	}
 
