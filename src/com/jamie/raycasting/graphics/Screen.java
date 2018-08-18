@@ -32,22 +32,43 @@ public class Screen extends Render
     }
 	
 	public void render(Game game) {
-        for (int i = 0; i < (width * height); i++) {
-            pixels[i] = 0;
-        }
+        fill(0);
 
         p = game.player;
 
         if (p != null) {
-            render.render(p.level, p.posX, p.camY, p.posZ, p.rotation);
-            draw(render, 0, 0);
+            if (!p.isDead) {
+                render.render(p.level, p.posX, p.camY, p.posZ, p.rotation);
+                draw(render, 0, 0);
 
-            // Render held items
-            if (p.getRightHandItem() != null) {
-                Render rightItemTex = p.getRightHandItem().render();
-                if (rightItemTex != null) {
-                    draw(rightItemTex, render.width - rightItemTex.width, (render.height - rightItemTex.height) + ((int) (p.yBob * 100)) + 4);
+                // Render held items
+                if (p.getRightHandItem() != null) {
+                    Render rightItemTex = p.getRightHandItem().render();
+                    if (rightItemTex != null) {
+                        draw(rightItemTex, render.width - rightItemTex.width, (render.height - rightItemTex.height) + ((int) (p.yBob * 100)) + 4);
+                    }
                 }
+
+                // Render pain
+                if (p.hurtTime >= 0) {
+                    viewPunch.update(p.hurtTime / 60.0, p.hurtType);
+                    draw(viewPunch, 0, 0);
+                }
+
+                // Render mobEffect bars
+                for (int i = 0; i < p.mobEffects.size(); i++) {
+                    StatBarOverlay statBar = new StatBarOverlay(30, 4, p.mobEffects.get(i).effectHudIcon);
+                    statBar.update((double) p.mobEffects.get(i).duration / (double) p.mobEffects.get(i).maxDuration, p.mobEffects.get(i).effectHudColour);
+                    draw(statBar, 2, 2 + (i * 5));
+                }
+
+                // Render hud headings
+                for (int i = 0; i < p.hudHeadings.size(); i++) {
+                    draw(p.hudHeadings.get(i), (render.width - 2) - (p.hudHeadings.get(i).length() * 6), (i * 10) + 2, 0xF0F070);
+                }
+            } else {
+                String overText = "GAME OVER";
+                draw(overText, (width / 2) - ((overText.length() / 2) * 6), (height / 2) - 4, 0xFF0000);
             }
 
             // render hudbar
@@ -60,24 +81,6 @@ public class Screen extends Render
 
             healthBar.update((double) p.health / (double) p.maxHealth, 0xF00000);
             draw(healthBar, 2, (height - hudBar.height) + 3);
-
-            // Render pain
-            if (p.hurtTime >= 0) {
-                viewPunch.update(p.hurtTime / 60.0, p.hurtType);
-                draw(viewPunch, 0, 0);
-            }
-
-            // Render mobEffect bars
-            for (int i = 0; i < p.mobEffects.size(); i++) {
-                StatBarOverlay statBar = new StatBarOverlay(30, 4, p.mobEffects.get(i).effectHudIcon);
-                statBar.update((double) p.mobEffects.get(i).duration / (double) p.mobEffects.get(i).maxDuration, p.mobEffects.get(i).effectHudColour);
-                draw(statBar, 2, 2 + (i * 5));
-            }
-
-            // Render hud headings
-            for (int i = 0; i < p.hudHeadings.size(); i++) {
-                draw(p.hudHeadings.get(i), (render.width - 2) - (p.hudHeadings.get(i).length() * 6), (i * 10) + 2, 0xF0F070);
-            }
 
             // Hotkey items
             for (int i = 1; i < p.getHotkeys().length + 1; i++) {

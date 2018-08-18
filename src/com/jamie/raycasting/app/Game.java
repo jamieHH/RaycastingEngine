@@ -95,8 +95,15 @@ public class Game
 						world.switchLevel(player, "island", 999);
 					}
 				} else {
-					if (userInput.action || userInput.pause) {
-						setActiveOverlay(overMenu);
+					if (userInput.pause) {
+						userInput.setInputState("pause", false);
+						if (activeOverlay == null) {
+							Sound.slideUp.play();
+							setActiveOverlay(overMenu);
+						} else {
+							Sound.slideDown.play();
+							setActiveOverlay(null);
+						}
 					}
 				}
 			}

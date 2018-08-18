@@ -68,7 +68,9 @@ public class Render
     }
 
     public void fill(int color) {
-		fill(0, 0, width, height, color);
+		for (int i = 0; i < width * height; i++) {
+			pixels[i] = color;
+		}
 	}
 
 	public void fill(int x0, int y0, int x1, int y1, int color) {

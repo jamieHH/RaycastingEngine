@@ -16,9 +16,7 @@ import com.jamie.raycasting.items.weapons.Weapon;
 import com.jamie.raycasting.world.blocks.Block;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public abstract class Mob extends Entity
 {
@@ -196,9 +194,7 @@ public abstract class Mob extends Entity
                     isDead = true;
                 }
             } else {
-                if (!(this instanceof Player)) {
-                    remove();
-                }
+                remove();
             }
         }
     }
