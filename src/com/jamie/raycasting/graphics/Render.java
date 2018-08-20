@@ -5,6 +5,7 @@ public class Render
 	public int width;
 	public int height;
 	public int[] pixels;
+	public static final int INVISIBLE = 0;
 
 	private static final String chars = "" +
 			"ABCDEFGHIJKLMNOPQRSTUVWXYZ.,!?\"'/\\<>()[]{}" +
@@ -28,10 +29,7 @@ public class Render
 				if (xPix < 0 || xPix >= width) continue;
 
 				int alpha = render.pixels[x + y * render.width];
-				if (alpha > 0) {
-					pixels[xPix + yPix * width] = alpha;
-				} else if (alpha != -65281 && alpha != 0) {
-					// raw texture pixels are negative hex. Fix.
+				if (alpha != INVISIBLE) {
 					pixels[xPix + yPix * width] = alpha;
 				}
 			}
@@ -48,7 +46,7 @@ public class Render
                 if (xPix < 0 || xPix >= width) continue;
 
                 int alpha = render.pixels[(x + xo) + (y + yo) * render.width];
-                if (alpha != -65281) {
+                if (alpha != INVISIBLE) {
                     pixels[xPix + yPix * width] = -alpha * col;
                 }
             }

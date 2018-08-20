@@ -179,12 +179,11 @@ public class Texture
 			Render result = new Render(width, height);
 			img.getRGB(0, 0, width, height, result.pixels, 0, width);
 
-//            for (int i = 0; i < result.pixels.length; i++) {
-//                int in = result.pixels[i];
-//                int col = (in & 0xF) >> 2;
-//                if (in == 0xFFFF00FF) col = -1;
-//                result.pixels[i] = col;
-//            }
+            for (int i = 0; i < result.pixels.length; i++) {
+                if (result.pixels[i] == 0xFFFF00FF) {
+                    result.pixels[i] = Render.INVISIBLE;
+                }
+            }
 
 			return result;
 		} catch (Exception e) {
@@ -196,7 +195,7 @@ public class Texture
 	private static Render setInvisible() {
         Render render = new Render(16, 16);
         for (int i = 0; i < render.pixels.length; i++) {
-            render.pixels[i] = -65281;
+            render.pixels[i] = Render.INVISIBLE;
         }
 
         return render;
@@ -205,7 +204,7 @@ public class Texture
     private static Render mergeBitmap(Render tex0, Render tex1) {
         Render texture = new Render(tex0.width, tex0.height);
         for (int i = 0; i < tex1.pixels.length; i++) {
-            if (tex1.pixels[i] != -65281) {
+            if (tex1.pixels[i] != Render.INVISIBLE) {
                 texture.pixels[i] = tex1.pixels[i];
             } else {
                 texture.pixels[i] = tex0.pixels[i];

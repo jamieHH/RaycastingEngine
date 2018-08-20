@@ -79,7 +79,6 @@ public class Render3D extends Render
 				}
 
                 pixels[x + y * width] = tex.pixels[(xTexture & 15) + (zTexture & 15) * 16];
-
 				zBuffer[x + y * width] = zDist;
                 zBufferWall[x] = 0;
             }
@@ -121,7 +120,6 @@ public class Render3D extends Render
 		int scale = 16; // this will keep sprites to scale
 		if (tex.width != scale || tex.height != scale) {
 			Render nTex = new Render(scale, scale);
-			nTex.fill(0xFFFF00FF);
 			nTex.draw(tex, (scale / 2) - (tex.width / 2), scale - tex.height);
 			tex = nTex; // makes a new texture to scale and draws the smaller one over top
 		}
@@ -135,7 +133,7 @@ public class Render3D extends Render
 
 				if (zBuffer[xp + yp * width] > distBuffer) {
 					int colour = tex.pixels[xTexture + yTexture * scale];
-					if (colour != 0xFFFF00FF) {
+					if (colour != INVISIBLE) {
 						pixels[xp + yp * width] = colour;
 						zBuffer[xp + yp * width] = distBuffer;
 					}
@@ -237,7 +235,7 @@ public class Render3D extends Render
 				int yTexture = (int) Math.floor(16 * pixelRotationY);
 
                 int colour = texture.pixels[(xTexture & 15) + (yTexture & 15) * 16];
-                if (colour != 0xFFFF00FF) {
+                if (colour != INVISIBLE) {
                     pixels[x + y * width] = pixels[x + y * width] = colour;
                     zBuffer[x + y * width] = 1 / zWall * 0.5;
                 }
