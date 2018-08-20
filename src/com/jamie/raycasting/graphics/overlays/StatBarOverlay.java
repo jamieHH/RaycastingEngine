@@ -19,7 +19,7 @@ public class StatBarOverlay extends Overlay
     public void update(double fullness, int colour) {
         int fillWidth = (int) (fullness * (barWidth - 2));
 
-        fill(barXStart + 1, 1 , barXStart + barWidth - 1, barHeight - 1, 0);
+        fill(barXStart + 1, 1 , barXStart + barWidth - 1, barHeight - 1, 0x000000);
         fill(barXStart + 1, 1, barXStart + fillWidth + 1, barHeight - 1, colour);
     }
 }

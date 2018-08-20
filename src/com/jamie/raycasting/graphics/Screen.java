@@ -32,7 +32,7 @@ public class Screen extends Render
     }
 	
 	public void render(Game game) {
-        fill(0);
+        fill(0x000000);
 
         p = game.player;
 

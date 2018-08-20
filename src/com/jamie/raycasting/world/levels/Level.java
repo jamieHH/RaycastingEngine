@@ -86,7 +86,7 @@ public abstract class Level
 
         for (int zb = 0; zb < sizeZ; zb++) {
             for (int xb = 0; xb < sizeX; xb++) {
-                int col = pixels[zb + xb * sizeX] & 0xffffff;
+                int col = pixels[zb + xb * sizeX] & 0xFFFFFF;
 
                 Mob mob = getMobByColour(col);
                 if (mob != null) {
@@ -248,12 +248,12 @@ public abstract class Level
         if (col == 0x9A9A9A) return GraveBlock;
         if (col == 0x0094FF) return WaterBlock;
         if (col == 0x7F3300) return new BridgeBlock(false);
-        if (col == 0x7f334e) return new BridgeBlock(true);
+        if (col == 0x7F334E) return new BridgeBlock(true);
         if (col == 0xA3723A) return new SpinningDummyBlock();
         if (col == 0xA48080) return new DoorBlock();
         if (col == 0x632A2A) return new StrongDoorBlock();
         if (col == 0xE1AE4A) return new BoardsBlock();
-        if (col == 0x4c4c65) return new GateBlock("Grey Key");
+        if (col == 0x4C4C65) return new GateBlock("Grey Key");
         if (col == 0x217F74) return new CeilDripBlock();
         if (col == 0x7EC0C0) return new FountainBlock();
         if (col == 0xC80000) return new ButtonBlock();

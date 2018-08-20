@@ -10,7 +10,7 @@ public class ArrowProjectile extends Projectile
         super(damage);
 
         Render r = new Render(1, 1);
-        r.fill(0xf8f8f8);
+        r.fill(0xF8F8F8);
         Sprite s = new Sprite(r);
         s.setOffset(0, 0.5, 0);
         setIdleSprite(s);

@@ -181,8 +181,8 @@ public class Texture
 
 //            for (int i = 0; i < result.pixels.length; i++) {
 //                int in = result.pixels[i];
-//                int col = (in & 0xf) >> 2;
-//                if (in == 0xffff00ff) col = -1;
+//                int col = (in & 0xF) >> 2;
+//                if (in == 0xFFFF00FF) col = -1;
 //                result.pixels[i] = col;
 //            }
 
