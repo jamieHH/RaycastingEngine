@@ -3,6 +3,7 @@ package com.jamie.raycasting.world.levels;
 import com.jamie.raycasting.entities.Drop;
 import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.items.consumables.HealthPotion;
+import com.jamie.raycasting.items.weapons.KnifeWeapon;
 
 public class PrisonLevel extends Level
 {
@@ -11,8 +12,11 @@ public class PrisonLevel extends Level
 	}
 
 	protected void postCreate() {
-	    Drop d = new Drop(new HealthPotion());
-        addEntity(d, 16.5, 20.5);
+	    Drop d0 = new Drop(new HealthPotion());
+        addEntity(d0, 16.5, 20.5);
+
+        Drop d1 = new Drop(new KnifeWeapon());
+        addEntity(d1, 13.5, 30.5);
     }
 
     public void switchLevel(Mob mob, int id) {

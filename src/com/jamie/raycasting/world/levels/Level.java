@@ -98,8 +98,16 @@ public abstract class Level
         postCreate();
     }
 
-    protected void postCreate() {
+    protected abstract void postCreate();
 
+    public abstract void switchLevel(Mob mob, int id);
+
+    public void triggerBlock(int id) {
+        for (int i = 0; i < blocks.length; i++) {
+            if (blocks[i].id == id && blocks[i] instanceof TriggerableBlock) {
+                ((TriggerableBlock) blocks[i]).trigger();
+            }
+        }
     }
 
     public void tick() {
@@ -127,16 +135,6 @@ public abstract class Level
         }
 
         blocks[gridX + gridZ * sizeX] = block;
-    }
-
-    public void switchLevel(Mob mob, int id) {}
-
-    public void triggerBlock(int id) {
-        for (int i = 0; i < blocks.length; i++) {
-            if (blocks[i].id == id && blocks[i] instanceof TriggerableBlock) {
-                ((TriggerableBlock) blocks[i]).trigger();
-            }
-        }
     }
 
     public void addEntity(Entity e) {

@@ -8,6 +8,10 @@ public class CryptLevel extends Level
 	    name = "Crypt";
 	}
 
+    protected void postCreate() {
+
+    }
+
     public void switchLevel(Mob mob, int id) {
         if (id == 1) world.switchLevel(mob, "island", 3);
     }
