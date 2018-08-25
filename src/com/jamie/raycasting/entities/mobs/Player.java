@@ -29,6 +29,8 @@ public class Player extends Mob
 
         hurtSound = Sound.pain;
 
+        addFaction("human");
+
         addItem(new SpearWeapon());
         addItem(new StrengthPotion());
         addItem(new WeaknessPotion());
@@ -42,7 +44,5 @@ public class Player extends Mob
         addItem(new PoisonPotion());
         addItem(new MiscItem("Silver Key", Texture.keyIcon));
         addItem(new MiscItem("Planks", Texture.planksIcon));
-
-        addFaction("human");
     }
 }
