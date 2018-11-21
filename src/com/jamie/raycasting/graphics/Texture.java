@@ -137,6 +137,9 @@ public class Texture
     public static final Render gate2 = loadBitmap("tex/gate2.png");
     public static final Render gate3 = loadBitmap("tex/gate3.png");
     public static final Render guardian0 = loadBitmap("tex/guardian0.png");
+    public static final Render imp0 = loadBitmap("tex/imp0.png");
+    public static final Render imp1 = loadBitmap("tex/imp1.png");
+    public static final Render imp2 = loadBitmap("tex/imp2.png");
 
 	// particles
     public static final Render blood0 = loadBitmap("tex/blood0.png");
