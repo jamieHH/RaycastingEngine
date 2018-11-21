@@ -26,6 +26,10 @@ public class Spirit extends Mob
         crouchSpeed = 0.03;
 
         maxHealth = 10;
+        health = maxHealth;
+
+        faction = "beast";
+        enemyFaction = "human";
 
         Render[] ts = {
                 Texture.spirit0,
@@ -68,13 +72,10 @@ public class Spirit extends Mob
                 Texture.spiritHeal0
         };
         setHealSprite(new Sprite(ts5));
-
-        addFaction("beast");
     }
 
     public void tick() {
         super.tick();
-        input.resetInfluence();
 
         if (healTick > 0) {
             healTick--;
@@ -83,12 +84,10 @@ public class Spirit extends Mob
             modHealth(2);
         }
 
-
-
+        input.resetInfluence();
         for (int i = 0; i < level.getMobEntities().size(); i++) {
-            if (level.getMobEntities().get(i).getFactions().contains("human")) {
+            if (level.getMobEntities().get(i).getFaction().equals(enemyFaction) && level.getMobEntities().get(i) != this) {
                 target = level.getMobEntities().get(i);
-
                 if (!target.isDead) {
                     if (squareDistanceFrom(target.posX, target.posZ) < viewDist) {
                         lookTowards(target.posX, target.posZ);
@@ -97,8 +96,16 @@ public class Spirit extends Mob
                         input.backInf = 0;
                         input.leftInf = 75;
                         input.rightInf = 0;
+                        input.rotLeftInf = 0;
+                        input.rotRightInf = 0;
                         input.action = squareDistanceFrom(target.posX, target.posZ) < getRightHandReach();
                     } else {
+                        input.forwardInf = 50;
+                        input.backInf = 50;
+                        input.leftInf = 50;
+                        input.rightInf = 50;
+                        input.rotLeftInf = 50;
+                        input.rotRightInf = 50;
                         input.action = false;
                     }
                 } else {

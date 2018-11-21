@@ -26,10 +26,12 @@ public class Player extends Mob
         crouchSpeed = 0.1;
 
         maxHealth = 10;
+        health = maxHealth;
+
+        faction = "human";
+        enemyFaction = "beast";
 
         hurtSound = Sound.pain;
-
-        addFaction("human");
 
         addItem(new SpearWeapon());
         addItem(new StrengthPotion());

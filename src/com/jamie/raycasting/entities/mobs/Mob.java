@@ -32,7 +32,8 @@ public abstract class Mob extends Entity
     private int useTicks = 0;
     protected int useWait = 15;
 
-    private List<String> factions = new ArrayList<String>();
+    protected String faction;
+    protected String enemyFaction;
     protected Mob target;
 
     protected Sound deathSound = Sound.die;
@@ -542,12 +543,12 @@ public abstract class Mob extends Entity
         return useWait;
     }
 
-    public List<String> getFactions() {
-        return factions;
+    public String getFaction() {
+        return faction;
     }
 
-    public void addFaction(String faction) {
-        factions.add(faction);
+    public void setFaction(String faction) {
+        faction = faction;
     }
 
     public void modHealth(int modifier) {
