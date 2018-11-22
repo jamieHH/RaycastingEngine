@@ -37,12 +37,12 @@ public class Imp extends Mob
         };
         setIdleSprite(new Sprite(ts));
 
-//        Render[] ts2 = {
-//                Texture.impAtt0,
-//                Texture.impAtt1,
-//                Texture.impAtt2,
-//        };
-//        setActionSprite(new Sprite(ts2));
+        Render[] ts2 = {
+                Texture.impAtt0,
+                Texture.impAtt1,
+                Texture.impAtt2,
+        };
+        setActionSprite(new Sprite(ts2));
 //
 //        Render[] ts3 = {
 //                Texture.impHurt0,

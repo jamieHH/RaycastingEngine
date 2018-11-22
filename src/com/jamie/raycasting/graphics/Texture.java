@@ -140,6 +140,9 @@ public class Texture
     public static final Render imp0 = loadBitmap("tex/imp0.png");
     public static final Render imp1 = loadBitmap("tex/imp1.png");
     public static final Render imp2 = loadBitmap("tex/imp2.png");
+    public static final Render impAtt0 = loadBitmap("tex/impAtt0.png");
+    public static final Render impAtt1 = loadBitmap("tex/impAtt1.png");
+    public static final Render impAtt2 = loadBitmap("tex/impAtt2.png");
 
 	// particles
     public static final Render blood0 = loadBitmap("tex/blood0.png");
