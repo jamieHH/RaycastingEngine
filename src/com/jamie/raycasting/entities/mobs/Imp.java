@@ -7,6 +7,8 @@ import com.jamie.raycasting.input.InputHandler;
 
 public class Imp extends Mob
 {
+    private int healTick = 0;
+
     public Imp(InputHandler input) {
         super(input);
 
@@ -43,13 +45,13 @@ public class Imp extends Mob
                 Texture.impAtt2,
         };
         setActionSprite(new Sprite(ts2));
-//
-//        Render[] ts3 = {
-//                Texture.impHurt0,
-//                Texture.impHurt1,
-//                Texture.impHurt2,
-//        };
-//        setHurtSprite(new Sprite(ts3));
+
+        Render[] ts3 = {
+                Texture.impHurt0,
+                Texture.impHurt1,
+                Texture.impHurt2,
+        };
+        setHurtSprite(new Sprite(ts3));
 
         Render[] ts4 = {
                 Texture.splat1,
@@ -60,10 +62,27 @@ public class Imp extends Mob
                 Texture.splat1
         };
         setDeathSprite(new Sprite(ts4));
+
+        Render[] ts5 = {
+                Texture.impHeal0,
+                Texture.impHeal1,
+                Texture.impHeal2,
+                Texture.impHeal1,
+                Texture.impHeal0,
+                Texture.impHeal1
+        };
+        setHealSprite(new Sprite(ts5));
     }
 
     public void tick() {
         super.tick();
+
+        if (healTick > 0) {
+            healTick--;
+        } else {
+            healTick = 400;
+            modHealth(2);
+        }
 
         input.resetInfluence();
         for (int i = 0; i < level.getMobEntities().size(); i++) {
