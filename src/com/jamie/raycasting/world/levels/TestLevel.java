@@ -11,7 +11,7 @@ public class TestLevel extends Level
 	}
 
 	protected void postCreate() {
-		addEntity(new Imp(new ArtificialInputHandler()), 30.5, 32.5);
+		addEntity(new Imp(new ArtificialInputHandler()), 30.5, 38.5);
 	}
 
 	public void switchLevel(Mob mob, int id) {

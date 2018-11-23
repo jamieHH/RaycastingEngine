@@ -1,5 +1,6 @@
 package com.jamie.raycasting.entities.mobs;
 
+import com.jamie.raycasting.entities.projectiles.FireballProjectile;
 import com.jamie.raycasting.graphics.Render;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
@@ -8,6 +9,7 @@ import com.jamie.raycasting.input.InputHandler;
 public class Imp extends Mob
 {
     private int healTick = 0;
+    private int spellCooldown = 0;
 
     public Imp(InputHandler input) {
         super(input);
@@ -16,7 +18,7 @@ public class Imp extends Mob
         isSolid = true;
 
         baseReach = 1;
-        viewDist = 4;
+        viewDist = 8;
 
         radius = 0.25;
 
@@ -91,6 +93,18 @@ public class Imp extends Mob
                 if (!target.isDead) {
                     if (squareDistanceFrom(target.posX, target.posZ) < viewDist) {
                         lookTowards(target.posX, target.posZ);
+
+                        if (spellCooldown > 0) {
+                            spellCooldown--;
+                        } else {
+                            spellCooldown = 300;
+                            runSpriteSet("action");
+                            double nextX = Math.sin(rotation);
+                            double nextZ = Math.cos(rotation);
+                            FireballProjectile p = new FireballProjectile(1, 1);
+                            p.setRotation(rotation);
+                            level.addEntity(p, posX + nextX, posZ + nextZ);
+                        }
 
                         input.forwardInf = 100;
                         input.backInf = 25;
