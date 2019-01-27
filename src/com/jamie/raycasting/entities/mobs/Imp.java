@@ -45,6 +45,9 @@ public class Imp extends Mob
                 Texture.impAtt0,
                 Texture.impAtt1,
                 Texture.impAtt2,
+                Texture.impAtt2,
+                Texture.impAtt2,
+                Texture.impAtt2,
         };
         setActionSprite(new Sprite(ts2));
 
