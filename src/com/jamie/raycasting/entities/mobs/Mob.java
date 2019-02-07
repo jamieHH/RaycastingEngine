@@ -80,10 +80,10 @@ public abstract class Mob extends Entity
     private int hudHeadingsTicks = 120;
 
     // sprites
-    protected abstract Sprite setActionSprite();
-    protected abstract Sprite setHealSprite();
-    protected abstract Sprite setHurtSprite();
-    protected abstract Sprite setDeathSprite();
+    protected abstract Sprite getActionSprite();
+    protected abstract Sprite getHealSprite();
+    protected abstract Sprite getHurtSprite();
+    protected abstract Sprite getDeathSprite();
 
 
     public Mob(InputHandler input) {
@@ -92,10 +92,10 @@ public abstract class Mob extends Entity
         health = maxHealth;
         camY = camHeightMod;
 
-        setSpriteSet("action", setActionSprite());
-        setSpriteSet("heal", setHealSprite());
-        setSpriteSet("hurt", setHurtSprite());
-        setSpriteSet("death", setDeathSprite());
+        setSpriteSet("action", getActionSprite());
+        setSpriteSet("heal", getHealSprite());
+        setSpriteSet("hurt", getHurtSprite());
+        setSpriteSet("death", getDeathSprite());
     }
 
     public void tick() {

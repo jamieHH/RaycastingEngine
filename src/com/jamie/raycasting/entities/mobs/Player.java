@@ -10,23 +10,23 @@ import com.jamie.raycasting.items.weapons.*;
 
 public class Player extends Mob
 {
-    protected Sprite setSprite() {
+    protected Sprite getSprite() {
         return null;
     }
 
-    protected Sprite setActionSprite() {
+    protected Sprite getActionSprite() {
         return null;
     }
 
-    protected Sprite setHealSprite() {
+    protected Sprite getHealSprite() {
         return null;
     }
 
-    protected Sprite setHurtSprite() {
+    protected Sprite getHurtSprite() {
         return null;
     }
 
-    protected Sprite setDeathSprite() {
+    protected Sprite getDeathSprite() {
         return null;
     }
 

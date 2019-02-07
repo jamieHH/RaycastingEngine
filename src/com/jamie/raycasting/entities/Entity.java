@@ -23,11 +23,11 @@ public abstract class Entity
 
     private SpriteSet spriteSet = new SpriteSet();
 
-    protected abstract Sprite setSprite();
+    protected abstract Sprite getSprite();
 
 
     public Entity() {
-        setSpriteSet("idle", setSprite());
+        setSpriteSet("idle", getSprite());
     }
 
     public void tick() {
@@ -106,7 +106,7 @@ public abstract class Entity
         spriteSet.runSet(name);
     }
 
-    public Sprite getSprite() {
+    public Sprite getRenderSprite() {
         return spriteSet.getSprite();
     }
 }

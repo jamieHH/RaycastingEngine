@@ -12,7 +12,7 @@ import java.util.List;
 
 public class FireEffect extends EnvironmentalEffect
 {
-    protected Sprite setSprite() {
+    protected Sprite getSprite() {
         return new Sprite(new Render[] {
                 Texture.fire0,
                 Texture.fire1,

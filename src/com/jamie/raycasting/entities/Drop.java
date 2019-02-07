@@ -8,7 +8,7 @@ public class Drop extends Entity
 {
     public Item item;
 
-    protected Sprite setSprite() {
+    protected Sprite getSprite() {
         return new Sprite(Texture.blood0); // TODO: set sprite to items icon
     }
 

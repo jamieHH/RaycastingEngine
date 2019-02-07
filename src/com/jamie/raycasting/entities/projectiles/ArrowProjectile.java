@@ -6,7 +6,7 @@ import com.jamie.raycasting.graphics.Texture;
 
 public class ArrowProjectile extends Projectile
 {
-    protected Sprite setSprite() {
+    protected Sprite getSprite() {
         Render r = new Render(1, 1);
         r.fill(0xF8F8F8);
         Sprite s = new Sprite(r);

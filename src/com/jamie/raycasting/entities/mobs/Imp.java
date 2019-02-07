@@ -11,7 +11,7 @@ public class Imp extends Mob
     private int healTick = 0;
     private int spellCooldown = 0;
 
-    protected Sprite setSprite() {
+    protected Sprite getSprite() {
         return new Sprite(new Render[] {
                 Texture.imp0,
                 Texture.imp1,
@@ -20,7 +20,7 @@ public class Imp extends Mob
         });
     }
 
-    protected Sprite setActionSprite() {
+    protected Sprite getActionSprite() {
         return new Sprite(new Render[] {
                 Texture.impAtt0,
                 Texture.impAtt1,
@@ -31,7 +31,7 @@ public class Imp extends Mob
         });
     }
 
-    protected Sprite setHealSprite() {
+    protected Sprite getHealSprite() {
         return new Sprite(new Render[] {
                 Texture.impHeal0,
                 Texture.impHeal1,
@@ -42,7 +42,7 @@ public class Imp extends Mob
         });
     }
 
-    protected Sprite setHurtSprite() {
+    protected Sprite getHurtSprite() {
         return new Sprite(new Render[] {
                 Texture.impHurt0,
                 Texture.impHurt1,
@@ -50,7 +50,7 @@ public class Imp extends Mob
         });
     }
 
-    protected Sprite setDeathSprite() {
+    protected Sprite getDeathSprite() {
         return new Sprite(new Render[] {
                 Texture.splat1,
                 Texture.splat1,

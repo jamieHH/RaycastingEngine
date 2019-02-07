@@ -11,7 +11,7 @@ public class Spirit extends Mob
     private int healTick = 0;
     private int dustTick = 0;
 
-    protected Sprite setSprite() {
+    protected Sprite getSprite() {
         return new Sprite(new Render[] {
                 Texture.spirit0,
                 Texture.spirit1,
@@ -20,7 +20,7 @@ public class Spirit extends Mob
         });
     }
 
-    protected Sprite setActionSprite() {
+    protected Sprite getActionSprite() {
         return new Sprite(new Render[] {
                 Texture.spiritAtt0,
                 Texture.spiritAtt0,
@@ -28,7 +28,7 @@ public class Spirit extends Mob
         });
     }
 
-    protected Sprite setHealSprite() {
+    protected Sprite getHealSprite() {
         return new Sprite(new Render[] {
                 Texture.spiritHeal0,
                 Texture.spiritHeal0,
@@ -39,7 +39,7 @@ public class Spirit extends Mob
         });
     }
 
-    protected Sprite setHurtSprite() {
+    protected Sprite getHurtSprite() {
         return new Sprite(new Render[] {
                 Texture.spiritHurt0,
                 Texture.spiritHurt0,
@@ -47,7 +47,7 @@ public class Spirit extends Mob
         });
     }
 
-    protected Sprite setDeathSprite() {
+    protected Sprite getDeathSprite() {
         return new Sprite(new Render[] {
                 Texture.splat1,
                 Texture.splat1,

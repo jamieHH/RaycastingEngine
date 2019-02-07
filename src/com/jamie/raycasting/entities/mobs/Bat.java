@@ -7,7 +7,7 @@ import com.jamie.raycasting.input.InputHandler;
 
 public class Bat extends Mob
 {
-    protected Sprite setSprite() {
+    protected Sprite getSprite() {
         return new Sprite(new Render[] {
                 Texture.bat0,
                 Texture.bat1,
@@ -16,7 +16,7 @@ public class Bat extends Mob
         });
     }
 
-    protected Sprite setActionSprite() {
+    protected Sprite getActionSprite() {
         return new Sprite(new Render[] {
                 Texture.batAtt0,
                 Texture.batAtt1,
@@ -24,11 +24,11 @@ public class Bat extends Mob
         });
     }
 
-    protected Sprite setHealSprite() {
+    protected Sprite getHealSprite() {
         return null;
     }
 
-    protected Sprite setHurtSprite() {
+    protected Sprite getHurtSprite() {
         return new Sprite(new Render[] {
                 Texture.batHurt0,
                 Texture.batHurt1,
@@ -36,7 +36,7 @@ public class Bat extends Mob
         });
     }
 
-    protected Sprite setDeathSprite() {
+    protected Sprite getDeathSprite() {
         return new Sprite(new Render[] {
                 Texture.splat1,
                 Texture.splat1,

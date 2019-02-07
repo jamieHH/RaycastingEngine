@@ -10,7 +10,7 @@ import java.util.List;
 
 public class EmberParticle extends Particle
 {
-    protected Sprite setSprite() {
+    protected Sprite getSprite() {
         return null;
     }
 

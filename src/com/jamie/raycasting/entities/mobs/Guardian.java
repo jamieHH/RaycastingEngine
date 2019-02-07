@@ -10,25 +10,25 @@ public class Guardian extends Mob
 {
     private boolean woke = false;
 
-    protected Sprite setSprite() {
+    protected Sprite getSprite() {
         return new Sprite(new Render[] {
                 Texture.guardian0
         });
     }
 
-    protected Sprite setActionSprite() {
+    protected Sprite getActionSprite() {
         return null;
     }
 
-    protected Sprite setHealSprite() {
+    protected Sprite getHealSprite() {
         return null;
     }
 
-    protected Sprite setHurtSprite() {
+    protected Sprite getHurtSprite() {
         return null;
     }
 
-    protected Sprite setDeathSprite() {
+    protected Sprite getDeathSprite() {
         return new Sprite(new Render[] {
                 Texture.splat1,
                 Texture.splat1,
