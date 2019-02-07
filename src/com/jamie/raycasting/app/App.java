@@ -137,6 +137,12 @@ public class App extends Canvas implements Runnable
 			if (ticked) {
 				render();
 				frames++;
+			} else {
+				try {
+					Thread.sleep(1);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 	}
