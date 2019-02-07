@@ -5,7 +5,7 @@ import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.graphics.Sprite;
 
 public abstract class Projectile extends Entity {
-    protected double moveSpeed = 0.25;
+    protected double moveSpeed = 0.2;
     protected int life = 600;
 
     public double detonationRadius = 2;
