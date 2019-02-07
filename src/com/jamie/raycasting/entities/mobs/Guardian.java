@@ -1,5 +1,6 @@
 package com.jamie.raycasting.entities.mobs;
 
+import com.jamie.raycasting.entities.particles.StoneParticle;
 import com.jamie.raycasting.graphics.Render;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
@@ -7,6 +8,8 @@ import com.jamie.raycasting.input.InputHandler;
 
 public class Guardian extends Mob
 {
+    private boolean woke = false;
+
     public Guardian(InputHandler input) {
         super(input);
 
@@ -65,6 +68,10 @@ public class Guardian extends Mob
                 if (!target.isDead) {
                     if (squareDistanceFrom(target.posX, target.posZ) < viewDist) {
                         lookTowards(target.posX, target.posZ);
+                        if (!woke) {
+                            woke = true;
+                            level.addEntity(new StoneParticle(), posX, posZ);
+                        }
 
                         input.forwardInf = 100;
                         input.backInf = 0;
@@ -81,6 +88,7 @@ public class Guardian extends Mob
                         input.rotLeftInf = 0;
                         input.rotRightInf = 0;
                         input.action = false;
+                        woke = false;
                     }
                 } else {
                     input.action = false;

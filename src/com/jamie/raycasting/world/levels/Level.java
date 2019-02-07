@@ -5,10 +5,7 @@ import java.util.*;
 import com.jamie.raycasting.app.Game;
 import com.jamie.raycasting.entities.Entity;
 import com.jamie.raycasting.entities.Drop;
-import com.jamie.raycasting.entities.mobs.Bat;
-import com.jamie.raycasting.entities.mobs.Imp;
-import com.jamie.raycasting.entities.mobs.Mob;
-import com.jamie.raycasting.entities.mobs.Spirit;
+import com.jamie.raycasting.entities.mobs.*;
 import com.jamie.raycasting.input.ArtificialInputHandler;
 import com.jamie.raycasting.world.World;
 import com.jamie.raycasting.world.blocks.*;
@@ -266,6 +263,7 @@ public abstract class Level
         if (col == 0x804000) return new Bat(new ArtificialInputHandler());
         if (col == 0xFFFF71) return new Spirit(new ArtificialInputHandler());
         if (col == 0x8080C4) return new Imp(new ArtificialInputHandler());
+        if (col == 0xC0EBC0) return new Guardian(new ArtificialInputHandler());
         return null;
     }
 

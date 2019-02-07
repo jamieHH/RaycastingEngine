@@ -155,6 +155,10 @@ public class Texture
     public static final Render blood1 = loadBitmap("tex/blood1.png");
     public static final Render blood2 = loadBitmap("tex/blood2.png");
     public static final Render blood3 = loadBitmap("tex/blood3.png");
+    public static final Render stone0 = loadBitmap("tex/stone0.png");
+    public static final Render stone1 = loadBitmap("tex/stone1.png");
+    public static final Render stone2 = loadBitmap("tex/stone2.png");
+    public static final Render stone3 = loadBitmap("tex/stone3.png");
     public static final Render poof0 = loadBitmap("tex/poof0.png");
     public static final Render poof1 = loadBitmap("tex/poof1.png");
     public static final Render ember0 = loadBitmap("tex/ember0.png");
