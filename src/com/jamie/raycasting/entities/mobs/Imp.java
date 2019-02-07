@@ -20,6 +20,47 @@ public class Imp extends Mob
         });
     }
 
+    protected Sprite setActionSprite() {
+        return new Sprite(new Render[] {
+                Texture.impAtt0,
+                Texture.impAtt1,
+                Texture.impAtt2,
+                Texture.impAtt2,
+                Texture.impAtt2,
+                Texture.impAtt2,
+        });
+    }
+
+    protected Sprite setHealSprite() {
+        return new Sprite(new Render[] {
+                Texture.impHeal0,
+                Texture.impHeal1,
+                Texture.impHeal2,
+                Texture.impHeal1,
+                Texture.impHeal0,
+                Texture.impHeal1,
+        });
+    }
+
+    protected Sprite setHurtSprite() {
+        return new Sprite(new Render[] {
+                Texture.impHurt0,
+                Texture.impHurt1,
+                Texture.impHurt2,
+        });
+    }
+
+    protected Sprite setDeathSprite() {
+        return new Sprite(new Render[] {
+                Texture.splat1,
+                Texture.splat1,
+                Texture.splat1,
+                Texture.splat1,
+                Texture.splat1,
+                Texture.splat1,
+        });
+    }
+
 
     public Imp(InputHandler input) {
         super(input);
@@ -42,43 +83,6 @@ public class Imp extends Mob
 
         faction = "beast";
         enemyFaction = "human";
-
-        Render[] ts2 = {
-                Texture.impAtt0,
-                Texture.impAtt1,
-                Texture.impAtt2,
-                Texture.impAtt2,
-                Texture.impAtt2,
-                Texture.impAtt2,
-        };
-        setActionSprite(new Sprite(ts2));
-
-        Render[] ts3 = {
-                Texture.impHurt0,
-                Texture.impHurt1,
-                Texture.impHurt2,
-        };
-        setHurtSprite(new Sprite(ts3));
-
-        Render[] ts4 = {
-                Texture.splat1,
-                Texture.splat1,
-                Texture.splat1,
-                Texture.splat1,
-                Texture.splat1,
-                Texture.splat1
-        };
-        setDeathSprite(new Sprite(ts4));
-
-        Render[] ts5 = {
-                Texture.impHeal0,
-                Texture.impHeal1,
-                Texture.impHeal2,
-                Texture.impHeal1,
-                Texture.impHeal0,
-                Texture.impHeal1
-        };
-        setHealSprite(new Sprite(ts5));
     }
 
     public void tick() {

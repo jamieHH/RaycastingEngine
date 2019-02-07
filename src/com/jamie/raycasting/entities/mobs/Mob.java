@@ -23,7 +23,7 @@ public abstract class Mob extends Entity
     protected boolean isFloating = false;
 
     // distances
-    public double baseReach = 1.5;
+    public double baseReach = 1;
     public double viewDist = 4;
 
     // actions
@@ -49,8 +49,8 @@ public abstract class Mob extends Entity
     protected double runSpeed = 0.03;
     protected double crouchSpeed = 0.03;
 
-    protected double camHeightMod = 0.652;
-    protected double crouchHeightMod = 0.25;
+    private double camHeightMod = 0.652;
+    private double crouchHeightMod = 0.25;
 
     public double camY = 0;
     public double yBob = 0;
@@ -77,7 +77,13 @@ public abstract class Mob extends Entity
     public List<MobEffect> mobEffects = new ArrayList<MobEffect>();
 
     public ArrayList<String> hudHeadings = new ArrayList<String>();
-    public int hudHeadingsTicks = 120;
+    private int hudHeadingsTicks = 120;
+
+    // sprites
+    protected abstract Sprite setActionSprite();
+    protected abstract Sprite setHealSprite();
+    protected abstract Sprite setHurtSprite();
+    protected abstract Sprite setDeathSprite();
 
 
     public Mob(InputHandler input) {
@@ -85,6 +91,11 @@ public abstract class Mob extends Entity
 
         health = maxHealth;
         camY = camHeightMod;
+
+        setSpriteSet("action", setActionSprite());
+        setSpriteSet("heal", setHealSprite());
+        setSpriteSet("hurt", setHurtSprite());
+        setSpriteSet("death", setDeathSprite());
     }
 
     public void tick() {
@@ -418,22 +429,6 @@ public abstract class Mob extends Entity
             return baseDamage + getRightHandItem().damage;
         }
         return baseDamage;
-    }
-
-    public void setHurtSprite(Sprite s) {
-        setSpriteSet("hurt", s);
-    }
-
-    public void setActionSprite(Sprite s) {
-        setSpriteSet("action", s);
-    }
-
-    public void setDeathSprite(Sprite s) {
-        setSpriteSet("death", s);
-    }
-
-    public void setHealSprite(Sprite s) {
-        setSpriteSet("heal", s);
     }
 
     public void lookTowards(double x, double z) {

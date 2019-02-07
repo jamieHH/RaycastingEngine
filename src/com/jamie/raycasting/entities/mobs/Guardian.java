@@ -16,6 +16,29 @@ public class Guardian extends Mob
         });
     }
 
+    protected Sprite setActionSprite() {
+        return null;
+    }
+
+    protected Sprite setHealSprite() {
+        return null;
+    }
+
+    protected Sprite setHurtSprite() {
+        return null;
+    }
+
+    protected Sprite setDeathSprite() {
+        return new Sprite(new Render[] {
+                Texture.splat1,
+                Texture.splat1,
+                Texture.splat1,
+                Texture.splat1,
+                Texture.splat1,
+                Texture.splat1
+        });
+    }
+
 
     public Guardian(InputHandler input) {
         super(input);
@@ -38,16 +61,6 @@ public class Guardian extends Mob
 
         faction = "beast";
         enemyFaction = "human";
-
-        Render[] ts4 = {
-                Texture.splat1,
-                Texture.splat1,
-                Texture.splat1,
-                Texture.splat1,
-                Texture.splat1,
-                Texture.splat1
-        };
-        setDeathSprite(new Sprite(ts4));
     }
 
     public void tick() {

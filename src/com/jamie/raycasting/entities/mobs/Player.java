@@ -14,6 +14,22 @@ public class Player extends Mob
         return null;
     }
 
+    protected Sprite setActionSprite() {
+        return null;
+    }
+
+    protected Sprite setHealSprite() {
+        return null;
+    }
+
+    protected Sprite setHurtSprite() {
+        return null;
+    }
+
+    protected Sprite setDeathSprite() {
+        return null;
+    }
+
 
     public Player(InputHandler input) {
         super(input);

@@ -20,6 +20,44 @@ public class Spirit extends Mob
         });
     }
 
+    protected Sprite setActionSprite() {
+        return new Sprite(new Render[] {
+                Texture.spiritAtt0,
+                Texture.spiritAtt0,
+                Texture.spiritAtt0
+        });
+    }
+
+    protected Sprite setHealSprite() {
+        return new Sprite(new Render[] {
+                Texture.spiritHeal0,
+                Texture.spiritHeal0,
+                Texture.spiritHeal0,
+                Texture.spiritHeal0,
+                Texture.spiritHeal0,
+                Texture.spiritHeal0
+        });
+    }
+
+    protected Sprite setHurtSprite() {
+        return new Sprite(new Render[] {
+                Texture.spiritHurt0,
+                Texture.spiritHurt0,
+                Texture.spiritHurt0
+        });
+    }
+
+    protected Sprite setDeathSprite() {
+        return new Sprite(new Render[] {
+                Texture.splat1,
+                Texture.splat1,
+                Texture.splat1,
+                Texture.splat1,
+                Texture.splat1,
+                Texture.splat1
+        });
+    }
+
 
     public Spirit(InputHandler input) {
         super(input);
@@ -42,40 +80,6 @@ public class Spirit extends Mob
 
         faction = "beast";
         enemyFaction = "human";
-
-        Render[] ts2 = {
-                Texture.spiritAtt0,
-                Texture.spiritAtt0,
-                Texture.spiritAtt0
-        };
-        setActionSprite(new Sprite(ts2));
-
-        Render[] ts3 = {
-                Texture.spiritHurt0,
-                Texture.spiritHurt0,
-                Texture.spiritHurt0
-        };
-        setHurtSprite(new Sprite(ts3));
-
-        Render[] ts4 = {
-                Texture.splat1,
-                Texture.splat1,
-                Texture.splat1,
-                Texture.splat1,
-                Texture.splat1,
-                Texture.splat1
-        };
-        setDeathSprite(new Sprite(ts4));
-
-        Render[] ts5 = {
-                Texture.spiritHeal0,
-                Texture.spiritHeal0,
-                Texture.spiritHeal0,
-                Texture.spiritHeal0,
-                Texture.spiritHeal0,
-                Texture.spiritHeal0
-        };
-        setHealSprite(new Sprite(ts5));
     }
 
     public void tick() {
