@@ -2,12 +2,18 @@ package com.jamie.raycasting.entities.environmentalEffects;
 
 import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.entities.particles.EmberParticle;
+import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.world.levels.Level;
 
 import java.util.List;
 
 public class ExplosionEffect extends EnvironmentalEffect
 {
+    protected Sprite setSprite() {
+        return null;
+    }
+
+
     public ExplosionEffect(Level level, double radius, int magnitude) {
         super(level, radius, magnitude);
 

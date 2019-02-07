@@ -14,10 +14,6 @@ public abstract class EnvironmentalEffect extends Entity
     protected int duration;
     protected int magnitude;
 
-    protected Sprite setSprite() {
-        return null;
-    }
-
 
     public EnvironmentalEffect(Level level, int duration, double radius, int magnitude) {
         isSolid = false;
