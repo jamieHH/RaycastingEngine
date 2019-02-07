@@ -1,6 +1,7 @@
 package com.jamie.raycasting.entities.environmentalEffects;
 
 import com.jamie.raycasting.entities.Entity;
+import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.world.levels.Level;
 
 public abstract class EnvironmentalEffect extends Entity
@@ -12,6 +13,11 @@ public abstract class EnvironmentalEffect extends Entity
 
     protected int duration;
     protected int magnitude;
+
+    protected Sprite setSprite() {
+        return null;
+    }
+
 
     public EnvironmentalEffect(Level level, int duration, double radius, int magnitude) {
         isSolid = false;

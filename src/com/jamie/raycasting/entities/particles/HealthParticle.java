@@ -10,6 +10,11 @@ import java.util.List;
 
 public class HealthParticle extends Particle
 {
+    protected Sprite setSprite() {
+        return null;
+    }
+
+
     public HealthParticle() {
         super();
 

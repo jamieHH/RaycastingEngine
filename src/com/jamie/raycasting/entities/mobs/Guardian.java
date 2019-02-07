@@ -10,6 +10,13 @@ public class Guardian extends Mob
 {
     private boolean woke = false;
 
+    protected Sprite setSprite() {
+        return new Sprite(new Render[] {
+                Texture.guardian0
+        });
+    }
+
+
     public Guardian(InputHandler input) {
         super(input);
 
@@ -31,21 +38,6 @@ public class Guardian extends Mob
 
         faction = "beast";
         enemyFaction = "human";
-
-        Render[] ts = {
-                Texture.guardian0
-        };
-        setIdleSprite(new Sprite(ts));
-
-//        Render[] ts2 = {
-//
-//        };
-//        setActionSprite(new Sprite(ts2));
-
-//        Render[] ts3 = {
-//
-//        };
-//        setHurtSprite(new Sprite(ts3));
 
         Render[] ts4 = {
                 Texture.splat1,

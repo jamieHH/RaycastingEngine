@@ -10,6 +10,11 @@ import java.util.List;
 
 public class StoneParticle extends Particle
 {
+    protected Sprite setSprite() {
+        return null;
+    }
+
+
     public StoneParticle() {
         super();
 

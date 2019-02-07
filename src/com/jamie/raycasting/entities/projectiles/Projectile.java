@@ -4,7 +4,8 @@ import com.jamie.raycasting.entities.Entity;
 import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.graphics.Sprite;
 
-public abstract class Projectile extends Entity {
+public abstract class Projectile extends Entity
+{
     protected double moveSpeed = 0.2;
     protected int life = 600;
 

@@ -7,6 +7,16 @@ import com.jamie.raycasting.input.InputHandler;
 
 public class Bat extends Mob
 {
+    protected Sprite setSprite() {
+        return new Sprite(new Render[] {
+                Texture.bat0,
+                Texture.bat1,
+                Texture.bat2,
+                Texture.bat1,
+        });
+    }
+
+
     public Bat(InputHandler input) {
         super(input);
 
@@ -28,14 +38,6 @@ public class Bat extends Mob
 
         faction = "beast";
         enemyFaction = "human";
-
-        Render[] ts = {
-                Texture.bat0,
-                Texture.bat1,
-                Texture.bat2,
-                Texture.bat1,
-        };
-        setIdleSprite(new Sprite(ts));
 
         Render[] ts2 = {
                 Texture.batAtt0,

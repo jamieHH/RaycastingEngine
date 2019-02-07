@@ -10,6 +10,10 @@ import java.util.List;
 
 public class PoofParticle extends Particle
 {
+    protected Sprite setSprite() {
+        return null;
+    }
+
     public PoofParticle() {
         super();
 

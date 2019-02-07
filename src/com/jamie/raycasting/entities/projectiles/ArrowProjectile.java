@@ -6,14 +6,17 @@ import com.jamie.raycasting.graphics.Texture;
 
 public class ArrowProjectile extends Projectile
 {
-    public ArrowProjectile(int damage) {
-        super(damage);
-
+    protected Sprite setSprite() {
         Render r = new Render(1, 1);
         r.fill(0xF8F8F8);
         Sprite s = new Sprite(r);
         s.setOffset(0, 0.5, 0);
-        setIdleSprite(s);
+        return s;
+    }
+
+
+    public ArrowProjectile(int damage) {
+        super(damage);
 
         Render[] ts = {
                 Texture.invisible,

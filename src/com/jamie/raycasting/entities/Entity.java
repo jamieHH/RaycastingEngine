@@ -8,7 +8,7 @@ import com.jamie.raycasting.world.levels.Level;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Entity
+public abstract class Entity
 {
 	public Level level;
     public boolean removed = false;
@@ -22,6 +22,13 @@ public class Entity
     public double posY = 0;
 
     private SpriteSet spriteSet = new SpriteSet();
+
+    protected abstract Sprite setSprite();
+
+
+    public Entity() {
+        setSpriteSet("idle", setSprite());
+    }
 
     public void tick() {
         spriteSet.tick();
@@ -99,15 +106,7 @@ public class Entity
         spriteSet.runSet(name);
     }
 
-    protected void switchSpriteSet(String name) {
-        spriteSet.switchSet(name);
-    }
-
     public Sprite getSprite() {
         return spriteSet.getSprite();
-    }
-
-    public void setIdleSprite(Sprite sprite) {
-        setSpriteSet("idle", sprite);
     }
 }

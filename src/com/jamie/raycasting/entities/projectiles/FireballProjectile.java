@@ -7,14 +7,16 @@ import com.jamie.raycasting.graphics.Texture;
 
 public class FireballProjectile extends Projectile
 {
-    public FireballProjectile(double detonationRadius, int detonationMagnitude) {
-        super(detonationRadius, detonationMagnitude);
-
-        Render[] ts1 = {
+    protected Sprite setSprite() {
+        return new Sprite(new Render[] {
                 Texture.fireball0,
                 Texture.fireball1
-        };
-        setIdleSprite(new Sprite(ts1));
+        });
+    }
+
+
+    public FireballProjectile(double detonationRadius, int detonationMagnitude) {
+        super(detonationRadius, detonationMagnitude);
 
         Render[] ts2 = {
                 Texture.explode0,

@@ -11,6 +11,16 @@ public class Imp extends Mob
     private int healTick = 0;
     private int spellCooldown = 0;
 
+    protected Sprite setSprite() {
+        return new Sprite(new Render[] {
+                Texture.imp0,
+                Texture.imp1,
+                Texture.imp2,
+                Texture.imp1,
+        });
+    }
+
+
     public Imp(InputHandler input) {
         super(input);
 
@@ -32,14 +42,6 @@ public class Imp extends Mob
 
         faction = "beast";
         enemyFaction = "human";
-
-        Render[] ts = {
-                Texture.imp0,
-                Texture.imp1,
-                Texture.imp2,
-                Texture.imp1,
-        };
-        setIdleSprite(new Sprite(ts));
 
         Render[] ts2 = {
                 Texture.impAtt0,

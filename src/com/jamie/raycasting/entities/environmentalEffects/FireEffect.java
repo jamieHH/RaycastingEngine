@@ -12,6 +12,16 @@ import java.util.List;
 
 public class FireEffect extends EnvironmentalEffect
 {
+    protected Sprite setSprite() {
+        return new Sprite(new Render[] {
+                Texture.fire0,
+                Texture.fire1,
+                Texture.fire2,
+                Texture.fire3,
+        });
+    }
+
+
     public FireEffect(Level level, int duration, double radius, int magnitude) {
         super(level, duration, radius, magnitude);
 
@@ -19,14 +29,6 @@ public class FireEffect extends EnvironmentalEffect
         interval = 60;
 
         name = "Fire";
-
-        Render[] ts = {
-                Texture.fire0,
-                Texture.fire1,
-                Texture.fire2,
-                Texture.fire3,
-        };
-        setIdleSprite(new Sprite(ts));
     }
 
     public void activate() {

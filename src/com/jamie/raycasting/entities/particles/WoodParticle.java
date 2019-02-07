@@ -10,6 +10,11 @@ import java.util.List;
 
 public class WoodParticle extends Particle
 {
+    protected Sprite setSprite() {
+        return null;
+    }
+
+
     public WoodParticle() {
         super();
 

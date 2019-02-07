@@ -8,14 +8,17 @@ public class Drop extends Entity
 {
     public Item item;
 
+    protected Sprite setSprite() {
+        return new Sprite(Texture.blood0); // TODO: set sprite to items icon
+    }
+
+
     public Drop(Item item) {
         posY = 0.5;
         radius = 1;
         isSolid = false;
 
         this.item = item;
-        // TODO: set idle sprite to items icon
-        setIdleSprite(new Sprite(Texture.blood0));
     }
 
     public void tick() {

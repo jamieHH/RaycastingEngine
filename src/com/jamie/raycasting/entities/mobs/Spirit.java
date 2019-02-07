@@ -11,6 +11,16 @@ public class Spirit extends Mob
     private int healTick = 0;
     private int dustTick = 0;
 
+    protected Sprite setSprite() {
+        return new Sprite(new Render[] {
+                Texture.spirit0,
+                Texture.spirit1,
+                Texture.spirit2,
+                Texture.spirit1,
+        });
+    }
+
+
     public Spirit(InputHandler input) {
         super(input);
 
@@ -32,14 +42,6 @@ public class Spirit extends Mob
 
         faction = "beast";
         enemyFaction = "human";
-
-        Render[] ts = {
-                Texture.spirit0,
-                Texture.spirit1,
-                Texture.spirit2,
-                Texture.spirit1,
-        };
-        setIdleSprite(new Sprite(ts));
 
         Render[] ts2 = {
                 Texture.spiritAtt0,

@@ -1,6 +1,7 @@
 package com.jamie.raycasting.entities.mobs;
 
 import com.jamie.raycasting.app.Sound;
+import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
 import com.jamie.raycasting.input.InputHandler;
 import com.jamie.raycasting.items.MiscItem;
@@ -9,7 +10,12 @@ import com.jamie.raycasting.items.weapons.*;
 
 public class Player extends Mob
 {
-	public Player(InputHandler input) {
+    protected Sprite setSprite() {
+        return null;
+    }
+
+
+    public Player(InputHandler input) {
         super(input);
 
         isFloating = false;
