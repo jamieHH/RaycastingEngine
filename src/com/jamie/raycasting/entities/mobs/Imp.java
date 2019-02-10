@@ -115,8 +115,8 @@ public class Imp extends Mob
                             level.addEntity(p, posX + nextX, posZ + nextZ);
                         }
 
-                        input.forwardInf = 100;
-                        input.backInf = 25;
+                        input.forwardInf = 50;
+                        input.backInf = 50;
                         input.leftInf = 50;
                         input.rightInf = 50;
                         input.rotLeftInf = 50;
