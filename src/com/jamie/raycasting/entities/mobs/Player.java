@@ -44,8 +44,6 @@ public class Player extends Mob
 
         rotationSpeed = 0.03;
         walkSpeed = 0.1;
-        runSpeed = 0.1;
-        crouchSpeed = 0.1;
 
         maxHealth = 10;
         health = maxHealth;

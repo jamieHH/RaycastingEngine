@@ -61,8 +61,6 @@ public class Bat extends Mob
 
         rotationSpeed = 0.03;
         walkSpeed = 0.03;
-        runSpeed = 0.03;
-        crouchSpeed = 0.03;
 
         maxHealth = 10;
         health = maxHealth;
@@ -83,7 +81,7 @@ public class Bat extends Mob
                         lookTowards(target.posX, target.posZ);
 
                         input.forwardInf = 100;
-                        input.backInf = 25;
+                        input.backInf = 10;
                         input.leftInf = 50;
                         input.rightInf = 50;
                         input.rotLeftInf = 50;

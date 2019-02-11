@@ -53,8 +53,6 @@ public class Guardian extends Mob
 
         rotationSpeed = 0.03;
         walkSpeed = 0.03;
-        runSpeed = 0.03;
-        crouchSpeed = 0.03;
 
         maxHealth = 20;
         health = maxHealth;

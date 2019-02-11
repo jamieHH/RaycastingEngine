@@ -18,7 +18,6 @@ public class UserInputHandler extends InputHandler implements KeyListener, Focus
         int[] rightKeys = {KeyEvent.VK_D};
         int[] rotLeftKeys = {KeyEvent.VK_LEFT};
         int[] rotRightKeys = {KeyEvent.VK_RIGHT};
-        int[] crouchKeys = {KeyEvent.VK_CONTROL};
         int[] actionKeys = {KeyEvent.VK_ENTER, KeyEvent.VK_SPACE};
         int[] inventoryKeys = {KeyEvent.VK_E};
         int[] hot1 = {KeyEvent.VK_1};
@@ -33,7 +32,6 @@ public class UserInputHandler extends InputHandler implements KeyListener, Focus
         inputGroups.put("right", rightKeys);
         inputGroups.put("rotLeft", rotLeftKeys);
         inputGroups.put("rotRight", rotRightKeys);
-        inputGroups.put("crouch", crouchKeys);
         inputGroups.put("action", actionKeys);
         inputGroups.put("inventory", inventoryKeys);
         inputGroups.put("hot1", hot1);
@@ -70,7 +68,6 @@ public class UserInputHandler extends InputHandler implements KeyListener, Focus
 		right = checkKeyGroup(inputGroups.get("right"));
 		rotLeft = checkKeyGroup(inputGroups.get("rotLeft"));
 		rotRight = checkKeyGroup(inputGroups.get("rotRight"));
-        crouch = checkKeyGroup(inputGroups.get("crouch"));
         action = checkKeyGroup(inputGroups.get("action"));
 		inventory = checkKeyGroup(inputGroups.get("inventory"));
         hot1 = checkKeyGroup(inputGroups.get("hot1"));
@@ -78,8 +75,6 @@ public class UserInputHandler extends InputHandler implements KeyListener, Focus
         hot3 = checkKeyGroup(inputGroups.get("hot3"));
         pause = checkKeyGroup(inputGroups.get("pause"));
         nextMob = checkKeyGroup(inputGroups.get("nextMob"));
-
-//		run = key[KeyEvent.VK_SHIFT];
 
         randomLevel = key[KeyEvent.VK_R];
         loadLevel = key[KeyEvent.VK_P];

@@ -46,11 +46,8 @@ public abstract class Mob extends Entity
 
     protected double rotationSpeed = 0.03;
     protected double walkSpeed = 0.03;
-    protected double runSpeed = 0.03;
-    protected double crouchSpeed = 0.03;
 
-    private double camHeightMod = 0.652;
-    private double crouchHeightMod = 0.25;
+    private double viewHeight = 0.652;
 
     public double camY = 0;
     public double yBob = 0;
@@ -90,7 +87,7 @@ public abstract class Mob extends Entity
         this.input = input;
 
         health = maxHealth;
-        camY = camHeightMod;
+        camY = viewHeight;
 
         setSpriteSet("action", getActionSprite());
         setSpriteSet("heal", getHealSprite());
@@ -212,15 +209,7 @@ public abstract class Mob extends Entity
     }
 
     private void receiveMovementInput() {
-        double moveSpeed;
-        if (input.crouch) {
-            camY -= crouchHeightMod;
-            moveSpeed = crouchSpeed; // change to moveSpeed multipliers
-        } else if (input.run) {
-            moveSpeed = runSpeed;
-        } else {
-            moveSpeed = walkSpeed;
-        }
+        double moveSpeed = walkSpeed;
         moveSpeed *= friction;
 
         if (input.forward) moveZ += moveSpeed;
@@ -240,7 +229,7 @@ public abstract class Mob extends Entity
     }
 
     private void doMovements() {
-        camY = camHeightMod;
+        camY = viewHeight;
         camY += yBob;
         yBob *= 0.75;
 
@@ -540,10 +529,6 @@ public abstract class Mob extends Entity
 
     public String getFaction() {
         return faction;
-    }
-
-    public void setFaction(String faction) {
-        faction = faction;
     }
 
     public void modHealth(int modifier) {
