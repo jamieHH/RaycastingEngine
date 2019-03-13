@@ -21,7 +21,7 @@ public class App extends Canvas implements Runnable
 	public static int width = 200;
 	public static int height = 150;
 	public static int scale = 4;
-	public static boolean soundEnabled = true;
+	public static boolean soundEnabled = false;
 
 	public static boolean setNewOptions = false;
 	public static int newWidth, newHeight, newScale;
@@ -71,16 +71,16 @@ public class App extends Canvas implements Runnable
     }
 
 	private void changeResolution(int width, int height) {
-	    App.width = width;
-	    App.height = height;
+        App.width = width;
+        App.height = height;
         setCanvas();
 
         refreshFrame(this);
-		requestFocus();
+        requestFocus();
 
-		screen = new Screen(width, height, game);
-		img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-		pixels = ((DataBufferInt)img.getRaster().getDataBuffer()).getData();
+        screen = new Screen(width, height, game);
+        img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+        pixels = ((DataBufferInt) img.getRaster().getDataBuffer()).getData();
     }
 
 	public void start() {
@@ -153,8 +153,10 @@ public class App extends Canvas implements Runnable
 
         if (setNewOptions) {
             setNewOptions = false;
-            App.scale = newScale;
-            changeResolution(newWidth, newHeight);
+            if (App.scale != newScale || App.width != newWidth || App.height != newHeight) {
+				App.scale = newScale;
+                changeResolution(newWidth, newHeight);
+            }
         }
 	}
 
