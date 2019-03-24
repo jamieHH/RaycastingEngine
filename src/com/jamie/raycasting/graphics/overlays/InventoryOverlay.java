@@ -185,9 +185,9 @@ public class InventoryOverlay extends Overlay
         draw(itemListRender, bp, bp + 10 + 8);
     }
 
-    private void updateDetailsPain() {
+    private void updateDetailsPane() {
         itemDetailsPane.fill(0x303030);
-        if (listedItems.size() > 0) {
+        if (listedItems.size() > 0 && listedItems.size() != listItemIndex) {
             Item item = listedItems.get(listItemIndex);
             Render icon = item.icon;
             Render bground = new Render(18, 18);
@@ -218,6 +218,6 @@ public class InventoryOverlay extends Overlay
         fill(0x202020);
         updateCatHeadings();
         updateList();
-        updateDetailsPain();
+        updateDetailsPane();
     }
 }
