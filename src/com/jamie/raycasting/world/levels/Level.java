@@ -27,20 +27,21 @@ public abstract class Level
     public World world;
 
     // static blocks. TODO: check if is performance optimal.
-    private static final Block Block = new Block();
-    private static final AirBlock AirBlock = new AirBlock();
-    private static final WallBlock WallBlock = new WallBlock();
-    private static final PillarBlock PillarBlock = new PillarBlock();
-    private static final LampBlock LampBlock = new LampBlock();
-    private static final BarsBlock BarsBlock = new BarsBlock();
-    private static final CobwebBlock CobwebBlock = new CobwebBlock();
-    private static final TreeBlock TreeBlock = new TreeBlock();
-    private static final GrassBlock GrassBlock = new GrassBlock();
-    private static final ShrubsBlock ShrubsBlock = new ShrubsBlock();
-    private static final StonePathBlock StonePathBlock = new StonePathBlock();
-    private static final AltStonePathBlock AltStonePathBlock = new AltStonePathBlock();
-    private static final GraveBlock GraveBlock = new GraveBlock();
-    private static final WaterBlock WaterBlock = new WaterBlock();
+    protected static final Block Block = new Block();
+    protected static final AirBlock AirBlock = new AirBlock();
+    protected static final WallBlock WallBlock = new WallBlock();
+    protected static final PillarBlock PillarBlock = new PillarBlock();
+    protected static final LampBlock LampBlock = new LampBlock();
+    protected static final BarsBlock BarsBlock = new BarsBlock();
+    protected static final CobwebBlock CobwebBlock = new CobwebBlock();
+    protected static final TreeBlock TreeBlock = new TreeBlock();
+    protected static final GrassBlock GrassBlock = new GrassBlock();
+    protected static final ShrubsBlock ShrubsBlock = new ShrubsBlock();
+    protected static final StonePathBlock StonePathBlock = new StonePathBlock();
+    protected static final AltStonePathBlock AltStonePathBlock = new AltStonePathBlock();
+    protected static final GraveBlock GraveBlock = new GraveBlock();
+    protected static final WaterBlock WaterBlock = new WaterBlock();
+    protected Block defaultFloorBlock = AirBlock;
 
 
     public void create(Game game, int sizeX, int sizeZ, int[] pixels) {
@@ -256,7 +257,7 @@ public abstract class Level
         if (col == 0x873800) return new LevelPortalBlock();
         if (col == 0xFF6A00) return new LadderBlock(false);
         if (col == 0xB24700) return new LadderBlock(true);
-        return AirBlock;
+        return defaultFloorBlock;
     }
 
     private Mob getMobByColour(int col) {

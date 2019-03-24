@@ -10,6 +10,7 @@ public class GraveyardLevel extends Level
 	public GraveyardLevel() {
 		name = "Graveyard";
 		height = 8192;
+		defaultFloorBlock = GrassBlock;
 	}
 
 	protected void postCreate() {

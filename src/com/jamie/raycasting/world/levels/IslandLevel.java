@@ -11,6 +11,7 @@ public class IslandLevel extends Level
 	public IslandLevel() {
 		name = "Island";
 		height = 8192;
+		defaultFloorBlock = GrassBlock;
 	}
 
 	protected void postCreate() {
