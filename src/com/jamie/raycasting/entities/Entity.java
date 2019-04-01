@@ -17,8 +17,8 @@ public abstract class Entity
     public double radius = 0.25;
 
     public double rotation;
-    public double posZ = 0;
     public double posX = 0;
+    public double posZ = 0;
     public double posY = 0;
 
     private SpriteSet spriteSet = new SpriteSet();
@@ -35,8 +35,8 @@ public abstract class Entity
     }
 
     public void setPosition(double x, double z) {
-        posZ = x;
-        posX = z;
+        posX = x;
+        posZ = z;
     }
 
     public void setRotation(double rotation) {
@@ -48,29 +48,29 @@ public abstract class Entity
     }
 
 	protected double distanceFrom(double x, double z) {
-        return Math.hypot(Math.abs(posZ - x), Math.abs(posX - z));
+        return Math.hypot(Math.abs(posX - z), Math.abs(posZ - x));
     }
 
     public double squareDistanceFrom(double x, double z) {
-        double xDist = Math.abs(posZ - x);
-        double zDist = Math.abs(posX - z);
+        double xDist = Math.abs(posX - z);
+        double zDist = Math.abs(posZ - x);
 
         return (xDist > zDist) ? xDist: zDist;
     }
 
     public boolean contains(double x, double z) {
-        if (posZ + radius <= x) return false;
-        if (posZ - radius >= x) return false;
         if (posX + radius <= z) return false;
         if (posX - radius >= z) return false;
+        if (posZ + radius <= x) return false;
+        if (posZ - radius >= x) return false;
         return true;
     }
 
     public boolean isInside(double x0, double z0, double x1, double z1) {
-        if (posZ + radius <= x0) return false;
-        if (posZ - radius >= x1) return false;
         if (posX + radius <= z0) return false;
         if (posX - radius >= z1) return false;
+        if (posZ + radius <= x0) return false;
+        if (posZ - radius >= x1) return false;
         return true;
     }
 
@@ -78,7 +78,7 @@ public abstract class Entity
         List<Entity> entities = new ArrayList<Entity>();
         for (int e = 0; e < level.countEntities(); e++) {
             Entity ent = level.getEntity(e);
-            if (distanceFrom(ent.posZ, ent.posX) < radius) {
+            if (distanceFrom(ent.posX, ent.posZ) < radius) {
                 entities.add(ent);
             }
         }
@@ -90,7 +90,7 @@ public abstract class Entity
         List<Mob> mobs = new ArrayList<Mob>();
         for (int e = 0; e < level.countEntities(); e++) {
             Entity ent = level.getEntity(e);
-            if (distanceFrom(ent.posZ, ent.posX) < radius && ent instanceof Mob) {
+            if (distanceFrom(ent.posX, ent.posZ) < radius && ent instanceof Mob) {
                 mobs.add((Mob) ent);
             }
         }
