@@ -30,6 +30,6 @@ public class ExplosionEffect extends EnvironmentalEffect
         }
 
         EmberParticle p = new EmberParticle();
-        level.addEntity(p, posX, posZ);
+        level.addEntity(p, posZ, posX);
     }
 }

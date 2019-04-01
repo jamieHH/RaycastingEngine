@@ -41,6 +41,6 @@ public class WandWeapon extends Weapon
         FireballProjectile p = new FireballProjectile(1, damage);
         p.setRotation(user.rotation);
 
-        user.level.addEntity(p, user.posX + nextX, user.posZ + nextZ);
+        user.level.addEntity(p, user.posZ + nextX, user.posX + nextZ);
     }
 }

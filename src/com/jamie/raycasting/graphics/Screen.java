@@ -38,7 +38,7 @@ public class Screen extends Render
 
         if (p != null) {
             if (!p.isDead) {
-                render.render(p.level, p.posX, p.camY, p.posZ, p.rotation);
+                render.render(p.level, p.posZ, p.camY, p.posX, p.rotation);
                 draw(render, 0, 0);
 
                 // Render held items

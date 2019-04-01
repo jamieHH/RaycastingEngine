@@ -45,28 +45,28 @@ public abstract class Projectile extends Entity
                 int divs = 10; // increase this to improve accuracy of collision
                 for (int i = 0; i < divs; i++) {
                     double nextX = (moveSpeed * Math.sin(rotation)) / divs;
-                    if (getBlockingMob(posX + nextX, posZ) != null) {
-                        getBlockingMob(posX + nextX, posZ).hurt(this, damage);
+                    if (getBlockingMob(posZ + nextX, posX) != null) {
+                        getBlockingMob(posZ + nextX, posX).hurt(this, damage);
                         detonate();
                         break;
                     }
-                    if (isWallBlocked(posX + nextX, posZ)) {
+                    if (isWallBlocked(posZ + nextX, posX)) {
                         detonate();
                         break;
                     }
-                    posX += nextX;
+                    posZ += nextX;
 
                     double nextZ = (moveSpeed * Math.cos(rotation)) / divs;
-                    if (getBlockingMob(posX, posZ + nextZ) != null) {
-                        getBlockingMob(posX, posZ + nextZ).hurt(this, damage);
+                    if (getBlockingMob(posZ, posX + nextZ) != null) {
+                        getBlockingMob(posZ, posX + nextZ).hurt(this, damage);
                         detonate();
                         break;
                     }
-                    if (isWallBlocked(posX, posZ + nextZ)) {
+                    if (isWallBlocked(posZ, posX + nextZ)) {
                         detonate();
                         break;
                     }
-                    posZ += nextZ;
+                    posX += nextZ;
                 }
             }
         } else {
@@ -98,8 +98,8 @@ public abstract class Projectile extends Entity
         for (int i = 0; i < level.countMobs(); i++) {
             Mob e = level.getMobEntity(i);
             if (e.isSolid) {
-                double entX = e.posX;
-                double entZ = e.posZ;
+                double entX = e.posZ;
+                double entZ = e.posX;
                 double entRadius = e.radius;
                 if (((Math.abs(x - entX)) - entRadius < radius) && ((Math.abs(z - entZ)) - entRadius < radius)) {
                     return e;

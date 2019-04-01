@@ -69,11 +69,11 @@ public class Guardian extends Mob
             if (level.getMobEntities().get(i).getFaction().equals(enemyFaction) && level.getMobEntities().get(i) != this) {
                 target = level.getMobEntities().get(i);
                 if (!target.isDead) {
-                    if (squareDistanceFrom(target.posX, target.posZ) < viewDist) {
-                        lookTowards(target.posX, target.posZ);
+                    if (squareDistanceFrom(target.posZ, target.posX) < viewDist) {
+                        lookTowards(target.posZ, target.posX);
                         if (!woke) {
                             woke = true;
-                            level.addEntity(new StoneParticle(), posX, posZ);
+                            level.addEntity(new StoneParticle(), posZ, posX);
                         }
 
                         input.forwardInf = 100;
@@ -82,7 +82,7 @@ public class Guardian extends Mob
                         input.rightInf = 0;
                         input.rotLeftInf = 0;
                         input.rotRightInf = 0;
-                        input.action = squareDistanceFrom(target.posX, target.posZ) < getRightHandReach();
+                        input.action = squareDistanceFrom(target.posZ, target.posX) < getRightHandReach();
                     } else {
                         input.forwardInf = 0;
                         input.backInf = 0;

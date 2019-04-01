@@ -30,6 +30,6 @@ public class FireballProjectile extends Projectile
     public void detonate() {
         super.detonate();
         ExplosionEffect effect = new ExplosionEffect(level, detonationRadius, detonationMagnitude);
-        level.addEntity(effect, posX, posZ);
+        level.addEntity(effect, posZ, posX);
     }
 }

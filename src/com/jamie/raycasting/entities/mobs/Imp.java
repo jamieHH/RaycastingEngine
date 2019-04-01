@@ -98,8 +98,8 @@ public class Imp extends Mob
             if (level.getMobEntities().get(i).getFaction().equals(enemyFaction) && level.getMobEntities().get(i) != this) {
                 target = level.getMobEntities().get(i);
                 if (!target.isDead) {
-                    if (squareDistanceFrom(target.posX, target.posZ) < viewDist) {
-                        lookTowards(target.posX, target.posZ);
+                    if (squareDistanceFrom(target.posZ, target.posX) < viewDist) {
+                        lookTowards(target.posZ, target.posX);
 
                         if (spellCooldown > 0) {
                             spellCooldown--;
@@ -110,7 +110,7 @@ public class Imp extends Mob
                             double nextZ = Math.cos(rotation);
                             FireballProjectile p = new FireballProjectile(1, 1);
                             p.setRotation(rotation);
-                            level.addEntity(p, posX + nextX, posZ + nextZ);
+                            level.addEntity(p, posZ + nextX, posX + nextZ);
                         }
 
                         input.forwardInf = 50;
@@ -119,7 +119,7 @@ public class Imp extends Mob
                         input.rightInf = 50;
                         input.rotLeftInf = 50;
                         input.rotRightInf = 50;
-                        input.action = squareDistanceFrom(target.posX, target.posZ) < getRightHandReach();
+                        input.action = squareDistanceFrom(target.posZ, target.posX) < getRightHandReach();
                     } else {
                         input.forwardInf = 50;
                         input.backInf = 50;

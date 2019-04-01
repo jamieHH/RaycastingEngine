@@ -157,7 +157,7 @@ public abstract class Mob extends Entity
             }
 
             for (int i = 0; i < level.countDrops(); i++) {
-                if (contains(level.getDropEntity(i).posX, level.getDropEntity(i).posZ)) {
+                if (contains(level.getDropEntity(i).posZ, level.getDropEntity(i).posX)) {
                     addItem(level.getDropEntity(i).item);
                     Sound.pickUp.play();
                     level.getDropEntity(i).remove();
@@ -198,7 +198,7 @@ public abstract class Mob extends Entity
                 dieTime--;
                 if (dieTime == 0) {
                     PoofParticle p = new PoofParticle();
-                    level.addEntity(p, posX, posZ);
+                    level.addEntity(p, posZ, posX);
 
                     isDead = true;
                 }
@@ -275,7 +275,7 @@ public abstract class Mob extends Entity
             for (int i = 0; i < level.countEntities(); i++) {
                 Entity e = level.getEntity(i);
                 if (e != this && e.isSolid) {
-                    if (((Math.abs(x - e.posX)) - e.radius < radius) && ((Math.abs(z - e.posZ)) - e.radius < radius)) {
+                    if (((Math.abs(x - e.posZ)) - e.radius < radius) && ((Math.abs(z - e.posX)) - e.radius < radius)) {
                         return true;
                     }
                 }
@@ -289,16 +289,16 @@ public abstract class Mob extends Entity
         int divs = 100;
         for (int i = 0; i < divs; i++) {
             double nextX = nX / divs;
-            if (isWallBlocked(posX + nextX, posZ) || isEntityBlocked(posX + nextX, posZ)) {
+            if (isWallBlocked(posZ + nextX, posX) || isEntityBlocked(posZ + nextX, posX)) {
                 nextX = 0;
             }
-            posX += nextX;
+            posZ += nextX;
 
             double nextZ = nZ / divs;
-            if (isWallBlocked(posX, posZ + nextZ) || isEntityBlocked(posX, posZ + nextZ)) {
+            if (isWallBlocked(posZ, posX + nextZ) || isEntityBlocked(posZ, posX + nextZ)) {
                 nextZ = 0;
             }
-            posZ += nextZ;
+            posX += nextZ;
         }
     }
 
@@ -418,7 +418,7 @@ public abstract class Mob extends Entity
     }
 
     public void lookTowards(double x, double z) {
-        rotation = Math.atan2(x - posX, z - posZ);
+        rotation = Math.atan2(x - posZ, z - posX);
     }
 
     public void pushDir(double direction, double force) {
@@ -433,7 +433,7 @@ public abstract class Mob extends Entity
         if (magnitude > 0 && !isDieing) {
             runSpriteSet("heal");
             HealthParticle p = new HealthParticle();
-            level.addEntity(p, posX, posZ);
+            level.addEntity(p, posZ, posX);
 
             if (health + magnitude > maxHealth) {
                 health = maxHealth;
@@ -453,7 +453,7 @@ public abstract class Mob extends Entity
         if (magnitude > 0 && !isDieing && hurtTime < 1) {
             runSpriteSet("hurt");
             BloodParticle p = new BloodParticle();
-            level.addEntity(p, posX, posZ);
+            level.addEntity(p, posZ, posX);
 
             if (health - magnitude > 0) {
                 hurtSound.play();
@@ -480,8 +480,8 @@ public abstract class Mob extends Entity
 
         boolean hit = false;
         for (int i = 0; i < divs && !hit; i++) {
-            double xx = posX + xa * i / divs;
-            double zz = posZ + za * i / divs;
+            double xx = posZ + xa * i / divs;
+            double zz = posX + za * i / divs;
             for (int b = 0; b < closeEntities.size(); b++) {
                 Entity ent = closeEntities.get(b);
                 if (ent instanceof Mob && ent != this) {
@@ -498,9 +498,9 @@ public abstract class Mob extends Entity
 
             if (hit) break;
 
-            int xb = (int) (posX + xa * i / divs);
-            int zb = (int) (posZ + za * i / divs);
-            if (xb != (int) posX || zb != (int) posZ) {
+            int xb = (int) (posZ + xa * i / divs);
+            int zb = (int) (posX + za * i / divs);
+            if (xb != (int) posZ || zb != (int) posX) {
                 Block block = level.getBlock(xb, zb);
                 if (block.use(this) || block.isSolid || block.isUsable) {
                     if (getRightHandItem() != null && !getRightHandItem().canStrike) {
