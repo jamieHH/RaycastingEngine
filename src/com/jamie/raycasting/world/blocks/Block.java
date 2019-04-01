@@ -22,8 +22,8 @@ public class Block
 	public Render floorTex = Texture.none;
 	public Render ceilTex = Texture.none;
 
-	public int gridX;
 	public int gridZ;
+	public int gridX;
 	public String reference;
 	
 	public int id;

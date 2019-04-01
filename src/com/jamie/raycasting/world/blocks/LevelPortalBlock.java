@@ -14,7 +14,7 @@ public class LevelPortalBlock extends Block
 	}
 
 	public void tick() {
-        List<Mob> mobs = level.getMobsWithin(gridX, gridZ, gridX + 1, gridZ + 1);
+        List<Mob> mobs = level.getMobsWithin(gridZ, gridX, gridZ + 1, gridX + 1);
 
         if (disabled) {
             if (mobs.size() == 0) {

@@ -85,10 +85,10 @@ public class World
 
         LevelPortalBlock spawnBlock = level.getLevelPortalBlockById(id);
         if (spawnBlock != null) {
-            level.addEntity(mob, spawnBlock.gridX + 0.5, spawnBlock.gridZ + 0.5);
+            level.addEntity(mob, spawnBlock.gridZ + 0.5, spawnBlock.gridX + 0.5);
             spawnBlock.disabled = true;
         } else {
-            level.addEntity(mob, level.spawnX, level.spawnZ);
+            level.addEntity(mob, level.spawnZ, level.spawnX);
         }
     }
 }

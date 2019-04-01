@@ -33,7 +33,7 @@ public class TeleporterBlock extends Block
 	public void tick() {
 	    super.tick();
 
-        List<Entity> entities = level.getEntitiesWithin(gridX, gridZ, gridX + 1, gridZ + 1);
+        List<Entity> entities = level.getEntitiesWithin(gridZ, gridX, gridZ + 1, gridX + 1);
         for (int i = 0; i < entities.size(); i++) {
             if (entities.get(i) instanceof Particle || entities.get(i) instanceof EnvironmentalEffect) {
 //                System.out.println(entities.get(i)); // particles removed
@@ -53,13 +53,13 @@ public class TeleporterBlock extends Block
 
                 for (int i = 0; i < entities.size(); i++) {
 //                    System.out.println(entities.get(i)); // entities being teleported
-                    entities.get(i).setPosition(target.gridX + 0.5, target.gridZ + 0.5);
+                    entities.get(i).setPosition(target.gridZ + 0.5, target.gridX + 0.5);
 
                     // TODO: find out why these particles still disable the teleporters
 //                    PoofParticle p0 = new PoofParticle(entities.get(i).posX, entities.get(i).posZ);
 //                    level.addEntity(p0);
 //
-//                    PoofParticle p1 = new PoofParticle(gridX + 0.5, gridZ + 0.5);
+//                    PoofParticle p1 = new PoofParticle(gridZ + 0.5, gridX + 0.5);
 //                    level.addEntity(p1);
                 }
 

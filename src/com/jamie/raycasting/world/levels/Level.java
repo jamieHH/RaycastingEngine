@@ -57,7 +57,7 @@ public abstract class Level
 
         for (int z = 0; z < sizeZ; z++) {
             for (int x = 0; x < sizeX; x++) {
-                int col = pixels[z + x * sizeX] & 0xFFFFFF;
+                int col = pixels[x + z * sizeX] & 0xFFFFFF;
                 if (col == 0xFFFF00) {
                     setDefaultSpawn(x + 0.5, z + 0.5);
                 }
@@ -80,6 +80,12 @@ public abstract class Level
                 }
 
                 setBlock(x, z, block);
+                if (x == 18 && z == 12) {
+                    System.out.println(block);
+                    System.out.println(block.gridX);
+                    System.out.println(getBlock(z, x)); // TODO: this is still inverted.. check after entity pos fix
+                    System.out.println(getBlock(z, x).gridX);
+                }
             }
         }
 
@@ -136,14 +142,10 @@ public abstract class Level
         blocks[gridX + gridZ * sizeX] = block;
     }
 
-    public void addEntity(Entity e) {
-        entities.add(e);
-        e.level = this;
-    }
-
     public void addEntity(Entity e, double x, double z) {
         e.setPosition(x, z);
-        addEntity(e);
+        entities.add(e);
+        e.level = this;
     }
 
     public List<Entity> getEntities() {
@@ -206,7 +208,7 @@ public abstract class Level
             return Block;
         }
 
-        return blocks[x + z * sizeX];
+        return blocks[z + x * sizeZ];
     }
 
     public Block getBlockByReference(String reference) {

@@ -19,13 +19,13 @@ public class IslandLevel extends Level
 		teleporter0.floorTex = Texture.grass;
 		teleporter0.setReference("teleporter0");
 		teleporter0.setTargetRef("teleporter1");
-		setBlock(30, 33, teleporter0);
+		setBlock(33, 30, teleporter0);
 
 		TeleporterBlock teleporter1 = new TeleporterBlock();
 		teleporter1.floorTex = Texture.grass;
 		teleporter1.setReference("teleporter1");
 		teleporter1.setTargetRef("teleporter0");
-		setBlock(34, 32, teleporter1);
+		setBlock(32, 34, teleporter1);
 
 		EnvironmentalEffect effect = new FireEffect(this, 9000, 2, 1);
 		addEntity(effect, 30.5, 31.5);

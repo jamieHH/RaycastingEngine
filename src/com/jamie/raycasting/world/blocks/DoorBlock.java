@@ -56,7 +56,7 @@ public class DoorBlock extends TriggerableBlock
         if (openness > 1) openness = 1;
 
         if (openness < openLimit && !open && !isSolid) {
-            if (level.blockContainsEntity(gridX, gridZ)) {
+            if (level.blockContainsEntity(gridZ, gridX)) {
                 openness = openLimit;
                 return;
             }
