@@ -41,7 +41,7 @@ public abstract class Mob extends Entity
 
     // movement
 	private double rotationMove;
-    private double moveX, moveZ;
+    private double moveZ, moveX;
     private double friction = 0.25;
 
     protected double rotationSpeed = 0.03;
@@ -212,10 +212,10 @@ public abstract class Mob extends Entity
         double moveSpeed = walkSpeed;
         moveSpeed *= friction;
 
-        if (input.forward) moveZ += moveSpeed;
-        if (input.back) moveZ -= moveSpeed;
-        if (input.left) moveX -= moveSpeed;
-        if (input.right) moveX += moveSpeed;
+        if (input.forward) moveX += moveSpeed;
+        if (input.back) moveX -= moveSpeed;
+        if (input.left) moveZ -= moveSpeed;
+        if (input.right) moveZ += moveSpeed;
         if (input.rotLeft) rotationMove -= rotationSpeed;
         if (input.rotRight) rotationMove += rotationSpeed;
 
@@ -236,9 +236,9 @@ public abstract class Mob extends Entity
         rotation += rotationMove;
         rotationMove *= 0.6;
 
-        move(moveX * Math.cos(rotation) + moveZ * Math.sin(rotation), moveZ * Math.cos(rotation) - moveX * Math.sin(rotation));
-        moveX *= 1 - friction;
+        move(moveZ * Math.cos(rotation) + moveX * Math.sin(rotation), moveX * Math.cos(rotation) - moveZ * Math.sin(rotation));
         moveZ *= 1 - friction;
+        moveX *= 1 - friction;
     }
 
     private boolean isWallBlocked(double x, double z) {
@@ -425,8 +425,8 @@ public abstract class Mob extends Entity
         double mx = Math.sin(direction) * force;
         double mz = Math.cos(direction)* force;
 
-        moveX += mx * Math.cos(-rotation) + mz * Math.sin(-rotation);
-        moveZ += mz * Math.cos(-rotation) - mx * Math.sin(-rotation);
+        moveZ += mx * Math.cos(-rotation) + mz * Math.sin(-rotation);
+        moveX += mz * Math.cos(-rotation) - mx * Math.sin(-rotation);
     }
 
     public void heal(int magnitude) {
