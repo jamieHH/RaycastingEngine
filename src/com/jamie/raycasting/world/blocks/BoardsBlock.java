@@ -50,6 +50,6 @@ public class BoardsBlock extends TriggerableBlock
         switchSpriteSet("broken");
 
         WoodParticle p = new WoodParticle();
-        level.addEntity(p, gridZ + 0.5, gridX + 0.5);
+        level.addEntity(p, gridX + 0.5, gridZ + 0.5);
     }
 }

@@ -53,7 +53,7 @@ public class TeleporterBlock extends Block
 
                 for (int i = 0; i < entities.size(); i++) {
 //                    System.out.println(entities.get(i)); // entities being teleported
-                    entities.get(i).setPosition(target.gridZ + 0.5, target.gridX + 0.5);
+                    entities.get(i).setPosition(target.gridX + 0.5, target.gridZ + 0.5);
 
                     // TODO: find out why these particles still disable the teleporters
 //                    PoofParticle p0 = new PoofParticle(entities.get(i).posX, entities.get(i).posZ);

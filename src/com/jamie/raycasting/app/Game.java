@@ -116,7 +116,7 @@ public class Game
 		player.rotation = 1.9;
 
 		world.level = world.getLoadLevel("prison");
-		world.level.addEntity(player, world.level.spawnZ, world.level.spawnX);
+		world.level.addEntity(player, world.level.spawnX, world.level.spawnZ);
 
 		setActiveOverlay(null);
 	}
