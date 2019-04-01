@@ -80,12 +80,12 @@ public abstract class Level
                 }
 
                 setBlock(x, z, block);
-                if (x == 18 && z == 12) {
-                    System.out.println(block);
-                    System.out.println(block.gridX);
-                    System.out.println(getBlock(z, x)); // TODO: this is still inverted.. check after entity pos fix
-                    System.out.println(getBlock(z, x).gridX);
-                }
+//                if (x == 18 && z == 12) {
+//                    System.out.println(block);
+//                    System.out.println(block.gridX);
+//                    System.out.println(getBlock(z, x)); // TODO: this is still inverted.. check after entity pos fix
+//                    System.out.println(getBlock(z, x).gridX);
+//                }
             }
         }
 

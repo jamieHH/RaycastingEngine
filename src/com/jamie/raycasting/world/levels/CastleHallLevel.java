@@ -13,7 +13,7 @@ public class CastleHallLevel extends Level
     }
 
     public void switchLevel(Mob mob, int id) {
-        if (id == 1) world.switchLevel(mob, "island", 2);
-        if (id == 2) world.switchLevel(mob, "barracks", 1);
+        if (id == 1) world.switchLevel(mob, "barracks", 1);
+        if (id == 2) world.switchLevel(mob, "island", 1);
     }
 }
