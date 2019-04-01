@@ -275,10 +275,7 @@ public abstract class Mob extends Entity
             for (int i = 0; i < level.countEntities(); i++) {
                 Entity e = level.getEntity(i);
                 if (e != this && e.isSolid) {
-                    double entX = e.posX;
-                    double entZ = e.posZ;
-                    double entRadius = e.radius;
-                    if (((Math.abs(x - entX)) - entRadius < radius) && ((Math.abs(z - entZ)) - entRadius < radius)) {
+                    if (((Math.abs(x - e.posX)) - e.radius < radius) && ((Math.abs(z - e.posZ)) - e.radius < radius)) {
                         return true;
                     }
                 }
