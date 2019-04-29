@@ -17,7 +17,7 @@ public class App extends Canvas implements Runnable
 {
 	private static final long serialVersionUID = 1L;
 
-	public static final String TITLE = "raycasting_engine_pre_0.96";
+	public static final String TITLE = "raycasting_engine_pre_0.97";
 	public static int width = 200;
 	public static int height = 150;
 	public static int scale = 4;
