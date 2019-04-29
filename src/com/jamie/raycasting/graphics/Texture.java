@@ -52,6 +52,8 @@ public class Texture
     private static final Render buttonOverlay1 = loadBitmap("tex/buttonOverlay1.png");
     private static final Render switchOverlay0 = loadBitmap("tex/switchOverlay1.png");
     private static final Render switchOverlay1 = loadBitmap("tex/switchOverlay1.png");
+    private static final Render boltSwitchOverlay0 = loadBitmap("tex/boltSwitchOverlay0.png");
+    private static final Render boltSwitchOverlay1 = loadBitmap("tex/boltSwitchOverlay1.png");
 
     // surfaces
 	public static final Render floor = loadBitmap("tex/floor.png");
@@ -75,6 +77,8 @@ public class Texture
     public static final Render wetFloor = mergeBitmap(floor, puddleOverlay);
     public static final Render wallButton0 = mergeBitmap(wall, buttonOverlay0);
     public static final Render wallButton1 = mergeBitmap(wall, buttonOverlay1);
+    public static final Render wallBoltSwitch0 = mergeBitmap(wall, boltSwitchOverlay0);
+    public static final Render wallBoltSwitch1 = mergeBitmap(wall, boltSwitchOverlay1);
     public static final Render bridgeWaterBroken = mergeBitmap(water0, bridgeBroken);
     public static final Render wallSwitch0 = mergeBitmap(wall, switchOverlay0);
     public static final Render wallSwitch1 = mergeBitmap(wall, switchOverlay1);
