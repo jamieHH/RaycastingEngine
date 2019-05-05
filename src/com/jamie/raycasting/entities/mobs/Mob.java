@@ -248,21 +248,16 @@ public abstract class Mob extends Entity
             int x1 = (int) (Math.floor(x - radius));
             int z1 = (int) (Math.floor(z - radius));
 
-            Block block00 = level.getBlock(x0, z0);
-            Block block10 = level.getBlock(x1, z0);
-            Block block01 = level.getBlock(x0, z1);
-            Block block11 = level.getBlock(x1, z1);
-
-            if (block00.isSolid) return true;
-            if (block10.isSolid) return true;
-            if (block01.isSolid) return true;
-            if (block11.isSolid) return true;
+            if (level.getBlock(x0, z0).isSolid) return true;
+            if (level.getBlock(x1, z0).isSolid) return true;
+            if (level.getBlock(x0, z1).isSolid) return true;
+            if (level.getBlock(x1, z1).isSolid) return true;
 
             if (!this.isFloating) {
-                if (!block00.isWalkable) return true;
-                if (!block10.isWalkable) return true;
-                if (!block01.isWalkable) return true;
-                if (!block11.isWalkable) return true;
+                if (!level.getBlock(x0, z0).isWalkable) return true;
+                if (!level.getBlock(x1, z0).isWalkable) return true;
+                if (!level.getBlock(x0, z1).isWalkable) return true;
+                if (!level.getBlock(x1, z1).isWalkable) return true;
             }
             return false;
         }
@@ -275,10 +270,7 @@ public abstract class Mob extends Entity
             for (int i = 0; i < level.countEntities(); i++) {
                 Entity e = level.getEntity(i);
                 if (e != this && e.isSolid) {
-                    double entX = e.posX;
-                    double entZ = e.posZ;
-                    double entRadius = e.radius;
-                    if (((Math.abs(x - entX)) - entRadius < radius) && ((Math.abs(z - entZ)) - entRadius < radius)) {
+                    if (((Math.abs(x - e.posX)) - e.radius < radius) && ((Math.abs(z - e.posZ)) - e.radius < radius)) {
                         return true;
                     }
                 }
