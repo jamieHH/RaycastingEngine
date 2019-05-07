@@ -13,6 +13,8 @@ public class AxisTestLevel extends Level
 	protected void postCreate() {
 		Drop d1 = new Drop(new KnifeWeapon());
 		addEntity(d1, 2.5, 0.5);
+
+//		setBlock(0, 2, WallBlock); // these setters are now consistent
 	}
 
 	public void switchLevel(Mob mob, int id) {
