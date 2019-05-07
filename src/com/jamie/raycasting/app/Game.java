@@ -113,9 +113,9 @@ public class Game
 	public void newGame() {
 		world = new World(this);
 		player = new Player(userInput);
-		player.rotation = 1.9;
+//		player.rotation = 1.9;
 
-		world.level = world.getLoadLevel("prison");
+		world.level = world.getLoadLevel("axisTest");
 		world.level.addEntity(player, world.level.spawnX, world.level.spawnZ);
 
 		setActiveOverlay(null);

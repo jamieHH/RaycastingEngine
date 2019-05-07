@@ -183,8 +183,10 @@ public class App extends Canvas implements Runnable
 		g.drawString("UPS: " + ups, 0, fontSize);
 		g.drawString("FPS: " + fps , 0, (fontSize * 2));
 //		g.drawString("Clip:" + ((game.player.clipping) ? "YES" : "NO"), 0, (height * scale) - (fontSize * 2) - 4);
-//		g.drawString("X:" + game.player.posX, 0, (height * scale) - fontSize - 4);
-//		g.drawString("Z:" + game.player.posZ, 0, (height * scale) - 4);
+		if (game.player != null) {
+			g.drawString("X:" + game.player.posX, 0, (height * scale) - fontSize - 4);
+			g.drawString("Z:" + game.player.posZ, 0, (height * scale) - 4);
+		}
 //		g.drawString("Y:" + game.player.camY, 0, (height * scale) - 4);
 //		g.drawString("R:" + game.player.rotation, 0, (height * scale) - 4);
 		g.dispose();
