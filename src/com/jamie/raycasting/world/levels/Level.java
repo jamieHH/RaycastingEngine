@@ -57,7 +57,7 @@ public abstract class Level
 
         for (int z = 0; z < sizeZ; z++) {
             for (int x = 0; x < sizeX; x++) {
-            int col = pixels[x + z * sizeX] & 0xFFFFFF;
+                int col = pixels[z + x * sizeX] & 0xFFFFFF;
                 if (col == 0xFFFF00) {
                     setDefaultSpawn(x + 0.5, z + 0.5);
                 }
@@ -85,7 +85,7 @@ public abstract class Level
 
         for (int zb = 0; zb < sizeZ; zb++) {
             for (int xb = 0; xb < sizeX; xb++) {
-                int col = pixels[xb + zb * sizeX] & 0xFFFFFF;
+                int col = pixels[zb + xb * sizeX] & 0xFFFFFF;
 
                 Mob mob = getMobByColour(col);
                 if (mob != null) {
@@ -126,14 +126,14 @@ public abstract class Level
         }
     }
 
-    public void setBlock(int x, int z, Block block) {
+    public void setBlock(int gridX, int gridZ, Block block) {
         if (!block.isStatic) {
             block.level = this;
-            block.gridX = x;
-            block.gridZ = z;
+            block.gridX = gridX;
+            block.gridZ = gridZ;
         }
 
-        blocks[x + z * sizeX] = block;
+        blocks[gridX + gridZ * sizeX] = block;
     }
 
     public void addEntity(Entity e) {
