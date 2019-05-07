@@ -44,7 +44,7 @@ public abstract class Level
     protected Block defaultFloorBlock = AirBlock;
 
 
-    public void create(Game game, int sizeX, int sizeZ, int[] pixels) {
+    public void create(Game game, int sizeX, int sizeZ, int[] pixels) { // Possibly not to do with the world generation?
         this.world = game.world;
         this.sizeX = sizeX;
         this.sizeZ = sizeZ;
