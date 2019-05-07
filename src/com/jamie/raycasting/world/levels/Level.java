@@ -17,8 +17,8 @@ public abstract class Level
     private Block[] blocks;
     private List<Entity> entities = new ArrayList<Entity>();
 
-    private int sizeX;
-    private int sizeZ;
+    protected int sizeX;
+    protected int sizeZ;
     public int height = 1;
 
     public double spawnX;
@@ -45,9 +45,9 @@ public abstract class Level
 
 
     public void create(Game game, int sizeX, int sizeZ, int[] pixels) {
+        this.world = game.world;
         this.sizeX = sizeX;
         this.sizeZ = sizeZ;
-        this.world = game.world;
 
         this.blocks = new Block[sizeX * sizeZ];
 

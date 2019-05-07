@@ -48,18 +48,17 @@ public abstract class Mob extends Entity
     protected double walkSpeed = 0.03;
 
     private double viewHeight = 0.652;
-
-    public double camY = 0;
-    public double yBob = 0;
     private int bobTime = 0;
+    public double yBob = 0;
+    public double camY;
 
 	// stats
     public int baseDamage = 1;
 
 	public int hurtTime = 0;
-	public String hurtType = "hurt";
+	public String hurtType = "";
 	public int maxHealth = 10;
-	public int health = 10;
+	public int health;
 
 	private int dieTime = 30;
 	private boolean isDieing = false;
@@ -116,8 +115,10 @@ public abstract class Mob extends Entity
         }
 
         if (!isDieing) {
-            if (health < 1) {
-                die();
+            if (health <= 0) {
+                deathSound.play();
+                runSpriteSet("death");
+                isDieing = true;
             }
 
             if (!(input instanceof UserInputHandler)) {
@@ -168,11 +169,7 @@ public abstract class Mob extends Entity
                 receiveMovementInput();
 
                 if (input.action) {
-                    if (useTicks == 0) {
-                        useTicks = getUseWait();
-
-                        activate();
-                    }
+                    activate();
                 }
 
                 if (input.hot1 && getHotkey(1) != null) {
@@ -295,12 +292,6 @@ public abstract class Mob extends Entity
             }
             posZ += nextZ;
         }
-    }
-
-    private void die() {
-        deathSound.play();
-        runSpriteSet("death");
-        isDieing = true;
     }
 
     public void addHudHeading(String s) {
@@ -466,49 +457,52 @@ public abstract class Mob extends Entity
     }
 
     private void activate() {
-        runSpriteSet("action");
+        if (useTicks == 0) {
+            useTicks = getUseWait();
+            runSpriteSet("action");
 
-        List<Entity> closeEntities = getEntitiesInRadius(getRightHandReach());
-        double xa = getRightHandReach() * Math.sin(rotation);
-        double za = getRightHandReach() * Math.cos(rotation);
-        int divs = (int) (getRightHandReach() * 100);
+            List<Entity> closeEntities = getEntitiesInRadius(getRightHandReach());
+            double xa = getRightHandReach() * Math.sin(rotation);
+            double za = getRightHandReach() * Math.cos(rotation);
+            int divs = (int) (getRightHandReach() * 100);
 
-        boolean hit = false;
-        for (int i = 0; i < divs && !hit; i++) {
-            double xx = posX + xa * i / divs;
-            double zz = posZ + za * i / divs;
-            for (int b = 0; b < closeEntities.size(); b++) {
-                Entity ent = closeEntities.get(b);
-                if (ent instanceof Mob && ent != this) {
-                    if (ent.contains(xx, zz)) {
-                        if (getRightHandItem() == null || getRightHandItem() != null && getRightHandItem().canStrike) {
-                            ((Mob) ent).hurt(this, getDamage());
-                        } // prevents ranged weapons from causing melee damage
+            boolean hit = false;
+            for (int i = 0; i < divs && !hit; i++) {
+                double xx = posX + xa * i / divs;
+                double zz = posZ + za * i / divs;
+                for (int b = 0; b < closeEntities.size(); b++) {
+                    Entity ent = closeEntities.get(b);
+                    if (ent instanceof Mob && ent != this) {
+                        if (ent.contains(xx, zz)) {
+                            if (getRightHandItem() == null || getRightHandItem() != null && getRightHandItem().canStrike) {
+                                ((Mob) ent).hurt(this, getDamage());
+                            } // prevents ranged weapons from causing melee damage
+
+                            hit = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (hit) break;
+
+                int xb = (int) (posX + xa * i / divs);
+                int zb = (int) (posZ + za * i / divs);
+                if (xb != (int) posX || zb != (int) posZ) {
+                    Block block = level.getBlock(xb, zb);
+                    if (block.use(this) || block.isSolid || block.isUsable) {
+                        if (getRightHandItem() != null && !getRightHandItem().canStrike) {
+                            return;
+                        } // prevent ranged weapons firing when activating blocks
 
                         hit = true;
-                        break;
                     }
                 }
             }
 
-            if (hit) break;
-
-            int xb = (int) (posX + xa * i / divs);
-            int zb = (int) (posZ + za * i / divs);
-            if (xb != (int) posX || zb != (int) posZ) {
-                Block block = level.getBlock(xb, zb);
-                if (block.use(this) || block.isSolid || block.isUsable) {
-                    if (getRightHandItem() != null && !getRightHandItem().canStrike) {
-                        return;
-                    } // prevent ranged weapons firing when activating blocks
-
-                    hit = true;
-                }
+            if (getRightHandItem() != null) {
+                getRightHandItem().use();
             }
-        }
-
-        if (getRightHandItem() != null) {
-            getRightHandItem().use();
         }
     }
 
