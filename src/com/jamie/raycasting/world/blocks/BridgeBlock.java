@@ -5,7 +5,7 @@ import com.jamie.raycasting.graphics.Texture;
 
 public class BridgeBlock extends TriggerableBlock
 {
-    private boolean broken = false;
+    private boolean broken;
 
 	public BridgeBlock(boolean broken) {
 		isOpaque = false;
