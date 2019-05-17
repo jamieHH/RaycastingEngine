@@ -7,7 +7,6 @@ public class WallBlock extends Block
 	public WallBlock() {
 		isOpaque = true;
 		isSolid = true;
-		isStatic = true;
 
 		wallTex = Texture.wall;
 		floorTex = Texture.floor;

@@ -8,7 +8,6 @@ public class GraveBlock extends Block
 {
 	public GraveBlock() {
 		isSolid = false;
-		isStatic = true;
 
 		floorTex = Texture.dirt;
 

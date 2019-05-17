@@ -9,7 +9,7 @@ import com.jamie.raycasting.graphics.Texture;
 
 import java.util.List;
 
-public class TeleporterBlock extends Block
+public class TeleporterBlock extends FunctionBlock
 {
     public boolean disabled = false;
     public String targetRef;

@@ -1,6 +1,6 @@
 package com.jamie.raycasting.world.blocks;
 
-public class TriggerableBlock extends Block
+public class TriggerableBlock extends FunctionBlock
 {
     public TriggerableBlock() {
         isUsable = true;

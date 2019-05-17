@@ -8,7 +8,6 @@ public class BarsBlock extends Block
 {
 	public BarsBlock() {
 		isSolid = true;
-		isStatic = true;
 
 		floorTex = Texture.floor;
 		ceilTex = Texture.floor;

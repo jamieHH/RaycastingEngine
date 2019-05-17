@@ -17,8 +17,6 @@ public class WaterBlock extends Block
 		isSolid = false;
 		isWalkable = false;
 
-		isStatic = true;
-
 		floorTex = Texture.water0;
 		ceilTex = Texture.floor;
 

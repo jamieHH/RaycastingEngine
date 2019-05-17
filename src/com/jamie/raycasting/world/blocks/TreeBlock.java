@@ -8,7 +8,6 @@ public class TreeBlock extends Block
 {
 	public TreeBlock() {
 		isSolid = true;
-		isStatic = true;
 
 		floorTex = Texture.grass;
 

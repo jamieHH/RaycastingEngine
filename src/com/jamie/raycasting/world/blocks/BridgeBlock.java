@@ -10,7 +10,6 @@ public class BridgeBlock extends TriggerableBlock
 	public BridgeBlock(boolean broken) {
 		isOpaque = false;
 		isSolid = false;
-		isStatic = true;
 
 		this.broken = broken;
         if (broken) {

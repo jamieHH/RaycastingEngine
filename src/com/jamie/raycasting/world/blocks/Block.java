@@ -5,30 +5,19 @@ import com.jamie.raycasting.graphics.Render;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.SpriteSet;
 import com.jamie.raycasting.graphics.Texture;
-import com.jamie.raycasting.world.levels.Level;
 
 public class Block
 {
-    public Level level;
-
 	public boolean isOpaque = false;
 	public boolean isSolid = false;
 	public boolean isWalkable = true;
 	public boolean isUsable = false;
 
-	public boolean isStatic = false;
-
 	public Render wallTex = Texture.none;
 	public Render floorTex = Texture.none;
 	public Render ceilTex = Texture.none;
 
-	public int gridX;
-	public int gridZ;
-	public String reference;
-	
-	public int id;
-
-	private SpriteSet spriteSet = new SpriteSet();
+	protected SpriteSet spriteSet = new SpriteSet();
 
 	public void tick() {
 		spriteSet.tick();
@@ -60,9 +49,5 @@ public class Block
 
 	public void setIdleSprite(Sprite sprite) {
 		setSpriteSet("idle", sprite);
-	}
-
-	public void setReference(String reference) {
-		this.reference = reference;
 	}
 }

@@ -7,7 +7,6 @@ public class ShrubsBlock extends Block
 	public ShrubsBlock() {
 		isOpaque = true;
 		isSolid = true;
-		isStatic = true;
 
 		floorTex = Texture.grass;
 		wallTex = Texture.leaves;

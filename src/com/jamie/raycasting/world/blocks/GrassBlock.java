@@ -7,7 +7,6 @@ public class GrassBlock extends Block
 	public GrassBlock() {
 		isOpaque = false;
 		isSolid = false;
-		isStatic = true;
 
 		floorTex = Texture.grass;
 
