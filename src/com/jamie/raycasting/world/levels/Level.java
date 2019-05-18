@@ -145,14 +145,14 @@ public abstract class Level
         }
     }
 
-    public void setBlock(int gridX, int gridZ, Block block) {
+    public void setBlock(int x, int z, Block block) {
         if (block instanceof FunctionBlock) {
             ((FunctionBlock) block).level = this;
-            ((FunctionBlock) block).gridX = gridX;
-            ((FunctionBlock) block).gridZ = gridZ;
+            ((FunctionBlock) block).gridX = x;
+            ((FunctionBlock) block).gridZ = z;
         }
 
-        blocks[gridX + gridZ * sizeX] = block;
+        blocks[x + z * sizeX] = block;
     }
 
     public void addEntity(Entity e) {
