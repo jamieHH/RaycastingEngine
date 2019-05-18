@@ -4,7 +4,7 @@ import com.jamie.raycasting.entities.mobs.Mob;
 
 import java.util.List;
 
-public class LevelPortalBlock extends Block
+public class LevelPortalBlock extends FunctionBlock
 {
     public boolean disabled = false;
 

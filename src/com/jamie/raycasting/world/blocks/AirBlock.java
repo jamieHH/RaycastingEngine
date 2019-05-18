@@ -7,7 +7,6 @@ public class AirBlock extends Block
 	public AirBlock() {
 		isOpaque = false;
 		isSolid = false;
-		isStatic = true;
 
 		wallTex = Texture.none;
 		floorTex = Texture.floor;

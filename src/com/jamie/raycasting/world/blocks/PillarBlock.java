@@ -8,7 +8,6 @@ public class PillarBlock extends Block
 {
 	public PillarBlock() {
 		isSolid = true;
-		isStatic = true;
 
 		floorTex = Texture.floor;
 		ceilTex = Texture.floor;

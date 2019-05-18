@@ -8,7 +8,6 @@ public class LampBlock extends Block
 {
 	public LampBlock() {
 		isSolid = false;
-		isStatic = true;
 
 		floorTex = Texture.grass;
 		ceilTex = Texture.floor;

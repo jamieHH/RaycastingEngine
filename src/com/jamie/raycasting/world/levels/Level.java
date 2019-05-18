@@ -27,6 +27,7 @@ public abstract class Level
     public World world;
 
     // static blocks. TODO: check if is performance optimal.
+    // Add these to array and loop through array for ticks
     protected static final Block Block = new Block();
     protected static final AirBlock AirBlock = new AirBlock();
     protected static final WallBlock WallBlock = new WallBlock();
@@ -41,6 +42,8 @@ public abstract class Level
     protected static final AltStonePathBlock AltStonePathBlock = new AltStonePathBlock();
     protected static final GraveBlock GraveBlock = new GraveBlock();
     protected static final WaterBlock WaterBlock = new WaterBlock();
+    protected static final CeilDripBlock CeilDripBlock = new CeilDripBlock();
+    protected static final SpinningDummyBlock SpinningDummyBlock = new SpinningDummyBlock();
     protected Block defaultFloorBlock = AirBlock;
 
 
@@ -48,7 +51,6 @@ public abstract class Level
         this.world = game.world;
         this.sizeX = sizeX;
         this.sizeZ = sizeZ;
-
         this.blocks = new Block[sizeX * sizeZ];
 
         int ladderCount = 1;
@@ -65,17 +67,17 @@ public abstract class Level
                 Block block = getBlockByColour(col);
 
                 if (block instanceof LevelPortalBlock) { // level portals
-                    block.id = ladderCount;
+                    ((LevelPortalBlock) block).id = ladderCount;
                     ladderCount++;
                 }
 
                 if (block instanceof DoorBlock) { // doors
-                    block.id = doorCount;
+                    ((DoorBlock) block).id = doorCount;
                     doorCount++;
                 }
 
                 if (block instanceof ButtonBlock) { // buttons
-                    block.id = buttonCount;
+                    ((ButtonBlock) block).id = buttonCount;
                     buttonCount++;
                 }
 
@@ -103,16 +105,33 @@ public abstract class Level
 
     public void triggerBlock(int id) {
         for (int i = 0; i < blocks.length; i++) {
-            if (blocks[i].id == id && blocks[i] instanceof TriggerableBlock) {
-                ((TriggerableBlock) blocks[i]).trigger();
+            if (blocks[i] instanceof TriggerableBlock) {
+                if (((TriggerableBlock) blocks[i]).id == id) {
+                    ((TriggerableBlock) blocks[i]).trigger();
+                }
             }
         }
     }
 
     public void tick() {
+        Block.tick();
+        AirBlock.tick();
+        WallBlock.tick();
+        PillarBlock.tick();
+        LampBlock.tick();
+        BarsBlock.tick();
+        CobwebBlock.tick();
+        TreeBlock.tick();
+        GrassBlock.tick();
+        ShrubsBlock.tick();
+        StonePathBlock.tick();
+        AltStonePathBlock.tick();
+        GraveBlock.tick();
         WaterBlock.tick();
+        CeilDripBlock.tick();
+        SpinningDummyBlock.tick();
         for (int i = 0; i < blocks.length; i++) {
-            if (!blocks[i].isStatic) {
+            if (blocks[i] instanceof FunctionBlock) {
                 blocks[i].tick();
             }
         }
@@ -127,10 +146,10 @@ public abstract class Level
     }
 
     public void setBlock(int x, int z, Block block) {
-        if (!block.isStatic) {
-            block.level = this;
-            block.gridX = x;
-            block.gridZ = z;
+        if (block instanceof FunctionBlock) {
+            ((FunctionBlock) block).level = this;
+            ((FunctionBlock) block).gridX = x;
+            ((FunctionBlock) block).gridZ = z;
         }
 
         blocks[x + z * sizeX] = block;
@@ -211,8 +230,10 @@ public abstract class Level
 
     public Block getBlockByReference(String reference) {
         for (int i = 0; i < blocks.length; i++) {
-            if (blocks[i].reference == reference) {
-                return blocks[i];
+            if (blocks[i] instanceof FunctionBlock) {
+                if (((FunctionBlock) blocks[i]).reference == reference) {
+                    return blocks[i];
+                }
             }
         }
 
@@ -221,9 +242,10 @@ public abstract class Level
 
     public LevelPortalBlock getLevelPortalBlockById(int id) {
         for (int i = 0; i < blocks.length; i++) {
-            Block b = blocks[i];
-            if (b.id == id && b instanceof LevelPortalBlock) {
-                return (LevelPortalBlock) b;
+            if (blocks[i] instanceof LevelPortalBlock) {
+                if (((LevelPortalBlock) blocks[i]).id == id) {
+                    return (LevelPortalBlock) blocks[i];
+                }
             }
         }
 
@@ -244,14 +266,14 @@ public abstract class Level
         if (col == 0xA2AFA4) return AltStonePathBlock;
         if (col == 0x9A9A9A) return GraveBlock;
         if (col == 0x0094FF) return WaterBlock;
+        if (col == 0x217F74) return CeilDripBlock;
+        if (col == 0xA3723A) return SpinningDummyBlock;
         if (col == 0x7F3300) return new BridgeBlock(false);
         if (col == 0x7F334E) return new BridgeBlock(true);
-        if (col == 0xA3723A) return new SpinningDummyBlock();
         if (col == 0xA48080) return new DoorBlock();
         if (col == 0x632A2A) return new StrongDoorBlock();
         if (col == 0xE1AE4A) return new BoardsBlock();
         if (col == 0x4C4C65) return new GateBlock("Grey Key");
-        if (col == 0x217F74) return new CeilDripBlock();
         if (col == 0x7EC0C0) return new FountainBlock();
         if (col == 0xC80000) return new ButtonBlock();
         if (col == 0x873800) return new LevelPortalBlock();

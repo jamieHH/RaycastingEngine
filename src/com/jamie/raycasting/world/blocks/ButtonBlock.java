@@ -4,7 +4,7 @@ import com.jamie.raycasting.app.Sound;
 import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.graphics.Texture;
 
-public class ButtonBlock extends Block
+public class ButtonBlock extends FunctionBlock
 {
     private int useTicks = 0;
     private int useWait = 10;
