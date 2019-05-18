@@ -155,14 +155,10 @@ public abstract class Level
         blocks[x + z * sizeX] = block;
     }
 
-    public void addEntity(Entity e) {
-        entities.add(e);
-        e.level = this;
-    }
-
     public void addEntity(Entity e, double x, double z) {
         e.setPosition(x, z);
-        addEntity(e);
+        entities.add(e);
+        e.level = this;
     }
 
     public List<Entity> getEntities() {
