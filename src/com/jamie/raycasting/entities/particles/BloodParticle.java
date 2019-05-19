@@ -10,11 +10,6 @@ import java.util.List;
 
 public class BloodParticle extends Particle
 {
-    protected Sprite getSprite() {
-        return null;
-    }
-
-
     public BloodParticle() {
         super();
 

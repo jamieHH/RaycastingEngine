@@ -10,11 +10,6 @@ import java.util.List;
 
 public class DropParticle extends Particle
 {
-    protected Sprite getSprite() {
-        return null;
-    }
-
-
     public DropParticle() {
         super();
 

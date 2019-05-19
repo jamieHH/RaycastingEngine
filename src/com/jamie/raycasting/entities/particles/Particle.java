@@ -12,7 +12,7 @@ public abstract class Particle extends Entity
     protected static final Random random = new Random();
     protected int life = 120;
 
-    protected List<Sprite> spriteParticles = new ArrayList<Sprite>();
+    private List<Sprite> spriteParticles = new ArrayList<Sprite>();
 
     public Particle() {
         isSolid = false;
@@ -29,6 +29,8 @@ public abstract class Particle extends Entity
         } else {
             remove();
         }
+
+
     }
 
     public List<Sprite> getSpriteParticles() {
@@ -37,5 +39,9 @@ public abstract class Particle extends Entity
 
     public void setSpriteParticles(List<Sprite> spriteParticles) {
         this.spriteParticles = spriteParticles;
+    }
+
+    protected Sprite getSprite() {
+        return null;
     }
 }
