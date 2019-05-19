@@ -30,6 +30,7 @@ public abstract class Level
     // Add these to array and loop through array for ticks
     protected static final Block Block = new Block();
     protected static final AirBlock AirBlock = new AirBlock();
+    protected static final TorchBlock TorchBlock = new TorchBlock();
     protected static final WallBlock WallBlock = new WallBlock();
     protected static final PillarBlock PillarBlock = new PillarBlock();
     protected static final LampBlock LampBlock = new LampBlock();
@@ -116,6 +117,7 @@ public abstract class Level
     public void tick() {
         Block.tick();
         AirBlock.tick();
+        TorchBlock.tick();
         WallBlock.tick();
         PillarBlock.tick();
         LampBlock.tick();
@@ -251,6 +253,7 @@ public abstract class Level
     private Block getBlockByColour(int col) {
         if (col == 0x000000) return Block;
         if (col == 0xFFFFFF) return WallBlock;
+        if (col == 0x7C5F36) return TorchBlock;
         if (col == 0x808080) return PillarBlock;
         if (col == 0x648480) return LampBlock;
         if (col == 0xC0C0C0) return BarsBlock;

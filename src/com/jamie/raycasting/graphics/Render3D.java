@@ -248,7 +248,21 @@ public class Render3D extends Render
             for (int zBlock = zBlockStart; zBlock <= zBlockEnd; zBlock++) {
 				Sprite sprite = level.getBlock(xBlock, zBlock).getSprite();
 				if (sprite != null) {
-					renderSprite((xBlock + 0.5) + sprite.x, sprite.y, (zBlock + 0.5) + sprite.z, sprite.render());
+					if (level.getBlock(xBlock, zBlock) instanceof TorchBlock) {
+						if (level.getBlock(xBlock + 1, zBlock).isSolid) {
+							renderSprite((xBlock + 0.95) + sprite.x, sprite.y + 0.5, (zBlock + 0.5) + sprite.z, sprite.render());
+						} else if (level.getBlock(xBlock - 1, zBlock).isSolid) {
+							renderSprite((xBlock + 0.05) + sprite.x, sprite.y + 0.5, (zBlock + 0.5) + sprite.z, sprite.render());
+						} else if (level.getBlock(xBlock, zBlock + 1).isSolid) {
+							renderSprite((xBlock + 0.5) + sprite.x, sprite.y + 0.5, (zBlock + 0.95) + sprite.z, sprite.render());
+						} else if (level.getBlock(xBlock, zBlock - 1).isSolid) {
+							renderSprite((xBlock + 0.5) + sprite.x, sprite.y + 0.5, (zBlock + 0.05) + sprite.z, sprite.render());
+						} else {
+							renderSprite((xBlock + 0.5) + sprite.x, sprite.y + 0.5, (zBlock + 0.5) + sprite.z, sprite.render());
+						}
+					} else {
+						renderSprite((xBlock + 0.55) + sprite.x, sprite.y, (zBlock + 0.55) + sprite.z, sprite.render());
+					}
 				}
 			}
 		}

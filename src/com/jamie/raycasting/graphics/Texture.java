@@ -156,6 +156,9 @@ public class Texture
     public static final Render impHeal0 = loadBitmap("tex/impHeal0.png");
     public static final Render impHeal1 = loadBitmap("tex/impHeal1.png");
     public static final Render impHeal2 = loadBitmap("tex/impHeal2.png");
+    public static final Render torch0 = loadBitmap("tex/torch0.png");
+    public static final Render torch1 = loadBitmap("tex/torch1.png");
+    public static final Render torch2 = loadBitmap("tex/torch2.png");
 
 	// particles
     public static final Render blood0 = loadBitmap("tex/blood0.png");
