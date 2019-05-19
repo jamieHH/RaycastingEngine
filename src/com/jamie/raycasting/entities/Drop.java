@@ -9,7 +9,7 @@ public class Drop extends Entity
     public Item item;
 
     protected Sprite getSprite() {
-        return new Sprite(Texture.blood0); // TODO: set sprite to items icon
+        return new Sprite(Texture.bag);
     }
 
 

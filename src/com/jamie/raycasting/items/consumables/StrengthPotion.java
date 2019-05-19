@@ -12,7 +12,7 @@ public class StrengthPotion extends Consumable
         duration = 920;
         magnitude = 4;
 
-        icon = Texture.potionIcon;
+        icon = Texture.yellowPotionIcon;
     }
 
     public void use() {

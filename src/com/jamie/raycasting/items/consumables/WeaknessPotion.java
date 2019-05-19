@@ -12,7 +12,7 @@ public class WeaknessPotion extends Consumable
         duration = 920;
         magnitude = -4;
 
-        icon = Texture.potionIcon;
+        icon = Texture.greenPotionIcon;
     }
 
     public void use() {

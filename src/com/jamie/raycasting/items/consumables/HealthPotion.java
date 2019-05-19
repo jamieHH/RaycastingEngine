@@ -12,7 +12,7 @@ public class HealthPotion extends Consumable
         duration = 480;
         magnitude = 1;
 
-        icon = Texture.potionIcon;
+        icon = Texture.redPotionIcon;
     }
 
     public void use() {

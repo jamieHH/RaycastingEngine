@@ -21,7 +21,10 @@ public class Texture
     public static final Render planksIcon = loadBitmap("/gui/planksIcon.png");
     public static final Render xbowIcon = loadBitmap("/gui/xbowIcon.png");
     public static final Render wandIcon = loadBitmap("/gui/wandIcon.png");
-    public static final Render potionIcon = loadBitmap("/gui/potionIcon.png");
+    public static final Render bluePotionIcon = loadBitmap("/gui/bluePotionIcon.png");
+    public static final Render redPotionIcon = loadBitmap("/gui/redPotionIcon.png");
+    public static final Render yellowPotionIcon = loadBitmap("/gui/yellowPotionIcon.png");
+    public static final Render greenPotionIcon = loadBitmap("/gui/greenPotionIcon.png");
     public static final Render keyIcon = loadBitmap("/gui/keyIcon.png");
 
     public static final Render heartIcon = loadBitmap("/gui/heartIcon.png");
@@ -189,6 +192,7 @@ public class Texture
     public static final Render screenWand4 = loadBitmap("tex/screenWand4.png");
     public static final Render screenXbow0 = loadBitmap("tex/screenXbow0.png");
     public static final Render screenXbow1 = loadBitmap("tex/screenXbow1.png");
+    public static final Render bag = loadBitmap("tex/bag.png");
 
 	private static Render loadBitmap(String fileName) {
 		try {

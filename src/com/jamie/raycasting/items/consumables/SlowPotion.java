@@ -12,7 +12,7 @@ public class SlowPotion extends Consumable
         duration = 640;
         magnitude = -3;
 
-        icon = Texture.potionIcon;
+        icon = Texture.greenPotionIcon;
     }
 
     public void use() {

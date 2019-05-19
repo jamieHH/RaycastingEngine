@@ -12,7 +12,7 @@ public class SpeedPotion extends Consumable
         duration = 920;
         magnitude = 3;
 
-        icon = Texture.potionIcon;
+        icon = Texture.bluePotionIcon;
     }
 
     public void use() {

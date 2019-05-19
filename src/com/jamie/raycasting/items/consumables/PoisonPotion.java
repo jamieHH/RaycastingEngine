@@ -12,7 +12,7 @@ public class PoisonPotion extends Consumable
         duration = 240;
         magnitude = -1;
 
-        icon = Texture.potionIcon;
+        icon = Texture.greenPotionIcon;
     }
 
     public void use() {
