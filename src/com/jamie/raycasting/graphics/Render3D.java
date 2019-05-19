@@ -258,10 +258,10 @@ public class Render3D extends Render
 						} else if (level.getBlock(xBlock, zBlock - 1).isSolid) {
 							renderSprite((xBlock + 0.5) + sprite.x, sprite.y + 0.5, (zBlock + 0.05) + sprite.z, sprite.render());
 						} else {
-							renderSprite((xBlock + 0.5) + sprite.x, sprite.y + 0.5, (zBlock + 0.5) + sprite.z, sprite.render());
+							renderSprite((xBlock + 0.5) + sprite.x, sprite.y, (zBlock + 0.5) + sprite.z, sprite.render());
 						}
 					} else {
-						renderSprite((xBlock + 0.55) + sprite.x, sprite.y, (zBlock + 0.55) + sprite.z, sprite.render());
+						renderSprite((xBlock + 0.5) + sprite.x, sprite.y, (zBlock + 0.5) + sprite.z, sprite.render());
 					}
 				}
 			}
