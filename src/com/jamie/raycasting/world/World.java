@@ -17,9 +17,7 @@ import java.util.Map;
 public class World
 {
     public Game game;
-
     public Level level;
-
     public Map<String, Level> loaded = new HashMap<String, Level>();
 
 

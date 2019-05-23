@@ -38,7 +38,7 @@ public class Player extends Mob
         isSolid = true;
 
 	    baseReach = 2;
-	    viewDist = 32;
+	    viewDist = 8;
 
 	    radius = 0.25;
 

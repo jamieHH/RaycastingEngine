@@ -24,7 +24,7 @@ public abstract class Mob extends Entity
 
     // distances
     public double baseReach = 1;
-    public double viewDist = 4;
+    public int viewDist = 4;
 
     // actions
     public InputHandler input;

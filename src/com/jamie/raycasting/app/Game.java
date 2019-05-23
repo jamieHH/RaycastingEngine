@@ -11,11 +11,8 @@ import com.jamie.raycasting.world.World;
 
 public class Game
 {
-	private int pauseTime;
-
 	public World world;
-
-	public Mob player;
+	private Mob player;
 	public UserInputHandler userInput;
 	private InputHandler temporaryInput = new InputHandler();
 
@@ -36,33 +33,32 @@ public class Game
 	}
 
 	public void tick() {
-        if (pauseTime > 0) {
-            pauseTime--;
-            return;
-        }
-
 		if (activeOverlay != null) {
 			activeOverlay.tick(this);
 		}
 
-
         if (world != null) {
 			world.tick();
 
-			if (player != null) {
+			if (getPlayer() != null) {
 				if (activeOverlay != null) {
-					player.isUsingMenu = true;
+					getPlayer().isUsingMenu = true;
 				} else {
-					player.isUsingMenu = false;
+					getPlayer().isUsingMenu = false;
 				}
 
 				if (userInput.nextMob) {
 					userInput.setInputState("nextMob", false);
 //					switchPerspective();
 					possessNextMob();
+//					if (player.viewDist < 128) {
+//						player.viewDist *= 2;
+//					} else {
+//						player.viewDist = 4;
+//					}
 				}
 
-				if (!player.isDead) {
+				if (!getPlayer().isDead) {
 					if (userInput.inventory) {
 						userInput.setInputState("inventory", false);
 						if (activeOverlay == null) {
@@ -86,12 +82,12 @@ public class Game
 					}
 
 					if (userInput.randomLevel) {
-						player.rotation = 0.2;
-						world.switchLevel(player, "test", 999);
+						getPlayer().rotation = 0.2;
+						world.switchLevel(player, "realm", 999);
 					}
 
 					if (userInput.loadLevel) {
-						player.rotation = 0.2;
+						getPlayer().rotation = 0.2;
 						world.switchLevel(player, "island", 999);
 					}
 				} else {
@@ -112,8 +108,8 @@ public class Game
 	
 	public void newGame() {
 		world = new World(this);
-		player = new Player(userInput);
-		player.rotation = 1.9;
+		setPlayer(new Player(userInput));
+		getPlayer().rotation = 1.9;
 
 		world.level = world.getLoadLevel("prison");
 		world.level.addEntity(player, world.level.spawnX, world.level.spawnZ);
@@ -124,7 +120,7 @@ public class Game
 	public void stopGame() {
 		world.clearLoadedLevels();
 		world = null;
-		player = null;
+		setPlayer(null);
 		setActiveOverlay(mainMenu);
 	}
 
@@ -141,7 +137,7 @@ public class Game
 			i = 0;
 		}
 
-		player = world.level.getMobEntity(i);
+		setPlayer(world.level.getMobEntity(i));
 	}
 
 	private void possessNextMob() {
@@ -150,9 +146,17 @@ public class Game
 			i = 0;
 		}
 
-        player.input = temporaryInput;
-        player = world.level.getMobEntity(i);
-        temporaryInput = player.input;
-        player.input = userInput;
+        getPlayer().input = temporaryInput;
+        setPlayer(world.level.getMobEntity(i));
+        temporaryInput = getPlayer().input;
+        getPlayer().input = userInput;
+	}
+
+	public Mob getPlayer() {
+		return player;
+	}
+
+	public void setPlayer(Mob player) {
+		this.player = player;
 	}
 }

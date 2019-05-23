@@ -35,8 +35,8 @@ public class InventoryOverlay extends Overlay
     }
 
     public void tick(Game game) {
-        this.mob = game.player;
-        this.inventory = game.player.inventory;
+        this.mob = game.getPlayer();
+        this.inventory = game.getPlayer().inventory;
 
         if (itemCategories[itemCatIndex].equals("Items")) {
             listedItems = inventory.getItems();

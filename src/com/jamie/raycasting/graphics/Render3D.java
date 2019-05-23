@@ -29,7 +29,7 @@ public class Render3D extends Render
         fov = height;
 	}
 
-	protected void render(Level level, double x, double y, double z, double rotation) {
+	protected void render(Level level, double x, double y, double z, double rotation, int viewDist) {
 		this.level = level;
 		px = x;
 		py = y;
@@ -41,6 +41,7 @@ public class Render3D extends Render
 		xBlockEnd = (int) (px) + blockViewDist;
 		zBlockStart = (int) (pz) - blockViewDist;
 		zBlockEnd = (int) (pz) + blockViewDist;
+		blockViewDist = viewDist;
 
         renderFloor();
         renderWalls();
@@ -331,9 +332,6 @@ public class Render3D extends Render
         int dist = (32 * blockViewDist); // render dist. 32 = one blocks dist
 
 		for (int i = 0; i < width * height; i++) {
-//            if (zBuffer[i] > p.viewDist) {
-//                pixels[i] = 0x000020;
-//            } else {
             double xx = ((i % width - xCentre) / width) * 4;
             double x2x = (((xx * xx) * 2) + 32);
 
@@ -354,7 +352,6 @@ public class Render3D extends Render
             b = b * brightness / 255;
 
             pixels[i] = r << 16 | g << 8 | b;
-//            }
 		}
 	}
 }

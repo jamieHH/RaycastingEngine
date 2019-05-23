@@ -20,7 +20,7 @@ public class Screen extends Render
 
 	public Screen(int width, int height, Game game) {
 		super(width, height);
-		p = game.player;
+		p = game.getPlayer();
 
         // HUD
         hudBar = new HudBarOverlay(width, 9);
@@ -34,11 +34,11 @@ public class Screen extends Render
 	public void render(Game game) {
         fill(0x000000);
 
-        p = game.player;
+        p = game.getPlayer();
 
         if (p != null) {
             if (!p.isDead) {
-                render.render(p.level, p.posX, p.camY, p.posZ, p.rotation);
+                render.render(p.level, p.posX, p.camY, p.posZ, p.rotation, p.viewDist);
                 draw(render, 0, 0);
 
                 // Render held items
