@@ -5,6 +5,7 @@ import com.jamie.raycasting.entities.mobs.Player;
 import com.jamie.raycasting.graphics.overlays.InventoryOverlay;
 import com.jamie.raycasting.graphics.overlays.Overlay;
 import com.jamie.raycasting.graphics.overlays.menus.*;
+import com.jamie.raycasting.input.ArtificialInputHandler;
 import com.jamie.raycasting.input.InputHandler;
 import com.jamie.raycasting.input.UserInputHandler;
 import com.jamie.raycasting.world.World;
@@ -14,7 +15,7 @@ public class Game
 	public World world;
 	private Mob player;
 	public UserInputHandler userInput;
-	private InputHandler temporaryInput = new InputHandler();
+	private InputHandler temporaryInput = new ArtificialInputHandler();
 
 	public final Menu mainMenu = new MainMenu(App.width, (int) (App.height * 0.6));
     public final Menu loadMenu = new LoadMenu(App.width, (int) (App.height * 0.6));
@@ -49,8 +50,8 @@ public class Game
 
 				if (userInput.nextMob) {
 					userInput.setInputState("nextMob", false);
-//					switchPerspective();
-					possessNextMob();
+					switchPerspective();
+//					possessNextMob();
 //					if (player.viewDist < 128) {
 //						player.viewDist *= 2;
 //					} else {
@@ -83,7 +84,7 @@ public class Game
 
 					if (userInput.randomLevel) {
 						getPlayer().rotation = 0.2;
-						world.switchLevel(player, "realm", 999);
+						world.switchLevel(player, "test", 999);
 					}
 
 					if (userInput.loadLevel) {

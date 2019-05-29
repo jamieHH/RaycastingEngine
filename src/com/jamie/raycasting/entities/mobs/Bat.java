@@ -5,6 +5,10 @@ import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
 import com.jamie.raycasting.input.InputHandler;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class Bat extends Mob
 {
     protected Sprite getSprite() {
@@ -47,6 +51,17 @@ public class Bat extends Mob
         });
     }
 
+    protected List<InfluenceKeyframe> getInfluenceKeyframes() {
+        return new ArrayList<InfluenceKeyframe>(Arrays.asList(
+                new InfluenceKeyframe(4, 20, 100, 10, 50, 50, 0),
+                new InfluenceKeyframe(1, 10, 100, 50, 50, 50, 100)
+        ));
+    }
+
+    protected InfluenceKeyframe getIdleInfluence() {
+        return new InfluenceKeyframe(0, 20, 50, 50, 50, 50, 0);
+    }
+
 
     public Bat(InputHandler input) {
         super(input);
@@ -54,8 +69,8 @@ public class Bat extends Mob
         isFloating = true;
         isSolid = true;
 
-        baseReach = 1;
         viewDist = 4;
+        baseReach = 1;
 
         radius = 0.25;
 
@@ -67,39 +82,5 @@ public class Bat extends Mob
 
         faction = "beast";
         enemyFaction = "human";
-    }
-
-    public void tick() {
-        super.tick();
-
-        input.resetInfluence();
-        for (int i = 0; i < level.getMobEntities().size(); i++) {
-            if (level.getMobEntities().get(i).getFaction().equals(enemyFaction) && level.getMobEntities().get(i) != this) {
-                target = level.getMobEntities().get(i);
-                if (!target.isDead) {
-                    if (squareDistanceFrom(target.posX, target.posZ) < viewDist) {
-                        lookTowards(target.posX, target.posZ);
-
-                        input.forwardInf = 100;
-                        input.backInf = 10;
-                        input.leftInf = 50;
-                        input.rightInf = 50;
-                        input.rotLeftInf = 50;
-                        input.rotRightInf = 50;
-                        input.action = squareDistanceFrom(target.posX, target.posZ) < getRightHandReach();
-                    } else {
-                        input.forwardInf = 50;
-                        input.backInf = 50;
-                        input.leftInf = 50;
-                        input.rightInf = 50;
-                        input.rotLeftInf = 50;
-                        input.rotRightInf = 50;
-                        input.action = false;
-                    }
-                } else {
-                    input.action = false;
-                }
-            }
-        }
     }
 }

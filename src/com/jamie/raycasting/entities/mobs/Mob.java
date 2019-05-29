@@ -17,14 +17,15 @@ import com.jamie.raycasting.world.blocks.Block;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public abstract class Mob extends Entity
 {
     protected boolean isFloating = false;
 
     // distances
-    public double baseReach = 1;
     public int viewDist = 4;
+    public double baseReach = 1;
 
     // actions
     public InputHandler input;
@@ -81,6 +82,33 @@ public abstract class Mob extends Entity
     protected abstract Sprite getHurtSprite();
     protected abstract Sprite getDeathSprite();
 
+    //Ai
+    private final Random random = new Random();
+    private int influenceWait = 20;
+    protected abstract List<InfluenceKeyframe> getInfluenceKeyframes();
+    protected abstract InfluenceKeyframe getIdleInfluence();
+
+
+    protected class InfluenceKeyframe {
+        double startDist;
+        int switchWait;
+        int forward;
+        int back;
+        int sLeft;
+        int sRight;
+        int action;
+
+        public InfluenceKeyframe(double startDist, int switchWait, int forward, int back, int sLeft, int sRight, int action) {
+            this.startDist = startDist;
+            this.switchWait = switchWait;
+            this.forward = forward;
+            this.back = back;
+            this.sLeft = sLeft;
+            this.sRight = sRight;
+            this.action = action;
+        }
+    }
+
 
     public Mob(InputHandler input) {
         this.input = input;
@@ -92,6 +120,8 @@ public abstract class Mob extends Entity
         setSpriteSet("heal", getHealSprite());
         setSpriteSet("hurt", getHurtSprite());
         setSpriteSet("death", getDeathSprite());
+
+//        influenceKeyframes = getInfluenceKeyframes();
     }
 
     public void tick() {
@@ -115,78 +145,109 @@ public abstract class Mob extends Entity
         }
 
         if (!isDieing) {
-            if (health <= 0) {
+            if (health > 0) {
+                if (!(input instanceof UserInputHandler)) {
+                    target = null;
+                    for (int i = 0; i < level.getMobEntities().size(); i++) {
+                        Mob mob = level.getMobEntities().get(i);
+                        if ((mob.getFaction().equals(enemyFaction) && mob != this) && (squareDistanceFrom(mob.posX, mob.posZ) < viewDist)) {
+                            target = level.getMobEntities().get(i);
+                            lookTowards(target.posX, target.posZ);
+                            break;
+                        }
+                    }
+                    if (influenceWait == 0) {
+                        input.forward = (random.nextInt(100) < getIdleInfluence().forward);
+                        input.back = (random.nextInt(100) < getIdleInfluence().back);
+                        input.left = (random.nextInt(100) < getIdleInfluence().sLeft);
+                        input.right = (random.nextInt(100) < getIdleInfluence().sRight);
+                        input.action = (random.nextInt(100) < getIdleInfluence().action);
+                        influenceWait = getIdleInfluence().switchWait;
+                        if (target != null) {
+                            for (int i = 0; i < getInfluenceKeyframes().size(); i++) { // assumes keyframes are in correct order!
+                                InfluenceKeyframe influenceKeyframe = getInfluenceKeyframes().get(i);
+                                if (squareDistanceFrom(target.posX, target.posZ) < influenceKeyframe.startDist) {
+                                    input.forward = (random.nextInt(100) < influenceKeyframe.forward);
+                                    input.back = (random.nextInt(100) < influenceKeyframe.back);
+                                    input.left = (random.nextInt(100) < influenceKeyframe.sLeft);
+                                    input.right = (random.nextInt(100) < influenceKeyframe.sRight);
+                                    input.action = (random.nextInt(100) < influenceKeyframe.action);
+                                    influenceWait = influenceKeyframe.switchWait;
+                                }
+                            }
+                        }
+                    } else {
+                        influenceWait--;
+                    }
+                }
+
+                if (getRightHandItem() != null) {
+                    getRightHandItem().tick();
+                }
+
+                for (int i = 0; i < inventory.countItems(); i++) {
+                    if (inventory.getItem(i).removed) {
+                        if (i <= rightHandItemIndex) {
+                            rightHandItemIndex--;
+                        }
+
+                        for (int j = 1; j < 4; j++) {
+                            if (getHotkey(j) != null) {
+                                if (i < getHotkey(j)) {
+                                    setHotkey(j, getHotkey(j) - 1);
+                                } else if (i == getHotkey(j)) {
+                                    setHotkey(j, null);
+                                }
+                            }
+                        }
+
+                        removeItem(inventory.getItem(i));
+                    }
+                }
+
+                for (int i = 0; i < mobEffects.size(); i++) {
+                    mobEffects.get(i).tick();
+
+                    if (mobEffects.get(i).removed) {
+                        removeMobEffect(mobEffects.get(i));
+                    }
+                }
+
+                for (int i = 0; i < level.countDrops(); i++) {
+                    if (contains(level.getDropEntity(i).posX, level.getDropEntity(i).posZ)) {
+                        Sound.pickUp.play();
+                        addItem(level.getDropEntity(i).item);
+                        level.getDropEntity(i).remove();
+                    }
+                }
+
+                if (!isUsingMenu) {
+                    receiveMovementInput();
+
+                    if (input.action) {
+                        activate();
+                    }
+
+                    if (input.hot1 && getHotkey(1) != null) {
+                        input.setInputState("hot1", false);
+                        useItemIndex(getHotkey(1));
+                    }
+                    if (input.hot2 && getHotkey(2) != null) {
+                        input.setInputState("hot2", false);
+                        useItemIndex(getHotkey(2));
+                    }
+                    if (input.hot3 && getHotkey(3) != null) {
+                        input.setInputState("hot3", false);
+                        useItemIndex(getHotkey(3));
+                    }
+                }
+
+                doMovements();
+            } else {
                 deathSound.play();
                 runSpriteSet("death");
                 isDieing = true;
             }
-
-            if (!(input instanceof UserInputHandler)) {
-                input.tick();
-            }
-
-            if (getRightHandItem() != null) {
-                getRightHandItem().tick();
-            }
-
-            for (int i = 0; i < inventory.countItems(); i++) {
-                if (inventory.getItem(i).removed) {
-                    if (i <= rightHandItemIndex) {
-                        rightHandItemIndex--;
-                    }
-
-                    for (int j = 1; j < 4; j++) {
-                        if (getHotkey(j) != null) {
-                            if (i < getHotkey(j)) {
-                                setHotkey(j, getHotkey(j) - 1);
-                            } else if (i == getHotkey(j)) {
-                                setHotkey(j, null);
-                            }
-                        }
-                    }
-
-                    removeItem(inventory.getItem(i));
-                }
-            }
-
-            for (int i = 0; i < mobEffects.size(); i++) {
-                mobEffects.get(i).tick();
-
-                if (mobEffects.get(i).removed) {
-                    removeMobEffect(mobEffects.get(i));
-                }
-            }
-
-            for (int i = 0; i < level.countDrops(); i++) {
-                if (contains(level.getDropEntity(i).posX, level.getDropEntity(i).posZ)) {
-                    addItem(level.getDropEntity(i).item);
-                    Sound.pickUp.play();
-                    level.getDropEntity(i).remove();
-                }
-            }
-
-            if (!isUsingMenu) {
-                receiveMovementInput();
-
-                if (input.action) {
-                    activate();
-                }
-
-                if (input.hot1 && getHotkey(1) != null) {
-                    input.setInputState("hot1", false);
-                    useItemIndex(getHotkey(1));
-                }
-                if (input.hot2 && getHotkey(2) != null) {
-                    input.setInputState("hot2", false);
-                    useItemIndex(getHotkey(2));
-                }
-                if (input.hot3 && getHotkey(3) != null) {
-                    input.setInputState("hot3", false);
-                    useItemIndex(getHotkey(3));
-                }
-            }
-
-            doMovements();
         } else {
             unequipRightHand();
             camY = 0.125;

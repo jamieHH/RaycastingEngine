@@ -1,10 +1,13 @@
 package com.jamie.raycasting.entities.mobs;
 
-import com.jamie.raycasting.entities.projectiles.FireballProjectile;
 import com.jamie.raycasting.graphics.Render;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
 import com.jamie.raycasting.input.InputHandler;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class Imp extends Mob
 {
@@ -61,6 +64,18 @@ public class Imp extends Mob
         });
     }
 
+    protected List<InfluenceKeyframe> getInfluenceKeyframes() {
+        return new ArrayList<InfluenceKeyframe>(Arrays.asList( // keyframe list must be in order
+                new InfluenceKeyframe(8, 20, 75, 0, 50, 50, 0), // 8 blocks will approach
+                new InfluenceKeyframe(3, 20, 0, 0, 50, 50, 0), // 3 block will maintain distance
+                new InfluenceKeyframe(2, 10, 0, 100, 50, 50, 0), // 2 block will move back
+                new InfluenceKeyframe(1, 10, 0, 100, 0, 0, 100) // 1 block will move back and attack
+        ));
+    }
+
+    protected InfluenceKeyframe getIdleInfluence() {
+        return new InfluenceKeyframe(0, 20, 0, 0, 0, 0, 0);
+    }
 
     public Imp(InputHandler input) {
         super(input);
@@ -68,71 +83,18 @@ public class Imp extends Mob
         isFloating = true;
         isSolid = true;
 
-        baseReach = 1;
         viewDist = 8;
+        baseReach = 1;
 
         radius = 0.25;
 
         rotationSpeed = 0.03;
-        walkSpeed = 0.03;
+        walkSpeed = 0.04;
 
         maxHealth = 10;
         health = maxHealth;
 
         faction = "beast";
         enemyFaction = "human";
-    }
-
-    public void tick() {
-        super.tick();
-
-        if (healTick > 0) {
-            healTick--;
-        } else {
-            healTick = 400;
-            modHealth(2);
-        }
-
-        input.resetInfluence();
-        for (int i = 0; i < level.getMobEntities().size(); i++) {
-            if (level.getMobEntities().get(i).getFaction().equals(enemyFaction) && level.getMobEntities().get(i) != this) {
-                target = level.getMobEntities().get(i);
-                if (!target.isDead) {
-                    if (squareDistanceFrom(target.posX, target.posZ) < viewDist) {
-                        lookTowards(target.posX, target.posZ);
-
-                        if (spellCooldown > 0) {
-                            spellCooldown--;
-                        } else {
-                            spellCooldown = 300;
-                            runSpriteSet("action");
-                            double nextX = Math.sin(rotation);
-                            double nextZ = Math.cos(rotation);
-                            FireballProjectile p = new FireballProjectile(1, 1);
-                            p.setRotation(rotation);
-                            level.addEntity(p, posX + nextX, posZ + nextZ);
-                        }
-
-                        input.forwardInf = 50;
-                        input.backInf = 50;
-                        input.leftInf = 50;
-                        input.rightInf = 50;
-                        input.rotLeftInf = 50;
-                        input.rotRightInf = 50;
-                        input.action = squareDistanceFrom(target.posX, target.posZ) < getRightHandReach();
-                    } else {
-                        input.forwardInf = 50;
-                        input.backInf = 50;
-                        input.leftInf = 50;
-                        input.rightInf = 50;
-                        input.rotLeftInf = 50;
-                        input.rotRightInf = 50;
-                        input.action = false;
-                    }
-                } else {
-                    input.action = false;
-                }
-            }
-        }
     }
 }

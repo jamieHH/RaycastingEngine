@@ -1,10 +1,13 @@
 package com.jamie.raycasting.entities.mobs;
 
-import com.jamie.raycasting.entities.particles.PoofParticle;
 import com.jamie.raycasting.graphics.Render;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
 import com.jamie.raycasting.input.InputHandler;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class Spirit extends Mob
 {
@@ -58,6 +61,17 @@ public class Spirit extends Mob
         });
     }
 
+    protected List<InfluenceKeyframe> getInfluenceKeyframes() {
+        return new ArrayList<InfluenceKeyframe>(Arrays.asList(
+                new InfluenceKeyframe(4, 20, 100, 0, 75, 0, 0),
+                new InfluenceKeyframe(1, 10, 100, 0, 0, 0, 100)
+        ));
+    }
+
+    protected InfluenceKeyframe getIdleInfluence() {
+        return new InfluenceKeyframe(0, 20, 50, 50, 50, 50, 0);
+    }
+
 
     public Spirit(InputHandler input) {
         super(input);
@@ -65,8 +79,8 @@ public class Spirit extends Mob
         isFloating = true;
         isSolid = false;
 
-        baseReach = 1;
         viewDist = 4;
+        baseReach = 1;
 
         radius = 0.25;
 
@@ -78,53 +92,5 @@ public class Spirit extends Mob
 
         faction = "beast";
         enemyFaction = "human";
-    }
-
-    public void tick() {
-        super.tick();
-
-        if (healTick > 0) {
-            healTick--;
-        } else {
-            healTick = 400;
-            modHealth(2);
-        }
-
-        if (dustTick > 0) {
-            dustTick--;
-        } else {
-            dustTick = 30;
-            level.addEntity(new PoofParticle(), posX, posZ);
-        }
-
-        input.resetInfluence();
-        for (int i = 0; i < level.getMobEntities().size(); i++) {
-            if (level.getMobEntities().get(i).getFaction().equals(enemyFaction) && level.getMobEntities().get(i) != this) {
-                target = level.getMobEntities().get(i);
-                if (!target.isDead) {
-                    if (squareDistanceFrom(target.posX, target.posZ) < viewDist) {
-                        lookTowards(target.posX, target.posZ);
-
-                        input.forwardInf = 100;
-                        input.backInf = 0;
-                        input.leftInf = 75;
-                        input.rightInf = 0;
-                        input.rotLeftInf = 0;
-                        input.rotRightInf = 0;
-                        input.action = squareDistanceFrom(target.posX, target.posZ) < getRightHandReach();
-                    } else {
-                        input.forwardInf = 50;
-                        input.backInf = 50;
-                        input.leftInf = 50;
-                        input.rightInf = 50;
-                        input.rotLeftInf = 50;
-                        input.rotRightInf = 50;
-                        input.action = false;
-                    }
-                } else {
-                    input.action = false;
-                }
-            }
-        }
     }
 }

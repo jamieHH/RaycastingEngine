@@ -1,15 +1,16 @@
 package com.jamie.raycasting.entities.mobs;
 
-import com.jamie.raycasting.entities.particles.StoneParticle;
 import com.jamie.raycasting.graphics.Render;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
 import com.jamie.raycasting.input.InputHandler;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class Guardian extends Mob
 {
-    private boolean woke = false;
-
     protected Sprite getSprite() {
         return new Sprite(new Render[] {
                 Texture.guardian0
@@ -39,15 +40,26 @@ public class Guardian extends Mob
         });
     }
 
+    protected List<InfluenceKeyframe> getInfluenceKeyframes() {
+        return new ArrayList<InfluenceKeyframe>(Arrays.asList(
+                new InfluenceKeyframe(4, 20, 100, 0, 0, 0, 0),
+                new InfluenceKeyframe(1, 10, 100, 0, 0, 0, 100)
+        ));
+    }
+
+    protected InfluenceKeyframe getIdleInfluence() {
+        return new InfluenceKeyframe(0, 20, 0, 0, 0, 0, 0);
+    }
+
 
     public Guardian(InputHandler input) {
         super(input);
 
-        isFloating = true;
+        isFloating = false;
         isSolid = true;
 
-        baseReach = 1;
         viewDist = 4;
+        baseReach = 1;
 
         radius = 0.25;
 
@@ -59,44 +71,5 @@ public class Guardian extends Mob
 
         faction = "beast";
         enemyFaction = "human";
-    }
-
-    public void tick() {
-        super.tick();
-
-        input.resetInfluence();
-        for (int i = 0; i < level.getMobEntities().size(); i++) {
-            if (level.getMobEntities().get(i).getFaction().equals(enemyFaction) && level.getMobEntities().get(i) != this) {
-                target = level.getMobEntities().get(i);
-                if (!target.isDead) {
-                    if (squareDistanceFrom(target.posX, target.posZ) < viewDist) {
-                        lookTowards(target.posX, target.posZ);
-                        if (!woke) {
-                            woke = true;
-                            level.addEntity(new StoneParticle(), posX, posZ);
-                        }
-
-                        input.forwardInf = 100;
-                        input.backInf = 0;
-                        input.leftInf = 0;
-                        input.rightInf = 0;
-                        input.rotLeftInf = 0;
-                        input.rotRightInf = 0;
-                        input.action = squareDistanceFrom(target.posX, target.posZ) < getRightHandReach();
-                    } else {
-                        input.forwardInf = 0;
-                        input.backInf = 0;
-                        input.leftInf = 0;
-                        input.rightInf = 0;
-                        input.rotLeftInf = 0;
-                        input.rotRightInf = 0;
-                        input.action = false;
-                        woke = false;
-                    }
-                } else {
-                    input.action = false;
-                }
-            }
-        }
     }
 }

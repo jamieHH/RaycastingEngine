@@ -8,6 +8,9 @@ import com.jamie.raycasting.items.MiscItem;
 import com.jamie.raycasting.items.consumables.*;
 import com.jamie.raycasting.items.weapons.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Player extends Mob
 {
     protected Sprite getSprite() {
@@ -30,6 +33,14 @@ public class Player extends Mob
         return null;
     }
 
+    protected List<InfluenceKeyframe> getInfluenceKeyframes() {
+        return new ArrayList<InfluenceKeyframe>();
+    }
+
+    protected InfluenceKeyframe getIdleInfluence() {
+        return new InfluenceKeyframe(0, 20, 0, 0, 0, 0, 0);
+    }
+
 
     public Player(InputHandler input) {
         super(input);
@@ -37,8 +48,8 @@ public class Player extends Mob
         isFloating = false;
         isSolid = true;
 
-	    baseReach = 2;
-	    viewDist = 8;
+        viewDist = 8;
+        baseReach = 2;
 
 	    radius = 0.25;
 
@@ -49,7 +60,7 @@ public class Player extends Mob
         health = maxHealth;
 
         faction = "human";
-        enemyFaction = "beast";
+        enemyFaction = "";
 
         hurtSound = Sound.pain;
 
