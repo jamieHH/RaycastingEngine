@@ -459,7 +459,7 @@ public abstract class Mob extends Entity
 
     public int getDamage() {
         if (getRightHandItem() != null) {
-            return getRightHandItem().damage;
+            return baseDamage + getRightHandItem().damage;
         }
         return baseDamage;
     }

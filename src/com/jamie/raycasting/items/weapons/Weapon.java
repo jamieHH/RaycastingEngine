@@ -13,4 +13,10 @@ public abstract class Weapon extends Item
         type = "weapon";
         canStrike = true;
     }
+
+    public Map<String, String> getInfo() {
+        info = super.getInfo();
+        info.put("damage", Integer.toString(damage + user.baseDamage));
+        return info;
+    }
 }
