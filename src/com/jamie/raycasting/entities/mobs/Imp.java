@@ -4,6 +4,8 @@ import com.jamie.raycasting.graphics.Render;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
 import com.jamie.raycasting.input.InputHandler;
+import com.jamie.raycasting.items.specials.FireballSpell;
+import com.jamie.raycasting.items.specials.HealingSpell;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,9 +13,6 @@ import java.util.List;
 
 public class Imp extends Mob
 {
-    private int healTick = 0;
-    private int spellCooldown = 0;
-
     protected Sprite getSprite() {
         return new Sprite(new Render[] {
                 Texture.imp0,
@@ -66,16 +65,17 @@ public class Imp extends Mob
 
     protected List<InfluenceKeyframe> getInfluenceKeyframes() {
         return new ArrayList<InfluenceKeyframe>(Arrays.asList( // keyframe list must be in order
-                new InfluenceKeyframe(8, 20, 75, 0, 50, 50, 0), // 8 blocks will approach
-                new InfluenceKeyframe(3, 20, 0, 0, 50, 50, 0), // 3 block will maintain distance
-                new InfluenceKeyframe(2, 10, 0, 100, 50, 50, 0), // 2 block will move back
-                new InfluenceKeyframe(1, 10, 0, 100, 0, 0, 100) // 1 block will move back and attack
+                new InfluenceKeyframe(8, 20, 75, 0, 50, 50, 50, "Fireball Spell"), // 8 blocks will approach
+                new InfluenceKeyframe(3, 20, 0, 0, 50, 50, 50, "Fireball Spell"), // 3 block will maintain distance
+                new InfluenceKeyframe(2, 10, 0, 100, 50, 50, 100, null), // 2 block will move back
+                new InfluenceKeyframe(1, 10, 0, 100, 0, 0, 100, null) // 1 block will move back and attack
         ));
     }
 
     protected InfluenceKeyframe getIdleInfluence() {
-        return new InfluenceKeyframe(0, 20, 0, 0, 0, 0, 0);
+        return new InfluenceKeyframe(0, 20, 50, 50, 50, 50, 100, "Healing Spell");
     }
+
 
     public Imp(InputHandler input) {
         super(input);
@@ -96,5 +96,8 @@ public class Imp extends Mob
 
         faction = "beast";
         enemyFaction = "human";
+
+        addItem(new HealingSpell());
+        addItem(new FireballSpell());
     }
 }

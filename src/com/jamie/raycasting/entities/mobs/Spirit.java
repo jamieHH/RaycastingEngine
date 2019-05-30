@@ -11,9 +11,6 @@ import java.util.List;
 
 public class Spirit extends Mob
 {
-    private int healTick = 0;
-    private int dustTick = 0;
-
     protected Sprite getSprite() {
         return new Sprite(new Render[] {
                 Texture.spirit0,
@@ -63,13 +60,13 @@ public class Spirit extends Mob
 
     protected List<InfluenceKeyframe> getInfluenceKeyframes() {
         return new ArrayList<InfluenceKeyframe>(Arrays.asList(
-                new InfluenceKeyframe(4, 20, 100, 0, 75, 0, 0),
-                new InfluenceKeyframe(1, 10, 100, 0, 0, 0, 100)
+                new InfluenceKeyframe(4, 20, 100, 0, 75, 0, 0, null),
+                new InfluenceKeyframe(1, 10, 100, 0, 0, 0, 100, null)
         ));
     }
 
     protected InfluenceKeyframe getIdleInfluence() {
-        return new InfluenceKeyframe(0, 20, 50, 50, 50, 50, 0);
+        return new InfluenceKeyframe(0, 20, 50, 50, 50, 50, 0, null);
     }
 
 

@@ -38,7 +38,7 @@ public class Player extends Mob
     }
 
     protected InfluenceKeyframe getIdleInfluence() {
-        return new InfluenceKeyframe(0, 20, 0, 0, 0, 0, 0);
+        return new InfluenceKeyframe(0, 20, 0, 0, 0, 0, 0, null);
     }
 
 

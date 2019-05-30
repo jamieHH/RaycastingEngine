@@ -12,6 +12,7 @@ import com.jamie.raycasting.input.UserInputHandler;
 import com.jamie.raycasting.items.Inventory;
 import com.jamie.raycasting.items.Item;
 import com.jamie.raycasting.items.consumables.Consumable;
+import com.jamie.raycasting.items.specials.Spell;
 import com.jamie.raycasting.items.weapons.Weapon;
 import com.jamie.raycasting.world.blocks.Block;
 
@@ -97,8 +98,9 @@ public abstract class Mob extends Entity
         int sLeft;
         int sRight;
         int action;
+        String itemName;
 
-        public InfluenceKeyframe(double startDist, int switchWait, int forward, int back, int sLeft, int sRight, int action) {
+        public InfluenceKeyframe(double startDist, int switchWait, int forward, int back, int sLeft, int sRight, int action, String itemName) {
             this.startDist = startDist;
             this.switchWait = switchWait;
             this.forward = forward;
@@ -106,6 +108,7 @@ public abstract class Mob extends Entity
             this.sLeft = sLeft;
             this.sRight = sRight;
             this.action = action;
+            this.itemName = itemName;
         }
     }
 
@@ -120,8 +123,6 @@ public abstract class Mob extends Entity
         setSpriteSet("heal", getHealSprite());
         setSpriteSet("hurt", getHurtSprite());
         setSpriteSet("death", getDeathSprite());
-
-//        influenceKeyframes = getInfluenceKeyframes();
     }
 
     public void tick() {
@@ -162,17 +163,27 @@ public abstract class Mob extends Entity
                         input.left = (random.nextInt(100) < getIdleInfluence().sLeft);
                         input.right = (random.nextInt(100) < getIdleInfluence().sRight);
                         input.action = (random.nextInt(100) < getIdleInfluence().action);
+                        if (getIdleInfluence().itemName != null) {
+                            setRightHandItem(getIdleInfluence().itemName);
+                        } else {
+                            unequipRightHand();
+                        }
                         influenceWait = getIdleInfluence().switchWait;
                         if (target != null) {
                             for (int i = 0; i < getInfluenceKeyframes().size(); i++) { // assumes keyframes are in correct order!
-                                InfluenceKeyframe influenceKeyframe = getInfluenceKeyframes().get(i);
-                                if (squareDistanceFrom(target.posX, target.posZ) < influenceKeyframe.startDist) {
-                                    input.forward = (random.nextInt(100) < influenceKeyframe.forward);
-                                    input.back = (random.nextInt(100) < influenceKeyframe.back);
-                                    input.left = (random.nextInt(100) < influenceKeyframe.sLeft);
-                                    input.right = (random.nextInt(100) < influenceKeyframe.sRight);
-                                    input.action = (random.nextInt(100) < influenceKeyframe.action);
-                                    influenceWait = influenceKeyframe.switchWait;
+                                InfluenceKeyframe keyframe = getInfluenceKeyframes().get(i);
+                                if (squareDistanceFrom(target.posX, target.posZ) < keyframe.startDist) {
+                                    input.forward = (random.nextInt(100) < keyframe.forward);
+                                    input.back = (random.nextInt(100) < keyframe.back);
+                                    input.left = (random.nextInt(100) < keyframe.sLeft);
+                                    input.right = (random.nextInt(100) < keyframe.sRight);
+                                    input.action = (random.nextInt(100) < keyframe.action);
+                                    if (keyframe.itemName != null) {
+                                        setRightHandItem(keyframe.itemName);
+                                    } else {
+                                        unequipRightHand();
+                                    }
+                                    influenceWait = keyframe.switchWait;
                                 }
                             }
                         }
@@ -409,6 +420,15 @@ public abstract class Mob extends Entity
         }
     }
 
+    public void setRightHandItem(String itemName) {
+        for (int i = 0; i < inventory.getItems().size(); i++) {
+            if (inventory.getItem(i).name.equals(itemName)) {
+                setRightHandItemIndex(i);
+                return;
+            }
+        }
+    }
+
     public void unequipRightHand() {
         setRightHandItemIndex(-1);
     }
@@ -444,7 +464,7 @@ public abstract class Mob extends Entity
     public void useItemIndex(int index) {
         if (inventory.getItem(index) instanceof Consumable) {
             inventory.getItem(index).use();
-        } else if (inventory.getItem(index) instanceof Weapon) {
+        } else if (inventory.getItem(index) instanceof Weapon || inventory.getItem(index) instanceof Spell) {
             if (getRightHandItemIndex() != index) {
                 setRightHandItemIndex(index);
             } else {

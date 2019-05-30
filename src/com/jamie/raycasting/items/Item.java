@@ -60,7 +60,11 @@ public abstract class Item
     }
 
     public Render render() {
-        return getSprite().render();
+        if (getSprite() != null) {
+            return getSprite().render();
+        }
+
+        return null;
     }
 
     public void setUser(Mob mob) {

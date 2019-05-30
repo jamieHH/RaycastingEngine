@@ -53,13 +53,13 @@ public class Bat extends Mob
 
     protected List<InfluenceKeyframe> getInfluenceKeyframes() {
         return new ArrayList<InfluenceKeyframe>(Arrays.asList(
-                new InfluenceKeyframe(4, 20, 100, 10, 50, 50, 0),
-                new InfluenceKeyframe(1, 10, 100, 50, 50, 50, 100)
+                new InfluenceKeyframe(4, 20, 100, 10, 50, 50, 0, null),
+                new InfluenceKeyframe(1, 10, 100, 50, 50, 50, 100, null)
         ));
     }
 
     protected InfluenceKeyframe getIdleInfluence() {
-        return new InfluenceKeyframe(0, 20, 50, 50, 50, 50, 0);
+        return new InfluenceKeyframe(0, 20, 50, 50, 50, 50, 0, null);
     }
 
 

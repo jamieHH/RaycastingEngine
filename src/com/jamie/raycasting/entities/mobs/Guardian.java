@@ -42,15 +42,14 @@ public class Guardian extends Mob
 
     protected List<InfluenceKeyframe> getInfluenceKeyframes() {
         return new ArrayList<InfluenceKeyframe>(Arrays.asList(
-                new InfluenceKeyframe(4, 20, 100, 0, 0, 0, 0),
-                new InfluenceKeyframe(1, 10, 100, 0, 0, 0, 100)
+                new InfluenceKeyframe(4, 20, 100, 0, 0, 0, 0, null),
+                new InfluenceKeyframe(1, 10, 100, 0, 0, 0, 100, null)
         ));
     }
 
     protected InfluenceKeyframe getIdleInfluence() {
-        return new InfluenceKeyframe(0, 20, 0, 0, 0, 0, 0);
+        return new InfluenceKeyframe(0, 20, 0, 0, 0, 0, 0, null);
     }
-
 
     public Guardian(InputHandler input) {
         super(input);
