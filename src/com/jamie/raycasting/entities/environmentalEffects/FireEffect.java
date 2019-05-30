@@ -27,8 +27,6 @@ public class FireEffect extends EnvironmentalEffect
 
         isInstant = false;
         interval = 60;
-
-        name = "Fire";
     }
 
     public void activate() {

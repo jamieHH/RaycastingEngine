@@ -1,13 +1,10 @@
 package com.jamie.raycasting.entities.environmentalEffects;
 
 import com.jamie.raycasting.entities.Entity;
-import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.world.levels.Level;
 
 public abstract class EnvironmentalEffect extends Entity
 {
-    public String name = "Effect";
-
     protected boolean isInstant;
     protected int interval;
 

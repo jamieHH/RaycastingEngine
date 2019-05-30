@@ -65,15 +65,15 @@ public class Imp extends Mob
 
     protected List<InfluenceKeyframe> getInfluenceKeyframes() {
         return new ArrayList<InfluenceKeyframe>(Arrays.asList( // keyframe list must be in order
-                new InfluenceKeyframe(8, 20, 75, 0, 50, 50, 50, "Fireball Spell"), // 8 blocks will approach
-                new InfluenceKeyframe(3, 20, 0, 0, 50, 50, 50, "Fireball Spell"), // 3 block will maintain distance
-                new InfluenceKeyframe(2, 10, 0, 100, 50, 50, 100, null), // 2 block will move back
+                new InfluenceKeyframe(8, 20, 75, 0, 50, 50, 50, "Fireball Spell"), // 8 blocks will approach firing
+                new InfluenceKeyframe(3, 20, 0, 0, 50, 50, 50, "Fireball Spell"), // 3 block will maintain distance firing
+                new InfluenceKeyframe(2, 10, 0, 100, 50, 50, 0, null), // 2 block will move back not firing
                 new InfluenceKeyframe(1, 10, 0, 100, 0, 0, 100, null) // 1 block will move back and attack
         ));
     }
 
     protected InfluenceKeyframe getIdleInfluence() {
-        return new InfluenceKeyframe(0, 20, 50, 50, 50, 50, 100, "Healing Spell");
+        return new InfluenceKeyframe(0, 20, 50, 50, 50, 50, 100, "Healing Spell"); // past viewDist will strafe and heal
     }
 
 

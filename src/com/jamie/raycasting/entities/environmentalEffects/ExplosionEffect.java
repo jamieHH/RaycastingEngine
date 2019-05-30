@@ -16,8 +16,6 @@ public class ExplosionEffect extends EnvironmentalEffect
 
     public ExplosionEffect(Level level, double radius, int magnitude) {
         super(level, radius, magnitude);
-
-        name = "Explosion";
     }
 
     public void activate() {
