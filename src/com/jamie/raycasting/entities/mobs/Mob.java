@@ -90,7 +90,8 @@ public abstract class Mob extends Entity
     protected abstract InfluenceKeyframe getIdleInfluence();
 
 
-    protected class InfluenceKeyframe {
+    protected class InfluenceKeyframe
+    {
         double startDist;
         int switchWait;
         int forward;
