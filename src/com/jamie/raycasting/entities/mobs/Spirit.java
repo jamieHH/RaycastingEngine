@@ -1,5 +1,7 @@
 package com.jamie.raycasting.entities.mobs;
 
+import com.jamie.raycasting.entities.particles.Particle;
+import com.jamie.raycasting.entities.particles.PoofParticle;
 import com.jamie.raycasting.graphics.Render;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
@@ -56,6 +58,10 @@ public class Spirit extends Mob
                 Texture.splat1,
                 Texture.splat1
         });
+    }
+
+    protected Particle getHurtParticle() {
+        return new PoofParticle();
     }
 
     protected List<InfluenceKeyframe> getInfluenceKeyframes() {

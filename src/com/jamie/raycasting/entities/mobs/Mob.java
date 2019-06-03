@@ -5,6 +5,7 @@ import com.jamie.raycasting.entities.Entity;
 import com.jamie.raycasting.entities.mobs.mobEffects.MobEffect;
 import com.jamie.raycasting.entities.particles.BloodParticle;
 import com.jamie.raycasting.entities.particles.HealthParticle;
+import com.jamie.raycasting.entities.particles.Particle;
 import com.jamie.raycasting.entities.particles.PoofParticle;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.input.InputHandler;
@@ -82,6 +83,9 @@ public abstract class Mob extends Entity
     protected abstract Sprite getHealSprite();
     protected abstract Sprite getHurtSprite();
     protected abstract Sprite getDeathSprite();
+    protected Particle getHurtParticle() {
+        return new BloodParticle();
+    }
 
     //Ai
     private final Random random = new Random();
@@ -520,8 +524,7 @@ public abstract class Mob extends Entity
     public void hurt(Entity source, int magnitude, String damageType) {
         if (magnitude > 0 && !isDieing && hurtTime < 1) {
             runSpriteSet("hurt");
-            BloodParticle p = new BloodParticle();
-            level.addEntity(p, posX, posZ);
+            level.addEntity(getHurtParticle(), posX, posZ);
 
             if (health - magnitude > 0) {
                 hurtSound.play();
