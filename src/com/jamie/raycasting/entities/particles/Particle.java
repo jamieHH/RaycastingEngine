@@ -29,8 +29,6 @@ public abstract class Particle extends Entity
         } else {
             remove();
         }
-
-
     }
 
     public List<Sprite> getSpriteParticles() {

@@ -20,9 +20,8 @@ public class WoodParticle extends Particle
 
         List<Sprite> set = new ArrayList<Sprite>();
         for (int i = 0; i < 8; i++) {
-            SpriteParticle particle = new SpriteParticle(ts[random.nextInt(ts.length)], 2);
+            SpriteParticle particle = new SpriteParticle(ts[random.nextInt(ts.length)], 0.5, 1);
             particle.setOffset( 0, 0.5, 0);
-            particle.gravity = 1;
 
             set.add(particle);
         }

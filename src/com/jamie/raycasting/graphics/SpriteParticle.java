@@ -2,68 +2,53 @@ package com.jamie.raycasting.graphics;
 
 public class SpriteParticle extends Sprite
 {
-    private int time = 0;
-
     private double moveX = 0;
     private double moveY = 0;
     private double moveZ = 0;
-    private double yg = 0;
 
-    public double speed = 1;
-    public double gravity = 1;
+    private double force;
+    private double gravity;
     public double friction = 0.05;
 
-    public SpriteParticle(Render t) {
+
+    public SpriteParticle(Render t, double force, double gravity) {
         super(t);
 
+        this.force = force;
+        this.gravity = gravity;
         setMomentum();
     }
 
-    public SpriteParticle(Render[] ts) {
+    public SpriteParticle(Render[] ts, double force, double gravity) {
         super(ts);
 
-        setMomentum();
-    }
-
-    public SpriteParticle(Render t, double speed) {
-        super(t);
-
-        this.speed = speed;
-        setMomentum();
-    }
-
-    public SpriteParticle(Render[] ts, double speed) {
-        super(ts);
-
-        this.speed = speed;
+        this.force = force;
+        this.gravity = gravity;
         setMomentum();
     }
 
     public void tick() {
         super.tick();
-        time++;
-
-        yg -= ((time * 0.125) * gravity) * 0.0125;
-        y += yg;
-
-        x += moveX * 0.25;
-        y += moveY * 0.25;
-        z += moveZ * 0.25;
+        y -= gravity / 16;
 
         moveX *= 1 - friction;
         moveY *= 1 - friction;
         moveZ *= 1 - friction;
 
+        x += moveX;
+        y += moveY;
+        z += moveZ;
+
         if (y <= 0) {
             y = 0;
-            moveX *= 0.75;
-            moveZ *= 0.75;
+            moveX *= 0.5;
+            moveZ *= 0.5;
         }
     }
 
     private void setMomentum() {
-        moveX = ((Math.random() - 0.5) / 2) * speed;
-        moveY = ((Math.random() - 0.5) / 2) * speed;
-        moveZ = ((Math.random() - 0.5) / 2) * speed;
+        moveX = ((Math.random() - 0.5) / 2) * force;
+        moveY = ((Math.random() - 0.5) / 2) * force;
+        moveZ = ((Math.random() - 0.5) / 2) * force;
     }
 }

@@ -20,9 +20,8 @@ public class HealthParticle extends Particle
 
         List<Sprite> set = new ArrayList<Sprite>();
         for (int i = 0; i < 6; i++) {
-            SpriteParticle particle = new SpriteParticle(ts[random.nextInt(ts.length)]);
+            SpriteParticle particle = new SpriteParticle(ts[random.nextInt(ts.length)], 0.25, -0.125);
             particle.setOffset(0, 0.5, 0);
-            particle.gravity = -0.125;
 
             set.add(particle);
         }
