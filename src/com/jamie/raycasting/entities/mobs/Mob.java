@@ -182,7 +182,9 @@ public abstract class Mob extends Entity
                             }
                         }
                     }
-                    if (influenceWait == 0) {
+                    if (influenceWait > 0) {
+                        influenceWait--;
+                    } else {
                         if (target == null) {
                             setInputInfluence(getIdleInfluence());
                         } else {
@@ -193,8 +195,6 @@ public abstract class Mob extends Entity
                                 setInputInfluence(getAttackInfluence());
                             }
                         }
-                    } else {
-                        influenceWait--;
                     }
                 }
 
@@ -424,6 +424,7 @@ public abstract class Mob extends Entity
             rightHandEmpty = false;
             rightHandItemIndex = i;
         }
+        useTicks = 0;
     }
 
     public void setRightHandItem(String itemName) {

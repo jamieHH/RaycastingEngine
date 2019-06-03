@@ -60,13 +60,13 @@ public class Imp extends Mob
     }
 
     protected InfluenceKeyframe getIdleInfluence() {
-        return new InfluenceKeyframe(20, 50, 50, 50, 50, 50, 50, 100, "Healing Spell"); // past viewDist will strafe and heal
+        return new InfluenceKeyframe(20, 50, 50, 50, 50, 50, 50, 100, "Healing Spell");
     }
     protected InfluenceKeyframe getPursuitInfluence() {
-        return new InfluenceKeyframe(20, 0, 0, 50, 50, 0, 0, 100, "Fireball Spell"); // past viewDist will strafe and heal
+        return new InfluenceKeyframe(20, 10, 100, 50, 50, 0, 0, 100, "Fireball Spell");
     }
     protected InfluenceKeyframe getAttackInfluence() {
-        return new InfluenceKeyframe(10, 100, 0, 0, 0, 0, 0, 100, null); // past viewDist will strafe and heal
+        return new InfluenceKeyframe(10, 100, 50, 50, 50, 0, 0, 100, null);
     }
 
 
