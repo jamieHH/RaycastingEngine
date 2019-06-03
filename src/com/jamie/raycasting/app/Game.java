@@ -92,6 +92,9 @@ public class Game
 						world.switchLevel(player, "island", 999);
 					}
 				} else {
+					if (activeOverlay == inventoryOverlay) {
+						setActiveOverlay(null);
+					}
 					if (userInput.pause) {
 						userInput.setInputState("pause", false);
 						if (activeOverlay == null) {
