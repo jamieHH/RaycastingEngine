@@ -31,7 +31,7 @@ public abstract class Mob extends Entity
     // actions
     public InputHandler input;
     public boolean isUsingMenu = false;
-    private int useTicks = 0;
+    public int useTicks = 0;
     protected int useWait = 15;
 
     protected String faction;

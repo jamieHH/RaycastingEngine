@@ -58,7 +58,7 @@ public class Screen extends Render
                 // Render mobEffect bars
                 for (int i = 0; i < p.mobEffects.size(); i++) {
                     StatBarOverlay statBar = new StatBarOverlay(30, 4, p.mobEffects.get(i).effectHudIcon);
-                    statBar.update((double) p.mobEffects.get(i).duration / (double) p.mobEffects.get(i).maxDuration, p.mobEffects.get(i).effectHudColour);
+                    statBar.update((double) p.mobEffects.get(i).duration / (double) p.mobEffects.get(i).maxDuration, p.mobEffects.get(i).effectHudColour, 0x808080);
                     draw(statBar, 2, 2 + (i * 5));
                 }
 
@@ -79,7 +79,15 @@ public class Screen extends Render
             }
             draw(hudBar, 0, height - hudBar.height);
 
-            healthBar.update((double) p.health / (double) p.maxHealth, 0xF00000);
+            int barColour = 0xF00000;
+            int bgColour = 0x808080;
+            if (p.hurtTime != 0) {
+                barColour = 0xFF6A00;
+            }
+            if (p.useTicks != 0) {
+                bgColour = 0x505050;
+            }
+            healthBar.update((double) p.health / (double) p.maxHealth, barColour, bgColour);
             draw(healthBar, 2, (height - hudBar.height) + 3);
 
             // Hotkey items
