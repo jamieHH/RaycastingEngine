@@ -90,28 +90,31 @@ public abstract class Mob extends Entity
     //Ai
     private final Random random = new Random();
     private int influenceWait = 20;
-    protected abstract List<InfluenceKeyframe> getInfluenceKeyframes();
     protected abstract InfluenceKeyframe getIdleInfluence();
+    protected abstract InfluenceKeyframe getPursuitInfluence();
+    protected abstract InfluenceKeyframe getAttackInfluence();
 
 
     protected class InfluenceKeyframe
     {
-        double startDist;
         int switchWait;
         int forward;
         int back;
         int sLeft;
         int sRight;
+        int rLeft;
+        int rRight;
         int action;
         String itemName;
 
-        public InfluenceKeyframe(double startDist, int switchWait, int forward, int back, int sLeft, int sRight, int action, String itemName) {
-            this.startDist = startDist;
+        public InfluenceKeyframe(int switchWait, int forward, int back, int sLeft, int sRight, int rLeft, int rRight, int action, String itemName) {
             this.switchWait = switchWait;
             this.forward = forward;
             this.back = back;
             this.sLeft = sLeft;
             this.sRight = sRight;
+            this.rLeft = rLeft;
+            this.rRight = rRight;
             this.action = action;
             this.itemName = itemName;
         }
@@ -128,6 +131,22 @@ public abstract class Mob extends Entity
         setSpriteSet("heal", getHealSprite());
         setSpriteSet("hurt", getHurtSprite());
         setSpriteSet("death", getDeathSprite());
+    }
+
+    private void setInputInfluence(InfluenceKeyframe influenceKeyframe) {
+        input.forward = (random.nextInt(100) < influenceKeyframe.forward);
+        input.back = (random.nextInt(100) < influenceKeyframe.back);
+        input.left = (random.nextInt(100) < influenceKeyframe.sLeft);
+        input.right = (random.nextInt(100) < influenceKeyframe.sRight);
+        input.rotLeft = (random.nextInt(100) < influenceKeyframe.rLeft);
+        input.rotRight = (random.nextInt(100) < influenceKeyframe.rRight);
+        input.action = (random.nextInt(100) < influenceKeyframe.action);
+        if (influenceKeyframe.itemName != null) {
+            setRightHandItem(influenceKeyframe.itemName);
+        } else {
+            unequipRightHand();
+        }
+        influenceWait = influenceKeyframe.switchWait;
     }
 
     public void tick() {
@@ -156,40 +175,22 @@ public abstract class Mob extends Entity
                     target = null;
                     for (int i = 0; i < level.getMobEntities().size(); i++) {
                         Mob mob = level.getMobEntities().get(i);
-                        if ((mob.getFaction().equals(enemyFaction) && mob != this) && (squareDistanceFrom(mob.posX, mob.posZ) < viewDist)) {
-                            target = level.getMobEntities().get(i);
-                            lookTowards(target.posX, target.posZ);
-                            break;
+                        if (mob != this) {
+                            if (squareDistanceFrom(mob.posX, mob.posZ) < viewDist && mob.getFaction().equals(enemyFaction)) {
+                                target = level.getMobEntities().get(i);
+                                break;
+                            }
                         }
                     }
                     if (influenceWait == 0) {
-                        input.forward = (random.nextInt(100) < getIdleInfluence().forward);
-                        input.back = (random.nextInt(100) < getIdleInfluence().back);
-                        input.left = (random.nextInt(100) < getIdleInfluence().sLeft);
-                        input.right = (random.nextInt(100) < getIdleInfluence().sRight);
-                        input.action = (random.nextInt(100) < getIdleInfluence().action);
-                        if (getIdleInfluence().itemName != null) {
-                            setRightHandItem(getIdleInfluence().itemName);
+                        if (target == null) {
+                            setInputInfluence(getIdleInfluence());
                         } else {
-                            unequipRightHand();
-                        }
-                        influenceWait = getIdleInfluence().switchWait;
-                        if (target != null) {
-                            for (int i = 0; i < getInfluenceKeyframes().size(); i++) { // assumes keyframes are in correct order!
-                                InfluenceKeyframe keyframe = getInfluenceKeyframes().get(i);
-                                if (squareDistanceFrom(target.posX, target.posZ) < keyframe.startDist) {
-                                    input.forward = (random.nextInt(100) < keyframe.forward);
-                                    input.back = (random.nextInt(100) < keyframe.back);
-                                    input.left = (random.nextInt(100) < keyframe.sLeft);
-                                    input.right = (random.nextInt(100) < keyframe.sRight);
-                                    input.action = (random.nextInt(100) < keyframe.action);
-                                    if (keyframe.itemName != null) {
-                                        setRightHandItem(keyframe.itemName);
-                                    } else {
-                                        unequipRightHand();
-                                    }
-                                    influenceWait = keyframe.switchWait;
-                                }
+                            lookTowards(target.posX, target.posZ);
+                            if (squareDistanceFrom(target.posX, target.posZ) < viewDist && squareDistanceFrom(target.posX, target.posZ) > getRightHandReach()) {
+                                setInputInfluence(getPursuitInfluence());
+                            } else if (squareDistanceFrom(target.posX, target.posZ) < getRightHandReach()) {
+                                setInputInfluence(getAttackInfluence());
                             }
                         }
                     } else {

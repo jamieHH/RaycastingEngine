@@ -8,9 +8,6 @@ import com.jamie.raycasting.items.MiscItem;
 import com.jamie.raycasting.items.consumables.*;
 import com.jamie.raycasting.items.weapons.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Player extends Mob
 {
     protected Sprite getSprite() {
@@ -33,12 +30,16 @@ public class Player extends Mob
         return null;
     }
 
-    protected List<InfluenceKeyframe> getInfluenceKeyframes() {
-        return new ArrayList<InfluenceKeyframe>();
+    protected InfluenceKeyframe getIdleInfluence() {
+        return null;
     }
 
-    protected InfluenceKeyframe getIdleInfluence() {
-        return new InfluenceKeyframe(0, 20, 0, 0, 0, 0, 0, null);
+    protected InfluenceKeyframe getPursuitInfluence() {
+        return null;
+    }
+
+    protected InfluenceKeyframe getAttackInfluence() {
+        return null;
     }
 
 

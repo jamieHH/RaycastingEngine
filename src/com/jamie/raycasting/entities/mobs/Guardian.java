@@ -7,10 +7,6 @@ import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
 import com.jamie.raycasting.input.InputHandler;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 public class Guardian extends Mob
 {
     protected Sprite getSprite() {
@@ -46,15 +42,14 @@ public class Guardian extends Mob
         return new StoneParticle();
     }
 
-    protected List<InfluenceKeyframe> getInfluenceKeyframes() {
-        return new ArrayList<InfluenceKeyframe>(Arrays.asList(
-                new InfluenceKeyframe(4, 20, 100, 0, 0, 0, 0, null),
-                new InfluenceKeyframe(1, 10, 100, 0, 0, 0, 100, null)
-        ));
-    }
-
     protected InfluenceKeyframe getIdleInfluence() {
-        return new InfluenceKeyframe(0, 20, 0, 0, 0, 0, 0, null);
+        return new InfluenceKeyframe(20, 0, 0, 0, 0, 0, 0, 0, null);
+    }
+    protected InfluenceKeyframe getPursuitInfluence() {
+        return new InfluenceKeyframe(20, 100, 0, 0, 0, 0, 0, 0, null);
+    }
+    protected InfluenceKeyframe getAttackInfluence() {
+        return new InfluenceKeyframe(10, 100, 0, 0, 0, 0, 0, 100, null);
     }
 
     public Guardian(InputHandler input) {

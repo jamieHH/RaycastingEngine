@@ -7,10 +7,6 @@ import com.jamie.raycasting.input.InputHandler;
 import com.jamie.raycasting.items.specials.FireballSpell;
 import com.jamie.raycasting.items.specials.HealingSpell;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 public class Imp extends Mob
 {
     protected Sprite getSprite() {
@@ -63,17 +59,14 @@ public class Imp extends Mob
         });
     }
 
-    protected List<InfluenceKeyframe> getInfluenceKeyframes() {
-        return new ArrayList<InfluenceKeyframe>(Arrays.asList( // keyframe list must be in order
-                new InfluenceKeyframe(8, 20, 75, 0, 50, 50, 50, "Fireball Spell"), // 8 blocks will approach firing
-                new InfluenceKeyframe(3, 20, 0, 0, 50, 50, 50, "Fireball Spell"), // 3 block will maintain distance firing
-                new InfluenceKeyframe(2, 10, 0, 100, 50, 50, 0, null), // 2 block will move back not firing
-                new InfluenceKeyframe(1, 10, 0, 100, 0, 0, 100, null) // 1 block will move back and attack
-        ));
-    }
-
     protected InfluenceKeyframe getIdleInfluence() {
-        return new InfluenceKeyframe(0, 20, 50, 50, 50, 50, 100, "Healing Spell"); // past viewDist will strafe and heal
+        return new InfluenceKeyframe(20, 50, 50, 50, 50, 50, 50, 100, "Healing Spell"); // past viewDist will strafe and heal
+    }
+    protected InfluenceKeyframe getPursuitInfluence() {
+        return new InfluenceKeyframe(20, 0, 0, 50, 50, 0, 0, 100, "Fireball Spell"); // past viewDist will strafe and heal
+    }
+    protected InfluenceKeyframe getAttackInfluence() {
+        return new InfluenceKeyframe(10, 100, 0, 0, 0, 0, 0, 100, null); // past viewDist will strafe and heal
     }
 
 
@@ -97,6 +90,7 @@ public class Imp extends Mob
         faction = "beast";
         enemyFaction = "human";
 
+        addItem(new HealingSpell());
         addItem(new HealingSpell());
         addItem(new FireballSpell());
     }
