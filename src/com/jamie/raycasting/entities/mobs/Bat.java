@@ -50,11 +50,9 @@ public class Bat extends Mob
     protected InfluenceKeyframe getIdleInfluence() {
         return new InfluenceKeyframe(20, 50, 50, 50, 50, 50, 50, 0, null);
     }
-
     protected InfluenceKeyframe getPursuitInfluence() {
         return new InfluenceKeyframe(20, 100, 10, 50, 50, 0, 0, 0, null);
     }
-
     protected InfluenceKeyframe getAttackInfluence() {
         return new InfluenceKeyframe(10, 100, 50, 50, 50, 0, 0, 100, null);
     }

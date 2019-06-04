@@ -91,7 +91,6 @@ public class Imp extends Mob
         enemyFaction = "human";
 
         addItem(new HealingSpell());
-        addItem(new HealingSpell());
         addItem(new FireballSpell());
     }
 }

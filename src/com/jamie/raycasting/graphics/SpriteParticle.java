@@ -19,14 +19,6 @@ public class SpriteParticle extends Sprite
         setMomentum();
     }
 
-    public SpriteParticle(Render[] ts, double force, double gravity) {
-        super(ts);
-
-        this.force = force;
-        this.gravity = gravity;
-        setMomentum();
-    }
-
     public void tick() {
         super.tick();
         y -= gravity / 16;
