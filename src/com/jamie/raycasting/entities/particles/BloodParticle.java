@@ -1,32 +1,20 @@
 package com.jamie.raycasting.entities.particles;
 
 import com.jamie.raycasting.graphics.Render;
-import com.jamie.raycasting.graphics.Sprite;
-import com.jamie.raycasting.graphics.SpriteParticle;
 import com.jamie.raycasting.graphics.Texture;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class BloodParticle extends Particle
 {
-    public BloodParticle() {
-        super();
-
-        Render[] ts = {
+    protected Render[] getTexOptions() {
+        return new Render[] {
                 Texture.blood0,
                 Texture.blood1,
                 Texture.blood2,
-                Texture.blood3,
+                Texture.blood3
         };
+    }
 
-        List<Sprite> set = new ArrayList<Sprite>();
-        for (int i = 0; i < 2; i++) {
-            SpriteParticle particle = new SpriteParticle(ts[random.nextInt(ts.length)], 0.5, 1);
-            particle.setOffset( 0, 0.5, 0);
-
-            set.add(particle);
-        }
-        setSpriteParticles(set);
+    public BloodParticle(int count) {
+        super(count, 0.5, 1, 0.5);
     }
 }

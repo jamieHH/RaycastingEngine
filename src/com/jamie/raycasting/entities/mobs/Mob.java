@@ -84,7 +84,7 @@ public abstract class Mob extends Entity
     protected abstract Sprite getHurtSprite();
     protected abstract Sprite getDeathSprite();
     protected Particle getHurtParticle() {
-        return new BloodParticle();
+        return new BloodParticle(2);
     }
 
     //Ai
@@ -272,7 +272,7 @@ public abstract class Mob extends Entity
             if (!isDead) {
                 dieTime--;
                 if (dieTime == 0) {
-                    PoofParticle p = new PoofParticle();
+                    PoofParticle p = new PoofParticle(8);
                     level.addEntity(p, posX, posZ);
 
                     isDead = true;
@@ -506,7 +506,7 @@ public abstract class Mob extends Entity
     public void heal(int magnitude) {
         if (magnitude > 0 && !isDieing) {
             runSpriteSet("heal");
-            HealthParticle p = new HealthParticle();
+            HealthParticle p = new HealthParticle(8);
             level.addEntity(p, posX, posZ);
 
             if (health + magnitude > maxHealth) {

@@ -39,7 +39,7 @@ public class Guardian extends Mob
     }
 
     protected Particle getHurtParticle() {
-        return new StoneParticle();
+        return new StoneParticle(4);
     }
 
     protected InfluenceKeyframe getIdleInfluence() {

@@ -38,7 +38,7 @@ public class FireEffect extends EnvironmentalEffect
             }
         }
 
-        EmberParticle p = new EmberParticle();
+        EmberParticle p = new EmberParticle(2);
         level.addEntity(p, posX, posZ);
     }
 }

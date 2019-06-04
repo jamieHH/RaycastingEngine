@@ -26,7 +26,7 @@ public class FountainBlock extends FunctionBlock
         } else {
 			i = 5;
 
-			DropParticle p = new DropParticle();
+			DropParticle p = new DropParticle(1);
 			level.addEntity(p, gridX + 0.5, gridZ + 0.5);
 
 		}

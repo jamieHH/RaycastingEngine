@@ -1,31 +1,18 @@
 package com.jamie.raycasting.entities.particles;
 
 import com.jamie.raycasting.graphics.Render;
-import com.jamie.raycasting.graphics.Sprite;
-import com.jamie.raycasting.graphics.SpriteParticle;
 import com.jamie.raycasting.graphics.Texture;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class DropParticle extends Particle
 {
-    public DropParticle() {
-        super();
-
-        life = 20;
-
-        Render[] ts = {
+    protected Render[] getTexOptions() {
+        return new Render[] {
                 Texture.drop
         };
+    }
 
-        List<Sprite> set = new ArrayList<Sprite>();
-        for (int i = 0; i < 2; i++) {
-            SpriteParticle particle = new SpriteParticle(ts[random.nextInt(ts.length)], 0.25, 1);
-            particle.setOffset(0, 1, 0);
-
-            set.add(particle);
-        }
-        setSpriteParticles(set);
+    public DropParticle(int count) {
+        super(count, 0.25, 1, 1);
+        life = 20;
     }
 }
