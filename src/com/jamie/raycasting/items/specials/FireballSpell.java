@@ -8,7 +8,7 @@ public class FireballSpell extends Spell
         name = "Fireball Spell";
         type = "spell";
 
-        useWait = 120;
+        useWait = 1;
         canStrike = false;
     }
 

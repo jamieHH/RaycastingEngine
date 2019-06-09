@@ -430,8 +430,10 @@ public abstract class Mob extends Entity
     public void setRightHandItem(String itemName) {
         for (int i = 0; i < inventory.getItems().size(); i++) {
             if (inventory.getItem(i).name.equals(itemName)) {
-                setRightHandItemIndex(i);
-                return;
+                if (getRightHandItem() != inventory.getItem(i)) {
+                    setRightHandItemIndex(i);
+                    return;
+                }
             }
         }
     }
