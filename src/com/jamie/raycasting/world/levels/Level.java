@@ -28,7 +28,7 @@ public abstract class Level
 
     // static blocks. TODO: check if is performance optimal.
     // Add these to array and loop through array for ticks
-    protected static final Block Block = new Block();
+    protected static final Block NullBlock = new NullBlock();
     protected static final AirBlock AirBlock = new AirBlock();
     protected static final TorchBlock TorchBlock = new TorchBlock();
     protected static final WallBlock WallBlock = new WallBlock();
@@ -115,7 +115,7 @@ public abstract class Level
     }
 
     public void tick() {
-        Block.tick();
+        NullBlock.tick();
         AirBlock.tick();
         TorchBlock.tick();
         WallBlock.tick();
@@ -220,7 +220,7 @@ public abstract class Level
 
     public Block getBlock(int x, int z) {
         if (x < 0 || z < 0 || x >= sizeX || z >= sizeZ) {
-            return Block;
+            return NullBlock;
         }
 
         return blocks[x + z * sizeX];
@@ -251,7 +251,7 @@ public abstract class Level
     }
 
     private Block getBlockByColour(int col) {
-        if (col == 0x000000) return Block;
+        if (col == 0x000000) return NullBlock;
         if (col == 0xFFFFFF) return WallBlock;
         if (col == 0x7C5F36) return TorchBlock;
         if (col == 0x808080) return PillarBlock;

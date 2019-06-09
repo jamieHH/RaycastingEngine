@@ -6,7 +6,7 @@ import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.SpriteSet;
 import com.jamie.raycasting.graphics.Texture;
 
-public class Block
+public abstract class Block
 {
 	public boolean isOpaque = false;
 	public boolean isSolid = false;
