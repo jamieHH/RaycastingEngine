@@ -1,5 +1,6 @@
 package com.jamie.raycasting.graphics;
 
+import com.jamie.jamapp.Render;
 import com.jamie.raycasting.entities.Entity;
 import com.jamie.raycasting.entities.particles.Particle;
 import com.jamie.raycasting.world.blocks.*;
@@ -22,14 +23,14 @@ public class Render3D extends Render
     private Level level;
 
 
-	protected Render3D(int width, int height) {
+	public Render3D(int width, int height) {
 		super(width, height);
 		zBuffer = new double[width * height];
 		zBufferWall = new double[width];
         fov = height;
 	}
 
-	protected void render(Level level, double x, double y, double z, double rotation, int viewDist) {
+	public void render(Level level, double x, double y, double z, double rotation, int viewDist) {
 		this.level = level;
 		px = x;
 		py = y;

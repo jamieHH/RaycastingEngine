@@ -1,9 +1,9 @@
 package com.jamie.raycasting.items.weapons;
 
 import com.jamie.raycasting.entities.projectiles.ArrowProjectile;
-import com.jamie.raycasting.graphics.Render;
+import com.jamie.jamapp.Render;
 import com.jamie.raycasting.graphics.Sprite;
-import com.jamie.raycasting.graphics.Texture;
+import com.jamie.jamapp.Texture;
 
 public class XbowWeapon extends Weapon
 {

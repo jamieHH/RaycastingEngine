@@ -1,6 +1,6 @@
 package com.jamie.raycasting.graphics.overlays;
 
-import com.jamie.raycasting.graphics.Render;
+import com.jamie.jamapp.Render;
 
 public class StatBarOverlay extends Overlay
 {

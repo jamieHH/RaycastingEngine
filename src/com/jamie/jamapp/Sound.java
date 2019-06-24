@@ -1,4 +1,4 @@
-package com.jamie.raycasting.app;
+package com.jamie.jamapp;
 
 import javax.sound.sampled.*;
 import java.io.File;

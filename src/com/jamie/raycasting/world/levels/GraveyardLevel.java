@@ -2,7 +2,7 @@ package com.jamie.raycasting.world.levels;
 
 import com.jamie.raycasting.entities.Drop;
 import com.jamie.raycasting.entities.mobs.Mob;
-import com.jamie.raycasting.graphics.Texture;
+import com.jamie.jamapp.Texture;
 import com.jamie.raycasting.items.MiscItem;
 
 public class GraveyardLevel extends Level

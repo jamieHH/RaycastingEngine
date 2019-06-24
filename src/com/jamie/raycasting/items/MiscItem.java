@@ -1,6 +1,6 @@
 package com.jamie.raycasting.items;
 
-import com.jamie.raycasting.graphics.Render;
+import com.jamie.jamapp.Render;
 
 public class MiscItem extends Item
 {

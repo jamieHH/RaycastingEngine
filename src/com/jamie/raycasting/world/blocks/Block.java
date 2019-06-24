@@ -1,10 +1,10 @@
 package com.jamie.raycasting.world.blocks;
 
 import com.jamie.raycasting.entities.mobs.Mob;
-import com.jamie.raycasting.graphics.Render;
+import com.jamie.jamapp.Render;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.SpriteSet;
-import com.jamie.raycasting.graphics.Texture;
+import com.jamie.jamapp.Texture;
 
 public abstract class Block
 {

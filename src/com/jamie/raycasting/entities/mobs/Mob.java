@@ -1,6 +1,6 @@
 package com.jamie.raycasting.entities.mobs;
 
-import com.jamie.raycasting.app.Sound;
+import com.jamie.jamapp.Sound;
 import com.jamie.raycasting.entities.Entity;
 import com.jamie.raycasting.entities.mobs.mobEffects.MobEffect;
 import com.jamie.raycasting.entities.particles.BloodParticle;

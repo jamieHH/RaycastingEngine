@@ -1,5 +1,7 @@
 package com.jamie.raycasting.graphics;
 
+import com.jamie.jamapp.Render;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

@@ -1,7 +1,7 @@
 package com.jamie.raycasting.entities.particles;
 
-import com.jamie.raycasting.graphics.Render;
-import com.jamie.raycasting.graphics.Texture;
+import com.jamie.jamapp.Render;
+import com.jamie.jamapp.Texture;
 
 public class HealthParticle extends Particle
 {

@@ -1,4 +1,4 @@
-package com.jamie.raycasting.app;
+package com.jamie.jamapp;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -7,7 +7,7 @@ import java.awt.image.DataBufferInt;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-import com.jamie.raycasting.graphics.Screen;
+import com.jamie.raycasting.app.Game;
 import com.jamie.raycasting.input.UserInputHandler;
 
 import javax.imageio.ImageIO;
@@ -182,11 +182,6 @@ public class App extends Canvas implements Runnable
 		g.setColor(Color.YELLOW);
 		g.drawString("UPS: " + ups, 0, fontSize);
 		g.drawString("FPS: " + fps , 0, (fontSize * 2));
-//		g.drawString("Clip:" + ((game.player.clipping) ? "YES" : "NO"), 0, (height * scale) - (fontSize * 2) - 4);
-//		g.drawString("X:" + game.player.posX, 0, (height * scale) - fontSize - 4);
-//		g.drawString("Z:" + game.player.posZ, 0, (height * scale) - 4);
-//		g.drawString("Y:" + game.player.camY, 0, (height * scale) - 4);
-//		g.drawString("R:" + game.player.rotation, 0, (height * scale) - 4);
 		g.dispose();
 		bs.show();
 	}

@@ -3,9 +3,9 @@ package com.jamie.raycasting.world.blocks;
 import com.jamie.raycasting.entities.Entity;
 import com.jamie.raycasting.entities.environmentalEffects.EnvironmentalEffect;
 import com.jamie.raycasting.entities.particles.Particle;
-import com.jamie.raycasting.graphics.Render;
+import com.jamie.jamapp.Render;
 import com.jamie.raycasting.graphics.Sprite;
-import com.jamie.raycasting.graphics.Texture;
+import com.jamie.jamapp.Texture;
 
 import java.util.List;
 

@@ -1,7 +1,7 @@
 package com.jamie.raycasting.graphics.overlays;
 
 import com.jamie.raycasting.app.Game;
-import com.jamie.raycasting.graphics.Render;
+import com.jamie.jamapp.Render;
 
 public abstract class Overlay extends Render
 {

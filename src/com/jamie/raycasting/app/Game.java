@@ -1,5 +1,8 @@
 package com.jamie.raycasting.app;
 
+import com.jamie.jamapp.App;
+import com.jamie.jamapp.GameInterface;
+import com.jamie.jamapp.Sound;
 import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.entities.mobs.Player;
 import com.jamie.raycasting.graphics.overlays.InventoryOverlay;
@@ -10,7 +13,7 @@ import com.jamie.raycasting.input.InputHandler;
 import com.jamie.raycasting.input.UserInputHandler;
 import com.jamie.raycasting.world.World;
 
-public class Game
+public class Game extends GameInterface
 {
 	public World world;
 	private Mob player;

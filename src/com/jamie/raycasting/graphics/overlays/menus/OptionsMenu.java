@@ -1,8 +1,8 @@
 package com.jamie.raycasting.graphics.overlays.menus;
 
-import com.jamie.raycasting.app.App;
+import com.jamie.jamapp.App;
 import com.jamie.raycasting.app.Game;
-import com.jamie.raycasting.app.Sound;
+import com.jamie.jamapp.Sound;
 
 public class OptionsMenu extends Menu
 {

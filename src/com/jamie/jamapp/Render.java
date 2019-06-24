@@ -1,4 +1,4 @@
-package com.jamie.raycasting.graphics;
+package com.jamie.jamapp;
 
 public class Render
 {

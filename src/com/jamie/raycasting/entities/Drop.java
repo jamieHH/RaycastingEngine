@@ -1,7 +1,7 @@
 package com.jamie.raycasting.entities;
 
 import com.jamie.raycasting.graphics.Sprite;
-import com.jamie.raycasting.graphics.Texture;
+import com.jamie.jamapp.Texture;
 import com.jamie.raycasting.items.Item;
 
 public class Drop extends Entity

@@ -1,5 +1,7 @@
 package com.jamie.raycasting.graphics;
 
+import com.jamie.jamapp.Render;
+
 public class SpriteParticle extends Sprite
 {
     private double moveX = 0;

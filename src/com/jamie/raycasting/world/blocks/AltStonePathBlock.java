@@ -1,6 +1,6 @@
 package com.jamie.raycasting.world.blocks;
 
-import com.jamie.raycasting.graphics.Texture;
+import com.jamie.jamapp.Texture;
 
 public class AltStonePathBlock extends Block
 {

@@ -1,7 +1,8 @@
-package com.jamie.raycasting.graphics;
+package com.jamie.jamapp;
 
 import com.jamie.raycasting.app.Game;
 import com.jamie.raycasting.entities.mobs.Mob;
+import com.jamie.raycasting.graphics.Render3D;
 import com.jamie.raycasting.graphics.overlays.HotkeyOverlay;
 import com.jamie.raycasting.graphics.overlays.HudBarOverlay;
 import com.jamie.raycasting.graphics.overlays.StatBarOverlay;

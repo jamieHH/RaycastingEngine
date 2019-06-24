@@ -1,7 +1,7 @@
 package com.jamie.raycasting.world.blocks;
 
 import com.jamie.raycasting.graphics.Sprite;
-import com.jamie.raycasting.graphics.Texture;
+import com.jamie.jamapp.Texture;
 
 public class LadderBlock extends LevelPortalBlock
 {

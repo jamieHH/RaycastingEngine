@@ -1,7 +1,7 @@
 package com.jamie.raycasting.entities.particles;
 
 import com.jamie.raycasting.entities.Entity;
-import com.jamie.raycasting.graphics.Render;
+import com.jamie.jamapp.Render;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.SpriteParticle;
 
