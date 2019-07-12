@@ -154,6 +154,7 @@ public class App extends Canvas implements Runnable
 	private void tick() {
 		input.tick();
 		game.tick();
+		keyBinder.tick();
 
         if (setNewOptions) {
             setNewOptions = false;

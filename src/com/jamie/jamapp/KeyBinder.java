@@ -20,76 +20,135 @@ public class KeyBinder
     private static final String HOTKEY3 = "3";
     private static final String PAUSE = "ESCAPE";
 
+    private static final String RANDOMLEVEL = "RANDOMLEVEL";
+    private static final String LOADLEVEL = "LOADLEVEL";
+    private static final String NEXTMOB = "NEXTMOB";
+
+    public boolean up;
+    public boolean down;
+    public boolean left;
+    public boolean right;
+    public boolean rotLeft;
+    public boolean rotright;
+    public boolean action;
+    public boolean inventory;
+    public boolean hotkey1;
+    public boolean hotkey2;
+    public boolean hotkey3;
+    public boolean pause;
+
+    public boolean randomLevel;
+    public boolean loadLevel;
+    public boolean nextMob;
+
+
+
+
 
     public KeyBinder() {
         System.out.println("key binder initialised");
 
         setKeyBinding(UP, new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Pressed up!");
+                up = true;
             }
         });
         setKeyBinding(DOWN, new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Pressed down!");
+                down = true;
             }
         });
         setKeyBinding(LEFT, new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Pressed left!");
+                left = true;
             }
         });
         setKeyBinding(RIGHT, new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Pressed right!");
+                right = true;
             }
         });
         setKeyBinding(ROTLEFT, new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Pressed rot left!");
+                rotLeft = true;
             }
         });
         setKeyBinding(ROTRIGHT, new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Pressed rot right!");
+                rotright = true;
             }
         });
         setKeyBinding(ACTION, new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Pressed action!");
+                action = true;
             }
         });
         setKeyBinding(INVENTORY, new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Pressed inventory!");
+                inventory = true;
             }
         });
         setKeyBinding(HOTKEY1, new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Pressed hotkey 1!");
+                hotkey1 = true;
             }
         });
         setKeyBinding(HOTKEY2, new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Pressed hotkey 2!");
+                hotkey2 = true;
             }
         });
         setKeyBinding(HOTKEY3, new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Pressed hotkey 3!");
+                hotkey3 = true;
             }
         });
         setKeyBinding(PAUSE, new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Pressed pause!");
+                pause = true;
             }
         });
 
-
+        setKeyBinding(RANDOMLEVEL, new AbstractAction() {
+            public void actionPerformed(ActionEvent e) {
+                randomLevel = true;
+            }
+        });
+        setKeyBinding(LOADLEVEL, new AbstractAction() {
+            public void actionPerformed(ActionEvent e) {
+                loadLevel = true;
+            }
+        });
+        setKeyBinding(NEXTMOB, new AbstractAction() {
+            public void actionPerformed(ActionEvent e) {
+                nextMob = true;
+            }
+        });
     }
 
     private void setKeyBinding(String keyString, AbstractAction action) {
         App.panel.getInputMap(IFW).put(KeyStroke.getKeyStroke(keyString), keyString);
         App.panel.getActionMap().put(keyString, action);
+    }
+
+    public void tick() {
+//        up = false;
+//        down = false;
+//        left = false;
+//        right = false;
+//        rotLeft = false;
+//        rotright = false;
+//        action = false;
+//        inventory = false;
+//        hotkey1 = false;
+//        hotkey2 = false;
+//        hotkey3 = false;
+//        pause = false;
+//
+//        randomLevel = false;
+//        loadLevel = false;
+//        nextMob = false;
+
+        System.out.println(up);
     }
 }
