@@ -26,7 +26,6 @@ public class App extends Canvas implements Runnable
 	public static boolean setNewOptions = false;
 	public static int newWidth, newHeight, newScale;
 
-    public static JPanel panel;
     public static JFrame frame;
     private Thread thread;
     private Screen screen;
@@ -34,7 +33,6 @@ public class App extends Canvas implements Runnable
     private BufferedImage img;
     private Boolean running = false;
     private final UserInputHandler input;
-    private KeyBinder keyBinder;
     private int[] pixels;
     private int ups, fps;
 
@@ -46,7 +44,7 @@ public class App extends Canvas implements Runnable
         setCanvas();
 
 		input = new UserInputHandler();
-        game = new Game(input);
+		game = new Game(input);
 
 		screen = new Screen(width, height, game);
 		img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
@@ -61,7 +59,7 @@ public class App extends Canvas implements Runnable
 
     public static void main(String args[]) {
         App app = new App();
-        panel = newPanel(app);
+        frame = newFrame(app);
         app.start();
     }
 
@@ -91,8 +89,6 @@ public class App extends Canvas implements Runnable
             thread = new Thread(this);
             thread.start();
         }
-
-        keyBinder = new KeyBinder();
 	}
 
 	public void stop() {
@@ -192,11 +188,10 @@ public class App extends Canvas implements Runnable
 
 	private void refreshFrame(App app) {
 		frame.dispose();
-		panel = newPanel(app);
+		frame = newFrame(app);
 	}
 
-	private static JPanel newPanel(App app) {
-	    JPanel p = new JPanel();
+	private static JFrame newFrame(App app) {
         JFrame f = new JFrame();
         f.add(app);
         f.setIconImage(getAppIcon());
@@ -206,8 +201,7 @@ public class App extends Canvas implements Runnable
         f.pack();
         f.setLocationRelativeTo(null);
         f.setVisible(true);
-        f.add(p);
-		return p;
+		return f;
 	}
 
 	private static Image getAppIcon() {
