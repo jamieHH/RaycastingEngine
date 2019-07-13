@@ -1,14 +1,16 @@
-package com.jamie.jamapp;
+package com.jamie.raycasting.graphics;
 
+import com.jamie.jamapp.Display;
+import com.jamie.jamapp.Render;
+import com.jamie.jamapp.Texture;
 import com.jamie.raycasting.app.Game;
 import com.jamie.raycasting.entities.mobs.Mob;
-import com.jamie.raycasting.graphics.Render3D;
 import com.jamie.raycasting.graphics.overlays.HotkeyOverlay;
 import com.jamie.raycasting.graphics.overlays.HudBarOverlay;
 import com.jamie.raycasting.graphics.overlays.StatBarOverlay;
 import com.jamie.raycasting.graphics.overlays.ViewPunchOverlay;
 
-public class Screen extends Render
+public class Screen extends Display
 {
     private Mob p;
 
@@ -20,7 +22,7 @@ public class Screen extends Render
 	private StatBarOverlay healthBar;
 
 	public Screen(int width, int height, Game game) {
-		super(width, height);
+		super(width, height, game);
 		p = game.getPlayer();
 
         // HUD
@@ -109,5 +111,6 @@ public class Screen extends Render
             int cornerY = (height / 2) - (game.activeOverlay.height / 2);
             draw(game.activeOverlay, cornerX, cornerY);
         }
+
     }
 }

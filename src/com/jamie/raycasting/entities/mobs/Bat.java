@@ -3,7 +3,7 @@ package com.jamie.raycasting.entities.mobs;
 import com.jamie.jamapp.Render;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.jamapp.Texture;
-import com.jamie.raycasting.input.InputHandler;
+import com.jamie.jamapp.InputHandler;
 
 public class Bat extends Mob
 {

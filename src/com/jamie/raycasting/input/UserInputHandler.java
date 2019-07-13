@@ -1,14 +1,13 @@
 package com.jamie.raycasting.input;
 
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import com.jamie.jamapp.InputHandler;
 
-public class UserInputHandler extends InputHandler implements KeyListener, FocusListener
+import java.awt.event.FocusEvent;
+import java.awt.event.KeyEvent;
+
+public class UserInputHandler extends InputHandler
 {
 	private final boolean[] key = new boolean[68836];
-    public boolean randomLevel, loadLevel, nextMob, inventory, pause;
 
 
     public UserInputHandler() {

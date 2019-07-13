@@ -8,6 +8,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 import com.jamie.raycasting.app.Game;
+import com.jamie.raycasting.graphics.Screen;
 import com.jamie.raycasting.input.UserInputHandler;
 
 import javax.imageio.ImageIO;
@@ -28,11 +29,11 @@ public class App extends Canvas implements Runnable
 
     public static JFrame frame;
     private Thread thread;
-    private Screen screen;
+    private Screen display;
     private Game game;
     private BufferedImage img;
     private Boolean running = false;
-    private final UserInputHandler input;
+    private final InputHandler input;
     private int[] pixels;
     private int ups, fps;
 
@@ -46,7 +47,7 @@ public class App extends Canvas implements Runnable
 		input = new UserInputHandler();
 		game = new Game(input);
 
-		screen = new Screen(width, height, game);
+		display = new Screen(width, height, game);
 		img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		pixels = ((DataBufferInt)img.getRaster().getDataBuffer()).getData();
 
@@ -78,7 +79,7 @@ public class App extends Canvas implements Runnable
         refreshFrame(this);
         requestFocus();
 
-        screen = new Screen(width, height, game);
+        display = new Screen(width, height, game);
         img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
         pixels = ((DataBufferInt) img.getRaster().getDataBuffer()).getData();
     }
@@ -172,8 +173,8 @@ public class App extends Canvas implements Runnable
 			return;
 		}
 
-        screen.render(game);
-        System.arraycopy(screen.pixels, 0, pixels, 0, width * height);
+        display.render(game);
+        System.arraycopy(display.pixels, 0, pixels, 0, width * height);
 
         int fontSize = 16;
         Graphics g = bs.getDrawGraphics();

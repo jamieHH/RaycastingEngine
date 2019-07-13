@@ -9,15 +9,14 @@ import com.jamie.raycasting.graphics.overlays.InventoryOverlay;
 import com.jamie.raycasting.graphics.overlays.Overlay;
 import com.jamie.raycasting.graphics.overlays.menus.*;
 import com.jamie.raycasting.input.ArtificialInputHandler;
-import com.jamie.raycasting.input.InputHandler;
-import com.jamie.raycasting.input.UserInputHandler;
+import com.jamie.jamapp.InputHandler;
 import com.jamie.raycasting.world.World;
 
 public class Game extends GameInterface
 {
 	public World world;
 	private Mob player;
-	public UserInputHandler userInput;
+	public InputHandler userInput;
 	private InputHandler temporaryInput = new ArtificialInputHandler();
 
 	public final Menu mainMenu = new MainMenu(App.width, (int) (App.height * 0.6));
@@ -30,7 +29,7 @@ public class Game extends GameInterface
 	public Overlay activeOverlay;
 	
 	
-	public Game(UserInputHandler input) {
+	public Game(InputHandler input) {
 		userInput = input;
 
         setActiveOverlay(mainMenu);
@@ -54,12 +53,6 @@ public class Game extends GameInterface
 				if (userInput.nextMob) {
 					userInput.setInputState("nextMob", false);
 					switchPerspective();
-//					possessNextMob();
-//					if (player.viewDist < 128) {
-//						player.viewDist *= 2;
-//					} else {
-//						player.viewDist = 4;
-//					}
 				}
 
 				if (!getPlayer().isDead) {

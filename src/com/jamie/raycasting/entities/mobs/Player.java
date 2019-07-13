@@ -3,7 +3,7 @@ package com.jamie.raycasting.entities.mobs;
 import com.jamie.jamapp.Sound;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.jamapp.Texture;
-import com.jamie.raycasting.input.InputHandler;
+import com.jamie.jamapp.InputHandler;
 import com.jamie.raycasting.items.MiscItem;
 import com.jamie.raycasting.items.consumables.*;
 import com.jamie.raycasting.items.weapons.*;

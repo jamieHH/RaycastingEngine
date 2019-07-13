@@ -5,7 +5,7 @@ import com.jamie.raycasting.entities.particles.StoneParticle;
 import com.jamie.jamapp.Render;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.jamapp.Texture;
-import com.jamie.raycasting.input.InputHandler;
+import com.jamie.jamapp.InputHandler;
 
 public class Guardian extends Mob
 {
