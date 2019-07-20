@@ -88,15 +88,6 @@ public class App extends Canvas implements Runnable
     }
 
 	public void start() {
-
-
-		String[] string = new String[] {"name", "health"};
-		String[] data = XmlLoader.getKeys("res/data/entities/mobs/player.xml", string);
-		for (int i = 0; i < data.length; i++) {
-			System.out.println(data[i]);
-		}
-
-
 		if (!running) {
             running = true;
             thread = new Thread(this);

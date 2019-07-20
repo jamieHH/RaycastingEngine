@@ -36,7 +36,7 @@ public class World
             name = name.substring(0, 1).toUpperCase() + name.substring(1);
             return (Level) Class.forName("com.jamie.raycasting.world.levels." + name + "Level").getDeclaredConstructor().newInstance();
         } catch (Exception e) {
-            System.out.println("Failed to get level by name: " + name + "!");
+            System.out.println("Failed to get level by name: " + name);
             throw new RuntimeException(e);
         }
     }
