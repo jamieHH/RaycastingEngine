@@ -18,7 +18,7 @@ public class App extends Canvas implements Runnable
 {
 	private static final long serialVersionUID = 1L;
 
-	public static final String TITLE = "raycasting_engine_pre_0.98";
+	private static final String TITLE = "raycasting_engine_pre_0.98";
 	public static int width = 200;
 	public static int height = 150;
 	public static int scale = 4;
@@ -27,18 +27,19 @@ public class App extends Canvas implements Runnable
 	public static boolean setNewOptions = false;
 	public static int newWidth, newHeight, newScale;
 
-    public static JFrame frame;
+    private static JFrame frame;
     private Thread thread;
-    private Screen display;
-    private Game game;
     private BufferedImage img;
     private Boolean running = false;
-    private final InputHandler input;
     private int[] pixels;
     private int ups, fps;
 
     private boolean hadFocus;
-	private Cursor emptyCursor, defaultCursor;
+    private Cursor emptyCursor, defaultCursor;
+
+    private static Game game;
+    private static Screen display;
+    private static InputHandler input;
 
 
 	public App() {
@@ -76,7 +77,8 @@ public class App extends Canvas implements Runnable
         App.height = height;
         setCanvas();
 
-        refreshFrame(this);
+        frame.dispose();
+        frame = newFrame(this);
         requestFocus();
 
         display = new Screen(width, height, game);
@@ -176,20 +178,17 @@ public class App extends Canvas implements Runnable
         display.render(game);
         System.arraycopy(display.pixels, 0, pixels, 0, width * height);
 
-        int fontSize = 16;
         Graphics g = bs.getDrawGraphics();
-        g.drawImage(img, 0, 0, width * scale, height * scale, null);
+		g.drawImage(img, 0, 0, width * scale, height * scale, null);
+
+		int fontSize = 16;
 		g.setFont(new Font("Verdana", Font.PLAIN, fontSize));
 		g.setColor(Color.YELLOW);
 		g.drawString("UPS: " + ups, 0, fontSize);
 		g.drawString("FPS: " + fps , 0, (fontSize * 2));
+
 		g.dispose();
 		bs.show();
-	}
-
-	private void refreshFrame(App app) {
-		frame.dispose();
-		frame = newFrame(app);
 	}
 
 	private static JFrame newFrame(App app) {

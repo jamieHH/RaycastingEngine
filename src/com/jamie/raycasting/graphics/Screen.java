@@ -111,6 +111,5 @@ public class Screen extends Display
             int cornerY = (height / 2) - (game.activeOverlay.height / 2);
             draw(game.activeOverlay, cornerX, cornerY);
         }
-
     }
 }

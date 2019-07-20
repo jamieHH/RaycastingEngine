@@ -5,8 +5,8 @@ public class Display extends Render
 	public Display(int width, int height, GameInterface game) {
 		super(width, height);
     }
-	
-	public void render(GameInterface game) {
+
+    public void render(GameInterface game) { //TODO: find a way to make this abstract
 
     }
 }
