@@ -1,7 +1,7 @@
 package com.jamie.raycasting.graphics.overlays.menus;
 
+import com.jamie.raycasting.app.Sound;
 import com.jamie.raycasting.app.Game;
-import com.jamie.jamapp.Sound;
 
 public class LoadMenu extends Menu
 {

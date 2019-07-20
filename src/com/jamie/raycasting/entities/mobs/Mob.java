@@ -1,6 +1,7 @@
 package com.jamie.raycasting.entities.mobs;
 
-import com.jamie.jamapp.Sound;
+import com.jamie.jamapp.*;
+import com.jamie.raycasting.app.Sound;
 import com.jamie.raycasting.entities.Entity;
 import com.jamie.raycasting.entities.mobs.mobEffects.MobEffect;
 import com.jamie.raycasting.entities.particles.BloodParticle;
@@ -8,7 +9,7 @@ import com.jamie.raycasting.entities.particles.HealthParticle;
 import com.jamie.raycasting.entities.particles.Particle;
 import com.jamie.raycasting.entities.particles.PoofParticle;
 import com.jamie.raycasting.graphics.Sprite;
-import com.jamie.jamapp.InputHandler;
+import com.jamie.raycasting.graphics.Texture;
 import com.jamie.raycasting.input.UserInputHandler;
 import com.jamie.raycasting.items.Inventory;
 import com.jamie.raycasting.items.Item;
@@ -39,8 +40,8 @@ public abstract class Mob extends Entity
     protected String enemyFaction;
     protected Mob target;
 
-    protected Sound deathSound = Sound.die;
-    protected Sound hurtSound = Sound.hit;
+    protected Sfx deathSound = Sound.die;
+    protected Sfx hurtSound = Sound.hit;
 
     // movement
 	private double rotationMove;
