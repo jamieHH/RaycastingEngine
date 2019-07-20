@@ -1,7 +1,7 @@
 package com.jamie.raycasting.world.blocks;
 
 import com.jamie.raycasting.entities.mobs.Mob;
-import com.jamie.jamapp.Texture;
+import com.jamie.raycasting.graphics.Texture;
 
 public class BridgeBlock extends TriggerableBlock
 {

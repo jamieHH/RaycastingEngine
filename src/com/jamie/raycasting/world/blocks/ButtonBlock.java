@@ -2,7 +2,7 @@ package com.jamie.raycasting.world.blocks;
 
 import com.jamie.jamapp.Sound;
 import com.jamie.raycasting.entities.mobs.Mob;
-import com.jamie.jamapp.Texture;
+import com.jamie.raycasting.graphics.Texture;
 
 public class ButtonBlock extends FunctionBlock
 {

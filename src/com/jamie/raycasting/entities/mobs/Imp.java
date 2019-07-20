@@ -2,7 +2,7 @@ package com.jamie.raycasting.entities.mobs;
 
 import com.jamie.jamapp.Render;
 import com.jamie.raycasting.graphics.Sprite;
-import com.jamie.jamapp.Texture;
+import com.jamie.raycasting.graphics.Texture;
 import com.jamie.jamapp.InputHandler;
 import com.jamie.raycasting.items.specials.FireballSpell;
 import com.jamie.raycasting.items.specials.HealingSpell;

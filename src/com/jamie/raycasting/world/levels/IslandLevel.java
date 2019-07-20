@@ -3,7 +3,7 @@ package com.jamie.raycasting.world.levels;
 import com.jamie.raycasting.entities.environmentalEffects.EnvironmentalEffect;
 import com.jamie.raycasting.entities.environmentalEffects.FireEffect;
 import com.jamie.raycasting.entities.mobs.Mob;
-import com.jamie.jamapp.Texture;
+import com.jamie.raycasting.graphics.Texture;
 import com.jamie.raycasting.world.blocks.TeleporterBlock;
 
 public class IslandLevel extends Level

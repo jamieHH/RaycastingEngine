@@ -2,7 +2,6 @@ package com.jamie.raycasting.graphics;
 
 import com.jamie.jamapp.Display;
 import com.jamie.jamapp.Render;
-import com.jamie.jamapp.Texture;
 import com.jamie.raycasting.app.Game;
 import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.graphics.overlays.HotkeyOverlay;

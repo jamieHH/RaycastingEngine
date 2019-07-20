@@ -5,7 +5,7 @@ import com.jamie.raycasting.entities.environmentalEffects.EnvironmentalEffect;
 import com.jamie.raycasting.entities.particles.Particle;
 import com.jamie.jamapp.Render;
 import com.jamie.raycasting.graphics.Sprite;
-import com.jamie.jamapp.Texture;
+import com.jamie.raycasting.graphics.Texture;
 
 import java.util.List;
 

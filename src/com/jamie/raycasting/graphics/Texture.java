@@ -1,4 +1,7 @@
-package com.jamie.jamapp;
+package com.jamie.raycasting.graphics;
+
+import com.jamie.jamapp.PngLoader;
+import com.jamie.jamapp.Render;
 
 public class Texture
 {

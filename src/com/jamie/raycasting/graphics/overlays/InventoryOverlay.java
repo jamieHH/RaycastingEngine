@@ -4,7 +4,7 @@ import com.jamie.raycasting.app.Game;
 import com.jamie.jamapp.Sound;
 import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.jamapp.Render;
-import com.jamie.jamapp.Texture;
+import com.jamie.raycasting.graphics.Texture;
 import com.jamie.raycasting.items.Inventory;
 import com.jamie.raycasting.items.Item;
 

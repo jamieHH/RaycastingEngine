@@ -1,5 +1,7 @@
 package com.jamie.jamapp;
 
+import com.jamie.raycasting.graphics.Texture;
+
 public class Render
 {
 	public int width;

@@ -5,7 +5,7 @@ import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.entities.particles.WoodParticle;
 import com.jamie.jamapp.Render;
 import com.jamie.raycasting.graphics.Sprite;
-import com.jamie.jamapp.Texture;
+import com.jamie.raycasting.graphics.Texture;
 import com.jamie.raycasting.items.weapons.AxeWeapon;
 
 public class BoardsBlock extends TriggerableBlock

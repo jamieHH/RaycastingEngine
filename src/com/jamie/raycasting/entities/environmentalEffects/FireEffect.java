@@ -5,7 +5,7 @@ import com.jamie.raycasting.entities.mobs.mobEffects.FireDamageEffect;
 import com.jamie.raycasting.entities.particles.EmberParticle;
 import com.jamie.jamapp.Render;
 import com.jamie.raycasting.graphics.Sprite;
-import com.jamie.jamapp.Texture;
+import com.jamie.raycasting.graphics.Texture;
 import com.jamie.raycasting.world.levels.Level;
 
 import java.util.List;

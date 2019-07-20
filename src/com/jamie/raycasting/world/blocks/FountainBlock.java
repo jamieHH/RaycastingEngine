@@ -3,7 +3,7 @@ package com.jamie.raycasting.world.blocks;
 import com.jamie.raycasting.entities.particles.DropParticle;
 import com.jamie.jamapp.Render;
 import com.jamie.raycasting.graphics.Sprite;
-import com.jamie.jamapp.Texture;
+import com.jamie.raycasting.graphics.Texture;
 
 public class FountainBlock extends FunctionBlock
 {

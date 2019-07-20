@@ -4,7 +4,7 @@ import com.jamie.raycasting.entities.particles.Particle;
 import com.jamie.raycasting.entities.particles.PoofParticle;
 import com.jamie.jamapp.Render;
 import com.jamie.raycasting.graphics.Sprite;
-import com.jamie.jamapp.Texture;
+import com.jamie.raycasting.graphics.Texture;
 import com.jamie.jamapp.InputHandler;
 
 public class Spirit extends Mob

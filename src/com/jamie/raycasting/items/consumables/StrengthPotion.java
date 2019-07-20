@@ -1,7 +1,7 @@
 package com.jamie.raycasting.items.consumables;
 
 import com.jamie.raycasting.entities.mobs.mobEffects.ModDamageEffect;
-import com.jamie.jamapp.Texture;
+import com.jamie.raycasting.graphics.Texture;
 
 public class StrengthPotion extends Consumable
 {

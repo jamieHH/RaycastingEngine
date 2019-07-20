@@ -1,7 +1,7 @@
 package com.jamie.raycasting.world.blocks;
 
 import com.jamie.jamapp.Render;
-import com.jamie.jamapp.Texture;
+import com.jamie.raycasting.graphics.Texture;
 
 import java.util.ArrayList;
 

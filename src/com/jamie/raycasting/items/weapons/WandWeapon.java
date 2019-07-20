@@ -3,7 +3,7 @@ package com.jamie.raycasting.items.weapons;
 import com.jamie.raycasting.entities.projectiles.FireballProjectile;
 import com.jamie.jamapp.Render;
 import com.jamie.raycasting.graphics.Sprite;
-import com.jamie.jamapp.Texture;
+import com.jamie.raycasting.graphics.Texture;
 
 public class WandWeapon extends Weapon
 {

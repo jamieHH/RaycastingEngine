@@ -3,7 +3,7 @@ package com.jamie.raycasting.entities.projectiles;
 import com.jamie.raycasting.entities.environmentalEffects.ExplosionEffect;
 import com.jamie.jamapp.Render;
 import com.jamie.raycasting.graphics.Sprite;
-import com.jamie.jamapp.Texture;
+import com.jamie.raycasting.graphics.Texture;
 
 public class FireballProjectile extends Projectile
 {

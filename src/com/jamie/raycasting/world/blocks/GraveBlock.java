@@ -2,7 +2,7 @@ package com.jamie.raycasting.world.blocks;
 
 import com.jamie.jamapp.Render;
 import com.jamie.raycasting.graphics.Sprite;
-import com.jamie.jamapp.Texture;
+import com.jamie.raycasting.graphics.Texture;
 
 public class GraveBlock extends Block
 {

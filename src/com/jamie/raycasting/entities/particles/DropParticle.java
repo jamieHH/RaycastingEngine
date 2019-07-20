@@ -1,7 +1,7 @@
 package com.jamie.raycasting.entities.particles;
 
 import com.jamie.jamapp.Render;
-import com.jamie.jamapp.Texture;
+import com.jamie.raycasting.graphics.Texture;
 
 public class DropParticle extends Particle
 {
