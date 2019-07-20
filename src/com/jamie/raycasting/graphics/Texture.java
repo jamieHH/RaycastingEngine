@@ -6,7 +6,6 @@ import com.jamie.jamapp.Render;
 public class Texture
 {
     // special
-    public static final Render font = PngLoader.loadBitmap("/gui/font2.png");
     public static final Render noTex = PngLoader.loadBitmap("tex/noTex.png");
     public static final Render invisible = PngLoader.setInvisible();
     public static final Render sky = new Render(400, 150);

@@ -6,7 +6,6 @@ import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
 
 import com.jamie.raycasting.app.Game;
 import com.jamie.raycasting.graphics.Screen;

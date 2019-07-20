@@ -1,7 +1,5 @@
 package com.jamie.jamapp;
 
-import com.jamie.raycasting.graphics.Texture;
-
 public class Render
 {
 	public int width;
@@ -14,6 +12,7 @@ public class Render
 			"abcdefghijklmnopqrstuvwxyz_               " +
 			"0123456789+-=*:;                          " +
 			"";
+	public static final Render font = PngLoader.loadBitmap("/gui/font2.png");
 	
 	public Render(int width, int height) {
 		this.width = width;
@@ -62,8 +61,8 @@ public class Render
 
             int xx = ch % 42;
             int yy = ch / 42;
-            draw(Texture.font, (x + i * 6) + 1, y + 1, xx * 6, yy * 8, 5, 8, 0x020202);
-            draw(Texture.font, x + i * 6, y, xx * 6, yy * 8, 5, 8, col);
+            draw(font, (x + i * 6) + 1, y + 1, xx * 6, yy * 8, 5, 8, 0x020202);
+            draw(font, x + i * 6, y, xx * 6, yy * 8, 5, 8, col);
         }
     }
 

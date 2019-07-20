@@ -6,7 +6,7 @@ public class Display extends Render
 		super(width, height);
     }
 
-    public void render(GameInterface game) { //TODO: find a way to make this abstract
+    public void render(GameInterface game) {
 
     }
 }
