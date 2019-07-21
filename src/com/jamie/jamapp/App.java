@@ -56,29 +56,29 @@ public class App extends Canvas implements Runnable
 		img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		pixels = ((DataBufferInt)img.getRaster().getDataBuffer()).getData();
 
-        setCanvas();
+        setCanvasSize(width * scale, height * scale);
 		frame = newFrame(this);
         requestFocus();
 
 		start();
 	}
 
-	private void changeResolution(int width, int height) {
-        App.width = width;
-        App.height = height;
+	private void changeResolution(int w, int h) {
+        App.width = w;
+        App.height = h;
         frame.dispose();
 
         display = new Screen(width, height, game);
         img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
         pixels = ((DataBufferInt) img.getRaster().getDataBuffer()).getData();
 
-        setCanvas();
+        setCanvasSize(width * scale, height * scale);
         frame = newFrame(this);
         requestFocus();
     }
 
-    private void setCanvas() {
-        Dimension size = new Dimension(width * scale, height * scale);
+    private void setCanvasSize(int width, int height) {
+        Dimension size = new Dimension(width, height);
         setPreferredSize(size);
         setMinimumSize(size);
         setMaximumSize(size);
@@ -167,7 +167,7 @@ public class App extends Canvas implements Runnable
         if (setNewOptions) {
             setNewOptions = false;
             if (App.scale != newScale || App.width != newWidth || App.height != newHeight) {
-				App.scale = newScale;
+                App.scale = newScale;
                 changeResolution(newWidth, newHeight);
             }
         }
