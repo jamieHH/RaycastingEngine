@@ -52,13 +52,7 @@ public class App extends Canvas implements Runnable
 		addKeyListener(input);
 		addFocusListener(input);
 
-		display = new Screen(width, height, game);
-		img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-		pixels = ((DataBufferInt)img.getRaster().getDataBuffer()).getData();
-
-        setCanvasSize(width * scale, height * scale);
-		frame = newFrame(this);
-        requestFocus();
+		initialiseFrame();
 
 		start();
 	}
@@ -68,21 +62,22 @@ public class App extends Canvas implements Runnable
         App.height = h;
         frame.dispose();
 
-        display = new Screen(width, height, game);
-        img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-        pixels = ((DataBufferInt) img.getRaster().getDataBuffer()).getData();
-
-        setCanvasSize(width * scale, height * scale);
-        frame = newFrame(this);
-        requestFocus();
+		initialiseFrame();
     }
 
-    private void setCanvasSize(int width, int height) {
-        Dimension size = new Dimension(width, height);
-        setPreferredSize(size);
-        setMinimumSize(size);
-        setMaximumSize(size);
-    }
+    private void initialiseFrame() {
+		display = new Screen(width, height, game);
+		img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+		pixels = ((DataBufferInt) img.getRaster().getDataBuffer()).getData();
+
+		Dimension size = new Dimension(width * scale, height * scale);
+		setPreferredSize(size);
+		setMinimumSize(size);
+		setMaximumSize(size);
+
+		frame = newFrame(this);
+		requestFocus();
+	}
 
 	public void start() {
 		if (!running) {
