@@ -57,13 +57,10 @@ public class App extends Canvas implements Runnable
 
 		addKeyListener(input);
 		addFocusListener(input);
-	}
 
-    public static void main(String args[]) {
-        App app = new App();
-        frame = newFrame(app);
-        app.start();
-    }
+		frame = newFrame(this);
+		start();
+	}
 
     private void setCanvas() {
         Dimension size = new Dimension(width * scale, height * scale);
