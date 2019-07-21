@@ -9,7 +9,6 @@ import java.io.IOException;
 
 import com.jamie.raycasting.app.Game;
 import com.jamie.raycasting.graphics.Screen;
-import com.jamie.raycasting.input.UserInputHandler;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -24,6 +23,10 @@ public class App extends Canvas implements Runnable
 	public static int scale;
 	public static boolean soundEnabled;
 
+	public static InputHandler input;
+	public static Game game;
+	public static Screen display;
+
 	public static boolean setNewOptions = false;
 	public static int newWidth, newHeight, newScale;
 
@@ -37,13 +40,8 @@ public class App extends Canvas implements Runnable
     private boolean hadFocus;
     private Cursor emptyCursor, defaultCursor;
 
-    private static Game game;
-    private static Screen display;
-    private static InputHandler input;
-
 
 	public App() {
-		input = new UserInputHandler();
 		game = new Game(input);
 
 		emptyCursor = Toolkit.getDefaultToolkit().createCustomCursor(new BufferedImage(16, 16, BufferedImage.TYPE_INT_ARGB), new Point(0, 0), "empty");

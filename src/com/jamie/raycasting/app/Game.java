@@ -15,7 +15,7 @@ public class Game extends GameInterface
 {
 	public World world;
 	private Mob player;
-	public InputHandler userInput;
+
 	private InputHandler temporaryInput = new ArtificialInputHandler();
 
 	public final Menu mainMenu = new MainMenu(App.width, (int) (App.height * 0.6));
@@ -29,7 +29,7 @@ public class Game extends GameInterface
 	
 	
 	public Game(InputHandler input) {
-		userInput = input;
+		super(input);
 
         setActiveOverlay(mainMenu);
 	}
