@@ -18,11 +18,11 @@ public class App extends Canvas implements Runnable
 {
 	private static final long serialVersionUID = 1L;
 
-	private static String TITLE = "raycasting_engine_pre_0.98";
-	public static int width = 200;
-	public static int height = 150;
-	public static int scale = 4;
-	public static boolean soundEnabled = false;
+	public static String title;
+	public static int width;
+	public static int height;
+	public static int scale;
+	public static boolean soundEnabled;
 
 	public static boolean setNewOptions = false;
 	public static int newWidth, newHeight, newScale;
@@ -51,10 +51,10 @@ public class App extends Canvas implements Runnable
 
 		addKeyListener(input);
 		addFocusListener(input);
+	}
 
+	public void prepare() {
 		initialiseFrame();
-
-		start();
 	}
 
 	private void changeResolution(int w, int h) {
@@ -103,7 +103,7 @@ public class App extends Canvas implements Runnable
         JFrame f = new JFrame();
         f.add(app);
         f.setIconImage(getAppIcon());
-        f.setTitle(App.TITLE);
+        f.setTitle(App.title);
         f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         f.setResizable(false);
         f.pack();
