@@ -18,7 +18,7 @@ public class App extends Canvas implements Runnable
 {
 	private static final long serialVersionUID = 1L;
 
-	private static final String TITLE = "raycasting_engine_pre_0.98";
+	private static String TITLE = "raycasting_engine_pre_0.98";
 	public static int width = 200;
 	public static int height = 150;
 	public static int scale = 4;
@@ -43,14 +43,8 @@ public class App extends Canvas implements Runnable
 
 
 	public App() {
-        setCanvas();
-
 		input = new UserInputHandler();
 		game = new Game(input);
-
-		display = new Screen(width, height, game);
-		img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-		pixels = ((DataBufferInt)img.getRaster().getDataBuffer()).getData();
 
 		emptyCursor = Toolkit.getDefaultToolkit().createCustomCursor(new BufferedImage(16, 16, BufferedImage.TYPE_INT_ARGB), new Point(0, 0), "empty");
 		defaultCursor = getCursor();
@@ -58,29 +52,36 @@ public class App extends Canvas implements Runnable
 		addKeyListener(input);
 		addFocusListener(input);
 
+		display = new Screen(width, height, game);
+		img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+		pixels = ((DataBufferInt)img.getRaster().getDataBuffer()).getData();
+
+        setCanvas();
 		frame = newFrame(this);
+        requestFocus();
+
 		start();
 	}
+
+	private void changeResolution(int width, int height) {
+        App.width = width;
+        App.height = height;
+        frame.dispose();
+
+        display = new Screen(width, height, game);
+        img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+        pixels = ((DataBufferInt) img.getRaster().getDataBuffer()).getData();
+
+        setCanvas();
+        frame = newFrame(this);
+        requestFocus();
+    }
 
     private void setCanvas() {
         Dimension size = new Dimension(width * scale, height * scale);
         setPreferredSize(size);
         setMinimumSize(size);
         setMaximumSize(size);
-    }
-
-	private void changeResolution(int width, int height) {
-        App.width = width;
-        App.height = height;
-        setCanvas();
-
-        frame.dispose();
-        frame = newFrame(this);
-        requestFocus();
-
-        display = new Screen(width, height, game);
-        img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-        pixels = ((DataBufferInt) img.getRaster().getDataBuffer()).getData();
     }
 
 	public void start() {
@@ -103,6 +104,19 @@ public class App extends Canvas implements Runnable
         }
 	}
 
+    private static JFrame newFrame(App app) {
+        JFrame f = new JFrame();
+        f.add(app);
+        f.setIconImage(getAppIcon());
+        f.setTitle(App.TITLE);
+        f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        f.setResizable(false);
+        f.pack();
+        f.setLocationRelativeTo(null);
+        f.setVisible(true);
+        return f;
+    }
+
 	public void run() {
 		int updates = 0;
 		int frames = 0;
@@ -111,7 +125,6 @@ public class App extends Canvas implements Runnable
 		double secondsPerTick = 1/60.0;
 		int tickCount = 0;
 
-		requestFocus();
 		while (running) {
 			long currentTime = System.nanoTime();
 			long passedTime = currentTime - previousTime;
@@ -188,26 +201,13 @@ public class App extends Canvas implements Runnable
 		bs.show();
 	}
 
-	private static JFrame newFrame(App app) {
-        JFrame f = new JFrame();
-        f.add(app);
-        f.setIconImage(getAppIcon());
-        f.setTitle(App.TITLE);
-        f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        f.setResizable(false);
-        f.pack();
-        f.setLocationRelativeTo(null);
-        f.setVisible(true);
-		return f;
-	}
-
-	private static Image getAppIcon() {
-		Image img = null;
-		try {
-			img = ImageIO.read(new FileInputStream("res/logo.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return img;
-	}
+    private static Image getAppIcon() {
+        Image img = null;
+        try {
+            img = ImageIO.read(new FileInputStream("res/logo.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return img;
+    }
 }
