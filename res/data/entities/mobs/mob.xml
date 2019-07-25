@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <comment>Mob</comment>
+    <entry key="viewDist">4</entry>
+    <entry key="baseReach">1</entry>
+    <entry key="faction">none</entry>
+    <entry key="enemyFaction">none</entry>
+    <entry key="deathSound">die</entry>
+    <entry key="hurtSound">hit</entry>
+    <entry key="rotationSpeed">0.03</entry>
+    <entry key="walkSpeed">0.03</entry>
+    <entry key="viewHeight">0.652</entry>
+    <entry key="baseDamage">1</entry>
+    <entry key="hurtType">none</entry>
+    <entry key="maxHealth">10</entry>
+</properties>
