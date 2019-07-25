@@ -18,7 +18,7 @@ public class World
 {
     public Game game;
     public Level level;
-    public Map<String, Level> loaded = new HashMap<String, Level>();
+    public Map<String, Level> cache = new HashMap<String, Level>();
 
 
     public World(Game game) {
@@ -42,8 +42,8 @@ public class World
     }
 
     public Level getLoadLevel(String name) {
-        if (loaded.containsKey(name)) {
-            return loaded.get(name);
+        if (cache.containsKey(name)) {
+            return cache.get(name);
         }
 
         try {
@@ -56,7 +56,7 @@ public class World
 
             Level level = getByName(name);
             level.create(this.game, w, h, pixels);
-            loaded.put(name, level);
+            cache.put(name, level);
 
             return level;
         } catch (Exception e) {
@@ -66,7 +66,7 @@ public class World
     }
 
     public void clearLoadedLevels() {
-        loaded.clear();
+        cache.clear();
     }
 
     public void switchLevel(Mob mob, String name, int id) {

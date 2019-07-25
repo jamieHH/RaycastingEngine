@@ -3,16 +3,23 @@ package com.jamie.jamapp;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
+import java.util.HashMap;
+import java.util.Map;
 
 public class PngLoader
 {
+    public static Map<String, Render> cache = new HashMap<String, Render>();
+
+
     public static Render loadBitmap(String fileName) {
+        if (cache.containsKey(fileName)) {
+            return cache.get(fileName);
+        }
+
         try {
             BufferedImage img = ImageIO.read(new FileInputStream("res/" + fileName));
-
             int width = img.getWidth();
             int height = img.getHeight();
-
             Render result = new Render(width, height);
             img.getRGB(0, 0, width, height, result.pixels, 0, width);
 
@@ -22,6 +29,7 @@ public class PngLoader
                 }
             }
 
+            cache.put(fileName, result);
             return result;
         } catch (Exception e) {
             System.out.println("Could not read image from file name: " + fileName);
