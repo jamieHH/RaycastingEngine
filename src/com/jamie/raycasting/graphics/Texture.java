@@ -84,6 +84,7 @@ public class Texture
     public static final Render wallSwitch1 = PngLoader.mergeBitmap(wall, switchOverlay1);
 
 	// sprites
+    public static final Render marker = PngLoader.loadBitmap("tex/marker.png");
     public static final Render bat0 = PngLoader.loadBitmap("tex/bat0.png");
     public static final Render bat1 = PngLoader.loadBitmap("tex/bat1.png");
     public static final Render bat2 = PngLoader.loadBitmap("tex/bat2.png");

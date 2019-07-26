@@ -51,7 +51,8 @@ public class Game extends GameInterface
 
 				if (userInput.nextMob) {
 					userInput.setInputState("nextMob", false);
-					switchPerspective();
+//					switchPerspective();
+					possessNextMob();
 				}
 
 				if (!getPlayer().isDead) {

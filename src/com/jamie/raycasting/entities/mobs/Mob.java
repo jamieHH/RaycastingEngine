@@ -134,19 +134,21 @@ public abstract class Mob extends Entity
     }
 
     private void setInputInfluence(InfluenceKeyframe influenceKeyframe) {
-        input.forward = (random.nextInt(100) < influenceKeyframe.forward);
-        input.back = (random.nextInt(100) < influenceKeyframe.back);
-        input.left = (random.nextInt(100) < influenceKeyframe.sLeft);
-        input.right = (random.nextInt(100) < influenceKeyframe.sRight);
-        input.rotLeft = (random.nextInt(100) < influenceKeyframe.rLeft);
-        input.rotRight = (random.nextInt(100) < influenceKeyframe.rRight);
-        input.action = (random.nextInt(100) < influenceKeyframe.action);
-        if (influenceKeyframe.itemName != null) {
-            setRightHandItem(influenceKeyframe.itemName);
-        } else {
-            unequipRightHand();
+        if (influenceKeyframe != null) {
+            input.forward = (random.nextInt(100) < influenceKeyframe.forward);
+            input.back = (random.nextInt(100) < influenceKeyframe.back);
+            input.left = (random.nextInt(100) < influenceKeyframe.sLeft);
+            input.right = (random.nextInt(100) < influenceKeyframe.sRight);
+            input.rotLeft = (random.nextInt(100) < influenceKeyframe.rLeft);
+            input.rotRight = (random.nextInt(100) < influenceKeyframe.rRight);
+            input.action = (random.nextInt(100) < influenceKeyframe.action);
+            if (influenceKeyframe.itemName != null) {
+                setRightHandItem(influenceKeyframe.itemName);
+            } else {
+                unequipRightHand();
+            }
+            influenceWait = influenceKeyframe.switchWait;
         }
-        influenceWait = influenceKeyframe.switchWait;
     }
 
     public void tick() {

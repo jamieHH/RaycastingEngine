@@ -1,5 +1,6 @@
 package com.jamie.raycasting.entities.mobs;
 
+import com.jamie.jamapp.Render;
 import com.jamie.raycasting.app.Sound;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
@@ -11,7 +12,9 @@ import com.jamie.raycasting.items.weapons.*;
 public class Player extends Mob
 {
     protected Sprite getSprite() {
-        return null;
+        return new Sprite(new Render[] {
+                Texture.marker
+        });
     }
 
     protected Sprite getActionSprite() {
