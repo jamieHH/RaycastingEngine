@@ -9,6 +9,7 @@ import com.jamie.raycasting.entities.particles.HealthParticle;
 import com.jamie.raycasting.entities.particles.Particle;
 import com.jamie.raycasting.entities.particles.PoofParticle;
 import com.jamie.raycasting.graphics.Sprite;
+import com.jamie.raycasting.input.KeyControls;
 import com.jamie.raycasting.input.UserInputHandler;
 import com.jamie.raycasting.items.Inventory;
 import com.jamie.raycasting.items.Item;
@@ -248,15 +249,15 @@ public abstract class Mob extends Entity
                     }
 
                     if (input.hot1 && getHotkey(1) != null) {
-                        input.setInputState("hot1", false);
+                        input.stopInput(KeyControls.HOT1);
                         useItemIndex(getHotkey(1));
                     }
                     if (input.hot2 && getHotkey(2) != null) {
-                        input.setInputState("hot2", false);
+                        input.stopInput(KeyControls.HOT2);
                         useItemIndex(getHotkey(2));
                     }
                     if (input.hot3 && getHotkey(3) != null) {
-                        input.setInputState("hot3", false);
+                        input.stopInput(KeyControls.HOT3);
                         useItemIndex(getHotkey(3));
                     }
                 }

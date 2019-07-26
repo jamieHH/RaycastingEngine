@@ -2,6 +2,7 @@ package com.jamie.raycasting.graphics.overlays.menus;
 
 import com.jamie.raycasting.app.Sound;
 import com.jamie.raycasting.app.Game;
+import com.jamie.raycasting.input.KeyControls;
 
 public class MainMenu extends Menu
 {
@@ -17,14 +18,14 @@ public class MainMenu extends Menu
         super.tick(game);
 
         if (game.userInput.forward) {
-            game.userInput.setInputState("forward", false);
+            game.userInput.stopInput(KeyControls.FORWARD);
             if ((optionIndex > 0)) {
                 optionIndex--;
                 Sound.clickUp.play();
             }
         }
         if (game.userInput.back) {
-            game.userInput.setInputState("back", false);
+            game.userInput.stopInput(KeyControls.BACK);
             if ((optionIndex < options.size() - 1)) {
                 optionIndex++;
                 Sound.clickDown.play();
@@ -32,7 +33,7 @@ public class MainMenu extends Menu
         }
 
         if (game.userInput.action) {
-            game.userInput.setInputState("action", false);
+            game.userInput.stopInput(KeyControls.ACTION);
             Sound.clickAction.play();
             if (options.get(optionIndex).equals("New Game")) {
                 game.newGame();

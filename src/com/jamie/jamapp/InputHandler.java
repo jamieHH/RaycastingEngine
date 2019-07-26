@@ -28,10 +28,9 @@ public abstract class InputHandler implements KeyListener, FocusListener
             nextMob;
 
 
-
 	public void tick() {}
 
-    public void setInputState(String inputGroup, boolean state) {}
+    public void stopInput(String inputGroup) {}
 
     @Override
     public void focusGained(FocusEvent e) {

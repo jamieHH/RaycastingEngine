@@ -25,22 +25,22 @@ public class UserInputHandler extends InputHandler
         int[] pauseKeys = {KeyEvent.VK_ESCAPE};
         int[] nextMob = {KeyEvent.VK_G};
 
-        inputGroups.put("forward", forwardKeys);
-        inputGroups.put("back", backKeys);
-        inputGroups.put("left", leftKeys);
-        inputGroups.put("right", rightKeys);
-        inputGroups.put("rotLeft", rotLeftKeys);
-        inputGroups.put("rotRight", rotRightKeys);
-        inputGroups.put("action", actionKeys);
-        inputGroups.put("inventory", inventoryKeys);
-        inputGroups.put("hot1", hot1);
-        inputGroups.put("hot2", hot2);
-        inputGroups.put("hot3", hot3);
-        inputGroups.put("pause", pauseKeys);
-        inputGroups.put("nextMob", nextMob);
+        inputGroups.put(KeyControls.FORWARD, forwardKeys);
+        inputGroups.put(KeyControls.BACK, backKeys);
+        inputGroups.put(KeyControls.LEFT, leftKeys);
+        inputGroups.put(KeyControls.RIGHT, rightKeys);
+        inputGroups.put(KeyControls.ROTLEFT, rotLeftKeys);
+        inputGroups.put(KeyControls.ROTRIGHT, rotRightKeys);
+        inputGroups.put(KeyControls.ACTION, actionKeys);
+        inputGroups.put(KeyControls.INVENTORY, inventoryKeys);
+        inputGroups.put(KeyControls.HOT1, hot1);
+        inputGroups.put(KeyControls.HOT2, hot2);
+        inputGroups.put(KeyControls.HOT3, hot3);
+        inputGroups.put(KeyControls.PAUSE, pauseKeys);
+        inputGroups.put(KeyControls.NEXTMOB, nextMob);
     }
 
-    private boolean checkKeyGroup(int[] keys) {
+    protected boolean checkKeyGroup(int[] keys) {
         for (int i = 0; i < keys.length; i++) {
             if (key[keys[i]]) {
                 return true;
@@ -56,24 +56,24 @@ public class UserInputHandler extends InputHandler
         }
     }
 
-    public void setInputState(String inputGroup, boolean state) {
-        setKeyState(inputGroups.get(inputGroup), state);
+    public void stopInput(String inputGroup) {
+        setKeyState(inputGroups.get(inputGroup), false);
     }
 
 	public void tick() {
-		forward = checkKeyGroup(inputGroups.get("forward"));
-		back = checkKeyGroup(inputGroups.get("back"));
-		left = checkKeyGroup(inputGroups.get("left"));
-		right = checkKeyGroup(inputGroups.get("right"));
-		rotLeft = checkKeyGroup(inputGroups.get("rotLeft"));
-		rotRight = checkKeyGroup(inputGroups.get("rotRight"));
-        action = checkKeyGroup(inputGroups.get("action"));
-		inventory = checkKeyGroup(inputGroups.get("inventory"));
-        hot1 = checkKeyGroup(inputGroups.get("hot1"));
-        hot2 = checkKeyGroup(inputGroups.get("hot2"));
-        hot3 = checkKeyGroup(inputGroups.get("hot3"));
-        pause = checkKeyGroup(inputGroups.get("pause"));
-        nextMob = checkKeyGroup(inputGroups.get("nextMob"));
+        forward = checkKeyGroup(inputGroups.get(KeyControls.FORWARD));
+        back = checkKeyGroup(inputGroups.get(KeyControls.BACK));
+        left = checkKeyGroup(inputGroups.get(KeyControls.LEFT));
+        right = checkKeyGroup(inputGroups.get(KeyControls.RIGHT));
+        rotLeft = checkKeyGroup(inputGroups.get(KeyControls.ROTLEFT));
+        rotRight = checkKeyGroup(inputGroups.get(KeyControls.ROTRIGHT));
+        action = checkKeyGroup(inputGroups.get(KeyControls.ACTION));
+        inventory = checkKeyGroup(inputGroups.get(KeyControls.INVENTORY));
+        hot1 = checkKeyGroup(inputGroups.get(KeyControls.HOT1));
+        hot2 = checkKeyGroup(inputGroups.get(KeyControls.HOT2));
+        hot3 = checkKeyGroup(inputGroups.get(KeyControls.HOT3));
+        pause = checkKeyGroup(inputGroups.get(KeyControls.PAUSE));
+        nextMob = checkKeyGroup(inputGroups.get(KeyControls.NEXTMOB));
 
         randomLevel = key[KeyEvent.VK_R];
         loadLevel = key[KeyEvent.VK_P];
