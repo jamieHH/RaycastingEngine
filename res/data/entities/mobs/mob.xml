@@ -2,8 +2,11 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
     <comment>Mob</comment>
+    <entry key="isFloating">False</entry>
+    <entry key="isSolid">True</entry>
     <entry key="viewDist">4</entry>
     <entry key="baseReach">1</entry>
+    <entry key="radius">0.25</entry>
     <entry key="faction">none</entry>
     <entry key="enemyFaction">none</entry>
     <entry key="deathSound">die</entry>

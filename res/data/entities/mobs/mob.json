@@ -1,0 +1,63 @@
+{
+  "isFloating": false,
+  "isSolid": true,
+  "viewDist": 4,
+  "baseReach": 1,
+  "radius": 0.25,
+  "faction": null,
+  "enemyFaction": null,
+  "deathSound": "die",
+  "hurtSound": "hit",
+  "rotationSpeed": 0.03,
+  "walkSpeed": 0.03,
+  "viewHeight": 652,
+  "baseDamage": 1,
+  "hurtType": null,
+  "maxHealth": 10,
+  "actionSprite": [
+
+  ],
+  "healSprite": [
+
+  ],
+  "hurtSprite": [
+
+  ],
+  "deathSprite": [
+
+  ],
+  "hurtParticle": "bloodParticle",
+  "idleInfluence": {
+    "switchWait": 0,
+    "forward": 0,
+    "back": 0,
+    "sLeft": 0,
+    "sRight": 0,
+    "rLeft": 0,
+    "rRight": 0,
+    "action": 0,
+    "itemName": 0
+  },
+  "pursuitInfluence": {
+    "switchWait": 0,
+    "forward": 0,
+    "back": 0,
+    "sLeft": 0,
+    "sRight": 0,
+    "rLeft": 0,
+    "rRight": 0,
+    "action": 0,
+    "itemName": 0
+  },
+  "attackInfluence": {
+    "switchWait": 0,
+    "forward": 0,
+    "back": 0,
+    "sLeft": 0,
+    "sRight": 0,
+    "rLeft": 0,
+    "rRight": 0,
+    "action": 0,
+    "itemName": 0
+  }
+}
