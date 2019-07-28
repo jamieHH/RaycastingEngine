@@ -55,60 +55,25 @@ public class App extends Canvas implements Runnable
 		initialiseFrame();
 	}
 
-	private void changeResolution(int w, int h) {
-        App.width = w;
-        App.height = h;
-        frame.dispose();
-
-		initialiseFrame();
-    }
-
-    private void initialiseFrame() {
-		display = new Screen(width, height, game);
-		img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-		pixels = ((DataBufferInt) img.getRaster().getDataBuffer()).getData();
-
-		Dimension size = new Dimension(width * scale, height * scale);
-		setPreferredSize(size);
-		setMinimumSize(size);
-		setMaximumSize(size);
-
-		frame = newFrame(this);
-		requestFocus();
-	}
-
 	public void start() {
 		if (!running) {
-            running = true;
-            thread = new Thread(this);
-            thread.start();
-        }
+			running = true;
+			thread = new Thread(this);
+			thread.start();
+		}
 	}
 
 	public void stop() {
 		if (running) {
-            running = false;
-            try {
-                thread.join();
-            } catch (Exception e) {
-                e.printStackTrace();
-                System.exit(0);
-            }
-        }
+			running = false;
+			try {
+				thread.join();
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.exit(0);
+			}
+		}
 	}
-
-    private static JFrame newFrame(App app) {
-        JFrame f = new JFrame();
-        f.add(app);
-        f.setIconImage(getAppIcon());
-        f.setTitle(App.title);
-        f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        f.setResizable(false);
-        f.pack();
-        f.setLocationRelativeTo(null);
-        f.setVisible(true);
-        return f;
-    }
 
 	public void run() {
 		int updates = 0;
@@ -124,7 +89,7 @@ public class App extends Canvas implements Runnable
 			previousTime = currentTime;
 			unprocessedSeconds += passedTime / 1000000000.0;
 
-    		boolean ticked = false;
+			boolean ticked = false;
 			while (unprocessedSeconds > secondsPerTick) {
 				tick();
 				unprocessedSeconds -= secondsPerTick;
@@ -152,6 +117,41 @@ public class App extends Canvas implements Runnable
 			}
 		}
 	}
+
+	private void changeResolution(int w, int h) {
+		App.width = w;
+		App.height = h;
+		frame.dispose();
+
+		initialiseFrame();
+	}
+
+    private void initialiseFrame() {
+		display = new Screen(width, height, game);
+		img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+		pixels = ((DataBufferInt) img.getRaster().getDataBuffer()).getData();
+
+		Dimension size = new Dimension(width * scale, height * scale);
+		setPreferredSize(size);
+		setMinimumSize(size);
+		setMaximumSize(size);
+
+		frame = newFrame(this);
+		requestFocus();
+	}
+
+    private static JFrame newFrame(App app) {
+        JFrame f = new JFrame();
+        f.add(app);
+        f.setIconImage(getAppIcon());
+        f.setTitle(App.title);
+        f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        f.setResizable(false);
+        f.pack();
+        f.setLocationRelativeTo(null);
+        f.setVisible(true);
+        return f;
+    }
 
 	private void tick() {
 		input.tick();

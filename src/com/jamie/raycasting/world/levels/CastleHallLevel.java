@@ -7,7 +7,7 @@ import com.jamie.raycasting.items.consumables.HealthPotion;
 public class CastleHallLevel extends Level
 {
 	public CastleHallLevel() {
-	    name = "CastleHall";
+	    name = "Castle Hall";
 	}
 
     protected void postCreate() {

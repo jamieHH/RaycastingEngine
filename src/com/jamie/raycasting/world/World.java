@@ -31,7 +31,36 @@ public class World
         }
     }
 
-    public static Level getByName(String name) {
+    public void clearLoadedLevels() {
+        cache.clear();
+    }
+
+    public void switchLevel(Mob mob, String name, int id) {
+        Level newLevel;
+        if (!name.equals("random")) {
+            newLevel = getLoadLevel(name);
+        } else {
+            newLevel = Level.makeRandomLevel(1000, 1000);
+        }
+
+        game.setActiveOverlay(new LoadingOverlay(App.width, App.height, newLevel.name));
+        Sound.switchLevel.play();
+
+        if (level != null) {
+            level.removeEntity(mob);
+        }
+        level = newLevel;
+
+        LevelPortalBlock spawnBlock = level.getLevelPortalBlockById(id);
+        if (spawnBlock != null) {
+            level.addEntity(mob, spawnBlock.gridX + 0.5, spawnBlock.gridZ + 0.5);
+            spawnBlock.disabled = true;
+        } else {
+            level.addEntity(mob, level.spawnX, level.spawnZ);
+        }
+    }
+
+    private static Level getByName(String name) {
         try {
             name = name.substring(0, 1).toUpperCase() + name.substring(1);
             return (Level) Class.forName("com.jamie.raycasting.world.levels." + name + "Level").getDeclaredConstructor().newInstance();
@@ -41,7 +70,7 @@ public class World
         }
     }
 
-    public Level getLoadLevel(String name) {
+    private Level getLoadLevel(String name) {
         if (cache.containsKey(name)) {
             return cache.get(name);
         }
@@ -62,31 +91,6 @@ public class World
         } catch (Exception e) {
             System.out.println("Failed to load level: " + name);
             throw new RuntimeException(e);
-        }
-    }
-
-    public void clearLoadedLevels() {
-        cache.clear();
-    }
-
-    public void switchLevel(Mob mob, String name, int id) {
-        game.setActiveOverlay(new LoadingOverlay(App.width, App.height, name));
-        Sound.switchLevel.play();
-
-        level.removeEntity(mob);
-
-        if (!name.equals("random")) {
-            level = getLoadLevel(name);
-        } else {
-            level = Level.makeRandomLevel(1000, 1000);
-        }
-
-        LevelPortalBlock spawnBlock = level.getLevelPortalBlockById(id);
-        if (spawnBlock != null) {
-            level.addEntity(mob, spawnBlock.gridX + 0.5, spawnBlock.gridZ + 0.5);
-            spawnBlock.disabled = true;
-        } else {
-            level.addEntity(mob, level.spawnX, level.spawnZ);
         }
     }
 }

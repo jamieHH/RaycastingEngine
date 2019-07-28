@@ -80,12 +80,12 @@ public class Game extends GameInterface
 
 					if (userInput.randomLevel) {
 						getPlayer().rotation = 0.2;
-						world.switchLevel(player, "test", 999);
+						world.switchLevel(player, "test", 0);
 					}
 
 					if (userInput.loadLevel) {
 						getPlayer().rotation = 0.2;
-						world.switchLevel(player, "island", 999);
+						world.switchLevel(player, "island", 0);
 					}
 				} else {
 					if (activeOverlay == inventoryOverlay) {
@@ -111,9 +111,7 @@ public class Game extends GameInterface
 		setPlayer(new Player(userInput));
 		getPlayer().rotation = 1.9;
 
-		world.level = world.getLoadLevel("prison");
-		world.level.addEntity(player, world.level.spawnX, world.level.spawnZ);
-
+		world.switchLevel(player, "prison", 0);
 		setActiveOverlay(null);
 	}
 
