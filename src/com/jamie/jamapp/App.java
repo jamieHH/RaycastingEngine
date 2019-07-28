@@ -42,8 +42,6 @@ public class App extends Canvas implements Runnable
 
 
 	public App() {
-		game = new Game(input);
-
 		emptyCursor = Toolkit.getDefaultToolkit().createCustomCursor(new BufferedImage(16, 16, BufferedImage.TYPE_INT_ARGB), new Point(0, 0), "empty");
 		defaultCursor = getCursor();
 
@@ -51,11 +49,8 @@ public class App extends Canvas implements Runnable
 		addFocusListener(input);
 	}
 
-	public void prepare() {
-		initialiseFrame();
-	}
-
 	public void start() {
+		initialiseFrame();
 		if (!running) {
 			running = true;
 			thread = new Thread(this);
@@ -178,7 +173,7 @@ public class App extends Canvas implements Runnable
 			return;
 		}
 
-        display.render(game);
+        display.render();
         System.arraycopy(display.pixels, 0, pixels, 0, width * height);
 
         Graphics g = bs.getDrawGraphics();

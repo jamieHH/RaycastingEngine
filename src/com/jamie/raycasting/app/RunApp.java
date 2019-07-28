@@ -1,6 +1,7 @@
 package com.jamie.raycasting.app;
 
 import com.jamie.jamapp.App;
+import com.jamie.raycasting.graphics.Screen;
 import com.jamie.raycasting.input.UserInputHandler;
 
 public class RunApp
@@ -13,9 +14,10 @@ public class RunApp
         App.soundEnabled = false;
 
         App.input = new UserInputHandler();
+        App.game = new Game(App.input);
+//        App.display = new Screen(App.width, App.height, App.game);
 
         App app = new App();
-        app.prepare();
         app.start();
     }
 }

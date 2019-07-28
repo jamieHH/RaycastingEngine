@@ -12,17 +12,17 @@ import com.jamie.raycasting.graphics.overlays.ViewPunchOverlay;
 public class Screen extends Display
 {
     private Mob p;
-
+    private Game game;
     private Render3D render;
-
     private ViewPunchOverlay viewPunch;
 	private HudBarOverlay hudBar;
-
 	private StatBarOverlay healthBar;
+
 
 	public Screen(int width, int height, Game game) {
 		super(width, height, game);
-		p = game.getPlayer();
+		this.game = game;
+        p = game.getPlayer();
 
         // HUD
         hudBar = new HudBarOverlay(width, 9);
@@ -32,12 +32,10 @@ public class Screen extends Display
         render = new Render3D(width, height - hudBar.height);
         viewPunch = new ViewPunchOverlay(width, height - hudBar.height);
     }
-	
-	public void render(Game game) {
+
+	public void render() {
         fill(0x000000);
-
         p = game.getPlayer();
-
         if (p != null) {
             if (!p.isDead) {
                 render.render(p.level, p.posX, p.camY, p.posZ, p.rotation, p.viewDist);
