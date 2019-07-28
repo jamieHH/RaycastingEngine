@@ -49,6 +49,7 @@ public class Player extends Mob
     public Player(InputHandler input) {
         super(input);
 
+        canPickup = true;
         isFloating = false;
         isSolid = true;
 

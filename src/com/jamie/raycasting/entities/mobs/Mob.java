@@ -24,6 +24,8 @@ import java.util.Random;
 
 public abstract class Mob extends Entity
 {
+    protected boolean isInvulnerable = true;
+    protected boolean canPickup = false;
     protected boolean isFloating = false;
 
     // distances
@@ -233,11 +235,13 @@ public abstract class Mob extends Entity
                     }
                 }
 
-                for (int i = 0; i < level.countDrops(); i++) {
-                    if (contains(level.getDropEntity(i).posX, level.getDropEntity(i).posZ)) {
-                        Sound.pickUp.play();
-                        addItem(level.getDropEntity(i).item);
-                        level.getDropEntity(i).remove();
+                if (canPickup) {
+                    for (int i = 0; i < level.countDrops(); i++) {
+                        if (contains(level.getDropEntity(i).posX, level.getDropEntity(i).posZ)) {
+                            Sound.pickUp.play();
+                            addItem(level.getDropEntity(i).item);
+                            level.getDropEntity(i).remove();
+                        }
                     }
                 }
 
@@ -529,21 +533,23 @@ public abstract class Mob extends Entity
     }
 
     public void hurt(Entity source, int magnitude, String damageType) {
-        if (magnitude > 0 && !isDieing && hurtTime < 1) {
-            runSpriteSet("hurt");
-            level.addEntity(getHurtParticle(), posX, posZ);
+        if (!isInvulnerable) {
+            if (magnitude > 0 && !isDieing && hurtTime < 1) {
+                runSpriteSet("hurt");
+                level.addEntity(getHurtParticle(), posX, posZ);
 
-            if (health - magnitude > 0) {
-                hurtSound.play();
-                hurtType = damageType; // change to blunt if armor protects some damage
-                hurtTime = 30;
-                health -= magnitude;
+                if (health - magnitude > 0) {
+                    hurtSound.play();
+                    hurtType = damageType; // change to blunt if armor protects some damage
+                    hurtTime = 30;
+                    health -= magnitude;
 
-                yBob -= 0.8;
-                rotationMove += (Math.random() - 0.5);
-                pushDir(source.rotation, 0.4);
-            } else {
-                health = 0;
+                    yBob -= 0.8;
+                    rotationMove += (Math.random() - 0.5);
+                    pushDir(source.rotation, 0.4);
+                } else {
+                    health = 0;
+                }
             }
         }
     }
