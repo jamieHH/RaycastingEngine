@@ -24,7 +24,7 @@ import java.util.Random;
 
 public abstract class Mob extends Entity
 {
-    protected boolean isInvulnerable = true;
+    protected boolean isInvulnerable = false;
     protected boolean canPickup = false;
     protected boolean isFloating = false;
 

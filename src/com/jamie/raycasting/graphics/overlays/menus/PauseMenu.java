@@ -6,10 +6,15 @@ import com.jamie.raycasting.input.KeyControls;
 
 public class PauseMenu extends Menu
 {
+    public String[] getOptions() {
+        return new String[] {
+                "Resume",
+                "Main Menu"
+        };
+    }
+
     public PauseMenu(int width, int height) {
         super(width, height);
-        options.add("Resume");
-        options.add("Main Menu");
     }
 
     public void tick(Game game) {
@@ -24,7 +29,7 @@ public class PauseMenu extends Menu
         }
         if (game.userInput.back) {
             game.userInput.stopInput(KeyControls.BACK);
-            if ((optionIndex < options.size() - 1)) {
+            if ((optionIndex < getOptions().length - 1)) {
                 Sound.clickDown.play();
                 optionIndex++;
             }
@@ -33,9 +38,9 @@ public class PauseMenu extends Menu
         if (game.userInput.action) {
             game.userInput.stopInput(KeyControls.ACTION);
             Sound.clickAction.play();
-            if (options.get(optionIndex).equals("Resume")) {
+            if (getOption(optionIndex).equals("Resume")) {
                 game.setActiveOverlay(null);
-            } else if (options.get(optionIndex).equals("Main Menu")) {
+            } else if (getOption(optionIndex).equals("Main Menu")) {
                 game.stopGame();
             }
         }
@@ -45,11 +50,11 @@ public class PauseMenu extends Menu
         fill(0x202020);
 
         draw("  Paused", bp, bp, 0xF0F0F0);
-        for (int i = 0; i < options.size(); i++) {
+        for (int i = 0; i < getOptions().length; i++) {
             if (optionIndex == i) {
-                draw("-> " + options.get(i), bp, bp + 10 + (i * 10), 0xD0D0D0);
+                draw("-> " + getOption(i), bp, bp + 10 + (i * 10), 0xD0D0D0);
             } else {
-                draw(" " + options.get(i), bp, bp + 10 + (i * 10), 0x707070);
+                draw(" " + getOption(i), bp, bp + 10 + (i * 10), 0x707070);
             }
         }
     }

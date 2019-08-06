@@ -6,12 +6,17 @@ import com.jamie.raycasting.input.KeyControls;
 
 public class MainMenu extends Menu
 {
+    public String[] getOptions() {
+        return new String[] {
+                "New Game",
+                "Load Game",
+                "Options",
+                "Quit",
+        };
+    }
+
     public MainMenu(int width, int height) {
         super(width, height);
-        options.add("New Game");
-        options.add("Load Game");
-        options.add("Options");
-        options.add("Quit");
     }
 
     public void tick(Game game) {
@@ -26,7 +31,7 @@ public class MainMenu extends Menu
         }
         if (game.userInput.back) {
             game.userInput.stopInput(KeyControls.BACK);
-            if ((optionIndex < options.size() - 1)) {
+            if ((optionIndex < getOptions().length - 1)) {
                 optionIndex++;
                 Sound.clickDown.play();
             }
@@ -35,13 +40,13 @@ public class MainMenu extends Menu
         if (game.userInput.action) {
             game.userInput.stopInput(KeyControls.ACTION);
             Sound.clickAction.play();
-            if (options.get(optionIndex).equals("New Game")) {
+            if (getOption(optionIndex).equals("New Game")) {
                 game.newGame();
-            } else if (options.get(optionIndex).equals("Load Game")) {
+            } else if (getOption(optionIndex).equals("Load Game")) {
                 game.setActiveOverlay(game.loadMenu);
-            } else if (options.get(optionIndex).equals("Options")) {
+            } else if (getOption(optionIndex).equals("Options")) {
                 game.setActiveOverlay(game.optionsMenu);
-            } else if (options.get(optionIndex).equals("Quit")) {
+            } else if (getOption(optionIndex).equals("Quit")) {
                 System.exit(0);
             }
         }
@@ -51,11 +56,11 @@ public class MainMenu extends Menu
         fill(0x202020);
 
         draw("  Dungeon Raycaster", bp, bp, 0xF0F0F0);
-        for (int i = 0; i < options.size(); i++) {
+        for (int i = 0; i < getOptions().length; i++) {
             if (optionIndex == i) {
-                draw("-> " + options.get(i), bp, bp + 10 + (i * 10), 0xD0D0D0);
+                draw("-> " + getOption(i), bp, bp + 10 + (i * 10), 0xD0D0D0);
             } else {
-                draw(" " + options.get(i), bp, bp + 10 + (i * 10), 0x707070);
+                draw(" " + getOption(i), bp, bp + 10 + (i * 10), 0x707070);
             }
         }
     }

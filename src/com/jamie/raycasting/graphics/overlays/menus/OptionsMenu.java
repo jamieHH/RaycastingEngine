@@ -14,10 +14,10 @@ public class OptionsMenu extends Menu
     };
 
     private final int[] scales = {
-            8,
-            4,
+            1,
             2,
-            1
+            4,
+            8,
     };
 
     private final int[][] resolutions4x3 = {
@@ -36,18 +36,24 @@ public class OptionsMenu extends Menu
 
     private int aspectRatioIndex = 0;
     private int resolutionIndex = 1;
-    private int scaleIndex = 1;
+    private int scaleIndex = 2;
     private boolean soundEnabled = App.soundEnabled;
+
+
+    public String[] getOptions() {
+        return new String[] {
+                "Aspect Ratio",
+                "Resolution",
+                "Scaling",
+                "Sound",
+                "Reset Defaults",
+                "Accept",
+                "Main Menu",
+        };
+    }
 
     public OptionsMenu(int width, int height) {
         super(width, height);
-        options.add("Aspect Ratio");
-        options.add("Resolution");
-        options.add("Scaling");
-        options.add("Sound");
-        options.add("Reset Defaults");
-        options.add("Accept");
-        options.add("Main Menu");
     }
 
     public void tick(Game game) {
@@ -62,7 +68,7 @@ public class OptionsMenu extends Menu
         }
         if (game.userInput.back) {
             game.userInput.stopInput(KeyControls.BACK);
-            if ((optionIndex < options.size() - 1)) {
+            if ((optionIndex < getOptions().length - 1)) {
                 Sound.clickDown.play();
                 optionIndex++;
             }
@@ -71,19 +77,19 @@ public class OptionsMenu extends Menu
         if (game.userInput.left || game.userInput.rotLeft) {
             game.userInput.stopInput(KeyControls.LEFT);
             game.userInput.stopInput(KeyControls.ROTLEFT);
-            if (options.get(optionIndex).equals("Aspect Ratio")) {
+            if (getOption(optionIndex).equals("Aspect Ratio")) {
                 if ((aspectRatioIndex > 0)) {
                     aspectRatioIndex--;
                 }
-            } else if (options.get(optionIndex).equals("Resolution")) {
+            } else if (getOption(optionIndex).equals("Resolution")) {
                 if ((resolutionIndex > 0)) {
                     resolutionIndex--;
                 }
-            } else if (options.get(optionIndex).equals("Scaling")) {
+            } else if (getOption(optionIndex).equals("Scaling")) {
                 if ((scaleIndex > 0)) {
                     scaleIndex--;
                 }
-            }else if (options.get(optionIndex).equals("Sound")) {
+            }else if (getOption(optionIndex).equals("Sound")) {
                 soundEnabled = !soundEnabled;
             }
         }
@@ -91,19 +97,19 @@ public class OptionsMenu extends Menu
         if (game.userInput.right || game.userInput.rotRight) {
             game.userInput.stopInput(KeyControls.RIGHT);
             game.userInput.stopInput(KeyControls.ROTRIGHT);
-            if (options.get(optionIndex).equals("Aspect Ratio")) {
+            if (getOption(optionIndex).equals("Aspect Ratio")) {
                 if ((aspectRatioIndex < aspectRatios.length - 1)) {
                     aspectRatioIndex++;
                 }
-            } else if (options.get(optionIndex).equals("Resolution")) {
+            } else if (getOption(optionIndex).equals("Resolution")) {
                 if ((resolutionIndex < 4 - 1)) {
                     resolutionIndex++;
                 }
-            } else if (options.get(optionIndex).equals("Scaling")) {
+            } else if (getOption(optionIndex).equals("Scaling")) {
                 if ((scaleIndex < scales.length - 1)) {
                     scaleIndex++;
                 }
-            } else if (options.get(optionIndex).equals("Sound")) {
+            } else if (getOption(optionIndex).equals("Sound")) {
                 soundEnabled = !soundEnabled;
             }
         }
@@ -111,12 +117,12 @@ public class OptionsMenu extends Menu
         if (game.userInput.action) {
             game.userInput.stopInput(KeyControls.ACTION);
             Sound.clickAction.play();
-            if (options.get(optionIndex).equals("Reset Defaults")) {
+            if (getOption(optionIndex).equals("Reset Defaults")) {
                 aspectRatioIndex = 0;
                 resolutionIndex = 1;
-                scaleIndex = 1;
+                scaleIndex = 2;
                 soundEnabled = true;
-            } else if (options.get(optionIndex).equals("Accept")) {
+            } else if (getOption(optionIndex).equals("Accept")) {
                 App.newScale = scales[scaleIndex];
                 if (aspectRatios[aspectRatioIndex].equals("16:9")) {
                     App.newWidth = resolutions16x9[resolutionIndex][0];
@@ -128,7 +134,7 @@ public class OptionsMenu extends Menu
                 App.soundEnabled = soundEnabled;
                 App.setNewOptions = true;
                 game.setActiveOverlay(game.mainMenu);
-            } else if (options.get(optionIndex).equals("Main Menu")) {
+            } else if (getOption(optionIndex).equals("Main Menu")) {
                 game.setActiveOverlay(game.mainMenu);
             }
         }
@@ -139,42 +145,42 @@ public class OptionsMenu extends Menu
 
         draw("  Options", bp, bp, 0xF0F0F0);
 
-        for (int i = 0; i < options.size(); i++) {
+        for (int i = 0; i < getOptions().length; i++) {
             if (optionIndex == i) {
-                draw("-> " + options.get(i), bp, bp + 10 + (i * 10), 0xD0D0D0);
+                draw("-> " + getOption(i), bp, bp + 10 + (i * 10), 0xD0D0D0);
 
-                if (options.get(optionIndex).equals("Aspect Ratio")) {
+                if (getOption(optionIndex).equals("Aspect Ratio")) {
                     String string = "< " + aspectRatios[aspectRatioIndex] + " >";
                     draw(string, width - ((string.length() * 6) + bp), bp + 10 + (i * 10), 0xD0D0D0);
-                } else if (options.get(optionIndex).equals("Resolution") && aspectRatios[aspectRatioIndex].equals("4:3")) {
+                } else if (getOption(optionIndex).equals("Resolution") && aspectRatios[aspectRatioIndex].equals("4:3")) {
                     String string = "< " + resolutions4x3[resolutionIndex][0] + ", " + resolutions4x3[resolutionIndex][1] + " >";
                     draw(string, width - ((string.length() * 6) + bp), bp + 10 + (i * 10), 0xD0D0D0);
-                } else if (options.get(optionIndex).equals("Resolution") && aspectRatios[aspectRatioIndex].equals("16:9")) {
+                } else if (getOption(optionIndex).equals("Resolution") && aspectRatios[aspectRatioIndex].equals("16:9")) {
                     String string = "< " + resolutions16x9[resolutionIndex][0] + ", " + resolutions16x9[resolutionIndex][1] + " >";
                     draw(string, width - ((string.length() * 6) + bp), bp + 10 + (i * 10), 0xD0D0D0);
-                } else if (options.get(optionIndex).equals("Scaling")) {
+                } else if (getOption(optionIndex).equals("Scaling")) {
                     String string = "< " + scales[scaleIndex] + " >";
                     draw(string, width - ((string.length() * 6) + bp), bp + 10 + (i * 10), 0xD0D0D0);
-                } else if (options.get(optionIndex).equals("Sound")) {
+                } else if (getOption(optionIndex).equals("Sound")) {
                     String string = "< " + ((soundEnabled) ? "On" : "Off") + " >";
                     draw(string, width - ((string.length() * 6) + bp), bp + 10 + (i * 10), 0xD0D0D0);
                 }
             } else {
-                draw(" " + options.get(i), bp, bp + 10 + (i * 10), 0x707070);
+                draw(" " + getOption(i), bp, bp + 10 + (i * 10), 0x707070);
 
-                if (options.get(i).equals("Aspect Ratio")) {
+                if (getOption(i).equals("Aspect Ratio")) {
                     String string = aspectRatios[aspectRatioIndex];
                     draw(string, width - ((string.length() * 6) + bp), bp + 10 + (i * 10), 0x707070);
-                } else if (options.get(i).equals("Resolution") && aspectRatios[aspectRatioIndex].equals("4:3")) {
+                } else if (getOption(i).equals("Resolution") && aspectRatios[aspectRatioIndex].equals("4:3")) {
                     String string = resolutions4x3[resolutionIndex][0] + ", " + resolutions4x3[resolutionIndex][1];
                     draw(string, width - ((string.length() * 6) + bp), bp + 10 + (i * 10), 0x707070);
-                } else if (options.get(i).equals("Resolution") && aspectRatios[aspectRatioIndex].equals("16:9")) {
+                } else if (getOption(i).equals("Resolution") && aspectRatios[aspectRatioIndex].equals("16:9")) {
                     String string = resolutions16x9[resolutionIndex][0] + ", " + resolutions16x9[resolutionIndex][1];
                     draw(string, width - ((string.length() * 6) + bp), bp + 10 + (i * 10), 0x707070);
-                } else if (options.get(i).equals("Scaling")) {
+                } else if (getOption(i).equals("Scaling")) {
                     String string = scales[scaleIndex] + "";
                     draw(string, width - ((string.length() * 6) + bp), bp + 10 + (i * 10), 0x707070);
-                } else if (options.get(i).equals("Sound")) {
+                } else if (getOption(i).equals("Sound")) {
                     String string = ((soundEnabled) ? "On" : "Off");
                     draw(string, width - ((string.length() * 6) + bp), bp + 10 + (i * 10), 0x707070);
                 }

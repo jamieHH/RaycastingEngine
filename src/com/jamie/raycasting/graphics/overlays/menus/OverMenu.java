@@ -6,11 +6,16 @@ import com.jamie.raycasting.input.KeyControls;
 
 public class OverMenu extends Menu
 {
+    public String[] getOptions() {
+        return new String[] {
+                "Load Game",
+                "Main Menu",
+                "Quit Game",
+        };
+    }
+
     public OverMenu(int width, int height) {
         super(width, height);
-        options.add("Load Game");
-        options.add("Main Menu");
-        options.add("Quit Game");
     }
 
     public void tick(Game game) {
@@ -25,7 +30,7 @@ public class OverMenu extends Menu
         }
         if (game.userInput.back) {
             game.userInput.stopInput(KeyControls.BACK);
-            if ((optionIndex < options.size() - 1)) {
+            if ((optionIndex < getOptions().length - 1)) {
                 Sound.clickDown.play();
                 optionIndex++;
             }
@@ -34,9 +39,9 @@ public class OverMenu extends Menu
         if (game.userInput.action) {
             game.userInput.stopInput(KeyControls.ACTION);
             Sound.clickAction.play();
-            if (options.get(optionIndex).equals("Main Menu")) {
+            if (getOption(optionIndex).equals("Main Menu")) {
                 game.stopGame();
-            } else if (options.get(optionIndex).equals("Quit Game")) {
+            } else if (getOption(optionIndex).equals("Quit Game")) {
                 System.exit(0);
             }
         }
@@ -46,11 +51,11 @@ public class OverMenu extends Menu
         fill(0x202020);
 
         draw("  Game Over", bp, bp, 0xF0F0F0);
-        for (int i = 0; i < options.size(); i++) {
+        for (int i = 0; i < getOptions().length; i++) {
             if (optionIndex == i) {
-                draw("-> " + options.get(i), bp, bp + 10 + (i * 10), 0xD0D0D0);
+                draw("-> " + getOption(i), bp, bp + 10 + (i * 10), 0xD0D0D0);
             } else {
-                draw(" " + options.get(i), bp, bp + 10 + (i * 10), 0x707070);
+                draw(" " + getOption(i), bp, bp + 10 + (i * 10), 0x707070);
             }
         }
     }
