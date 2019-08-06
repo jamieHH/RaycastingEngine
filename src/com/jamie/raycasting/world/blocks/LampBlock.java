@@ -13,7 +13,10 @@ public class LampBlock extends Block
 		ceilTex = Texture.floor;
 
 		Render[] ts0 = {
-				Texture.lamp,
+				Texture.lamp0,
+				Texture.lamp1,
+				Texture.lamp2,
+				Texture.lamp3,
 		};
 		setIdleSprite(new Sprite(ts0));
 	}

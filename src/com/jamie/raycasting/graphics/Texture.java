@@ -106,7 +106,10 @@ public class Texture
     public static final Render spinningDummy3 = PngLoader.loadBitmap("tex/spinningDummy3.png");
     public static final Render spinningDummy4 = PngLoader.loadBitmap("tex/spinningDummy4.png");
     public static final Render pillar = PngLoader.loadBitmap("tex/pillar.png");
-    public static final Render lamp = PngLoader.loadBitmap("tex/lamp.png");
+    public static final Render lamp0 = PngLoader.loadBitmap("tex/lamp0.png");
+    public static final Render lamp1 = PngLoader.loadBitmap("tex/lamp1.png");
+    public static final Render lamp2 = PngLoader.loadBitmap("tex/lamp2.png");
+    public static final Render lamp3 = PngLoader.loadBitmap("tex/lamp3.png");
     public static final Render bars = PngLoader.loadBitmap("tex/bars.png");
     public static final Render ladder = PngLoader.loadBitmap("tex/ladder.png");
     public static final Render portal0 = PngLoader.loadBitmap("tex/portal0.png");
