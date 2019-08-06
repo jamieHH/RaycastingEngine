@@ -72,7 +72,7 @@ public class Bat extends Mob
         rotationSpeed = 0.03;
         walkSpeed = 0.03;
 
-        maxHealth = 10;
+        maxHealth = 3;
         health = maxHealth;
 
         faction = "beast";

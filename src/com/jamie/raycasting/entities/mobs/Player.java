@@ -1,6 +1,7 @@
 package com.jamie.raycasting.entities.mobs;
 
 import com.jamie.jamapp.Render;
+import com.jamie.raycasting.app.RunApp;
 import com.jamie.raycasting.app.Sound;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
@@ -69,18 +70,20 @@ public class Player extends Mob
 
         hurtSound = Sound.pain;
 
-        addItem(new SpearWeapon());
-        addItem(new StrengthPotion());
-        addItem(new WeaknessPotion());
-        addItem(new SpeedPotion());
-        addItem(new SlowPotion());
-        addItem(new WandWeapon());
-        addItem(new HealthPotion());
-        addItem(new XbowWeapon());
-        addItem(new AxeWeapon());
-        addItem(new KnifeWeapon());
-        addItem(new PoisonPotion());
-        addItem(new MiscItem("Silver Key", Texture.keyIcon));
-        addItem(new MiscItem("Planks", Texture.planksIcon));
+        if (RunApp.inDev) {
+            addItem(new SpearWeapon());
+            addItem(new StrengthPotion());
+            addItem(new WeaknessPotion());
+            addItem(new SpeedPotion());
+            addItem(new SlowPotion());
+            addItem(new WandWeapon());
+            addItem(new HealthPotion());
+            addItem(new XbowWeapon());
+            addItem(new AxeWeapon());
+            addItem(new KnifeWeapon());
+            addItem(new PoisonPotion());
+            addItem(new MiscItem("Silver Key", Texture.keyIcon));
+            addItem(new MiscItem("Planks", Texture.planksIcon));
+        }
     }
 }

@@ -1,6 +1,7 @@
 package com.jamie.raycasting.input;
 
 import com.jamie.jamapp.InputHandler;
+import com.jamie.raycasting.app.RunApp;
 
 import java.awt.event.FocusEvent;
 import java.awt.event.KeyEvent;
@@ -73,10 +74,11 @@ public class UserInputHandler extends InputHandler
         hot2 = checkKeyGroup(inputGroups.get(KeyControls.HOT2));
         hot3 = checkKeyGroup(inputGroups.get(KeyControls.HOT3));
         pause = checkKeyGroup(inputGroups.get(KeyControls.PAUSE));
-        nextMob = checkKeyGroup(inputGroups.get(KeyControls.NEXTMOB));
-
-        randomLevel = key[KeyEvent.VK_R];
-        loadLevel = key[KeyEvent.VK_P];
+        if (RunApp.inDev) {
+            nextMob = checkKeyGroup(inputGroups.get(KeyControls.NEXTMOB));
+            randomLevel = key[KeyEvent.VK_R];
+            loadLevel = key[KeyEvent.VK_P];
+        }
     }
 
 	@Override

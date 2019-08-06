@@ -10,6 +10,7 @@ public abstract class Menu extends Overlay
         return getOptions()[i];
     }
 
+
     public Menu(int width, int height) {
         super(width, height);
     }

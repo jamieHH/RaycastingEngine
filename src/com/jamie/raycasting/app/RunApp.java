@@ -9,13 +9,19 @@ public class RunApp
     public static int defaultHeight = 150;
     public static int defaultScale = 4;
     public static boolean defaultSoundEnabled = false;
+    public static boolean inDev = true;
 
     public static void main(String args[]) {
-        App.title = "raycasting_engine_pre_0.98";
+        if (inDev) {
+            App.title = "raycasting_engine_pre_0.98";
+        } else {
+            App.title = "Dungeon Crawler";
+        }
         App.width = defaultWidth;
         App.height = defaultHeight;
         App.scale = defaultScale;
         App.soundEnabled = defaultSoundEnabled;
+        App.inDev = inDev;
 
         App.input = new UserInputHandler();
         App.game = new Game(App.input);

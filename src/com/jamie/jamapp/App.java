@@ -22,6 +22,7 @@ public class App extends Canvas implements Runnable
 	public static int height;
 	public static int scale;
 	public static boolean soundEnabled;
+	public static boolean inDev;
 
 	public static InputHandler input;
 	public static Game game;
@@ -178,13 +179,13 @@ public class App extends Canvas implements Runnable
 
         Graphics g = bs.getDrawGraphics();
 		g.drawImage(img, 0, 0, width * scale, height * scale, null);
-
-		int fontSize = 16;
-		g.setFont(new Font("Verdana", Font.PLAIN, fontSize));
-		g.setColor(Color.YELLOW);
-		g.drawString("UPS: " + ups, 0, fontSize);
-		g.drawString("FPS: " + fps , 0, (fontSize * 2));
-
+		if (inDev) {
+			int fontSize = 16;
+			g.setFont(new Font("Verdana", Font.PLAIN, fontSize));
+			g.setColor(Color.YELLOW);
+			g.drawString("UPS: " + ups, 0, fontSize);
+			g.drawString("FPS: " + fps, 0, (fontSize * 2));
+		}
 		g.dispose();
 		bs.show();
 	}
