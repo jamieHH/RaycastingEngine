@@ -2,6 +2,7 @@ package com.jamie.raycasting.entities.environmentalEffects;
 
 import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.entities.particles.EmberParticle;
+import com.jamie.raycasting.entities.particles.Particle;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.world.levels.Level;
 
@@ -13,6 +14,9 @@ public class ExplosionEffect extends EnvironmentalEffect
         return null;
     }
 
+    protected Particle getParticle() {
+        return new EmberParticle(32);
+    }
 
     public ExplosionEffect(Level level, double radius, int magnitude) {
         super(level, radius, magnitude);
@@ -27,7 +31,6 @@ public class ExplosionEffect extends EnvironmentalEffect
             }
         }
 
-        EmberParticle p = new EmberParticle(16);
-        level.addEntity(p, posX, posZ);
+        level.addEntity(getParticle(), posX, posZ);
     }
 }

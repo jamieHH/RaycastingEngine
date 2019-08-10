@@ -44,7 +44,6 @@ public class DoorBlock extends TriggerableBlock
     }
 
     public void tick() {
-	    super.tick();
 	    if (useTicks > 0) useTicks--;
         updateOpenness();
     }

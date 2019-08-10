@@ -555,7 +555,7 @@ public abstract class Mob extends Entity
     }
 
     private void activate() {
-        if (useTicks == 0) {
+        if (useTicks < 1) {
             useTicks = getUseWait();
             runSpriteSet("action");
 

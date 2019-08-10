@@ -52,4 +52,8 @@ public class BoardsBlock extends TriggerableBlock
         WoodParticle p = new WoodParticle(8);
         level.addEntity(p, gridX + 0.5, gridZ + 0.5);
     }
+
+    public void tick() {
+
+    }
 }

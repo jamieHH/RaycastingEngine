@@ -43,4 +43,8 @@ public class BridgeBlock extends TriggerableBlock
         isWalkable = true;
         floorTex = Texture.bridge;
     }
+
+    public void tick() {
+
+    }
 }

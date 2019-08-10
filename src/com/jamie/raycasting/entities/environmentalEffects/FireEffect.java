@@ -4,6 +4,7 @@ import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.entities.mobs.mobEffects.FireDamageEffect;
 import com.jamie.raycasting.entities.particles.EmberParticle;
 import com.jamie.jamapp.Render;
+import com.jamie.raycasting.entities.particles.Particle;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
 import com.jamie.raycasting.world.levels.Level;
@@ -19,6 +20,10 @@ public class FireEffect extends EnvironmentalEffect
                 Texture.fire2,
                 Texture.fire3,
         });
+    }
+
+    protected Particle getParticle() {
+        return new EmberParticle(2);
     }
 
 
@@ -38,7 +43,6 @@ public class FireEffect extends EnvironmentalEffect
             }
         }
 
-        EmberParticle p = new EmberParticle(2);
-        level.addEntity(p, posX, posZ);
+        level.addEntity(getParticle(), posX, posZ);
     }
 }
