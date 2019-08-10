@@ -7,7 +7,7 @@ import com.jamie.raycasting.graphics.Texture;
 public class TurretBlock extends TriggerableBlock
 {
     protected boolean isActive = true;
-    protected int fireWait = 0;
+    protected int fireWait = 30;
     protected int fireTicks = 0;
     protected String direction;
 
