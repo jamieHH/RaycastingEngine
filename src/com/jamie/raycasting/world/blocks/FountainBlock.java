@@ -7,7 +7,9 @@ import com.jamie.raycasting.graphics.Texture;
 
 public class FountainBlock extends FunctionBlock
 {
-    private int i = 0;
+    private int particleWait = 0;
+    private int particleTicks;
+    private boolean isActive = true;
 
 	public FountainBlock() {
 		isSolid = true;
@@ -21,14 +23,15 @@ public class FountainBlock extends FunctionBlock
 	}
 
     public void tick() {
-	    if (i > 0) {
-	        i--;
-        } else {
-			i = 5;
+		if (isActive) {
+			if (particleTicks > 0) {
+				particleTicks--;
+			} else {
+				DropParticle p = new DropParticle(1);
+				level.addEntity(p, gridX + 0.5, gridZ + 0.5);
 
-			DropParticle p = new DropParticle(1);
-			level.addEntity(p, gridX + 0.5, gridZ + 0.5);
-
+				particleTicks = particleWait;
+			}
 		}
     }
 }
