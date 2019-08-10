@@ -46,17 +46,22 @@ public class DoorBlock extends TriggerableBlock
     public void tick() {
 	    super.tick();
 	    if (useTicks > 0) useTicks--;
+        updateOpenness();
+    }
 
+    protected void updateOpenness() {
         if (open) openness += 0.1;
         else openness -= 0.1;
         if (openness < 0) openness = 0;
         if (openness > 1) openness = 1;
+
         if (openness < openLimit && !open && !isSolid) {
             if (level.blockContainsEntity(gridX, gridZ)) {
                 openness = openLimit;
                 return;
             }
         }
+
         isSolid = openness < openLimit;
     }
 }
