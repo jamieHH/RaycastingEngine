@@ -54,9 +54,9 @@ public abstract class Level
         this.sizeZ = sizeZ;
         this.blocks = new Block[sizeX * sizeZ];
 
-        int ladderCount = 1;
-        int doorCount = 1;
         int buttonCount = 1;
+        int levelPortalCount = 1;
+        int triggerBlockCount = 1;
 
         for (int z = 0; z < sizeZ; z++) {
             for (int x = 0; x < sizeX; x++) {
@@ -66,22 +66,16 @@ public abstract class Level
                 }
 
                 Block block = getBlockByColour(col);
-
-                if (block instanceof LevelPortalBlock) { // level portals
-                    ((LevelPortalBlock) block).id = ladderCount;
-                    ladderCount++;
-                }
-
-                if (block instanceof DoorBlock) { // doors
-                    ((DoorBlock) block).id = doorCount;
-                    doorCount++;
-                }
-
-                if (block instanceof ButtonBlock) { // buttons
+                if (block instanceof ButtonBlock) {
                     ((ButtonBlock) block).id = buttonCount;
                     buttonCount++;
+                } else if (block instanceof LevelPortalBlock) {
+                    ((LevelPortalBlock) block).id = levelPortalCount;
+                    levelPortalCount++;
+                } else if (block instanceof TriggerableBlock) {
+                    ((TriggerableBlock) block).id = triggerBlockCount;
+                    triggerBlockCount++;
                 }
-
                 setBlock(x, z, block);
             }
         }

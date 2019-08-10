@@ -111,7 +111,7 @@ public class Game extends GameInterface
 		setPlayer(new Player(userInput));
 		getPlayer().rotation = 1.9;
 
-		world.switchLevel(player, "dungeon", 0);
+		world.switchLevel(player, "prison", 0);
 		setActiveOverlay(null);
 	}
 

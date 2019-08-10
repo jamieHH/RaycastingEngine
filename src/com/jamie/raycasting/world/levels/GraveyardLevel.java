@@ -24,4 +24,8 @@ public class GraveyardLevel extends Level
     public void switchLevel(Mob mob, int id) {
         if (id == 2) world.switchLevel(mob, "island", 1);
     }
+
+	public void triggerBlock(int id) {
+		if (id == 1) super.triggerBlock(3);
+	}
 }
