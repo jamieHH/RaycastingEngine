@@ -31,6 +31,8 @@ public class TeleporterBlock extends FunctionBlock
     }
 
 	public void tick() {
+	    super.tick();
+
         List<Entity> entities = level.getEntitiesWithin(gridX, gridZ, gridX + 1, gridZ + 1);
         for (int i = 0; i < entities.size(); i++) {
             if (entities.get(i) instanceof Particle || entities.get(i) instanceof EnvironmentalEffect) {

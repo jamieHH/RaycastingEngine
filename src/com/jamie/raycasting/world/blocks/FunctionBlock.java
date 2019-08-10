@@ -13,6 +13,4 @@ public abstract class FunctionBlock extends Block
 	public void setReference(String reference) {
 		this.reference = reference;
 	}
-
-	public abstract void tick();
 }
