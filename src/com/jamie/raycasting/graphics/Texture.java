@@ -50,7 +50,7 @@ public class Texture
     private static final Render puddleOverlay = PngLoader.loadBitmap("tex/puddleOverlay.png");
     private static final Render buttonOverlay0 = PngLoader.loadBitmap("tex/buttonOverlay0.png");
     private static final Render buttonOverlay1 = PngLoader.loadBitmap("tex/buttonOverlay1.png");
-    private static final Render switchOverlay0 = PngLoader.loadBitmap("tex/switchOverlay1.png");
+    private static final Render switchOverlay0 = PngLoader.loadBitmap("tex/switchOverlay0.png");
     private static final Render switchOverlay1 = PngLoader.loadBitmap("tex/switchOverlay1.png");
     private static final Render boltSwitchOverlay0 = PngLoader.loadBitmap("tex/boltSwitchOverlay0.png");
     private static final Render boltSwitchOverlay1 = PngLoader.loadBitmap("tex/boltSwitchOverlay1.png");

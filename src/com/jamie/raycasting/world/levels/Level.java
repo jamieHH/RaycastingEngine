@@ -54,7 +54,7 @@ public abstract class Level
         this.sizeZ = sizeZ;
         this.blocks = new Block[sizeX * sizeZ];
 
-        int buttonCount = 1;
+        int switchCount = 1;
         int levelPortalCount = 1;
         int triggerBlockCount = 1;
 
@@ -66,9 +66,9 @@ public abstract class Level
                 }
 
                 Block block = getBlockByColour(col);
-                if (block instanceof ButtonBlock) {
-                    ((ButtonBlock) block).id = buttonCount;
-                    buttonCount++;
+                if (block instanceof SwitchBlock) {
+                    ((SwitchBlock) block).id = switchCount;
+                    switchCount++;
                 } else if (block instanceof LevelPortalBlock) {
                     ((LevelPortalBlock) block).id = levelPortalCount;
                     levelPortalCount++;
@@ -268,7 +268,7 @@ public abstract class Level
         if (col == 0xE1AE4A) return new BoardsBlock();
         if (col == 0x4C4C65) return new GateBlock("Grey Key");
         if (col == 0x7EC0C0) return new FountainBlock();
-        if (col == 0xC80000) return new ButtonBlock();
+        if (col == 0xC80000) return new SwitchBlock();
         if (col == 0x873800) return new LevelPortalBlock();
         if (col == 0xFF6A00) return new LadderBlock(false);
         if (col == 0xB24700) return new LadderBlock(true);

@@ -4,23 +4,22 @@ import com.jamie.raycasting.app.Sound;
 import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.graphics.Texture;
 
-public class ButtonBlock extends FunctionBlock
+public class SwitchBlock extends FunctionBlock
 {
     private int useTicks = 0;
     private int useWait = 10;
+    private boolean isDown = false;
 
-	public ButtonBlock() {
+	public SwitchBlock() {
 		isOpaque = true;
 		isSolid = true;
 
-		wallTex = Texture.wallButton0;
+		wallTex = Texture.wallSwitch0;
 	}
 
 	public void tick() {
         if (useTicks > 0) {
             useTicks--;
-        } else {
-            wallTex = Texture.wallButton0;
         }
     }
 
@@ -30,8 +29,14 @@ public class ButtonBlock extends FunctionBlock
         }
         useTicks = useWait;
 
-        Sound.clickUp.play();
-        wallTex = Texture.wallButton1;
+        isDown = !isDown;
+        if (isDown) {
+            Sound.clickDown.play();
+            wallTex = Texture.wallSwitch1;
+        } else {
+            Sound.clickUp.play();
+            wallTex = Texture.wallSwitch0;
+        }
         level.triggerBlock(id);
 
 		return true;
