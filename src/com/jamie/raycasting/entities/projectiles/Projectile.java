@@ -44,7 +44,7 @@ public abstract class Projectile extends Entity
             } else {
                 int divs = 10; // increase this to improve accuracy of collision
                 for (int i = 0; i < divs; i++) {
-                    double nextX = (moveSpeed * Math.sin(rotation)) / divs;
+                    double nextX = (moveSpeed * Math.sin(getRotation())) / divs;
                     if (getBlockingMob(posX + nextX, posZ) != null) {
                         getBlockingMob(posX + nextX, posZ).hurt(this, damage);
                         detonate();
@@ -56,7 +56,7 @@ public abstract class Projectile extends Entity
                     }
                     posX += nextX;
 
-                    double nextZ = (moveSpeed * Math.cos(rotation)) / divs;
+                    double nextZ = (moveSpeed * Math.cos(getRotation())) / divs;
                     if (getBlockingMob(posX, posZ + nextZ) != null) {
                         getBlockingMob(posX, posZ + nextZ).hurt(this, damage);
                         detonate();

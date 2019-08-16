@@ -79,12 +79,10 @@ public class Game extends GameInterface
 					}
 
 					if (userInput.randomLevel) {
-						getPlayer().rotation = 0.2;
 						world.switchLevel(player, "test", 0);
 					}
 
 					if (userInput.loadLevel) {
-						getPlayer().rotation = 0.2;
 						world.switchLevel(player, "island", 0);
 					}
 				} else {
@@ -109,7 +107,7 @@ public class Game extends GameInterface
 	public void newGame() {
 		world = new World(this);
 		setPlayer(new Player(userInput));
-		getPlayer().rotation = 1.9;
+		getPlayer().setRotation(1.9);
 
 		world.switchLevel(player, "dungeon", 0);
 		setActiveOverlay(null);

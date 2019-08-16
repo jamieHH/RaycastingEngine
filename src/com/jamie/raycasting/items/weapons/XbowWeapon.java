@@ -33,11 +33,11 @@ public class XbowWeapon extends Weapon
     public void use() {
         super.use();
 
-        double nextX = Math.sin(user.rotation);
-        double nextZ = Math.cos(user.rotation);
+        double nextX = Math.sin(user.getRotation());
+        double nextZ = Math.cos(user.getRotation());
 
         ArrowProjectile f = new ArrowProjectile(damage);
-        f.setRotation(user.rotation);
+        f.setRotation(user.getRotation());
 
         user.level.addEntity(f, user.posX + nextX, user.posZ + nextZ);
     }

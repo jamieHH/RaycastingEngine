@@ -16,7 +16,7 @@ public abstract class Entity
     public boolean isSolid = true;
     public double radius = 0.25;
 
-    public double rotation;
+    private double rotation;
     public double posX = 0;
     public double posZ = 0;
     public double posY = 0;
@@ -39,8 +39,29 @@ public abstract class Entity
         posZ = z;
     }
 
-    public void setRotation(double rotation) {
-        this.rotation = rotation;
+    public void setRotation(double r) {
+        double max = Math.toRadians(360);
+        if (r > max) {
+            rotation = max % r;
+        } else if (r < 0) {
+            rotation = max + r;
+        } else {
+            rotation = r;
+        }
+    }
+
+    public double getRotation() {
+        return rotation;
+    }
+
+    public void rotate(double r) {
+        if (rotation + r > 6.28319) {
+            rotation = 6.28319 % r;
+        } else if (rotation + r < 0) {
+            rotation = 6.28319 - r;
+        } else {
+            rotation += r;
+        }
     }
 
     public void remove() {

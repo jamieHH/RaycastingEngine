@@ -315,10 +315,11 @@ public abstract class Mob extends Entity
         camY += yBob;
         yBob *= 0.75;
 
-        rotation += rotationMove;
+//        rotation += rotationMove;
+        rotate(rotationMove);
         rotationMove *= 0.6;
 
-        move(moveX * Math.cos(rotation) + moveZ * Math.sin(rotation), moveZ * Math.cos(rotation) - moveX * Math.sin(rotation));
+        move(moveX * Math.cos(getRotation()) + moveZ * Math.sin(getRotation()), moveZ * Math.cos(getRotation()) - moveX * Math.sin(getRotation()));
         moveX *= 1 - friction;
         moveZ *= 1 - friction;
     }
@@ -501,15 +502,16 @@ public abstract class Mob extends Entity
     }
 
     public void lookTowards(double x, double z) {
-        rotation = Math.atan2(x - posX, z - posZ);
+        double r = Math.atan2(x - posX, z - posZ);
+        setRotation(r);
     }
 
     public void pushDir(double direction, double force) {
         double mx = Math.sin(direction) * force;
         double mz = Math.cos(direction)* force;
 
-        moveX += mx * Math.cos(-rotation) + mz * Math.sin(-rotation);
-        moveZ += mz * Math.cos(-rotation) - mx * Math.sin(-rotation);
+        moveX += mx * Math.cos(-getRotation()) + mz * Math.sin(-getRotation());
+        moveZ += mz * Math.cos(-getRotation()) - mx * Math.sin(-getRotation());
     }
 
     public void heal(int magnitude) {
@@ -545,8 +547,8 @@ public abstract class Mob extends Entity
                     health -= magnitude;
 
                     yBob -= 0.8;
-                    rotationMove += (Math.random() - 0.5);
-                    pushDir(source.rotation, 0.4);
+                    rotationMove += (Math.random() - 0.5) / 2;
+                    pushDir(source.getRotation(), 0.4);
                 } else {
                     health = 0;
                 }
@@ -560,8 +562,8 @@ public abstract class Mob extends Entity
             runSpriteSet("action");
 
             List<Entity> closeEntities = getEntitiesInRadius(getRightHandReach());
-            double xa = getRightHandReach() * Math.sin(rotation);
-            double za = getRightHandReach() * Math.cos(rotation);
+            double xa = getRightHandReach() * Math.sin(getRotation());
+            double za = getRightHandReach() * Math.cos(getRotation());
             int divs = (int) (getRightHandReach() * 100);
 
             boolean hit = false;
