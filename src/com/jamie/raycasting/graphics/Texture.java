@@ -86,6 +86,10 @@ public class Texture
 
 	// sprites
     public static final Render marker = PngLoader.loadBitmap("tex/marker.png");
+    public static final Render signN = PngLoader.loadBitmap("tex/signN.png");
+    public static final Render signS = PngLoader.loadBitmap("tex/signS.png");
+    public static final Render signE = PngLoader.loadBitmap("tex/signE.png");
+    public static final Render signW = PngLoader.loadBitmap("tex/signW.png");
     public static final Render bat0 = PngLoader.loadBitmap("tex/bat0.png");
     public static final Render bat1 = PngLoader.loadBitmap("tex/bat1.png");
     public static final Render bat2 = PngLoader.loadBitmap("tex/bat2.png");

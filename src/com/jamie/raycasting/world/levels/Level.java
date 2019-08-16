@@ -47,6 +47,7 @@ public abstract class Level
     protected static final WaterBlock WaterBlock = new WaterBlock();
     protected static final CeilDripBlock CeilDripBlock = new CeilDripBlock();
     protected static final SpinningDummyBlock SpinningDummyBlock = new SpinningDummyBlock();
+    protected static final SignBlock SignBlock = new SignBlock();
     protected Block defaultFloorBlock = AirBlock;
 
 
@@ -128,6 +129,7 @@ public abstract class Level
         WaterBlock.tick();
         CeilDripBlock.tick();
         SpinningDummyBlock.tick();
+        SignBlock.tick();
         for (int i = 0; i < blocks.length; i++) {
             if (blocks[i] instanceof FunctionBlock) {
                 blocks[i].tick();

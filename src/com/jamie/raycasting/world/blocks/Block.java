@@ -19,6 +19,7 @@ public abstract class Block
 
 	protected SpriteSet spriteSet = new SpriteSet();
 
+
 	public void tick() {
 		spriteSet.tick();
 	}

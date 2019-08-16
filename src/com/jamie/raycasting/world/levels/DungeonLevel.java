@@ -11,6 +11,7 @@ public class DungeonLevel extends Level
 
 	protected void postCreate() {
 		setBlock(35, 29, new TurretBlock("N"));
+		setBlock(23, 40, SignBlock);
 	}
 
 	public void switchLevel(Mob mob, int id) {
