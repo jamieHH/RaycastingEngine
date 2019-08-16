@@ -88,4 +88,41 @@ public class Render
 		fill(x1 - 1, 1, x1, y1, color);
 		fill(1, y1 - 1, x1, y1, color);
 	}
+
+	public void draw(Render render, int xOffs, int yOffs, double density) {
+		for (int y = 0; y < render.height; y++) {
+			int yPix = y + yOffs;
+			if (yPix < 0 || yPix >= height) continue;
+
+			for (int x = 0; x < render.width; x++) {
+				int xPix = x + xOffs;
+				if (xPix < 0 || xPix >= width) continue;
+
+				int alpha = render.pixels[x + y * render.width];
+				if (alpha != INVISIBLE) {
+					pixels[xPix + yPix * width] = blendColor(alpha, pixels[xPix + yPix * width], density);
+				}
+			}
+		}
+	}
+
+	public static int blendColorBand(int color, int colorB, double density) {
+		double difColor = color - colorB;
+		return (int) ((difColor / 100) * density) + colorB;
+	}
+
+	public static int blendColor(int color, int colorB, double density) {
+		int r = (color >> 16) & 0xFF;
+		int g = (color >> 8) & 0xFF;
+		int b = (color) & 0xFF;
+		int rb = (colorB >> 16) & 0xFF;
+		int gb = (colorB >> 8) & 0xFF;
+		int bb = (colorB) & 0xFF;
+
+		r = blendColorBand(r, rb, density);
+		g = blendColorBand(g, gb, density);
+		b = blendColorBand(b, bb, density);
+
+		return r << 16 | g << 8 | b;
+	}
 }

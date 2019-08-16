@@ -47,7 +47,7 @@ public class Render3D extends Render
         renderFloor();
         renderWalls();
         renderSprites();
-        renderDistanceLimiter();
+        renderFog();
 	}
     private void renderFloor() {
         for (int y = 0; y < height; y++) {
@@ -329,11 +329,7 @@ public class Render3D extends Render
 		}
 	}
 
-	private void renderDistanceLimiter() {
-		int fogR = (level.fogColor >> 16) & 0xFF;
-		int fogG = (level.fogColor >> 8) & 0xFF;
-		int fogB = (level.fogColor) & 0xFF;
-
+	private void renderFog() {
         int dist = (32 * blockViewDist); // render dist. 32 = one blocks dist
 		for (int i = 0; i < width * height; i++) {
             if (zBuffer[i] > blockViewDist) {
@@ -346,23 +342,10 @@ public class Render3D extends Render
 
 				if (brightness < 0) brightness = 0;
 				else if (brightness > 255) brightness = 255;
+				double density = ((double) (brightness) / 255) * 100;
 
-				int r = (pixels[i] >> 16) & 0xFF;
-				int g = (pixels[i] >> 8) & 0xFF;
-				int b = (pixels[i]) & 0xFF;
-
-				double percentFog = ((double) (brightness) / 255) * 100;
-				r = (int) blendColor(r, fogR, percentFog);
-				g = (int) blendColor(g, fogG, percentFog);
-				b = (int) blendColor(b, fogB, percentFog);
-
-				pixels[i] = r << 16 | g << 8 | b;
+				pixels[i] = blendColor(pixels[i], level.fogColor, density);
 			}
 		}
-	}
-
-	public double blendColor(int color, int colourB, double percent) {
-		double difColor = color - colourB;
-		return (int) ((difColor / 100) * percent) + colourB;
 	}
 }
