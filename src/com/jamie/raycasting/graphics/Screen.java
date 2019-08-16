@@ -52,7 +52,7 @@ public class Screen extends Display
                 // Render pain
                 if (p.hurtTime >= 0) {
                     viewPunch.update(p.hurtTime / 60.0, p.hurtType);
-                    draw(viewPunch, 0, 0);
+                    draw(viewPunch, 0, 0, 75);
                 }
 
                 // Render mobEffect bars
@@ -106,7 +106,7 @@ public class Screen extends Display
             game.activeOverlay.update();
             int cornerX = (width / 2) - (game.activeOverlay.width / 2);
             int cornerY = (height / 2) - (game.activeOverlay.height / 2);
-            draw(game.activeOverlay, cornerX, cornerY);
+            draw(game.activeOverlay, cornerX, cornerY, 95);
         }
     }
 }

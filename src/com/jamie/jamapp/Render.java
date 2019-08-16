@@ -83,11 +83,15 @@ public class Render
 	}
 
 	public void box(int x0, int y0, int x1, int y1, int color) {
-		fill(x0, y0, x1, 1, color);
-		fill(x0, y0, 1, y1, color);
-		fill(x1 - 1, 1, x1, y1, color);
-		fill(1, y1 - 1, x1, y1, color);
+		box(x0, y0, x1, y1, color, color);
 	}
+
+    public void box(int x0, int y0, int x1, int y1, int color, int color2) {
+        fill(x0, y0, x1, 1, color);
+        fill(x0, y0, 1, y1, color);
+        fill(x1 - 1, 1, x1, y1, color2);
+        fill(1, y1 - 1, x1, y1, color2);
+    }
 
 	public void draw(Render render, int xOffs, int yOffs, double density) {
 		for (int y = 0; y < render.height; y++) {
