@@ -330,15 +330,14 @@ public class Render3D extends Render
 	}
 
 	private void renderDistanceLimiter() {
-		int fogColour = 0x00000F;
-		int fogR = (fogColour >> 16) & 0xFF;
-		int fogG = (fogColour >> 8) & 0xFF;
-		int fogB = (fogColour) & 0xFF;
+		int fogR = (level.fogColor >> 16) & 0xFF;
+		int fogG = (level.fogColor >> 8) & 0xFF;
+		int fogB = (level.fogColor) & 0xFF;
 
         int dist = (32 * blockViewDist); // render dist. 32 = one blocks dist
 		for (int i = 0; i < width * height; i++) {
             if (zBuffer[i] > blockViewDist) {
-                pixels[i] = fogColour;
+                pixels[i] = level.fogColor;
             } else {
 				double xx = ((i % width - xCentre) / width) * 4;
 				double x2x = (((xx * xx) * 2) + 32);

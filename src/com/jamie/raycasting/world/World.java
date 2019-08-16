@@ -4,6 +4,7 @@ import com.jamie.jamapp.App;
 import com.jamie.raycasting.app.Sound;
 import com.jamie.raycasting.app.Game;
 import com.jamie.raycasting.entities.mobs.Mob;
+import com.jamie.raycasting.graphics.Texture;
 import com.jamie.raycasting.graphics.overlays.LoadingOverlay;
 import com.jamie.raycasting.world.blocks.LevelPortalBlock;
 import com.jamie.raycasting.world.levels.Level;
@@ -20,6 +21,10 @@ public class World
     public Level level;
     public Map<String, Level> cache = new HashMap<String, Level>();
 
+    private boolean timeCycle = false;
+    private int hour = 3;
+    private int minute = 0;
+
 
     public World(Game game) {
         this.game = game;
@@ -28,6 +33,21 @@ public class World
     public void tick() {
         if (level != null) {
             level.tick();
+        }
+
+        if (timeCycle) {
+            minute++;
+            if (minute > 59) {
+                minute = 0;
+                hour++;
+                if (hour > 23) {
+                    hour = 0;
+                }
+            }
+
+        }
+        if (level.isOutside) {
+            level.fogColor = Texture.fogHours.pixels[hour];
         }
     }
 

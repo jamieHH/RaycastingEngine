@@ -10,6 +10,8 @@ public class GraveyardLevel extends Level
 	public GraveyardLevel() {
 		name = "Graveyard";
 		height = 8192;
+        fogColor = 0x000010;
+		isOutside = true;
 		defaultFloorBlock = GrassBlock;
 	}
 

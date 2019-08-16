@@ -20,6 +20,8 @@ public abstract class Level
     protected int sizeX;
     protected int sizeZ;
     public int height = 1;
+    public int fogColor = 0x000000;
+    public boolean isOutside = false;
 
     public double spawnX;
     public double spawnZ;
