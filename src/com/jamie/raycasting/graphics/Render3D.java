@@ -330,7 +330,7 @@ public class Render3D extends Render
 	}
 
 	private void renderDistanceLimiter() {
-		int fogColour = 0x000008;
+		int fogColour = 0x00000F;
 		int fogR = (fogColour >> 16) & 0xFF;
 		int fogG = (fogColour >> 8) & 0xFF;
 		int fogB = (fogColour) & 0xFF;
@@ -343,50 +343,27 @@ public class Render3D extends Render
 				double xx = ((i % width - xCentre) / width) * 4;
 				double x2x = (((xx * xx) * 2) + 32);
 				int brightness = (int) (dist - zBuffer[i] * x2x);
+				// divide this value to soften the fog without changing the distance
 
-				if (brightness < 1) {
-					brightness = 1;
-				} else if (brightness > 255) {
-					brightness = 255;
-				}
+				if (brightness < 0) brightness = 0;
+				else if (brightness > 255) brightness = 255;
 
 				int r = (pixels[i] >> 16) & 0xFF;
 				int g = (pixels[i] >> 8) & 0xFF;
 				int b = (pixels[i]) & 0xFF;
 
-
-
-
-
-				double percentFog = ((double) (brightness)/255) * 100;
+				double percentFog = ((double) (brightness) / 255) * 100;
 				r = (int) blendColor(r, fogR, percentFog);
 				g = (int) blendColor(g, fogG, percentFog);
 				b = (int) blendColor(b, fogB, percentFog);
 
-
-
-
-
-				if (r > 255) r = 255;
-				else if (r < 0) r = 0;
-				if (g > 255) g = 255;
-				else if (g < 0) g = 0;
-				if (b > 255) b = 255;
-				else if (b < 0) b = 0;
 				pixels[i] = r << 16 | g << 8 | b;
 			}
 		}
 	}
 
 	public double blendColor(int color, int colourB, double percent) {
-		if (colourB > color) {
-			double difColor = colourB - color;
-			color = (int) ((difColor / 100) * percent) + color;
-		} else {
-			double difColor = color - colourB;
-			color = (int) ((difColor / 100) * percent) + colourB;
-		}
-
-		return color;
+		double difColor = color - colourB;
+		return (int) ((difColor / 100) * percent) + colourB;
 	}
 }
