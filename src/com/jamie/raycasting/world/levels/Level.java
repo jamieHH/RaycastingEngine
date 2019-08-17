@@ -37,6 +37,7 @@ public abstract class Level
     protected static final PillarBlock PillarBlock = new PillarBlock();
     protected static final LampBlock LampBlock = new LampBlock();
     protected static final BarsBlock BarsBlock = new BarsBlock();
+    protected static final BarrelsBlock BarrelsBlock = new BarrelsBlock();
     protected static final CobwebBlock CobwebBlock = new CobwebBlock();
     protected static final TreeBlock TreeBlock = new TreeBlock();
     protected static final GrassBlock GrassBlock = new GrassBlock();
@@ -119,6 +120,7 @@ public abstract class Level
         PillarBlock.tick();
         LampBlock.tick();
         BarsBlock.tick();
+        BarrelsBlock.tick();
         CobwebBlock.tick();
         TreeBlock.tick();
         GrassBlock.tick();
@@ -255,6 +257,7 @@ public abstract class Level
         if (col == 0x808080) return PillarBlock;
         if (col == 0x648480) return LampBlock;
         if (col == 0xC0C0C0) return BarsBlock;
+        if (col == 0xB06E23) return BarrelsBlock;
         if (col == 0xE0E0E0) return CobwebBlock;
         if (col == 0xB27400) return TreeBlock;
         if (col == 0xB8ECBE) return GrassBlock;
