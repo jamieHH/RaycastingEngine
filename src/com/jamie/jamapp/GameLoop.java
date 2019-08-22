@@ -1,10 +1,10 @@
 package com.jamie.jamapp;
 
-public abstract class GameInterface
+public abstract class GameLoop
 {
     public InputHandler userInput;
 
-    public GameInterface(InputHandler input) {
+    public GameLoop(InputHandler input) {
         this.userInput = input;
     }
 

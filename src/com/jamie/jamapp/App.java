@@ -122,6 +122,7 @@ public class App extends Canvas implements Runnable
 	}
 
     private void initialiseFrame() {
+		display.setSize(width,height);
 		img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		pixels = ((DataBufferInt) img.getRaster().getDataBuffer()).getData();
 

@@ -15,6 +15,10 @@ public class Render
 	public static final Render font = PngLoader.loadBitmap("/gui/font2.png");
 	
 	public Render(int width, int height) {
+		setSize(width, height);
+	}
+
+	public void setSize(int width, int height) {
 		this.width = width;
 		this.height = height;
 		pixels = new int[width * height];
