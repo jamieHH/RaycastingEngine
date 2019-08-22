@@ -8,7 +8,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 import com.jamie.raycasting.app.Game;
-import com.jamie.raycasting.graphics.Screen;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -26,7 +25,7 @@ public class App extends Canvas implements Runnable
 
 	public static InputHandler input;
 	public static Game game;
-	public static Screen display;
+	public static Display display;
 
 	public static boolean setNewOptions = false;
 	public static int newWidth, newHeight, newScale;
@@ -123,7 +122,6 @@ public class App extends Canvas implements Runnable
 	}
 
     private void initialiseFrame() {
-		display = new Screen(width, height, game);
 		img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		pixels = ((DataBufferInt) img.getRaster().getDataBuffer()).getData();
 

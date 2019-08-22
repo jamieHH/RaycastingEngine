@@ -20,7 +20,7 @@ public class Screen extends Display
 
 
 	public Screen(int width, int height, Game game) {
-		super(width, height, game);
+		super(width, height);
 		this.game = game;
         p = game.getPlayer();
 
