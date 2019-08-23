@@ -5,6 +5,7 @@ import com.jamie.raycasting.app.RunApp;
 
 import java.awt.event.FocusEvent;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -124,4 +125,41 @@ public class UserInputHandler extends InputHandler
 		// TODO Auto-generated method stub
 		
 	}
+
+    @Override
+    public void mouseClicked(MouseEvent mouseEvent) {
+        super.mouseClicked(mouseEvent);
+    }
+
+    @Override
+    public void mousePressed(MouseEvent mouseEvent) {
+        super.mousePressed(mouseEvent);
+        setKeyState(inputGroups.get(KeyControls.ACTION), true);
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent mouseEvent) {
+        super.mouseReleased(mouseEvent);
+        setKeyState(inputGroups.get(KeyControls.ACTION), false);
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent mouseEvent) {
+        super.mouseEntered(mouseEvent);
+    }
+
+    @Override
+    public void mouseExited(MouseEvent mouseEvent) {
+        super.mouseExited(mouseEvent);
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+        super.mouseDragged(e);
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
+        super.mouseMoved(e);
+    }
 }

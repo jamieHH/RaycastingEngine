@@ -126,8 +126,11 @@ public abstract class InputHandler implements KeyListener, FocusListener, MouseL
     }
 
     @Override
-    public void mouseDragged(MouseEvent mouseEvent) {
-
+    public void mouseDragged(MouseEvent e) {
+        if (enableMouse) {
+            mouseX = e.getX();
+            mouseY = e.getY();
+        }
     }
 
     @Override
