@@ -9,7 +9,6 @@ import java.util.Map;
 
 public abstract class InputHandler implements KeyListener, FocusListener
 {
-    protected Map<String, int[]> inputGroups = new HashMap<String, int[]>();
     public boolean
             forward,
             back,
@@ -17,10 +16,11 @@ public abstract class InputHandler implements KeyListener, FocusListener
             right,
             rotLeft,
             rotRight,
+            crouch,
+            action,
             hot1,
             hot2,
             hot3,
-            action,
             inventory,
             pause,
             randomLevel,

@@ -5,9 +5,12 @@ import com.jamie.raycasting.app.RunApp;
 
 import java.awt.event.FocusEvent;
 import java.awt.event.KeyEvent;
+import java.util.HashMap;
+import java.util.Map;
 
 public class UserInputHandler extends InputHandler
 {
+    private Map<String, int[]> inputGroups = new HashMap<String, int[]>();
 	private final boolean[] key = new boolean[68836];
 
 
@@ -19,10 +22,11 @@ public class UserInputHandler extends InputHandler
         int[] rotLeftKeys = {KeyEvent.VK_LEFT};
         int[] rotRightKeys = {KeyEvent.VK_RIGHT};
         int[] actionKeys = {KeyEvent.VK_ENTER, KeyEvent.VK_SPACE};
-        int[] inventoryKeys = {KeyEvent.VK_E};
+        int[] crouchKeys = {KeyEvent.VK_CONTROL};
         int[] hot1 = {KeyEvent.VK_1};
         int[] hot2 = {KeyEvent.VK_2};
         int[] hot3 = {KeyEvent.VK_3};
+        int[] inventoryKeys = {KeyEvent.VK_E};
         int[] pauseKeys = {KeyEvent.VK_ESCAPE};
         int[] nextMob = {KeyEvent.VK_G};
 
@@ -33,10 +37,11 @@ public class UserInputHandler extends InputHandler
         inputGroups.put(KeyControls.ROTLEFT, rotLeftKeys);
         inputGroups.put(KeyControls.ROTRIGHT, rotRightKeys);
         inputGroups.put(KeyControls.ACTION, actionKeys);
-        inputGroups.put(KeyControls.INVENTORY, inventoryKeys);
+        inputGroups.put(KeyControls.CROUCH, crouchKeys);
         inputGroups.put(KeyControls.HOT1, hot1);
         inputGroups.put(KeyControls.HOT2, hot2);
         inputGroups.put(KeyControls.HOT3, hot3);
+        inputGroups.put(KeyControls.INVENTORY, inventoryKeys);
         inputGroups.put(KeyControls.PAUSE, pauseKeys);
         inputGroups.put(KeyControls.NEXTMOB, nextMob);
     }
@@ -69,10 +74,11 @@ public class UserInputHandler extends InputHandler
         rotLeft = checkKeyGroup(inputGroups.get(KeyControls.ROTLEFT));
         rotRight = checkKeyGroup(inputGroups.get(KeyControls.ROTRIGHT));
         action = checkKeyGroup(inputGroups.get(KeyControls.ACTION));
-        inventory = checkKeyGroup(inputGroups.get(KeyControls.INVENTORY));
+        crouch = checkKeyGroup(inputGroups.get(KeyControls.CROUCH));
         hot1 = checkKeyGroup(inputGroups.get(KeyControls.HOT1));
         hot2 = checkKeyGroup(inputGroups.get(KeyControls.HOT2));
         hot3 = checkKeyGroup(inputGroups.get(KeyControls.HOT3));
+        inventory = checkKeyGroup(inputGroups.get(KeyControls.INVENTORY));
         pause = checkKeyGroup(inputGroups.get(KeyControls.PAUSE));
         if (RunApp.inDev) {
             nextMob = checkKeyGroup(inputGroups.get(KeyControls.NEXTMOB));
