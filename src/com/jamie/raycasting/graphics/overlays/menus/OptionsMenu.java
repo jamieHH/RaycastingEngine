@@ -127,9 +127,27 @@ public class OptionsMenu extends Menu
                 if (aspectRatios[aspectRatioIndex].equals("16:9")) {
                     App.newWidth = resolutions16x9[resolutionIndex][0];
                     App.newHeight = resolutions16x9[resolutionIndex][1];
+                    App.display.setSize(resolutions16x9[resolutionIndex][0], resolutions16x9[resolutionIndex][1]);
+
+                    game.mainMenu.setSize(resolutions16x9[resolutionIndex][0], (int) (resolutions16x9[resolutionIndex][1] * 0.6));
+                    game.loadMenu.setSize(resolutions16x9[resolutionIndex][0], (int) (resolutions16x9[resolutionIndex][1] * 0.6));
+                    game.optionsMenu.setSize(resolutions16x9[resolutionIndex][0], (int) (resolutions16x9[resolutionIndex][1] * 0.6));
+                    game.pauseMenu.setSize(resolutions16x9[resolutionIndex][0], (int) (resolutions16x9[resolutionIndex][1] * 0.6));
+                    game.overMenu.setSize(resolutions16x9[resolutionIndex][0], (int) (resolutions16x9[resolutionIndex][1] * 0.6));
+                    game.inventoryOverlay.setSize((int) (resolutions16x9[resolutionIndex][0] * 0.8), (int) (resolutions16x9[resolutionIndex][1] * 0.6));
+
                 } else if (aspectRatios[aspectRatioIndex].equals("4:3")) {
                     App.newWidth = resolutions4x3[resolutionIndex][0];
                     App.newHeight = resolutions4x3[resolutionIndex][1];
+                    App.display.setSize(resolutions4x3[resolutionIndex][0], resolutions4x3[resolutionIndex][1]);
+
+                    game.mainMenu.setSize(resolutions4x3[resolutionIndex][0], (int) (resolutions4x3[resolutionIndex][1] * 0.6));
+                    game.loadMenu.setSize(resolutions4x3[resolutionIndex][0], (int) (resolutions4x3[resolutionIndex][1] * 0.6));
+                    game.optionsMenu.setSize(resolutions4x3[resolutionIndex][0], (int) (resolutions4x3[resolutionIndex][1] * 0.6));
+                    game.pauseMenu.setSize(resolutions4x3[resolutionIndex][0], (int) (resolutions4x3[resolutionIndex][1] * 0.6));
+                    game.overMenu.setSize(resolutions4x3[resolutionIndex][0], (int) (resolutions4x3[resolutionIndex][1] * 0.6));
+                    game.inventoryOverlay.setSize((int) (resolutions4x3[resolutionIndex][0] * 0.8), (int) (resolutions4x3[resolutionIndex][1] * 0.6));
+
                 }
                 App.soundEnabled = soundEnabled;
                 App.setNewOptions = true;

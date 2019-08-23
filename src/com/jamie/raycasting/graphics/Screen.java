@@ -21,19 +21,22 @@ public class Screen extends Display
 
 	public Screen(int width, int height, Game game) {
 		super(width, height);
+		setSize(width, height);
 		this.game = game;
-        p = game.getPlayer();
+        this.p = game.getPlayer();
+    }
 
+    public void setSize(int width, int height) {
+        super.setSize(width, height);
         // HUD
         hudBar = new HudBarOverlay(width, 9);
         healthBar = new StatBarOverlay(40, 4, Texture.heartIcon);
-
         // 3D render
         render = new Render3D(width, height - hudBar.height);
-        viewPunch = new ViewPunchOverlay(width, height - hudBar.height);
+        viewPunch = new ViewPunchOverlay(render.width, render.height);
     }
 
-	public void render() {
+    public void render() {
         fill(0x000000);
         p = game.getPlayer();
         if (p != null) {

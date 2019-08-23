@@ -18,8 +18,8 @@ public class InventoryOverlay extends Overlay
     private Inventory inventory;
     private int inventoryItemIndex = 0;
 
-    private Render itemDetailsPane = new Render(48, height - (bp + 10 + 8 + bp));
-    private Render itemListRender = new Render(width - bp - bp - itemDetailsPane.width, height - (bp + 10 + 8 + bp));
+    private Render itemDetailsPane;
+    private Render itemListRender;
 
     private int categoryIndex = 0;
     private ItemList[] categoryItemLists = {
@@ -47,6 +47,13 @@ public class InventoryOverlay extends Overlay
 
     public InventoryOverlay(int width, int height) {
         super(width, height);
+        setSize(width, height);
+    }
+
+    public void setSize(int width, int height) {
+        super.setSize(width, height);
+        itemDetailsPane = new Render(48, height - (bp + 10 + 8 + bp));
+        itemListRender = new Render(width - bp - bp - itemDetailsPane.width, height - (bp + 10 + 8 + bp));
     }
 
     public void tick(Game game) {

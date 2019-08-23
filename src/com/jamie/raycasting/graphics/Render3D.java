@@ -25,9 +25,17 @@ public class Render3D extends Render
 
 	public Render3D(int width, int height) {
 		super(width, height);
+		setSize(width, height);
+	}
+
+	public void setSize(int width, int height) {
+		super.setSize(width, height);
 		zBuffer = new double[width * height];
 		zBufferWall = new double[width];
-        fov = height;
+		fov = height;
+
+		yCentre = height / 2.5;
+		xCentre = width / 2;
 	}
 
 	public void render(Level level, double x, double y, double z, double rotation, int viewDist) {
