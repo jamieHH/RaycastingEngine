@@ -168,7 +168,6 @@ public class App extends Canvas implements Runnable
 		if (hadFocus != hasFocus()) {
 			hadFocus = !hadFocus;
 			setCursor(hadFocus ? emptyCursor : defaultCursor);
-//			setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
 		}
 
 		BufferStrategy bs = getBufferStrategy();

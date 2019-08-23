@@ -1,16 +1,28 @@
 package com.jamie.jamapp;
 
+import java.awt.*;
 import java.awt.event.*;
 
 public abstract class InputHandler implements KeyListener, FocusListener, MouseListener, MouseMotionListener
 {
+    public Robot robot;
+    {
+        try {
+            robot = new Robot();
+        } catch (AWTException e) {
+            e.printStackTrace();
+        }
+    }
+
     public int mouseX;
     public int mouseY;
     public int diffMouseX;
     public int diffMouseY;
     public int oldMouseX;
     public int oldMouseY;
+
     public boolean enableMouse = false;
+    public boolean lockCursor = true;
 
     public boolean
             forward,
@@ -37,10 +49,22 @@ public abstract class InputHandler implements KeyListener, FocusListener, MouseL
 
     public void tick() {
         if (enableMouse) {
+            int cX = (App.width * App.scale) / 2;
+            int cY = (App.height * App.scale) / 2;
+
             diffMouseX = mouseX - oldMouseX;
-            oldMouseX = mouseX;
+            if (lockCursor) {
+                oldMouseX = cX - 3;
+            } else {
+                oldMouseX = mouseX;
+            }
             diffMouseY = mouseY - oldMouseY;
             oldMouseY = mouseY;
+
+            if (lockCursor) {
+                Point p = App.frame.getLocationOnScreen();
+                robot.mouseMove(p.x + cX, p.y + cY);
+            }
         }
     }
 

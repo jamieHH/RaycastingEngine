@@ -322,7 +322,7 @@ public abstract class Mob extends Entity
 
         rotate(rotationMove);
         if (!isUsingMenu) {
-            rotate(input.diffMouseX * 0.01);
+            rotate(input.diffMouseX * 0.005);
         }
         rotationMove *= 0.6;
 
