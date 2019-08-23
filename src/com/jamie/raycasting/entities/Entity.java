@@ -55,12 +55,10 @@ public abstract class Entity
     }
 
     public void rotate(double r) {
-        if (rotation + r > 6.28319) {
-            rotation = 6.28319 % r;
-        } else if (rotation + r < 0) {
-            rotation = 6.28319 - r;
-        } else {
-            rotation += r;
+        double max = Math.PI * 2.0;
+        rotation = (rotation + r) % max;
+        if (rotation < 0) {
+            rotation += max;
         }
     }
 
