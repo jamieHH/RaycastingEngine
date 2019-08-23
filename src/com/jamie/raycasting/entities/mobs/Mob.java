@@ -294,6 +294,10 @@ public abstract class Mob extends Entity
         double moveSpeed = walkSpeed;
         moveSpeed *= friction;
 
+        if (input.crouch) {
+            moveSpeed *= 0.5;
+            yBob =- 0.25;
+        }
         if (input.forward) moveZ += moveSpeed;
         if (input.back) moveZ -= moveSpeed;
         if (input.left) moveX -= moveSpeed;
@@ -304,7 +308,8 @@ public abstract class Mob extends Entity
         // View bob:
         if ((input.forward ^ input.back) || (input.left ^ input.right)) {
             bobTime++;
-            yBob += Math.sin(bobTime / (3 - (moveSpeed * 10))) * 0.01;
+            double bobSpeed = (moveSpeed * 10) * 1.5;
+            yBob += Math.sin((bobTime * bobSpeed)) * 0.015;
         } else {
             bobTime = 0;
         }
@@ -315,7 +320,6 @@ public abstract class Mob extends Entity
         camY += yBob;
         yBob *= 0.75;
 
-//        rotation += rotationMove;
         rotate(rotationMove);
         rotationMove *= 0.6;
 
@@ -326,10 +330,10 @@ public abstract class Mob extends Entity
 
     private boolean isWallBlocked(double x, double z) {
         if (isSolid) {
-            int x0 = (int) (Math.floor(x + radius));
-            int z0 = (int) (Math.floor(z + radius));
-            int x1 = (int) (Math.floor(x - radius));
-            int z1 = (int) (Math.floor(z - radius));
+            int x0 = (int) (x + radius);
+            int z0 = (int) (z + radius);
+            int x1 = (int) (x - radius);
+            int z1 = (int) (z - radius);
 
             if (level.getBlock(x0, z0).isSolid) return true;
             if (level.getBlock(x1, z0).isSolid) return true;
