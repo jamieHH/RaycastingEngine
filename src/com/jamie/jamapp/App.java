@@ -30,7 +30,7 @@ public class App extends Canvas implements Runnable
 	public static boolean setNewOptions = false;
 	public static int newWidth, newHeight, newScale;
 
-    private static JFrame frame;
+    public static JFrame frame;
     private Thread thread;
     private BufferedImage img;
     private Boolean running = false;
@@ -47,6 +47,9 @@ public class App extends Canvas implements Runnable
 
 		addKeyListener(input);
 		addFocusListener(input);
+
+		addMouseListener(input);
+		addMouseMotionListener(input);
 	}
 
 	public void start() {
@@ -79,6 +82,7 @@ public class App extends Canvas implements Runnable
 		int tickCount = 0;
 
 		while (running) {
+			requestFocus();
 			long currentTime = System.nanoTime();
 			long passedTime = currentTime - previousTime;
 			previousTime = currentTime;
@@ -132,7 +136,6 @@ public class App extends Canvas implements Runnable
 		setMaximumSize(size);
 
 		frame = newFrame(this);
-		requestFocus();
 	}
 
     private static JFrame newFrame(App app) {
@@ -165,6 +168,7 @@ public class App extends Canvas implements Runnable
 		if (hadFocus != hasFocus()) {
 			hadFocus = !hadFocus;
 			setCursor(hadFocus ? emptyCursor : defaultCursor);
+//			setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
 		}
 
 		BufferStrategy bs = getBufferStrategy();

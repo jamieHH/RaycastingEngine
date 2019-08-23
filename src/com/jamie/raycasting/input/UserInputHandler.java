@@ -15,6 +15,8 @@ public class UserInputHandler extends InputHandler
 
 
     public UserInputHandler() {
+        enableMouse = true;
+
         int[] forwardKeys = {KeyEvent.VK_W, KeyEvent.VK_UP};
         int[] backKeys = {KeyEvent.VK_S, KeyEvent.VK_DOWN};
         int[] leftKeys = {KeyEvent.VK_A};
@@ -67,6 +69,7 @@ public class UserInputHandler extends InputHandler
     }
 
 	public void tick() {
+        super.tick();
         forward = checkKeyGroup(inputGroups.get(KeyControls.FORWARD));
         back = checkKeyGroup(inputGroups.get(KeyControls.BACK));
         left = checkKeyGroup(inputGroups.get(KeyControls.LEFT));

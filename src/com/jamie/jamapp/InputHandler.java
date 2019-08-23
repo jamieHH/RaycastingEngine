@@ -1,14 +1,17 @@
 package com.jamie.jamapp;
 
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.util.HashMap;
-import java.util.Map;
+import java.awt.event.*;
 
-public abstract class InputHandler implements KeyListener, FocusListener
+public abstract class InputHandler implements KeyListener, FocusListener, MouseListener, MouseMotionListener
 {
+    public int mouseX;
+    public int mouseY;
+    public int diffMouseX;
+    public int diffMouseY;
+    public int oldMouseX;
+    public int oldMouseY;
+    public boolean enableMouse = false;
+
     public boolean
             forward,
             back,
@@ -28,7 +31,18 @@ public abstract class InputHandler implements KeyListener, FocusListener
             nextMob;
 
 
-	public void tick() {}
+    protected InputHandler() {
+
+    }
+
+    public void tick() {
+        if (enableMouse) {
+            diffMouseX = mouseX - oldMouseX;
+            oldMouseX = mouseX;
+            diffMouseY = mouseY - oldMouseY;
+            oldMouseY = mouseY;
+        }
+    }
 
     public void stopInput(String inputGroup) {}
 
@@ -60,5 +74,43 @@ public abstract class InputHandler implements KeyListener, FocusListener
     public void keyTyped(KeyEvent e) {
         // TODO Auto-generated method stub
 
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent mouseEvent) {
+
+    }
+
+    @Override
+    public void mousePressed(MouseEvent mouseEvent) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent mouseEvent) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent mouseEvent) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent mouseEvent) {
+
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent mouseEvent) {
+
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
+        if (enableMouse) {
+            mouseX = e.getX();
+            mouseY = e.getY();
+        }
     }
 }

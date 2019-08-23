@@ -321,6 +321,9 @@ public abstract class Mob extends Entity
         yBob *= 0.75;
 
         rotate(rotationMove);
+        if (!isUsingMenu) {
+            rotate(input.diffMouseX * 0.01);
+        }
         rotationMove *= 0.6;
 
         move(moveX * Math.cos(getRotation()) + moveZ * Math.sin(getRotation()), moveZ * Math.cos(getRotation()) - moveX * Math.sin(getRotation()));
