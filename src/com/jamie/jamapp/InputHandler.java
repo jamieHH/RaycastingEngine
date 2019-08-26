@@ -3,7 +3,7 @@ package com.jamie.jamapp;
 import java.awt.*;
 import java.awt.event.*;
 
-public abstract class InputHandler implements KeyListener, FocusListener, MouseListener, MouseMotionListener
+public abstract class InputHandler implements KeyListener, FocusListener, MouseListener, MouseMotionListener, MouseWheelListener
 {
     public Robot robot;
     {
@@ -31,6 +31,8 @@ public abstract class InputHandler implements KeyListener, FocusListener, MouseL
             right,
             rotLeft,
             rotRight,
+            up,
+            down,
             crouch,
             action,
             hot1,
@@ -139,5 +141,10 @@ public abstract class InputHandler implements KeyListener, FocusListener, MouseL
             mouseX = e.getX();
             mouseY = e.getY();
         }
+    }
+
+    @Override
+    public void mouseWheelMoved(MouseWheelEvent mouseWheelEvent) {
+
     }
 }

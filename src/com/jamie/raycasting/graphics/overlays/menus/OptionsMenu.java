@@ -3,7 +3,7 @@ package com.jamie.raycasting.graphics.overlays.menus;
 import com.jamie.jamapp.App;
 import com.jamie.raycasting.app.Sound;
 import com.jamie.raycasting.app.Game;
-import com.jamie.raycasting.input.KeyControls;
+import com.jamie.raycasting.input.Controls;
 
 public class OptionsMenu extends Menu
 {
@@ -59,15 +59,17 @@ public class OptionsMenu extends Menu
     public void tick(Game game) {
         super.tick(game);
 
-        if (game.userInput.forward) {
-            game.userInput.stopInput(KeyControls.FORWARD);
+        if (game.userInput.forward || game.userInput.up) {
+            game.userInput.stopInput(Controls.FORWARD);
+            game.userInput.stopInput(Controls.UP);
             if ((optionIndex > 0)) {
                 Sound.clickUp.play();
                 optionIndex--;
             }
         }
-        if (game.userInput.back) {
-            game.userInput.stopInput(KeyControls.BACK);
+        if (game.userInput.back || game.userInput.down) {
+            game.userInput.stopInput(Controls.BACK);
+            game.userInput.stopInput(Controls.DOWN);
             if ((optionIndex < getOptions().length - 1)) {
                 Sound.clickDown.play();
                 optionIndex++;
@@ -75,8 +77,8 @@ public class OptionsMenu extends Menu
         }
 
         if (game.userInput.left || game.userInput.rotLeft) {
-            game.userInput.stopInput(KeyControls.LEFT);
-            game.userInput.stopInput(KeyControls.ROTLEFT);
+            game.userInput.stopInput(Controls.LEFT);
+            game.userInput.stopInput(Controls.ROTLEFT);
             if (getOption(optionIndex).equals("Aspect Ratio")) {
                 if ((aspectRatioIndex > 0)) {
                     aspectRatioIndex--;
@@ -95,8 +97,8 @@ public class OptionsMenu extends Menu
         }
 
         if (game.userInput.right || game.userInput.rotRight) {
-            game.userInput.stopInput(KeyControls.RIGHT);
-            game.userInput.stopInput(KeyControls.ROTRIGHT);
+            game.userInput.stopInput(Controls.RIGHT);
+            game.userInput.stopInput(Controls.ROTRIGHT);
             if (getOption(optionIndex).equals("Aspect Ratio")) {
                 if ((aspectRatioIndex < aspectRatios.length - 1)) {
                     aspectRatioIndex++;
@@ -115,7 +117,8 @@ public class OptionsMenu extends Menu
         }
 
         if (game.userInput.action) {
-            game.userInput.stopInput(KeyControls.ACTION);
+            game.userInput.stopInput(Controls.ACTION);
+            game.userInput.stopInput(Controls.ENTER);
             Sound.clickAction.play();
             if (getOption(optionIndex).equals("Reset Defaults")) {
                 aspectRatioIndex = 0;

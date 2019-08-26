@@ -1,6 +1,6 @@
 package com.jamie.raycasting.input;
 
-public class KeyControls
+public class Controls
 {
     public static final String
             FORWARD = "FORWARD",
@@ -9,7 +9,10 @@ public class KeyControls
             RIGHT = "RIGHT",
             ROTLEFT = "ROTLEFT",
             ROTRIGHT = "ROTRIGHT",
+            UP = "UP",
+            DOWN = "DOWN",
             ACTION = "ACTION",
+            ENTER = "ENTER",
             CROUCH = "CROUCH",
             HOT1 = "HOT1",
             HOT2 = "HOT2",

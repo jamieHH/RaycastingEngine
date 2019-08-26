@@ -6,86 +6,70 @@ import com.jamie.raycasting.app.RunApp;
 import java.awt.event.FocusEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
-import java.util.HashMap;
+import java.awt.event.MouseWheelEvent;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class UserInputHandler extends InputHandler
 {
-    private Map<String, int[]> inputGroups = new HashMap<String, int[]>();
-	private final boolean[] key = new boolean[68836];
+    private final boolean[] key = new boolean[68836];
+    private static Map<String, Integer> inputGroups = Stream.of(new Object[][] {
+            {Controls.FORWARD, KeyEvent.VK_W,},
+            {Controls.BACK, KeyEvent.VK_S},
+            {Controls.LEFT, KeyEvent.VK_A},
+            {Controls.RIGHT, KeyEvent.VK_D},
+            {Controls.ROTLEFT, KeyEvent.VK_LEFT},
+            {Controls.ROTRIGHT, KeyEvent.VK_RIGHT},
+            {Controls.UP, KeyEvent.VK_UP},
+            {Controls.DOWN, KeyEvent.VK_DOWN},
+            {Controls.ENTER, KeyEvent.VK_ENTER},
+            {Controls.ACTION, KeyEvent.VK_SPACE},
+            {Controls.CROUCH, KeyEvent.VK_CONTROL},
+            {Controls.HOT1, KeyEvent.VK_1},
+            {Controls.HOT2, KeyEvent.VK_2},
+            {Controls.HOT3, KeyEvent.VK_3},
+            {Controls.INVENTORY, KeyEvent.VK_E},
+            {Controls.PAUSE, KeyEvent.VK_ESCAPE},
+            {Controls.NEXTMOB, KeyEvent.VK_G},
+    }).collect(Collectors.toMap(data -> (String) data[0], data -> (int) data[1]));
 
 
     public UserInputHandler() {
         enableMouse = true;
-
-        int[] forwardKeys = {KeyEvent.VK_W, KeyEvent.VK_UP};
-        int[] backKeys = {KeyEvent.VK_S, KeyEvent.VK_DOWN};
-        int[] leftKeys = {KeyEvent.VK_A};
-        int[] rightKeys = {KeyEvent.VK_D};
-        int[] rotLeftKeys = {KeyEvent.VK_LEFT};
-        int[] rotRightKeys = {KeyEvent.VK_RIGHT};
-        int[] actionKeys = {KeyEvent.VK_ENTER, KeyEvent.VK_SPACE};
-        int[] crouchKeys = {KeyEvent.VK_CONTROL};
-        int[] hot1 = {KeyEvent.VK_1};
-        int[] hot2 = {KeyEvent.VK_2};
-        int[] hot3 = {KeyEvent.VK_3};
-        int[] inventoryKeys = {KeyEvent.VK_E};
-        int[] pauseKeys = {KeyEvent.VK_ESCAPE};
-        int[] nextMob = {KeyEvent.VK_G};
-
-        inputGroups.put(KeyControls.FORWARD, forwardKeys);
-        inputGroups.put(KeyControls.BACK, backKeys);
-        inputGroups.put(KeyControls.LEFT, leftKeys);
-        inputGroups.put(KeyControls.RIGHT, rightKeys);
-        inputGroups.put(KeyControls.ROTLEFT, rotLeftKeys);
-        inputGroups.put(KeyControls.ROTRIGHT, rotRightKeys);
-        inputGroups.put(KeyControls.ACTION, actionKeys);
-        inputGroups.put(KeyControls.CROUCH, crouchKeys);
-        inputGroups.put(KeyControls.HOT1, hot1);
-        inputGroups.put(KeyControls.HOT2, hot2);
-        inputGroups.put(KeyControls.HOT3, hot3);
-        inputGroups.put(KeyControls.INVENTORY, inventoryKeys);
-        inputGroups.put(KeyControls.PAUSE, pauseKeys);
-        inputGroups.put(KeyControls.NEXTMOB, nextMob);
     }
 
-    protected boolean checkKeyGroup(int[] keys) {
-        for (int i = 0; i < keys.length; i++) {
-            if (key[keys[i]]) {
-                return true;
-            }
-        }
-
-    	return false;
+    protected boolean check(String key) {
+        return this.key[inputGroups.get(key)];
 	}
 	
-	private void setKeyState(int[] keys, boolean state) {
-        for (int i = 0; i < keys.length; i++) {
-            key[keys[i]] = state;
-        }
+	private void setKeyState(String key, boolean state) {
+        this.key[inputGroups.get(key)] = state;
     }
 
     public void stopInput(String inputGroup) {
-        setKeyState(inputGroups.get(inputGroup), false);
+        setKeyState(inputGroup, false);
     }
 
 	public void tick() {
         super.tick();
-        forward = checkKeyGroup(inputGroups.get(KeyControls.FORWARD));
-        back = checkKeyGroup(inputGroups.get(KeyControls.BACK));
-        left = checkKeyGroup(inputGroups.get(KeyControls.LEFT));
-        right = checkKeyGroup(inputGroups.get(KeyControls.RIGHT));
-        rotLeft = checkKeyGroup(inputGroups.get(KeyControls.ROTLEFT));
-        rotRight = checkKeyGroup(inputGroups.get(KeyControls.ROTRIGHT));
-        action = checkKeyGroup(inputGroups.get(KeyControls.ACTION));
-        crouch = checkKeyGroup(inputGroups.get(KeyControls.CROUCH));
-        hot1 = checkKeyGroup(inputGroups.get(KeyControls.HOT1));
-        hot2 = checkKeyGroup(inputGroups.get(KeyControls.HOT2));
-        hot3 = checkKeyGroup(inputGroups.get(KeyControls.HOT3));
-        inventory = checkKeyGroup(inputGroups.get(KeyControls.INVENTORY));
-        pause = checkKeyGroup(inputGroups.get(KeyControls.PAUSE));
+        forward = check(Controls.FORWARD);
+        back = check(Controls.BACK);
+        left = check(Controls.LEFT);
+        right = check(Controls.RIGHT);
+        rotLeft = check(Controls.ROTLEFT);
+        rotRight = check(Controls.ROTRIGHT);
+        up = check(Controls.UP);
+        down = check(Controls.DOWN);
+        action = check(Controls.ACTION) || check(Controls.ENTER);
+        crouch = check(Controls.CROUCH);
+        hot1 = check(Controls.HOT1);
+        hot2 = check(Controls.HOT2);
+        hot3 = check(Controls.HOT3);
+        inventory = check(Controls.INVENTORY);
+        pause = check(Controls.PAUSE);
         if (RunApp.inDev) {
-            nextMob = checkKeyGroup(inputGroups.get(KeyControls.NEXTMOB));
+            nextMob = check(Controls.NEXTMOB);
             randomLevel = key[KeyEvent.VK_R];
             loadLevel = key[KeyEvent.VK_P];
         }
@@ -134,13 +118,13 @@ public class UserInputHandler extends InputHandler
     @Override
     public void mousePressed(MouseEvent mouseEvent) {
         super.mousePressed(mouseEvent);
-        setKeyState(inputGroups.get(KeyControls.ACTION), true);
+        setKeyState(Controls.ACTION, true);
     }
 
     @Override
     public void mouseReleased(MouseEvent mouseEvent) {
         super.mouseReleased(mouseEvent);
-        setKeyState(inputGroups.get(KeyControls.ACTION), false);
+        setKeyState(Controls.ACTION, false);
     }
 
     @Override
@@ -161,5 +145,19 @@ public class UserInputHandler extends InputHandler
     @Override
     public void mouseMoved(MouseEvent e) {
         super.mouseMoved(e);
+    }
+
+    @Override
+    public void mouseWheelMoved(MouseWheelEvent e) {
+        if (enableMouse) {
+            System.out.println(e.getWheelRotation());
+            if (e.getWheelRotation() > 0) {
+                setKeyState(Controls.DOWN, false);
+                setKeyState(Controls.UP, true);
+            } else {
+                setKeyState(Controls.UP, false);
+                setKeyState(Controls.DOWN, true);
+            }
+        }
     }
 }

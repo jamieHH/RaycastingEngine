@@ -50,6 +50,7 @@ public class App extends Canvas implements Runnable
 
 		addMouseListener(input);
 		addMouseMotionListener(input);
+		addMouseWheelListener(input);
 	}
 
 	public void start() {

@@ -9,7 +9,7 @@ import com.jamie.raycasting.graphics.overlays.Overlay;
 import com.jamie.raycasting.graphics.overlays.menus.*;
 import com.jamie.raycasting.input.ArtificialInputHandler;
 import com.jamie.jamapp.InputHandler;
-import com.jamie.raycasting.input.KeyControls;
+import com.jamie.raycasting.input.Controls;
 import com.jamie.raycasting.world.World;
 
 public class Game extends GameLoop
@@ -54,13 +54,13 @@ public class Game extends GameLoop
 				}
 
 				if (userInput.nextMob) {
-					userInput.stopInput(KeyControls.NEXTMOB);
+					userInput.stopInput(Controls.NEXTMOB);
 					possessNextMob();
 				}
 
 				if (!getPlayer().isDead) {
 					if (userInput.inventory) {
-						userInput.stopInput(KeyControls.INVENTORY);
+						userInput.stopInput(Controls.INVENTORY);
 						if (activeOverlay == null) {
 							Sound.slideUp.play();
 							setActiveOverlay(inventoryOverlay);
@@ -71,7 +71,7 @@ public class Game extends GameLoop
 					}
 
 					if (userInput.pause) {
-						userInput.stopInput(KeyControls.PAUSE);
+						userInput.stopInput(Controls.PAUSE);
 						if (activeOverlay == null) {
 							Sound.slideUp.play();
 							setActiveOverlay(pauseMenu);
@@ -93,7 +93,7 @@ public class Game extends GameLoop
 						setActiveOverlay(null);
 					}
 					if (userInput.pause) {
-						userInput.stopInput(KeyControls.PAUSE);
+						userInput.stopInput(Controls.PAUSE);
 						if (activeOverlay == null) {
 							Sound.slideUp.play();
 							setActiveOverlay(overMenu);
