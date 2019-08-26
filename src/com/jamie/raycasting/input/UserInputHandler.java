@@ -152,11 +152,9 @@ public class UserInputHandler extends InputHandler
         if (enableMouse) {
             System.out.println(e.getWheelRotation());
             if (e.getWheelRotation() > 0) {
-                setKeyState(Controls.DOWN, false);
-                setKeyState(Controls.UP, true);
-            } else {
-                setKeyState(Controls.UP, false);
                 setKeyState(Controls.DOWN, true);
+            } else {
+                setKeyState(Controls.UP, true);
             }
         }
     }
