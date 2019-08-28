@@ -38,9 +38,9 @@ public class Game extends GameLoop
 	public void tick() {
 		if (activeOverlay != null) {
 			activeOverlay.tick(this);
-			userInput.lockCursor = false;
+			userInput.unlockCursor();
 		} else {
-            userInput.lockCursor = true;
+            userInput.lockCursor();
         }
 
         if (world != null) {

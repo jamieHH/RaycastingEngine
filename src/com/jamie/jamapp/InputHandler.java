@@ -60,14 +60,37 @@ public abstract class InputHandler implements KeyListener, FocusListener, MouseL
             } else {
                 oldMouseX = mouseX;
             }
+
             diffMouseY = mouseY - oldMouseY;
-            oldMouseY = mouseY;
+            if (lockCursor) {
+                oldMouseY = cY - 37;
+            } else {
+                oldMouseY = mouseY;
+            }
 
             if (lockCursor) {
-                Point p = App.frame.getLocationOnScreen();
-                robot.mouseMove(p.x + cX, p.y + cY);
+                centerCursor();
             }
         }
+    }
+
+    public void lockCursor() {
+        lockCursor = true;
+        centerCursor();
+    }
+
+    public void unlockCursor() {
+        if (lockCursor) {
+            lockCursor = false;
+            centerCursor();
+        }
+    }
+
+    public void centerCursor() {
+        int cX = (App.width * App.scale) / 2;
+        int cY = (App.height * App.scale) / 2;
+        Point p = App.frame.getLocationOnScreen();
+        robot.mouseMove(p.x + cX, p.y + cY);
     }
 
     public void stopInput(String inputGroup) {}

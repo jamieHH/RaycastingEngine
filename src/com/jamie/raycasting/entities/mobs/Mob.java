@@ -57,6 +57,7 @@ public abstract class Mob extends Entity
     private int bobTime = 0;
     public double yBob = 0;
     public double camY;
+    public double camPitch = 0.6;
 
 	// stats
     public int baseDamage = 1;
@@ -315,6 +316,15 @@ public abstract class Mob extends Entity
         }
     }
 
+    public void camPitch(double pitch) {
+        camPitch += pitch;
+        if (camPitch > 1.0) {
+            camPitch = 1.0;
+        } else if (camPitch < 0) {
+            camPitch = 0.0;
+        }
+    }
+
     private void doMovements() {
         camY = viewHeight;
         camY += yBob;
@@ -323,6 +333,7 @@ public abstract class Mob extends Entity
         rotate(rotationMove);
         if (!isUsingMenu) {
             rotate(input.diffMouseX * 0.005);
+            camPitch(input.diffMouseY * 0.005);
         }
         rotationMove *= 0.6;
 

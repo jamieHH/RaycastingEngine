@@ -41,7 +41,7 @@ public class Screen extends Display
         p = game.getPlayer();
         if (p != null) {
             if (!p.isDead) {
-                render.render(p.level, p.posX, p.camY, p.posZ, p.getRotation(), p.viewDist);
+                render.render(p.level, p.posX, p.camY, p.posZ, p.getRotation(), (1 - p.camPitch), p.viewDist);
                 draw(render, 0, 0);
 
                 // Render held items

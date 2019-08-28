@@ -38,11 +38,12 @@ public class Render3D extends Render
 		xCentre = width / 2;
 	}
 
-	public void render(Level level, double x, double y, double z, double rotation, int viewDist) {
+	public void render(Level level, double x, double y, double z, double rotation, double pitch, int viewDist) {
 		this.level = level;
 		px = x;
 		py = y;
 		pz = z;
+		yCentre = height * pitch;
 		cosine = Math.cos(rotation);
 		sine = Math.sin(rotation);
 
