@@ -139,13 +139,13 @@ public abstract class Mob extends Entity
 
     private void setInputInfluence(InfluenceKeyframe influenceKeyframe) {
         if (influenceKeyframe != null) {
-            input.forward = (random.nextInt(100) < influenceKeyframe.forward);
-            input.back = (random.nextInt(100) < influenceKeyframe.back);
-            input.left = (random.nextInt(100) < influenceKeyframe.sLeft);
-            input.right = (random.nextInt(100) < influenceKeyframe.sRight);
-            input.rotLeft = (random.nextInt(100) < influenceKeyframe.rLeft);
-            input.rotRight = (random.nextInt(100) < influenceKeyframe.rRight);
-            input.action = (random.nextInt(100) < influenceKeyframe.action);
+            input.setInput(Controls.FORWARD, (random.nextInt(100) < influenceKeyframe.forward));
+            input.setInput(Controls.BACK, (random.nextInt(100) < influenceKeyframe.back));
+            input.setInput(Controls.LEFT, (random.nextInt(100) < influenceKeyframe.sLeft));
+            input.setInput(Controls.RIGHT, (random.nextInt(100) < influenceKeyframe.sRight));
+            input.setInput(Controls.ROTLEFT, (random.nextInt(100) < influenceKeyframe.rLeft));
+            input.setInput(Controls.ROTRIGHT, (random.nextInt(100) < influenceKeyframe.rRight));
+            input.setInput(Controls.ACTION, (random.nextInt(100) < influenceKeyframe.action));
             if (influenceKeyframe.itemName != null) {
                 setRightHandItem(influenceKeyframe.itemName);
             } else {
@@ -249,19 +249,19 @@ public abstract class Mob extends Entity
                 if (!isUsingMenu) {
                     receiveMovementInput();
 
-                    if (input.action) {
+                    if (input.check(Controls.ACTION)) {
                         activate();
                     }
 
-                    if (input.hot1 && getHotkey(1) != null) {
+                    if (input.check(Controls.HOT1) && getHotkey(1) != null) {
                         input.stopInput(Controls.HOT1);
                         useItemIndex(getHotkey(1));
                     }
-                    if (input.hot2 && getHotkey(2) != null) {
+                    if (input.check(Controls.HOT2) && getHotkey(2) != null) {
                         input.stopInput(Controls.HOT2);
                         useItemIndex(getHotkey(2));
                     }
-                    if (input.hot3 && getHotkey(3) != null) {
+                    if (input.check(Controls.HOT3) && getHotkey(3) != null) {
                         input.stopInput(Controls.HOT3);
                         useItemIndex(getHotkey(3));
                     }
@@ -295,19 +295,19 @@ public abstract class Mob extends Entity
         double moveSpeed = walkSpeed;
         moveSpeed *= friction;
 
-        if (input.crouch) {
+        if (input.check(Controls.CROUCH)) {
             moveSpeed *= 0.5;
             yBob =- 0.25;
         }
-        if (input.forward) moveZ += moveSpeed;
-        if (input.back) moveZ -= moveSpeed;
-        if (input.left) moveX -= moveSpeed;
-        if (input.right) moveX += moveSpeed;
-        if (input.rotLeft) rotationMove -= rotationSpeed;
-        if (input.rotRight) rotationMove += rotationSpeed;
+        if (input.check(Controls.FORWARD)) moveZ += moveSpeed;
+        if (input.check(Controls.BACK)) moveZ -= moveSpeed;
+        if (input.check(Controls.LEFT)) moveX -= moveSpeed;
+        if (input.check(Controls.RIGHT)) moveX += moveSpeed;
+        if (input.check(Controls.ROTLEFT)) rotationMove -= rotationSpeed;
+        if (input.check(Controls.ROTRIGHT)) rotationMove += rotationSpeed;
 
         // View bob:
-        if ((input.forward ^ input.back) || (input.left ^ input.right)) {
+        if ((input.check(Controls.FORWARD) ^ input.check(Controls.BACK)) || (input.check(Controls.LEFT) ^ input.check(Controls.RIGHT))) {
             bobTime++;
             double bobSpeed = (moveSpeed * 10) * 1.5;
             yBob += Math.sin((bobTime * bobSpeed)) * 0.015;

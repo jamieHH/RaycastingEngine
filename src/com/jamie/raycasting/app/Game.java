@@ -53,13 +53,13 @@ public class Game extends GameLoop
 					getPlayer().isUsingMenu = false;
 				}
 
-				if (userInput.nextMob) {
+				if (userInput.check(Controls.NEXTMOB)) {
 					userInput.stopInput(Controls.NEXTMOB);
 					possessNextMob();
 				}
 
 				if (!getPlayer().isDead) {
-					if (userInput.inventory) {
+					if (userInput.check(Controls.INVENTORY)) {
 						userInput.stopInput(Controls.INVENTORY);
 						if (activeOverlay == null) {
 							Sound.slideUp.play();
@@ -70,7 +70,7 @@ public class Game extends GameLoop
 						}
 					}
 
-					if (userInput.pause) {
+					if (userInput.check(Controls.PAUSE)) {
 						userInput.stopInput(Controls.PAUSE);
 						if (activeOverlay == null) {
 							Sound.slideUp.play();
@@ -81,18 +81,18 @@ public class Game extends GameLoop
 						}
 					}
 
-					if (userInput.randomLevel) {
+					if (userInput.check(Controls.ROANDOMLEVEL)) {
 						world.switchLevel(player, "test", 0);
 					}
 
-					if (userInput.loadLevel) {
+					if (userInput.check(Controls.LOADLEVEL)) {
 						world.switchLevel(player, "island", 0);
 					}
 				} else {
 					if (activeOverlay == inventoryOverlay) {
 						setActiveOverlay(null);
 					}
-					if (userInput.pause) {
+					if (userInput.check(Controls.PAUSE)) {
 						userInput.stopInput(Controls.PAUSE);
 						if (activeOverlay == null) {
 							Sound.slideUp.play();

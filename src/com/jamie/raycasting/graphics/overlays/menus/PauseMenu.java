@@ -20,7 +20,7 @@ public class PauseMenu extends Menu
     public void tick(Game game) {
         super.tick(game);
 
-        if (game.userInput.forward || game.userInput.up) {
+        if (game.userInput.check(Controls.FORWARD) || game.userInput.check(Controls.UP)) {
             game.userInput.stopInput(Controls.FORWARD);
             game.userInput.stopInput(Controls.UP);
             if ((optionIndex > 0)) {
@@ -28,7 +28,7 @@ public class PauseMenu extends Menu
                 optionIndex--;
             }
         }
-        if (game.userInput.back || game.userInput.down) {
+        if (game.userInput.check(Controls.BACK) || game.userInput.check(Controls.DOWN)) {
             game.userInput.stopInput(Controls.BACK);
             game.userInput.stopInput(Controls.DOWN);
             if ((optionIndex < getOptions().length - 1)) {
@@ -37,7 +37,7 @@ public class PauseMenu extends Menu
             }
         }
 
-        if (game.userInput.action) {
+        if (game.userInput.check(Controls.ACTION) || game.userInput.check(Controls.ENTER)) {
             game.userInput.stopInput(Controls.ACTION);
             game.userInput.stopInput(Controls.ENTER);
             Sound.clickAction.play();

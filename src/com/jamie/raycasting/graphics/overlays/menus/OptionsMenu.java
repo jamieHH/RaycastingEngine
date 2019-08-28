@@ -59,7 +59,7 @@ public class OptionsMenu extends Menu
     public void tick(Game game) {
         super.tick(game);
 
-        if (game.userInput.forward || game.userInput.up) {
+        if (game.userInput.check(Controls.FORWARD) || game.userInput.check(Controls.UP)) {
             game.userInput.stopInput(Controls.FORWARD);
             game.userInput.stopInput(Controls.UP);
             if ((optionIndex > 0)) {
@@ -67,7 +67,7 @@ public class OptionsMenu extends Menu
                 optionIndex--;
             }
         }
-        if (game.userInput.back || game.userInput.down) {
+        if (game.userInput.check(Controls.BACK) || game.userInput.check(Controls.DOWN)) {
             game.userInput.stopInput(Controls.BACK);
             game.userInput.stopInput(Controls.DOWN);
             if ((optionIndex < getOptions().length - 1)) {
@@ -76,7 +76,7 @@ public class OptionsMenu extends Menu
             }
         }
 
-        if (game.userInput.left || game.userInput.rotLeft) {
+        if (game.userInput.check(Controls.LEFT) || game.userInput.check(Controls.ROTLEFT)) {
             game.userInput.stopInput(Controls.LEFT);
             game.userInput.stopInput(Controls.ROTLEFT);
             if (getOption(optionIndex).equals("Aspect Ratio")) {
@@ -96,7 +96,7 @@ public class OptionsMenu extends Menu
             }
         }
 
-        if (game.userInput.right || game.userInput.rotRight) {
+        if (game.userInput.check(Controls.RIGHT) || game.userInput.check(Controls.ROTRIGHT)) {
             game.userInput.stopInput(Controls.RIGHT);
             game.userInput.stopInput(Controls.ROTRIGHT);
             if (getOption(optionIndex).equals("Aspect Ratio")) {
@@ -116,7 +116,7 @@ public class OptionsMenu extends Menu
             }
         }
 
-        if (game.userInput.action) {
+        if (game.userInput.check(Controls.ACTION) || game.userInput.check(Controls.ENTER)) {
             game.userInput.stopInput(Controls.ACTION);
             game.userInput.stopInput(Controls.ENTER);
             Sound.clickAction.play();

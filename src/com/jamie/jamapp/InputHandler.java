@@ -25,30 +25,16 @@ public abstract class InputHandler implements KeyListener, FocusListener, MouseL
     public boolean enableMouse = false;
     public boolean lockCursor = true;
 
-    public boolean
-            forward,
-            back,
-            left,
-            right,
-            rotLeft,
-            rotRight,
-            up,
-            down,
-            crouch,
-            action,
-            hot1,
-            hot2,
-            hot3,
-            inventory,
-            pause,
-            randomLevel,
-            loadLevel,
-            nextMob;
-
 
     protected InputHandler() {
 
     }
+
+    public abstract boolean check(String key);
+
+    public abstract void setInput(String key, boolean state);
+
+    public abstract void stopInput(String inputGroup);
 
     public double getDiffMouseX() {
         return diffMouseX * mouseSensitivity;
@@ -105,8 +91,6 @@ public abstract class InputHandler implements KeyListener, FocusListener, MouseL
         Point p = App.frame.getLocationOnScreen();
         robot.mouseMove(p.x + cX, p.y + cY);
     }
-
-    public void stopInput(String inputGroup) {}
 
     @Override
     public void focusGained(FocusEvent e) {
