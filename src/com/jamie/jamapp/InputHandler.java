@@ -20,6 +20,7 @@ public abstract class InputHandler implements KeyListener, FocusListener, MouseL
     public int diffMouseY;
     public int oldMouseX;
     public int oldMouseY;
+    public double mouseSensitivity = 0.001;
 
     public boolean enableMouse = false;
     public boolean lockCursor = true;
@@ -47,6 +48,14 @@ public abstract class InputHandler implements KeyListener, FocusListener, MouseL
 
     protected InputHandler() {
 
+    }
+
+    public double getDiffMouseX() {
+        return diffMouseX * mouseSensitivity;
+    }
+
+    public double getDiffMouseY() {
+        return diffMouseY * mouseSensitivity;
     }
 
     public void tick() {
