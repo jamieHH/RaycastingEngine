@@ -118,13 +118,17 @@ public class UserInputHandler extends InputHandler
     @Override
     public void mousePressed(MouseEvent mouseEvent) {
         super.mousePressed(mouseEvent);
-        setKeyState(Controls.ACTION, true);
+        if (enableMouse) {
+            setKeyState(Controls.ACTION, true);
+        }
     }
 
     @Override
     public void mouseReleased(MouseEvent mouseEvent) {
         super.mouseReleased(mouseEvent);
-        setKeyState(Controls.ACTION, false);
+        if (enableMouse) {
+            setKeyState(Controls.ACTION, false);
+        }
     }
 
     @Override

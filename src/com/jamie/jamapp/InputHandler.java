@@ -75,14 +75,18 @@ public abstract class InputHandler implements KeyListener, FocusListener, MouseL
     }
 
     public void lockCursor() {
-        lockCursor = true;
-        centerCursor();
+        if (enableMouse) {
+            lockCursor = true;
+            centerCursor();
+        }
     }
 
     public void unlockCursor() {
-        if (lockCursor) {
-            lockCursor = false;
-            centerCursor();
+        if (enableMouse) {
+            if (lockCursor) {
+                lockCursor = false;
+                centerCursor();
+            }
         }
     }
 
