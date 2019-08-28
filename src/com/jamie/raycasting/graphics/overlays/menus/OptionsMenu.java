@@ -36,7 +36,7 @@ public class OptionsMenu extends Menu
 
     private int aspectRatioIndex = 0;
     private int resolutionIndex = 1;
-    private int scaleIndex = 2;
+    private int scaleIndex = 3;
     private boolean soundEnabled = App.soundEnabled;
 
 

@@ -8,8 +8,8 @@ public class RunApp
 {
     public static int defaultWidth = 200;
     public static int defaultHeight = 150;
-    public static int defaultScale = 4;
-    public static boolean defaultSoundEnabled = false;
+    public static int defaultScale = 8;
+    public static boolean defaultSoundEnabled = true;
     public static boolean inDev = true;
 
     public static void main(String args[]) {
