@@ -21,6 +21,7 @@ public class LoadMenu extends Menu
         };
     }
 
+
     public LoadMenu(int width, int height) {
         super(width, height);
     }
@@ -28,26 +29,9 @@ public class LoadMenu extends Menu
     public void tick(Game game) {
         super.tick(game);
 
-        if (game.userInput.check(Controls.FORWARD) || game.userInput.check(Controls.UP)) {
-            game.userInput.stopInput(Controls.FORWARD);
-            game.userInput.stopInput(Controls.UP);
-            if ((optionIndex > 0)) {
-                Sound.clickUp.play();
-                optionIndex--;
-            }
-        }
-        if (game.userInput.check(Controls.BACK) || game.userInput.check(Controls.DOWN)) {
-            game.userInput.stopInput(Controls.BACK);
-            game.userInput.stopInput(Controls.DOWN);
-            if ((optionIndex < getOptions().length - 1)) {
-                Sound.clickDown.play();
-                optionIndex++;
-            }
-        }
-
-        if (game.userInput.check(Controls.ACTION) || game.userInput.check(Controls.ENTER)) {
-            game.userInput.stopInput(Controls.ACTION);
-            game.userInput.stopInput(Controls.ENTER);
+        if (game.input.check(Controls.ACTION) || game.input.check(Controls.ENTER)) {
+            game.input.stopInput(Controls.ACTION);
+            game.input.stopInput(Controls.ENTER);
             Sound.clickAction.play();
             if (getOption(optionIndex).equals("Main Menu")) {
                 game.setActiveOverlay(game.mainMenu);

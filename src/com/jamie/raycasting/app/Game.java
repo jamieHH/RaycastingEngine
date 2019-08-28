@@ -38,9 +38,9 @@ public class Game extends GameLoop
 	public void tick() {
 		if (activeOverlay != null) {
 			activeOverlay.tick(this);
-			userInput.unlockCursor();
+			input.unlockCursor();
 		} else {
-            userInput.lockCursor();
+            input.lockCursor();
         }
 
         if (world != null) {
@@ -53,14 +53,14 @@ public class Game extends GameLoop
 					getPlayer().isUsingMenu = false;
 				}
 
-				if (userInput.check(Controls.NEXTMOB)) {
-					userInput.stopInput(Controls.NEXTMOB);
+				if (input.check(Controls.NEXTMOB)) {
+					input.stopInput(Controls.NEXTMOB);
 					possessNextMob();
 				}
 
 				if (!getPlayer().isDead) {
-					if (userInput.check(Controls.INVENTORY)) {
-						userInput.stopInput(Controls.INVENTORY);
+					if (input.check(Controls.INVENTORY)) {
+						input.stopInput(Controls.INVENTORY);
 						if (activeOverlay == null) {
 							Sound.slideUp.play();
 							setActiveOverlay(inventoryOverlay);
@@ -70,8 +70,8 @@ public class Game extends GameLoop
 						}
 					}
 
-					if (userInput.check(Controls.PAUSE)) {
-						userInput.stopInput(Controls.PAUSE);
+					if (input.check(Controls.PAUSE)) {
+						input.stopInput(Controls.PAUSE);
 						if (activeOverlay == null) {
 							Sound.slideUp.play();
 							setActiveOverlay(pauseMenu);
@@ -81,19 +81,19 @@ public class Game extends GameLoop
 						}
 					}
 
-					if (userInput.check(Controls.ROANDOMLEVEL)) {
+					if (input.check(Controls.ROANDOMLEVEL)) {
 						world.switchLevel(player, "test", 0);
 					}
 
-					if (userInput.check(Controls.LOADLEVEL)) {
+					if (input.check(Controls.LOADLEVEL)) {
 						world.switchLevel(player, "island", 0);
 					}
 				} else {
 					if (activeOverlay == inventoryOverlay) {
 						setActiveOverlay(null);
 					}
-					if (userInput.check(Controls.PAUSE)) {
-						userInput.stopInput(Controls.PAUSE);
+					if (input.check(Controls.PAUSE)) {
+						input.stopInput(Controls.PAUSE);
 						if (activeOverlay == null) {
 							Sound.slideUp.play();
 							setActiveOverlay(overMenu);
@@ -109,7 +109,7 @@ public class Game extends GameLoop
 	
 	public void newGame() {
 		world = new World(this);
-		setPlayer(new Player(userInput));
+		setPlayer(new Player(input));
 		getPlayer().setRotation(1.9);
 
 		world.switchLevel(player, "dungeon", 0);
@@ -148,7 +148,7 @@ public class Game extends GameLoop
         getPlayer().input = temporaryInput;
         setPlayer(world.level.getMobEntity(i));
         temporaryInput = getPlayer().input;
-        getPlayer().input = userInput;
+        getPlayer().input = input;
 	}
 
 	public Mob getPlayer() {

@@ -77,32 +77,32 @@ public class InventoryOverlay extends Overlay
             }
         }
 
-        if (game.userInput.check(Controls.LEFT) || game.userInput.check(Controls.ROTLEFT)) {
-            game.userInput.stopInput(Controls.LEFT);
-            game.userInput.stopInput(Controls.ROTLEFT);
+        if (game.input.check(Controls.LEFT) || game.input.check(Controls.ROTLEFT)) {
+            game.input.stopInput(Controls.LEFT);
+            game.input.stopInput(Controls.ROTLEFT);
             if ((categoryIndex > 0)) {
                 categoryIndex--;
             }
         }
-        if (game.userInput.check(Controls.RIGHT) || game.userInput.check(Controls.ROTRIGHT)) {
-            game.userInput.stopInput(Controls.RIGHT);
-            game.userInput.stopInput(Controls.ROTRIGHT);
+        if (game.input.check(Controls.RIGHT) || game.input.check(Controls.ROTRIGHT)) {
+            game.input.stopInput(Controls.RIGHT);
+            game.input.stopInput(Controls.ROTRIGHT);
             if ((categoryIndex < categoryItemLists.length - 1)) {
                 categoryIndex++;
             }
         }
 
-        if (game.userInput.check(Controls.FORWARD) || game.userInput.check(Controls.UP)) {
-            game.userInput.stopInput(Controls.FORWARD);
-            game.userInput.stopInput(Controls.UP);
+        if (game.input.check(Controls.FORWARD) || game.input.check(Controls.UP)) {
+            game.input.stopInput(Controls.FORWARD);
+            game.input.stopInput(Controls.UP);
             if ((getItemList().listIndex > 0)) {
                 Sound.clickUp.play();
                 getItemList().listIndex--;
             }
         }
-        if (game.userInput.check(Controls.BACK) || game.userInput.check(Controls.DOWN)) {
-            game.userInput.stopInput(Controls.BACK);
-            game.userInput.stopInput(Controls.DOWN);
+        if (game.input.check(Controls.BACK) || game.input.check(Controls.DOWN)) {
+            game.input.stopInput(Controls.BACK);
+            game.input.stopInput(Controls.DOWN);
             if ((getItemList().listIndex < getItemList().listedItems.size() - 1)) {
                 Sound.clickDown.play();
                 getItemList().listIndex++;
@@ -110,15 +110,15 @@ public class InventoryOverlay extends Overlay
         }
 
         if (getItemList().listedItems.size() > 0) {
-            if (game.userInput.check(Controls.ACTION) || game.userInput.check(Controls.ENTER)) {
-                game.userInput.stopInput(Controls.ACTION);
-                game.userInput.stopInput(Controls.ENTER);
+            if (game.input.check(Controls.ACTION) || game.input.check(Controls.ENTER)) {
+                game.input.stopInput(Controls.ACTION);
+                game.input.stopInput(Controls.ENTER);
                 Sound.clickAction.play();
                 mob.useItemIndex(inventory.getIndexOf(inventory.getItem(inventoryItemIndex)));
             }
 
-            if (game.userInput.check(Controls.HOT1)) {
-                game.userInput.stopInput(Controls.HOT1);
+            if (game.input.check(Controls.HOT1)) {
+                game.input.stopInput(Controls.HOT1);
                 Sound.clickAction.play();
                 if (mob.getHotkey(1) == null || mob.getHotkey(1) != inventoryItemIndex) {
                     mob.setHotkey(1, inventoryItemIndex);
@@ -126,8 +126,8 @@ public class InventoryOverlay extends Overlay
                     mob.setHotkey(1, null);
                 }
             }
-            if (game.userInput.check(Controls.HOT2)) {
-                game.userInput.stopInput(Controls.HOT2);
+            if (game.input.check(Controls.HOT2)) {
+                game.input.stopInput(Controls.HOT2);
                 Sound.clickAction.play();
                 if (mob.getHotkey(2) == null || mob.getHotkey(2) != inventoryItemIndex) {
                     mob.setHotkey(2, inventoryItemIndex);
@@ -135,8 +135,8 @@ public class InventoryOverlay extends Overlay
                     mob.setHotkey(2, null);
                 }
             }
-            if (game.userInput.check(Controls.HOT3)) {
-                game.userInput.stopInput(Controls.HOT3);
+            if (game.input.check(Controls.HOT3)) {
+                game.input.stopInput(Controls.HOT3);
                 Sound.clickAction.play();
                 if (mob.getHotkey(3) == null || mob.getHotkey(3) != inventoryItemIndex) {
                     mob.setHotkey(3, inventoryItemIndex);

@@ -2,10 +2,10 @@ package com.jamie.jamapp;
 
 public abstract class GameLoop
 {
-    public InputHandler userInput;
+    public InputHandler input;
 
     public GameLoop(InputHandler input) {
-        this.userInput = input;
+        this.input = input;
     }
 
     public abstract void tick();

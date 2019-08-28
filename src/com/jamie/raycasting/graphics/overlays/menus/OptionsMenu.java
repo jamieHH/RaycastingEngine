@@ -39,7 +39,6 @@ public class OptionsMenu extends Menu
     private int scaleIndex = 3;
     private boolean soundEnabled = App.soundEnabled;
 
-
     public String[] getOptions() {
         return new String[] {
                 "Aspect Ratio",
@@ -52,6 +51,7 @@ public class OptionsMenu extends Menu
         };
     }
 
+
     public OptionsMenu(int width, int height) {
         super(width, height);
     }
@@ -59,26 +59,9 @@ public class OptionsMenu extends Menu
     public void tick(Game game) {
         super.tick(game);
 
-        if (game.userInput.check(Controls.FORWARD) || game.userInput.check(Controls.UP)) {
-            game.userInput.stopInput(Controls.FORWARD);
-            game.userInput.stopInput(Controls.UP);
-            if ((optionIndex > 0)) {
-                Sound.clickUp.play();
-                optionIndex--;
-            }
-        }
-        if (game.userInput.check(Controls.BACK) || game.userInput.check(Controls.DOWN)) {
-            game.userInput.stopInput(Controls.BACK);
-            game.userInput.stopInput(Controls.DOWN);
-            if ((optionIndex < getOptions().length - 1)) {
-                Sound.clickDown.play();
-                optionIndex++;
-            }
-        }
-
-        if (game.userInput.check(Controls.LEFT) || game.userInput.check(Controls.ROTLEFT)) {
-            game.userInput.stopInput(Controls.LEFT);
-            game.userInput.stopInput(Controls.ROTLEFT);
+        if (game.input.check(Controls.LEFT) || game.input.check(Controls.ROTLEFT)) {
+            game.input.stopInput(Controls.LEFT);
+            game.input.stopInput(Controls.ROTLEFT);
             if (getOption(optionIndex).equals("Aspect Ratio")) {
                 if ((aspectRatioIndex > 0)) {
                     aspectRatioIndex--;
@@ -96,9 +79,9 @@ public class OptionsMenu extends Menu
             }
         }
 
-        if (game.userInput.check(Controls.RIGHT) || game.userInput.check(Controls.ROTRIGHT)) {
-            game.userInput.stopInput(Controls.RIGHT);
-            game.userInput.stopInput(Controls.ROTRIGHT);
+        if (game.input.check(Controls.RIGHT) || game.input.check(Controls.ROTRIGHT)) {
+            game.input.stopInput(Controls.RIGHT);
+            game.input.stopInput(Controls.ROTRIGHT);
             if (getOption(optionIndex).equals("Aspect Ratio")) {
                 if ((aspectRatioIndex < aspectRatios.length - 1)) {
                     aspectRatioIndex++;
@@ -116,9 +99,9 @@ public class OptionsMenu extends Menu
             }
         }
 
-        if (game.userInput.check(Controls.ACTION) || game.userInput.check(Controls.ENTER)) {
-            game.userInput.stopInput(Controls.ACTION);
-            game.userInput.stopInput(Controls.ENTER);
+        if (game.input.check(Controls.ACTION) || game.input.check(Controls.ENTER)) {
+            game.input.stopInput(Controls.ACTION);
+            game.input.stopInput(Controls.ENTER);
             Sound.clickAction.play();
             if (getOption(optionIndex).equals("Reset Defaults")) {
                 aspectRatioIndex = 0;
