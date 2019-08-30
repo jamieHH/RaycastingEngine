@@ -53,8 +53,8 @@ public class Screen extends Display
                 }
 
                 // Render pain
-                if (p.hurtTime >= 0) {
-                    viewPunch.update(p.hurtTime / 60.0, p.hurtType);
+                if (p.hurtTicks >= 0) {
+                    viewPunch.update(p.hurtTicks / 60.0, p.hurtType);
                     draw(viewPunch, 0, 0, 75);
                 }
 
@@ -84,7 +84,7 @@ public class Screen extends Display
 
             int barColour = 0xF00000;
             int bgColour = 0x808080;
-            if (p.hurtTime != 0) {
+            if (p.hurtTicks != 0) {
                 barColour = 0xFF6A00;
             }
             if (p.useTicks != 0) {

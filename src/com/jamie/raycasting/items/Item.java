@@ -25,8 +25,8 @@ public abstract class Item
     public boolean removed = false;
     protected int useCount = 0;
 
-    public int useTicks = 0;
     public int useWait = 15;
+    public int useTicks = 0;
     public boolean canStrike = true;
 
     protected Map<String, String> info = new HashMap<String, String>();

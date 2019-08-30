@@ -13,7 +13,7 @@ import java.util.stream.Stream;
 public class UserInputHandler extends InputHandler
 {
     private final boolean[] key = new boolean[68836];
-    protected Map<String, Integer> inputGroups = Stream.of(new Object[][] {
+    private Map<String, Integer> inputGroups = Stream.of(new Object[][] {
             {Controls.FORWARD, KeyEvent.VK_W},
             {Controls.BACK, KeyEvent.VK_S},
             {Controls.LEFT, KeyEvent.VK_A},

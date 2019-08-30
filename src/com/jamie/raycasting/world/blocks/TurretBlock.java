@@ -6,10 +6,14 @@ import com.jamie.raycasting.graphics.Texture;
 
 public class TurretBlock extends TriggerableBlock
 {
-    protected boolean isActive = true;
-    protected int fireWait = 30;
-    protected int fireTicks = 0;
-    protected String direction;
+    private boolean isActive = true;
+    private boolean isFiring = true;
+    private String direction;
+    private static final int fireWait = 30;
+    private int fireTicks = 0;
+
+    private static final int texWait = 10;
+    private int texTicks = 0;
 
 
     private Projectile getProjectile() {
@@ -20,7 +24,7 @@ public class TurretBlock extends TriggerableBlock
         isOpaque = true;
         isSolid = true;
 
-        wallTex = Texture.wall;
+        wallTex = Texture.wallBoltSwitch0;
         floorTex = Texture.floor;
         ceilTex = Texture.floor;
 
@@ -36,6 +40,7 @@ public class TurretBlock extends TriggerableBlock
             if (fireTicks > 0) {
                 fireTicks--;
             } else {
+                isFiring = true;
                 Projectile projectile = getProjectile();
                 if (direction.equals("N")) {
                     projectile.setRotation(4.71239);
@@ -53,6 +58,21 @@ public class TurretBlock extends TriggerableBlock
 
                 fireTicks = fireWait;
             }
+        } else {
+            fireTicks = 0;
+        }
+
+        if (isFiring) {
+            if (texTicks > 0) {
+                texTicks--;
+            } else {
+                isFiring = false;
+                texTicks = texWait;
+            }
+
+            wallTex = Texture.wallBoltSwitch1;
+        } else {
+            wallTex = Texture.wallBoltSwitch0;
         }
     }
 }

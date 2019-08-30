@@ -35,8 +35,8 @@ public abstract class Mob extends Entity
     // actions
     public InputHandler input;
     public boolean isUsingMenu = false;
+    protected static final int useWait = 15;
     public int useTicks = 0;
-    protected int useWait = 15;
 
     protected String faction;
     protected String enemyFaction;
@@ -62,7 +62,8 @@ public abstract class Mob extends Entity
 	// stats
     public int baseDamage = 1;
 
-	public int hurtTime = 0;
+    private static final int hurtWait = 30;
+    public int hurtTicks = 0;
 	public String hurtType = "";
 	public int maxHealth = 10;
 	public int health;
@@ -80,6 +81,7 @@ public abstract class Mob extends Entity
     public List<MobEffect> mobEffects = new ArrayList<MobEffect>();
 
     public ArrayList<String> hudHeadings = new ArrayList<String>();
+    private static final int hudHeadingsWait = 120;
     private int hudHeadingsTicks = 120;
 
     // sprites
@@ -158,8 +160,8 @@ public abstract class Mob extends Entity
     public void tick() {
         super.tick();
 
-        if (hurtTime > 0) {
-            hurtTime--;
+        if (hurtTicks > 0) {
+            hurtTicks--;
         }
 
         if (useTicks > 0) {
@@ -169,10 +171,11 @@ public abstract class Mob extends Entity
         if (hudHeadingsTicks > 0) {
             hudHeadingsTicks--;
         } else {
-            hudHeadingsTicks = 120;
             if (hudHeadings.size() != 0) {
                 hudHeadings.remove(0);
             }
+
+            hudHeadingsTicks = hudHeadingsWait;
         }
 
         if (!isDieing) {
@@ -280,8 +283,7 @@ public abstract class Mob extends Entity
             if (!isDead) {
                 dieTime--;
                 if (dieTime == 0) {
-                    PoofParticle p = new PoofParticle(8);
-                    level.addEntity(p, posX, posZ);
+                    level.addEntity(new PoofParticle(8), posX, posZ);
 
                     isDead = true;
                 }
@@ -554,14 +556,14 @@ public abstract class Mob extends Entity
 
     public void hurt(Entity source, int magnitude, String damageType) {
         if (!isInvulnerable) {
-            if (magnitude > 0 && !isDieing && hurtTime < 1) {
+            if (magnitude > 0 && !isDieing && hurtTicks < 1) {
                 runSpriteSet("hurt");
                 level.addEntity(getHurtParticle(), posX, posZ);
 
                 if (health - magnitude > 0) {
                     hurtSound.play();
                     hurtType = damageType; // change to blunt if armor protects some damage
-                    hurtTime = 30;
+                    hurtTicks = hurtWait;
                     health -= magnitude;
 
                     yBob -= 0.8;
