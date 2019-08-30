@@ -8,35 +8,35 @@ import java.util.stream.Stream;
 
 public class ArtificialInputHandler extends InputHandler
 {
-    private Map<String, Boolean> inputGroups = Stream.of(new Object[][] {
-            {Controls.FORWARD, false},
-            {Controls.BACK, false},
-            {Controls.LEFT, false},
-            {Controls.RIGHT, false},
-            {Controls.ROTLEFT, false},
-            {Controls.ROTRIGHT, false},
-            {Controls.UP, false},
-            {Controls.DOWN, false},
-            {Controls.ENTER, false},
-            {Controls.ACTION, false},
-            {Controls.CROUCH, false},
-            {Controls.HOT1, false},
-            {Controls.HOT2, false},
-            {Controls.HOT3, false},
-            {Controls.INVENTORY, false},
-            {Controls.PAUSE, false},
-            {Controls.ROANDOMLEVEL, false},
-            {Controls.LOADLEVEL, false},
-            {Controls.NEXTMOB, false},
-    }).collect(Collectors.toMap(data -> (String) data[0], data -> (boolean) data[1]));
+    private Map<String, Integer> inputGroups = Stream.of(new Object[][] {
+            {Controls.FORWARD, 0},
+            {Controls.BACK, 0},
+            {Controls.LEFT, 0},
+            {Controls.RIGHT, 0},
+            {Controls.ROTLEFT, 0},
+            {Controls.ROTRIGHT, 0},
+            {Controls.UP, 0},
+            {Controls.DOWN, 0},
+            {Controls.ENTER, 0},
+            {Controls.ACTION, 0},
+            {Controls.CROUCH, 0},
+            {Controls.HOT1, 0},
+            {Controls.HOT2, 0},
+            {Controls.HOT3, 0},
+            {Controls.INVENTORY, 0},
+            {Controls.PAUSE, 0},
+            {Controls.ROANDOMLEVEL, 0},
+            {Controls.LOADLEVEL, 0},
+            {Controls.NEXTMOB, 0},
+    }).collect(Collectors.toMap(data -> (String) data[0], data -> (Integer) data[1]));
 
 
     public boolean check(String key) {
-        return inputGroups.get(key);
+        return inputGroups.get(key) > 0;
     }
 
     public void setInput(String key, boolean state) {
-        inputGroups.replace(key, state);
+        inputGroups.replace(key, (state) ? 1 : 0);
     }
 
     public void stopInput(String inputGroup) {
