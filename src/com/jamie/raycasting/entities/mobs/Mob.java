@@ -566,7 +566,7 @@ public abstract class Mob extends Entity
                     hurtTicks = hurtWait;
                     health -= magnitude;
 
-                    yBob -= 0.8;
+                    yBob -= 0.5;
                     rotationMove += (Math.random() - 0.5) / 2;
                     pushDir(source.getRotation(), 0.4);
                 } else {
