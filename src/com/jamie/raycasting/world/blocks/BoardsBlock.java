@@ -43,7 +43,7 @@ public class BoardsBlock extends TriggerableBlock
     }
 
     public void trigger() {
-	    Sound.smash.play();
+	    emitSound(Sound.smash);
         smashed = true;
         isSolid = false;
 

@@ -67,11 +67,11 @@ public class GateBlock extends TriggerableBlock
         if (open) {
             setIdleSprite(new Sprite(Texture.gate3));
             runSpriteSet("open");
-            Sound.slideDown.play();
+            emitSound(Sound.slideDown);
         } else {
             setIdleSprite(new Sprite(Texture.gate0));
             runSpriteSet("close");
-            Sound.slideUp.play();
+            emitSound(Sound.slideUp);
         }
     }
 

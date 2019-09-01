@@ -30,7 +30,7 @@ public class ButtonBlock extends FunctionBlock
         }
         useTicks = useWait;
 
-        Sound.clickUp.play();
+        emitSound(Sound.clickUp);
         wallTex = Texture.wallButton1;
         level.triggerBlock(id);
 

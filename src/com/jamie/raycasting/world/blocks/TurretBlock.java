@@ -1,5 +1,6 @@
 package com.jamie.raycasting.world.blocks;
 
+import com.jamie.raycasting.app.Sound;
 import com.jamie.raycasting.entities.projectiles.FireballProjectile;
 import com.jamie.raycasting.entities.projectiles.Projectile;
 import com.jamie.raycasting.graphics.Texture;
@@ -40,6 +41,7 @@ public class TurretBlock extends TriggerableBlock
             if (fireTicks > 0) {
                 fireTicks--;
             } else {
+                emitSound(Sound.clickAction);
                 isFiring = true;
                 Projectile projectile = getProjectile();
                 if (direction.equals("N")) {

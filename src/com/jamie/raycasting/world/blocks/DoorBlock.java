@@ -37,9 +37,9 @@ public class DoorBlock extends TriggerableBlock
     public void trigger() {
         open = !open;
         if (open) {
-            Sound.slideDown.play();
+            emitSound(Sound.slideDown);
         } else {
-            Sound.slideUp.play();
+            emitSound(Sound.slideUp);
         }
     }
 

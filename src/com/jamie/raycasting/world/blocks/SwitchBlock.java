@@ -31,10 +31,10 @@ public class SwitchBlock extends FunctionBlock
 
         isDown = !isDown;
         if (isDown) {
-            Sound.clickDown.play();
+            emitSound(Sound.clickDown);
             wallTex = Texture.wallSwitch1;
         } else {
-            Sound.clickUp.play();
+            emitSound(Sound.clickUp);
             wallTex = Texture.wallSwitch0;
         }
         level.triggerBlock(id);
