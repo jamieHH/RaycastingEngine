@@ -51,14 +51,14 @@ public abstract class InputHandler implements KeyListener, FocusListener, MouseL
 
             diffMouseX = mouseX - oldMouseX;
             if (lockCursor) {
-                oldMouseX = cX - 3;
+                oldMouseX = cX - App.frame.getInsets().left;
             } else {
                 oldMouseX = mouseX;
             }
 
             diffMouseY = mouseY - oldMouseY;
             if (lockCursor) {
-                oldMouseY = cY - 37;
+                oldMouseY = cY - App.frame.getInsets().top;
             } else {
                 oldMouseY = mouseY;
             }
