@@ -2,6 +2,8 @@ package com.jamie.raycasting.world.levels;
 
 import java.util.*;
 
+import com.jamie.jamapp.App;
+import com.jamie.jamapp.Sfx;
 import com.jamie.raycasting.app.Game;
 import com.jamie.raycasting.entities.Entity;
 import com.jamie.raycasting.entities.Drop;
@@ -144,6 +146,19 @@ public abstract class Level
             if (getEntity(i).removed) {
                 removeEntity(getEntity(i));
             }
+        }
+    }
+
+    public void playSound(Sfx sound, double posX, double posZ) {
+        if (App.game.getPlayer() != null) {
+            double viewDist = App.game.getPlayer().viewDist;
+            double dist = Math.hypot(Math.abs(posX - App.game.getPlayer().posX), Math.abs(posZ - App.game.getPlayer().posZ));
+            double per = dist / viewDist;
+            double volume = (per * -1) + 1;
+
+            if (volume > 1) volume = 1;
+            else if (volume < 0) volume = 0;
+            sound.play(volume);
         }
     }
 

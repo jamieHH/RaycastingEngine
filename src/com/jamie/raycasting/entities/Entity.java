@@ -1,5 +1,7 @@
 package com.jamie.raycasting.entities;
 
+import com.jamie.jamapp.Sfx;
+import com.jamie.raycasting.app.Sound;
 import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.SpriteSet;
@@ -64,6 +66,10 @@ public abstract class Entity
 
     public void remove() {
         removed = true;
+    }
+
+    public void emitSound(Sfx sound) {
+        level.playSound(sound, posX, posZ);
     }
 
 	protected double distanceFrom(double x, double z) {

@@ -1,5 +1,6 @@
 package com.jamie.raycasting.entities.environmentalEffects;
 
+import com.jamie.raycasting.app.Sound;
 import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.entities.particles.EmberParticle;
 import com.jamie.raycasting.entities.particles.Particle;
@@ -23,6 +24,7 @@ public class ExplosionEffect extends EnvironmentalEffect
     }
 
     public void activate() {
+        emitSound(Sound.hit);
         List<Mob> mobs = getMobsInRadius(radius);
 
         for (int i = 0; i < mobs.size(); i++) {
