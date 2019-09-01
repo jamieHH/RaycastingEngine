@@ -146,10 +146,10 @@ public class App extends Canvas implements Runnable
         f.setTitle(App.title);
         f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         f.setResizable(false);
-        f.pack();
-        f.setLocationRelativeTo(null);
-        f.setVisible(true);
-        return f;
+		f.setVisible(true);
+		f.pack();
+		f.setLocationRelativeTo(null);
+		return f;
     }
 
 	private void tick() {
