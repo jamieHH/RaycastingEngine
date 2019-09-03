@@ -24,7 +24,7 @@ public class ExplosionEffect extends EnvironmentalEffect
     }
 
     public void activate() {
-        emitSound(Sound.hit);
+        emitSound(Sound.die);
         List<Mob> mobs = getMobsInRadius(radius);
 
         for (int i = 0; i < mobs.size(); i++) {
