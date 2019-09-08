@@ -15,7 +15,7 @@ import com.jamie.raycasting.world.World;
 public class Game extends GameLoop
 {
 	public World world;
-	private Mob player;
+	private static Mob player;
 
 	private InputHandler temporaryInput = new ArtificialInputHandler();
 
@@ -26,7 +26,7 @@ public class Game extends GameLoop
     public final Menu overMenu = new OverMenu(App.width, (int) (App.height * 0.6));
     public final Overlay inventoryOverlay = new InventoryOverlay((int) (App.width * 0.8), (int) (App.height * 0.6));
 
-	public Overlay activeOverlay;
+	public static Overlay activeOverlay;
 	
 	
 	public Game(InputHandler input) {
@@ -112,7 +112,11 @@ public class Game extends GameLoop
 		setPlayer(new Player(input));
 		getPlayer().setRotation(1.9);
 
-		world.switchLevel(player, "dungeon", 0);
+		if (App.inDev) {
+			world.switchLevel(player, "dungeon", 0);
+		} else {
+			world.switchLevel(player, "prison", 0);
+		}
 		setActiveOverlay(null);
 	}
 
@@ -123,10 +127,10 @@ public class Game extends GameLoop
 		setActiveOverlay(mainMenu);
 	}
 
-	public void setActiveOverlay(Overlay activeOverlay) {
-		this.activeOverlay = activeOverlay;
+	public void setActiveOverlay(Overlay overlay) {
+		activeOverlay = overlay;
 		if (activeOverlay instanceof Menu) {
-			((Menu) this.activeOverlay).optionIndex = 0;
+			((Menu) activeOverlay).optionIndex = 0;
 		}
 	}
 
@@ -151,7 +155,7 @@ public class Game extends GameLoop
         getPlayer().input = input;
 	}
 
-	public Mob getPlayer() {
+	public static Mob getPlayer() {
 		return player;
 	}
 

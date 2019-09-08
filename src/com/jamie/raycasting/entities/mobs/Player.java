@@ -1,7 +1,7 @@
 package com.jamie.raycasting.entities.mobs;
 
+import com.jamie.jamapp.App;
 import com.jamie.jamapp.Render;
-import com.jamie.raycasting.app.RunApp;
 import com.jamie.raycasting.app.Sound;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
@@ -70,7 +70,7 @@ public class Player extends Mob
 
         hurtSound = Sound.pain;
 
-        if (RunApp.inDev) {
+        if (App.inDev) {
             addItem(new SpearWeapon());
             addItem(new StrengthPotion());
             addItem(new WeaknessPotion());

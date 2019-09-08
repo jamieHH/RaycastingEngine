@@ -7,8 +7,6 @@ import java.awt.image.DataBufferInt;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-import com.jamie.raycasting.app.Game;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
@@ -24,7 +22,7 @@ public class App extends Canvas implements Runnable
 	public static boolean inDev;
 
 	public static InputHandler input;
-	public static Game game;
+	public static GameLoop game;
 	public static Display display;
 
 	public static boolean setNewOptions = false;

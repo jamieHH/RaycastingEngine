@@ -150,9 +150,9 @@ public abstract class Level
     }
 
     public void playSound(Sfx sound, double posX, double posZ) {
-        if (App.game.getPlayer() != null) {
-            double viewDist = App.game.getPlayer().viewDist;
-            double dist = Math.hypot(Math.abs(posX - App.game.getPlayer().posX), Math.abs(posZ - App.game.getPlayer().posZ));
+        if (Game.getPlayer() != null) {
+            double viewDist = Game.getPlayer().viewDist;
+            double dist = Math.hypot(Math.abs(posX - Game.getPlayer().posX), Math.abs(posZ - Game.getPlayer().posZ));
             double per = dist / viewDist;
             double volume = (per * -1) + 1;
 
