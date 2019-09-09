@@ -51,6 +51,7 @@ public class Player extends Mob
         super(input);
 
         canPickup = true;
+        canActivateBlocks = true;
         isFloating = false;
         isSolid = true;
 

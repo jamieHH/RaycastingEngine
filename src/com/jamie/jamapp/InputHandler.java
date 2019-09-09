@@ -5,7 +5,11 @@ import java.awt.event.*;
 
 public abstract class InputHandler implements KeyListener, FocusListener, MouseListener, MouseMotionListener, MouseWheelListener
 {
-    public Robot robot;
+    public boolean enableMouse = false;
+    public boolean enableMouseDiffX = true;
+    public boolean enableMouseDiffY = true;
+
+    private Robot robot;
     {
         try {
             robot = new Robot();
@@ -14,16 +18,14 @@ public abstract class InputHandler implements KeyListener, FocusListener, MouseL
         }
     }
 
-    public int mouseX;
-    public int mouseY;
-    public int diffMouseX;
-    public int diffMouseY;
-    public int oldMouseX;
-    public int oldMouseY;
-    public double mouseSensitivity = 0.001;
-
-    public boolean enableMouse = false;
-    public boolean lockCursor = true;
+    private int mouseX;
+    private int mouseY;
+    private int diffMouseX;
+    private int diffMouseY;
+    private int oldMouseX;
+    private int oldMouseY;
+    private double mouseSensitivity = 0.001;
+    private boolean lockCursor = true;
 
 
     protected InputHandler() {
@@ -46,21 +48,24 @@ public abstract class InputHandler implements KeyListener, FocusListener, MouseL
 
     public void tick() {
         if (enableMouse) {
-            int cX = (App.width * App.scale) / 2;
-            int cY = (App.height * App.scale) / 2;
-
-            diffMouseX = mouseX - oldMouseX;
-            if (lockCursor) {
-                oldMouseX = cX - App.frame.getInsets().left;
-            } else {
-                oldMouseX = mouseX;
+            if (enableMouseDiffX) {
+                int cX = (App.width * App.scale) / 2;
+                diffMouseX = mouseX - oldMouseX;
+                if (lockCursor) {
+                    oldMouseX = cX - App.frame.getInsets().left;
+                } else {
+                    oldMouseX = mouseX;
+                }
             }
 
-            diffMouseY = mouseY - oldMouseY;
-            if (lockCursor) {
-                oldMouseY = cY - App.frame.getInsets().top;
-            } else {
-                oldMouseY = mouseY;
+            if (enableMouseDiffY) {
+                int cY = (App.height * App.scale) / 2;
+                diffMouseY = mouseY - oldMouseY;
+                if (lockCursor) {
+                    oldMouseY = cY - App.frame.getInsets().top;
+                } else {
+                    oldMouseY = mouseY;
+                }
             }
 
             if (lockCursor) {

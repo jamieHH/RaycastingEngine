@@ -26,6 +26,7 @@ public abstract class Mob extends Entity
 {
     protected boolean isInvulnerable = false;
     protected boolean canPickup = false;
+    protected boolean canActivateBlocks = false;
     protected boolean isFloating = false;
 
     // distances
@@ -61,7 +62,6 @@ public abstract class Mob extends Entity
 
 	// stats
     public int baseDamage = 1;
-
     private static final int hurtWait = 30;
     public int hurtTicks = 0;
 	public String hurtType = "";
@@ -584,17 +584,18 @@ public abstract class Mob extends Entity
             List<Entity> closeEntities = getEntitiesInRadius(getRightHandReach());
             double xa = getRightHandReach() * Math.sin(getRotation());
             double za = getRightHandReach() * Math.cos(getRotation());
-            int divs = (int) (getRightHandReach() * 100);
+            int divs = 100;
 
             boolean hit = false;
             for (int i = 0; i < divs && !hit; i++) {
                 double xx = posX + xa * i / divs;
                 double zz = posZ + za * i / divs;
+
                 for (int b = 0; b < closeEntities.size(); b++) {
                     Entity ent = closeEntities.get(b);
                     if (ent instanceof Mob && ent != this) {
                         if (ent.contains(xx, zz)) {
-                            if (getRightHandItem() == null || getRightHandItem() != null && getRightHandItem().canStrike) {
+                            if (getRightHandItem() == null || (getRightHandItem() != null && getRightHandItem().canStrike)) {
                                 ((Mob) ent).hurt(this, getDamage());
                             } // prevents ranged weapons from causing melee damage
 
@@ -604,18 +605,14 @@ public abstract class Mob extends Entity
                     }
                 }
 
-                if (hit) break;
-
-                int xb = (int) (posX + xa * i / divs);
-                int zb = (int) (posZ + za * i / divs);
-                if (xb != (int) posX || zb != (int) posZ) {
-                    Block block = level.getBlock(xb, zb);
+                if ((int) xx != (int) posX || (int) zz != (int) posZ) {
+                    Block block = level.getBlock((int) xx, (int) zz);
                     if (block.use(this) || block.isSolid || block.isUsable) {
                         if (getRightHandItem() != null && !getRightHandItem().canStrike) {
                             return;
                         } // prevent ranged weapons firing when activating blocks
 
-                        hit = true;
+                        break;
                     }
                 }
             }

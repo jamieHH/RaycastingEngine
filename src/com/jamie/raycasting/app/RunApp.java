@@ -11,7 +11,7 @@ public class RunApp
     public static int defaultScale = 8;
     public static boolean defaultSoundEnabled = true;
     public static boolean defaultMouseEnabled = true;
-    public static boolean defaultInDev = false;
+    public static boolean defaultInDev = true;
 
     public static void main(String args[]) {
         App.inDev = defaultInDev;
@@ -27,6 +27,7 @@ public class RunApp
         App.soundEnabled = defaultSoundEnabled;
 
         App.input = new UserInputHandler();
+        App.input.enableMouse = defaultMouseEnabled;
         App.game = new Game(App.input);
         App.display = new Screen(App.width, App.height);
 

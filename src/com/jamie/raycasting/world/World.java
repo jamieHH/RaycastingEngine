@@ -21,7 +21,7 @@ public class World
     public Level level;
     public Map<String, Level> cache = new HashMap<String, Level>();
 
-    private boolean timeCycle = false;
+    public boolean enableTimeCycle = false;
     private int hour = 3;
     private int minute = 0;
 
@@ -35,7 +35,7 @@ public class World
             level.tick();
         }
 
-        if (timeCycle) {
+        if (enableTimeCycle) {
             minute++;
             if (minute > 59) {
                 minute = 0;
