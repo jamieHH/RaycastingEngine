@@ -587,7 +587,7 @@ public abstract class Mob extends Entity
             int divs = 100;
 
             boolean hit = false;
-            for (int i = 0; i < divs && !hit; i++) {
+            for (int i = 0; i < divs && !hit; i++) { // eye line checks
                 double xx = posX + xa * i / divs;
                 double zz = posZ + za * i / divs;
 
@@ -598,21 +598,25 @@ public abstract class Mob extends Entity
                             if (getRightHandItem() == null || (getRightHandItem() != null && getRightHandItem().canStrike)) {
                                 ((Mob) ent).hurt(this, getDamage());
                             } // prevents ranged weapons from causing melee damage
-
-                            hit = true;
-                            break;
+                            hit = true; // skips remaining eye line checks
+                            break; // breaks from mob checks
                         }
                     }
                 }
 
+                if (hit) break; // breaks from eye line checks
+
                 if ((int) xx != (int) posX || (int) zz != (int) posZ) {
                     Block block = level.getBlock((int) xx, (int) zz);
-                    if (block.use(this) || block.isSolid || block.isUsable) {
+                    if (block.isSolid || block.isUsable) {
+                        if (canActivateBlocks) {
+                            block.use(this);
+                        }
                         if (getRightHandItem() != null && !getRightHandItem().canStrike) {
-                            return;
-                        } // prevent ranged weapons firing when activating blocks
-
-                        break;
+                            return; // skips using items
+                        } else { // prevents ranged items being used when activating blocks
+                            hit = true; // skips remaining eye line checks
+                        }
                     }
                 }
             }
