@@ -159,7 +159,7 @@ public class Game extends GameLoop
 		return player;
 	}
 
-	public void setPlayer(Mob player) {
-		this.player = player;
+	public static void setPlayer(Mob player) {
+		Game.player = player;
 	}
 }
