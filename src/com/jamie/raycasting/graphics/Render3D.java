@@ -247,7 +247,7 @@ public class Render3D extends Render
 
                 int colour = texture.pixels[(xTexture & 15) + (yTexture & 15) * 16];
                 if (colour != INVISIBLE) {
-                    pixels[x + y * width] = pixels[x + y * width] = colour;
+                    pixels[x + y * width] = colour;
                     zBuffer[x + y * width] = 1 / zWall * 0.5;
                 }
 			}
