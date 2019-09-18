@@ -1,6 +1,6 @@
 package com.jamie.raycasting.world.blocks;
 
-import com.jamie.jamapp.Render;
+import com.jamie.jamapp.Bitmap;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
 
@@ -11,7 +11,7 @@ public class GraveBlock extends Block
 
 		floorTex = Texture.dirt;
 
-		Render[] ts0 = {
+		Bitmap[] ts0 = {
 				Texture.grave,
 		};
 		setIdleSprite(new Sprite(ts0));

@@ -1,6 +1,6 @@
 package com.jamie.raycasting.items.weapons;
 
-import com.jamie.jamapp.Render;
+import com.jamie.jamapp.Bitmap;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
 
@@ -16,12 +16,12 @@ public class AxeWeapon extends Weapon
 
         icon = Texture.axeIcon;
 
-        Render[] ts = {
+        Bitmap[] ts = {
                 Texture.screenAxe0,
         };
         setIdleSprite(new Sprite(ts));
 
-        Render[] ts1 = {
+        Bitmap[] ts1 = {
                 Texture.screenAxe1,
         };
         setUseSprite(new Sprite(ts1));

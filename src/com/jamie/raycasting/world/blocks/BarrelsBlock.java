@@ -1,6 +1,6 @@
 package com.jamie.raycasting.world.blocks;
 
-import com.jamie.jamapp.Render;
+import com.jamie.jamapp.Bitmap;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
 
@@ -12,7 +12,7 @@ public class BarrelsBlock extends Block
 		floorTex = Texture.floor;
 		ceilTex = Texture.floor;
 
-		Render[] ts0 = {
+		Bitmap[] ts0 = {
 				Texture.barrel0,
 		};
 		Sprite s = new Sprite(ts0);

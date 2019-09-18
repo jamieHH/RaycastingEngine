@@ -1,6 +1,6 @@
 package com.jamie.raycasting.world.blocks;
 
-import com.jamie.jamapp.Render;
+import com.jamie.jamapp.Bitmap;
 import com.jamie.raycasting.graphics.Texture;
 
 import java.util.ArrayList;
@@ -10,7 +10,7 @@ public class WaterBlock extends Block
     private int animTime = 20;
     private int floorTexIndex = 0;
 
-    private ArrayList<Render> floorTextures = new ArrayList<>();
+    private ArrayList<Bitmap> floorTextures = new ArrayList<>();
 
 	public WaterBlock() {
 		isOpaque = false;

@@ -1,10 +1,9 @@
 package com.jamie.raycasting.world.blocks;
 
 import com.jamie.raycasting.entities.mobs.Mob;
-import com.jamie.jamapp.Render;
+import com.jamie.jamapp.Bitmap;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.SpriteSet;
-import com.jamie.raycasting.graphics.Texture;
 
 public abstract class Block
 {
@@ -13,9 +12,9 @@ public abstract class Block
 	public boolean isWalkable = true;
 	public boolean isUsable = false;
 
-	public Render wallTex = null;
-	public Render floorTex = null;
-	public Render ceilTex = null;
+	public Bitmap wallTex = null;
+	public Bitmap floorTex = null;
+	public Bitmap ceilTex = null;
 
 	protected SpriteSet spriteSet = new SpriteSet();
 

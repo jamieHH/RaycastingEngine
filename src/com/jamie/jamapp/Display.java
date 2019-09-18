@@ -1,6 +1,6 @@
 package com.jamie.jamapp;
 
-public abstract class Display extends Render
+public abstract class Display extends Bitmap
 {
     public Display(int width, int height) {
         super(width, height);

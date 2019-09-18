@@ -1,7 +1,7 @@
 package com.jamie.raycasting.items.weapons;
 
 import com.jamie.raycasting.entities.projectiles.FireballProjectile;
-import com.jamie.jamapp.Render;
+import com.jamie.jamapp.Bitmap;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
 
@@ -18,12 +18,12 @@ public class WandWeapon extends Weapon
 
         icon = Texture.wandIcon;
 
-        Render[] ts = {
+        Bitmap[] ts = {
                 Texture.screenWand0,
         };
         setIdleSprite(new Sprite(ts));
 
-        Render[] ts1 = {
+        Bitmap[] ts1 = {
                 Texture.screenWand1,
                 Texture.screenWand2,
                 Texture.screenWand3,

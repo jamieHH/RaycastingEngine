@@ -3,7 +3,7 @@ package com.jamie.raycasting.entities.environmentalEffects;
 import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.entities.mobs.mobEffects.FireDamageEffect;
 import com.jamie.raycasting.entities.particles.EmberParticle;
-import com.jamie.jamapp.Render;
+import com.jamie.jamapp.Bitmap;
 import com.jamie.raycasting.entities.particles.Particle;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
@@ -14,7 +14,7 @@ import java.util.List;
 public class FireEffect extends EnvironmentalEffect
 {
     protected Sprite getSprite() {
-        return new Sprite(new Render[] {
+        return new Sprite(new Bitmap[] {
                 Texture.fire0,
                 Texture.fire1,
                 Texture.fire2,

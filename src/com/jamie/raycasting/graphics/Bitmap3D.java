@@ -1,12 +1,12 @@
 package com.jamie.raycasting.graphics;
 
-import com.jamie.jamapp.Render;
+import com.jamie.jamapp.Bitmap;
 import com.jamie.raycasting.entities.Entity;
 import com.jamie.raycasting.entities.particles.Particle;
 import com.jamie.raycasting.world.blocks.*;
 import com.jamie.raycasting.world.levels.Level;
 
-public class Render3D extends Render
+public class Bitmap3D extends Bitmap
 {
     private int blockViewDist = 8;
     private int xBlockStart, xBlockEnd, zBlockStart, zBlockEnd;
@@ -14,7 +14,7 @@ public class Render3D extends Render
     private double[] zBuffer;
     private double[] zBufferWall;
 
-    private double xCentre = width / 2;
+    private double xCentre = width / 2.0;
     private double yCentre = height / 2.5; // adjust to 'tilt' the horizon line
     private double cosine, sine;
     private double fov;
@@ -23,7 +23,7 @@ public class Render3D extends Render
     private Level level;
 
 
-	public Render3D(int width, int height) {
+	public Bitmap3D(int width, int height) {
 		super(width, height);
 		setSize(width, height);
 	}
@@ -35,7 +35,7 @@ public class Render3D extends Render
 		fov = height;
 
 		yCentre = height / 2.5;
-		xCentre = width / 2;
+		xCentre = width / 2.0;
 	}
 
 	public void render(Level level, double x, double y, double z, double rotation, double pitch, int viewDist) {
@@ -53,12 +53,12 @@ public class Render3D extends Render
 		zBlockEnd = (int) (pz) + blockViewDist;
 		blockViewDist = viewDist;
 
-        renderFloor();
-        renderWalls();
-        renderSprites();
-        renderFog();
+        drawFloor();
+        drawWalls();
+        drawSprites();
+        fodFog();
 	}
-    private void renderFloor() {
+    private void drawFloor() {
         for (int y = 0; y < height; y++) {
         	double yDist = (y - yCentre) / fov;
 			double zDist = py / yDist;
@@ -82,7 +82,7 @@ public class Render3D extends Render
 
 				Block block = level.getBlock(xTile, zTile);
 
-				Render tex;
+				Bitmap tex;
 				if (isFloor) {
 					tex = block.floorTex;
 				} else {
@@ -98,7 +98,7 @@ public class Render3D extends Render
         }
     }
 
-	private void renderSprite(double x, double y, double z, Render tex) {
+	private void drawSprite(double x, double y, double z, Bitmap tex) {
 		double xc = (x - px) * 2;
 		double yc = (-y + (py - 0.5)) * 2;
 		double zc = (z - pz) * 2;
@@ -132,7 +132,7 @@ public class Render3D extends Render
 //		int scale = tex.width; // this will fill the block width
 		int scale = 16; // this will keep sprites to scale
 		if (tex.width != scale || tex.height != scale) {
-			Render nTex = new Render(scale, scale);
+			Bitmap nTex = new Bitmap(scale, scale);
 			nTex.draw(tex, (scale / 2) - (tex.width / 2), scale - tex.height);
 			tex = nTex; // makes a new texture to scale and draws the smaller one over top
 		}
@@ -156,7 +156,7 @@ public class Render3D extends Render
 	}
 
 
-	private void renderWall(double xLeft, double zLeft, double xRight, double zRight, Render texture) {
+	private void drawWall(double xLeft, double zLeft, double xRight, double zRight, Bitmap texture) {
 		int texWidth = texture.width;
 	    double yB = 0; // Bottom y position.
 
@@ -257,25 +257,25 @@ public class Render3D extends Render
 		}
 	}
 
-	private void renderSprites() {
+	private void drawSprites() {
         for (int xBlock = xBlockStart; xBlock <= xBlockEnd; xBlock++) {
             for (int zBlock = zBlockStart; zBlock <= zBlockEnd; zBlock++) {
 				Sprite sprite = level.getBlock(xBlock, zBlock).getSprite();
 				if (sprite != null && sprite.render() != null) {
 					if (level.getBlock(xBlock, zBlock) instanceof TorchBlock) {
 						if (level.getBlock(xBlock + 1, zBlock).isSolid) {
-							renderSprite((xBlock + 0.95) + sprite.x, sprite.y + 0.5, (zBlock + 0.5) + sprite.z, sprite.render());
+							drawSprite((xBlock + 0.95) + sprite.x, sprite.y + 0.5, (zBlock + 0.5) + sprite.z, sprite.render());
 						} else if (level.getBlock(xBlock - 1, zBlock).isSolid) {
-							renderSprite((xBlock + 0.05) + sprite.x, sprite.y + 0.5, (zBlock + 0.5) + sprite.z, sprite.render());
+							drawSprite((xBlock + 0.05) + sprite.x, sprite.y + 0.5, (zBlock + 0.5) + sprite.z, sprite.render());
 						} else if (level.getBlock(xBlock, zBlock + 1).isSolid) {
-							renderSprite((xBlock + 0.5) + sprite.x, sprite.y + 0.5, (zBlock + 0.95) + sprite.z, sprite.render());
+							drawSprite((xBlock + 0.5) + sprite.x, sprite.y + 0.5, (zBlock + 0.95) + sprite.z, sprite.render());
 						} else if (level.getBlock(xBlock, zBlock - 1).isSolid) {
-							renderSprite((xBlock + 0.5) + sprite.x, sprite.y + 0.5, (zBlock + 0.05) + sprite.z, sprite.render());
+							drawSprite((xBlock + 0.5) + sprite.x, sprite.y + 0.5, (zBlock + 0.05) + sprite.z, sprite.render());
 						} else {
-							renderSprite((xBlock + 0.5) + sprite.x, sprite.y, (zBlock + 0.5) + sprite.z, sprite.render());
+							drawSprite((xBlock + 0.5) + sprite.x, sprite.y, (zBlock + 0.5) + sprite.z, sprite.render());
 						}
 					} else {
-						renderSprite((xBlock + 0.5) + sprite.x, sprite.y, (zBlock + 0.5) + sprite.z, sprite.render());
+						drawSprite((xBlock + 0.5) + sprite.x, sprite.y, (zBlock + 0.5) + sprite.z, sprite.render());
 					}
 				}
 			}
@@ -286,20 +286,20 @@ public class Render3D extends Render
 			if (entity.isInside(xBlockStart, zBlockStart, xBlockEnd, zBlockEnd)) {
 				Sprite sprite = entity.getRenderSprite();
 				if (sprite != null && sprite.render() != null) {
-					renderSprite(entity.posX + sprite.x, entity.posY + sprite.y, entity.posZ + sprite.z, sprite.render());
+					drawSprite(entity.posX + sprite.x, entity.posY + sprite.y, entity.posZ + sprite.z, sprite.render());
 				}
 
 				if (entity instanceof Particle) {
 					for (int j = 0; j < ((Particle) entity).getSpriteParticles().length; j++) {
 						Sprite spriteP = ((Particle) entity).getSpriteParticles()[j];
-						renderSprite(entity.posX + spriteP.x, entity.posY + spriteP.y, entity.posZ + spriteP.z, spriteP.render());
+						drawSprite(entity.posX + spriteP.x, entity.posY + spriteP.y, entity.posZ + spriteP.z, spriteP.render());
 					}
 				}
 			}
 		}
 	}
 
-	private void renderWalls() {
+	private void drawWalls() {
         for (int xBlock = xBlockStart; xBlock <= xBlockEnd; xBlock++) {
             for (int zBlock = zBlockStart; zBlock <= zBlockEnd; zBlock++) {
                 Block block = level.getBlock(xBlock, zBlock);
@@ -311,37 +311,37 @@ public class Render3D extends Render
                     double openness = 1 - ((DoorBlock) block).openness * 7 / 8;
 
                     if (east.isOpaque) {
-                        renderWall(xBlock + openness, zBlock + 1 - rr, xBlock - 1 + openness, zBlock + 1 - rr, block.wallTex);
-                        renderWall(xBlock - 1 + openness, zBlock + rr, xBlock + openness, zBlock + rr, block.wallTex);
-                        renderWall(xBlock + openness, zBlock + rr, xBlock + openness, zBlock + 1 - rr, block.wallTex);
+                        drawWall(xBlock + openness, zBlock + 1 - rr, xBlock - 1 + openness, zBlock + 1 - rr, block.wallTex);
+                        drawWall(xBlock - 1 + openness, zBlock + rr, xBlock + openness, zBlock + rr, block.wallTex);
+                        drawWall(xBlock + openness, zBlock + rr, xBlock + openness, zBlock + 1 - rr, block.wallTex);
                     } else {
                         openness = 2 - openness;
-                        renderWall(xBlock + 1 - rr, zBlock - 1 + openness, xBlock + 1 - rr, zBlock + openness, block.wallTex);
-                        renderWall(xBlock + rr, zBlock + openness, xBlock + rr, zBlock - 1 + openness, block.wallTex);
-                        renderWall(xBlock + rr, zBlock - 1 + openness, xBlock + 1 - rr, zBlock - 1 + openness, block.wallTex);
+                        drawWall(xBlock + 1 - rr, zBlock - 1 + openness, xBlock + 1 - rr, zBlock + openness, block.wallTex);
+                        drawWall(xBlock + rr, zBlock + openness, xBlock + rr, zBlock - 1 + openness, block.wallTex);
+                        drawWall(xBlock + rr, zBlock - 1 + openness, xBlock + 1 - rr, zBlock - 1 + openness, block.wallTex);
                     }
                 }
 
                 if (block.isOpaque) {
                     if (!east.isOpaque) {
-                        renderWall(xBlock + 1, zBlock, xBlock + 1, zBlock + 1, block.wallTex);
+                        drawWall(xBlock + 1, zBlock, xBlock + 1, zBlock + 1, block.wallTex);
                     }
                     if (!south.isOpaque) {
-                        renderWall(xBlock + 1, zBlock + 1, xBlock, zBlock + 1, block.wallTex);
+                        drawWall(xBlock + 1, zBlock + 1, xBlock, zBlock + 1, block.wallTex);
                     }
                 } else {
                     if (east.isOpaque) {
-                        renderWall(xBlock + 1, zBlock + 1, xBlock + 1, zBlock, east.wallTex);
+                        drawWall(xBlock + 1, zBlock + 1, xBlock + 1, zBlock, east.wallTex);
                     }
                     if (south.isOpaque) {
-                        renderWall(xBlock, zBlock + 1, xBlock + 1, zBlock + 1, south.wallTex);
+                        drawWall(xBlock, zBlock + 1, xBlock + 1, zBlock + 1, south.wallTex);
                     }
                 }
 			}
 		}
 	}
 
-	private void renderFog() {
+	private void fodFog() {
         int dist = (32 * blockViewDist); // render dist. 32 = one blocks dist
 		for (int i = 0; i < width * height; i++) {
             if (zBuffer[i] > blockViewDist) {

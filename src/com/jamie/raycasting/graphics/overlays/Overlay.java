@@ -1,9 +1,9 @@
 package com.jamie.raycasting.graphics.overlays;
 
 import com.jamie.raycasting.app.Game;
-import com.jamie.jamapp.Render;
+import com.jamie.jamapp.Bitmap;
 
-public abstract class Overlay extends Render
+public abstract class Overlay extends Bitmap
 {
     protected int bp = 2;
 

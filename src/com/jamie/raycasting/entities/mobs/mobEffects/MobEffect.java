@@ -1,7 +1,7 @@
 package com.jamie.raycasting.entities.mobs.mobEffects;
 
 import com.jamie.raycasting.entities.mobs.Mob;
-import com.jamie.jamapp.Render;
+import com.jamie.jamapp.Bitmap;
 import com.jamie.raycasting.graphics.Texture;
 
 public abstract class MobEffect
@@ -16,7 +16,7 @@ public abstract class MobEffect
     public int magnitude;
 
     public int effectHudColour = 0xFFFFFF;
-    public Render effectHudIcon = Texture.poisonIcon;
+    public Bitmap effectHudIcon = Texture.poisonIcon;
 
 
     public MobEffect(Mob mob, int duration, int magnitude) {

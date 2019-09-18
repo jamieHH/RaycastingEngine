@@ -1,7 +1,7 @@
 package com.jamie.raycasting.world.blocks;
 
 import com.jamie.raycasting.entities.particles.DropParticle;
-import com.jamie.jamapp.Render;
+import com.jamie.jamapp.Bitmap;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
 
@@ -16,7 +16,7 @@ public class FountainBlock extends FunctionBlock
 
 		floorTex = Texture.grass;
 
-		Render[] ts0 = {
+		Bitmap[] ts0 = {
 				Texture.fountain,
 		};
 		setIdleSprite(new Sprite(ts0));

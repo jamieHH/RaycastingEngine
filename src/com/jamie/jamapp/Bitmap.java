@@ -1,6 +1,6 @@
 package com.jamie.jamapp;
 
-public class Render
+public class Bitmap
 {
 	public int width;
 	public int height;
@@ -12,9 +12,9 @@ public class Render
 			"abcdefghijklmnopqrstuvwxyz_               " +
 			"0123456789+-=*:;                          " +
 			"";
-	public static final Render font = PngLoader.loadBitmap("/gui/font2.png");
+	public static final Bitmap font = PngLoader.loadBitmap("/gui/font2.png");
 	
-	public Render(int width, int height) {
+	public Bitmap(int width, int height) {
 		setSize(width, height);
 	}
 
@@ -24,16 +24,16 @@ public class Render
 		pixels = new int[width * height];
 	}
 	
-	public void draw(Render render, int xOffs, int yOffs) {
-		for (int y = 0; y < render.height; y++) {
+	public void draw(Bitmap bitmap, int xOffs, int yOffs) {
+		for (int y = 0; y < bitmap.height; y++) {
 			int yPix = y + yOffs;
 			if (yPix < 0 || yPix >= height) continue;
 
-			for (int x = 0; x < render.width; x++) {
+			for (int x = 0; x < bitmap.width; x++) {
 				int xPix = x + xOffs;
 				if (xPix < 0 || xPix >= width) continue;
 
-				int alpha = render.pixels[x + y * render.width];
+				int alpha = bitmap.pixels[x + y * bitmap.width];
 				if (alpha != INVISIBLE) {
 					pixels[xPix + yPix * width] = alpha;
 				}
@@ -41,7 +41,7 @@ public class Render
 		}
 	}
 
-    public void draw(Render render, int xOffs, int yOffs, int xo, int yo, int w, int h, int col) {
+    public void draw(Bitmap bitmap, int xOffs, int yOffs, int xo, int yo, int w, int h, int col) {
         for (int y = 0; y < h; y++) {
             int yPix = y + yOffs;
             if (yPix < 0 || yPix >= height) continue;
@@ -50,7 +50,7 @@ public class Render
                 int xPix = x + xOffs;
                 if (xPix < 0 || xPix >= width) continue;
 
-                int alpha = render.pixels[(x + xo) + (y + yo) * render.width];
+                int alpha = bitmap.pixels[(x + xo) + (y + yo) * bitmap.width];
                 if (alpha != INVISIBLE) {
                     pixels[xPix + yPix * width] = -alpha * col;
                 }
@@ -97,16 +97,16 @@ public class Render
         fill(1, y1 - 1, x1, y1, color2);
     }
 
-	public void draw(Render render, int xOffs, int yOffs, double density) {
-		for (int y = 0; y < render.height; y++) {
+	public void draw(Bitmap bitmap, int xOffs, int yOffs, double density) {
+		for (int y = 0; y < bitmap.height; y++) {
 			int yPix = y + yOffs;
 			if (yPix < 0 || yPix >= height) continue;
 
-			for (int x = 0; x < render.width; x++) {
+			for (int x = 0; x < bitmap.width; x++) {
 				int xPix = x + xOffs;
 				if (xPix < 0 || xPix >= width) continue;
 
-				int alpha = render.pixels[x + y * render.width];
+				int alpha = bitmap.pixels[x + y * bitmap.width];
 				if (alpha != INVISIBLE) {
 					pixels[xPix + yPix * width] = blendColor(alpha, pixels[xPix + yPix * width], density);
 				}

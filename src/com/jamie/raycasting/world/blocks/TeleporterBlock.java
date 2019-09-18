@@ -3,7 +3,7 @@ package com.jamie.raycasting.world.blocks;
 import com.jamie.raycasting.entities.Entity;
 import com.jamie.raycasting.entities.environmentalEffects.EnvironmentalEffect;
 import com.jamie.raycasting.entities.particles.Particle;
-import com.jamie.jamapp.Render;
+import com.jamie.jamapp.Bitmap;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
 
@@ -18,7 +18,7 @@ public class TeleporterBlock extends FunctionBlock
         isOpaque = false;
         isSolid = false;
 
-        Render ts0[] = {
+        Bitmap ts0[] = {
                 Texture.portal0,
                 Texture.portal1,
                 Texture.portal2,

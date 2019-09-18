@@ -1,6 +1,6 @@
 package com.jamie.raycasting.entities.mobs;
 
-import com.jamie.jamapp.Render;
+import com.jamie.jamapp.Bitmap;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
 import com.jamie.jamapp.InputHandler;
@@ -8,7 +8,7 @@ import com.jamie.jamapp.InputHandler;
 public class Bat extends Mob
 {
     protected Sprite getSprite() {
-        return new Sprite(new Render[] {
+        return new Sprite(new Bitmap[] {
                 Texture.bat0,
                 Texture.bat1,
                 Texture.bat2,
@@ -17,7 +17,7 @@ public class Bat extends Mob
     }
 
     protected Sprite getActionSprite() {
-        return new Sprite(new Render[] {
+        return new Sprite(new Bitmap[] {
                 Texture.batAtt0,
                 Texture.batAtt1,
                 Texture.batAtt2,
@@ -29,7 +29,7 @@ public class Bat extends Mob
     }
 
     protected Sprite getHurtSprite() {
-        return new Sprite(new Render[] {
+        return new Sprite(new Bitmap[] {
                 Texture.batHurt0,
                 Texture.batHurt1,
                 Texture.batHurt2,
@@ -37,7 +37,7 @@ public class Bat extends Mob
     }
 
     protected Sprite getDeathSprite() {
-        return new Sprite(new Render[] {
+        return new Sprite(new Bitmap[] {
                 Texture.splat1,
                 Texture.splat1,
                 Texture.splat1,

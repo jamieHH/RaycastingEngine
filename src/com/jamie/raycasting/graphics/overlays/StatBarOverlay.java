@@ -1,12 +1,12 @@
 package com.jamie.raycasting.graphics.overlays;
 
-import com.jamie.jamapp.Render;
+import com.jamie.jamapp.Bitmap;
 
 public class StatBarOverlay extends Overlay
 {
     private int barWidth, barHeight, barXStart;
 
-    public StatBarOverlay(int width, int height, Render icon) {
+    public StatBarOverlay(int width, int height, Bitmap icon) {
         super(width, height);
         barHeight = height;
         barWidth = width - icon.width - 1;

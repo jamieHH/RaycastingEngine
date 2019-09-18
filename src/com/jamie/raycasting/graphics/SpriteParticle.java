@@ -1,6 +1,6 @@
 package com.jamie.raycasting.graphics;
 
-import com.jamie.jamapp.Render;
+import com.jamie.jamapp.Bitmap;
 
 public class SpriteParticle extends Sprite
 {
@@ -13,7 +13,7 @@ public class SpriteParticle extends Sprite
     public double friction = 0.05;
 
 
-    public SpriteParticle(Render t, double force, double gravity) {
+    public SpriteParticle(Bitmap t, double force, double gravity) {
         super(t);
 
         this.force = force;

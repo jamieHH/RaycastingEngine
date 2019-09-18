@@ -1,6 +1,6 @@
 package com.jamie.raycasting.world.blocks;
 
-import com.jamie.jamapp.Render;
+import com.jamie.jamapp.Bitmap;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
 
@@ -12,7 +12,7 @@ public class CeilDripBlock extends Block
         floorTex = Texture.wetFloor;
         ceilTex = Texture.wetFloor;
 
-		Render[] ts0 = {
+		Bitmap[] ts0 = {
                 Texture.drip0,
                 Texture.drip0,
                 Texture.drip1,

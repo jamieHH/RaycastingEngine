@@ -1,10 +1,6 @@
 package com.jamie.raycasting.graphics;
 
-import com.jamie.jamapp.Render;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import com.jamie.jamapp.Bitmap;
 
 public class Sprite
 {
@@ -12,16 +8,16 @@ public class Sprite
 	public double y = 0;
 	public double z = 0;
 
-	protected Render[] textures;
+	protected Bitmap[] textures;
     private int index = 0;
     private int animTick = 0;
     protected static final int INTERVAL = 5;
 
-    public Sprite(Render t) {
-        textures = new Render[]{t};
+    public Sprite(Bitmap t) {
+        textures = new Bitmap[]{t};
     }
 
-    public Sprite(Render[] ts) {
+    public Sprite(Bitmap[] ts) {
         textures = ts;
     }
 
@@ -46,7 +42,7 @@ public class Sprite
         z = zOffs;
     }
 
-    public Render render() {
+    public Bitmap render() {
         if (textures.length > 0) {
             return textures[index];
         } else {

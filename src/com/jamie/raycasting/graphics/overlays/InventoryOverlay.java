@@ -3,7 +3,7 @@ package com.jamie.raycasting.graphics.overlays;
 import com.jamie.raycasting.app.Sound;
 import com.jamie.raycasting.app.Game;
 import com.jamie.raycasting.entities.mobs.Mob;
-import com.jamie.jamapp.Render;
+import com.jamie.jamapp.Bitmap;
 import com.jamie.raycasting.graphics.Texture;
 import com.jamie.raycasting.input.Controls;
 import com.jamie.raycasting.items.Inventory;
@@ -18,8 +18,8 @@ public class InventoryOverlay extends Overlay
     private Inventory inventory;
     private int inventoryItemIndex = 0;
 
-    private Render itemDetailsPane;
-    private Render itemListRender;
+    private Bitmap itemDetailsPane;
+    private Bitmap itemListBitmap;
 
     private int categoryIndex = 0;
     private ItemList[] categoryItemLists = {
@@ -52,8 +52,8 @@ public class InventoryOverlay extends Overlay
 
     public void setSize(int width, int height) {
         super.setSize(width, height);
-        itemDetailsPane = new Render(48, height - (bp + 10 + 8 + bp));
-        itemListRender = new Render(width - bp - bp - itemDetailsPane.width, height - (bp + 10 + 8 + bp));
+        itemDetailsPane = new Bitmap(48, height - (bp + 10 + 8 + bp));
+        itemListBitmap = new Bitmap(width - bp - bp - itemDetailsPane.width, height - (bp + 10 + 8 + bp));
     }
 
     public void tick(Game game) {
@@ -72,8 +72,8 @@ public class InventoryOverlay extends Overlay
                 getItemList().listYShift = -(down % -getItemList().listYShift);
             }
 
-            if (down + 12 >= itemListRender.height - getItemList().listYShift) {
-                getItemList().listYShift = -(down - itemListRender.height + 12);
+            if (down + 12 >= itemListBitmap.height - getItemList().listYShift) {
+                getItemList().listYShift = -(down - itemListBitmap.height + 12);
             }
         }
 
@@ -171,7 +171,7 @@ public class InventoryOverlay extends Overlay
             draw(" >", bp + 12 + (catString.length() * 6), bp, 0xF0F0F0);
         }
         for (int i = 0; i < categoryItemLists.length; i++) {
-            Render blip = new Render(2, 2);
+            Bitmap blip = new Bitmap(2, 2);
             if (i == categoryIndex) {
                 blip.fill(0xF0F0F0);
             } else {
@@ -183,9 +183,9 @@ public class InventoryOverlay extends Overlay
     }
 
     private void updateList() {
-        itemListRender.fill(0x101010);
+        itemListBitmap.fill(0x101010);
         if (getItemList().listedItems.size() > 0) {
-            itemListRender.fill(0, getItemList().listYShift + (getItemList().listIndex * 12), itemListRender.width, getItemList().listYShift + ((getItemList().listIndex + 1) * 12), 0x404040);
+            itemListBitmap.fill(0, getItemList().listYShift + (getItemList().listIndex * 12), itemListBitmap.width, getItemList().listYShift + ((getItemList().listIndex + 1) * 12), 0x404040);
             for (int i = 0; i < getItemList().listedItems.size(); i++) {
                 int colour;
                 String itemName;
@@ -199,18 +199,18 @@ public class InventoryOverlay extends Overlay
                 if (getItemList().listIndex == i) {
                     colour = 0xF0F0F0;
                 }
-                itemListRender.draw(itemName, bp, getItemList().listYShift + (i * 12) + 2, colour);
+                itemListBitmap.draw(itemName, bp, getItemList().listYShift + (i * 12) + 2, colour);
             }
         }
-        draw(itemListRender, bp, bp + 10 + 8);
+        draw(itemListBitmap, bp, bp + 10 + 8);
     }
 
     private void updateDetailsPane() {
         itemDetailsPane.fill(0x303030);
         if (getItemList().listedItems.size() > 0 && getItemList().listedItems.size() != getItemList().listIndex) {
             Item item = getItemList().listedItems.get(getItemList().listIndex);
-            Render icon = item.icon;
-            Render bGround = new Render(18, 18);
+            Bitmap icon = item.icon;
+            Bitmap bGround = new Bitmap(18, 18);
             bGround.fill(0x202020);
 
             itemDetailsPane.draw(bGround, itemDetailsPane.width / 2 - bGround.width / 2, bp);
@@ -231,7 +231,7 @@ public class InventoryOverlay extends Overlay
                 itemDetailsPane.draw(item.getInfo().get("duration"), bp + 12, rowX, 0xF0F0F0);
             }
         }
-        draw(itemDetailsPane, bp + itemListRender.width, bp + 10 + 8);
+        draw(itemDetailsPane, bp + itemListBitmap.width, bp + 10 + 8);
     }
 
     public void update() {

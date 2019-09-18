@@ -1,13 +1,12 @@
 package com.jamie.raycasting.entities.projectiles;
 
-import com.jamie.jamapp.Render;
+import com.jamie.jamapp.Bitmap;
 import com.jamie.raycasting.graphics.Sprite;
-import com.jamie.raycasting.graphics.Texture;
 
 public class ArrowProjectile extends Projectile
 {
     protected Sprite getSprite() {
-        Render r = new Render(1, 1);
+        Bitmap r = new Bitmap(1, 1);
         r.fill(0xF8F8F8);
         Sprite s = new Sprite(r);
         s.setOffset(0, 0.5, 0);
@@ -18,7 +17,7 @@ public class ArrowProjectile extends Projectile
     public ArrowProjectile(int damage) {
         super(damage);
 
-        Render[] ts = {
+        Bitmap[] ts = {
                 null,
                 null,
                 null,

@@ -1,7 +1,7 @@
 package com.jamie.raycasting.entities.particles;
 
 import com.jamie.raycasting.entities.Entity;
-import com.jamie.jamapp.Render;
+import com.jamie.jamapp.Bitmap;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.SpriteParticle;
 
@@ -14,7 +14,7 @@ public abstract class Particle extends Entity
     protected static final Random random = new Random();
     protected int life = 120;
 
-    protected abstract Render[] getTexOptions();
+    protected abstract Bitmap[] getTexOptions();
 
     private Sprite[] spriteParticles;
 

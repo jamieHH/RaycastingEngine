@@ -1,12 +1,12 @@
 package com.jamie.raycasting.entities.particles;
 
-import com.jamie.jamapp.Render;
+import com.jamie.jamapp.Bitmap;
 import com.jamie.raycasting.graphics.Texture;
 
 public class PoofParticle extends Particle
 {
-    protected Render[] getTexOptions() {
-        return new Render[] {
+    protected Bitmap[] getTexOptions() {
+        return new Bitmap[] {
                 Texture.poof0,
                 Texture.poof1,
         };

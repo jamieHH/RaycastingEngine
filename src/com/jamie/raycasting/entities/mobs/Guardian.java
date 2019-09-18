@@ -2,7 +2,7 @@ package com.jamie.raycasting.entities.mobs;
 
 import com.jamie.raycasting.entities.particles.Particle;
 import com.jamie.raycasting.entities.particles.StoneParticle;
-import com.jamie.jamapp.Render;
+import com.jamie.jamapp.Bitmap;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
 import com.jamie.jamapp.InputHandler;
@@ -10,7 +10,7 @@ import com.jamie.jamapp.InputHandler;
 public class Guardian extends Mob
 {
     protected Sprite getSprite() {
-        return new Sprite(new Render[] {
+        return new Sprite(new Bitmap[] {
                 Texture.guardian0
         });
     }
@@ -28,7 +28,7 @@ public class Guardian extends Mob
     }
 
     protected Sprite getDeathSprite() {
-        return new Sprite(new Render[] {
+        return new Sprite(new Bitmap[] {
                 Texture.splat1,
                 Texture.splat1,
                 Texture.splat1,

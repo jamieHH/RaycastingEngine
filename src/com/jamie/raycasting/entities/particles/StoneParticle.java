@@ -1,12 +1,12 @@
 package com.jamie.raycasting.entities.particles;
 
-import com.jamie.jamapp.Render;
+import com.jamie.jamapp.Bitmap;
 import com.jamie.raycasting.graphics.Texture;
 
 public class StoneParticle extends Particle
 {
-    protected Render[] getTexOptions() {
-        return new Render[] {
+    protected Bitmap[] getTexOptions() {
+        return new Bitmap[] {
                 Texture.stone0,
                 Texture.stone1,
                 Texture.stone2,

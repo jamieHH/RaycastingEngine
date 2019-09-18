@@ -1,6 +1,6 @@
 package com.jamie.raycasting.items.weapons;
 
-import com.jamie.jamapp.Render;
+import com.jamie.jamapp.Bitmap;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
 
@@ -16,12 +16,12 @@ public class KnifeWeapon extends Weapon
 
         icon = Texture.knifeIcon;
 
-        Render[] ts = {
+        Bitmap[] ts = {
                 Texture.screenKnife0,
         };
         setIdleSprite(new Sprite(ts));
 
-        Render[] ts1 = {
+        Bitmap[] ts1 = {
                 Texture.screenKnife1,
                 Texture.screenKnife2,
         };

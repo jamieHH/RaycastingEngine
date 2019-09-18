@@ -3,7 +3,7 @@ package com.jamie.raycasting.world.blocks;
 import com.jamie.raycasting.app.Sound;
 import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.entities.particles.WoodParticle;
-import com.jamie.jamapp.Render;
+import com.jamie.jamapp.Bitmap;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
 import com.jamie.raycasting.items.weapons.AxeWeapon;
@@ -19,12 +19,12 @@ public class BoardsBlock extends TriggerableBlock
         floorTex = Texture.floor;
         ceilTex = Texture.floor;
 
-        Render[] ts0 = {
+        Bitmap[] ts0 = {
                 Texture.boards,
         };
         setIdleSprite(new Sprite(ts0));
 
-        Render[] ts1 = {
+        Bitmap[] ts1 = {
                 Texture.boardsSmashed,
         };
         setSpriteSet("broken", new Sprite(ts1));

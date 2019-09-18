@@ -1,6 +1,6 @@
 package com.jamie.raycasting.world.blocks;
 
-import com.jamie.jamapp.Render;
+import com.jamie.jamapp.Bitmap;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
 
@@ -14,7 +14,7 @@ public class TorchBlock extends Block
 		floorTex = Texture.floor;
 		ceilTex = Texture.floor;
 
-		Render[] ts0 = {
+		Bitmap[] ts0 = {
 				Texture.torch0,
 				Texture.torch1,
 				Texture.torch2,

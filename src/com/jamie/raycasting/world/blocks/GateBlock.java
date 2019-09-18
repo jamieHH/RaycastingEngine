@@ -2,7 +2,7 @@ package com.jamie.raycasting.world.blocks;
 
 import com.jamie.raycasting.app.Sound;
 import com.jamie.raycasting.entities.mobs.Mob;
-import com.jamie.jamapp.Render;
+import com.jamie.jamapp.Bitmap;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
 
@@ -25,19 +25,19 @@ public class GateBlock extends TriggerableBlock
 
 		this.keyName = keyName;
 
-        Render[] ts0 = {
+        Bitmap[] ts0 = {
                 Texture.gate0,
         };
         setIdleSprite(new Sprite(ts0));
 
-        Render[] ts1 = {
+        Bitmap[] ts1 = {
                 Texture.gate1,
                 Texture.gate2,
                 Texture.gate3,
         };
         setOpenSprite(new Sprite(ts1));
 
-        Render[] ts2 = {
+        Bitmap[] ts2 = {
                 Texture.gate2,
                 Texture.gate1,
                 Texture.gate0,

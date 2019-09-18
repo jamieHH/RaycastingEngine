@@ -1,7 +1,7 @@
 package com.jamie.raycasting.graphics;
 
 import com.jamie.jamapp.Display;
-import com.jamie.jamapp.Render;
+import com.jamie.jamapp.Bitmap;
 import com.jamie.raycasting.app.Game;
 import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.graphics.overlays.HotkeyOverlay;
@@ -12,7 +12,7 @@ import com.jamie.raycasting.graphics.overlays.ViewPunchOverlay;
 public class Screen extends Display
 {
     private Mob p;
-    private Render3D render;
+    private Bitmap3D render;
     private ViewPunchOverlay viewPunch;
 	private HudBarOverlay hudBar;
 	private StatBarOverlay healthBar;
@@ -30,7 +30,7 @@ public class Screen extends Display
         hudBar = new HudBarOverlay(width, 9);
         healthBar = new StatBarOverlay(40, 4, Texture.heartIcon);
         // 3D render
-        render = new Render3D(width, height - hudBar.height);
+        render = new Bitmap3D(width, height - hudBar.height);
         viewPunch = new ViewPunchOverlay(render.width, render.height);
     }
 
@@ -44,7 +44,7 @@ public class Screen extends Display
 
                 // Render held items
                 if (p.getRightHandItem() != null) {
-                    Render rightItemTex = p.getRightHandItem().render();
+                    Bitmap rightItemTex = p.getRightHandItem().render();
                     if (rightItemTex != null) {
                         draw(rightItemTex, render.width - rightItemTex.width, (render.height - rightItemTex.height) + ((int) (p.yBob * 100)) + 4);
                     }

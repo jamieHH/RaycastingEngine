@@ -1,7 +1,7 @@
 package com.jamie.raycasting.items;
 
 import com.jamie.raycasting.entities.mobs.Mob;
-import com.jamie.jamapp.Render;
+import com.jamie.jamapp.Bitmap;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.SpriteSet;
 
@@ -13,7 +13,7 @@ public abstract class Item
     public String name = "Item";
     public String type = "item";
     private SpriteSet spriteSet = new SpriteSet();
-    public Render icon = new Render(16, 16);
+    public Bitmap icon = new Bitmap(16, 16);
 
     public int damage = 1;
     public int reach = 0;
@@ -59,7 +59,7 @@ public abstract class Item
         useTicks = useWait;
     }
 
-    public Render render() {
+    public Bitmap render() {
         if (getSprite() != null) {
             return getSprite().render();
         }

@@ -8,11 +8,11 @@ import java.util.Map;
 
 public class PngLoader
 {
-    public static Map<String, Render> cache = new HashMap<String, Render>();
+    public static Map<String, Bitmap> cache = new HashMap<String, Bitmap>();
     public static boolean enableCaching = false;
 
 
-    public static Render loadBitmap(String fileName) {
+    public static Bitmap loadBitmap(String fileName) {
         if (enableCaching) {
             if (cache.containsKey(fileName)) {
                 return cache.get(fileName);
@@ -23,12 +23,12 @@ public class PngLoader
             BufferedImage img = ImageIO.read(new FileInputStream("res/" + fileName));
             int width = img.getWidth();
             int height = img.getHeight();
-            Render result = new Render(width, height);
+            Bitmap result = new Bitmap(width, height);
             img.getRGB(0, 0, width, height, result.pixels, 0, width);
 
             for (int i = 0; i < result.pixels.length; i++) {
                 if (result.pixels[i] == 0xFFFF00FF) {
-                    result.pixels[i] = Render.INVISIBLE;
+                    result.pixels[i] = Bitmap.INVISIBLE;
                 }
             }
 
@@ -42,12 +42,12 @@ public class PngLoader
         }
     }
 
-    public static Render setInvisible() {
-        Render render = new Render(16, 16);
-        for (int i = 0; i < render.pixels.length; i++) {
-            render.pixels[i] = Render.INVISIBLE;
+    public static Bitmap setInvisible() {
+        Bitmap bitmap = new Bitmap(16, 16);
+        for (int i = 0; i < bitmap.pixels.length; i++) {
+            bitmap.pixels[i] = Bitmap.INVISIBLE;
         }
 
-        return render;
+        return bitmap;
     }
 }

@@ -1,6 +1,6 @@
 package com.jamie.raycasting.items.weapons;
 
-import com.jamie.jamapp.Render;
+import com.jamie.jamapp.Bitmap;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
 
@@ -16,12 +16,12 @@ public class SpearWeapon extends Weapon
 
         icon = Texture.spearIcon;
 
-        Render[] ts = {
+        Bitmap[] ts = {
                 Texture.screenSpear0,
         };
         setIdleSprite(new Sprite(ts));
 
-        Render[] ts1 = {
+        Bitmap[] ts1 = {
             Texture.screenSpear1,
             Texture.screenSpear2
         };
