@@ -19,11 +19,11 @@ public class ArrowProjectile extends Projectile
         super(damage);
 
         Render[] ts = {
-                Texture.invisible,
-                Texture.invisible,
-                Texture.invisible,
-                Texture.invisible
-        }; // TODO: fix this nonsense ffs
+                null,
+                null,
+                null,
+                null,
+        };
         setDetonationSprite(new Sprite(ts));
     }
 }

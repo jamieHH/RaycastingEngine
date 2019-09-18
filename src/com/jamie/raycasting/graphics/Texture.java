@@ -7,7 +7,6 @@ public class Texture
 {
     // special
     public static final Render noTex = PngLoader.loadBitmap("tex/noTex.png");
-    public static final Render invisible = PngLoader.setInvisible();
     public static final Render fogHours = PngLoader.loadBitmap("tex/fogHours.png");
 
     // icons
@@ -71,16 +70,16 @@ public class Texture
     public static final Render water2 = PngLoader.loadBitmap("tex/water2.png");
 
     // merged textures
-    public static final Render stonePath = PngLoader.mergeBitmap(grass, stoneOverlay);
-    public static final Render altStonePath = PngLoader.mergeBitmap(grass, altStoneOverlay);
-    public static final Render wetFloor = PngLoader.mergeBitmap(floor, puddleOverlay);
-    public static final Render wallButton0 = PngLoader.mergeBitmap(wall, buttonOverlay0);
-    public static final Render wallButton1 = PngLoader.mergeBitmap(wall, buttonOverlay1);
-    public static final Render wallBoltSwitch0 = PngLoader.mergeBitmap(wall, boltSwitchOverlay0);
-    public static final Render wallBoltSwitch1 = PngLoader.mergeBitmap(wall, boltSwitchOverlay1);
-    public static final Render bridgeWaterBroken = PngLoader.mergeBitmap(water0, bridgeBroken);
-    public static final Render wallSwitch0 = PngLoader.mergeBitmap(wall, switchOverlay0);
-    public static final Render wallSwitch1 = PngLoader.mergeBitmap(wall, switchOverlay1);
+    public static final Render stonePath = PngLoader.loadBitmap("tex/stonePath.png");
+    public static final Render altStonePath = PngLoader.loadBitmap("tex/altStonePath.png");
+    public static final Render wetFloor = PngLoader.loadBitmap("tex/wetFloor.png");
+    public static final Render wallButton0 = PngLoader.loadBitmap("tex/wallButton0.png");
+    public static final Render wallButton1 = PngLoader.loadBitmap("tex/wallButton1.png");
+    public static final Render wallBoltSwitch0 = PngLoader.loadBitmap("tex/wallBoltSwitch0.png");
+    public static final Render wallBoltSwitch1 = PngLoader.loadBitmap("tex/wallBoltSwitch1.png");
+    public static final Render bridgeWaterBroken = PngLoader.loadBitmap("tex/bridgeWaterBroken.png");
+    public static final Render wallSwitch0 = PngLoader.loadBitmap("tex/wallSwitch0.png");
+    public static final Render wallSwitch1 = PngLoader.loadBitmap("tex/wallSwitch1.png");
 
 	// sprites
     public static final Render marker = PngLoader.loadBitmap("tex/marker.png");

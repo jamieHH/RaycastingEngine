@@ -12,26 +12,26 @@ public class Sprite
 	public double y = 0;
 	public double z = 0;
 
-	private List<Render> textures = new ArrayList<Render>();
+	protected Render[] textures;
     private int index = 0;
     private int animTick = 0;
     protected static final int INTERVAL = 5;
 
     public Sprite(Render t) {
-        textures.add(t);
+        textures = new Render[]{t};
     }
 
     public Sprite(Render[] ts) {
-        Collections.addAll(textures, ts);
+        textures = ts;
     }
 
     public void tick() {
-        if (countTextures() > 1) {
+        if (textures.length > 1) {
             if (animTick > 0) {
                 animTick--;
             } else {
                 index++;
-                if (index == countTextures()) {
+                if (index == textures.length) {
                     index = 0;
                 }
 
@@ -46,12 +46,12 @@ public class Sprite
         z = zOffs;
     }
 
-    public int countTextures() {
-        return textures.size();
-    }
-
     public Render render() {
-        return textures.get(index);
+        if (textures.length > 0) {
+            return textures[index];
+        } else {
+            return null;
+        }
     }
 
     protected void reset() {

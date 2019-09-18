@@ -46,7 +46,7 @@ public class SpriteSet
             switchSet(key);
             isSetSwapped = true;
 
-            swapTicks = getSet(key).countTextures() * Sprite.INTERVAL;
+            swapTicks = getSet(key).textures.length * Sprite.INTERVAL;
         }
     }
 

@@ -50,17 +50,4 @@ public class PngLoader
 
         return render;
     }
-
-    public static Render mergeBitmap(Render tex0, Render tex1) {
-        Render texture = new Render(tex0.width, tex0.height);
-        for (int i = 0; i < tex1.pixels.length; i++) {
-            if (tex1.pixels[i] != Render.INVISIBLE) {
-                texture.pixels[i] = tex1.pixels[i];
-            } else {
-                texture.pixels[i] = tex0.pixels[i];
-            }
-        }
-
-        return texture;
-    }
 }

@@ -261,7 +261,7 @@ public class Render3D extends Render
         for (int xBlock = xBlockStart; xBlock <= xBlockEnd; xBlock++) {
             for (int zBlock = zBlockStart; zBlock <= zBlockEnd; zBlock++) {
 				Sprite sprite = level.getBlock(xBlock, zBlock).getSprite();
-				if (sprite != null) {
+				if (sprite != null && sprite.render() != null) {
 					if (level.getBlock(xBlock, zBlock) instanceof TorchBlock) {
 						if (level.getBlock(xBlock + 1, zBlock).isSolid) {
 							renderSprite((xBlock + 0.95) + sprite.x, sprite.y + 0.5, (zBlock + 0.5) + sprite.z, sprite.render());
@@ -285,14 +285,16 @@ public class Render3D extends Render
 			Entity entity = level.getEntity(i);
 			if (entity.isInside(xBlockStart, zBlockStart, xBlockEnd, zBlockEnd)) {
 				Sprite sprite = entity.getRenderSprite();
-				if (sprite != null) {
+				if (sprite != null && sprite.render() != null) {
 					renderSprite(entity.posX + sprite.x, entity.posY + sprite.y, entity.posZ + sprite.z, sprite.render());
 				}
 
 				if (entity instanceof Particle) {
 					for (int j = 0; j < ((Particle) entity).getSpriteParticles().size(); j++) {
 						Sprite spriteParticles = ((Particle) entity).getSpriteParticles().get(j);
-						renderSprite(entity.posX + spriteParticles.x, entity.posY + spriteParticles.y, entity.posZ + spriteParticles.z, spriteParticles.render());
+						if (sprite != null && sprite.render() != null) {
+							renderSprite(entity.posX + spriteParticles.x, entity.posY + spriteParticles.y, entity.posZ + spriteParticles.z, spriteParticles.render());
+						}
 					}
 				}
 			}
