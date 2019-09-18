@@ -290,9 +290,9 @@ public class Render3D extends Render
 				}
 
 				if (entity instanceof Particle) {
-					for (int j = 0; j < ((Particle) entity).getSpriteParticles().size(); j++) {
-						Sprite spriteParticles = ((Particle) entity).getSpriteParticles().get(j);
-						renderSprite(entity.posX + spriteParticles.x, entity.posY + spriteParticles.y, entity.posZ + spriteParticles.z, spriteParticles.render());
+					for (int j = 0; j < ((Particle) entity).getSpriteParticles().length; j++) {
+						Sprite spriteP = ((Particle) entity).getSpriteParticles()[j];
+						renderSprite(entity.posX + spriteP.x, entity.posY + spriteP.y, entity.posZ + spriteP.z, spriteP.render());
 					}
 				}
 			}

@@ -16,7 +16,7 @@ public abstract class Particle extends Entity
 
     protected abstract Render[] getTexOptions();
 
-    private List<Sprite> spriteParticles = new ArrayList<Sprite>();
+    private Sprite[] spriteParticles;
 
 
     public Particle(int count, double force, double gravity, double yOffs) {
@@ -29,13 +29,14 @@ public abstract class Particle extends Entity
 
             set.add(particle);
         }
-        setSpriteParticles(set);
+
+        spriteParticles = set.toArray(new Sprite[0]);
     }
 
     public void tick() {
         super.tick();
-        for (int i = 0; i < spriteParticles.size(); i++) {
-            spriteParticles.get(i).tick();
+        for (int i = 0; i < spriteParticles.length; i++) {
+            spriteParticles[i].tick();
         }
 
         if (life > 0) {
@@ -45,12 +46,8 @@ public abstract class Particle extends Entity
         }
     }
 
-    public List<Sprite> getSpriteParticles() {
+    public Sprite[] getSpriteParticles() {
         return spriteParticles;
-    }
-
-    public void setSpriteParticles(List<Sprite> spriteParticles) {
-        this.spriteParticles = spriteParticles;
     }
 
     protected Sprite getSprite() {
