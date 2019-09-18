@@ -44,7 +44,7 @@ public class Screen extends Display
 
                 // Render held items
                 if (p.getRightHandItem() != null) {
-                    Bitmap rightItemTex = p.getRightHandItem().render();
+                    Bitmap rightItemTex = p.getRightHandItem().bitmap();
                     if (rightItemTex != null) {
                         draw(rightItemTex, render.width - rightItemTex.width, (render.height - rightItemTex.height) + ((int) (p.yBob * 100)) + 4);
                     }

@@ -59,9 +59,9 @@ public abstract class Item
         useTicks = useWait;
     }
 
-    public Bitmap render() {
+    public Bitmap bitmap() {
         if (getSprite() != null) {
-            return getSprite().render();
+            return getSprite().bitmap();
         }
 
         return null;

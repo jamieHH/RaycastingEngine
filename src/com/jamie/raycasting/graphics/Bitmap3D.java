@@ -261,21 +261,21 @@ public class Bitmap3D extends Bitmap
         for (int xBlock = xBlockStart; xBlock <= xBlockEnd; xBlock++) {
             for (int zBlock = zBlockStart; zBlock <= zBlockEnd; zBlock++) {
 				Sprite sprite = level.getBlock(xBlock, zBlock).getSprite();
-				if (sprite != null && sprite.render() != null) {
+				if (sprite != null && sprite.bitmap() != null) {
 					if (level.getBlock(xBlock, zBlock) instanceof TorchBlock) {
 						if (level.getBlock(xBlock + 1, zBlock).isSolid) {
-							drawSprite((xBlock + 0.95) + sprite.x, sprite.y + 0.5, (zBlock + 0.5) + sprite.z, sprite.render());
+							drawSprite((xBlock + 0.95) + sprite.x, sprite.y + 0.5, (zBlock + 0.5) + sprite.z, sprite.bitmap());
 						} else if (level.getBlock(xBlock - 1, zBlock).isSolid) {
-							drawSprite((xBlock + 0.05) + sprite.x, sprite.y + 0.5, (zBlock + 0.5) + sprite.z, sprite.render());
+							drawSprite((xBlock + 0.05) + sprite.x, sprite.y + 0.5, (zBlock + 0.5) + sprite.z, sprite.bitmap());
 						} else if (level.getBlock(xBlock, zBlock + 1).isSolid) {
-							drawSprite((xBlock + 0.5) + sprite.x, sprite.y + 0.5, (zBlock + 0.95) + sprite.z, sprite.render());
+							drawSprite((xBlock + 0.5) + sprite.x, sprite.y + 0.5, (zBlock + 0.95) + sprite.z, sprite.bitmap());
 						} else if (level.getBlock(xBlock, zBlock - 1).isSolid) {
-							drawSprite((xBlock + 0.5) + sprite.x, sprite.y + 0.5, (zBlock + 0.05) + sprite.z, sprite.render());
+							drawSprite((xBlock + 0.5) + sprite.x, sprite.y + 0.5, (zBlock + 0.05) + sprite.z, sprite.bitmap());
 						} else {
-							drawSprite((xBlock + 0.5) + sprite.x, sprite.y, (zBlock + 0.5) + sprite.z, sprite.render());
+							drawSprite((xBlock + 0.5) + sprite.x, sprite.y, (zBlock + 0.5) + sprite.z, sprite.bitmap());
 						}
 					} else {
-						drawSprite((xBlock + 0.5) + sprite.x, sprite.y, (zBlock + 0.5) + sprite.z, sprite.render());
+						drawSprite((xBlock + 0.5) + sprite.x, sprite.y, (zBlock + 0.5) + sprite.z, sprite.bitmap());
 					}
 				}
 			}
@@ -285,14 +285,14 @@ public class Bitmap3D extends Bitmap
 			Entity entity = level.getEntity(i);
 			if (entity.isInside(xBlockStart, zBlockStart, xBlockEnd, zBlockEnd)) {
 				Sprite sprite = entity.getRenderSprite();
-				if (sprite != null && sprite.render() != null) {
-					drawSprite(entity.posX + sprite.x, entity.posY + sprite.y, entity.posZ + sprite.z, sprite.render());
+				if (sprite != null && sprite.bitmap() != null) {
+					drawSprite(entity.posX + sprite.x, entity.posY + sprite.y, entity.posZ + sprite.z, sprite.bitmap());
 				}
 
 				if (entity instanceof Particle) {
 					for (int j = 0; j < ((Particle) entity).getSpriteParticles().length; j++) {
 						Sprite spriteP = ((Particle) entity).getSpriteParticles()[j];
-						drawSprite(entity.posX + spriteP.x, entity.posY + spriteP.y, entity.posZ + spriteP.z, spriteP.render());
+						drawSprite(entity.posX + spriteP.x, entity.posY + spriteP.y, entity.posZ + spriteP.z, spriteP.bitmap());
 					}
 				}
 			}

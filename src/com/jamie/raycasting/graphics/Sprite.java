@@ -42,7 +42,7 @@ public class Sprite
         z = zOffs;
     }
 
-    public Bitmap render() {
+    public Bitmap bitmap() {
         if (textures.length > 0) {
             return textures[index];
         } else {
