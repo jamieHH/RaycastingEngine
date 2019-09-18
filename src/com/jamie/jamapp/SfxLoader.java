@@ -8,11 +8,14 @@ import java.util.Map;
 public class SfxLoader
 {
     public static Map<String, Sfx> cache = new HashMap<String, Sfx>();
+    public static boolean enableCaching = false;
 
 
     public static Sfx loadSound(String fileName) {
-        if (cache.containsKey(fileName)) {
-            return cache.get(fileName);
+        if (enableCaching) {
+            if (cache.containsKey(fileName)) {
+                return cache.get(fileName);
+            }
         }
 
         try {
@@ -22,7 +25,9 @@ public class SfxLoader
             clip.open(ais);
             sound.clip = clip;
 
-            cache.put(fileName, sound);
+            if (enableCaching) {
+                cache.put(fileName, sound);
+            }
             return sound;
         } catch (Exception e) {
             System.out.println("Could not read sound from file name: " + fileName);

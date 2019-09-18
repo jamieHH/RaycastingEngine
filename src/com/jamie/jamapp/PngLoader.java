@@ -9,11 +9,14 @@ import java.util.Map;
 public class PngLoader
 {
     public static Map<String, Render> cache = new HashMap<String, Render>();
+    public static boolean enableCaching = false;
 
 
     public static Render loadBitmap(String fileName) {
-        if (cache.containsKey(fileName)) {
-            return cache.get(fileName);
+        if (enableCaching) {
+            if (cache.containsKey(fileName)) {
+                return cache.get(fileName);
+            }
         }
 
         try {
@@ -29,7 +32,9 @@ public class PngLoader
                 }
             }
 
-            cache.put(fileName, result);
+            if (enableCaching) {
+                cache.put(fileName, result);
+            }
             return result;
         } catch (Exception e) {
             System.out.println("Could not read image from file name: " + fileName);
