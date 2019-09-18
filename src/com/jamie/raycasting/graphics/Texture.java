@@ -8,9 +8,7 @@ public class Texture
     // special
     public static final Render noTex = PngLoader.loadBitmap("tex/noTex.png");
     public static final Render invisible = PngLoader.setInvisible();
-    public static final Render sky = new Render(400, 150);
     public static final Render fogHours = PngLoader.loadBitmap("tex/fogHours.png");
-    public static final Render none = new Render(16, 16);
 
     // icons
     public static final Render spearIcon = PngLoader.loadBitmap("/gui/spearIcon.png");

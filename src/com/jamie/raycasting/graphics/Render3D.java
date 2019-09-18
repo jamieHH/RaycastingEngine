@@ -89,7 +89,9 @@ public class Render3D extends Render
 					tex = block.ceilTex;
 				}
 
-                pixels[x + y * width] = tex.pixels[(xTexture & 15) + (zTexture & 15) * 16];
+				if (tex != null) {
+					pixels[x + y * width] = tex.pixels[(xTexture & 15) + (zTexture & 15) * 16];
+				}
 				zBuffer[x + y * width] = zDist;
                 zBufferWall[x] = 0;
             }

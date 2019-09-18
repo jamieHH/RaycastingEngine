@@ -13,9 +13,9 @@ public abstract class Block
 	public boolean isWalkable = true;
 	public boolean isUsable = false;
 
-	public Render wallTex = Texture.none;
-	public Render floorTex = Texture.none;
-	public Render ceilTex = Texture.none;
+	public Render wallTex = null;
+	public Render floorTex = null;
+	public Render ceilTex = null;
 
 	protected SpriteSet spriteSet = new SpriteSet();
 

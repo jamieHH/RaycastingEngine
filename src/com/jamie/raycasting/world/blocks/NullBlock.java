@@ -8,8 +8,8 @@ public class NullBlock extends Block
 		isOpaque = false;
 		isSolid = false;
 
-		wallTex = Texture.none;
-		floorTex = Texture.none;
-		ceilTex = Texture.none;
+		wallTex = null;
+		floorTex = null;
+		ceilTex = null;
 	}
 }

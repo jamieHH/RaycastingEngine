@@ -10,7 +10,7 @@ public class TorchBlock extends Block
 		isOpaque = false;
 		isSolid = false;
 
-		wallTex = Texture.none;
+		wallTex = null;
 		floorTex = Texture.floor;
 		ceilTex = Texture.floor;
 
