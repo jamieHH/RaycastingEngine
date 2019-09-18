@@ -42,21 +42,9 @@ public class Texture
     public static final Render three = PngLoader.loadBitmap("tex/3.png");
     public static final Render four = PngLoader.loadBitmap("tex/4.png");
 
-    // private overlays
-    private static final Render stoneOverlay = PngLoader.loadBitmap("tex/stoneOverlay.png");
-    private static final Render altStoneOverlay = PngLoader.loadBitmap("tex/altStoneOverlay.png");
-    private static final Render puddleOverlay = PngLoader.loadBitmap("tex/puddleOverlay.png");
-    private static final Render buttonOverlay0 = PngLoader.loadBitmap("tex/buttonOverlay0.png");
-    private static final Render buttonOverlay1 = PngLoader.loadBitmap("tex/buttonOverlay1.png");
-    private static final Render switchOverlay0 = PngLoader.loadBitmap("tex/switchOverlay0.png");
-    private static final Render switchOverlay1 = PngLoader.loadBitmap("tex/switchOverlay1.png");
-    private static final Render boltSwitchOverlay0 = PngLoader.loadBitmap("tex/boltSwitchOverlay0.png");
-    private static final Render boltSwitchOverlay1 = PngLoader.loadBitmap("tex/boltSwitchOverlay1.png");
-
     // surfaces
 	public static final Render floor = PngLoader.loadBitmap("tex/floor.png");
 	public static final Render bridge = PngLoader.loadBitmap("tex/bridge.png");
-	public static final Render bridgeBroken = PngLoader.loadBitmap("tex/bridgeBroken.png");
 	public static final Render wall = PngLoader.loadBitmap("tex/wall.png");
 	public static final Render cobweb = PngLoader.loadBitmap("tex/cobweb.png");
 	public static final Render door = PngLoader.loadBitmap("tex/door.png");
