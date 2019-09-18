@@ -155,6 +155,7 @@ public class Render3D extends Render
 
 
 	private void renderWall(double xLeft, double zLeft, double xRight, double zRight, Render texture) {
+		int texWidth = texture.width;
 	    double yB = 0; // Bottom y position.
 
 		double xcLeft = (xLeft - px) * 2;
@@ -178,9 +179,9 @@ public class Render3D extends Render
 
         // below flips textures on opposite surfaces
         if (xRight - xLeft == 0) {
-            xt1 = (zLeft - zRight) * 16;
+            xt1 = (zLeft - zRight) * texWidth;
         } else {
-            xt1 = (xRight - xLeft) * 16;
+            xt1 = (xRight - xLeft) * texWidth;
         }
 
 		double clip = 0.2;
@@ -243,9 +244,9 @@ public class Render3D extends Render
             double ih = 1 / (yPixelBottom - yPixelTop);
 			for (int y = yPixelTopInt; y < yPixelBottomInt; y++) {
 				double pixelRotationY = (y - yPixelTop) * ih;
-				int yTexture = (int) Math.floor(16 * pixelRotationY);
+				int yTexture = (int) Math.floor(texWidth * pixelRotationY);
 
-                int colour = texture.pixels[(xTexture & 15) + (yTexture & 15) * 16];
+                int colour = texture.pixels[(xTexture & 15) + (yTexture & 15) * texWidth];
                 if (colour != INVISIBLE) {
                     pixels[x + y * width] = colour;
                     zBuffer[x + y * width] = 1 / zWall * 0.5;
