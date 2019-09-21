@@ -19,6 +19,7 @@ public class App extends Canvas implements Runnable
 	public static int height;
 	public static int scale;
 	public static boolean soundEnabled;
+	public static boolean borderless;
 	public static boolean inDev;
 
 	public static InputHandler input;
@@ -28,7 +29,7 @@ public class App extends Canvas implements Runnable
 	public static boolean setNewOptions = false;
 	public static int newWidth, newHeight, newScale;
 
-    public static JFrame frame;
+    private static JFrame frame;
     private Thread thread;
     private BufferedImage img;
     private Boolean running = false;
@@ -50,6 +51,10 @@ public class App extends Canvas implements Runnable
 		addMouseMotionListener(input);
 		addMouseWheelListener(input);
 	}
+
+	public static JFrame getFrame() {
+	    return frame;
+    }
 
 	public void start() {
 		initialiseFrame();
@@ -139,6 +144,7 @@ public class App extends Canvas implements Runnable
 
     private static JFrame newFrame(App app) {
         JFrame f = new JFrame();
+        f.setUndecorated(borderless);
         f.add(app);
         f.setIconImage(getAppIcon());
         f.setTitle(App.title);

@@ -52,7 +52,7 @@ public abstract class InputHandler implements KeyListener, FocusListener, MouseL
                 int cX = (App.width * App.scale) / 2;
                 diffMouseX = mouseX - oldMouseX;
                 if (lockCursor) {
-                    oldMouseX = cX - App.frame.getInsets().left;
+                    oldMouseX = cX - App.getFrame().getInsets().left;
                 } else {
                     oldMouseX = mouseX;
                 }
@@ -62,7 +62,7 @@ public abstract class InputHandler implements KeyListener, FocusListener, MouseL
                 int cY = (App.height * App.scale) / 2;
                 diffMouseY = mouseY - oldMouseY;
                 if (lockCursor) {
-                    oldMouseY = cY - App.frame.getInsets().top;
+                    oldMouseY = cY - App.getFrame().getInsets().top;
                 } else {
                     oldMouseY = mouseY;
                 }
@@ -93,7 +93,7 @@ public abstract class InputHandler implements KeyListener, FocusListener, MouseL
     public void centerCursor() {
         int cX = (App.width * App.scale) / 2;
         int cY = (App.height * App.scale) / 2;
-        Point p = App.frame.getLocationOnScreen();
+        Point p = App.getFrame().getLocationOnScreen();
         robot.mouseMove(p.x + cX, p.y + cY);
     }
 
