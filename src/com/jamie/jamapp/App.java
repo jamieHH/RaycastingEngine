@@ -230,7 +230,7 @@ public class App extends Canvas implements Runnable
 	}
 
 	public static int getDisplayWidth() {
-		if (fullscreen) {
+		if (fullscreen) { // remove this condition to retain the dimensions but retain the resolution set
 			return Toolkit.getDefaultToolkit().getScreenSize().width / scale;
 		}
 
@@ -238,7 +238,7 @@ public class App extends Canvas implements Runnable
 	}
 
 	public static int getDisplayHeight() {
-		if (fullscreen) {
+		if (fullscreen) { // remove this condition to retain the dimensions but retain the resolution set
 			return Toolkit.getDefaultToolkit().getScreenSize().height / scale;
 		}
 
