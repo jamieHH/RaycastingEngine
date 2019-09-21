@@ -137,8 +137,8 @@ public class App extends Canvas implements Runnable
 		} else {
 			size = new Dimension(getActualWidth(), getActualHeight());
 		}
-		display.setSize(width, height);
-		img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+		display.setSize(getDisplayWidth(), getDisplayHeight());
+		img = new BufferedImage(getDisplayWidth(), getDisplayHeight(), BufferedImage.TYPE_INT_RGB);
 		pixels = ((DataBufferInt) img.getRaster().getDataBuffer()).getData();
 
 		setPreferredSize(size);
@@ -188,7 +188,7 @@ public class App extends Canvas implements Runnable
 		}
 
         display.tick();
-        System.arraycopy(display.pixels, 0, pixels, 0, width * height);
+        System.arraycopy(display.pixels, 0, pixels, 0, getDisplayWidth() * getDisplayHeight());
 
         Graphics g = bs.getDrawGraphics();
 		g.drawImage(img, 0, 0, getActualWidth(), getActualHeight(), null);
@@ -229,7 +229,7 @@ public class App extends Canvas implements Runnable
 		return height * scale;
 	}
 
-	private int getDisplayWidth() {
+	public static int getDisplayWidth() {
 		if (fullscreen) {
 			return Toolkit.getDefaultToolkit().getScreenSize().width / scale;
 		}
@@ -237,7 +237,7 @@ public class App extends Canvas implements Runnable
 		return width;
 	}
 
-	private int getDisplayHeight() {
+	public static int getDisplayHeight() {
 		if (fullscreen) {
 			return Toolkit.getDefaultToolkit().getScreenSize().height / scale;
 		}

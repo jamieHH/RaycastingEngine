@@ -19,12 +19,12 @@ public class Game extends GameLoop
 
 	private InputHandler temporaryInput = new ArtificialInputHandler();
 
-	public final Menu mainMenu = new MainMenu(App.width, (int) (App.height * 0.6));
-    public final Menu loadMenu = new LoadMenu(App.width, (int) (App.height * 0.6));
-    public final Menu optionsMenu = new OptionsMenu(App.width, (int) (App.height * 0.6));
-    public final Menu pauseMenu = new PauseMenu(App.width, (int) (App.height * 0.6));
-    public final Menu overMenu = new OverMenu(App.width, (int) (App.height * 0.6));
-    public final Overlay inventoryOverlay = new InventoryOverlay((int) (App.width * 0.8), (int) (App.height * 0.6));
+	public final Menu mainMenu = new MainMenu(App.getDisplayWidth(), (int) (App.getDisplayHeight() * 0.6));
+    public final Menu loadMenu = new LoadMenu(App.getDisplayWidth(), (int) (App.getDisplayHeight() * 0.6));
+    public final Menu optionsMenu = new OptionsMenu(App.getDisplayWidth(), (int) (App.getDisplayHeight() * 0.6));
+    public final Menu pauseMenu = new PauseMenu(App.getDisplayWidth(), (int) (App.getDisplayHeight() * 0.6));
+    public final Menu overMenu = new OverMenu(App.getDisplayWidth(), (int) (App.getDisplayHeight() * 0.6));
+    public final Overlay inventoryOverlay = new InventoryOverlay((int) (App.getDisplayWidth() * 0.8), (int) (App.getDisplayHeight() * 0.6));
 
 	public static Overlay activeOverlay;
 	

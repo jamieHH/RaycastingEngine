@@ -63,7 +63,7 @@ public class World
             newLevel = Level.makeRandomLevel(1000, 1000);
         }
 
-        game.setActiveOverlay(new LoadingOverlay(App.width, App.height, newLevel.name));
+        game.setActiveOverlay(new LoadingOverlay(App.getDisplayWidth(), App.getDisplayHeight(), newLevel.name));
         Sound.switchLevel.play();
 
         if (level != null) {

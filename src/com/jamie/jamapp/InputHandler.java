@@ -49,7 +49,7 @@ public abstract class InputHandler implements KeyListener, FocusListener, MouseL
     public void tick() {
         if (enableMouse) {
             if (enableMouseDiffX) {
-                int cX = (App.width * App.scale) / 2;
+                int cX = (App.getDisplayWidth()) / 2;
                 diffMouseX = mouseX - oldMouseX;
                 if (lockCursor) {
                     oldMouseX = cX - App.getFrame().getInsets().left;
@@ -59,7 +59,7 @@ public abstract class InputHandler implements KeyListener, FocusListener, MouseL
             }
 
             if (enableMouseDiffY) {
-                int cY = (App.height * App.scale) / 2;
+                int cY = (App.getDisplayHeight()) / 2;
                 diffMouseY = mouseY - oldMouseY;
                 if (lockCursor) {
                     oldMouseY = cY - App.getFrame().getInsets().top;
@@ -91,8 +91,8 @@ public abstract class InputHandler implements KeyListener, FocusListener, MouseL
     }
 
     public void centerCursor() {
-        int cX = (App.width * App.scale) / 2;
-        int cY = (App.height * App.scale) / 2;
+        int cX = (App.getDisplayWidth()) / 2;
+        int cY = (App.getDisplayHeight()) / 2;
         Point p = App.getFrame().getLocationOnScreen();
         robot.mouseMove(p.x + cX, p.y + cY);
     }
