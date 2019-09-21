@@ -11,6 +11,7 @@ public class RunApp
     public static int defaultHeight = 150;
     public static int defaultScale = 8;
     public static boolean defaultBorderless = !defaultInDev;
+    public static boolean defaultFullscreen = true;
     public static boolean defaultSoundEnabled = true;
     public static boolean defaultMouseEnabled = true;
 
@@ -26,6 +27,7 @@ public class RunApp
         App.height = defaultHeight;
         App.scale = defaultScale;
         App.borderless = defaultBorderless;
+        App.fullscreen = defaultFullscreen;
         App.soundEnabled = defaultSoundEnabled;
 
         App.input = new UserInputHandler();

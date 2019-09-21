@@ -20,6 +20,7 @@ public class App extends Canvas implements Runnable
 	public static int scale;
 	public static boolean soundEnabled;
 	public static boolean borderless;
+	public static boolean fullscreen;
 	public static boolean inDev;
 
 	public static InputHandler input;
@@ -130,11 +131,16 @@ public class App extends Canvas implements Runnable
 	}
 
     private void initialiseFrame() {
-		display.setSize(width,height);
+		Dimension size;
+		if (fullscreen) {
+			size = Toolkit.getDefaultToolkit().getScreenSize();
+		} else {
+			size = new Dimension(getActualWidth(), getActualHeight());
+		}
+		display.setSize(width, height);
 		img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		pixels = ((DataBufferInt) img.getRaster().getDataBuffer()).getData();
 
-		Dimension size = new Dimension(width * scale, height * scale);
 		setPreferredSize(size);
 		setMinimumSize(size);
 		setMaximumSize(size);
@@ -185,7 +191,7 @@ public class App extends Canvas implements Runnable
         System.arraycopy(display.pixels, 0, pixels, 0, width * height);
 
         Graphics g = bs.getDrawGraphics();
-		g.drawImage(img, 0, 0, width * scale, height * scale, null);
+		g.drawImage(img, 0, 0, getActualWidth(), getActualHeight(), null);
 		if (inDev) {
 			int fontSize = 16;
 			g.setFont(new Font("Verdana", Font.PLAIN, fontSize));
@@ -206,4 +212,36 @@ public class App extends Canvas implements Runnable
         }
         return img;
     }
+
+    private int getActualWidth() {
+		if (fullscreen) {
+			return Toolkit.getDefaultToolkit().getScreenSize().width;
+		}
+
+		return width * scale;
+	}
+
+	private int getActualHeight() {
+		if (fullscreen) {
+			return Toolkit.getDefaultToolkit().getScreenSize().height;
+		}
+
+		return height * scale;
+	}
+
+	private int getDisplayWidth() {
+		if (fullscreen) {
+			return Toolkit.getDefaultToolkit().getScreenSize().width / scale;
+		}
+
+		return width;
+	}
+
+	private int getDisplayHeight() {
+		if (fullscreen) {
+			return Toolkit.getDefaultToolkit().getScreenSize().height / scale;
+		}
+
+		return height;
+	}
 }
