@@ -34,7 +34,7 @@ public class Screen extends Display
         viewPunch = new ViewPunchOverlay(render.width, render.height);
     }
 
-    public void render() {
+    public void tick() {
         fill(0x000000);
         this.p = Game.getPlayer();
         if (p != null) {

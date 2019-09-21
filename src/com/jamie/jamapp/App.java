@@ -175,7 +175,7 @@ public class App extends Canvas implements Runnable
 			return;
 		}
 
-        display.render();
+        display.tick();
         System.arraycopy(display.pixels, 0, pixels, 0, width * height);
 
         Graphics g = bs.getDrawGraphics();

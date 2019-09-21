@@ -6,5 +6,5 @@ public abstract class Display extends Bitmap
         super(width, height);
     }
 
-    public abstract void render();
+    public abstract void tick();
 }
