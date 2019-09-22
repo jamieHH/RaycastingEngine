@@ -7,14 +7,6 @@ import com.jamie.raycasting.input.Controls;
 
 public class OptionsMenu extends Menu
 {
-    // resolution options
-    private final String[] scales = {
-            "1",
-            "2",
-            "4",
-            "8",
-    };
-
     private final String[][] resolutions = {
             {"200", "150", "(4:3)"},
             {"400", "300", "(4:3)"},
@@ -24,14 +16,21 @@ public class OptionsMenu extends Menu
             {"1024", "576", "(16:9)"},
     };
 
+    private final String[] scales = {
+            "1",
+            "2",
+            "4",
+            "8",
+    };
+
     private int resolutionIndex = 1;
     private int scaleIndex = 3;
 
-    private boolean fullscreenEnabled = App.fullscreen;
+    private boolean fullscreenEnabled = App.getFullscreenEnabled();
     private int resolutionWidth = App.getDisplayWidth();
     private int resolutionHeight = App.getDisplayHeight();
-    private int scale = App.scale;
-    private boolean soundEnabled = App.soundEnabled;
+    private int scale = App.getDisplayScale();
+    private boolean soundEnabled = App.getSoundEnabled();
 
     public String[] getOptions() {
         return new String[] {
@@ -69,7 +68,7 @@ public class OptionsMenu extends Menu
                     scaleIndex--;
                     scale = Integer.parseInt(scales[scaleIndex]);
                 }
-            }else if (getOption(optionIndex).equals("Sound")) {
+            } else if (getOption(optionIndex).equals("Sound")) {
                 soundEnabled = !soundEnabled;
             }
         }
@@ -100,25 +99,25 @@ public class OptionsMenu extends Menu
             game.input.stopInput(Controls.ENTER);
             Sound.clickAction.play();
             if (getOption(optionIndex).equals("Reset Defaults")) {
-                resolutionIndex = 1;
-                scaleIndex = 2;
+                fullscreenEnabled = true;
+                resolutionHeight = 1;
+                resolutionWidth = 1;
+                scale = 1;
                 soundEnabled = true;
             } else if (getOption(optionIndex).equals("Accept")) {
-                App.fullscreen = fullscreenEnabled;
-                App.newWidth = resolutionWidth;
-                App.newHeight = resolutionHeight;
-                App.newScale = scale;
+                App.setDisplayResolution(resolutionWidth, resolutionHeight);
+                App.setDisplayScale(scale);
+                App.enableFullscreen(fullscreenEnabled);
+                App.enableSound(soundEnabled);
 
-                App.display.setSize(resolutionWidth, resolutionHeight);
-                game.mainMenu.setSize(resolutionWidth, (int) (resolutionHeight * 0.6));
-                game.loadMenu.setSize(resolutionWidth, (int) (resolutionHeight * 0.6));
-                game.optionsMenu.setSize(resolutionWidth, (int) (resolutionHeight * 0.6));
-                game.pauseMenu.setSize(resolutionWidth, (int) (resolutionHeight * 0.6));
-                game.overMenu.setSize(resolutionWidth, (int) (resolutionHeight * 0.6));
-                game.inventoryOverlay.setSize((int) (resolutionWidth * 0.8), (int) (resolutionHeight * 0.6));
+                App.display.setSize(App.getDisplayWidth(), App.getDisplayHeight());
+                game.mainMenu.setSize(App.getDisplayWidth(), (int) (App.getDisplayHeight() * 0.6));
+                game.loadMenu.setSize(App.getDisplayWidth(), (int) (App.getDisplayHeight() * 0.6));
+                game.optionsMenu.setSize(App.getDisplayWidth(), (int) (App.getDisplayHeight() * 0.6));
+                game.pauseMenu.setSize(App.getDisplayWidth(), (int) (App.getDisplayHeight() * 0.6));
+                game.overMenu.setSize(App.getDisplayWidth(), (int) (App.getDisplayHeight() * 0.6));
+                game.inventoryOverlay.setSize((int) (App.getDisplayWidth() * 0.8), (int) (App.getDisplayHeight() * 0.6));
 
-                App.soundEnabled = soundEnabled;
-                App.setNewOptions = true;
                 game.setActiveOverlay(game.mainMenu);
             } else if (getOption(optionIndex).equals("Main Menu")) {
                 game.setActiveOverlay(game.mainMenu);
@@ -142,7 +141,7 @@ public class OptionsMenu extends Menu
                     String string = "< " + resolutionWidth + ", " + resolutionHeight + " >";
                     draw(string, width - ((string.length() * 6) + bp), bp + 10 + (i * 10), 0xD0D0D0);
                 } else if (getOption(optionIndex).equals("Scaling")) {
-                    String string = "< " + scales[scaleIndex] + " >";
+                    String string = "< " + scale + " >";
                     draw(string, width - ((string.length() * 6) + bp), bp + 10 + (i * 10), 0xD0D0D0);
                 } else if (getOption(optionIndex).equals("Sound")) {
                     String string = "< " + ((soundEnabled) ? "On" : "Off") + " >";
@@ -158,7 +157,7 @@ public class OptionsMenu extends Menu
                     String string = resolutionWidth + ", " + resolutionHeight;
                     draw(string, width - ((string.length() * 6) + bp), bp + 10 + (i * 10), 0x707070);
                 } else if (getOption(i).equals("Scaling")) {
-                    String string = scales[scaleIndex] + "";
+                    String string = scale + "";
                     draw(string, width - ((string.length() * 6) + bp), bp + 10 + (i * 10), 0x707070);
                 } else if (getOption(i).equals("Sound")) {
                     String string = ((soundEnabled) ? "On" : "Off");

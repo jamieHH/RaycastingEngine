@@ -13,7 +13,7 @@ public class Sfx
 
 
     public void play(double volume) {
-        if (App.soundEnabled) {
+        if (App.getSoundEnabled()) {
             if (volume > 0f) {
                 try {
                     if (clip != null) {

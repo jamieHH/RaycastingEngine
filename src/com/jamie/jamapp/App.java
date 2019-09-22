@@ -14,27 +14,26 @@ public class App extends Canvas implements Runnable
 {
 	private static final long serialVersionUID = 1L;
 
-	public static String title;
-	public static int width;
-	public static int height;
-	public static int scale;
-	public static boolean soundEnabled;
-	public static boolean borderless;
-	public static boolean fullscreen;
+	private static String title;
+	private static int displayWidth;
+	private static int displayHeight;
+	private static int displayScale = 1;
+	private static boolean soundEnabled;
+	private static boolean borderless = true;
+	private static boolean fullscreenEnabled;
 	public static boolean inDev;
+
+	private static boolean reinitialiseFrame = false;
 
 	public static InputHandler input;
 	public static GameLoop game;
 	public static Display display;
 
-	public static boolean setNewOptions = false;
-	public static int newWidth, newHeight, newScale;
-
     private static JFrame frame;
-    private Thread thread;
-    private BufferedImage img;
-    private Boolean running = false;
-    private int[] pixels;
+    private static BufferedImage img;
+	private static int[] pixels;
+	private Thread thread;
+	private Boolean running = false;
     private int ups, fps;
 
     private boolean hadFocus;
@@ -122,25 +121,41 @@ public class App extends Canvas implements Runnable
 		}
 	}
 
-	private void changeResolution(int w, int h) {
-		App.width = w;
-		App.height = h;
-		frame.dispose();
+	public static void setDisplayResolution(int w, int h) {
+		reinitialiseFrame = true;
+		App.displayWidth = w;
+		App.displayHeight = h;
+	}
 
-		initialiseFrame();
+	public static void setDisplayScale(int s) {
+		reinitialiseFrame = true;
+		App.displayScale = s;
+	}
+
+	public static void enableFullscreen(boolean i) {
+		reinitialiseFrame = true;
+		fullscreenEnabled = i;
+		int w;
+		int h;
+		if (fullscreenEnabled) {
+			borderless = true;
+			w = Toolkit.getDefaultToolkit().getScreenSize().width / displayScale;
+			h = Toolkit.getDefaultToolkit().getScreenSize().height / displayScale;
+		} else {
+			borderless = false;
+			w = displayWidth;
+			h = displayHeight;
+		}
+		setDisplayResolution(w, h);
 	}
 
     private void initialiseFrame() {
-		Dimension size;
-		if (fullscreen) {
-			size = Toolkit.getDefaultToolkit().getScreenSize();
-		} else {
-			size = new Dimension(getActualWidth(), getActualHeight());
-		}
+		reinitialiseFrame = false;
 		display.setSize(getDisplayWidth(), getDisplayHeight());
 		img = new BufferedImage(getDisplayWidth(), getDisplayHeight(), BufferedImage.TYPE_INT_RGB);
 		pixels = ((DataBufferInt) img.getRaster().getDataBuffer()).getData();
 
+		Dimension size = new Dimension(getFrameWidth(), getFrameHeight());
 		setPreferredSize(size);
 		setMinimumSize(size);
 		setMaximumSize(size);
@@ -166,13 +181,10 @@ public class App extends Canvas implements Runnable
 		input.tick();
 		game.tick();
 
-        if (setNewOptions) {
-            setNewOptions = false;
-            if (App.scale != newScale || App.width != newWidth || App.height != newHeight) {
-                App.scale = newScale;
-                changeResolution(newWidth, newHeight);
-            }
-        }
+		if (reinitialiseFrame) {
+			frame.dispose();
+			initialiseFrame();
+		}
 	}
 
 	private void render() {
@@ -191,7 +203,7 @@ public class App extends Canvas implements Runnable
         System.arraycopy(display.pixels, 0, pixels, 0, getDisplayWidth() * getDisplayHeight());
 
 		Graphics g = bs.getDrawGraphics();
-		g.drawImage(img, 0, 0, getActualWidth(), getActualHeight(), null);
+		g.drawImage(img, 0, 0, getFrameWidth(), getFrameHeight(), null);
 		if (inDev) {
 			int fontSize = 16;
 			g.setFont(new Font("Verdana", Font.PLAIN, fontSize));
@@ -213,35 +225,51 @@ public class App extends Canvas implements Runnable
         return img;
     }
 
-    private int getActualWidth() {
-		if (fullscreen) {
+    private int getFrameWidth() {
+		if (fullscreenEnabled) {
 			return Toolkit.getDefaultToolkit().getScreenSize().width;
 		}
 
-		return width * scale;
+		return displayWidth * displayScale;
 	}
 
-	private int getActualHeight() {
-		if (fullscreen) {
+	private int getFrameHeight() {
+		if (fullscreenEnabled) {
 			return Toolkit.getDefaultToolkit().getScreenSize().height;
 		}
 
-		return height * scale;
+		return displayHeight * displayScale;
 	}
 
 	public static int getDisplayWidth() {
-//		if (fullscreen) { // remove this condition to retain the dimensions but retain the resolution set
-//			return Toolkit.getDefaultToolkit().getScreenSize().width / scale;
-//		}
-
-		return width;
+		return displayWidth;
 	}
 
 	public static int getDisplayHeight() {
-//		if (fullscreen) { // remove this condition to retain the dimensions but retain the resolution set
-//			return Toolkit.getDefaultToolkit().getScreenSize().height / scale;
-//		}
+		return displayHeight;
+	}
 
-		return height;
+	public static int getDisplayScale() {
+		return displayScale;
+	}
+
+	public static void enableSound(boolean i) {
+		soundEnabled = i;
+	}
+
+	public static boolean getFullscreenEnabled() {
+		return fullscreenEnabled;
+	}
+
+	public static boolean getSoundEnabled() {
+		return soundEnabled;
+	}
+
+	public static String getTitle() {
+		return title;
+	}
+
+	public static void setTitle(String title) {
+		App.title = title;
 	}
 }
