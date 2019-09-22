@@ -141,7 +141,7 @@ public class OptionsMenu extends Menu
                     String string = "< " + resolutionWidth + ", " + resolutionHeight + " >";
                     draw(string, width - ((string.length() * 6) + bp), bp + 10 + (i * 10), 0xD0D0D0);
                 } else if (getOption(optionIndex).equals("Scaling")) {
-                    String string = "< " + scale + " >";
+                    String string = "< x" + scale + " >";
                     draw(string, width - ((string.length() * 6) + bp), bp + 10 + (i * 10), 0xD0D0D0);
                 } else if (getOption(optionIndex).equals("Sound")) {
                     String string = "< " + ((soundEnabled) ? "On" : "Off") + " >";
@@ -157,7 +157,7 @@ public class OptionsMenu extends Menu
                     String string = resolutionWidth + ", " + resolutionHeight;
                     draw(string, width - ((string.length() * 6) + bp), bp + 10 + (i * 10), 0x707070);
                 } else if (getOption(i).equals("Scaling")) {
-                    String string = scale + "";
+                    String string = "x" + scale;
                     draw(string, width - ((string.length() * 6) + bp), bp + 10 + (i * 10), 0x707070);
                 } else if (getOption(i).equals("Sound")) {
                     String string = ((soundEnabled) ? "On" : "Off");

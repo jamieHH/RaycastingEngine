@@ -139,14 +139,9 @@ public class App extends Canvas implements Runnable
 		int h;
 		if (fullscreenEnabled) {
 			borderless = true;
-			w = Toolkit.getDefaultToolkit().getScreenSize().width / displayScale;
-			h = Toolkit.getDefaultToolkit().getScreenSize().height / displayScale;
 		} else {
 			borderless = false;
-			w = displayWidth;
-			h = displayHeight;
 		}
-		setDisplayResolution(w, h);
 	}
 
     private void initialiseFrame() {
@@ -225,7 +220,7 @@ public class App extends Canvas implements Runnable
         return img;
     }
 
-    private int getFrameWidth() {
+    private static int getFrameWidth() {
 		if (fullscreenEnabled) {
 			return Toolkit.getDefaultToolkit().getScreenSize().width;
 		}
@@ -233,7 +228,7 @@ public class App extends Canvas implements Runnable
 		return displayWidth * displayScale;
 	}
 
-	private int getFrameHeight() {
+	private static int getFrameHeight() {
 		if (fullscreenEnabled) {
 			return Toolkit.getDefaultToolkit().getScreenSize().height;
 		}
@@ -263,10 +258,6 @@ public class App extends Canvas implements Runnable
 
 	public static boolean getSoundEnabled() {
 		return soundEnabled;
-	}
-
-	public static String getTitle() {
-		return title;
 	}
 
 	public static void setTitle(String title) {
