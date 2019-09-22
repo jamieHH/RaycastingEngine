@@ -155,7 +155,7 @@ public class App extends Canvas implements Runnable
         f.setIconImage(getAppIcon());
         f.setTitle(App.title);
         f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        f.setResizable(true); /////
+        f.setResizable(false);
 		f.setVisible(true);
 		f.pack();
 		f.setLocationRelativeTo(null);
