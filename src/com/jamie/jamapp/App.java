@@ -155,7 +155,7 @@ public class App extends Canvas implements Runnable
         f.setIconImage(getAppIcon());
         f.setTitle(App.title);
         f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        f.setResizable(false);
+        f.setResizable(true); /////
 		f.setVisible(true);
 		f.pack();
 		f.setLocationRelativeTo(null);
@@ -190,7 +190,7 @@ public class App extends Canvas implements Runnable
         display.tick();
         System.arraycopy(display.pixels, 0, pixels, 0, getDisplayWidth() * getDisplayHeight());
 
-        Graphics g = bs.getDrawGraphics();
+		Graphics g = bs.getDrawGraphics();
 		g.drawImage(img, 0, 0, getActualWidth(), getActualHeight(), null);
 		if (inDev) {
 			int fontSize = 16;
@@ -230,17 +230,17 @@ public class App extends Canvas implements Runnable
 	}
 
 	public static int getDisplayWidth() {
-		if (fullscreen) { // remove this condition to retain the dimensions but retain the resolution set
-			return Toolkit.getDefaultToolkit().getScreenSize().width / scale;
-		}
+//		if (fullscreen) { // remove this condition to retain the dimensions but retain the resolution set
+//			return Toolkit.getDefaultToolkit().getScreenSize().width / scale;
+//		}
 
 		return width;
 	}
 
 	public static int getDisplayHeight() {
-		if (fullscreen) { // remove this condition to retain the dimensions but retain the resolution set
-			return Toolkit.getDefaultToolkit().getScreenSize().height / scale;
-		}
+//		if (fullscreen) { // remove this condition to retain the dimensions but retain the resolution set
+//			return Toolkit.getDefaultToolkit().getScreenSize().height / scale;
+//		}
 
 		return height;
 	}
