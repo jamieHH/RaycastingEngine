@@ -77,7 +77,7 @@ public class Spirit extends Mob
         isFloating = true;
         isSolid = false;
 
-        viewDist = 4;
+        viewDist = 8;
         baseReach = 1;
 
         radius = 0.25;

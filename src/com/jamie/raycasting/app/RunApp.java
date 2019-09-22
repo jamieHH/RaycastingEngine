@@ -6,9 +6,9 @@ import com.jamie.raycasting.input.UserInputHandler;
 
 public class RunApp
 {
-    public static boolean defaultInDev = false;
-    public static int defaultResolutionWidth = 200;
-    public static int defaultResolutionHeight = 150;
+    public static boolean defaultInDev = true;
+    public static int defaultResolutionWidth = 256;
+    public static int defaultResolutionHeight = 144;
     public static int defaultDisplayScale = 8;
     public static boolean defaultFullscreenEnabled = true;
     public static boolean defaultSoundEnabled = true;
