@@ -99,10 +99,10 @@ public class OptionsMenu extends Menu
             game.input.stopInput(Controls.ENTER);
             Sound.clickAction.play();
             if (getOption(optionIndex).equals("Reset Defaults")) {
+                resolutionWidth = 256;
+                resolutionHeight = 144;
                 fullscreenEnabled = true;
-                resolutionHeight = 1;
-                resolutionWidth = 1;
-                scale = 1;
+                scale = 8;
                 soundEnabled = true;
             } else if (getOption(optionIndex).equals("Accept")) {
                 App.setDisplayResolution(resolutionWidth, resolutionHeight);
