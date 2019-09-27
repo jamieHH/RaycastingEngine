@@ -81,7 +81,7 @@ public abstract class Level
 
 
     public void create(int sizeX, int sizeZ, int[] pixels) {
-        this.world = Client.world;
+        this.world = Client.getWorld();
         this.sizeX = sizeX;
         this.sizeZ = sizeZ;
         this.blocks = new Block[sizeX * sizeZ];

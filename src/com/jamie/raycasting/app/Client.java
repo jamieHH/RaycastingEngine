@@ -14,7 +14,7 @@ import com.jamie.raycasting.world.World;
 
 public class Client extends JamappClient
 {
-	public static World world;
+	private static World world;
 	private static Mob player;
 
 	private static InputHandler temporaryInput = new ArtificialInputHandler();
@@ -161,5 +161,13 @@ public class Client extends JamappClient
 
 	public static void setPlayer(Mob player) {
 		Client.player = player;
+	}
+
+	public static World getWorld() {
+		return world;
+	}
+
+	public static void setWorld(World world) {
+		Client.world = world;
 	}
 }

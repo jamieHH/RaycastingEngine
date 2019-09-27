@@ -272,7 +272,7 @@ public abstract class Mob extends Entity
 
                 doMovements();
             } else {
-                deathSound.play();
+                emitSound(deathSound);
                 runSpriteSet("death");
                 isDieing = true;
             }
@@ -561,7 +561,7 @@ public abstract class Mob extends Entity
                 level.addEntity(getHurtParticle(), posX, posZ);
 
                 if (health - magnitude > 0) {
-                    hurtSound.play();
+                    emitSound(hurtSound);
                     hurtType = damageType; // change to blunt if armor protects some damage
                     hurtTicks = hurtWait;
                     health -= magnitude;
