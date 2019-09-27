@@ -29,7 +29,7 @@ public class RunApp
 
         App.input = new UserInputHandler();
         App.input.enableMouse = defaultMouseEnabled;
-        App.game = new Game(App.input);
+        App.game = new Client(App.input);
         App.display = new Screen(App.getDisplayWidth(), App.getDisplayHeight());
 
         App app = new App();

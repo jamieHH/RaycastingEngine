@@ -1,7 +1,7 @@
 package com.jamie.raycasting.graphics.overlays.menus;
 
 import com.jamie.raycasting.app.Sound;
-import com.jamie.raycasting.app.Game;
+import com.jamie.raycasting.app.Client;
 import com.jamie.raycasting.input.Controls;
 
 public class MainMenu extends Menu
@@ -20,19 +20,19 @@ public class MainMenu extends Menu
         super(width, height);
     }
 
-    public void tick(Game game) {
-        super.tick(game);
+    public void tick() {
+        super.tick();
 
-        if (game.input.check(Controls.ACTION) || game.input.check(Controls.ENTER)) {
-            game.input.stopInput(Controls.ACTION);
-            game.input.stopInput(Controls.ENTER);
+        if (Client.input.check(Controls.ACTION) || Client.input.check(Controls.ENTER)) {
+            Client.input.stopInput(Controls.ACTION);
+            Client.input.stopInput(Controls.ENTER);
             Sound.clickAction.play();
             if (getOption(optionIndex).equals("New Game")) {
-                game.newGame();
+                Client.newGame();
             } else if (getOption(optionIndex).equals("Load Game")) {
-                game.setActiveOverlay(game.loadMenu);
+                Client.setActiveOverlay(Client.loadMenu);
             } else if (getOption(optionIndex).equals("Options")) {
-                game.setActiveOverlay(game.optionsMenu);
+                Client.setActiveOverlay(Client.optionsMenu);
             } else if (getOption(optionIndex).equals("Quit")) {
                 System.exit(0);
             }

@@ -4,7 +4,7 @@ import java.util.*;
 
 import com.jamie.jamapp.Bitmap;
 import com.jamie.jamapp.Sfx;
-import com.jamie.raycasting.app.Game;
+import com.jamie.raycasting.app.Client;
 import com.jamie.raycasting.entities.Entity;
 import com.jamie.raycasting.entities.Drop;
 import com.jamie.raycasting.entities.mobs.*;
@@ -80,8 +80,8 @@ public abstract class Level
     }));
 
 
-    public void create(Game game, int sizeX, int sizeZ, int[] pixels) {
-        this.world = game.world;
+    public void create(int sizeX, int sizeZ, int[] pixels) {
+        this.world = Client.world;
         this.sizeX = sizeX;
         this.sizeZ = sizeZ;
         this.blocks = new Block[sizeX * sizeZ];
@@ -175,9 +175,9 @@ public abstract class Level
     }
 
     public void playSound(Sfx sound, double posX, double posZ) {
-        if (Game.getPlayer() != null) {
-            double viewDist = Game.getPlayer().viewDist;
-            double dist = Math.hypot(Math.abs(posX - Game.getPlayer().posX), Math.abs(posZ - Game.getPlayer().posZ));
+        if (Client.getPlayer() != null) {
+            double viewDist = Client.getPlayer().viewDist;
+            double dist = Math.hypot(Math.abs(posX - Client.getPlayer().posX), Math.abs(posZ - Client.getPlayer().posZ));
             double per = dist / viewDist;
             double volume = (per * -1) + 1;
 

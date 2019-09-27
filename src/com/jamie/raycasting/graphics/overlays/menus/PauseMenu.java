@@ -1,7 +1,7 @@
 package com.jamie.raycasting.graphics.overlays.menus;
 
+import com.jamie.raycasting.app.Client;
 import com.jamie.raycasting.app.Sound;
-import com.jamie.raycasting.app.Game;
 import com.jamie.raycasting.input.Controls;
 
 public class PauseMenu extends Menu
@@ -18,17 +18,17 @@ public class PauseMenu extends Menu
         super(width, height);
     }
 
-    public void tick(Game game) {
-        super.tick(game);
+    public void tick() {
+        super.tick();
 
-        if (game.input.check(Controls.ACTION) || game.input.check(Controls.ENTER)) {
-            game.input.stopInput(Controls.ACTION);
-            game.input.stopInput(Controls.ENTER);
+        if (Client.input.check(Controls.ACTION) || Client.input.check(Controls.ENTER)) {
+            Client.input.stopInput(Controls.ACTION);
+            Client.input.stopInput(Controls.ENTER);
             Sound.clickAction.play();
             if (getOption(optionIndex).equals("Resume")) {
-                game.setActiveOverlay(null);
+                Client.setActiveOverlay(null);
             } else if (getOption(optionIndex).equals("Main Menu")) {
-                game.stopGame();
+                Client.stopGame();
             }
         }
     }

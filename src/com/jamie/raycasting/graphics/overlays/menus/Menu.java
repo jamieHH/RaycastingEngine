@@ -1,6 +1,6 @@
 package com.jamie.raycasting.graphics.overlays.menus;
 
-import com.jamie.raycasting.app.Game;
+import com.jamie.raycasting.app.Client;
 import com.jamie.raycasting.app.Sound;
 import com.jamie.raycasting.graphics.overlays.Overlay;
 import com.jamie.raycasting.input.Controls;
@@ -18,20 +18,20 @@ public abstract class Menu extends Overlay
         super(width, height);
     }
 
-    public void tick(Game game) {
-        super.tick(game);
+    public void tick() {
+        super.tick();
 
-        if (game.input.check(Controls.FORWARD) || game.input.check(Controls.UP)) {
-            game.input.stopInput(Controls.FORWARD);
-            game.input.stopInput(Controls.UP);
+        if (Client.input.check(Controls.FORWARD) || Client.input.check(Controls.UP)) {
+            Client.input.stopInput(Controls.FORWARD);
+            Client.input.stopInput(Controls.UP);
             if ((optionIndex > 0)) {
                 optionIndex--;
                 Sound.clickUp.play();
             }
         }
-        if (game.input.check(Controls.BACK)|| game.input.check(Controls.DOWN)) {
-            game.input.stopInput(Controls.BACK);
-            game.input.stopInput(Controls.DOWN);
+        if (Client.input.check(Controls.BACK)|| Client.input.check(Controls.DOWN)) {
+            Client.input.stopInput(Controls.BACK);
+            Client.input.stopInput(Controls.DOWN);
             if ((optionIndex < getOptions().length - 1)) {
                 optionIndex++;
                 Sound.clickDown.play();

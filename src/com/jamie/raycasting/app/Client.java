@@ -1,7 +1,7 @@
 package com.jamie.raycasting.app;
 
 import com.jamie.jamapp.App;
-import com.jamie.jamapp.GameLoop;
+import com.jamie.jamapp.JamappClient;
 import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.entities.mobs.Player;
 import com.jamie.raycasting.graphics.overlays.InventoryOverlay;
@@ -12,24 +12,24 @@ import com.jamie.jamapp.InputHandler;
 import com.jamie.raycasting.input.Controls;
 import com.jamie.raycasting.world.World;
 
-public class Game extends GameLoop
+public class Client extends JamappClient
 {
-	public World world;
+	public static World world;
 	private static Mob player;
 
-	private InputHandler temporaryInput = new ArtificialInputHandler();
+	private static InputHandler temporaryInput = new ArtificialInputHandler();
 
-	public final Menu mainMenu = new MainMenu(App.getDisplayWidth(), (int) (App.getDisplayHeight() * 0.6));
-    public final Menu loadMenu = new LoadMenu(App.getDisplayWidth(), (int) (App.getDisplayHeight() * 0.6));
-    public final Menu optionsMenu = new OptionsMenu(App.getDisplayWidth(), (int) (App.getDisplayHeight() * 0.6));
-    public final Menu pauseMenu = new PauseMenu(App.getDisplayWidth(), (int) (App.getDisplayHeight() * 0.6));
-    public final Menu overMenu = new OverMenu(App.getDisplayWidth(), (int) (App.getDisplayHeight() * 0.6));
-    public final Overlay inventoryOverlay = new InventoryOverlay((int) (App.getDisplayWidth() * 0.8), (int) (App.getDisplayHeight() * 0.6));
+	public static final Menu mainMenu = new MainMenu(App.getDisplayWidth(), (int) (App.getDisplayHeight() * 0.6));
+    public static final Menu loadMenu = new LoadMenu(App.getDisplayWidth(), (int) (App.getDisplayHeight() * 0.6));
+    public static final Menu optionsMenu = new OptionsMenu(App.getDisplayWidth(), (int) (App.getDisplayHeight() * 0.6));
+    public static final Menu pauseMenu = new PauseMenu(App.getDisplayWidth(), (int) (App.getDisplayHeight() * 0.6));
+    public static final Menu overMenu = new OverMenu(App.getDisplayWidth(), (int) (App.getDisplayHeight() * 0.6));
+    public static final Overlay inventoryOverlay = new InventoryOverlay((int) (App.getDisplayWidth() * 0.8), (int) (App.getDisplayHeight() * 0.6));
 
 	public static Overlay activeOverlay;
 	
 	
-	public Game(InputHandler input) {
+	public Client(InputHandler input) {
 		super(input);
 
         setActiveOverlay(mainMenu);
@@ -37,7 +37,7 @@ public class Game extends GameLoop
 
 	public void tick() {
 		if (activeOverlay != null) {
-			activeOverlay.tick(this);
+			activeOverlay.tick();
 			input.unlockCursor();
 		} else {
             input.lockCursor();
@@ -107,8 +107,8 @@ public class Game extends GameLoop
 		}
 	}
 	
-	public void newGame() {
-		world = new World(this);
+	public static void newGame() {
+		world = new World();
 		setPlayer(new Player(input));
 		getPlayer().setRotation(1.9);
 
@@ -120,14 +120,14 @@ public class Game extends GameLoop
 		setActiveOverlay(null);
 	}
 
-	public void stopGame() {
+	public static void stopGame() {
 		world.clearLoadedLevels();
 		world = null;
 		setPlayer(null);
 		setActiveOverlay(mainMenu);
 	}
 
-	public void setActiveOverlay(Overlay overlay) {
+	public static void setActiveOverlay(Overlay overlay) {
 		activeOverlay = overlay;
 		if (activeOverlay instanceof Menu) {
 			((Menu) activeOverlay).optionIndex = 0;
@@ -160,6 +160,6 @@ public class Game extends GameLoop
 	}
 
 	public static void setPlayer(Mob player) {
-		Game.player = player;
+		Client.player = player;
 	}
 }

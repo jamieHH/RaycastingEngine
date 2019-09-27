@@ -1,7 +1,7 @@
 package com.jamie.raycasting.graphics.overlays;
 
 import com.jamie.raycasting.app.Sound;
-import com.jamie.raycasting.app.Game;
+import com.jamie.raycasting.app.Client;
 import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.jamapp.Bitmap;
 import com.jamie.raycasting.graphics.Texture;
@@ -56,9 +56,9 @@ public class InventoryOverlay extends Overlay
         itemListBitmap = new Bitmap(width - bp - bp - itemDetailsPane.width, height - (bp + 10 + 8 + bp));
     }
 
-    public void tick(Game game) {
-        this.mob = game.getPlayer();
-        this.inventory = game.getPlayer().inventory;
+    public void tick() {
+        this.mob = Client.getPlayer();
+        this.inventory = Client.getPlayer().inventory;
 
         for (int i = 0; i < categoryItemLists.length; i++) {
             if (categoryItemLists[i].itemType != null) {
@@ -77,32 +77,32 @@ public class InventoryOverlay extends Overlay
             }
         }
 
-        if (game.input.check(Controls.LEFT) || game.input.check(Controls.ROTLEFT)) {
-            game.input.stopInput(Controls.LEFT);
-            game.input.stopInput(Controls.ROTLEFT);
+        if (Client.input.check(Controls.LEFT) || Client.input.check(Controls.ROTLEFT)) {
+            Client.input.stopInput(Controls.LEFT);
+            Client.input.stopInput(Controls.ROTLEFT);
             if ((categoryIndex > 0)) {
                 categoryIndex--;
             }
         }
-        if (game.input.check(Controls.RIGHT) || game.input.check(Controls.ROTRIGHT)) {
-            game.input.stopInput(Controls.RIGHT);
-            game.input.stopInput(Controls.ROTRIGHT);
+        if (Client.input.check(Controls.RIGHT) || Client.input.check(Controls.ROTRIGHT)) {
+            Client.input.stopInput(Controls.RIGHT);
+            Client.input.stopInput(Controls.ROTRIGHT);
             if ((categoryIndex < categoryItemLists.length - 1)) {
                 categoryIndex++;
             }
         }
 
-        if (game.input.check(Controls.FORWARD) || game.input.check(Controls.UP)) {
-            game.input.stopInput(Controls.FORWARD);
-            game.input.stopInput(Controls.UP);
+        if (Client.input.check(Controls.FORWARD) || Client.input.check(Controls.UP)) {
+            Client.input.stopInput(Controls.FORWARD);
+            Client.input.stopInput(Controls.UP);
             if ((getItemList().listIndex > 0)) {
                 Sound.clickUp.play();
                 getItemList().listIndex--;
             }
         }
-        if (game.input.check(Controls.BACK) || game.input.check(Controls.DOWN)) {
-            game.input.stopInput(Controls.BACK);
-            game.input.stopInput(Controls.DOWN);
+        if (Client.input.check(Controls.BACK) || Client.input.check(Controls.DOWN)) {
+            Client.input.stopInput(Controls.BACK);
+            Client.input.stopInput(Controls.DOWN);
             if ((getItemList().listIndex < getItemList().listedItems.size() - 1)) {
                 Sound.clickDown.play();
                 getItemList().listIndex++;
@@ -110,15 +110,15 @@ public class InventoryOverlay extends Overlay
         }
 
         if (getItemList().listedItems.size() > 0) {
-            if (game.input.check(Controls.ACTION) || game.input.check(Controls.ENTER)) {
-                game.input.stopInput(Controls.ACTION);
-                game.input.stopInput(Controls.ENTER);
+            if (Client.input.check(Controls.ACTION) || Client.input.check(Controls.ENTER)) {
+                Client.input.stopInput(Controls.ACTION);
+                Client.input.stopInput(Controls.ENTER);
                 Sound.clickAction.play();
                 mob.useItemIndex(inventory.getIndexOf(inventory.getItem(inventoryItemIndex)));
             }
 
-            if (game.input.check(Controls.HOT1)) {
-                game.input.stopInput(Controls.HOT1);
+            if (Client.input.check(Controls.HOT1)) {
+                Client.input.stopInput(Controls.HOT1);
                 Sound.clickAction.play();
                 if (mob.getHotkey(1) == null || mob.getHotkey(1) != inventoryItemIndex) {
                     mob.setHotkey(1, inventoryItemIndex);
@@ -126,8 +126,8 @@ public class InventoryOverlay extends Overlay
                     mob.setHotkey(1, null);
                 }
             }
-            if (game.input.check(Controls.HOT2)) {
-                game.input.stopInput(Controls.HOT2);
+            if (Client.input.check(Controls.HOT2)) {
+                Client.input.stopInput(Controls.HOT2);
                 Sound.clickAction.play();
                 if (mob.getHotkey(2) == null || mob.getHotkey(2) != inventoryItemIndex) {
                     mob.setHotkey(2, inventoryItemIndex);
@@ -135,8 +135,8 @@ public class InventoryOverlay extends Overlay
                     mob.setHotkey(2, null);
                 }
             }
-            if (game.input.check(Controls.HOT3)) {
-                game.input.stopInput(Controls.HOT3);
+            if (Client.input.check(Controls.HOT3)) {
+                Client.input.stopInput(Controls.HOT3);
                 Sound.clickAction.play();
                 if (mob.getHotkey(3) == null || mob.getHotkey(3) != inventoryItemIndex) {
                     mob.setHotkey(3, inventoryItemIndex);

@@ -2,7 +2,7 @@ package com.jamie.raycasting.world;
 
 import com.jamie.jamapp.App;
 import com.jamie.raycasting.app.Sound;
-import com.jamie.raycasting.app.Game;
+import com.jamie.raycasting.app.Client;
 import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.graphics.Texture;
 import com.jamie.raycasting.graphics.overlays.LoadingOverlay;
@@ -17,7 +17,6 @@ import java.util.Map;
 
 public class World
 {
-    public Game game;
     public Level level;
     public Map<String, Level> cache = new HashMap<String, Level>();
 
@@ -26,8 +25,8 @@ public class World
     private int minute = 0;
 
 
-    public World(Game game) {
-        this.game = game;
+    public World() {
+
     }
 
     public void tick() {
@@ -63,7 +62,7 @@ public class World
             newLevel = Level.makeRandomLevel(1000, 1000);
         }
 
-        game.setActiveOverlay(new LoadingOverlay(App.getDisplayWidth(), App.getDisplayHeight(), newLevel.name));
+        Client.setActiveOverlay(new LoadingOverlay(App.getDisplayWidth(), App.getDisplayHeight(), newLevel.name));
         Sound.switchLevel.play();
 
         if (level != null) {
@@ -104,7 +103,7 @@ public class World
             img.getRGB(0, 0, w, h, pixels, 0, w);
 
             Level level = getByName(name);
-            level.create(this.game, w, h, pixels);
+            level.create(w, h, pixels);
             cache.put(name, level);
 
             return level;

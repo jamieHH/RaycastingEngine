@@ -56,7 +56,7 @@ public class Bitmap3D extends Bitmap
         drawFloor();
         drawWalls();
         drawSprites();
-        fodFog();
+        drawFog();
 	}
     private void drawFloor() {
         for (int y = 0; y < height; y++) {
@@ -342,7 +342,7 @@ public class Bitmap3D extends Bitmap
 		}
 	}
 
-	private void fodFog() {
+	private void drawFog() {
         int dist = (32 * blockViewDist); // render dist. 32 = one blocks dist
 		for (int i = 0; i < width * height; i++) {
             if (zBuffer[i] > blockViewDist) {

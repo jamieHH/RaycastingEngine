@@ -1,6 +1,6 @@
 package com.jamie.raycasting.graphics.overlays;
 
-import com.jamie.raycasting.app.Game;
+import com.jamie.raycasting.app.Client;
 
 public class LoadingOverlay extends Overlay
 {
@@ -15,12 +15,12 @@ public class LoadingOverlay extends Overlay
         draw(message, (width - (message.length() * 6)) / 2, ((height - 8) / 2), 0x707070);
     }
 
-    public void tick(Game game) {
+    public void tick() {
         if (showTime > 0) {
             showTime--;
             return;
         }
 
-        game.setActiveOverlay(null);
+        Client.setActiveOverlay(null);
     }
 }

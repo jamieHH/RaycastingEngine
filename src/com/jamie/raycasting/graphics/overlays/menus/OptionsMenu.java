@@ -2,7 +2,7 @@ package com.jamie.raycasting.graphics.overlays.menus;
 
 import com.jamie.jamapp.App;
 import com.jamie.raycasting.app.Sound;
-import com.jamie.raycasting.app.Game;
+import com.jamie.raycasting.app.Client;
 import com.jamie.raycasting.input.Controls;
 
 public class OptionsMenu extends Menu
@@ -49,12 +49,12 @@ public class OptionsMenu extends Menu
         super(width, height);
     }
 
-    public void tick(Game game) {
-        super.tick(game);
+    public void tick() {
+        super.tick();
 
-        if (game.input.check(Controls.LEFT) || game.input.check(Controls.ROTLEFT)) {
-            game.input.stopInput(Controls.LEFT);
-            game.input.stopInput(Controls.ROTLEFT);
+        if (Client.input.check(Controls.LEFT) || Client.input.check(Controls.ROTLEFT)) {
+            Client.input.stopInput(Controls.LEFT);
+            Client.input.stopInput(Controls.ROTLEFT);
             if (getOption(optionIndex).equals("Fullscreen")) {
                 fullscreenEnabled = !fullscreenEnabled;
             } else if (getOption(optionIndex).equals("Resolution")) {
@@ -73,9 +73,9 @@ public class OptionsMenu extends Menu
             }
         }
 
-        if (game.input.check(Controls.RIGHT) || game.input.check(Controls.ROTRIGHT)) {
-            game.input.stopInput(Controls.RIGHT);
-            game.input.stopInput(Controls.ROTRIGHT);
+        if (Client.input.check(Controls.RIGHT) || Client.input.check(Controls.ROTRIGHT)) {
+            Client.input.stopInput(Controls.RIGHT);
+            Client.input.stopInput(Controls.ROTRIGHT);
             if (getOption(optionIndex).equals("Fullscreen")) {
                 fullscreenEnabled = !fullscreenEnabled;
             } else if (getOption(optionIndex).equals("Resolution")) {
@@ -94,9 +94,9 @@ public class OptionsMenu extends Menu
             }
         }
 
-        if (game.input.check(Controls.ACTION) || game.input.check(Controls.ENTER)) {
-            game.input.stopInput(Controls.ACTION);
-            game.input.stopInput(Controls.ENTER);
+        if (Client.input.check(Controls.ACTION) || Client.input.check(Controls.ENTER)) {
+            Client.input.stopInput(Controls.ACTION);
+            Client.input.stopInput(Controls.ENTER);
             Sound.clickAction.play();
             if (getOption(optionIndex).equals("Reset Defaults")) {
                 resolutionWidth = 256;
@@ -111,16 +111,16 @@ public class OptionsMenu extends Menu
                 App.enableSound(soundEnabled);
 
                 App.display.setSize(App.getDisplayWidth(), App.getDisplayHeight());
-                game.mainMenu.setSize(App.getDisplayWidth(), (int) (App.getDisplayHeight() * 0.6));
-                game.loadMenu.setSize(App.getDisplayWidth(), (int) (App.getDisplayHeight() * 0.6));
-                game.optionsMenu.setSize(App.getDisplayWidth(), (int) (App.getDisplayHeight() * 0.6));
-                game.pauseMenu.setSize(App.getDisplayWidth(), (int) (App.getDisplayHeight() * 0.6));
-                game.overMenu.setSize(App.getDisplayWidth(), (int) (App.getDisplayHeight() * 0.6));
-                game.inventoryOverlay.setSize((int) (App.getDisplayWidth() * 0.8), (int) (App.getDisplayHeight() * 0.6));
+                Client.mainMenu.setSize(App.getDisplayWidth(), (int) (App.getDisplayHeight() * 0.6));
+                Client.loadMenu.setSize(App.getDisplayWidth(), (int) (App.getDisplayHeight() * 0.6));
+                Client.optionsMenu.setSize(App.getDisplayWidth(), (int) (App.getDisplayHeight() * 0.6));
+                Client.pauseMenu.setSize(App.getDisplayWidth(), (int) (App.getDisplayHeight() * 0.6));
+                Client.overMenu.setSize(App.getDisplayWidth(), (int) (App.getDisplayHeight() * 0.6));
+                Client.inventoryOverlay.setSize((int) (App.getDisplayWidth() * 0.8), (int) (App.getDisplayHeight() * 0.6));
 
-                game.setActiveOverlay(game.mainMenu);
+                Client.setActiveOverlay(Client.mainMenu);
             } else if (getOption(optionIndex).equals("Main Menu")) {
-                game.setActiveOverlay(game.mainMenu);
+                Client.setActiveOverlay(Client.mainMenu);
             }
         }
     }

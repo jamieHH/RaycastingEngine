@@ -1,6 +1,5 @@
 package com.jamie.raycasting.graphics.overlays;
 
-import com.jamie.raycasting.app.Game;
 import com.jamie.jamapp.Bitmap;
 
 public abstract class Overlay extends Bitmap
@@ -12,7 +11,7 @@ public abstract class Overlay extends Bitmap
         super(width, height);
     }
 
-    public void tick(Game game) {
+    public void tick() {
 
     }
 

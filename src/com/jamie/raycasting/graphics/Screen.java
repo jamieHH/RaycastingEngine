@@ -2,7 +2,7 @@ package com.jamie.raycasting.graphics;
 
 import com.jamie.jamapp.Display;
 import com.jamie.jamapp.Bitmap;
-import com.jamie.raycasting.app.Game;
+import com.jamie.raycasting.app.Client;
 import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.graphics.overlays.HotkeyOverlay;
 import com.jamie.raycasting.graphics.overlays.HudBarOverlay;
@@ -21,7 +21,7 @@ public class Screen extends Display
 	public Screen(int width, int height) {
 		super(width, height);
 		setSize(width, height);
-        this.p = Game.getPlayer();
+        this.p = Client.getPlayer();
     }
 
     public void setSize(int width, int height) {
@@ -36,7 +36,7 @@ public class Screen extends Display
 
     public void tick() {
         fill(0x000000);
-        this.p = Game.getPlayer();
+        this.p = Client.getPlayer();
         if (p != null) {
             if (!p.isDead) {
                 render.render(p.level, p.posX, p.camY, p.posZ, p.getRotation(), (1 - p.camPitch), p.viewDist);
@@ -103,11 +103,11 @@ public class Screen extends Display
             }
         }
 
-        if (Game.activeOverlay != null) {
-            Game.activeOverlay.update();
-            int cornerX = (width / 2) - (Game.activeOverlay.width / 2);
-            int cornerY = (height / 2) - (Game.activeOverlay.height / 2);
-            draw(Game.activeOverlay, cornerX, cornerY, 95);
+        if (Client.activeOverlay != null) {
+            Client.activeOverlay.update();
+            int cornerX = (width / 2) - (Client.activeOverlay.width / 2);
+            int cornerY = (height / 2) - (Client.activeOverlay.height / 2);
+            draw(Client.activeOverlay, cornerX, cornerY, 95);
         }
     }
 }

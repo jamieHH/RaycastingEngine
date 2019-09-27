@@ -26,7 +26,7 @@ public class App extends Canvas implements Runnable
 	private static boolean reinitialiseFrame = false;
 
 	public static InputHandler input;
-	public static GameLoop game;
+	public static JamappClient game;
 	public static Display display;
 
     private static JFrame frame;
@@ -135,8 +135,6 @@ public class App extends Canvas implements Runnable
 	public static void enableFullscreen(boolean i) {
 		reinitialiseFrame = true;
 		fullscreenEnabled = i;
-		int w;
-		int h;
 		if (fullscreenEnabled) {
 			borderless = true;
 		} else {
