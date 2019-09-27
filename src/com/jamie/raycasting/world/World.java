@@ -32,6 +32,10 @@ public class World
     public void tick() {
         if (level != null) {
             level.tick();
+
+            if (level.isOutside) {
+                level.fogColor = Texture.fogHours.pixels[hour];
+            }
         }
 
         if (enableTimeCycle) {
@@ -44,9 +48,6 @@ public class World
                 }
             }
 
-        }
-        if (level.isOutside) {
-            level.fogColor = Texture.fogHours.pixels[hour];
         }
     }
 
