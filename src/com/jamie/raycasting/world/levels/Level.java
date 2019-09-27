@@ -2,12 +2,14 @@ package com.jamie.raycasting.world.levels;
 
 import java.util.*;
 
-import com.jamie.jamapp.App;
+import com.jamie.jamapp.Bitmap;
 import com.jamie.jamapp.Sfx;
 import com.jamie.raycasting.app.Game;
 import com.jamie.raycasting.entities.Entity;
 import com.jamie.raycasting.entities.Drop;
 import com.jamie.raycasting.entities.mobs.*;
+import com.jamie.raycasting.graphics.Sprite;
+import com.jamie.raycasting.graphics.Texture;
 import com.jamie.raycasting.input.ArtificialInputHandler;
 import com.jamie.raycasting.world.World;
 import com.jamie.raycasting.world.blocks.*;
@@ -32,26 +34,50 @@ public abstract class Level
 
     // static blocks. TODO: check if is performance optimal.
     // Add these to array and loop through array for ticks
-    protected static final Block NullBlock = new NullBlock();
-    protected static final AirBlock AirBlock = new AirBlock();
-    protected static final TorchBlock TorchBlock = new TorchBlock();
-    protected static final WallBlock WallBlock = new WallBlock();
-    protected static final PillarBlock PillarBlock = new PillarBlock();
-    protected static final LampBlock LampBlock = new LampBlock();
-    protected static final BarsBlock BarsBlock = new BarsBlock();
-    protected static final BarrelsBlock BarrelsBlock = new BarrelsBlock();
-    protected static final CobwebBlock CobwebBlock = new CobwebBlock();
-    protected static final TreeBlock TreeBlock = new TreeBlock();
-    protected static final GrassBlock GrassBlock = new GrassBlock();
-    protected static final ShrubsBlock ShrubsBlock = new ShrubsBlock();
-    protected static final StonePathBlock StonePathBlock = new StonePathBlock();
-    protected static final AltStonePathBlock AltStonePathBlock = new AltStonePathBlock();
-    protected static final GraveBlock GraveBlock = new GraveBlock();
-    protected static final WaterBlock WaterBlock = new WaterBlock();
-    protected static final CeilDripBlock CeilDripBlock = new CeilDripBlock();
-    protected static final SpinningDummyBlock SpinningDummyBlock = new SpinningDummyBlock();
-    protected static final SignBlock SignBlock = new SignBlock();
     protected Block defaultFloorBlock = AirBlock;
+    protected static final Block NullBlock = new NullBlock();
+    protected static final WaterBlock WaterBlock = new WaterBlock();
+    protected static final TorchBlock TorchBlock = new TorchBlock();
+    protected static final SolidBlock ShrubsBlock = new SolidBlock(Texture.leaves);
+    protected static final SolidBlock WallBlock = new SolidBlock(Texture.wall);
+    protected static final AirBlock AirBlock = new AirBlock(Texture.floor, Texture.floor);
+    protected static final AirBlock GrassBlock = new AirBlock(Texture.grass, null);
+    protected static final AirBlock StonePathBlock = new AirBlock(Texture.stonePath, null);
+    protected static final AirBlock AltStonePathBlock = new AirBlock(Texture.altStonePath, null);
+    protected static final SolidSpriteBlock PillarBlock = new SolidSpriteBlock(Texture.floor, Texture.floor, Texture.pillar);
+    protected static final SolidSpriteBlock BarsBlock = new SolidSpriteBlock(Texture.floor, Texture.floor, Texture.bars);
+    protected static final SolidSpriteBlock TreeBlock = new SolidSpriteBlock(Texture.grass, Texture.floor, Texture.tree);
+    protected static final AirSpriteBlock BarrelsBlock = new AirSpriteBlock(Texture.floor, Texture.floor, Texture.barrel0);
+    protected static final AirSpriteBlock GraveBlock = new AirSpriteBlock(Texture.dirt, null, Texture.grave);
+    protected static final AirSpriteBlock LampBlock = new AirSpriteBlock(Texture.stonePath, null, new Sprite(new Bitmap[] {
+            Texture.lamp0,
+            Texture.lamp1,
+            Texture.lamp2,
+            Texture.lamp3,
+    }));
+    protected static final AirSpriteBlock CeilDripBlock = new AirSpriteBlock(Texture.floor, Texture.floor, new Sprite(new Bitmap[] {
+            Texture.drip0,
+            Texture.drip0,
+            Texture.drip1,
+            Texture.drip1,
+            Texture.drip2,
+            Texture.drip3,
+            Texture.drip4,
+            Texture.drip0,
+    }));
+    protected static final SolidSpriteBlock SpinningDummyBlock = new SolidSpriteBlock(Texture.floor, Texture.floor, new Sprite(new Bitmap[] {
+            Texture.spinningDummy0,
+            Texture.spinningDummy1,
+            Texture.spinningDummy2,
+            Texture.spinningDummy3,
+            Texture.spinningDummy4,
+    }));
+    protected static final SolidSpriteBlock SignBlock = new SolidSpriteBlock(Texture.floor, Texture.floor, new Sprite(new Bitmap[] {
+            Texture.signN,
+            Texture.signW,
+            Texture.signS,
+            Texture.signE,
+    }));
 
 
     public void create(Game game, int sizeX, int sizeZ, int[] pixels) {
@@ -123,7 +149,6 @@ public abstract class Level
         LampBlock.tick();
         BarsBlock.tick();
         BarrelsBlock.tick();
-        CobwebBlock.tick();
         TreeBlock.tick();
         GrassBlock.tick();
         ShrubsBlock.tick();
@@ -273,7 +298,6 @@ public abstract class Level
         if (col == 0x648480) return LampBlock;
         if (col == 0xC0C0C0) return BarsBlock;
         if (col == 0xB06E23) return BarrelsBlock;
-        if (col == 0xE0E0E0) return CobwebBlock;
         if (col == 0xB27400) return TreeBlock;
         if (col == 0xB8ECBE) return GrassBlock;
         if (col == 0x7F8800) return ShrubsBlock;
@@ -361,12 +385,12 @@ public abstract class Level
             for (int x = 0; x < sizeX; x++) {
                 Block block;
                 if (random.nextInt(4) == 0) {
-                    block = new WallBlock();
+                    block = new SolidBlock(Texture.wall);
                 } else {
                     if (random.nextInt(8) == 0) {
-                        block = new PillarBlock();
+                        block = new SolidSpriteBlock(Texture.floor, Texture.floor, Texture.pillar);
                     } else {
-                        block = new AirBlock();
+                        block = new AirBlock(Texture.floor, Texture.floor);
                     }
                 }
 

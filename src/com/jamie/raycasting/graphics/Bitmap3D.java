@@ -157,6 +157,7 @@ public class Bitmap3D extends Bitmap
 
 
 	private void drawWall(double xLeft, double zLeft, double xRight, double zRight, Bitmap texture) {
+		if (texture == null) return;
 		int texWidth = texture.width;
 	    double yB = 0; // Bottom y position.
 
