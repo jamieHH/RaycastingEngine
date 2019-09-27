@@ -41,13 +41,4 @@ public class PngLoader
             throw new RuntimeException(e);
         }
     }
-
-    public static Bitmap setInvisible() {
-        Bitmap bitmap = new Bitmap(16, 16);
-        for (int i = 0; i < bitmap.pixels.length; i++) {
-            bitmap.pixels[i] = Bitmap.INVISIBLE;
-        }
-
-        return bitmap;
-    }
 }

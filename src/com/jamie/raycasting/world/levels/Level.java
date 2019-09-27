@@ -55,7 +55,7 @@ public abstract class Level
             Texture.lamp2,
             Texture.lamp3,
     }));
-    protected static final AirSpriteBlock CeilDripBlock = new AirSpriteBlock(Texture.floor, Texture.floor, new Sprite(new Bitmap[] {
+    protected static final AirSpriteBlock CeilDripBlock = new AirSpriteBlock(Texture.wetFloor, Texture.floor, new Sprite(new Bitmap[] {
             Texture.drip0,
             Texture.drip0,
             Texture.drip1,
@@ -269,7 +269,7 @@ public abstract class Level
     public Block getBlockByReference(String reference) {
         for (int i = 0; i < blocks.length; i++) {
             if (blocks[i] instanceof FunctionBlock) {
-                if (((FunctionBlock) blocks[i]).reference == reference) {
+                if (((FunctionBlock) blocks[i]).reference.equals(reference)) {
                     return blocks[i];
                 }
             }

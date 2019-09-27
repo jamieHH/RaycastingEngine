@@ -18,10 +18,10 @@ public class ModDamageEffect extends MobEffect
             effectHudIcon = Texture.strengthIcon;
         }
 
-        mob.modBaseDamage((double) magnitude);
+        mob.modBaseDamage(magnitude);
     }
 
     public void deactivate() {
-        mob.modBaseDamage((double) -magnitude);
+        mob.modBaseDamage(-magnitude);
     }
 }

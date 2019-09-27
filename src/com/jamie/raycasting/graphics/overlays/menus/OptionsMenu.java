@@ -111,13 +111,7 @@ public class OptionsMenu extends Menu
                 App.enableSound(soundEnabled);
 
                 App.display.setSize(App.getDisplayWidth(), App.getDisplayHeight());
-                Client.mainMenu.setSize(App.getDisplayWidth(), (int) (App.getDisplayHeight() * 0.6));
-                Client.loadMenu.setSize(App.getDisplayWidth(), (int) (App.getDisplayHeight() * 0.6));
-                Client.optionsMenu.setSize(App.getDisplayWidth(), (int) (App.getDisplayHeight() * 0.6));
-                Client.pauseMenu.setSize(App.getDisplayWidth(), (int) (App.getDisplayHeight() * 0.6));
-                Client.overMenu.setSize(App.getDisplayWidth(), (int) (App.getDisplayHeight() * 0.6));
-                Client.inventoryOverlay.setSize((int) (App.getDisplayWidth() * 0.8), (int) (App.getDisplayHeight() * 0.6));
-
+                Client.resizeMenus();
                 Client.setActiveOverlay(Client.mainMenu);
             } else if (getOption(optionIndex).equals("Main Menu")) {
                 Client.setActiveOverlay(Client.mainMenu);
