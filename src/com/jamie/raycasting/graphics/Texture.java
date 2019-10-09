@@ -30,7 +30,6 @@ public class Texture
     public static final Bitmap weaknessIcon = PngLoader.loadBitmap("/gui/weaknessIcon.png");
     public static final Bitmap fireIcon = PngLoader.loadBitmap("/gui/fireIcon.png");
 
-    public static final Bitmap nameIcon = PngLoader.loadBitmap("/gui/nameIcon.png");
     public static final Bitmap damageIcon = PngLoader.loadBitmap("/gui/damageIcon.png");
     public static final Bitmap rangeIcon = PngLoader.loadBitmap("/gui/rangeIcon.png");
     public static final Bitmap healthIcon = PngLoader.loadBitmap("/gui/healthIcon.png");

@@ -44,6 +44,10 @@ public class InventoryOverlay extends Overlay
         }
     }
 
+    private int getListItemHeight() {
+        return (getFontHeight() + 4);
+    }
+
 
     public InventoryOverlay(int width, int height) {
         super(width, height);
@@ -52,8 +56,8 @@ public class InventoryOverlay extends Overlay
 
     public void setSize(int width, int height) {
         super.setSize(width, height);
-        itemDetailsPane = new Bitmap(48, height - (bp + 10 + 8 + bp));
-        itemListBitmap = new Bitmap(width - bp - bp - itemDetailsPane.width, height - (bp + 10 + 8 + bp));
+        itemDetailsPane = new Bitmap(48, height - (bp + getFontHeight() + 2 + bp));
+        itemListBitmap = new Bitmap(width - bp - bp - itemDetailsPane.width, height - (bp + getFontHeight() + 2 + bp));
     }
 
     public void tick() {
@@ -67,13 +71,13 @@ public class InventoryOverlay extends Overlay
                 categoryItemLists[i].listedItems = inventory.getItems();
             }
 
-            int down = getItemList().listIndex * 12;
+            int down = getItemList().listIndex * getListItemHeight();
             if (down < -getItemList().listYShift) {
                 getItemList().listYShift = -(down % -getItemList().listYShift);
             }
 
-            if (down + 12 >= itemListBitmap.height - getItemList().listYShift) {
-                getItemList().listYShift = -(down - itemListBitmap.height + 12);
+            if (down + (getFontHeight()) >= itemListBitmap.height - getItemList().listYShift) {
+                getItemList().listYShift = -(down - itemListBitmap.height + getListItemHeight());
             }
         }
 
@@ -164,28 +168,18 @@ public class InventoryOverlay extends Overlay
         } else {
             draw("< ", bp, bp, 0xF0F0F0);
         }
-        draw(getItemList().category, bp + 12, bp, 0xF0F0F0);
+        draw(getItemList().category, bp + (getFontWidth() * 2), bp, 0xF0F0F0);
         if (categoryIndex == categoryItemLists.length - 1) {
-            draw(" >", bp + 12 + (catString.length() * 6), bp, 0x404040);
+            draw(" >", bp + (getFontWidth() * 2) + (catString.length() * getFontWidth()), bp, 0x404040);
         } else {
-            draw(" >", bp + 12 + (catString.length() * 6), bp, 0xF0F0F0);
+            draw(" >", bp + (getFontWidth() * 2) + (catString.length() * getFontWidth()), bp, 0xF0F0F0);
         }
-        for (int i = 0; i < categoryItemLists.length; i++) {
-            Bitmap blip = new Bitmap(2, 2);
-            if (i == categoryIndex) {
-                blip.fill(0xF0F0F0);
-            } else {
-                blip.fill(0x404040);
-            }
-            draw(blip, (width - bp - 4) - ((categoryItemLists.length - i - 1) * 6), bp + 3);
-        }
-        draw(Texture.nameIcon, bp * 2, bp + 10);
     }
 
     private void updateList() {
         itemListBitmap.fill(0x101010);
         if (getItemList().listedItems.size() > 0) {
-            itemListBitmap.fill(0, getItemList().listYShift + (getItemList().listIndex * 12), itemListBitmap.width, getItemList().listYShift + ((getItemList().listIndex + 1) * 12), 0x404040);
+            itemListBitmap.fill(0, getItemList().listYShift + (getItemList().listIndex * getListItemHeight()), itemListBitmap.width, getItemList().listYShift + ((getItemList().listIndex + 1) * getListItemHeight()), 0x404040);
             for (int i = 0; i < getItemList().listedItems.size(); i++) {
                 int colour;
                 String itemName;
@@ -199,10 +193,10 @@ public class InventoryOverlay extends Overlay
                 if (getItemList().listIndex == i) {
                     colour = 0xF0F0F0;
                 }
-                itemListBitmap.draw(itemName, bp, getItemList().listYShift + (i * 12) + 2, colour);
+                itemListBitmap.draw(itemName, bp, getItemList().listYShift + (i * getListItemHeight()) + 2, colour);
             }
         }
-        draw(itemListBitmap, bp, bp + 10 + 8);
+        draw(itemListBitmap, bp, bp + getFontHeight() + bp);
     }
 
     private void updateDetailsPane() {
@@ -216,22 +210,22 @@ public class InventoryOverlay extends Overlay
             itemDetailsPane.draw(bGround, itemDetailsPane.width / 2 - bGround.width / 2, bp);
             itemDetailsPane.draw(icon, itemDetailsPane.width / 2 - icon.width / 2, bp + 1);
 
-            int rowX = bp + bGround.height + bp + 12;
+            int rowX = bp + bGround.height + bp;
             if (item.type.equals("weapon")) {
                 itemDetailsPane.draw(Texture.damageIcon, bp, rowX + 1);
-                itemDetailsPane.draw(item.getInfo().get("damage"), bp + 12, rowX, 0xF0F0F0);
+                itemDetailsPane.draw(item.getInfo().get("damage"), bp + (getFontWidth() * 2), rowX, 0xF0F0F0);
                 rowX += 10;
                 itemDetailsPane.draw(Texture.rangeIcon, bp, rowX + 1);
-                itemDetailsPane.draw(item.getInfo().get("reach"), bp + 12, rowX, 0xF0F0F0);
+                itemDetailsPane.draw(item.getInfo().get("reach"), bp + (getFontWidth() * 2), rowX, 0xF0F0F0);
             } else if (item.type.equals("consumable")) {
                 itemDetailsPane.draw(Texture.magnitudeIcon, bp, rowX + 1);
-                itemDetailsPane.draw(item.getInfo().get("magnitude"), bp + 12, rowX, 0xF0F0F0);
+                itemDetailsPane.draw(item.getInfo().get("magnitude"), bp + (getFontWidth() * 2), rowX, 0xF0F0F0);
                 rowX += 10;
                 itemDetailsPane.draw(Texture.durationIcon, bp, rowX + 1);
-                itemDetailsPane.draw(item.getInfo().get("duration"), bp + 12, rowX, 0xF0F0F0);
+                itemDetailsPane.draw(item.getInfo().get("duration"), bp + (getFontWidth() * 2), rowX, 0xF0F0F0);
             }
         }
-        draw(itemDetailsPane, bp + itemListBitmap.width, bp + 10 + 8);
+        draw(itemDetailsPane, bp + itemListBitmap.width,bp + (getFontHeight() + 2));
     }
 
     public void update() {

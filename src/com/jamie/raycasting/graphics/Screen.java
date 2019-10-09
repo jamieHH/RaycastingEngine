@@ -65,11 +65,11 @@ public class Screen extends Display
 
                 // Render hud headings
                 for (int i = 0; i < p.hudHeadings.size(); i++) {
-                    draw(p.hudHeadings.get(i), (render.width - 2) - (p.hudHeadings.get(i).length() * 6), (i * 10) + 2, 0xF0F070);
+                    draw(p.hudHeadings.get(i), (render.width - 2) - (p.hudHeadings.get(i).length() * Bitmap.getFontWidth()), (i * (getFontHeight() + 1)) + 2, 0xF0F070);
                 }
             } else {
                 String overText = "GAME OVER";
-                draw(overText, (width / 2) - ((overText.length() / 2) * 6), (height / 2) - 4, 0xFF0000);
+                draw(overText, (width / 2) - ((overText.length() / 2) * getFontWidth()), render.height / 2, 0xFF0000);
             }
 
             // render hudbar
