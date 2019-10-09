@@ -7,17 +7,41 @@ public class Bitmap
 	public int[] pixels;
 	public static final int INVISIBLE = 0;
 
+	public static boolean IS_SMALL_FONT = false;
+
 	private static final String chars = "" +
 			"ABCDEFGHIJKLMNOPQRSTUVWXYZ.,!?\"'/\\<>()[]{}" +
 			"abcdefghijklmnopqrstuvwxyz_               " +
 			"0123456789+-=*:;                          " +
 			"";
-	public static final Bitmap font = PngLoader.loadBitmap("/gui/font.png");
-	public static final Bitmap font2 = PngLoader.loadBitmap("/gui/fontS.png");
 
 	public Bitmap(int width, int height) {
 		setSize(width, height);
 	}
+
+	public static Bitmap getFont() {
+        if (IS_SMALL_FONT) {
+            return PngLoader.loadBitmap("/gui/fontS.png");
+        }
+
+        return PngLoader.loadBitmap("/gui/font.png");
+    }
+
+	public static int getFontWidth() {
+        if (IS_SMALL_FONT) {
+            return 5;
+        }
+
+        return 6;
+    }
+
+    public static int getFontHeight() {
+	    if (IS_SMALL_FONT) {
+	        return 7;
+        }
+
+	    return 8;
+    }
 
 	public void setSize(int width, int height) {
 		this.width = width;
@@ -60,28 +84,17 @@ public class Bitmap
     }
 
     public void draw(String string, int x, int y, int col) {
+	    Bitmap font = getFont();
         for (int i = 0; i < string.length(); i++) {
             int ch = chars.indexOf(string.charAt(i));
             if (ch < 0) continue;
 
             int xx = ch % 42;
             int yy = ch / 42;
-            draw(font, (x + i * 6) + 1, y + 1, xx * 6, yy * 8, 5, 8, 0x020202);
-            draw(font, x + i * 6, y, xx * 6, yy * 8, 5, 8, col);
+            draw(font, (x + i * getFontWidth()) + 1, y + 1, xx * 6, yy * 8, getFontWidth(), getFontHeight(), 0x020202);
+            draw(font, x + i * getFontWidth(), y, xx * 6, yy * 8, getFontWidth(), getFontHeight(), col);
         }
     }
-
-	public void drawS(String string, int x, int y, int col) {
-		for (int i = 0; i < string.length(); i++) {
-			int ch = chars.indexOf(string.charAt(i));
-			if (ch < 0) continue;
-
-			int xx = ch % 42;
-			int yy = ch / 42;
-			draw(font2, (x + i * 5) + 1, y + 1, xx * 6, yy * 8, 4, 7, 0x020202);
-			draw(font2, x + i * 5, y, xx * 6, yy * 8, 4, 7, col);
-		}
-	}
 
     public void fill(int color) {
 		for (int i = 0; i < width * height; i++) {
