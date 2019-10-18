@@ -6,7 +6,7 @@ public class IslandLevel extends Level
 {
 	public IslandLevel() {
 		name = "Island";
-		height = 8192;
+		height = 64;
 		fogColor = 0x000010;
 		isOutside = true;
 		defaultFloorBlock = GrassBlock;

@@ -7,7 +7,7 @@ public class Bitmap
 	public int[] pixels;
 	public static final int INVISIBLE = 0;
 
-	public static boolean IS_SMALL_FONT = true;
+	public static boolean IS_SMALL_FONT = false;
 
 	private static final String chars = "" +
 			"ABCDEFGHIJKLMNOPQRSTUVWXYZ.,!?\"'/\\<>()[]{}" +

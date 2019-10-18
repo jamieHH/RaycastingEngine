@@ -157,15 +157,21 @@ public class Bitmap3D extends Bitmap
 
 
 	private void drawWall(double xLeft, double zLeft, double xRight, double zRight, Bitmap texture) {
+		drawWall(xLeft, zLeft, xRight, zRight, 0, texture);
+	}
+
+
+	private void drawWall(double xLeft, double zLeft, double xRight, double zRight, int yHeight, Bitmap texture) {
 		if (texture == null) return;
 		int texWidth = texture.width;
-	    double yB = 0; // Bottom y position.
+	    double yB = yHeight; // start y position.
+	    double yT = 1; // y height.
 
 		double xcLeft = (xLeft - px) * 2;
 		double zcLeft = (zLeft - pz) * 2;
 
 		double rotLeftSideX = xcLeft * cosine - zcLeft * sine;
-        double yCornerTL = (-yB + (py - 1)) * 2;
+        double yCornerTL = (-yB + (py - yT)) * 2;
         double yCornerBL = (-yB + py) * 2;
 		double rotLeftSideZ = zcLeft * cosine + xcLeft * sine;
 
@@ -173,7 +179,7 @@ public class Bitmap3D extends Bitmap
 		double zcRight = (zRight - pz) * 2;
 
 		double rotRightSideX = xcRight * cosine - zcRight * sine;
-        double yCornerTR = (-yB + (py - 1)) * 2;
+        double yCornerTR = (-yB + (py - yT)) * 2;
         double yCornerBR = (-yB + py) * 2;
 		double rotRightSideZ = zcRight * cosine + xcRight * sine;
 
@@ -307,37 +313,38 @@ public class Bitmap3D extends Bitmap
                 Block east = level.getBlock(xBlock + 1, zBlock);
                 Block south = level.getBlock(xBlock, zBlock + 1);
 
-                if (block instanceof DoorBlock) {
-                    double rr = 1 / 4.0;
-                    double openness = 1 - ((DoorBlock) block).openness * 7 / 8;
+				if (block instanceof DoorBlock) {
+					double rr = 1 / 4.0;
+					double openness = 1 - ((DoorBlock) block).openness * 7 / 8;
 
-                    if (east.isOpaque) {
-                        drawWall(xBlock + openness, zBlock + 1 - rr, xBlock - 1 + openness, zBlock + 1 - rr, block.wallTex);
-                        drawWall(xBlock - 1 + openness, zBlock + rr, xBlock + openness, zBlock + rr, block.wallTex);
-                        drawWall(xBlock + openness, zBlock + rr, xBlock + openness, zBlock + 1 - rr, block.wallTex);
-                    } else {
-                        openness = 2 - openness;
-                        drawWall(xBlock + 1 - rr, zBlock - 1 + openness, xBlock + 1 - rr, zBlock + openness, block.wallTex);
-                        drawWall(xBlock + rr, zBlock + openness, xBlock + rr, zBlock - 1 + openness, block.wallTex);
-                        drawWall(xBlock + rr, zBlock - 1 + openness, xBlock + 1 - rr, zBlock - 1 + openness, block.wallTex);
-                    }
-                }
+					if (east.isOpaque) {
+						drawWall(xBlock + openness, zBlock + 1 - rr, xBlock - 1 + openness, zBlock + 1 - rr, block.wallTex);
+						drawWall(xBlock - 1 + openness, zBlock + rr, xBlock + openness, zBlock + rr, block.wallTex);
+						drawWall(xBlock + openness, zBlock + rr, xBlock + openness, zBlock + 1 - rr, block.wallTex);
+					} else {
+						openness = 2 - openness;
+						drawWall(xBlock + 1 - rr, zBlock - 1 + openness, xBlock + 1 - rr, zBlock + openness, block.wallTex);
+						drawWall(xBlock + rr, zBlock + openness, xBlock + rr, zBlock - 1 + openness, block.wallTex);
+						drawWall(xBlock + rr, zBlock - 1 + openness, xBlock + 1 - rr, zBlock - 1 + openness, block.wallTex);
+					}
+				}
 
-                if (block.isOpaque) {
-                    if (!east.isOpaque) {
-                        drawWall(xBlock + 1, zBlock, xBlock + 1, zBlock + 1, block.wallTex);
-                    }
-                    if (!south.isOpaque) {
-                        drawWall(xBlock + 1, zBlock + 1, xBlock, zBlock + 1, block.wallTex);
-                    }
-                } else {
-                    if (east.isOpaque) {
-                        drawWall(xBlock + 1, zBlock + 1, xBlock + 1, zBlock, east.wallTex);
-                    }
-                    if (south.isOpaque) {
-                        drawWall(xBlock, zBlock + 1, xBlock + 1, zBlock + 1, south.wallTex);
-                    }
-                }
+				int i = 0; // i can be replaced with the desired y start height
+				if (block.isOpaque) {
+					if (!east.isOpaque) {
+						drawWall(xBlock + 1, zBlock, xBlock + 1, zBlock + 1, i, block.wallTex);
+					}
+					if (!south.isOpaque) {
+						drawWall(xBlock + 1, zBlock + 1, xBlock, zBlock + 1, i, block.wallTex);
+					}
+				} else {
+					if (east.isOpaque) {
+						drawWall(xBlock + 1, zBlock + 1, xBlock + 1, zBlock, i, east.wallTex);
+					}
+					if (south.isOpaque) {
+						drawWall(xBlock, zBlock + 1, xBlock + 1, zBlock + 1, i, south.wallTex);
+					}
+				}
 			}
 		}
 	}
