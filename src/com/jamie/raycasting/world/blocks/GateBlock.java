@@ -8,10 +8,7 @@ import com.jamie.raycasting.graphics.Texture;
 
 public class GateBlock extends TriggerableBlock
 {
-	protected boolean open = false;
-
-    private int useTicks = 0;
-    private int useWait = 10;
+	protected boolean isOpen = false;
 
     public String keyName;
 
@@ -46,12 +43,7 @@ public class GateBlock extends TriggerableBlock
 	}
 
 	public boolean use(Mob source) {
-        if (useTicks > 0) {
-            return false;
-        }
-
         if (source.getItemByName(keyName) != null) {
-            useTicks = useWait;
             trigger();
             return true;
         }
@@ -61,23 +53,31 @@ public class GateBlock extends TriggerableBlock
     }
 
     public void trigger() {
-        open = !open;
-        isSolid = !open;
-
-        if (open) {
-            setIdleSprite(new Sprite(Texture.gate3));
-            runSpriteSet("open");
-            emitSound(Sound.slideDown);
-        } else {
-            setIdleSprite(new Sprite(Texture.gate0));
-            runSpriteSet("close");
-            emitSound(Sound.slideUp);
-        }
+        setState(!getState());
     }
 
     public void tick() {
 	    super.tick();
-	    if (useTicks > 0) useTicks--;
+    }
+
+    public boolean getState() {
+        return isOpen;
+    }
+
+    public void setState(boolean state) {
+        if (state) {
+            isOpen = true;
+            isSolid = false;
+            setIdleSprite(new Sprite(Texture.gate3));
+            runSpriteSet("open");
+            emitSound(Sound.slideDown);
+        } else {
+            isOpen = false;
+            isSolid = true;
+            setIdleSprite(new Sprite(Texture.gate0));
+            runSpriteSet("close");
+            emitSound(Sound.slideUp);
+        }
     }
 
     public void setOpenSprite(Sprite sprite) {

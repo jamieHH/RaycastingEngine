@@ -7,4 +7,8 @@ public abstract class TriggerableBlock extends FunctionBlock
     }
 
     public abstract void trigger();
+
+    public abstract boolean getState();
+
+    public abstract void setState(boolean state);
 }

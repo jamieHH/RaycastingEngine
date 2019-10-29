@@ -5,14 +5,14 @@ import com.jamie.raycasting.graphics.Texture;
 
 public class BridgeBlock extends TriggerableBlock
 {
-    private boolean broken;
+    private boolean isBroken;
 
-	public BridgeBlock(boolean broken) {
+	public BridgeBlock(boolean isBroken) {
 		isOpaque = false;
 		isSolid = false;
 
-		this.broken = broken;
-        if (broken) {
+		this.isBroken = isBroken;
+        if (getState()) {
             isUsable = true;
             isWalkable = false;
             floorTex = Texture.bridgeWaterBroken;
@@ -24,7 +24,7 @@ public class BridgeBlock extends TriggerableBlock
 	}
 
     public boolean use(Mob source) {
-        if (broken) {
+        if (getState()) {
             if (source.getItemByName("Planks") != null) {
                 source.getItemByName("Planks").remove();
                 trigger();
@@ -42,14 +42,18 @@ public class BridgeBlock extends TriggerableBlock
         setState(false);
     }
 
+    public boolean getState() {
+        return isBroken;
+    }
+
     public void setState(boolean state) {
 	    if (state) {
-            broken = true;
+            isBroken = true;
             isUsable = true;
             isWalkable = false;
             floorTex = Texture.bridgeWaterBroken;
         } else {
-            broken = false;
+            isBroken = false;
             isUsable = false;
             isWalkable = true;
             floorTex = Texture.bridge;

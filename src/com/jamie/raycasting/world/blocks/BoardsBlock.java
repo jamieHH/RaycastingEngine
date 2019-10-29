@@ -10,7 +10,7 @@ import com.jamie.raycasting.items.weapons.AxeWeapon;
 
 public class BoardsBlock extends TriggerableBlock
 {
-	private boolean smashed;
+	private boolean isBroken;
 
 	public BoardsBlock(boolean smashed) {
         isOpaque = false;
@@ -26,21 +26,21 @@ public class BoardsBlock extends TriggerableBlock
         Bitmap[] ts1 = {
                 Texture.boardsSmashed,
         };
-        setSpriteSet("smashed", new Sprite(ts1));
+        setSpriteSet("broken", new Sprite(ts1));
 
         if (smashed) {
-            this.smashed = true;
+            this.isBroken = true;
             isSolid = false;
-            switchSpriteSet("smashed");
+            switchSpriteSet("broken");
         } else {
-            this.smashed = false;
+            this.isBroken = false;
             isSolid = true;
             switchSpriteSet("idle");
         }
 	}
 
 	public boolean use(Mob source) {
-        if (!smashed) {
+        if (!isBroken) {
             if (source.getRightHandItem() instanceof AxeWeapon) {
                 trigger();
                 return true;
@@ -64,14 +64,18 @@ public class BoardsBlock extends TriggerableBlock
         level.addEntity(p, gridX + 0.5, gridZ + 0.5);
     }
 
-    protected void setState(boolean state) {
+    public boolean getState() {
+        return isBroken;
+    }
+
+    public void setState(boolean state) {
         if (state) {
-            smashed = true;
+            isBroken = true;
             isSolid = false;
             emitSound(Sound.smash);
             switchSpriteSet("smashed");
         } else {
-            smashed = false;
+            isBroken = false;
             isSolid = true;
             emitSound(Sound.clickAction);
             switchSpriteSet("idle");

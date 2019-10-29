@@ -9,7 +9,7 @@ public class FountainBlock extends FunctionBlock
 {
     private int particleWait = 0;
     private int particleTicks;
-    private boolean isActive = true;
+    private boolean isActive;
 
 	public FountainBlock(boolean isActive) {
 		isSolid = true;
@@ -36,6 +36,8 @@ public class FountainBlock extends FunctionBlock
 			}
 		}
     }
+
+
 
 	protected void setState(boolean state) {
 		if (state) {

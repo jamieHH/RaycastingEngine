@@ -6,16 +6,13 @@ import com.jamie.raycasting.graphics.Texture;
 
 public class DoorBlock extends TriggerableBlock
 {
-	private boolean open;
-
-    private int useTicks = 0;
-    private int useWait = 10;
+	private boolean isOpen;
 
 	public double openness = 0;
 	private double openLimit = 7 / 8.0;
 
 
-	public DoorBlock(boolean open) {
+	public DoorBlock(boolean isOpen) {
 		isOpaque = false;
 		isSolid = true;
 
@@ -23,16 +20,12 @@ public class DoorBlock extends TriggerableBlock
 		floorTex = Texture.floor;
 		ceilTex = Texture.floor;
 
-		this.open = open;
+		this.isOpen = isOpen;
 	}
 
 	public boolean use(Mob source) {
-        if (useTicks > 0) {
-            return false;
-        }
-        useTicks = useWait;
-
         trigger();
+
 	    return true;
     }
 
@@ -42,17 +35,16 @@ public class DoorBlock extends TriggerableBlock
 
     public void tick() {
 	    super.tick();
-	    if (useTicks > 0) useTicks--;
         updateOpenness();
     }
 
     protected void updateOpenness() {
-        if (open) openness += 0.1;
+        if (isOpen) openness += 0.1;
         else openness -= 0.1;
         if (openness < 0) openness = 0;
         if (openness > 1) openness = 1;
 
-        if (openness < openLimit && !open && !isSolid) {
+        if (openness < openLimit && !isOpen && !isSolid) {
             if (level.blockContainsEntity(gridX, gridZ)) {
                 openness = openLimit;
                 return;
@@ -63,16 +55,16 @@ public class DoorBlock extends TriggerableBlock
     }
 
     public boolean getState() {
-        return open;
+        return isOpen;
     }
 
-    private void setState(boolean state) {
+    public void setState(boolean state) {
         if (state) {
-            open = true;
+            isOpen = true;
             emitSound(Sound.slideUp);
         } else {
             emitSound(Sound.slideDown);
-            open = false;
+            isOpen = false;
         }
     }
 }

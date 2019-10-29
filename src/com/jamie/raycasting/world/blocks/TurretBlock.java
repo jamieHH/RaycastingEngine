@@ -33,7 +33,7 @@ public class TurretBlock extends TriggerableBlock
     }
 
     public void trigger() {
-        isActive = !isActive;
+        setState(!getState());
     }
 
     public void tick() {
@@ -76,5 +76,13 @@ public class TurretBlock extends TriggerableBlock
         } else {
             wallTex = Texture.wallBoltSwitch0;
         }
+    }
+
+    public boolean getState() {
+        return isActive;
+    }
+
+    public void setState(boolean state) {
+        isActive = state;
     }
 }
