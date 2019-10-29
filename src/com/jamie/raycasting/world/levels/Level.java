@@ -309,15 +309,16 @@ public abstract class Level
         if (col == 0xA3723A) return SpinningDummyBlock;
         if (col == 0x7F3300) return new BridgeBlock(false);
         if (col == 0x7F334E) return new BridgeBlock(true);
-        if (col == 0xA48080) return new DoorBlock();
-        if (col == 0x632A2A) return new StrongDoorBlock();
-        if (col == 0xE1AE4A) return new BoardsBlock();
+        if (col == 0xA48080) return new DoorBlock(false);
+        if (col == 0x632A2A) return new StrongDoorBlock(false);
+        if (col == 0xE1AE4A) return new BoardsBlock(false);
         if (col == 0x4C4C65) return new GateBlock("Grey Key");
-        if (col == 0x7EC0C0) return new FountainBlock();
+        if (col == 0x7EC0C0) return new FountainBlock(true);
         if (col == 0xC80000) return new SwitchBlock();
         if (col == 0x873800) return new LevelPortalBlock();
         if (col == 0xFF6A00) return new LadderBlock(false);
         if (col == 0xB24700) return new LadderBlock(true);
+        if (col == 0xC82A00) return new ProjectileSwitchBlock();
         return defaultFloorBlock;
     }
 

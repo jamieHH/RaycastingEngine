@@ -8,7 +8,7 @@ public class SwitchBlock extends FunctionBlock
 {
     private int useTicks = 0;
     private int useWait = 10;
-    private boolean isDown = false;
+    protected boolean isDown = false;
 
 	public SwitchBlock() {
 		isOpaque = true;
@@ -29,16 +29,29 @@ public class SwitchBlock extends FunctionBlock
         }
         useTicks = useWait;
 
-        isDown = !isDown;
-        if (isDown) {
-            emitSound(Sound.clickDown);
-            wallTex = Texture.wallSwitch1;
-        } else {
-            emitSound(Sound.clickUp);
-            wallTex = Texture.wallSwitch0;
-        }
-        level.triggerBlock(id);
+        trigger();
 
 		return true;
 	}
+
+    public void trigger() {
+        setState(!getState());
+        level.triggerBlock(id);
+    }
+
+	public boolean getState() {
+	    return isDown;
+    }
+
+    protected void setState(boolean state) {
+        if (state) {
+            this.isDown = true;
+            emitSound(Sound.clickDown);
+            wallTex = Texture.wallSwitch1;
+        } else {
+            this.isDown = false;
+            emitSound(Sound.clickUp);
+            wallTex = Texture.wallSwitch0;
+        }
+    }
 }

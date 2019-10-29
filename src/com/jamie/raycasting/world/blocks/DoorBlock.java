@@ -6,7 +6,7 @@ import com.jamie.raycasting.graphics.Texture;
 
 public class DoorBlock extends TriggerableBlock
 {
-	protected boolean open = false;
+	private boolean open;
 
     private int useTicks = 0;
     private int useWait = 10;
@@ -15,32 +15,29 @@ public class DoorBlock extends TriggerableBlock
 	private double openLimit = 7 / 8.0;
 
 
-	public DoorBlock() {
+	public DoorBlock(boolean open) {
 		isOpaque = false;
 		isSolid = true;
 
         wallTex = Texture.door;
 		floorTex = Texture.floor;
 		ceilTex = Texture.floor;
+
+		this.open = open;
 	}
 
 	public boolean use(Mob source) {
         if (useTicks > 0) {
             return false;
         }
-
         useTicks = useWait;
+
         trigger();
 	    return true;
     }
 
     public void trigger() {
-        open = !open;
-        if (open) {
-            emitSound(Sound.slideDown);
-        } else {
-            emitSound(Sound.slideUp);
-        }
+        setState(!getState());
     }
 
     public void tick() {
@@ -63,5 +60,19 @@ public class DoorBlock extends TriggerableBlock
         }
 
         isSolid = openness < openLimit;
+    }
+
+    public boolean getState() {
+        return open;
+    }
+
+    private void setState(boolean state) {
+        if (state) {
+            open = true;
+            emitSound(Sound.slideUp);
+        } else {
+            emitSound(Sound.slideDown);
+            open = false;
+        }
     }
 }

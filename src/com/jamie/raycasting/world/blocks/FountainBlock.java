@@ -11,7 +11,7 @@ public class FountainBlock extends FunctionBlock
     private int particleTicks;
     private boolean isActive = true;
 
-	public FountainBlock() {
+	public FountainBlock(boolean isActive) {
 		isSolid = true;
 
 		floorTex = Texture.grass;
@@ -20,6 +20,8 @@ public class FountainBlock extends FunctionBlock
 				Texture.fountain,
 		};
 		setIdleSprite(new Sprite(ts0));
+
+		this.isActive = isActive;
 	}
 
     public void tick() {
@@ -34,4 +36,12 @@ public class FountainBlock extends FunctionBlock
 			}
 		}
     }
+
+	protected void setState(boolean state) {
+		if (state) {
+			isActive = true;
+		} else {
+			isActive = false;
+		}
+	}
 }

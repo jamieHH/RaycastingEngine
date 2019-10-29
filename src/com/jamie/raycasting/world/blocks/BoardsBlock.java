@@ -10,11 +10,10 @@ import com.jamie.raycasting.items.weapons.AxeWeapon;
 
 public class BoardsBlock extends TriggerableBlock
 {
-	private boolean smashed = false;
+	private boolean smashed;
 
-	public BoardsBlock() {
+	public BoardsBlock(boolean smashed) {
         isOpaque = false;
-        isSolid = true;
 
         floorTex = Texture.floor;
         ceilTex = Texture.floor;
@@ -27,7 +26,17 @@ public class BoardsBlock extends TriggerableBlock
         Bitmap[] ts1 = {
                 Texture.boardsSmashed,
         };
-        setSpriteSet("broken", new Sprite(ts1));
+        setSpriteSet("smashed", new Sprite(ts1));
+
+        if (smashed) {
+            this.smashed = true;
+            isSolid = false;
+            switchSpriteSet("smashed");
+        } else {
+            this.smashed = false;
+            isSolid = true;
+            switchSpriteSet("idle");
+        }
 	}
 
 	public boolean use(Mob source) {
@@ -38,18 +47,34 @@ public class BoardsBlock extends TriggerableBlock
             }
 
             source.addHudHeading("You need an axe");
+        } else {
+            if (source.getItemByName("Planks") != null) {
+                setState(false);
+                return true;
+            }
         }
+
         return false;
     }
 
     public void trigger() {
-	    emitSound(Sound.smash);
-        smashed = true;
-        isSolid = false;
-
-        switchSpriteSet("broken");
+        setState(true);
 
         WoodParticle p = new WoodParticle(8);
         level.addEntity(p, gridX + 0.5, gridZ + 0.5);
+    }
+
+    protected void setState(boolean state) {
+        if (state) {
+            smashed = true;
+            isSolid = false;
+            emitSound(Sound.smash);
+            switchSpriteSet("smashed");
+        } else {
+            smashed = false;
+            isSolid = true;
+            emitSound(Sound.clickAction);
+            switchSpriteSet("idle");
+        }
     }
 }

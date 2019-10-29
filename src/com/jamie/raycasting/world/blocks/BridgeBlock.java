@@ -34,13 +34,25 @@ public class BridgeBlock extends TriggerableBlock
 
             source.addHudHeading("You need some planks");
         }
+
         return false;
     }
 
     public void trigger() {
-        broken = false;
-        isUsable = false;
-        isWalkable = true;
-        floorTex = Texture.bridge;
+        setState(false);
+    }
+
+    public void setState(boolean state) {
+	    if (state) {
+            broken = true;
+            isUsable = true;
+            isWalkable = false;
+            floorTex = Texture.bridgeWaterBroken;
+        } else {
+            broken = false;
+            isUsable = false;
+            isWalkable = true;
+            floorTex = Texture.bridge;
+        }
     }
 }
