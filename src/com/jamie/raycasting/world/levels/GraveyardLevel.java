@@ -17,7 +17,7 @@ public class GraveyardLevel extends Level
 
 	protected void postCreate() {
 		Drop d = new Drop(new MiscItem("Grey Key", Texture.keyIcon));
-		addEntity(d, 15.5, 58.5);
+		addEntity(d, 14.5, 51.5);
 
 		Drop d1 = new Drop(new MiscItem("Planks", Texture.planksIcon));
 		addEntity(d1, 14.5, 44.5);

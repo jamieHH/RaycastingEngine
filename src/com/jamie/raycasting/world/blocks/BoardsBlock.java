@@ -73,7 +73,7 @@ public class BoardsBlock extends TriggerableBlock
             isBroken = true;
             isSolid = false;
             emitSound(Sound.smash);
-            switchSpriteSet("smashed");
+            switchSpriteSet("broken");
         } else {
             isBroken = false;
             isSolid = true;
