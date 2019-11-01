@@ -6,13 +6,13 @@ import com.jamie.raycasting.graphics.Texture;
 
 public class TorchBlock extends Block
 {
-	public TorchBlock() {
+	public TorchBlock(Bitmap floorTex, Bitmap ceilTex) {
 		isOpaque = false;
 		isSolid = false;
 
 		wallTex = null;
-		floorTex = Texture.floor;
-		ceilTex = Texture.floor;
+		this.floorTex = floorTex;
+		this.ceilTex = ceilTex;
 
 		Bitmap[] ts0 = {
 				Texture.torch0,

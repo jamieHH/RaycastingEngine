@@ -13,12 +13,12 @@ public class GateBlock extends TriggerableBlock
     public String keyName;
 
 
-	public GateBlock(String keyName) {
+	public GateBlock(Bitmap floorTex, Bitmap ceilTex, String keyName) {
 		isOpaque = false;
 		isSolid = true;
 
-		floorTex = Texture.floor;
-		ceilTex = Texture.floor;
+		this.floorTex = floorTex;
+		this.ceilTex = ceilTex;
 
 		this.keyName = keyName;
 

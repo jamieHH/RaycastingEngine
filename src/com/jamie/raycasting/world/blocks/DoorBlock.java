@@ -1,5 +1,6 @@
 package com.jamie.raycasting.world.blocks;
 
+import com.jamie.jamapp.Bitmap;
 import com.jamie.raycasting.app.Sound;
 import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.graphics.Texture;
@@ -12,13 +13,13 @@ public class DoorBlock extends TriggerableBlock
 	private double openLimit = 7 / 8.0;
 
 
-	public DoorBlock(boolean isOpen) {
+	public DoorBlock(Bitmap floorTex, Bitmap ceilTex, boolean isOpen) {
 		isOpaque = false;
 		isSolid = true;
 
         wallTex = Texture.door;
-		floorTex = Texture.floor;
-		ceilTex = Texture.floor;
+		this.floorTex = floorTex;
+		this.ceilTex = ceilTex;
 
 		this.isOpen = isOpen;
 	}

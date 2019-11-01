@@ -12,11 +12,11 @@ public class BoardsBlock extends TriggerableBlock
 {
 	private boolean isBroken;
 
-	public BoardsBlock(boolean smashed) {
+	public BoardsBlock(Bitmap floorTex, Bitmap ceilTex, boolean smashed) {
         isOpaque = false;
 
-        floorTex = Texture.floor;
-        ceilTex = Texture.floor;
+        this.floorTex = floorTex;
+        this.ceilTex = ceilTex;
 
         Bitmap[] ts0 = {
                 Texture.boards,

@@ -32,30 +32,37 @@ public abstract class Level
 
     public World world;
 
+    protected Bitmap getFloorTexture() {
+        return Texture.floor;
+    }
+
+    protected Bitmap getCeilingTexture() {
+        return Texture.floor;
+    }
+
     // static blocks. TODO: check if is performance optimal.
     // Add these to array and loop through array for ticks
-    protected Block defaultFloorBlock = AirBlock;
-    protected static final Block NullBlock = new NullBlock();
-    protected static final WaterBlock WaterBlock = new WaterBlock();
-    protected static final TorchBlock TorchBlock = new TorchBlock();
-    protected static final SolidBlock ShrubsBlock = new SolidBlock(Texture.leaves);
-    protected static final SolidBlock WallBlock = new SolidBlock(Texture.wall);
-    protected static final AirBlock AirBlock = new AirBlock(Texture.floor, Texture.floor);
-    protected static final AirBlock GrassBlock = new AirBlock(Texture.grass, null);
-    protected static final AirBlock StonePathBlock = new AirBlock(Texture.stonePath, null);
-    protected static final AirBlock AltStonePathBlock = new AirBlock(Texture.altStonePath, null);
-    protected static final SolidSpriteBlock PillarBlock = new SolidSpriteBlock(Texture.floor, Texture.floor, Texture.pillar);
-    protected static final SolidSpriteBlock BarsBlock = new SolidSpriteBlock(Texture.floor, Texture.floor, Texture.bars);
-    protected static final SolidSpriteBlock TreeBlock = new SolidSpriteBlock(Texture.grass, Texture.floor, Texture.tree);
-    protected static final AirSpriteBlock BarrelsBlock = new AirSpriteBlock(Texture.floor, Texture.floor, Texture.barrel0);
-    protected static final AirSpriteBlock GraveBlock = new AirSpriteBlock(Texture.dirt, null, Texture.grave);
-    protected static final AirSpriteBlock LampBlock = new AirSpriteBlock(Texture.stonePath, null, new Sprite(new Bitmap[] {
+    protected final Block NullBlock = new NullBlock();
+    protected final WaterBlock WaterBlock = new WaterBlock();
+    protected final TorchBlock TorchBlock = new TorchBlock(getFloorTexture(), getCeilingTexture());
+    protected final SolidBlock ShrubsBlock = new SolidBlock(Texture.leaves);
+    protected final SolidBlock WallBlock = new SolidBlock(Texture.wall);
+    protected final AirBlock AirBlock = new AirBlock(getFloorTexture(), getCeilingTexture());
+    protected final AirBlock GrassBlock = new AirBlock(Texture.grass, getCeilingTexture());
+    protected final AirBlock StonePathBlock = new AirBlock(Texture.stonePath, getCeilingTexture());
+    protected final AirBlock AltStonePathBlock = new AirBlock(Texture.altStonePath, getCeilingTexture());
+    protected final SolidSpriteBlock PillarBlock = new SolidSpriteBlock(getFloorTexture(), getCeilingTexture(), Texture.pillar);
+    protected final SolidSpriteBlock BarsBlock = new SolidSpriteBlock(getFloorTexture(), getCeilingTexture(), Texture.bars);
+    protected final SolidSpriteBlock TreeBlock = new SolidSpriteBlock(Texture.grass, getCeilingTexture(), Texture.tree);
+    protected final AirSpriteBlock BarrelsBlock = new AirSpriteBlock(getFloorTexture(), getCeilingTexture(), Texture.barrel0);
+    protected final AirSpriteBlock GraveBlock = new AirSpriteBlock(Texture.dirt, getCeilingTexture(), Texture.grave);
+    protected final AirSpriteBlock LampBlock = new AirSpriteBlock(Texture.stonePath, getCeilingTexture(), new Sprite(new Bitmap[] {
             Texture.lamp0,
             Texture.lamp1,
             Texture.lamp2,
             Texture.lamp3,
     }));
-    protected static final AirSpriteBlock CeilDripBlock = new AirSpriteBlock(Texture.wetFloor, Texture.floor, new Sprite(new Bitmap[] {
+    protected final AirSpriteBlock CeilDripBlock = new AirSpriteBlock(Texture.wetFloor, Texture.floor, new Sprite(new Bitmap[] {
             Texture.drip0,
             Texture.drip0,
             Texture.drip1,
@@ -65,14 +72,14 @@ public abstract class Level
             Texture.drip4,
             Texture.drip0,
     }));
-    protected static final SolidSpriteBlock SpinningDummyBlock = new SolidSpriteBlock(Texture.floor, Texture.floor, new Sprite(new Bitmap[] {
+    protected final SolidSpriteBlock SpinningDummyBlock = new SolidSpriteBlock(getFloorTexture(), getCeilingTexture(), new Sprite(new Bitmap[] {
             Texture.spinningDummy0,
             Texture.spinningDummy1,
             Texture.spinningDummy2,
             Texture.spinningDummy3,
             Texture.spinningDummy4,
     }));
-    protected static final SolidSpriteBlock SignBlock = new SolidSpriteBlock(Texture.floor, Texture.floor, new Sprite(new Bitmap[] {
+    protected final SolidSpriteBlock SignBlock = new SolidSpriteBlock(Texture.floor, Texture.floor, new Sprite(new Bitmap[] {
             Texture.signN,
             Texture.signW,
             Texture.signS,
@@ -309,17 +316,17 @@ public abstract class Level
         if (col == 0xA3723A) return SpinningDummyBlock;
         if (col == 0x7F3300) return new BridgeBlock(false);
         if (col == 0x7F334E) return new BridgeBlock(true);
-        if (col == 0xA48080) return new DoorBlock(false);
-        if (col == 0x632A2A) return new StrongDoorBlock(false);
-        if (col == 0xE1AE4A) return new BoardsBlock(false);
-        if (col == 0x4C4C65) return new GateBlock("Grey Key");
+        if (col == 0xA48080) return new DoorBlock(getFloorTexture(), getCeilingTexture(), false);
+        if (col == 0x632A2A) return new StrongDoorBlock(getFloorTexture(), getCeilingTexture(), false);
+        if (col == 0xE1AE4A) return new BoardsBlock(getFloorTexture(), getCeilingTexture(), false);
+        if (col == 0x4C4C65) return new GateBlock(getFloorTexture(), getCeilingTexture(), "Grey Key");
         if (col == 0x7EC0C0) return new FountainBlock(true);
         if (col == 0xC80000) return new SwitchBlock();
         if (col == 0x873800) return new LevelPortalBlock();
         if (col == 0xFF6A00) return new LadderBlock(false);
         if (col == 0xB24700) return new LadderBlock(true);
         if (col == 0xC82A00) return new ProjectileSwitchBlock();
-        return defaultFloorBlock;
+        return AirBlock;
     }
 
     private Mob getMobByColour(int col) {
