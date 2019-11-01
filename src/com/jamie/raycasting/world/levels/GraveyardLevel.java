@@ -1,5 +1,6 @@
 package com.jamie.raycasting.world.levels;
 
+import com.jamie.jamapp.Bitmap;
 import com.jamie.raycasting.entities.Drop;
 import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.graphics.Texture;
@@ -12,7 +13,14 @@ public class GraveyardLevel extends Level
 		height = 64;
         fogColor = 0x000010;
 		isOutside = true;
-		defaultFloorBlock = GrassBlock;
+	}
+
+	protected Bitmap getFloorTexture() {
+		return Texture.grass;
+	}
+
+	protected Bitmap getCeilingTexture() {
+		return null;
 	}
 
 	protected void postCreate() {

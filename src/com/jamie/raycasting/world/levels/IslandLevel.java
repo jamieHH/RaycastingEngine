@@ -1,6 +1,8 @@
 package com.jamie.raycasting.world.levels;
 
+import com.jamie.jamapp.Bitmap;
 import com.jamie.raycasting.entities.mobs.Mob;
+import com.jamie.raycasting.graphics.Texture;
 
 public class IslandLevel extends Level
 {
@@ -9,7 +11,14 @@ public class IslandLevel extends Level
 		height = 64;
 		fogColor = 0x000010;
 		isOutside = true;
-		defaultFloorBlock = GrassBlock;
+	}
+
+	protected Bitmap getFloorTexture() {
+		return Texture.grass;
+	}
+
+	protected Bitmap getCeilingTexture() {
+		return null;
 	}
 
 	protected void postCreate() {
@@ -33,6 +42,11 @@ public class IslandLevel extends Level
         if (id == 1) world.switchLevel(mob, "graveyard", 2);
 		if (id == 2) world.switchLevel(mob, "castleHall", 2);
 		if (id == 3) world.switchLevel(mob, "crypt", 1);
-		if (id == 4) world.switchLevel(mob, "sewer", 2);
-    }
+		if (id == 4) world.switchLevel(mob, "pit", 1);
+		if (id == 5) world.switchLevel(mob, "sewer", 2);
+	}
+
+	public void triggerBlock(int id) {
+		if (id == 1) super.triggerBlock(13);
+	}
 }
