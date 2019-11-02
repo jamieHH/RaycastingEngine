@@ -21,6 +21,10 @@ public class PitLevel extends Level
         return Texture.dirt;
     }
 
+    protected Bitmap getWallTexture() {
+        return Texture.wall2;
+    }
+
 	protected void postCreate() {
 
     }

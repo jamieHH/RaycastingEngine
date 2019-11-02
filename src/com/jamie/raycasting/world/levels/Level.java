@@ -40,13 +40,17 @@ public abstract class Level
         return Texture.floor;
     }
 
+    protected Bitmap getWallTexture() {
+        return Texture.wall;
+    }
+
     // static blocks. TODO: check if is performance optimal.
     // Add these to array and loop through array for ticks
     protected final Block NullBlock = new NullBlock();
     protected final WaterBlock WaterBlock = new WaterBlock();
     protected final TorchBlock TorchBlock = new TorchBlock(getFloorTexture(), getCeilingTexture());
     protected final SolidBlock ShrubsBlock = new SolidBlock(Texture.leaves);
-    protected final SolidBlock WallBlock = new SolidBlock(Texture.wall);
+    protected final SolidBlock WallBlock = new SolidBlock(getWallTexture());
     protected final AirBlock AirBlock = new AirBlock(getFloorTexture(), getCeilingTexture());
     protected final AirBlock GrassBlock = new AirBlock(Texture.grass, getCeilingTexture());
     protected final AirBlock StonePathBlock = new AirBlock(Texture.stonePath, getCeilingTexture());
