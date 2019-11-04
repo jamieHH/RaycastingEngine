@@ -91,6 +91,24 @@ public abstract class Level
     }));
 
 
+    public void setBlock(int x, int z, Block block) {
+        if (block instanceof FunctionBlock) {
+            ((FunctionBlock) block).level = this;
+            ((FunctionBlock) block).gridX = x;
+            ((FunctionBlock) block).gridZ = z;
+        }
+
+        blocks[x + z * sizeX] = block;
+    }
+
+    public Block getBlock(int x, int z) {
+        if (x < 0 || z < 0 || x >= sizeX || z >= sizeZ) {
+            return NullBlock;
+        }
+
+        return blocks[x + z * sizeX];
+    }
+
     public void create(int sizeX, int sizeZ, int[] pixels) {
         this.world = Client.getWorld();
         this.sizeX = sizeX;
@@ -198,16 +216,6 @@ public abstract class Level
         }
     }
 
-    public void setBlock(int x, int z, Block block) {
-        if (block instanceof FunctionBlock) {
-            ((FunctionBlock) block).level = this;
-            ((FunctionBlock) block).gridX = x;
-            ((FunctionBlock) block).gridZ = z;
-        }
-
-        blocks[x + z * sizeX] = block;
-    }
-
     public void addEntity(Entity e, double x, double z) {
         e.setPosition(x, z);
         entities.add(e);
@@ -267,14 +275,6 @@ public abstract class Level
 
     public int countDrops() {
         return getDropEntities().size();
-    }
-
-    public Block getBlock(int x, int z) {
-        if (x < 0 || z < 0 || x >= sizeX || z >= sizeZ) {
-            return NullBlock;
-        }
-
-        return blocks[x + z * sizeX];
     }
 
     public Block getBlockByReference(String reference) {
