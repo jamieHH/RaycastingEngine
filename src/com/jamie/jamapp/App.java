@@ -86,7 +86,6 @@ public class App extends Canvas implements Runnable
 		int tickCount = 0;
 
 		while (running) {
-			requestFocus();
 			long currentTime = System.nanoTime();
 			long passedTime = currentTime - previousTime;
 			previousTime = currentTime;
@@ -154,6 +153,7 @@ public class App extends Canvas implements Runnable
 		setMaximumSize(size);
 
 		frame = newFrame(this);
+		requestFocus();
 	}
 
     private static JFrame newFrame(App app) {
