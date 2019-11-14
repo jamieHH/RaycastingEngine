@@ -1,39 +1,68 @@
 package com.jamie.raycasting.app;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Console {
 
-    private Client client;
+    private static List<String> lines = new ArrayList<String>();
 
 
     public Console(Client client) {
-        this.client = client;
+
+    }
+
+    public static void log(String s) {
+        lines.add(s);
     }
 
     public static void run(String command) {
-        System.out.println(command); ///////////////////
-        String[] keys = {
-                "coc",
-                "addItem",
-                "setBlock",
-        };
+        log(command);
+        String[] args = command.trim().split("\\s+");
 
-        String match = "default";
-        for (int i = 0; i < keys.length; i++) {
-            if (command.contains(keys[i])) {
-                match = keys[i];
+        switch (args[0]) {
+            case "": // blank
                 break;
-            }
-        }
-
-        switch (match) {
-            case "coc":
-                System.out.println("do coc");
+            case "x": // exit window
+                Client.setActiveOverlay(null);
                 break;
-            case "addItem":
-                System.out.println("do addItem");
+            case "getpos": // get player pos
+                log(Client.getPlayer().posX + ", " + Client.getPlayer().posZ);
+                break;
+            case "getrot": // get player pos
+                log(Double.toString(Client.getPlayer().getRotation()));
+                break;
+            case "level": // move to level
+                if (args.length > 1) {
+                    String levelName = args[1];
+                    int id = 0;
+                    if (args.length > 2) {
+                        id = Integer.parseInt(args[2]);
+                    }
+                    try {
+                        Client.getPlayer().level.world.switchLevel(Client.getPlayer(), levelName, id);
+                    } catch (Exception e) {
+                        log("Cannot load level: " + levelName);
+                    }
+                } else {
+                    log("Specify the level name");
+                }
+                break;
+            case "possessnextmob": // posses next mob
+                Client.possessNextMob();
+                break;
+            case "switchperspective": // switch perspective
+                Client.switchPerspective();
+                break;
+            case "additem": // add item
+                log("[do add item]");
                 break;
             default:
-                System.out.println("No command found for: " + command);
+                log("Command: " + args[0] + " not recognised");
         }
+    }
+
+    public static List<String> getLines() {
+        return lines;
     }
 }

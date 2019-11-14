@@ -33,7 +33,7 @@ public class UserInputHandler extends InputHandler
             {Controls.ROANDOMLEVEL, KeyEvent.VK_R},
             {Controls.LOADLEVEL, KeyEvent.VK_P},
             {Controls.NEXTMOB, KeyEvent.VK_G},
-            {Controls.CONSOLE, KeyEvent.VK_DEAD_TILDE},
+            {Controls.CONSOLE, KeyEvent.VK_SLASH},
     }).collect(Collectors.toMap(data -> (String) data[0], data -> (int) data[1]));
 
 
@@ -78,8 +78,12 @@ public class UserInputHandler extends InputHandler
                 key[keyCode] = true;
             }
         } else {
-            if (e.getKeyCode() != KeyEvent.VK_ENTER || e.getKeyCode() != KeyEvent.VK_DEAD_TILDE) {
-                typedString += e.getKeyChar();
+            if (e.getKeyCode() != KeyEvent.VK_ENTER) {
+                if (e.getKeyCode() != KeyEvent.VK_BACK_SPACE) {
+                    typedString += e.getKeyChar();
+                } else if (typedString.length() > 0) {
+                    typedString = typedString.substring(0, typedString.length() - 1);
+                }
             } else {
                 setIsTyping(false);
             }
@@ -97,7 +101,6 @@ public class UserInputHandler extends InputHandler
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
 	}
 
     @Override

@@ -53,6 +53,12 @@ public abstract class InputHandler implements KeyListener, FocusListener, MouseL
         return typedString;
     }
 
+    public String grabTypedString() {
+        String s = typedString;
+        typedString = "";
+        return s;
+    }
+
     public double getDiffMouseX() {
         return diffMouseX * mouseSensitivity;
     }

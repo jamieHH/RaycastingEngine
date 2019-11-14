@@ -44,11 +44,6 @@ public class Client extends JamappClient
             input.lockCursor();
         }
 
-		if (input.check(Controls.CONSOLE)) {
-			System.out.println("hit [");
-			setActiveOverlay(consoleOverlay);
-		}
-
 		if (activeOverlay instanceof ConsoleOverlay) {
 			input.setIsTyping(true);
 		}
@@ -81,14 +76,21 @@ public class Client extends JamappClient
 						}
 					}
 
-					if (input.check(Controls.PAUSE)) {
-						input.stopInput(Controls.PAUSE);
+                    if (input.check(Controls.PAUSE)) {
+                        input.stopInput(Controls.PAUSE);
+                        if (activeOverlay == null) {
+                            Sound.slideUp.play();
+                            setActiveOverlay(pauseMenu);
+                        } else {
+                            Sound.slideDown.play();
+                            setActiveOverlay(null);
+                        }
+                    }
+
+					if (input.check(Controls.CONSOLE)) {
+						input.stopInput(Controls.CONSOLE);
 						if (activeOverlay == null) {
-							Sound.slideUp.play();
-							setActiveOverlay(pauseMenu);
-						} else {
-							Sound.slideDown.play();
-							setActiveOverlay(null);
+							setActiveOverlay(consoleOverlay);
 						}
 					}
 
@@ -154,7 +156,7 @@ public class Client extends JamappClient
 		}
 	}
 
-	private void switchPerspective() {
+	public static void switchPerspective() {
 		int i = world.level.getMobEntities().indexOf(player) + 1;
 		if (i >= world.level.countMobs()) {
 			i = 0;
@@ -163,7 +165,7 @@ public class Client extends JamappClient
 		setPlayer(world.level.getMobEntity(i));
 	}
 
-	private void possessNextMob() {
+	public static void possessNextMob() {
 		int i = world.level.getMobEntities().indexOf(player) + 1;
 		if (i >= world.level.countMobs()) {
 			i = 0;
