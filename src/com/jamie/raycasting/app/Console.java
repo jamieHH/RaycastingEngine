@@ -1,5 +1,7 @@
 package com.jamie.raycasting.app;
 
+import com.jamie.jamapp.App;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,7 +38,7 @@ public class Console {
                 log(Double.toString(Client.getPlayer().getRotation()));
                 break;
             case "level": // move to level
-                if (args.length > 1) {
+                if (args.length >= 2) {
                     String levelName = args[1];
                     int id = 0;
                     if (args.length > 2) {
@@ -57,6 +59,10 @@ public class Console {
             case "switchperspective": // switch perspective
                 Client.switchPerspective();
                 break;
+            case "setres":
+                if (args.length >= 3) {
+                    App.setDisplayResolution(Integer.parseInt(args[1]), Integer.parseInt(args[2]));
+                }
             case "additem": // add item
                 log("[do add item]");
                 break;
