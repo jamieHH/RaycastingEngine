@@ -25,6 +25,7 @@ public class Client extends JamappClient
     public static final Menu pauseMenu = new PauseMenu(App.getDisplayWidth(), (int) (App.getDisplayHeight() * 0.6));
     public static final Menu overMenu = new OverMenu(App.getDisplayWidth(), (int) (App.getDisplayHeight() * 0.6));
     public static final Overlay inventoryOverlay = new InventoryOverlay((int) (App.getDisplayWidth() * 0.8), (int) (App.getDisplayHeight() * 0.6));
+    public static final Overlay consoleOverlay = new ConsoleOverlay((int) (App.getDisplayWidth() * 0.8), (int) (App.getDisplayHeight() * 0.6));
 
 	public static Overlay activeOverlay;
 	
@@ -42,6 +43,16 @@ public class Client extends JamappClient
 		} else {
             input.lockCursor();
         }
+
+		if (input.check(Controls.CONSOLE)) {
+			System.out.println("hit [");
+			setActiveOverlay(consoleOverlay);
+		}
+
+		if (activeOverlay instanceof ConsoleOverlay) {
+			input.setIsTyping(true);
+		}
+
 
         if (world != null) {
 			world.tick();

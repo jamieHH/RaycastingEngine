@@ -33,6 +33,7 @@ public class UserInputHandler extends InputHandler
             {Controls.ROANDOMLEVEL, KeyEvent.VK_R},
             {Controls.LOADLEVEL, KeyEvent.VK_P},
             {Controls.NEXTMOB, KeyEvent.VK_G},
+            {Controls.CONSOLE, KeyEvent.VK_DEAD_TILDE},
     }).collect(Collectors.toMap(data -> (String) data[0], data -> (int) data[1]));
 
 
@@ -71,10 +72,18 @@ public class UserInputHandler extends InputHandler
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		int keyCode = e.getKeyCode();
-		if (keyCode > 0 && keyCode < key.length) {
-			key[keyCode] = true;
-		}
+        if (!getIsTyping()) {
+            int keyCode = e.getKeyCode();
+            if (keyCode > 0 && keyCode < key.length) {
+                key[keyCode] = true;
+            }
+        } else {
+            if (e.getKeyCode() != KeyEvent.VK_ENTER || e.getKeyCode() != KeyEvent.VK_DEAD_TILDE) {
+                typedString += e.getKeyChar();
+            } else {
+                setIsTyping(false);
+            }
+        }
 	}
 
 	@Override

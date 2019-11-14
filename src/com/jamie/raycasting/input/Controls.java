@@ -21,5 +21,6 @@ public class Controls
             PAUSE = "PAUSE",
             ROANDOMLEVEL = "ROANDOMLEVEL",
             LOADLEVEL = "LOADLEVEL",
-            NEXTMOB = "NEXTMOB";
+            NEXTMOB = "NEXTMOB",
+            CONSOLE = "[";
 }

@@ -27,6 +27,9 @@ public abstract class InputHandler implements KeyListener, FocusListener, MouseL
     private double mouseSensitivity = 0.001;
     private boolean lockCursor = true;
 
+    private boolean isTyping = false;
+    protected String typedString = "";
+
 
     protected InputHandler() {
 
@@ -37,6 +40,18 @@ public abstract class InputHandler implements KeyListener, FocusListener, MouseL
     public abstract void setInput(String key, boolean state);
 
     public abstract void stopInput(String inputGroup);
+
+    public void setIsTyping(boolean b) {
+        isTyping = b;
+    }
+
+    public boolean getIsTyping() {
+        return isTyping;
+    }
+
+    public String getTypedString() {
+        return typedString;
+    }
 
     public double getDiffMouseX() {
         return diffMouseX * mouseSensitivity;
