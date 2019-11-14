@@ -23,6 +23,9 @@ public class Console {
         switch (args[0]) {
             case "": // blank
                 break;
+            case "clear": // clear all console lines
+                Console.lines = new ArrayList<String>();
+                break;
             case "x": // exit window
                 Client.setActiveOverlay(null);
                 break;

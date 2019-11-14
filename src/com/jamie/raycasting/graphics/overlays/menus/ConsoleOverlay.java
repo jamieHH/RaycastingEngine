@@ -7,9 +7,17 @@ import com.jamie.raycasting.graphics.overlays.Overlay;
 
 public class ConsoleOverlay extends Overlay
 {
+    private Bitmap historyPane;
+
     public ConsoleOverlay(int width, int height) {
         super(width, height);
+        setSize(width, height);
         opacity = 75;
+    }
+
+    public void setSize(int width, int height) {
+        super.setSize(width, height);
+        historyPane = new Bitmap(width - bp - bp, height - (bp + getFontHeight() + 2 + bp));
     }
 
     public void tick() {
@@ -23,11 +31,17 @@ public class ConsoleOverlay extends Overlay
 
     public void update() {
         super.update();
-        fill(0x101010);
-        fill(0, height - bp - Bitmap.getFontHeight() - bp, width, height, 0x202020);
+
+        fill(0x202020);
+
+        historyPane.setSize(width, (Console.getLines().size() * Bitmap.getFontHeight()));
+        historyPane.fill(0x101010);
+
         for (int i = 0; i < Console.getLines().size(); i++) {
-            draw(Console.getLines().get(i), bp, bp + Bitmap.getFontHeight() * (i - 1), 0x707070);
+            historyPane.draw(Console.getLines().get(i), bp, (Bitmap.getFontHeight() * (i)), 0x707070);
         }
+        draw(historyPane, 0, (height - bp - bp - Bitmap.getFontHeight()) - historyPane.height);
+
         draw(Client.input.getTypedString() + "_", bp, height - bp - Bitmap.getFontHeight(), 0xD0D0D0);
     }
 }
