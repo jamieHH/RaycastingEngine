@@ -22,5 +22,5 @@ public class Controls
             ROANDOMLEVEL = "ROANDOMLEVEL",
             LOADLEVEL = "LOADLEVEL",
             NEXTMOB = "NEXTMOB",
-            CONSOLE = "[";
+            CONSOLE = "CONSOLE";
 }
