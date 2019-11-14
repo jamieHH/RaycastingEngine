@@ -107,7 +107,7 @@ public class Screen extends Display
             Client.activeOverlay.update();
             int cornerX = (width / 2) - (Client.activeOverlay.width / 2);
             int cornerY = (height / 2) - (Client.activeOverlay.height / 2);
-            draw(Client.activeOverlay, cornerX, cornerY, 95);
+            draw(Client.activeOverlay, cornerX, cornerY, Client.activeOverlay.opacity);
         }
     }
 }
