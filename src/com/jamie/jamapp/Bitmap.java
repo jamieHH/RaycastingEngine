@@ -7,7 +7,7 @@ public class Bitmap
 	public int[] pixels;
 	public static final int INVISIBLE = 0;
 
-	public static boolean IS_SMALL_FONT = false;
+	public static boolean isSmallFont = false;
 
 	private static final String chars = "" +
 			"ABCDEFGHIJKLMNOPQRSTUVWXYZ.,!?\"'/\\<>()[]{}" +
@@ -20,7 +20,7 @@ public class Bitmap
 	}
 
 	private static Bitmap getFont() {
-        if (IS_SMALL_FONT) {
+        if (isSmallFont) {
             return PngLoader.loadBitmap("/gui/fontS.png");
         }
 
@@ -28,7 +28,7 @@ public class Bitmap
     }
 
 	public static int getFontWidth() {
-        if (IS_SMALL_FONT) {
+        if (isSmallFont) {
             return 5;
         }
 
@@ -36,7 +36,7 @@ public class Bitmap
     }
 
     public static int getFontHeight() {
-	    if (IS_SMALL_FONT) {
+	    if (isSmallFont) {
 	        return 7;
         }
 

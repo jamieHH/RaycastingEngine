@@ -147,6 +147,7 @@ public class Client extends JamappClient
 		pauseMenu.setSize(App.getDisplayWidth(), (int) (App.getDisplayHeight() * 0.6));
 		overMenu.setSize(App.getDisplayWidth(), (int) (App.getDisplayHeight() * 0.6));
 		inventoryOverlay.setSize((int) (App.getDisplayWidth() * 0.8), (int) (App.getDisplayHeight() * 0.6));
+		consoleOverlay.setSize((int) (App.getDisplayWidth() * 0.8), (int) (App.getDisplayHeight() * 0.6));
 	}
 
 	public static void setActiveOverlay(Overlay overlay) {

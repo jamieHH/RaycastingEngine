@@ -1,6 +1,7 @@
 package com.jamie.raycasting.app;
 
 import com.jamie.jamapp.App;
+import com.jamie.jamapp.Bitmap;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +38,9 @@ public class Console {
             case "getrot": // get player pos
                 log(Double.toString(Client.getPlayer().getRotation()));
                 break;
+            case "daynight": // enable day night cycle
+                Client.getWorld().enableTimeCycle = (Integer.parseInt(args[1]) > 0);
+                break;
             case "level": // move to level
                 if (args.length >= 2) {
                     String levelName = args[1];
@@ -45,7 +49,7 @@ public class Console {
                         id = Integer.parseInt(args[2]);
                     }
                     try {
-                        Client.getPlayer().level.world.switchLevel(Client.getPlayer(), levelName, id);
+                        Client.getWorld().switchLevel(Client.getPlayer(), levelName, id);
                     } catch (Exception e) {
                         log("Cannot load level: " + levelName);
                     }
@@ -59,10 +63,21 @@ public class Console {
             case "switchperspective": // switch perspective
                 Client.switchPerspective();
                 break;
-            case "setres":
+            case "setres": // set resolution
                 if (args.length >= 3) {
                     App.setDisplayResolution(Integer.parseInt(args[1]), Integer.parseInt(args[2]));
+                    Client.resizeMenus();
+                } else {
+                    log("specify new width and height");
                 }
+                break;
+            case "smallfont": // set small font usage
+                if (args.length >= 2) {
+                    Bitmap.isSmallFont = (Integer.parseInt(args[1]) > 0);
+                } else {
+                    log("Specify to set 0 or 1");
+                }
+                break;
             case "additem": // add item
                 log("[do add item]");
                 break;
