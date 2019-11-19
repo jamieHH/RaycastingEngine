@@ -59,11 +59,6 @@ public class Client extends JamappClient
 					getPlayer().isUsingMenu = false;
 				}
 
-				if (input.check(Controls.NEXTMOB)) {
-					input.stopInput(Controls.NEXTMOB);
-					possessNextMob();
-				}
-
 				if (!getPlayer().isDead) {
 					if (input.check(Controls.INVENTORY)) {
 						input.stopInput(Controls.INVENTORY);
@@ -93,14 +88,6 @@ public class Client extends JamappClient
 							setActiveOverlay(consoleOverlay);
 						}
 					}
-
-					if (input.check(Controls.ROANDOMLEVEL)) {
-						world.switchLevel(player, "test", 0);
-					}
-
-					if (input.check(Controls.LOADLEVEL)) {
-						world.switchLevel(player, "island", 0);
-					}
 				} else {
 					if (activeOverlay == inventoryOverlay) {
 						setActiveOverlay(null);
@@ -120,16 +107,11 @@ public class Client extends JamappClient
 		}
 	}
 	
-	public static void newGame() {
-		world = new World();
+	public static void newGame(String level) {
+		setWorld(new World());
 		setPlayer(new Player(input));
 		getPlayer().setRotation(1.9);
-
-		if (App.inDev) {
-			world.switchLevel(player, "dungeon", 0);
-		} else {
-			world.switchLevel(player, "prison", 0);
-		}
+		getWorld().switchLevel(getPlayer(), level, 0);
 		setActiveOverlay(null);
 	}
 

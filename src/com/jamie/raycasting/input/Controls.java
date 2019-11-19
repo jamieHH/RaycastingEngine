@@ -19,8 +19,5 @@ public class Controls
             HOT3 = "HOT3",
             INVENTORY = "INVENTORY",
             PAUSE = "PAUSE",
-            ROANDOMLEVEL = "ROANDOMLEVEL",
-            LOADLEVEL = "LOADLEVEL",
-            NEXTMOB = "NEXTMOB",
             CONSOLE = "CONSOLE";
 }

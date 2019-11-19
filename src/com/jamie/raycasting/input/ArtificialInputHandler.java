@@ -25,9 +25,6 @@ public class ArtificialInputHandler extends InputHandler
             {Controls.HOT3, 0},
             {Controls.INVENTORY, 0},
             {Controls.PAUSE, 0},
-            {Controls.ROANDOMLEVEL, 0},
-            {Controls.LOADLEVEL, 0},
-            {Controls.NEXTMOB, 0},
     }).collect(Collectors.toMap(data -> (String) data[0], data -> (Integer) data[1]));
 
 

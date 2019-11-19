@@ -30,9 +30,6 @@ public class UserInputHandler extends InputHandler
             {Controls.HOT3, KeyEvent.VK_3},
             {Controls.INVENTORY, KeyEvent.VK_E},
             {Controls.PAUSE, KeyEvent.VK_ESCAPE},
-            {Controls.ROANDOMLEVEL, KeyEvent.VK_R},
-            {Controls.LOADLEVEL, KeyEvent.VK_P},
-            {Controls.NEXTMOB, KeyEvent.VK_G},
             {Controls.CONSOLE, KeyEvent.VK_SLASH},
     }).collect(Collectors.toMap(data -> (String) data[0], data -> (int) data[1]));
 

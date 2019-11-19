@@ -35,6 +35,9 @@ public class Console {
             case "getpos": // get player pos
                 log(Client.getPlayer().posX + ", " + Client.getPlayer().posZ);
                 break;
+            case "setpos":
+                Client.getPlayer().setPosition(Integer.parseInt(args[1]), Integer.parseInt(args[2]));
+                break;
             case "getrot": // get player pos
                 log(Double.toString(Client.getPlayer().getRotation()));
                 break;
@@ -74,6 +77,13 @@ public class Console {
             case "smallfont": // set small font usage
                 if (args.length >= 2) {
                     Bitmap.isSmallFont = (Integer.parseInt(args[1]) > 0);
+                } else {
+                    log("Specify to set 0 or 1");
+                }
+                break;
+            case "indev":
+                if (args.length >= 2) {
+                    App.inDev = (Integer.parseInt(args[1]) > 0);
                 } else {
                     log("Specify to set 0 or 1");
                 }
