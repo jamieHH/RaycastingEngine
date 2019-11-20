@@ -78,6 +78,7 @@ public class Player extends Mob
             addItem(new SpeedPotion());
             addItem(new SlowPotion());
             addItem(new WandWeapon());
+            addItem(new SuperWandWeapon());
             addItem(new HealthPotion());
             addItem(new XbowWeapon());
             addItem(new AxeWeapon());

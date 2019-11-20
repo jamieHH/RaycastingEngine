@@ -2,6 +2,7 @@ package com.jamie.raycasting.app;
 
 import com.jamie.jamapp.App;
 import com.jamie.jamapp.Bitmap;
+import com.jamie.raycasting.items.Item;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -89,7 +90,17 @@ public class Console {
                 }
                 break;
             case "additem": // add item
-                log("[do add item]");
+                if (args.length >= 2) {
+                    String itemName = args[1].substring(0, 1).toUpperCase() + args[1].substring(1);
+                    try {
+                        Item item = (Item) Class.forName("com.jamie.raycasting.items." + itemName).getDeclaredConstructor().newInstance();
+                        Client.getPlayer().addItem(item);
+                    } catch (Exception e) {
+                        log("Cannot add item: " + itemName);
+                    }
+                } else {
+                    log("Specify the item to add");
+                }
                 break;
             default:
                 log("Command: " + args[0] + " not recognised");
