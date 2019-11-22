@@ -21,10 +21,10 @@ public class Bitmap
 
 	private static Bitmap getFont() {
         if (isSmallFont) {
-            return PngLoader.loadBitmap("/gui/fontS.png");
+            return PngLoader.loadBitmap("gui/fontS.png");
         }
 
-        return PngLoader.loadBitmap("/gui/font.png");
+        return PngLoader.loadBitmap("gui/font.png");
     }
 
 	public static int getFontWidth() {

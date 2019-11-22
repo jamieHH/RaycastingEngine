@@ -211,7 +211,7 @@ public class App extends Canvas implements Runnable
     private static Image getAppIcon() {
         Image img = null;
         try {
-            img = ImageIO.read(new FileInputStream("res/logo.png"));
+            img = ImageIO.read(App.class.getClassLoader().getResource("logo.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }

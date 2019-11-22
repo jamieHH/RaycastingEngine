@@ -20,7 +20,7 @@ public class SfxLoader
 
         try {
             Sfx sound = new Sfx();
-            AudioInputStream ais = AudioSystem.getAudioInputStream(new File("res/" + fileName));
+            AudioInputStream ais = AudioSystem.getAudioInputStream(SfxLoader.class.getClassLoader().getResource(fileName));
             Clip clip = AudioSystem.getClip();
             clip.open(ais);
             sound.clip = clip;

@@ -10,31 +10,31 @@ public class Texture
     public static final Bitmap fogHours = PngLoader.loadBitmap("tex/fogHours.png");
 
     // icons
-    public static final Bitmap spearIcon = PngLoader.loadBitmap("/gui/spearIcon.png");
-    public static final Bitmap axeIcon = PngLoader.loadBitmap("/gui/axeIcon.png");
-    public static final Bitmap knifeIcon = PngLoader.loadBitmap("/gui/knifeIcon.png");
-    public static final Bitmap planksIcon = PngLoader.loadBitmap("/gui/planksIcon.png");
-    public static final Bitmap xbowIcon = PngLoader.loadBitmap("/gui/xbowIcon.png");
-    public static final Bitmap wandIcon = PngLoader.loadBitmap("/gui/wandIcon.png");
-    public static final Bitmap bluePotionIcon = PngLoader.loadBitmap("/gui/bluePotionIcon.png");
-    public static final Bitmap redPotionIcon = PngLoader.loadBitmap("/gui/redPotionIcon.png");
-    public static final Bitmap yellowPotionIcon = PngLoader.loadBitmap("/gui/yellowPotionIcon.png");
-    public static final Bitmap greenPotionIcon = PngLoader.loadBitmap("/gui/greenPotionIcon.png");
-    public static final Bitmap keyIcon = PngLoader.loadBitmap("/gui/keyIcon.png");
+    public static final Bitmap spearIcon = PngLoader.loadBitmap("gui/spearIcon.png");
+    public static final Bitmap axeIcon = PngLoader.loadBitmap("gui/axeIcon.png");
+    public static final Bitmap knifeIcon = PngLoader.loadBitmap("gui/knifeIcon.png");
+    public static final Bitmap planksIcon = PngLoader.loadBitmap("gui/planksIcon.png");
+    public static final Bitmap xbowIcon = PngLoader.loadBitmap("gui/xbowIcon.png");
+    public static final Bitmap wandIcon = PngLoader.loadBitmap("gui/wandIcon.png");
+    public static final Bitmap bluePotionIcon = PngLoader.loadBitmap("gui/bluePotionIcon.png");
+    public static final Bitmap redPotionIcon = PngLoader.loadBitmap("gui/redPotionIcon.png");
+    public static final Bitmap yellowPotionIcon = PngLoader.loadBitmap("gui/yellowPotionIcon.png");
+    public static final Bitmap greenPotionIcon = PngLoader.loadBitmap("gui/greenPotionIcon.png");
+    public static final Bitmap keyIcon = PngLoader.loadBitmap("gui/keyIcon.png");
 
-    public static final Bitmap heartIcon = PngLoader.loadBitmap("/gui/heartIcon.png");
-    public static final Bitmap poisonIcon = PngLoader.loadBitmap("/gui/poisonIcon.png");
-    public static final Bitmap speedIcon = PngLoader.loadBitmap("/gui/speedIcon.png");
-    public static final Bitmap slowIcon = PngLoader.loadBitmap("/gui/slowIcon.png");
-    public static final Bitmap strengthIcon = PngLoader.loadBitmap("/gui/strengthIcon.png");
-    public static final Bitmap weaknessIcon = PngLoader.loadBitmap("/gui/weaknessIcon.png");
-    public static final Bitmap fireIcon = PngLoader.loadBitmap("/gui/fireIcon.png");
+    public static final Bitmap heartIcon = PngLoader.loadBitmap("gui/heartIcon.png");
+    public static final Bitmap poisonIcon = PngLoader.loadBitmap("gui/poisonIcon.png");
+    public static final Bitmap speedIcon = PngLoader.loadBitmap("gui/speedIcon.png");
+    public static final Bitmap slowIcon = PngLoader.loadBitmap("gui/slowIcon.png");
+    public static final Bitmap strengthIcon = PngLoader.loadBitmap("gui/strengthIcon.png");
+    public static final Bitmap weaknessIcon = PngLoader.loadBitmap("gui/weaknessIcon.png");
+    public static final Bitmap fireIcon = PngLoader.loadBitmap("gui/fireIcon.png");
 
-    public static final Bitmap damageIcon = PngLoader.loadBitmap("/gui/damageIcon.png");
-    public static final Bitmap rangeIcon = PngLoader.loadBitmap("/gui/rangeIcon.png");
-    public static final Bitmap healthIcon = PngLoader.loadBitmap("/gui/healthIcon.png");
-    public static final Bitmap durationIcon = PngLoader.loadBitmap("/gui/durationIcon.png");
-    public static final Bitmap magnitudeIcon = PngLoader.loadBitmap("/gui/magnitudeIcon.png");
+    public static final Bitmap damageIcon = PngLoader.loadBitmap("gui/damageIcon.png");
+    public static final Bitmap rangeIcon = PngLoader.loadBitmap("gui/rangeIcon.png");
+    public static final Bitmap healthIcon = PngLoader.loadBitmap("gui/healthIcon.png");
+    public static final Bitmap durationIcon = PngLoader.loadBitmap("gui/durationIcon.png");
+    public static final Bitmap magnitudeIcon = PngLoader.loadBitmap("gui/magnitudeIcon.png");
 
     public static final Bitmap one = PngLoader.loadBitmap("tex/1.png");
     public static final Bitmap two = PngLoader.loadBitmap("tex/2.png");

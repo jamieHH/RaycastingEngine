@@ -96,7 +96,7 @@ public class World
         }
 
         try {
-            BufferedImage img = ImageIO.read(new FileInputStream("res/levels/" + name + ".png"));
+            BufferedImage img = ImageIO.read(World.class.getClassLoader().getResource("levels/" + name + ".png"));
 
             int w = img.getWidth();
             int h = img.getHeight();
