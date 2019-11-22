@@ -56,7 +56,7 @@ public class App extends Canvas implements Runnable
 	    return frame;
     }
 
-	public void start() {
+	public synchronized void start() {
 		initialiseFrame();
 		if (!running) {
 			running = true;
@@ -65,7 +65,7 @@ public class App extends Canvas implements Runnable
 		}
 	}
 
-	public void stop() {
+	public synchronized void stop() {
 		if (running) {
 			running = false;
 			try {
