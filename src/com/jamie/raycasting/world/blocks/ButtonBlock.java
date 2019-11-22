@@ -24,12 +24,14 @@ public class ButtonBlock extends FunctionBlock
         }
     }
 
-	public boolean use(Mob source) {
-        if (useTicks > 0) {
-            return false;
-        }
-        useTicks = useWait;
+    public boolean use(Mob source) {
+	    trigger();
 
+	    return true;
+    }
+
+	public boolean trigger() {
+        useTicks = useWait;
         emitSound(Sound.clickUp);
         wallTex = Texture.wallButton1;
         level.triggerBlock(id);
