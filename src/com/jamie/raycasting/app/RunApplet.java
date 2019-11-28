@@ -12,12 +12,12 @@ public class RunApplet extends Applet
     public App app = new App();
 
     public static boolean defaultInDev = true;
-    public static int defaultResolutionWidth = 200;
-    public static int defaultResolutionHeight = 150;
-    public static int defaultDisplayScale = 4;
-    public static boolean defaultFullscreenEnabled = true;
+    public static int defaultResolutionWidth = 256;
+    public static int defaultResolutionHeight = 144;
+    public static int defaultDisplayScale = 8;
+    public static boolean defaultFullscreenEnabled = false;
     public static boolean defaultSoundEnabled = true;
-    public static boolean defaultMouseEnabled = true;
+    public static boolean defaultMouseEnabled = false;
 
     public void init() {
         App.inDev = defaultInDev;
