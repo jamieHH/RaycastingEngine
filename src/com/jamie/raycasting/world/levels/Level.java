@@ -280,7 +280,7 @@ public abstract class Level
     public Block getBlockByReference(String reference) {
         for (int i = 0; i < blocks.length; i++) {
             if (blocks[i] instanceof FunctionBlock) {
-                if (((FunctionBlock) blocks[i]).reference.equals(reference)) {
+                if (((FunctionBlock) blocks[i]).reference != null && ((FunctionBlock) blocks[i]).reference.equals(reference)) {
                     return blocks[i];
                 }
             }

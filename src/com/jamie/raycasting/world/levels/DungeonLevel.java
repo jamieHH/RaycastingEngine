@@ -10,7 +10,9 @@ public class DungeonLevel extends Level
 	}
 
 	protected void postCreate() {
-		setBlock(35, 29, new TurretBlock("N"));
+		TurretBlock b = new TurretBlock("N");
+		b.setReference("turret");
+		setBlock(35, 29, b);
 		setBlock(23, 40, SignBlock);
 	}
 

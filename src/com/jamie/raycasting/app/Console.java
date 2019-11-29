@@ -3,6 +3,8 @@ package com.jamie.raycasting.app;
 import com.jamie.jamapp.App;
 import com.jamie.jamapp.Bitmap;
 import com.jamie.raycasting.items.Item;
+import com.jamie.raycasting.world.blocks.TriggerableBlock;
+import com.jamie.raycasting.world.levels.Level;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +20,10 @@ public class Console {
 
     public static void log(String s) {
         lines.add(s);
+    }
+
+    public static Level getLevel() {
+        return Client.getWorld().level;
     }
 
     public static void run(String command) {
@@ -72,7 +78,7 @@ public class Console {
                     App.setDisplayResolution(Integer.parseInt(args[1]), Integer.parseInt(args[2]));
                     Client.resizeMenus();
                 } else {
-                    log("specify new width and height");
+                    log("Specify new width and height");
                 }
                 break;
             case "smallfont": // set small font usage
@@ -87,6 +93,25 @@ public class Console {
                     App.inDev = (Integer.parseInt(args[1]) > 0);
                 } else {
                     log("Specify to set 0 or 1");
+                }
+                break;
+            case "triggerb":
+                if (args.length >= 2) {
+                    if (getLevel() != null) {
+                        if (getLevel().getBlockByReference(args[1]) != null) {
+                            if (getLevel().getBlockByReference(args[1]) instanceof TriggerableBlock) {
+                                ((TriggerableBlock) getLevel().getBlockByReference(args[1])).trigger();
+                            } else {
+                                log("This block is not triggerable");
+                            }
+                        } else {
+                            log("Could not find a block by reference: " + args[1]);
+                        }
+                    } else {
+                        log("Client must be inside a level to use this command");
+                    }
+                } else {
+                    log("Provide a reference for a block in this level");
                 }
                 break;
             case "additem": // add item
