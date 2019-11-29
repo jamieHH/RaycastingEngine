@@ -112,9 +112,9 @@ public class OptionsMenu extends Menu
 
                 App.display.setSize(App.getDisplayWidth(), App.getDisplayHeight());
                 Client.resizeMenus();
-                Client.setGetActiveOverlay(Client.mainMenu);
+                Client.setActiveOverlay(Client.mainMenu);
             } else if (getOption(optionIndex).equals("Main Menu")) {
-                Client.setGetActiveOverlay(Client.mainMenu);
+                Client.setActiveOverlay(Client.mainMenu);
             }
         }
     }

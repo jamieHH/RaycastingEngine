@@ -34,7 +34,7 @@ public class LoadMenu extends Menu
             Client.input.stopInput(Controls.ENTER);
             Sound.clickAction.play();
             if (getOption(optionIndex).equals("Main Menu")) {
-                Client.setGetActiveOverlay(Client.mainMenu);
+                Client.setActiveOverlay(Client.mainMenu);
             }
         }
     }

@@ -33,7 +33,7 @@ public class Client extends JamappClient
 	public Client(InputHandler input) {
 		super(input);
 
-        setGetActiveOverlay(mainMenu);
+        setActiveOverlay(mainMenu);
 	}
 
 	public void tick() {
@@ -64,10 +64,10 @@ public class Client extends JamappClient
 						input.stopInput(Controls.INVENTORY);
 						if (getActiveOverlay() == null) {
 							Sound.slideUp.play();
-							setGetActiveOverlay(inventoryOverlay);
+							setActiveOverlay(inventoryOverlay);
 						} else {
 							Sound.slideDown.play();
-							setGetActiveOverlay(null);
+							setActiveOverlay(null);
 						}
 					}
 
@@ -75,31 +75,31 @@ public class Client extends JamappClient
                         input.stopInput(Controls.PAUSE);
                         if (getActiveOverlay() == null) {
                             Sound.slideUp.play();
-                            setGetActiveOverlay(pauseMenu);
+                            setActiveOverlay(pauseMenu);
                         } else {
                             Sound.slideDown.play();
-                            setGetActiveOverlay(null);
+                            setActiveOverlay(null);
                         }
                     }
 
 					if (input.check(Controls.CONSOLE)) {
 						input.stopInput(Controls.CONSOLE);
 						if (getActiveOverlay() == null) {
-							setGetActiveOverlay(consoleOverlay);
+							setActiveOverlay(consoleOverlay);
 						}
 					}
 				} else {
 					if (getActiveOverlay() == inventoryOverlay) {
-						setGetActiveOverlay(null);
+						setActiveOverlay(null);
 					}
 					if (input.check(Controls.PAUSE)) {
 						input.stopInput(Controls.PAUSE);
 						if (getActiveOverlay() == null) {
 							Sound.slideUp.play();
-							setGetActiveOverlay(overMenu);
+							setActiveOverlay(overMenu);
 						} else {
 							Sound.slideDown.play();
-							setGetActiveOverlay(null);
+							setActiveOverlay(null);
 						}
 					}
 				}
@@ -112,14 +112,14 @@ public class Client extends JamappClient
 		setPlayer(new Player(input));
 		getPlayer().setRotation(1.9);
 		getWorld().switchLevel(getPlayer(), level, 0);
-		setGetActiveOverlay(null);
+		setActiveOverlay(null);
 	}
 
 	public static void stopGame() {
 		world.clearLoadedLevels();
 		world = null;
 		setPlayer(null);
-		setGetActiveOverlay(mainMenu);
+		setActiveOverlay(mainMenu);
 	}
 
 	public static void resizeMenus() {
@@ -132,7 +132,7 @@ public class Client extends JamappClient
 		consoleOverlay.setSize((int) (App.getDisplayWidth() * 0.8), (int) (App.getDisplayHeight() * 0.6));
 	}
 
-	public static void setGetActiveOverlay(Overlay overlay) {
+	public static void setActiveOverlay(Overlay overlay) {
 		activeOverlay = overlay;
 		if (getActiveOverlay() instanceof Menu) {
 			((Menu) getActiveOverlay()).optionIndex = 0;

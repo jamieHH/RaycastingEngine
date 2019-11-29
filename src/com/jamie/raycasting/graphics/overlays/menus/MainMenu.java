@@ -30,9 +30,9 @@ public class MainMenu extends Menu
             if (getOption(optionIndex).equals("New Game")) {
                 Client.newGame("prison");
             } else if (getOption(optionIndex).equals("Load Game")) {
-                Client.setGetActiveOverlay(Client.loadMenu);
+                Client.setActiveOverlay(Client.loadMenu);
             } else if (getOption(optionIndex).equals("Options")) {
-                Client.setGetActiveOverlay(Client.optionsMenu);
+                Client.setActiveOverlay(Client.optionsMenu);
             } else if (getOption(optionIndex).equals("Quit")) {
                 System.exit(0);
             }

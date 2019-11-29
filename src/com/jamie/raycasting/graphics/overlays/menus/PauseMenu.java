@@ -26,7 +26,7 @@ public class PauseMenu extends Menu
             Client.input.stopInput(Controls.ENTER);
             Sound.clickAction.play();
             if (getOption(optionIndex).equals("Resume")) {
-                Client.setGetActiveOverlay(null);
+                Client.setActiveOverlay(null);
             } else if (getOption(optionIndex).equals("Main Menu")) {
                 Client.stopGame();
             }
