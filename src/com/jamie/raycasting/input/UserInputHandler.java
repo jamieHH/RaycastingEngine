@@ -50,11 +50,7 @@ public class UserInputHandler extends InputHandler
         setInput(inputGroup, false);
     }
 
-	public void tick() {
-        super.tick();
-    }
-
-	@Override
+    @Override
 	public void focusGained(FocusEvent e) {
 		// TODO Auto-generated method stub
 		

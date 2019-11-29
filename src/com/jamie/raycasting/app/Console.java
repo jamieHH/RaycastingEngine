@@ -31,7 +31,7 @@ public class Console {
                 Console.lines = new ArrayList<String>();
                 break;
             case "x": // exit window
-                Client.setActiveOverlay(null);
+                Client.setGetActiveOverlay(null);
                 break;
             case "getpos": // get player pos
                 log(Client.getPlayer().posX + ", " + Client.getPlayer().posZ);

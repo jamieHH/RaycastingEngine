@@ -103,11 +103,11 @@ public class Screen extends Display
             }
         }
 
-        if (Client.activeOverlay != null) {
-            Client.activeOverlay.update();
-            int cornerX = (width / 2) - (Client.activeOverlay.width / 2);
-            int cornerY = (height / 2) - (Client.activeOverlay.height / 2);
-            draw(Client.activeOverlay, cornerX, cornerY, Client.activeOverlay.opacity);
+        if (Client.getActiveOverlay() != null) {
+            Client.getActiveOverlay().update();
+            int cornerX = (width / 2) - (Client.getActiveOverlay().width / 2);
+            int cornerY = (height / 2) - (Client.getActiveOverlay().height / 2);
+            draw(Client.getActiveOverlay(), cornerX, cornerY, Client.getActiveOverlay().opacity);
         }
     }
 }

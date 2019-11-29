@@ -1,6 +1,5 @@
 package com.jamie.raycasting.graphics.overlays.menus;
 
-import com.jamie.jamapp.App;
 import com.jamie.raycasting.app.Sound;
 import com.jamie.raycasting.app.Client;
 import com.jamie.raycasting.input.Controls;
@@ -31,9 +30,9 @@ public class MainMenu extends Menu
             if (getOption(optionIndex).equals("New Game")) {
                 Client.newGame("prison");
             } else if (getOption(optionIndex).equals("Load Game")) {
-                Client.setActiveOverlay(Client.loadMenu);
+                Client.setGetActiveOverlay(Client.loadMenu);
             } else if (getOption(optionIndex).equals("Options")) {
-                Client.setActiveOverlay(Client.optionsMenu);
+                Client.setGetActiveOverlay(Client.optionsMenu);
             } else if (getOption(optionIndex).equals("Quit")) {
                 System.exit(0);
             }

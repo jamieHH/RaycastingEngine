@@ -56,10 +56,6 @@ public class GateBlock extends TriggerableBlock
         setState(!getState());
     }
 
-    public void tick() {
-	    super.tick();
-    }
-
     public boolean getState() {
         return isOpen;
     }

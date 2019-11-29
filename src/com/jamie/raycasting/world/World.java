@@ -11,7 +11,6 @@ import com.jamie.raycasting.world.levels.Level;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.FileInputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -63,7 +62,7 @@ public class World
             newLevel = Level.makeRandomLevel(1000, 1000);
         }
 
-        Client.setActiveOverlay(new LoadingOverlay(App.getDisplayWidth(), App.getDisplayHeight(), newLevel.name));
+        Client.setGetActiveOverlay(new LoadingOverlay(App.getDisplayWidth(), App.getDisplayHeight(), newLevel.name));
         Sound.switchLevel.play();
 
         if (level != null) {

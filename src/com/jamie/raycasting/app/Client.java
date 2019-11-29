@@ -27,24 +27,24 @@ public class Client extends JamappClient
     public static final Overlay inventoryOverlay = new InventoryOverlay((int) (App.getDisplayWidth() * 0.8), (int) (App.getDisplayHeight() * 0.6));
     public static final Overlay consoleOverlay = new ConsoleOverlay((int) (App.getDisplayWidth() * 0.8), (int) (App.getDisplayHeight() * 0.6));
 
-	public static Overlay activeOverlay;
+	private static Overlay activeOverlay;
 	
 	
 	public Client(InputHandler input) {
 		super(input);
 
-        setActiveOverlay(mainMenu);
+        setGetActiveOverlay(mainMenu);
 	}
 
 	public void tick() {
-		if (activeOverlay != null) {
-			activeOverlay.tick();
+		if (getActiveOverlay() != null) {
+			getActiveOverlay().tick();
 			input.unlockCursor();
 		} else {
             input.lockCursor();
         }
 
-		if (activeOverlay instanceof ConsoleOverlay) {
+		if (getActiveOverlay() instanceof ConsoleOverlay) {
 			input.setIsTyping(true);
 		}
 
@@ -53,7 +53,7 @@ public class Client extends JamappClient
 			world.tick();
 
 			if (getPlayer() != null) {
-				if (activeOverlay != null) {
+				if (getActiveOverlay() != null) {
 					getPlayer().isUsingMenu = true;
 				} else {
 					getPlayer().isUsingMenu = false;
@@ -62,44 +62,44 @@ public class Client extends JamappClient
 				if (!getPlayer().isDead) {
 					if (input.check(Controls.INVENTORY)) {
 						input.stopInput(Controls.INVENTORY);
-						if (activeOverlay == null) {
+						if (getActiveOverlay() == null) {
 							Sound.slideUp.play();
-							setActiveOverlay(inventoryOverlay);
+							setGetActiveOverlay(inventoryOverlay);
 						} else {
 							Sound.slideDown.play();
-							setActiveOverlay(null);
+							setGetActiveOverlay(null);
 						}
 					}
 
                     if (input.check(Controls.PAUSE)) {
                         input.stopInput(Controls.PAUSE);
-                        if (activeOverlay == null) {
+                        if (getActiveOverlay() == null) {
                             Sound.slideUp.play();
-                            setActiveOverlay(pauseMenu);
+                            setGetActiveOverlay(pauseMenu);
                         } else {
                             Sound.slideDown.play();
-                            setActiveOverlay(null);
+                            setGetActiveOverlay(null);
                         }
                     }
 
 					if (input.check(Controls.CONSOLE)) {
 						input.stopInput(Controls.CONSOLE);
-						if (activeOverlay == null) {
-							setActiveOverlay(consoleOverlay);
+						if (getActiveOverlay() == null) {
+							setGetActiveOverlay(consoleOverlay);
 						}
 					}
 				} else {
-					if (activeOverlay == inventoryOverlay) {
-						setActiveOverlay(null);
+					if (getActiveOverlay() == inventoryOverlay) {
+						setGetActiveOverlay(null);
 					}
 					if (input.check(Controls.PAUSE)) {
 						input.stopInput(Controls.PAUSE);
-						if (activeOverlay == null) {
+						if (getActiveOverlay() == null) {
 							Sound.slideUp.play();
-							setActiveOverlay(overMenu);
+							setGetActiveOverlay(overMenu);
 						} else {
 							Sound.slideDown.play();
-							setActiveOverlay(null);
+							setGetActiveOverlay(null);
 						}
 					}
 				}
@@ -112,14 +112,14 @@ public class Client extends JamappClient
 		setPlayer(new Player(input));
 		getPlayer().setRotation(1.9);
 		getWorld().switchLevel(getPlayer(), level, 0);
-		setActiveOverlay(null);
+		setGetActiveOverlay(null);
 	}
 
 	public static void stopGame() {
 		world.clearLoadedLevels();
 		world = null;
 		setPlayer(null);
-		setActiveOverlay(mainMenu);
+		setGetActiveOverlay(mainMenu);
 	}
 
 	public static void resizeMenus() {
@@ -132,11 +132,15 @@ public class Client extends JamappClient
 		consoleOverlay.setSize((int) (App.getDisplayWidth() * 0.8), (int) (App.getDisplayHeight() * 0.6));
 	}
 
-	public static void setActiveOverlay(Overlay overlay) {
+	public static void setGetActiveOverlay(Overlay overlay) {
 		activeOverlay = overlay;
-		if (activeOverlay instanceof Menu) {
-			((Menu) activeOverlay).optionIndex = 0;
+		if (getActiveOverlay() instanceof Menu) {
+			((Menu) getActiveOverlay()).optionIndex = 0;
 		}
+	}
+
+	public static Overlay getActiveOverlay() {
+		return activeOverlay;
 	}
 
 	public static void switchPerspective() {

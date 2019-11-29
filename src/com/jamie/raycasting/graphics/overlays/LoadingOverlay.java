@@ -21,6 +21,6 @@ public class LoadingOverlay extends Overlay
             return;
         }
 
-        Client.setActiveOverlay(null);
+        Client.setGetActiveOverlay(null);
     }
 }
