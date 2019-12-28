@@ -14,20 +14,9 @@ public class Drop extends Entity
 
 
     public Drop(Item item) {
-        posY = 0.5;
         radius = 1;
         isSolid = false;
 
         this.item = item;
-    }
-
-    public void tick() {
-        super.tick();
-
-        if (posY > 0) {
-            posY -= 0.05;
-        } else {
-            posY = 0;
-        }
     }
 }

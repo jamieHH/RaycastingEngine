@@ -21,7 +21,6 @@ public abstract class Entity
     private double rotation;
     public double posX = 0;
     public double posZ = 0;
-    public double posY = 0;
 
     private SpriteSet spriteSet = new SpriteSet();
 

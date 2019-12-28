@@ -293,13 +293,13 @@ public class Bitmap3D extends Bitmap
 			if (entity.isInside(xBlockStart, zBlockStart, xBlockEnd, zBlockEnd)) {
 				Sprite sprite = entity.getRenderSprite();
 				if (sprite != null && sprite.bitmap() != null) {
-					drawSprite(entity.posX + sprite.x, entity.posY + sprite.y, entity.posZ + sprite.z, sprite.bitmap());
+					drawSprite(entity.posX + sprite.x, sprite.y, entity.posZ + sprite.z, sprite.bitmap());
 				}
 
 				if (entity instanceof Particle) {
 					for (int j = 0; j < ((Particle) entity).getSpriteParticles().length; j++) {
 						Sprite spriteP = ((Particle) entity).getSpriteParticles()[j];
-						drawSprite(entity.posX + spriteP.x, entity.posY + spriteP.y, entity.posZ + spriteP.z, spriteP.bitmap());
+						drawSprite(entity.posX + spriteP.x, spriteP.y, entity.posZ + spriteP.z, spriteP.bitmap());
 					}
 				}
 			}
