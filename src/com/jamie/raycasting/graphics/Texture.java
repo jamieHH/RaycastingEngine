@@ -102,6 +102,9 @@ public class Texture
     public static final Bitmap lamp3 = PngLoader.loadBitmap("tex/lamp3.png");
     public static final Bitmap bars = PngLoader.loadBitmap("tex/bars.png");
     public static final Bitmap barrel0 = PngLoader.loadBitmap("tex/barrel0.png");
+    public static final Bitmap barrel1 = PngLoader.loadBitmap("tex/barrel1.png");
+    public static final Bitmap chest0 = PngLoader.loadBitmap("tex/chest0.png");
+    public static final Bitmap chest1 = PngLoader.loadBitmap("tex/chest1.png");
     public static final Bitmap ladder = PngLoader.loadBitmap("tex/ladder.png");
     public static final Bitmap portal0 = PngLoader.loadBitmap("tex/portal0.png");
     public static final Bitmap portal1 = PngLoader.loadBitmap("tex/portal1.png");

@@ -3,17 +3,17 @@ package com.jamie.raycasting.entities;
 import com.jamie.jamapp.Bitmap;
 import com.jamie.raycasting.app.Sound;
 import com.jamie.raycasting.entities.mobs.Mob;
-import com.jamie.raycasting.entities.particles.WoodParticle;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
+import com.jamie.raycasting.items.Item;
 
-public class BarrelEntity extends Entity
+public class ChestEntity extends Entity
 {
-    private Entity drop;
-    private int quantity;
+    private Item drop;
+    private int quantity = 1;
     private boolean used = false;
 
-    public BarrelEntity(Entity drop, int quantity) {
+    public ChestEntity(Item drop, int quantity) {
         setupSprites();
         this.isSolid = true;
         this.radius = 0.25;
@@ -21,7 +21,7 @@ public class BarrelEntity extends Entity
         this.drop = drop;
     }
 
-    public BarrelEntity(Mob drop) {
+    public ChestEntity(Item drop) {
         setupSprites();
         this.isSolid = true;
         this.radius = 0.25;
@@ -30,24 +30,25 @@ public class BarrelEntity extends Entity
 
     private void setupSprites() {
         Bitmap[] ts0 = {
-                Texture.barrel0,
+                Texture.chest0,
         };
         setIdleSprite(new Sprite(ts0));
 
         Bitmap[] ts1 = {
-                Texture.barrel1,
+                Texture.chest1,
         };
-        setSpriteSet("broken", new Sprite(ts1));
+        setSpriteSet("open", new Sprite(ts1));
     }
 
     public boolean use(Mob source) {
         if (!used) {
             used = true;
             isSolid = false;
-            emitSound(Sound.smash);
-            switchSpriteSet("broken");
-            level.addEntity(new WoodParticle(4), posX, posZ);
-            level.addEntity(drop, posX, posZ);
+            emitSound(Sound.pickUp);
+            switchSpriteSet("open");
+            for (int i = 0; i < quantity; i++) {
+                source.addItem(drop);
+            }
             return true;
         }
 

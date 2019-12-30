@@ -6,12 +6,14 @@ import com.jamie.jamapp.Bitmap;
 import com.jamie.jamapp.Sfx;
 import com.jamie.raycasting.app.Client;
 import com.jamie.raycasting.entities.BarrelEntity;
+import com.jamie.raycasting.entities.ChestEntity;
 import com.jamie.raycasting.entities.Entity;
 import com.jamie.raycasting.entities.Drop;
 import com.jamie.raycasting.entities.mobs.*;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
 import com.jamie.raycasting.input.ArtificialInputHandler;
+import com.jamie.raycasting.items.consumables.HealthPotion;
 import com.jamie.raycasting.world.World;
 import com.jamie.raycasting.world.blocks.*;
 
@@ -336,7 +338,8 @@ public abstract class Level
         if (col == 0xFFFF71) return new Spirit(new ArtificialInputHandler());
         if (col == 0x8080C4) return new Imp(new ArtificialInputHandler());
         if (col == 0xC0EBC0) return new Guardian(new ArtificialInputHandler());
-        if (col == 0xB06E23) return new BarrelEntity(new Bat(new ArtificialInputHandler()));
+//        if (col == 0xB06E23) return new BarrelEntity(new Bat(new ArtificialInputHandler()));
+        if (col == 0xB06E23) return new ChestEntity(new HealthPotion());
         return null;
     }
 

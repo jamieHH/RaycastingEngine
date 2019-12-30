@@ -129,6 +129,14 @@ public abstract class Entity
         spriteSet.putSet(name, sprite);
     }
 
+    protected void switchSpriteSet(String name) {
+        spriteSet.switchSet(name);
+    }
+
+    public void setIdleSprite(Sprite sprite) {
+        setSpriteSet("idle", sprite);
+    }
+
     protected void runSpriteSet(String name) {
         spriteSet.runSet(name);
     }
