@@ -95,6 +95,13 @@ public class Console {
                     log("Specify to set 0 or 1");
                 }
                 break;
+            case "noclip":
+                if (args.length >= 2) {
+                    Client.getPlayer().isSolid = (Integer.parseInt(args[1]) < 1);
+                } else {
+                    log("Specify to set 0 or 1");
+                }
+                break;
             case "triggerb":
                 if (args.length >= 2) {
                     if (getLevel() != null) {
@@ -108,7 +115,7 @@ public class Console {
                             log("Could not find a block by reference: " + args[1]);
                         }
                     } else {
-                        log("Client must be inside a level to use this command");
+                        log("PLayer must be inside a level to use this command");
                     }
                 } else {
                     log("Provide a reference for a block in this level");

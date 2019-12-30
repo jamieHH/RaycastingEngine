@@ -5,6 +5,7 @@ import java.util.*;
 import com.jamie.jamapp.Bitmap;
 import com.jamie.jamapp.Sfx;
 import com.jamie.raycasting.app.Client;
+import com.jamie.raycasting.entities.BarrelEntity;
 import com.jamie.raycasting.entities.Entity;
 import com.jamie.raycasting.entities.Drop;
 import com.jamie.raycasting.entities.mobs.*;
@@ -58,7 +59,6 @@ public abstract class Level
     protected final SolidSpriteBlock PillarBlock = new SolidSpriteBlock(getFloorTexture(), getCeilingTexture(), Texture.pillar);
     protected final SolidSpriteBlock BarsBlock = new SolidSpriteBlock(getFloorTexture(), getCeilingTexture(), Texture.bars);
     protected final SolidSpriteBlock TreeBlock = new SolidSpriteBlock(Texture.grass, getCeilingTexture(), Texture.tree);
-    protected final AirSpriteBlock BarrelsBlock = new AirSpriteBlock(getFloorTexture(), getCeilingTexture(), Texture.barrel0);
     protected final AirSpriteBlock GraveBlock = new AirSpriteBlock(Texture.dirt, getCeilingTexture(), Texture.grave);
     protected final AirSpriteBlock LampBlock = new AirSpriteBlock(Texture.stonePath, getCeilingTexture(), new Sprite(new Bitmap[] {
             Texture.lamp0,
@@ -145,9 +145,9 @@ public abstract class Level
             for (int xb = 0; xb < sizeX; xb++) {
                 int col = pixels[zb + xb * sizeX] & 0xFFFFFF;
 
-                Mob mob = getMobByColour(col);
-                if (mob != null) {
-                    addEntity(mob, xb + 0.5, zb + 0.5);
+                Entity ent = getEntByColour(col);
+                if (ent != null) {
+                    addEntity(ent, xb + 0.5, zb + 0.5);
                 }
             }
         }
@@ -177,7 +177,6 @@ public abstract class Level
         PillarBlock.tick();
         LampBlock.tick();
         BarsBlock.tick();
-        BarrelsBlock.tick();
         TreeBlock.tick();
         GrassBlock.tick();
         ShrubsBlock.tick();
@@ -308,7 +307,6 @@ public abstract class Level
         if (col == 0x808080) return PillarBlock;
         if (col == 0x648480) return LampBlock;
         if (col == 0xC0C0C0) return BarsBlock;
-        if (col == 0xB06E23) return BarrelsBlock;
         if (col == 0xB27400) return TreeBlock;
         if (col == 0xB8ECBE) return GrassBlock;
         if (col == 0x7F8800) return ShrubsBlock;
@@ -333,11 +331,12 @@ public abstract class Level
         return AirBlock;
     }
 
-    private Mob getMobByColour(int col) {
+    private Entity getEntByColour(int col) {
         if (col == 0x804000) return new Bat(new ArtificialInputHandler());
         if (col == 0xFFFF71) return new Spirit(new ArtificialInputHandler());
         if (col == 0x8080C4) return new Imp(new ArtificialInputHandler());
         if (col == 0xC0EBC0) return new Guardian(new ArtificialInputHandler());
+        if (col == 0xB06E23) return new BarrelEntity(new Bat(new ArtificialInputHandler()));
         return null;
     }
 

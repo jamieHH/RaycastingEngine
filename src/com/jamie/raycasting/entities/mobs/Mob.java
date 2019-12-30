@@ -534,6 +534,11 @@ public abstract class Mob extends Entity
         moveZ += mz * Math.cos(-getRotation()) - mx * Math.sin(-getRotation());
     }
 
+    public void addMomentum(double moveX, double moveZ) {
+        this.moveX = moveX;
+        this.moveZ = moveZ;
+    }
+
     public void heal(int magnitude) {
         if (magnitude > 0 && !isDieing) {
             runSpriteSet("heal");
@@ -593,13 +598,23 @@ public abstract class Mob extends Entity
 
                 for (int b = 0; b < closeEntities.size(); b++) {
                     Entity ent = closeEntities.get(b);
-                    if (ent instanceof Mob && ent != this) {
-                        if (ent.contains(xx, zz)) {
-                            if (getRightHandItem() == null || (getRightHandItem() != null && getRightHandItem().canStrike)) {
-                                ((Mob) ent).hurt(this, getDamage());
-                            } // prevents ranged weapons from causing melee damage
-                            hit = true; // skips remaining eye line checks
-                            break; // breaks from mob checks
+                    if (ent != this) {
+                        if (ent instanceof Mob) {
+                            if (ent.contains(xx, zz)) {
+                                if (getRightHandItem() == null || (getRightHandItem() != null && getRightHandItem().canStrike)) {
+                                    ((Mob) ent).hurt(this, getDamage());
+                                } // prevents ranged weapons from causing melee damage
+
+                                hit = true; // skips remaining eye line checks
+                                break; // breaks from ent checks
+                            }
+                        } else if (ent != null) {
+                            if (ent.contains(xx, zz)) {
+                                ent.use(this);
+
+                                hit = true; // skips remaining eye line checks
+                                break; // breaks from ent checks
+                            }
                         }
                     }
                 }
