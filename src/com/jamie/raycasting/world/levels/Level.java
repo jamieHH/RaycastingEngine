@@ -338,8 +338,8 @@ public abstract class Level
         if (col == 0xFFFF71) return new Spirit(new ArtificialInputHandler());
         if (col == 0x8080C4) return new Imp(new ArtificialInputHandler());
         if (col == 0xC0EBC0) return new Guardian(new ArtificialInputHandler());
-//        if (col == 0xB06E23) return new BarrelEntity(new Bat(new ArtificialInputHandler()));
-        if (col == 0xB06E23) return new ChestEntity(new HealthPotion());
+        if (col == 0xB06E23) return new BarrelEntity(new Drop(new HealthPotion()));
+//        if (col == 0xB06E23) return new ChestEntity(new HealthPotion());
         return null;
     }
 

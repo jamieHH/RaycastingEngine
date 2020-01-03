@@ -608,7 +608,7 @@ public abstract class Mob extends Entity
                                 hit = true; // skips remaining eye line checks
                                 break; // breaks from ent checks
                             }
-                        } else if (ent != null) {
+                        } else if (ent != null && ent.isSolid) {
                             if (ent.contains(xx, zz)) {
                                 ent.use(this);
 

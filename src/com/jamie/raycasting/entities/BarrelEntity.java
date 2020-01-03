@@ -10,14 +10,12 @@ import com.jamie.raycasting.graphics.Texture;
 public class BarrelEntity extends Entity
 {
     private Entity drop;
-    private int quantity;
     private boolean used = false;
 
-    public BarrelEntity(Entity drop, int quantity) {
+    public BarrelEntity(Entity drop) {
         setupSprites();
         this.isSolid = true;
         this.radius = 0.25;
-        this.quantity = quantity;
         this.drop = drop;
     }
 
