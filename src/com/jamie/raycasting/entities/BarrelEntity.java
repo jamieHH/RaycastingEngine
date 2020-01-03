@@ -4,7 +4,7 @@ import com.jamie.jamapp.Bitmap;
 import com.jamie.raycasting.app.Sound;
 import com.jamie.raycasting.entities.mobs.Bat;
 import com.jamie.raycasting.entities.mobs.Mob;
-import com.jamie.raycasting.entities.particles.WoodParticle;
+import com.jamie.raycasting.entities.particles.DarkWoodParticle;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
 import com.jamie.raycasting.input.ArtificialInputHandler;
@@ -39,15 +39,12 @@ public class BarrelEntity extends Entity
         Random random = new Random();
         ArrayList<Entity> list = new ArrayList<Entity>(
                 Arrays.asList(
-                        new Drop(new HealthPotion()),
-                        new Drop(new HealthPotion()),
-                        new Drop(new HealthPotion()),
-                        new Drop(new HealthPotion()),
-                        new Drop(new HealthPotion()),
+                        null,
+                        null,
+                        null,
+                        null,
                         new Drop(new HealthPotion()),
                         new Drop(new SpeedPotion()),
-                        new Drop(new SpeedPotion()),
-                        new Drop(new StrengthPotion()),
                         new Drop(new StrengthPotion()),
                         new Bat(new ArtificialInputHandler())
                 )
@@ -74,8 +71,10 @@ public class BarrelEntity extends Entity
             isSolid = false;
             emitSound(Sound.smash);
             switchSpriteSet("broken");
-            level.addEntity(new WoodParticle(4), posX, posZ);
-            level.addEntity(drop, posX, posZ);
+            level.addEntity(new DarkWoodParticle(6), posX, posZ);
+            if (drop != null) {
+                level.addEntity(drop, posX, posZ);
+            }
             return true;
         }
 

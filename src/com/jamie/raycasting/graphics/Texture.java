@@ -172,6 +172,8 @@ public class Texture
     public static final Bitmap health1 = PngLoader.loadBitmap("tex/health1.png");
     public static final Bitmap splinter0 = PngLoader.loadBitmap("tex/splinter0.png");
     public static final Bitmap splinter1 = PngLoader.loadBitmap("tex/splinter1.png");
+    public static final Bitmap splinterDark0 = PngLoader.loadBitmap("tex/splinterDark0.png");
+    public static final Bitmap splinterDark1 = PngLoader.loadBitmap("tex/splinterDark1.png");
     public static final Bitmap drop = PngLoader.loadBitmap("tex/drop.png");
 
     // screen
