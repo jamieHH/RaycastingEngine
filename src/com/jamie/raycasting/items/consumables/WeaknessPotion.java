@@ -13,6 +13,7 @@ public class WeaknessPotion extends Consumable
         magnitude = -4;
 
         icon = Texture.greenPotionIcon;
+        dropTex = Texture.greenPotion;
     }
 
     public void use() {

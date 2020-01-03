@@ -13,6 +13,7 @@ public class SlowPotion extends Consumable
         magnitude = -3;
 
         icon = Texture.greenPotionIcon;
+        dropTex = Texture.greenPotion;
     }
 
     public void use() {

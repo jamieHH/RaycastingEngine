@@ -13,6 +13,7 @@ public class StrengthPotion extends Consumable
         magnitude = 4;
 
         icon = Texture.yellowPotionIcon;
+        dropTex = Texture.yellowPotion;
     }
 
     public void use() {

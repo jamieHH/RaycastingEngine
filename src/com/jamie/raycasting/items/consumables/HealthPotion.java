@@ -13,6 +13,8 @@ public class HealthPotion extends Consumable
         magnitude = 1;
 
         icon = Texture.redPotionIcon;
+
+        dropTex = Texture.redPotion;
     }
 
     public void use() {

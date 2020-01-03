@@ -154,6 +154,10 @@ public class Texture
     public static final Bitmap torch0 = PngLoader.loadBitmap("tex/torch0.png");
     public static final Bitmap torch1 = PngLoader.loadBitmap("tex/torch1.png");
     public static final Bitmap torch2 = PngLoader.loadBitmap("tex/torch2.png");
+    public static final Bitmap redPotion = PngLoader.loadBitmap("tex/redPotion.png");
+    public static final Bitmap bluePotion = PngLoader.loadBitmap("tex/bluePotion.png");
+    public static final Bitmap greenPotion = PngLoader.loadBitmap("tex/greenPotion.png");
+    public static final Bitmap yellowPotion = PngLoader.loadBitmap("tex/yellowPotion.png");
 
 	// particles
     public static final Bitmap blood0 = PngLoader.loadBitmap("tex/blood0.png");

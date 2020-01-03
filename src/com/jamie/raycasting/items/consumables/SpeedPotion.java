@@ -13,6 +13,7 @@ public class SpeedPotion extends Consumable
         magnitude = 3;
 
         icon = Texture.bluePotionIcon;
+        dropTex = Texture.bluePotion;
     }
 
     public void use() {

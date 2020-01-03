@@ -13,6 +13,7 @@ public class PoisonPotion extends Consumable
         magnitude = -1;
 
         icon = Texture.greenPotionIcon;
+        dropTex = Texture.greenPotion;
     }
 
     public void use() {
