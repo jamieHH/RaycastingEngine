@@ -133,6 +133,7 @@ public abstract class Mob extends Entity
         health = maxHealth;
         camY = viewHeight;
 
+        setIdleSprite(getDefaultSprite());
         setSpriteSet("action", getActionSprite());
         setSpriteSet("heal", getHealSprite());
         setSpriteSet("hurt", getHurtSprite());

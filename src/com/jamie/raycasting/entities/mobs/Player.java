@@ -12,7 +12,7 @@ import com.jamie.raycasting.items.weapons.*;
 
 public class Player extends Mob
 {
-    protected Sprite getSprite() {
+    protected Sprite getDefaultSprite() {
         return new Sprite(new Bitmap[] {
                 Texture.marker
         });

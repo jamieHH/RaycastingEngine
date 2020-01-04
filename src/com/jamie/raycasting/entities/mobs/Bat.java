@@ -7,7 +7,7 @@ import com.jamie.jamapp.InputHandler;
 
 public class Bat extends Mob
 {
-    protected Sprite getSprite() {
+    protected Sprite getDefaultSprite() {
         return new Sprite(new Bitmap[] {
                 Texture.bat0,
                 Texture.bat1,

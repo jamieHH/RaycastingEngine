@@ -9,7 +9,7 @@ import com.jamie.raycasting.items.specials.HealingSpell;
 
 public class Imp extends Mob
 {
-    protected Sprite getSprite() {
+    protected Sprite getDefaultSprite() {
         return new Sprite(new Bitmap[] {
                 Texture.imp0,
                 Texture.imp1,

@@ -11,7 +11,7 @@ import java.util.List;
 
 public class ExplosionEffect extends EnvironmentalEffect
 {
-    protected Sprite getSprite() {
+    protected Sprite getDefaultSprite() {
         return null;
     }
 

@@ -9,7 +9,7 @@ import com.jamie.jamapp.InputHandler;
 
 public class Guardian extends Mob
 {
-    protected Sprite getSprite() {
+    protected Sprite getDefaultSprite() {
         return new Sprite(new Bitmap[] {
                 Texture.guardian0
         });

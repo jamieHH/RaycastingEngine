@@ -9,7 +9,7 @@ import com.jamie.jamapp.InputHandler;
 
 public class Spirit extends Mob
 {
-    protected Sprite getSprite() {
+    protected Sprite getDefaultSprite() {
         return new Sprite(new Bitmap[] {
                 Texture.spirit0,
                 Texture.spirit1,

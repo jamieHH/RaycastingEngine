@@ -23,11 +23,11 @@ public abstract class Entity
 
     private SpriteSet spriteSet = new SpriteSet();
 
-    protected abstract Sprite getSprite();
+    protected abstract Sprite getDefaultSprite();
 
 
     public Entity() {
-        setSpriteSet("idle", getSprite());
+
     }
 
     public void tick() {

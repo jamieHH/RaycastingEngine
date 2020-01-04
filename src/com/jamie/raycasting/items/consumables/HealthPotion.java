@@ -1,6 +1,7 @@
 package com.jamie.raycasting.items.consumables;
 
 import com.jamie.raycasting.entities.mobs.mobEffects.ModHealthEffect;
+import com.jamie.raycasting.graphics.DropSprite;
 import com.jamie.raycasting.graphics.Texture;
 
 public class HealthPotion extends Consumable
@@ -13,8 +14,7 @@ public class HealthPotion extends Consumable
         magnitude = 1;
 
         icon = Texture.redPotionIcon;
-
-        dropTex = Texture.redPotion;
+        dropSprite = new DropSprite(Texture.redPotion);
     }
 
     public void use() {

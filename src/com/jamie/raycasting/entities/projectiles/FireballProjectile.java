@@ -7,7 +7,7 @@ import com.jamie.raycasting.graphics.Texture;
 
 public class FireballProjectile extends Projectile
 {
-    protected Sprite getSprite() {
+    protected Sprite getDefaultSprite() {
         return new Sprite(new Bitmap[] {
                 Texture.fireball0,
                 Texture.fireball1

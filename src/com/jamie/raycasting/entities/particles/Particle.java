@@ -50,7 +50,7 @@ public abstract class Particle extends Entity
         return spriteParticles;
     }
 
-    protected Sprite getSprite() {
+    protected Sprite getDefaultSprite() {
         return null;
     }
 }

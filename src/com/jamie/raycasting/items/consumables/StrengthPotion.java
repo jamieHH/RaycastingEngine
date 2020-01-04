@@ -1,6 +1,7 @@
 package com.jamie.raycasting.items.consumables;
 
 import com.jamie.raycasting.entities.mobs.mobEffects.ModDamageEffect;
+import com.jamie.raycasting.graphics.DropSprite;
 import com.jamie.raycasting.graphics.Texture;
 
 public class StrengthPotion extends Consumable
@@ -13,7 +14,7 @@ public class StrengthPotion extends Consumable
         magnitude = 4;
 
         icon = Texture.yellowPotionIcon;
-        dropTex = Texture.yellowPotion;
+        dropSprite = new DropSprite(Texture.yellowPotion);
     }
 
     public void use() {

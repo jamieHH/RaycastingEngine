@@ -9,12 +9,18 @@ public class Drop extends Entity
 {
     public Item item;
 
-    protected Sprite getSprite() {
-        return new DropSprite(Texture.bag, 0.1, 0.5);
+    protected Sprite getDefaultSprite() {
+        return new DropSprite(Texture.bag);
     }
 
 
     public Drop(Item item) {
+        if (item.dropSprite != null) {
+            setIdleSprite(item.dropSprite);
+        } else {
+            setIdleSprite(getDefaultSprite());
+        }
+
         radius = 1;
         isSolid = false;
 

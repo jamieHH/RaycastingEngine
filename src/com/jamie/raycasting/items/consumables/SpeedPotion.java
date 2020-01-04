@@ -1,6 +1,7 @@
 package com.jamie.raycasting.items.consumables;
 
 import com.jamie.raycasting.entities.mobs.mobEffects.ModSpeedEffect;
+import com.jamie.raycasting.graphics.DropSprite;
 import com.jamie.raycasting.graphics.Texture;
 
 public class SpeedPotion extends Consumable
@@ -13,7 +14,7 @@ public class SpeedPotion extends Consumable
         magnitude = 3;
 
         icon = Texture.bluePotionIcon;
-        dropTex = Texture.bluePotion;
+        dropSprite = new DropSprite(Texture.bluePotion);
     }
 
     public void use() {

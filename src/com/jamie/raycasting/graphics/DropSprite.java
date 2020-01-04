@@ -22,6 +22,15 @@ public class DropSprite extends Sprite
         setMomentum();
     }
 
+    public DropSprite(Bitmap t) {
+        super(t);
+        y = 0.5;
+
+        this.force = 0.1;
+        this.gravity = 0.5;
+        setMomentum();
+    }
+
     public void tick() {
         super.tick();
         moveY -= gravity / 100;

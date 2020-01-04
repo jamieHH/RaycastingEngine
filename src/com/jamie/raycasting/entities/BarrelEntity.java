@@ -1,6 +1,5 @@
 package com.jamie.raycasting.entities;
 
-import com.jamie.jamapp.Bitmap;
 import com.jamie.raycasting.app.Sound;
 import com.jamie.raycasting.entities.mobs.Bat;
 import com.jamie.raycasting.entities.mobs.Mob;
@@ -28,13 +27,6 @@ public class BarrelEntity extends Entity
         this.drop = drop;
     }
 
-    public BarrelEntity(Mob drop) {
-        setupSprites();
-        this.isSolid = true;
-        this.radius = 0.25;
-        this.drop = drop;
-    }
-
     public static Entity getLootItem() {
         Random random = new Random();
         ArrayList<Entity> list = new ArrayList<Entity>(
@@ -54,15 +46,8 @@ public class BarrelEntity extends Entity
     }
 
     private void setupSprites() {
-        Bitmap[] ts0 = {
-                Texture.barrel0,
-        };
-        setIdleSprite(new Sprite(ts0));
-
-        Bitmap[] ts1 = {
-                Texture.barrel1,
-        };
-        setSpriteSet("broken", new Sprite(ts1));
+        setIdleSprite(getDefaultSprite());
+        setSpriteSet("broken", new Sprite(Texture.barrel1));
     }
 
     public boolean use(Mob source) {
@@ -81,7 +66,7 @@ public class BarrelEntity extends Entity
         return false;
     }
 
-    protected Sprite getSprite() {
-        return null; // gets overwritten in setupSprites
+    protected Sprite getDefaultSprite() {
+        return new Sprite(Texture.barrel0);
     }
 }

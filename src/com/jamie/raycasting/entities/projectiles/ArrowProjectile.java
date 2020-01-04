@@ -5,7 +5,7 @@ import com.jamie.raycasting.graphics.Sprite;
 
 public class ArrowProjectile extends Projectile
 {
-    protected Sprite getSprite() {
+    protected Sprite getDefaultSprite() {
         Bitmap r = new Bitmap(1, 1);
         r.fill(0xF8F8F8);
         Sprite s = new Sprite(r);
