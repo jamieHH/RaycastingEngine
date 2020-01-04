@@ -43,6 +43,14 @@ public class Bitmap
 	    return 8;
     }
 
+	public static int getLineHeight() {
+		if (isSmallFont) {
+			return 9;
+		}
+
+		return 10;
+	}
+
 	public void setSize(int width, int height) {
 		this.width = width;
 		this.height = height;

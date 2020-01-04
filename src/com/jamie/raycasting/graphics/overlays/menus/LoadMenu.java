@@ -42,33 +42,34 @@ public class LoadMenu extends Menu
     public void update() {
         fill(0x202020);
 
+        int lineHeight = getLineHeight();
         draw("  Load Game", bp, bp, 0xF0F0F0);
         for (int i = 0; i < getOptions().length; i++) {
             if (optionIndex == i) {
-                draw("-> " + getOption(i), bp, bp + 10 + (i * 10), 0xD0D0D0);
+                draw("-> " + getOption(i), bp, bp + lineHeight + (i * lineHeight), 0xD0D0D0);
 
                 if (getOption(optionIndex).equals("Save Slot 1")) {
                     String string = "< " + saves[optionIndex] + " >";
-                    draw(string, width - ((string.length() * 6) + bp), bp + 10 + (i * 10), 0xD0D0D0);
+                    draw(string, width - ((string.length() * 6) + bp), bp + lineHeight + (i * lineHeight), 0xD0D0D0);
                 } else if (getOption(optionIndex).equals("Save Slot 2")) {
                     String string = "< " + saves[optionIndex] + " >";
-                    draw(string, width - ((string.length() * 6) + bp), bp + 10 + (i * 10), 0xD0D0D0);
+                    draw(string, width - ((string.length() * 6) + bp), bp + lineHeight + (i * lineHeight), 0xD0D0D0);
                 } else if (getOption(optionIndex).equals("Save Slot 3")) {
                     String string = "< " + saves[optionIndex] + " >";
-                    draw(string, width - ((string.length() * 6) + bp), bp + 10 + (i * 10), 0xD0D0D0);
+                    draw(string, width - ((string.length() * 6) + bp), bp + lineHeight + (i * lineHeight), 0xD0D0D0);
                 }
             } else {
-                draw(" " + getOption(i), bp, bp + 10 + (i * 10), 0x707070);
+                draw(" " + getOption(i), bp, bp + lineHeight + (i * lineHeight), 0x707070);
 
                 if (getOption(i).equals("Save Slot 1")) {
                     String string = "< " + saves[i] + " >";
-                    draw(string, width - ((string.length() * 6) + bp), bp + 10 + (i * 10), 0x707070);
+                    draw(string, width - ((string.length() * 6) + bp), bp + lineHeight + (i * lineHeight), 0x707070);
                 } else if (getOption(i).equals("Save Slot 2")) {
                     String string = "< " + saves[i] + " >";
-                    draw(string, width - ((string.length() * 6) + bp), bp + 10 + (i * 10), 0x707070);
+                    draw(string, width - ((string.length() * 6) + bp), bp + lineHeight + (i * lineHeight), 0x707070);
                 } else if (getOption(i).equals("Save Slot 3")) {
                     String string = "< " + saves[i] + " >";
-                    draw(string, width - ((string.length() * 6) + bp), bp + 10 + (i * 10), 0x707070);
+                    draw(string, width - ((string.length() * 6) + bp), bp + lineHeight + (i * lineHeight), 0x707070);
                 }
             }
         }

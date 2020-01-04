@@ -45,9 +45,9 @@ public class MainMenu extends Menu
         draw("  Dungeon Raycaster", bp, bp, 0xF0F0F0);
         for (int i = 0; i < getOptions().length; i++) {
             if (optionIndex == i) {
-                draw("-> " + getOption(i), bp, bp + 10 + (i * 10), 0xD0D0D0);
+                draw("-> " + getOption(i), bp, bp + getLineHeight() + (i * getLineHeight()), 0xD0D0D0);
             } else {
-                draw(" " + getOption(i), bp, bp + 10 + (i * 10), 0x707070);
+                draw(" " + getOption(i), bp, bp + getLineHeight() + (i * getLineHeight()), 0x707070);
             }
         }
     }
