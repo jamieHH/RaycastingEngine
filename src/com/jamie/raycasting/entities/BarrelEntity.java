@@ -56,7 +56,7 @@ public class BarrelEntity extends Entity
             isSolid = false;
             emitSound(Sound.smash);
             switchSpriteSet("broken");
-            level.addEntity(new DarkWoodParticle(6), posX, posZ);
+            level.addEntity(new DarkWoodParticle(12), posX, posZ);
             if (drop != null) {
                 level.addEntity(drop, posX, posZ);
             }

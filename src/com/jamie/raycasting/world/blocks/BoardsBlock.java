@@ -60,7 +60,7 @@ public class BoardsBlock extends TriggerableBlock
     public void trigger() {
         setState(true);
 
-        WoodParticle p = new WoodParticle(8);
+        WoodParticle p = new WoodParticle(12);
         level.addEntity(p, gridX + 0.5, gridZ + 0.5);
     }
 
