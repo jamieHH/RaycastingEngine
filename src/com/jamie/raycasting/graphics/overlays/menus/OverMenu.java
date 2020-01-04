@@ -26,7 +26,9 @@ public class OverMenu extends Menu
             Client.input.stopInput(Controls.ACTION);
             Client.input.stopInput(Controls.ENTER);
             Sound.clickAction.play();
-            if (getOption(optionIndex).equals("Main Menu")) {
+            if (getOption(optionIndex).equals("Load Game")) {
+                Client.setActiveOverlay(Client.loadMenu);
+            } else if (getOption(optionIndex).equals("Main Menu")) {
                 Client.stopGame();
             } else if (getOption(optionIndex).equals("Quit Game")) {
                 System.exit(0);

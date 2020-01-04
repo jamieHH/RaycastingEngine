@@ -17,7 +17,7 @@ public class LoadMenu extends Menu
                 "Save Slot 1",
                 "Save Slot 2",
                 "Save Slot 3",
-                "Main Menu",
+                "Back",
         };
     }
 
@@ -33,8 +33,8 @@ public class LoadMenu extends Menu
             Client.input.stopInput(Controls.ACTION);
             Client.input.stopInput(Controls.ENTER);
             Sound.clickAction.play();
-            if (getOption(optionIndex).equals("Main Menu")) {
-                Client.setActiveOverlay(Client.mainMenu);
+            if (getOption(optionIndex).equals("Back")) {
+                Client.setActiveOverlay(Client.getPreviousOverlay());
             }
         }
     }

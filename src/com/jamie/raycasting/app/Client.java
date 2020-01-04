@@ -28,7 +28,8 @@ public class Client extends JamappClient
     public static final Overlay consoleOverlay = new ConsoleOverlay((int) (App.getDisplayWidth() * 0.8), (int) (App.getDisplayHeight() * 0.6));
 
 	private static Overlay activeOverlay;
-	
+	private static Overlay previousOverlay;
+
 	
 	public Client(InputHandler input) {
 		super(input);
@@ -133,6 +134,7 @@ public class Client extends JamappClient
 	}
 
 	public static void setActiveOverlay(Overlay overlay) {
+		previousOverlay = activeOverlay;
 		activeOverlay = overlay;
 		if (getActiveOverlay() instanceof Menu) {
 			((Menu) getActiveOverlay()).optionIndex = 0;
@@ -141,6 +143,10 @@ public class Client extends JamappClient
 
 	public static Overlay getActiveOverlay() {
 		return activeOverlay;
+	}
+
+	public static Overlay getPreviousOverlay() {
+		return previousOverlay;
 	}
 
 	public static void switchPerspective() {

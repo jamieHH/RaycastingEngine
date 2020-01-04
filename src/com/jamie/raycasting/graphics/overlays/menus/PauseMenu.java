@@ -9,6 +9,8 @@ public class PauseMenu extends Menu
     public String[] getOptions() {
         return new String[] {
                 "Resume",
+                "Load Game",
+                "Options",
                 "Main Menu"
         };
     }
@@ -27,6 +29,10 @@ public class PauseMenu extends Menu
             Sound.clickAction.play();
             if (getOption(optionIndex).equals("Resume")) {
                 Client.setActiveOverlay(null);
+            } else if (getOption(optionIndex).equals("Load Game")) {
+                Client.setActiveOverlay(Client.loadMenu);
+            } else if (getOption(optionIndex).equals("Options")) {
+                Client.setActiveOverlay(Client.optionsMenu);
             } else if (getOption(optionIndex).equals("Main Menu")) {
                 Client.stopGame();
             }
