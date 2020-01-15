@@ -13,7 +13,6 @@ import com.jamie.raycasting.entities.mobs.*;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
 import com.jamie.raycasting.input.ArtificialInputHandler;
-import com.jamie.raycasting.items.consumables.HealthPotion;
 import com.jamie.raycasting.world.World;
 import com.jamie.raycasting.world.blocks.*;
 

@@ -39,16 +39,16 @@ public class Console {
             case "x": // exit window
                 Client.setActiveOverlay(null);
                 break;
-            case "getpos": // get player pos
+            case "getPos": // get player pos
                 log(Client.getPlayer().posX + ", " + Client.getPlayer().posZ);
                 break;
-            case "setpos":
+            case "setPos":
                 Client.getPlayer().setPosition(Integer.parseInt(args[1]), Integer.parseInt(args[2]));
                 break;
-            case "getrot": // get player pos
+            case "getRot": // get player pos
                 log(Double.toString(Client.getPlayer().getRotation()));
                 break;
-            case "daynight": // enable day night cycle
+            case "dayNight": // enable day night cycle
                 Client.getWorld().enableTimeCycle = (Integer.parseInt(args[1]) > 0);
                 break;
             case "level": // move to level
@@ -67,13 +67,13 @@ public class Console {
                     log("Specify the level name");
                 }
                 break;
-            case "possessnextmob": // posses next mob
+            case "possessNextMob": // posses next mob
                 Client.possessNextMob();
                 break;
-            case "switchperspective": // switch perspective
+            case "switchPerspective": // switch perspective
                 Client.switchPerspective();
                 break;
-            case "setres": // set resolution
+            case "setRes": // set resolution
                 if (args.length >= 3) {
                     App.setDisplayResolution(Integer.parseInt(args[1]), Integer.parseInt(args[2]));
                     Client.resizeMenus();
@@ -81,7 +81,7 @@ public class Console {
                     log("Specify new width and height");
                 }
                 break;
-            case "smallfont": // set small font usage
+            case "smallFont": // set small font usage
                 if (args.length >= 2) {
                     Bitmap.isSmallFont = (Integer.parseInt(args[1]) > 0);
                 } else {
@@ -115,13 +115,26 @@ public class Console {
                             log("Could not find a block by reference: " + args[1]);
                         }
                     } else {
-                        log("PLayer must be inside a level to use this command");
+                        log("Player must be inside a level to use this command");
                     }
                 } else {
                     log("Provide a reference for a block in this level");
                 }
                 break;
-            case "additem": // add item
+            case "listEnts":
+                if (args.length >= 1) {
+                    if (getLevel() != null) {
+                        for (int i = 0; i < getLevel().countEntities(); i++) {
+                            log(getLevel().getEntity(i).hashCode() + " : " + getLevel().getEntity(i).getClass().getSimpleName());
+                        }
+                    } else {
+                        log("Player must be inside a level to use this command");
+                    }
+                } else {
+                    log("Provide a reference for a block in this level");
+                }
+                break;
+            case "addItem": // add item
                 if (args.length >= 2) {
                     String itemName = args[1].substring(0, 1).toUpperCase() + args[1].substring(1);
                     try {

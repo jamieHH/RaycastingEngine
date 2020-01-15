@@ -73,7 +73,9 @@ public class UserInputHandler extends InputHandler
         } else {
             if (e.getKeyCode() != KeyEvent.VK_ENTER) {
                 if (e.getKeyCode() != KeyEvent.VK_BACK_SPACE) {
-                    typedString += e.getKeyChar();
+                    if (e.getKeyCode() != KeyEvent.VK_SHIFT) {
+                        typedString += e.getKeyChar();
+                    }
                 } else if (typedString.length() > 0) {
                     typedString = typedString.substring(0, typedString.length() - 1);
                 }
