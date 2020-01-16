@@ -7,11 +7,15 @@ import com.jamie.raycasting.graphics.overlays.Overlay;
 import com.jamie.raycasting.input.Controls;
 
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ConsoleOverlay extends Overlay
 {
     private Bitmap historyPane;
     private String command = "";
+    private List<String> commandHistory = new ArrayList<String>();
+    private int reverseHistoryIndex = 0;
 
     public ConsoleOverlay(int width, int height) {
         super(width, height);
@@ -34,6 +38,10 @@ public class ConsoleOverlay extends Overlay
                     command = command.substring(0, command.length() - 1);
                 }
             } else if (
+                    ke.getKeyCode() != KeyEvent.VK_UP &&
+                    ke.getKeyCode() != KeyEvent.VK_DOWN &&
+                    ke.getKeyCode() != KeyEvent.VK_LEFT &&
+                    ke.getKeyCode() != KeyEvent.VK_RIGHT &&
                     ke.getKeyCode() != KeyEvent.VK_ENTER &&
                     ke.getKeyCode() != KeyEvent.VK_SHIFT &&
                     ke.getKeyCode() != KeyEvent.VK_BACK_QUOTE &&
@@ -46,7 +54,26 @@ public class ConsoleOverlay extends Overlay
         if (Client.input.check(Controls.ENTER)) {
             Client.input.stopInput(Controls.ENTER);
             Console.run(command);
+            commandHistory.add(command);
+            reverseHistoryIndex = 0;
             command = "";
+        }
+        if (Client.input.check(Controls.UP)) {
+            Client.input.stopInput(Controls.UP);
+            if (reverseHistoryIndex < commandHistory.size()) {
+                reverseHistoryIndex++;
+                command = commandHistory.get(commandHistory.size() - reverseHistoryIndex);
+            }
+        }
+        if (Client.input.check(Controls.DOWN)) {
+            Client.input.stopInput(Controls.DOWN);
+            if (reverseHistoryIndex > 1) {
+                reverseHistoryIndex--;
+                command = commandHistory.get(commandHistory.size() - reverseHistoryIndex);
+            } else if (reverseHistoryIndex > 0) {
+                reverseHistoryIndex--;
+                command = "";
+            }
         }
     }
 

@@ -74,29 +74,29 @@ public class Console {
                 Client.switchPerspective();
                 break;
             case "setRes": // set resolution
-                if (args.length >= 3) {
+                if (args.length >= 3 && isNumeric(args[1]) && isNumeric(args[2])) {
                     App.setDisplayResolution(Integer.parseInt(args[1]), Integer.parseInt(args[2]));
                     Client.resizeMenus();
                 } else {
-                    log("Specify new width and height");
+                    log("Specify a numerical width and height");
                 }
                 break;
             case "smallFont": // set small font usage
-                if (args.length >= 2) {
+                if (args.length >= 2 && isNumeric(args[1])) {
                     Bitmap.isSmallFont = (Integer.parseInt(args[1]) > 0);
                 } else {
                     log("Specify to set 0 or 1");
                 }
                 break;
             case "indev":
-                if (args.length >= 2) {
+                if (args.length >= 2 && isNumeric(args[1])) {
                     App.inDev = (Integer.parseInt(args[1]) > 0);
                 } else {
                     log("Specify to set 0 or 1");
                 }
                 break;
             case "noclip":
-                if (args.length >= 2) {
+                if (args.length >= 2 && isNumeric(args[1])) {
                     Client.getPlayer().isSolid = (Integer.parseInt(args[1]) < 1);
                 } else {
                     log("Specify to set 0 or 1");
@@ -154,5 +154,17 @@ public class Console {
 
     public static List<String> getLines() {
         return lines;
+    }
+
+    public static boolean isNumeric(String strNum) {
+        if (strNum == null) {
+            return false;
+        }
+        try {
+            double d = Double.parseDouble(strNum);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
     }
 }
