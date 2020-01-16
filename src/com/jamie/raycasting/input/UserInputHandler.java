@@ -84,4 +84,12 @@ public class UserInputHandler extends InputHandler
             }
         }
     }
+
+    @Override
+    public void mousePressed(MouseEvent mouseEvent) {
+        super.mousePressed(mouseEvent);
+        if (enableMouse) {
+            setInput(Controls.ACTION, true);
+        }
+    }
 }
