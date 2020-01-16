@@ -30,7 +30,7 @@ public class UserInputHandler extends InputHandler
             {Controls.HOT3, KeyEvent.VK_3},
             {Controls.INVENTORY, KeyEvent.VK_E},
             {Controls.PAUSE, KeyEvent.VK_ESCAPE},
-            {Controls.CONSOLE, KeyEvent.VK_SLASH},
+            {Controls.CONSOLE, KeyEvent.VK_BACK_QUOTE},
     }).collect(Collectors.toMap(data -> (String) data[0], data -> (int) data[1]));
 
 
@@ -50,12 +50,6 @@ public class UserInputHandler extends InputHandler
         setInput(inputGroup, false);
     }
 
-    @Override
-	public void focusGained(FocusEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
 	@Override
 	public void focusLost(FocusEvent e) {
 		for (int i = 0; i < key.length; i++) {
@@ -65,23 +59,10 @@ public class UserInputHandler extends InputHandler
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-        if (!getIsTyping()) {
-            int keyCode = e.getKeyCode();
-            if (keyCode > 0 && keyCode < key.length) {
-                key[keyCode] = true;
-            }
-        } else {
-            if (e.getKeyCode() != KeyEvent.VK_ENTER) {
-                if (e.getKeyCode() != KeyEvent.VK_BACK_SPACE) {
-                    if (e.getKeyCode() != KeyEvent.VK_SHIFT) {
-                        typedString += e.getKeyChar();
-                    }
-                } else if (typedString.length() > 0) {
-                    typedString = typedString.substring(0, typedString.length() - 1);
-                }
-            } else {
-                setIsTyping(false);
-            }
+        super.keyPressed(e);
+        int keyCode = e.getKeyCode();
+        if (keyCode > 0 && keyCode < key.length) {
+            key[keyCode] = true;
         }
 	}
 
@@ -92,52 +73,6 @@ public class UserInputHandler extends InputHandler
 			key[keyCode] = false;
 		}
 	}
-
-	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-	}
-
-    @Override
-    public void mouseClicked(MouseEvent mouseEvent) {
-        super.mouseClicked(mouseEvent);
-    }
-
-    @Override
-    public void mousePressed(MouseEvent mouseEvent) {
-        super.mousePressed(mouseEvent);
-        if (enableMouse) {
-            setInput(Controls.ACTION, true);
-        }
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent mouseEvent) {
-        super.mouseReleased(mouseEvent);
-        if (enableMouse) {
-            setInput(Controls.ACTION, false);
-        }
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent mouseEvent) {
-        super.mouseEntered(mouseEvent);
-    }
-
-    @Override
-    public void mouseExited(MouseEvent mouseEvent) {
-        super.mouseExited(mouseEvent);
-    }
-
-    @Override
-    public void mouseDragged(MouseEvent e) {
-        super.mouseDragged(e);
-    }
-
-    @Override
-    public void mouseMoved(MouseEvent e) {
-        super.mouseMoved(e);
-    }
 
     @Override
     public void mouseWheelMoved(MouseWheelEvent e) {

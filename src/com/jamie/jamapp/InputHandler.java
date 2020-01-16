@@ -27,8 +27,7 @@ public abstract class InputHandler implements KeyListener, FocusListener, MouseL
     private double mouseSensitivity = 0.001;
     private boolean lockCursor = true;
 
-    private boolean isTyping = false;
-    protected String typedString = "";
+    protected KeyEvent lastKeyEvent = null;
 
 
     protected InputHandler() {
@@ -41,22 +40,14 @@ public abstract class InputHandler implements KeyListener, FocusListener, MouseL
 
     public abstract void stopInput(String inputGroup);
 
-    public void setIsTyping(boolean b) {
-        isTyping = b;
+    public void setLastKeyEvent(KeyEvent c) {
+        lastKeyEvent = c;
     }
 
-    public boolean getIsTyping() {
-        return isTyping;
-    }
-
-    public String getTypedString() {
-        return typedString;
-    }
-
-    public String grabTypedString() {
-        String s = typedString;
-        typedString = "";
-        return s;
+    public KeyEvent grabLastKeyEvent() {
+        KeyEvent c = lastKeyEvent;
+        lastKeyEvent = null;
+        return c;
     }
 
     public double getDiffMouseX() {
@@ -119,32 +110,43 @@ public abstract class InputHandler implements KeyListener, FocusListener, MouseL
     }
 
     @Override
-    public void focusGained(FocusEvent e) {
-        // TODO Auto-generated method stub
+    public void mouseDragged(MouseEvent e) {
+        if (enableMouse) {
+            mouseX = e.getX();
+            mouseY = e.getY();
+        }
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
+        if (enableMouse) {
+            mouseX = e.getX();
+            mouseY = e.getY();
+        }
+    }
+
+    @Override
+    public void keyPressed(KeyEvent keyEvent) {
+        setLastKeyEvent(keyEvent);
+    }
+
+    @Override
+    public void focusGained(FocusEvent focusEvent) {
 
     }
 
     @Override
-    public void focusLost(FocusEvent e) {
-        // TODO Auto-generated method stub
+    public void focusLost(FocusEvent focusEvent) {
 
     }
 
     @Override
-    public void keyPressed(KeyEvent e) {
-        // TODO Auto-generated method stub
+    public void keyTyped(KeyEvent keyEvent) {
 
     }
 
     @Override
-    public void keyReleased(KeyEvent e) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void keyTyped(KeyEvent e) {
-        // TODO Auto-generated method stub
+    public void keyReleased(KeyEvent keyEvent) {
 
     }
 
@@ -171,22 +173,6 @@ public abstract class InputHandler implements KeyListener, FocusListener, MouseL
     @Override
     public void mouseExited(MouseEvent mouseEvent) {
 
-    }
-
-    @Override
-    public void mouseDragged(MouseEvent e) {
-        if (enableMouse) {
-            mouseX = e.getX();
-            mouseY = e.getY();
-        }
-    }
-
-    @Override
-    public void mouseMoved(MouseEvent e) {
-        if (enableMouse) {
-            mouseX = e.getX();
-            mouseY = e.getY();
-        }
     }
 
     @Override

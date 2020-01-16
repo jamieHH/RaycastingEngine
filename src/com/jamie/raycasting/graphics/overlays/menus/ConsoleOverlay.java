@@ -4,10 +4,14 @@ import com.jamie.jamapp.Bitmap;
 import com.jamie.raycasting.app.Client;
 import com.jamie.raycasting.app.Console;
 import com.jamie.raycasting.graphics.overlays.Overlay;
+import com.jamie.raycasting.input.Controls;
+
+import java.awt.event.KeyEvent;
 
 public class ConsoleOverlay extends Overlay
 {
     private Bitmap historyPane;
+    private String command = "";
 
     public ConsoleOverlay(int width, int height) {
         super(width, height);
@@ -23,9 +27,26 @@ public class ConsoleOverlay extends Overlay
     public void tick() {
         super.tick();
 
-        if (!Client.input.getIsTyping()) {
-            String command = Client.input.grabTypedString();
+        KeyEvent ke = Client.input.grabLastKeyEvent();
+        if (ke != null) {
+            if (ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+                if (command.length() > 0) {
+                    command = command.substring(0, command.length() - 1);
+                }
+            } else if (
+                    ke.getKeyCode() != KeyEvent.VK_ENTER &&
+                    ke.getKeyCode() != KeyEvent.VK_SHIFT &&
+                    ke.getKeyCode() != KeyEvent.VK_BACK_QUOTE &&
+                    ke.getKeyCode() != KeyEvent.VK_ESCAPE
+            ) {
+                command += ke.getKeyChar();
+            }
+        }
+
+        if (Client.input.check(Controls.ENTER)) {
+            Client.input.stopInput(Controls.ENTER);
             Console.run(command);
+            command = "";
         }
     }
 
@@ -42,6 +63,6 @@ public class ConsoleOverlay extends Overlay
         }
         draw(historyPane, 0, (height - bp - bp - getLineHeight()) - historyPane.height);
 
-        draw(Client.input.getTypedString() + "_", bp, height - bp - getLineHeight() + 2, 0xD0D0D0);
+        draw(command + "_", bp, height - bp - getLineHeight() + 2, 0xD0D0D0);
     }
 }

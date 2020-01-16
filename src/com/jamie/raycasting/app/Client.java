@@ -45,11 +45,6 @@ public class Client extends JamappClient
             input.lockCursor();
         }
 
-		if (getActiveOverlay() instanceof ConsoleOverlay) {
-			input.setIsTyping(true);
-		}
-
-
         if (world != null) {
 			world.tick();
 
@@ -61,36 +56,41 @@ public class Client extends JamappClient
 				}
 
 				if (!getPlayer().isDead) {
-					if (input.check(Controls.INVENTORY)) {
-						input.stopInput(Controls.INVENTORY);
+					if (getActiveOverlay() != consoleOverlay) {
+						if (input.check(Controls.INVENTORY)) {
+							input.stopInput(Controls.INVENTORY);
+							if (getActiveOverlay() == null) {
+								Sound.slideUp.play();
+								setActiveOverlay(inventoryOverlay);
+							} else {
+								Sound.slideDown.play();
+								setActiveOverlay(null);
+							}
+						}
+
+						if (input.check(Controls.PAUSE)) {
+							input.stopInput(Controls.PAUSE);
+							if (getActiveOverlay() == null) {
+								Sound.slideUp.play();
+								setActiveOverlay(pauseMenu);
+							} else {
+								Sound.slideDown.play();
+								setActiveOverlay(null);
+							}
+						}
+					}
+
+					if (input.check(Controls.CONSOLE) || input.check(Controls.PAUSE)) {
+						input.stopInput(Controls.CONSOLE);
+						input.stopInput(Controls.PAUSE);
 						if (getActiveOverlay() == null) {
-							Sound.slideUp.play();
-							setActiveOverlay(inventoryOverlay);
+							setActiveOverlay(consoleOverlay);
 						} else {
-							Sound.slideDown.play();
 							setActiveOverlay(null);
 						}
 					}
-
-                    if (input.check(Controls.PAUSE)) {
-                        input.stopInput(Controls.PAUSE);
-                        if (getActiveOverlay() == null) {
-                            Sound.slideUp.play();
-                            setActiveOverlay(pauseMenu);
-                        } else {
-                            Sound.slideDown.play();
-                            setActiveOverlay(null);
-                        }
-                    }
-
-					if (input.check(Controls.CONSOLE)) {
-						input.stopInput(Controls.CONSOLE);
-						if (getActiveOverlay() == null) {
-							setActiveOverlay(consoleOverlay);
-						}
-					}
 				} else {
-					if (getActiveOverlay() == inventoryOverlay) {
+					if (getActiveOverlay() != overMenu) {
 						setActiveOverlay(null);
 					}
 					if (input.check(Controls.PAUSE)) {
