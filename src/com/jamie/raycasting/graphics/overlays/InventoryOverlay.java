@@ -113,12 +113,14 @@ public class InventoryOverlay extends Overlay
                 items = inventory.getItems();
             }
 
+
             categoryItemLists[i].listedItems.clear();
             for (Item item : items) {
                 categoryItemLists[i].listedItems.add(
                         new ItemListItem(item.name, item)
                 );
             }
+
 
         }
 
@@ -140,7 +142,7 @@ public class InventoryOverlay extends Overlay
         if (Client.input.check(Controls.FORWARD) || Client.input.check(Controls.UP)) {
             Client.input.stopInput(Controls.FORWARD);
             Client.input.stopInput(Controls.UP);
-            if ((getItemList().listIndex > 0)) {
+            if ((getItemListIndex() > 0)) {
                 Sound.clickUp.play();
                 getItemList().listIndex--;
             }
@@ -148,13 +150,13 @@ public class InventoryOverlay extends Overlay
         if (Client.input.check(Controls.BACK) || Client.input.check(Controls.DOWN)) {
             Client.input.stopInput(Controls.BACK);
             Client.input.stopInput(Controls.DOWN);
-            if ((getItemList().listIndex < getItemList().listedItems.size() - 1)) {
+            if ((getItemListIndex() < getItemListItems().size() - 1)) {
                 Sound.clickDown.play();
                 getItemList().listIndex++;
             }
         }
 
-        if (getItemList().listedItems.size() > 0) {
+        if (getItemListItems().size() > 0) {
             if (Client.input.check(Controls.ACTION) || Client.input.check(Controls.ENTER)) {
                 Client.input.stopInput(Controls.ACTION);
                 Client.input.stopInput(Controls.ENTER);
@@ -191,12 +193,12 @@ public class InventoryOverlay extends Overlay
             }
         }
 
-        if (getItemList().listIndex >= getItemList().listedItems.size() && getItemList().listIndex != 0) {
-            getItemList().listIndex = getItemList().listedItems.size() - 1;
+        if (getItemListIndex() >= getItemListItems().size() && getItemListIndex() != 0) {
+            getItemList().listIndex = getItemListItems().size() - 1;
         }
 
-        if (getItemList().listedItems.size() != 0) {
-            inventoryItemIndex = inventory.getIndexOf(getItemList().listedItems.get(getItemList().listIndex).nextItem());
+        if (getItemListItems().size() != 0) {
+            inventoryItemIndex = inventory.getIndexOf(getItemListItems().get(getItemListIndex()).nextItem());
         } else {
             inventoryItemIndex = -1;
         }
@@ -219,7 +221,7 @@ public class InventoryOverlay extends Overlay
 
     private void updateList() {
 
-        int down = getItemList().listIndex * getListItemHeight();
+        int down = getItemListIndex() * getListItemHeight();
         if (down < -getItemList().listYShift) {
             getItemList().listYShift = -(down % -getItemList().listYShift);
         }
@@ -229,21 +231,21 @@ public class InventoryOverlay extends Overlay
         }
 
         itemListBitmap.fill(0x101010);
-        if (getItemList().listedItems.size() > 0) {
-            itemListBitmap.fill(0, getItemList().listYShift + (getItemList().listIndex * getListItemHeight()), itemListBitmap.width, getItemList().listYShift + ((getItemList().listIndex + 1) * getListItemHeight()), 0x404040);
-            for (int i = 0; i < getItemList().listedItems.size(); i++) {
+        if (getItemListItems().size() > 0) {
+            itemListBitmap.fill(0, getItemList().listYShift + (getItemListIndex() * getListItemHeight()), itemListBitmap.width, getItemList().listYShift + ((getItemListIndex() + 1) * getListItemHeight()), 0x404040);
+            for (int i = 0; i < getItemListItems().size(); i++) {
                 int colour;
-                if (mob.getRightHandItemIndex() == inventory.getIndexOf(getItemList().listedItems.get(i).nextItem()) && !mob.rightHandEmpty) {
-                    getItemList().listedItems.get(i).selected = true;
+                if (mob.getRightHandItemIndex() == inventory.getIndexOf(getItemListItems().get(i).nextItem()) && !mob.rightHandEmpty) {
+                    getItemListItems().get(i).selected = true;
                     colour = 0xF0F070;
                 } else {
-                    getItemList().listedItems.get(i).selected = false;
+                    getItemListItems().get(i).selected = false;
                     colour = 0x707070;
                 }
-                if (getItemList().listIndex == i) {
+                if (getItemListIndex() == i) {
                     colour = 0xF0F0F0;
                 }
-                itemListBitmap.draw(getItemList().listedItems.get(i).getDisplayString(), bp, getItemList().listYShift + (i * getListItemHeight()) + 2, colour);
+                itemListBitmap.draw(getItemListItems().get(i).getDisplayString(), bp, getItemList().listYShift + (i * getListItemHeight()) + 2, colour);
             }
         }
         draw(itemListBitmap, bp, bp + getFontHeight() + bp);
@@ -251,8 +253,8 @@ public class InventoryOverlay extends Overlay
 
     private void updateDetailsPane() {
         itemDetailsPane.fill(0x303030);
-        if (getItemList().listedItems.size() > 0 && getItemList().listedItems.size() != getItemList().listIndex) {
-            Item item = getItemList().listedItems.get(getItemList().listIndex).nextItem();
+        if (getItemListItems().size() > 0 && getItemListItems().size() != getItemListIndex()) {
+            Item item = getItemListItems().get(getItemListIndex()).nextItem();
             Bitmap icon = item.icon;
             Bitmap bGround = new Bitmap(18, 18);
             bGround.fill(0x202020);
@@ -287,5 +289,13 @@ public class InventoryOverlay extends Overlay
 
     private ItemList getItemList() {
         return categoryItemLists[categoryIndex];
+    }
+
+    private int getItemListIndex() {
+        return getItemList().listIndex;
+    }
+    
+    private List<ItemListItem> getItemListItems() {
+        return getItemList().listedItems;
     }
 }
