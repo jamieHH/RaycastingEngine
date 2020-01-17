@@ -212,7 +212,7 @@ public abstract class Mob extends Entity
                     getRightHandItem().tick();
                 }
 
-                for (int i = 0; i < inventory.countItems(); i++) {
+                for (int i = 0; i < inventory.getItems().size(); i++) {
                     if (inventory.getItem(i).removed) {
                         if (i <= rightHandItemIndex) {
                             rightHandItemIndex--;
@@ -435,7 +435,7 @@ public abstract class Mob extends Entity
     }
 
     public Item getRightHandItem() {
-        if (inventory.countItems() > 0 && !rightHandEmpty) {
+        if (inventory.getItems().size() > 0 && !rightHandEmpty) {
             return inventory.getItems().get(rightHandItemIndex);
         }
         return null;
@@ -472,7 +472,7 @@ public abstract class Mob extends Entity
     }
 
     public double getRightHandReach() {
-        if (inventory.countItems() > 0 && !rightHandEmpty) {
+        if (inventory.getItems().size() > 0 && !rightHandEmpty) {
             return baseReach + getRightHandItem().reach;
         }
         return baseReach;
@@ -491,7 +491,7 @@ public abstract class Mob extends Entity
     }
 
     public Item getItemByName(String name) {
-        for (int i = 0; i < inventory.countItems(); i++) {
+        for (int i = 0; i < inventory.getItems().size(); i++) {
             if (inventory.getItem(i).name.equals(name)) {
                 return inventory.getItem(i);
             }
