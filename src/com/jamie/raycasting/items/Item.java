@@ -30,8 +30,6 @@ public abstract class Item
     public int useTicks = 0;
     public boolean canStrike = true;
 
-    protected Map<String, String> info = new HashMap<String, String>();
-
 
     public void setSpriteSet(String name, Sprite sprite) {
         spriteSet.putSet(name, sprite);
@@ -76,13 +74,38 @@ public abstract class Item
         removed = true;
     }
 
-    public Map<String, String> getInfo() {
-        info.put("name", name);
-        info.put("type", type);
-        info.put("damage", Integer.toString(damage));
-        info.put("reach", Integer.toString(reach));
-        info.put("duration", Integer.toString(duration / 60) + "s");
-        info.put("magnitude", Integer.toString(magnitude));
-        return info;
+    public boolean equalTo(Item item) {
+        return (
+            this.name.equals(item.name) &&
+            this.type.equals(item.type) &&
+            this.damage == item.damage &&
+            this.duration == item.duration &&
+            this.magnitude == item.magnitude &&
+            this.useWait == item.useWait
+        );
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public int getDamage() {
+        return damage + user.baseDamage;
+    }
+
+    public int getReach() {
+        return reach;
+    }
+
+    public int getDuration() {
+        return (duration / 60);
+    }
+
+    public int getMagnitude() {
+        return magnitude;
     }
 }

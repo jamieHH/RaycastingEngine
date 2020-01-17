@@ -423,13 +423,13 @@ public abstract class Mob extends Entity
     }
 
     public void addItem(Item item) {
-        inventory.addItem(item);
         item.setUser(this);
-        addHudHeading("Picked up " + item.getInfo().get("name"));
+        inventory.addItem(item);
+        addHudHeading("Picked up " + item.getName());
     }
 
     public void removeItem(Item item) {
-        addHudHeading(item.getInfo().get("name") + " removed");
+        addHudHeading(item.getName() + " removed");
         inventory.removeItem(item);
         item.setUser(null);
     }
