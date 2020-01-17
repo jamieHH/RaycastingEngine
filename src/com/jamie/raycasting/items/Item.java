@@ -5,13 +5,15 @@ import com.jamie.jamapp.Bitmap;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.SpriteSet;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public abstract class Item
 {
-    public String name = "Item";
-    public String type = "item";
+    public static String TYPE_WEAPON = "WEAPON";
+    public static String TYPE_CONSUMABLE = "CONSUMABLE";
+    public static String TYPE_MISC = "MISC";
+    public static String TYPE_SPECIAL = "SPECIAL";
+
+    public String name;
+    public String type;
     private SpriteSet spriteSet = new SpriteSet();
     public Bitmap icon = new Bitmap(16, 16);
     public Sprite dropSprite = null;
