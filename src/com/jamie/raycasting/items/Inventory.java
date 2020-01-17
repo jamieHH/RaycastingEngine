@@ -5,7 +5,6 @@ import com.jamie.raycasting.items.weapons.Weapon;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class Inventory
 {
@@ -22,7 +21,7 @@ public class Inventory
 
     public List<Item> getItemsByType(String type) {
         List<Item> items = new ArrayList<Item>();
-        for (int i = 0; i < countItems(); i++) {
+        for (int i = 0; i < getItems().size(); i++) {
             if (getItem(i).getInfo().get("type").equals(type)) {
                 items.add(getItem(i));
             }
@@ -49,19 +48,6 @@ public class Inventory
         return items.get(i);
     }
 
-    public int countItems() {
-        return getItems().size();
-    }
-
-    public List<Map<String, String>> getItemsInfo() {
-        List<Map<String, String>> info = new ArrayList<Map<String, String>>();
-        for (int i = 0; i < countItems(); i++) {
-            info.add(getItem(i).getInfo());
-        }
-
-        return info;
-    }
-
     // Weapons
     public List<Weapon> getWeapons() {
         List<Weapon> list = new ArrayList<Weapon>();
@@ -77,19 +63,6 @@ public class Inventory
 
     public Weapon getWeapon(int i) {
         return getWeapons().get(i);
-    }
-
-    public int countWeapons() {
-        return getWeapons().size();
-    }
-
-    public List<Map<String, String>> getWeaponsInfo() {
-        List<Map<String, String>> info = new ArrayList<Map<String, String>>();
-        for (int i = 0; i < countWeapons(); i++) {
-            info.add(getWeapon(i).getInfo());
-        }
-
-        return info;
     }
 
     // Consumables
@@ -109,19 +82,6 @@ public class Inventory
         return getConsumables().get(i);
     }
 
-    public int countConsumables() {
-        return getConsumables().size();
-    }
-
-    public List<Map<String, String>> getConsumablesInfo() {
-        List<Map<String, String>> info = new ArrayList<Map<String, String>>();
-        for (int i = 0; i < countConsumables(); i++) {
-            info.add(getConsumable(i).getInfo());
-        }
-
-        return info;
-    }
-
     // Keys
     public List<MiscItem> getMiscItems() {
         List<MiscItem> list = new ArrayList<MiscItem>();
@@ -137,18 +97,5 @@ public class Inventory
 
     public MiscItem getMiscItem(int i) {
         return getMiscItems().get(i);
-    }
-
-    public int countMiscItems() {
-        return getMiscItems().size();
-    }
-
-    public List<Map<String, String>> getMiscItemsInfo() {
-        List<Map<String, String>> info = new ArrayList<Map<String, String>>();
-        for (int i = 0; i < countMiscItems(); i++) {
-            info.add(getMiscItem(i).getInfo());
-        }
-
-        return info;
     }
 }
