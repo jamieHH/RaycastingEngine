@@ -6,11 +6,10 @@ public class MiscItem extends Item
 {
     public MiscItem(String name, Bitmap icon) {
         super();
-
-        this.name = name;
-        type = "misc";
+        type = TYPE_MISC;
         canStrike = false;
 
+        this.name = name;
         this.icon = icon;
     }
 }

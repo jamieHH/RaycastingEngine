@@ -25,9 +25,9 @@ public class InventoryOverlay extends Overlay
     private int categoryIndex = 0;
     private ItemList[] categoryItemLists = {
             new ItemList("Items", null),
-            new ItemList("Weapons", "weapon"),
-            new ItemList("Consumables", "consumable"),
-            new ItemList("Misc", "misc")
+            new ItemList("Weapons", Item.TYPE_WEAPON),
+            new ItemList("Consumables", Item.TYPE_CONSUMABLE),
+            new ItemList("Misc", Item.TYPE_MISC)
     };
 
 
@@ -263,13 +263,13 @@ public class InventoryOverlay extends Overlay
             itemDetailsPane.draw(icon, itemDetailsPane.width / 2 - icon.width / 2, bp + 1);
 
             int rowX = bp + bGround.height + bp;
-            if (item.type.equals("weapon")) {
+            if (item.type.equals(Item.TYPE_WEAPON)) {
                 itemDetailsPane.draw(Texture.damageIcon, bp, rowX + 1);
                 itemDetailsPane.draw(Integer.toString(item.getDamage()), bp + (getFontWidth() * 2), rowX, 0xF0F0F0);
                 rowX += 10;
                 itemDetailsPane.draw(Texture.rangeIcon, bp, rowX + 1);
                 itemDetailsPane.draw(Integer.toString(item.getReach()), bp + (getFontWidth() * 2), rowX, 0xF0F0F0);
-            } else if (item.type.equals("consumable")) {
+            } else if (item.type.equals(Item.TYPE_CONSUMABLE)) {
                 itemDetailsPane.draw(Texture.magnitudeIcon, bp, rowX + 1);
                 itemDetailsPane.draw(Integer.toString(item.getMagnitude()), bp + (getFontWidth() * 2), rowX, 0xF0F0F0);
                 rowX += 10;

@@ -10,7 +10,7 @@ public abstract class Item
     public static String TYPE_WEAPON = "WEAPON";
     public static String TYPE_CONSUMABLE = "CONSUMABLE";
     public static String TYPE_MISC = "MISC";
-    public static String TYPE_SPECIAL = "SPECIAL";
+    public static String TYPE_SPELL = "SPELL";
 
     public String name;
     public String type;

@@ -6,8 +6,7 @@ public abstract class Spell extends Item
 
     public Spell() {
         super();
-
-        name = "Spell";
-        type = "spell";
+        type = TYPE_SPELL;
+        canStrike = true;
     }
 }

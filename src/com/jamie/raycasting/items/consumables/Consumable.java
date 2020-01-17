@@ -6,9 +6,7 @@ public abstract class Consumable extends Item
 {
     public Consumable() {
         super();
-
-        name = "Consumable";
-        type = "consumable";
+        type = TYPE_CONSUMABLE;
         canStrike = false;
     }
 

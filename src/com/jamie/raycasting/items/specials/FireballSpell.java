@@ -6,7 +6,7 @@ public class FireballSpell extends Spell
 {
     public FireballSpell() {
         name = "Fireball Spell";
-        type = "spell";
+        type = TYPE_SPELL;
 
         useWait = 120;
         canStrike = false;

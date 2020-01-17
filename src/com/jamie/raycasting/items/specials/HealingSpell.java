@@ -6,7 +6,7 @@ public class HealingSpell extends Spell
 {
     public HealingSpell() {
         name = "Healing Spell";
-        type = "spell";
+        type = TYPE_SPELL;
 
         useWait = 240;
         canStrike = true;

@@ -8,9 +8,7 @@ public abstract class Weapon extends Item
 {
     public Weapon() {
         super();
-
-        name = "Weapon";
-        type = "weapon";
+        type = TYPE_WEAPON;
         canStrike = true;
     }
 }
