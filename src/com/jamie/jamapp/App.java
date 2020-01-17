@@ -98,7 +98,6 @@ public class App extends Canvas implements Runnable
 				ticked = true;
 				tickCount++;
 				if (tickCount % 60 == 0) {
-					requestFocus();
 					ups = updates;
 					fps = frames;
 					previousTime += 1000;
@@ -154,6 +153,7 @@ public class App extends Canvas implements Runnable
 		setMaximumSize(size);
 
 		frame = newFrame(this);
+		requestFocus();
 	}
 
     private static JFrame newFrame(App app) {
