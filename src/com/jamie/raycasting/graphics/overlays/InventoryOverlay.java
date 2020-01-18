@@ -9,9 +9,7 @@ import com.jamie.raycasting.input.Controls;
 import com.jamie.raycasting.items.Inventory;
 import com.jamie.raycasting.items.Item;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class InventoryOverlay extends Overlay
 {
@@ -51,13 +49,8 @@ public class InventoryOverlay extends Overlay
         public Boolean selected = false;
         public List<Item> items;
 
-        public ItemListItem(String title, List<Item> items) {
-            this.title = title;
-            this.items = items;
-        }
-
-        public ItemListItem(String title, Item item) {
-            this.title = title;
+        public ItemListItem(Item item) {
+            this.title = item.name;
             this.items = new ArrayList<Item>(Arrays.asList(
                     item
             ));;
@@ -73,7 +66,7 @@ public class InventoryOverlay extends Overlay
 
         public String getQuantityString() {
             if (items.size() > 1) {
-                return "(" + items.size() + ")";
+                return " (" + items.size() + ")";
             } else {
                 return "";
             }
@@ -101,6 +94,22 @@ public class InventoryOverlay extends Overlay
         itemListBitmap = new Bitmap(width - bp - bp - itemDetailsPane.width, height - (bp + getLineHeight() + bp));
     }
 
+    public void addItem(List<ItemListItem> itemList, Item item) {
+        boolean added = false;
+        for (ItemListItem ili : itemList) {
+            for (Item it : ili.items) {
+                if (it.equalTo(item)) {
+                    ili.items.add(item);
+                    added = true;
+                    break;
+                }
+            }
+        }
+        if (!added) {
+            itemList.add(new ItemListItem(item));
+        }
+    }
+
     public void tick() {
         this.mob = Client.getPlayer();
         this.inventory = Client.getPlayer().inventory;
@@ -114,14 +123,12 @@ public class InventoryOverlay extends Overlay
             }
 
 
-            categoryItemLists[i].listedItems.clear();
+            List<ItemListItem> listedItems = new ArrayList<>();
             for (Item item : items) {
-                categoryItemLists[i].listedItems.add(
-                        new ItemListItem(item.name, item)
-                );
+                addItem(listedItems, item);
             }
-
-
+            listedItems.sort(Comparator.comparing(ItemListItem::getDisplayString));
+            categoryItemLists[i].listedItems = listedItems;
         }
 
         if (Client.input.check(Controls.LEFT) || Client.input.check(Controls.ROTLEFT)) {
