@@ -83,7 +83,8 @@ public abstract class Item
             this.damage == item.damage &&
             this.duration == item.duration &&
             this.magnitude == item.magnitude &&
-            this.useWait == item.useWait
+            this.useWait == item.useWait &&
+            this != user.getRightHandItem()
         );
     }
 
