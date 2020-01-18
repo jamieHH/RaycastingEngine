@@ -8,7 +8,6 @@ public class OverMenu extends Menu
 {
     public String[] getOptions() {
         return new String[] {
-                "Load Game",
                 "Main Menu",
                 "Quit Game",
         };
@@ -26,9 +25,7 @@ public class OverMenu extends Menu
             Client.input.stopInput(Controls.ACTION);
             Client.input.stopInput(Controls.ENTER);
             Sound.clickAction.play();
-            if (getOption(optionIndex).equals("Load Game")) {
-                Client.setActiveOverlay(Client.loadMenu);
-            } else if (getOption(optionIndex).equals("Main Menu")) {
+            if (getOption(optionIndex).equals("Main Menu")) {
                 Client.stopGame();
             } else if (getOption(optionIndex).equals("Quit Game")) {
                 System.exit(0);
@@ -42,9 +39,9 @@ public class OverMenu extends Menu
         draw("  Game Over", bp, bp, 0xF0F0F0);
         for (int i = 0; i < getOptions().length; i++) {
             if (optionIndex == i) {
-                draw("-> " + getOption(i), bp, bp + getLineHeight() + (i * getLineHeight()), 0xD0D0D0);
+                draw("-> " + getOption(i), bp, bp + lineHeight() + (i * lineHeight()), 0xD0D0D0);
             } else {
-                draw(" " + getOption(i), bp, bp + getLineHeight() + (i * getLineHeight()), 0x707070);
+                draw(" " + getOption(i), bp, bp + lineHeight() + (i * lineHeight()), 0x707070);
             }
         }
     }

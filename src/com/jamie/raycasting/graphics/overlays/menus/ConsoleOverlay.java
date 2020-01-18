@@ -25,7 +25,7 @@ public class ConsoleOverlay extends Overlay
 
     public void setSize(int width, int height) {
         super.setSize(width, height);
-        historyPane = new Bitmap(width, height - (bp + getLineHeight() + bp));
+        historyPane = new Bitmap(width, height - (bp + lineHeight() + bp));
     }
 
     public void tick() {
@@ -82,14 +82,14 @@ public class ConsoleOverlay extends Overlay
 
         fill(0x202020);
 
-        historyPane.setSize(width, (Console.getLines().size() * getLineHeight() + bp));
+        historyPane.setSize(width, (Console.getLines().size() * lineHeight() + bp));
         historyPane.fill(0x101010);
 
         for (int i = 0; i < Console.getLines().size(); i++) {
-            historyPane.draw(Console.getLines().get(i), bp, (getLineHeight() * (i)) + bp, 0x707070);
+            historyPane.draw(Console.getLines().get(i), bp, (lineHeight() * (i)) + bp, 0x707070);
         }
-        draw(historyPane, 0, (height - bp - bp - getLineHeight()) - historyPane.height);
+        draw(historyPane, 0, (height - bp - bp - lineHeight()) - historyPane.height);
 
-        draw(command + "_", bp, height - bp - getLineHeight() + bp, 0xD0D0D0);
+        draw(command + "_", bp, height - bp - lineHeight() + bp, 0xD0D0D0);
     }
 }

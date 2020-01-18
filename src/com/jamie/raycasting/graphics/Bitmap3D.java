@@ -133,7 +133,7 @@ public class Bitmap3D extends Bitmap
 		int scale = 16; // this will keep sprites to scale
 		if (tex.width != scale || tex.height != scale) {
 			Bitmap nTex = new Bitmap(scale, scale);
-			nTex.draw(tex, (scale / 2) - (tex.width / 2), scale - tex.height);
+			nTex.draw(tex, (scale / 2) - tex.halfWidth(), scale - tex.height);
 			tex = nTex; // makes a new texture to scale and draws the smaller one over top
 		}
 

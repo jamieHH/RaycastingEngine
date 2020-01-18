@@ -79,7 +79,7 @@ public class InventoryOverlay extends Overlay
 
 
     private int getListItemHeight() {
-        return (getLineHeight() + 2);
+        return (lineHeight() + 2);
     }
 
 
@@ -90,8 +90,8 @@ public class InventoryOverlay extends Overlay
 
     public void setSize(int width, int height) {
         super.setSize(width, height);
-        itemDetailsPane = new Bitmap(48, height - (bp + getLineHeight() + bp));
-        itemListBitmap = new Bitmap(width - bp - bp - itemDetailsPane.width, height - (bp + getLineHeight() + bp));
+        itemDetailsPane = new Bitmap(48, height - (bp + lineHeight() + bp));
+        itemListBitmap = new Bitmap(width - bp - bp - itemDetailsPane.width, height - (bp + lineHeight() + bp));
     }
 
     public void addItem(List<ItemListItem> itemList, Item item) {
@@ -218,11 +218,11 @@ public class InventoryOverlay extends Overlay
         } else {
             draw("< ", bp, bp, 0xF0F0F0);
         }
-        draw(getItemList().category, bp + (getFontWidth() * 2), bp, 0xF0F0F0);
+        draw(getItemList().category, bp + (fontWidth() * 2), bp, 0xF0F0F0);
         if (categoryIndex == categoryItemLists.length - 1) {
-            draw(" >", bp + (getFontWidth() * 2) + (catString.length() * getFontWidth()), bp, 0x404040);
+            draw(" >", bp + (fontWidth() * 2) + (catString.length() * fontWidth()), bp, 0x404040);
         } else {
-            draw(" >", bp + (getFontWidth() * 2) + (catString.length() * getFontWidth()), bp, 0xF0F0F0);
+            draw(" >", bp + (fontWidth() * 2) + (catString.length() * fontWidth()), bp, 0xF0F0F0);
         }
     }
 
@@ -233,7 +233,7 @@ public class InventoryOverlay extends Overlay
             getItemList().listYShift = -(down % -getItemList().listYShift);
         }
 
-        if (down + (getFontHeight()) >= itemListBitmap.height - getItemList().listYShift) {
+        if (down + (fontHeight()) >= itemListBitmap.height - getItemList().listYShift) {
             getItemList().listYShift = -(down - itemListBitmap.height + getListItemHeight());
         }
 
@@ -255,7 +255,7 @@ public class InventoryOverlay extends Overlay
                 itemListBitmap.draw(getItemListItems().get(i).getDisplayString(), bp, getItemList().listYShift + (i * getListItemHeight()) + 2, colour);
             }
         }
-        draw(itemListBitmap, bp, bp + getFontHeight() + bp);
+        draw(itemListBitmap, bp, bp + fontHeight() + bp);
     }
 
     private void updateDetailsPane() {
@@ -266,25 +266,25 @@ public class InventoryOverlay extends Overlay
             Bitmap bGround = new Bitmap(18, 18);
             bGround.fill(0x202020);
 
-            itemDetailsPane.draw(bGround, itemDetailsPane.width / 2 - bGround.width / 2, bp);
-            itemDetailsPane.draw(icon, itemDetailsPane.width / 2 - icon.width / 2, bp + 1);
+            itemDetailsPane.draw(bGround, itemDetailsPane.halfWidth() - bGround.halfWidth(), bp);
+            itemDetailsPane.draw(icon, itemDetailsPane.halfWidth() - icon.halfWidth(), bp + 1);
 
             int rowX = bp + bGround.height + bp;
             if (item.type.equals(Item.TYPE_WEAPON)) {
                 itemDetailsPane.draw(Texture.damageIcon, bp, rowX + 1);
-                itemDetailsPane.draw(Integer.toString(item.getDamage()), bp + (getFontWidth() * 2), rowX, 0xF0F0F0);
+                itemDetailsPane.draw(Integer.toString(item.getDamage()), bp + (fontWidth() * 2), rowX, 0xF0F0F0);
                 rowX += 10;
                 itemDetailsPane.draw(Texture.rangeIcon, bp, rowX + 1);
-                itemDetailsPane.draw(Integer.toString(item.getReach()), bp + (getFontWidth() * 2), rowX, 0xF0F0F0);
+                itemDetailsPane.draw(Integer.toString(item.getReach()), bp + (fontWidth() * 2), rowX, 0xF0F0F0);
             } else if (item.type.equals(Item.TYPE_CONSUMABLE)) {
                 itemDetailsPane.draw(Texture.magnitudeIcon, bp, rowX + 1);
-                itemDetailsPane.draw(Integer.toString(item.getMagnitude()), bp + (getFontWidth() * 2), rowX, 0xF0F0F0);
+                itemDetailsPane.draw(Integer.toString(item.getMagnitude()), bp + (fontWidth() * 2), rowX, 0xF0F0F0);
                 rowX += 10;
                 itemDetailsPane.draw(Texture.durationIcon, bp, rowX + 1);
-                itemDetailsPane.draw(Integer.toString(item.getDuration()) + "s", bp + (getFontWidth() * 2), rowX, 0xF0F0F0);
+                itemDetailsPane.draw(Integer.toString(item.getDuration()) + "s", bp + (fontWidth() * 2), rowX, 0xF0F0F0);
             }
         }
-        draw(itemDetailsPane, bp + itemListBitmap.width,bp + (getLineHeight()));
+        draw(itemDetailsPane, bp + itemListBitmap.width,bp + (lineHeight()));
     }
 
     public void update() {

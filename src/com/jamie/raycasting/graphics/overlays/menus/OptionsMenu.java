@@ -1,7 +1,6 @@
 package com.jamie.raycasting.graphics.overlays.menus;
 
 import com.jamie.jamapp.App;
-import com.jamie.jamapp.Bitmap;
 import com.jamie.raycasting.app.Sound;
 import com.jamie.raycasting.app.Client;
 import com.jamie.raycasting.input.Controls;
@@ -123,8 +122,8 @@ public class OptionsMenu extends Menu
     public void update() {
         fill(0x202020);
 
-        int lineHeight = getLineHeight();
-        int charWidth = getFontWidth();
+        int lineHeight = lineHeight();
+        int charWidth = fontWidth();
         draw("  Options", bp, bp, 0xF0F0F0);
         for (int i = 0; i < getOptions().length; i++) {
             if (optionIndex == i) {

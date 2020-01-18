@@ -42,7 +42,7 @@ public class LoadMenu extends Menu
     public void update() {
         fill(0x202020);
 
-        int lineHeight = getLineHeight();
+        int lineHeight = lineHeight();
         draw("  Load Game", bp, bp, 0xF0F0F0);
         for (int i = 0; i < getOptions().length; i++) {
             if (optionIndex == i) {

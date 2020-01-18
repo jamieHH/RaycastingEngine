@@ -16,7 +16,7 @@ public class HotkeyOverlay extends Overlay
         if (item != null) {
             draw(item.icon, 0, 0);
         } else {
-            draw(id, (width / 2) - (getFontWidth() / 2), (height / 2) - (getFontHeight() / 2), 0x404040);
+            draw(id, halfWidth() - (fontWidth() / 2), halfHeight() - (fontHeight() / 2), 0x404040);
         }
 
         box(0, 0, width, height, 0x606060);

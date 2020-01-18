@@ -65,11 +65,11 @@ public class Screen extends Display
 
                 // Render hud headings
                 for (int i = 0; i < p.hudHeadings.size(); i++) {
-                    draw(p.hudHeadings.get(i), (render.width - 2) - (p.hudHeadings.get(i).length() * Bitmap.getFontWidth()), (i * (getFontHeight() + 1)) + 2, 0xF0F070);
+                    draw(p.hudHeadings.get(i), (render.width - 2) - (p.hudHeadings.get(i).length() * Bitmap.fontWidth()), (i * (fontHeight() + 1)) + 2, 0xF0F070);
                 }
             } else {
                 String overText = "GAME OVER";
-                draw(overText, (width / 2) - ((overText.length() / 2) * getFontWidth()), render.height / 2, 0xFF0000);
+                draw(overText, halfWidth() - ((overText.length() / 2) * fontWidth()), render.halfHeight(), 0xFF0000);
             }
 
             // render hudbar
@@ -105,8 +105,8 @@ public class Screen extends Display
 
         if (Client.getActiveOverlay() != null) {
             Client.getActiveOverlay().update();
-            int cornerX = (width / 2) - (Client.getActiveOverlay().width / 2);
-            int cornerY = (height / 2) - (Client.getActiveOverlay().height / 2);
+            int cornerX = halfWidth() - Client.getActiveOverlay().halfWidth();
+            int cornerY = halfHeight() - Client.getActiveOverlay().halfHeight();
             draw(Client.getActiveOverlay(), cornerX, cornerY, Client.getActiveOverlay().opacity);
         }
     }

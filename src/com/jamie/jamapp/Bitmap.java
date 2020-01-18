@@ -27,7 +27,7 @@ public class Bitmap
         return PngLoader.loadBitmap("gui/font.png");
     }
 
-	public static int getFontWidth() {
+	public static int fontWidth() {
         if (isSmallFont) {
             return 5;
         }
@@ -35,7 +35,7 @@ public class Bitmap
         return 6;
     }
 
-    public static int getFontHeight() {
+    public static int fontHeight() {
 	    if (isSmallFont) {
 	        return 7;
         }
@@ -43,7 +43,7 @@ public class Bitmap
 	    return 8;
     }
 
-	public static int getLineHeight() {
+	public static int lineHeight() {
 		if (isSmallFont) {
 			return 9;
 		}
@@ -55,6 +55,14 @@ public class Bitmap
 		this.width = width;
 		this.height = height;
 		pixels = new int[width * height];
+	}
+
+	public int halfWidth() {
+		return width / 2;
+	}
+
+	public int halfHeight() {
+		return height / 2;
 	}
 	
 	public void draw(Bitmap bitmap, int xOffs, int yOffs) {
@@ -99,8 +107,8 @@ public class Bitmap
 
             int xx = ch % 42;
             int yy = ch / 42;
-            draw(font, (x + i * getFontWidth()) + 1, y + 1, xx * 6, yy * 8, getFontWidth(), getFontHeight(), 0x020202);
-            draw(font, x + i * getFontWidth(), y, xx * 6, yy * 8, getFontWidth(), getFontHeight(), col);
+            draw(font, (x + i * fontWidth()) + 1, y + 1, xx * 6, yy * 8, fontWidth(), fontHeight(), 0x020202);
+            draw(font, x + i * fontWidth(), y, xx * 6, yy * 8, fontWidth(), fontHeight(), col);
         }
     }
 
