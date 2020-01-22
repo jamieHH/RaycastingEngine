@@ -95,14 +95,13 @@ public abstract class Projectile extends Entity
     }
 
     private Mob getBlockingMob(double x, double z) {
-        for (int i = 0; i < level.countMobs(); i++) {
-            Mob e = level.getMobEntity(i);
-            if (e.isSolid) {
-                double entX = e.posX;
-                double entZ = e.posZ;
-                double entRadius = e.radius;
+        for (Mob mob : level.getMobEntities()) {
+            if (mob.isSolid) {
+                double entX = mob.posX;
+                double entZ = mob.posZ;
+                double entRadius = mob.radius;
                 if (((Math.abs(x - entX)) - entRadius < radius) && ((Math.abs(z - entZ)) - entRadius < radius)) {
-                    return e;
+                    return mob;
                 }
             }
         }

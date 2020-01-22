@@ -2,6 +2,7 @@ package com.jamie.raycasting.entities.mobs;
 
 import com.jamie.jamapp.*;
 import com.jamie.raycasting.app.Sound;
+import com.jamie.raycasting.entities.Drop;
 import com.jamie.raycasting.entities.Entity;
 import com.jamie.raycasting.entities.mobs.mobEffects.MobEffect;
 import com.jamie.raycasting.entities.particles.BloodParticle;
@@ -183,11 +184,10 @@ public abstract class Mob extends Entity
             if (health > 0) {
                 if (!(input instanceof UserInputHandler)) {
                     target = null;
-                    for (int i = 0; i < level.getMobEntities().size(); i++) {
-                        Mob mob = level.getMobEntities().get(i);
+                    for (Mob mob : level.getMobEntities()) {
                         if (mob != this) {
                             if (squareDistanceFrom(mob.posX, mob.posZ) < viewDist && mob.getFaction().equals(enemyFaction)) {
-                                target = level.getMobEntities().get(i);
+                                target = mob;
                                 break;
                             }
                         }
@@ -232,20 +232,20 @@ public abstract class Mob extends Entity
                     }
                 }
 
-                for (int i = 0; i < mobEffects.size(); i++) {
-                    mobEffects.get(i).tick();
+                for (MobEffect mobEffect : mobEffects) {
+                    mobEffect.tick();
 
-                    if (mobEffects.get(i).removed) {
-                        removeMobEffect(mobEffects.get(i));
+                    if (mobEffect.removed) {
+                        removeMobEffect(mobEffect);
                     }
                 }
 
                 if (canPickup) {
-                    for (int i = 0; i < level.countDrops(); i++) {
-                        if (contains(level.getDropEntity(i).posX, level.getDropEntity(i).posZ)) {
+                    for (Drop drop : level.getDropEntities()) {
+                        if (contains(drop.posX, drop.posZ)) {
                             Sound.pickUp.play();
-                            addItem(level.getDropEntity(i).item);
-                            level.getDropEntity(i).remove();
+                            addItem(drop.item);
+                            drop.remove();
                         }
                     }
                 }
@@ -371,8 +371,7 @@ public abstract class Mob extends Entity
 
     private boolean isEntityBlocked(double x, double z) {
         if (isSolid) {
-            for (int i = 0; i < level.countEntities(); i++) {
-                Entity e = level.getEntity(i);
+            for (Entity e : level.getEntities()) {
                 if (e != this && e.isSolid) {
                     if (((Math.abs(x - e.posX)) - e.radius < radius) && ((Math.abs(z - e.posZ)) - e.radius < radius)) {
                         return true;
@@ -491,9 +490,9 @@ public abstract class Mob extends Entity
     }
 
     public Item getItemByName(String name) {
-        for (int i = 0; i < inventory.getItems().size(); i++) {
-            if (inventory.getItem(i).name.equals(name)) {
-                return inventory.getItem(i);
+        for (Item item : inventory.getItems()) {
+            if (item.name.equals(name)) {
+                return item;
             }
         }
         return null;

@@ -151,21 +151,21 @@ public class Client extends JamappClient
 
 	public static void switchPerspective() {
 		int i = world.level.getMobEntities().indexOf(player) + 1;
-		if (i >= world.level.countMobs()) {
+		if (i >= world.level.getMobEntities().size()) {
 			i = 0;
 		}
 
-		setPlayer(world.level.getMobEntity(i));
+		setPlayer(world.level.getMobEntities().get(i));
 	}
 
 	public static void possessNextMob() {
 		int i = world.level.getMobEntities().indexOf(player) + 1;
-		if (i >= world.level.countMobs()) {
+		if (i >= world.level.getMobEntities().size()) {
 			i = 0;
 		}
 
         getPlayer().input = temporaryInput;
-        setPlayer(world.level.getMobEntity(i));
+        setPlayer(world.level.getMobEntities().get(i));
         temporaryInput = getPlayer().input;
         getPlayer().input = input;
 	}

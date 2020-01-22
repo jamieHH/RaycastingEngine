@@ -81,8 +81,7 @@ public abstract class Entity
     public double squareDistanceFrom(double x, double z) {
         double xDist = Math.abs(posX - x);
         double zDist = Math.abs(posZ - z);
-
-        return (xDist > zDist) ? xDist: zDist;
+        return Math.max(xDist, zDist);
     }
 
     public boolean contains(double x, double z) {
@@ -103,8 +102,7 @@ public abstract class Entity
 
     public List<Entity> getEntitiesInRadius(double radius) {
         List<Entity> entities = new ArrayList<Entity>();
-        for (int e = 0; e < level.countEntities(); e++) {
-            Entity ent = level.getEntity(e);
+        for (Entity ent : level.getEntities()) {
             if (distanceFrom(ent.posX, ent.posZ) < radius) {
                 entities.add(ent);
             }
@@ -115,9 +113,8 @@ public abstract class Entity
 
     public List<Mob> getMobsInRadius(double radius) {
         List<Mob> mobs = new ArrayList<Mob>();
-        for (int e = 0; e < level.countEntities(); e++) {
-            Entity ent = level.getEntity(e);
-            if (distanceFrom(ent.posX, ent.posZ) < radius && ent instanceof Mob) {
+        for (Entity ent : level.getMobEntities()) {
+            if (distanceFrom(ent.posX, ent.posZ) < radius) {
                 mobs.add((Mob) ent);
             }
         }

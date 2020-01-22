@@ -161,10 +161,10 @@ public abstract class Level
     public abstract void switchLevel(Mob mob, int id);
 
     public void triggerBlock(int id) {
-        for (int i = 0; i < blocks.length; i++) {
-            if (blocks[i] instanceof TriggerableBlock) {
-                if (((TriggerableBlock) blocks[i]).id == id) {
-                    ((TriggerableBlock) blocks[i]).trigger();
+        for (Block block : blocks) {
+            if (block instanceof TriggerableBlock) {
+                if (((TriggerableBlock) block).id == id) {
+                    ((TriggerableBlock) block).trigger();
                 }
             }
         }
@@ -188,15 +188,14 @@ public abstract class Level
         CeilDripBlock.tick();
         SpinningDummyBlock.tick();
         SignBlock.tick();
-        for (int i = 0; i < blocks.length; i++) {
-            if (blocks[i] instanceof FunctionBlock) {
-                blocks[i].tick();
+        for (Block block : blocks) {
+            if (block instanceof FunctionBlock) {
+                block.tick();
             }
         }
 
         for (int i = 0; i < countEntities(); i++) {
             getEntity(i).tick();
-
             if (getEntity(i).removed) {
                 removeEntity(getEntity(i));
             }
@@ -242,46 +241,29 @@ public abstract class Level
 
     public List<Mob> getMobEntities() {
         List<Mob> mobs = new ArrayList<Mob>();
-        for (int i = 0; i < countEntities(); i++) {
-            if (getEntity(i) instanceof Mob) {
-                mobs.add((Mob) (getEntity(i)));
+        for (Entity e : getEntities()) {
+            if (e instanceof Mob) {
+                mobs.add((Mob) (e));
             }
         }
         return mobs;
     }
 
-    public Mob getMobEntity(int i) {
-        return getMobEntities().get(i);
-    }
-
-    public int countMobs() {
-        return getMobEntities().size();
-    }
-
-
     public List<Drop> getDropEntities() {
         List<Drop> drops = new ArrayList<Drop>();
-        for (int i = 0; i < countEntities(); i++) {
-            if (getEntity(i) instanceof Drop) {
-                drops.add((Drop) (getEntity(i)));
+        for (Entity d : getEntities()) {
+            if (d instanceof Drop) {
+                drops.add((Drop) (d));
             }
         }
         return drops;
     }
 
-    public Drop getDropEntity(int i) {
-        return getDropEntities().get(i);
-    }
-
-    public int countDrops() {
-        return getDropEntities().size();
-    }
-
     public Block getBlockByReference(String reference) {
-        for (int i = 0; i < blocks.length; i++) {
-            if (blocks[i] instanceof FunctionBlock) {
-                if (((FunctionBlock) blocks[i]).reference != null && ((FunctionBlock) blocks[i]).reference.equals(reference)) {
-                    return blocks[i];
+        for (Block block : blocks) {
+            if (block instanceof FunctionBlock) {
+                if (((FunctionBlock) block).reference != null && ((FunctionBlock) block).reference.equals(reference)) {
+                    return block;
                 }
             }
         }
@@ -290,10 +272,10 @@ public abstract class Level
     }
 
     public LevelPortalBlock getLevelPortalBlockById(int id) {
-        for (int i = 0; i < blocks.length; i++) {
-            if (blocks[i] instanceof LevelPortalBlock) {
-                if (((LevelPortalBlock) blocks[i]).id == id) {
-                    return (LevelPortalBlock) blocks[i];
+        for (Block block : blocks) {
+            if (block instanceof LevelPortalBlock) {
+                if (((LevelPortalBlock) block).id == id) {
+                    return (LevelPortalBlock) block;
                 }
             }
         }
@@ -348,8 +330,7 @@ public abstract class Level
     }
 
     public boolean blockContainsEntity(int x, int z) {
-        for (int i = 0; i < countEntities(); i++) {
-            Entity e = getEntity(i);
+        for (Entity e : getEntities()) {
             if (e.isSolid) {
                 if (e.isInside(x, z, x + 1, z + 1)) {
                     return true;
@@ -362,10 +343,9 @@ public abstract class Level
 
     public List<Entity> getEntitiesWithin(double x0, double z0, double x1, double z1) {
         List<Entity> entities = new ArrayList<Entity>();
-
-        for (int i = 0; i < getEntities().size(); i++) {
-            if (getEntities().get(i).isInside(x0, z0, x1, z1)) {
-                entities.add(getEntities().get(i));
+        for (Entity e : getEntities()) {
+            if (e.isInside(x0, z0, x1, z1)) {
+                entities.add(e);
             }
         }
 
@@ -373,15 +353,14 @@ public abstract class Level
     }
 
     public List<Mob> getMobsWithin(double x0, double z0, double x1, double z1) {
-        List<Mob> mobs = new ArrayList<Mob>();
-
-        for (int i = 0; i < getMobEntities().size(); i++) {
-            if (getMobEntities().get(i).isInside(x0, z0, x1, z1)) {
-                mobs.add(getMobEntities().get(i));
+        List<Mob> entities = new ArrayList<Mob>();
+        for (Mob e : getMobEntities()) {
+            if (e.isInside(x0, z0, x1, z1)) {
+                entities.add(e);
             }
         }
 
-        return mobs;
+        return entities;
     }
 
     public static Level makeRandomLevel(int sizeX, int sizeZ) {
