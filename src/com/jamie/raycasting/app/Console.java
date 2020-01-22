@@ -49,7 +49,11 @@ public class Console {
                 log(Double.toString(Client.getPlayer().getRotation()));
                 break;
             case "dayNight": // enable day night cycle
-                Client.getWorld().enableTimeCycle = (Integer.parseInt(args[1]) > 0);
+                if (args.length >= 2) {
+                    Client.getWorld().enableTimeCycle = (Integer.parseInt(args[1]) > 0);
+                } else {
+                    log("Set night cycle 0 or 1");
+                }
                 break;
             case "level": // move to level
                 if (args.length >= 2) {

@@ -7,6 +7,7 @@ public class RealmLevel extends Level
 	public RealmLevel() {
 		name = "Realm";
 		height = 8192;
+		isOutside = true;
 	}
 
 	protected void postCreate() {
