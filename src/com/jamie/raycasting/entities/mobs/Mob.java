@@ -232,9 +232,9 @@ public abstract class Mob extends Entity
                     }
                 }
 
-                for (MobEffect mobEffect : mobEffects) {
+                for (int i = 0; i < mobEffects.size(); i++) {
+                    MobEffect mobEffect = mobEffects.get(i);
                     mobEffect.tick();
-
                     if (mobEffect.removed) {
                         removeMobEffect(mobEffect);
                     }
