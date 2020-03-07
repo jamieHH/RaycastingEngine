@@ -13,6 +13,7 @@ import com.jamie.raycasting.entities.mobs.*;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
 import com.jamie.raycasting.input.ArtificialInputHandler;
+import com.jamie.raycasting.world.Logic;
 import com.jamie.raycasting.world.World;
 import com.jamie.raycasting.world.blocks.*;
 
@@ -22,6 +23,7 @@ public abstract class Level
 
     private Block[] blocks;
     private List<Entity> entities = new ArrayList<Entity>();
+    private List<Logic> logicInstances = new ArrayList<Logic>();
 
     protected int sizeX;
     protected int sizeZ;
@@ -170,6 +172,25 @@ public abstract class Level
         }
     }
 
+    public void triggerBlock(String reference) {
+        for (Block block : blocks) {
+            if (block instanceof TriggerableBlock) {
+                TriggerableBlock tBlock = (TriggerableBlock) block;
+                if (tBlock.reference != null && tBlock.reference.equals(reference)) {
+                    tBlock.trigger();
+                }
+            }
+        }
+    }
+
+    public void triggerLogic(String reference) {
+        for (Logic instance : logicInstances) {
+            if (instance.reference != null && instance.reference.equals(reference)) {
+                instance.trigger();
+            }
+        }
+    }
+
     public void tick() {
         NullBlock.tick();
         AirBlock.tick();
@@ -194,6 +215,10 @@ public abstract class Level
             }
         }
 
+        for (Logic instance : logicInstances) {
+            instance.tick();
+        }
+
         for (int i = 0; i < countEntities(); i++) {
             getEntity(i).tick();
             if (getEntity(i).removed) {
@@ -213,6 +238,11 @@ public abstract class Level
             else if (volume < 0) volume = 0;
             sound.play(volume);
         }
+    }
+
+    public void addLogic(Logic logic) {
+        logic.level = this;
+        logicInstances.add(logic);
     }
 
     public void addEntity(Entity e, double x, double z) {

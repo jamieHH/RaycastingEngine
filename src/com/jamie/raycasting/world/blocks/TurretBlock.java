@@ -10,8 +10,6 @@ public class TurretBlock extends TriggerableBlock
     private boolean isActive = true;
     private boolean isFiring = true;
     private String direction;
-    private static final int fireWait = 30;
-    private int fireTicks = 0;
 
     private static final int texWait = 10;
     private int texTicks = 0;
@@ -32,38 +30,7 @@ public class TurretBlock extends TriggerableBlock
         this.direction = direction;
     }
 
-    public void trigger() {
-        setState(!getState());
-    }
-
     public void tick() {
-        if (isActive) {
-            if (fireTicks > 0) {
-                fireTicks--;
-            } else {
-                emitSound(Sound.clickAction);
-                isFiring = true;
-                Projectile projectile = getProjectile();
-                if (direction.equals("N")) {
-                    projectile.setRotation(4.71239);
-                    level.addEntity(projectile, gridX - 0.5, gridZ + 0.5);
-                } else if (direction.equals("S")) {
-                    projectile.setRotation(1.5708);
-                    level.addEntity(projectile, gridX + 1.5, gridZ + 0.5);
-                } else if (direction.equals("E")) {
-                    projectile.setRotation(0);
-                    level.addEntity(projectile, gridX + 0.5, gridZ + 1.5);
-                } else if (direction.equals("W")) {
-                    projectile.setRotation(3.14159);
-                    level.addEntity(projectile, gridX + 0.5, gridZ - 0.5);
-                }
-
-                fireTicks = fireWait;
-            }
-        } else {
-            fireTicks = 0;
-        }
-
         if (isFiring) {
             if (texTicks > 0) {
                 texTicks--;
@@ -75,6 +42,25 @@ public class TurretBlock extends TriggerableBlock
             wallTex = Texture.wallBoltSwitch1;
         } else {
             wallTex = Texture.wallBoltSwitch0;
+        }
+    }
+
+    public void trigger() {
+        emitSound(Sound.clickAction);
+        isFiring = true;
+        Projectile projectile = getProjectile();
+        if (direction.equals("N")) {
+            projectile.setRotation(4.71239);
+            level.addEntity(projectile, gridX - 0.5, gridZ + 0.5);
+        } else if (direction.equals("S")) {
+            projectile.setRotation(1.5708);
+            level.addEntity(projectile, gridX + 1.5, gridZ + 0.5);
+        } else if (direction.equals("E")) {
+            projectile.setRotation(0);
+            level.addEntity(projectile, gridX + 0.5, gridZ + 1.5);
+        } else if (direction.equals("W")) {
+            projectile.setRotation(3.14159);
+            level.addEntity(projectile, gridX + 0.5, gridZ - 0.5);
         }
     }
 
