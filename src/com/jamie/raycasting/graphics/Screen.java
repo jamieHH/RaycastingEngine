@@ -69,7 +69,7 @@ public class Screen extends Display
                 }
             } else {
                 String overText = "GAME OVER";
-                draw(overText, halfWidth() - ((overText.length() / 2) * fontWidth()), render.halfHeight(), 0xFF0000);
+                draw(overText, halfWidth() - (overText.length() * fontWidth() / 2), render.halfHeight() - (fontHeight() / 2), 0xFF0000);
             }
 
             // render hudbar

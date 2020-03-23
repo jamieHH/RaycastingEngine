@@ -12,7 +12,7 @@ public class LoadingOverlay extends Overlay
         fill(0x020202);
 
         message = "Entering " + message;
-        draw(message, (width - (message.length() * 6)) / 2, ((height - 8) / 2), 0x707070);
+        draw(message, halfWidth() - ((message.length() * fontWidth()) / 2), halfHeight() - (fontHeight() / 2), 0x707070);
     }
 
     public void tick() {
