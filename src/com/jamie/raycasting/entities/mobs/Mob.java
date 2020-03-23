@@ -1,7 +1,9 @@
 package com.jamie.raycasting.entities.mobs;
 
 import com.jamie.jamapp.*;
+import com.jamie.raycasting.app.Client;
 import com.jamie.raycasting.app.Sound;
+import com.jamie.raycasting.entities.AreaAlertEntity;
 import com.jamie.raycasting.entities.Drop;
 import com.jamie.raycasting.entities.Entity;
 import com.jamie.raycasting.entities.mobs.mobEffects.MobEffect;
@@ -247,6 +249,15 @@ public abstract class Mob extends Entity
                             addItem(drop.item);
                             drop.remove();
                         }
+                    }
+                }
+
+                for (int i = 0; i < level.getAreaAlertEntities().size(); i++) {
+                    AreaAlertEntity alert = level.getAreaAlertEntities().get(i);
+                    if (contains(alert.posX, alert.posZ)) {
+                        Sound.slideUp.play();
+                        Client.alert(alert.message);
+                        alert.remove();
                     }
                 }
 

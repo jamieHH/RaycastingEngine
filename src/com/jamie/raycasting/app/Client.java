@@ -6,6 +6,7 @@ import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.entities.mobs.Player;
 import com.jamie.raycasting.graphics.overlays.InventoryOverlay;
 import com.jamie.raycasting.graphics.overlays.Overlay;
+import com.jamie.raycasting.graphics.overlays.TextOverlay;
 import com.jamie.raycasting.graphics.overlays.menus.*;
 import com.jamie.raycasting.input.ArtificialInputHandler;
 import com.jamie.jamapp.InputHandler;
@@ -114,6 +115,13 @@ public class Client extends JamappClient
 		getPlayer().setRotation(1.9);
 		getWorld().switchLevel(getPlayer(), level, 0);
 		setActiveOverlay(null);
+
+		alert("Press [Space] or Click to activate objects");
+	}
+
+	public static void alert(String message) {
+		Overlay overlay = new TextOverlay(App.getDisplayWidth(), App.getDisplayHeight(), message);
+		setActiveOverlay(overlay);
 	}
 
 	public static void stopGame() {

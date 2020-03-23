@@ -5,10 +5,7 @@ import java.util.*;
 import com.jamie.jamapp.Bitmap;
 import com.jamie.jamapp.Sfx;
 import com.jamie.raycasting.app.Client;
-import com.jamie.raycasting.entities.BarrelEntity;
-import com.jamie.raycasting.entities.ChestEntity;
-import com.jamie.raycasting.entities.Entity;
-import com.jamie.raycasting.entities.Drop;
+import com.jamie.raycasting.entities.*;
 import com.jamie.raycasting.entities.mobs.*;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
@@ -287,6 +284,16 @@ public abstract class Level
             }
         }
         return drops;
+    }
+
+    public List<AreaAlertEntity> getAreaAlertEntities() {
+        List<AreaAlertEntity> aaes = new ArrayList<AreaAlertEntity>();
+        for (Entity aae : getEntities()) {
+            if (aae instanceof AreaAlertEntity) {
+                aaes.add((AreaAlertEntity) (aae));
+            }
+        }
+        return aaes;
     }
 
     public Block getBlockByReference(String reference) {
