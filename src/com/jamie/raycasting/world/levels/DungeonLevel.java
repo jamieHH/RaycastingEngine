@@ -1,12 +1,9 @@
 package com.jamie.raycasting.world.levels;
 
 import com.jamie.raycasting.entities.mobs.Mob;
-import com.jamie.raycasting.world.LogicInverter;
 import com.jamie.raycasting.world.LogicRelay;
 import com.jamie.raycasting.world.LogicTimer;
 import com.jamie.raycasting.world.blocks.TurretBlock;
-
-import java.lang.reflect.Array;
 
 public class DungeonLevel extends Level
 {
