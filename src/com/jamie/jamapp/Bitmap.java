@@ -1,5 +1,8 @@
 package com.jamie.jamapp;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Bitmap
 {
 	public int width;
@@ -111,6 +114,68 @@ public class Bitmap
             draw(font, x + i * fontWidth(), y, xx * 6, yy * 8, fontWidth(), fontHeight(), col);
         }
     }
+
+    private static List<String> getTextLines(String string, int maxWidth) {
+		List<String> lines = new ArrayList<String>();
+		String[] words = string.trim().split("\\s+");
+		String line = "";
+
+		for (int i = 0; i < words.length; i++) {
+			if ((line + words[i]).length() * fontWidth() < maxWidth) {
+				line += (words[i] + " ");
+			} else {
+				lines.add(line.trim());
+				line = (words[i] + " ");
+			}
+		}
+		lines.add(line.trim());
+
+		return lines;
+	}
+
+    public static Bitmap textBox(String string, int sizeX, int sizeY, int col, int bgCol) {
+		List<String> lines = getTextLines(string, sizeX);
+
+		Bitmap b = new Bitmap(sizeX, sizeY);
+		b.fill(bgCol);
+		for (int i = 0; i < lines.size(); i++) {
+			b.draw(lines.get(i), 0, lineHeight() * i, col);
+		}
+		return b;
+	}
+
+	public static Bitmap textBox(String string, int maxWidth, int col, int bgCol) {
+		List<String> lines = getTextLines(string, maxWidth);
+
+		Bitmap b = new Bitmap(maxWidth, lines.size() * lineHeight());
+		b.fill(bgCol);
+		for (int i = 0; i < lines.size(); i++) {
+			b.draw(lines.get(i), 0, lineHeight() * i, col);
+		}
+		return b;
+	}
+
+	public static Bitmap textBoxTrimmed(String string, int maxWidth, int col, int bgCol) {
+		List<String> lines = getTextLines(string, maxWidth);
+
+		int maxLineWidth = 0;
+		for (int i = 0; i < lines.size(); i++) {
+			int lineWidth = lines.get(i).length() * fontWidth();
+			if (lineWidth > maxWidth) {
+				maxLineWidth = maxWidth;
+				break;
+			} else if (lineWidth > maxLineWidth) {
+				maxLineWidth = lineWidth;
+			}
+		}
+
+		Bitmap b = new Bitmap(maxLineWidth, lines.size() * lineHeight());
+		b.fill(bgCol);
+		for (int i = 0; i < lines.size(); i++) {
+			b.draw(lines.get(i), 0, lineHeight() * i, col);
+		}
+		return b;
+	}
 
     public void fill(int color) {
 		for (int i = 0; i < width * height; i++) {
