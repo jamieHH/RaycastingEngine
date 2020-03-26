@@ -27,7 +27,7 @@ import java.util.Random;
 
 public abstract class Mob extends Entity
 {
-    protected boolean isInvulnerable = false;
+    public boolean isInvulnerable = false;
     protected boolean canPickup = false;
     protected boolean canActivateBlocks = false;
     protected boolean isFloating = false;
@@ -262,12 +262,9 @@ public abstract class Mob extends Entity
                 }
 
                 if (!isUsingMenu) {
-                    receiveMovementInput();
-
                     if (input.check(Controls.ACTION)) {
                         activate();
                     }
-
                     if (input.check(Controls.HOT1) && getHotkey(1) != null) {
                         input.stopInput(Controls.HOT1);
                         useItemIndex(getHotkey(1));
@@ -280,9 +277,43 @@ public abstract class Mob extends Entity
                         input.stopInput(Controls.HOT3);
                         useItemIndex(getHotkey(3));
                     }
+
+                    double moveSpeed = walkSpeed;
+                    moveSpeed *= friction;
+                    if (input.check(Controls.CROUCH)) {
+                        moveSpeed *= 0.5;
+                        yBob =- 0.25;
+                    }
+                    if (input.check(Controls.FORWARD)) moveZ += moveSpeed;
+                    if (input.check(Controls.BACK)) moveZ -= moveSpeed;
+                    if (input.check(Controls.LEFT)) moveX -= moveSpeed;
+                    if (input.check(Controls.RIGHT)) moveX += moveSpeed;
+                    if (input.check(Controls.ROTLEFT)) rotationMove -= rotationSpeed;
+                    if (input.check(Controls.ROTRIGHT)) rotationMove += rotationSpeed;
+                    // View bob:
+                    if ((input.check(Controls.FORWARD) ^ input.check(Controls.BACK)) || (input.check(Controls.LEFT) ^ input.check(Controls.RIGHT))) {
+                        bobTime++;
+                        double bobSpeed = (moveSpeed * 10) * 1.5;
+                        yBob += Math.sin((bobTime * bobSpeed)) * 0.015;
+                    } else {
+                        bobTime = 0;
+                    }
                 }
 
-                doMovements();
+                camY = viewHeight;
+                camY += yBob;
+                yBob *= 0.75;
+
+                rotate(rotationMove);
+                if (!isUsingMenu) {
+                    rotate(input.getDiffMouseX());
+                    camPitch(input.getDiffMouseY());
+                }
+                rotationMove *= 0.6;
+
+                move(moveX * Math.cos(getRotation()) + moveZ * Math.sin(getRotation()), moveZ * Math.cos(getRotation()) - moveX * Math.sin(getRotation()));
+                moveX *= 1 - friction;
+                moveZ *= 1 - friction;
             } else {
                 emitSound(deathSound);
                 runSpriteSet("death");
@@ -305,55 +336,13 @@ public abstract class Mob extends Entity
         }
     }
 
-    private void receiveMovementInput() {
-        double moveSpeed = walkSpeed;
-        moveSpeed *= friction;
-
-        if (input.check(Controls.CROUCH)) {
-            moveSpeed *= 0.5;
-            yBob =- 0.25;
-        }
-        if (input.check(Controls.FORWARD)) moveZ += moveSpeed;
-        if (input.check(Controls.BACK)) moveZ -= moveSpeed;
-        if (input.check(Controls.LEFT)) moveX -= moveSpeed;
-        if (input.check(Controls.RIGHT)) moveX += moveSpeed;
-        if (input.check(Controls.ROTLEFT)) rotationMove -= rotationSpeed;
-        if (input.check(Controls.ROTRIGHT)) rotationMove += rotationSpeed;
-
-        // View bob:
-        if ((input.check(Controls.FORWARD) ^ input.check(Controls.BACK)) || (input.check(Controls.LEFT) ^ input.check(Controls.RIGHT))) {
-            bobTime++;
-            double bobSpeed = (moveSpeed * 10) * 1.5;
-            yBob += Math.sin((bobTime * bobSpeed)) * 0.015;
-        } else {
-            bobTime = 0;
-        }
-    }
-
-    public void camPitch(double pitch) {
+    private void camPitch(double pitch) {
         camPitch += pitch;
         if (camPitch > 1.0) {
             camPitch = 1.0;
         } else if (camPitch < 0) {
             camPitch = 0.0;
         }
-    }
-
-    private void doMovements() {
-        camY = viewHeight;
-        camY += yBob;
-        yBob *= 0.75;
-
-        rotate(rotationMove);
-        if (!isUsingMenu) {
-            rotate(input.getDiffMouseX());
-            camPitch(input.getDiffMouseY());
-        }
-        rotationMove *= 0.6;
-
-        move(moveX * Math.cos(getRotation()) + moveZ * Math.sin(getRotation()), moveZ * Math.cos(getRotation()) - moveX * Math.sin(getRotation()));
-        moveX *= 1 - friction;
-        moveZ *= 1 - friction;
     }
 
     private boolean isWallBlocked(double x, double z) {

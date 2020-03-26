@@ -106,6 +106,13 @@ public class Console {
                     log("Specify to set 0 or 1");
                 }
                 break;
+            case "god":
+                if (args.length >= 2 && isNumeric(args[1])) {
+                    Client.getPlayer().isInvulnerable = !(Integer.parseInt(args[1]) < 1);
+                } else {
+                    log("Specify to set 0 or 1");
+                }
+                break;
             case "triggerb":
                 if (args.length >= 2) {
                     if (getLevel() != null) {
