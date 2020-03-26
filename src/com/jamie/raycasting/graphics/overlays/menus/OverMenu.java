@@ -1,5 +1,6 @@
 package com.jamie.raycasting.graphics.overlays.menus;
 
+import com.jamie.jamapp.App;
 import com.jamie.raycasting.app.Sound;
 import com.jamie.raycasting.app.Client;
 import com.jamie.raycasting.input.Controls;
@@ -14,8 +15,8 @@ public class OverMenu extends Menu
     }
 
 
-    public OverMenu(int width, int height) {
-        super(width, height);
+    public OverMenu() {
+        super(App.getDisplayWidth(), (int) (App.getDisplayHeight() * 0.6));
     }
 
     public void tick() {

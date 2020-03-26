@@ -1,5 +1,6 @@
 package com.jamie.raycasting.graphics.overlays.menus;
 
+import com.jamie.jamapp.App;
 import com.jamie.jamapp.Bitmap;
 import com.jamie.raycasting.app.Client;
 import com.jamie.raycasting.app.Sound;
@@ -20,9 +21,12 @@ public class ItemsOverlay extends Overlay
     private static final int ICON_SIZE = 16;
     private int itemIndex = 0;
 
+    public ItemsOverlay() {
+        super(App.getDisplayWidth(), 40);
+    }
 
-    public ItemsOverlay(int width, int height) {
-        super(width, height);
+    public void resizeOverlay() {
+        super.setSize(App.getDisplayWidth(), 40);
     }
 
     private class ItemTile
@@ -127,10 +131,10 @@ public class ItemsOverlay extends Overlay
             if (!(itemTiles.size() < itemIndex + 1)) {
                 String description;
                 Bitmap itemTitle = textBox(itemTiles.get(itemIndex).description, 0x707070, 0);
-                draw(itemTitle, halfWidth() - itemTitle.halfWidth(), height - itemTitle.height);
+                draw(itemTitle, halfWidth() - itemTitle.halfWidth(), height - 1 - itemTitle.height);
 
                 Bitmap itemHighlight = square(ICON_SIZE + 4, ICON_SIZE + 4, 0x707070);
-                draw(itemHighlight, halfWidth() - itemHighlight.halfWidth(), halfHeight() - itemHighlight.halfHeight());
+                draw(itemHighlight, halfWidth() - itemHighlight.halfWidth(), halfHeight() - itemHighlight.halfHeight() );
             } else {
                 itemIndex--;
             }

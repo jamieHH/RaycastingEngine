@@ -20,14 +20,13 @@ public class Client extends JamappClient
 
 	private static InputHandler temporaryInput = new ArtificialInputHandler();
 
-	public static final Menu mainMenu = new MainMenu(App.getDisplayWidth(), (int) (App.getDisplayHeight() * 0.6));
-    public static final Menu loadMenu = new LoadMenu(App.getDisplayWidth(), (int) (App.getDisplayHeight() * 0.6));
-    public static final Menu optionsMenu = new OptionsMenu(App.getDisplayWidth(), (int) (App.getDisplayHeight() * 0.6));
-    public static final Menu pauseMenu = new PauseMenu(App.getDisplayWidth(), (int) (App.getDisplayHeight() * 0.6));
-    public static final Menu overMenu = new OverMenu(App.getDisplayWidth(), (int) (App.getDisplayHeight() * 0.6));
-//    public static final Overlay inventoryOverlay = new InventoryOverlay((int) (App.getDisplayWidth() * 0.8), (int) (App.getDisplayHeight() * 0.6));
-    public static final Overlay inventoryOverlay = new ItemsOverlay((int) (App.getDisplayWidth()), (int) (38));
-    public static final Overlay consoleOverlay = new ConsoleOverlay((int) (App.getDisplayWidth() * 0.8), (int) (App.getDisplayHeight() * 0.6));
+	public static final Menu mainMenu = new MainMenu();
+    public static final Menu loadMenu = new LoadMenu();
+    public static final Menu optionsMenu = new OptionsMenu();
+    public static final Menu pauseMenu = new PauseMenu();
+    public static final Menu overMenu = new OverMenu();
+    public static final Overlay inventoryOverlay = new ItemsOverlay();
+    public static final Overlay consoleOverlay = new ConsoleOverlay();
 
 	private static Overlay activeOverlay;
 	private static Overlay previousOverlay;
@@ -129,13 +128,14 @@ public class Client extends JamappClient
 	}
 
 	public static void resizeMenus() {
-		mainMenu.setSize(App.getDisplayWidth(), (int) (App.getDisplayHeight() * 0.6));
-		loadMenu.setSize(App.getDisplayWidth(), (int) (App.getDisplayHeight() * 0.6));
-		optionsMenu.setSize(App.getDisplayWidth(), (int) (App.getDisplayHeight() * 0.6));
-		pauseMenu.setSize(App.getDisplayWidth(), (int) (App.getDisplayHeight() * 0.6));
-		overMenu.setSize(App.getDisplayWidth(), (int) (App.getDisplayHeight() * 0.6));
-		inventoryOverlay.setSize((int) (App.getDisplayWidth() * 0.8), (int) (App.getDisplayHeight() * 0.6));
-		consoleOverlay.setSize((int) (App.getDisplayWidth() * 0.8), (int) (App.getDisplayHeight() * 0.6));
+		mainMenu.resizeOverlay();
+		loadMenu.resizeOverlay();
+		optionsMenu.resizeOverlay();
+		pauseMenu.resizeOverlay();
+		overMenu.resizeOverlay();
+		inventoryOverlay.resizeOverlay();
+		consoleOverlay.resizeOverlay();
+
 	}
 
 	public static void setActiveOverlay(Overlay overlay) {

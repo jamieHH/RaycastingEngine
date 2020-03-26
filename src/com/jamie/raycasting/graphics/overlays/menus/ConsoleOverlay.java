@@ -1,5 +1,6 @@
 package com.jamie.raycasting.graphics.overlays.menus;
 
+import com.jamie.jamapp.App;
 import com.jamie.jamapp.Bitmap;
 import com.jamie.raycasting.app.Client;
 import com.jamie.raycasting.app.Console;
@@ -17,10 +18,12 @@ public class ConsoleOverlay extends Overlay
     private List<String> commandHistory = new ArrayList<String>();
     private int reverseHistoryIndex = 0;
 
-    public ConsoleOverlay(int width, int height) {
-        super(width, height);
-        setSize(width, height);
-        opacity = 75;
+    public ConsoleOverlay() {
+        super((int) (App.getDisplayWidth() * 0.8), (int) (App.getDisplayHeight() * 0.6));
+    }
+
+    public void resizeOverlay() {
+        super.setSize((int) (App.getDisplayWidth() * 0.8), (int) (App.getDisplayHeight() * 0.6));
     }
 
     public void setSize(int width, int height) {

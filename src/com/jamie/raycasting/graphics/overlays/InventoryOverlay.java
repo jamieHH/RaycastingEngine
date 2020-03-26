@@ -1,5 +1,6 @@
 package com.jamie.raycasting.graphics.overlays;
 
+import com.jamie.jamapp.App;
 import com.jamie.raycasting.app.Sound;
 import com.jamie.raycasting.app.Client;
 import com.jamie.raycasting.entities.mobs.Mob;
@@ -83,8 +84,12 @@ public class InventoryOverlay extends Overlay
     }
 
 
-    public InventoryOverlay(int width, int height) {
-        super(width, height);
+    public InventoryOverlay() {
+        super((int) (App.getDisplayWidth() * 0.8), (int) (App.getDisplayHeight() * 0.6));
+    }
+
+    public void resizeOverlay() {
+        super.setSize((int) (App.getDisplayWidth() * 0.8), (int) (App.getDisplayHeight() * 0.6));
     }
 
     public void setSize(int width, int height) {

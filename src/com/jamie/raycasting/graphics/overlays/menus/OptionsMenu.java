@@ -45,8 +45,8 @@ public class OptionsMenu extends Menu
     }
 
 
-    public OptionsMenu(int width, int height) {
-        super(width, height);
+    public OptionsMenu() {
+        super(App.getDisplayWidth(), (int) (App.getDisplayHeight() * 0.6));
     }
 
     public void tick() {
