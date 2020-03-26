@@ -1,5 +1,7 @@
 package com.jamie.jamapp;
 
+import com.jamie.raycasting.app.Console;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -85,6 +87,19 @@ public class Bitmap
 		}
 	}
 
+	public static Bitmap square(int sizeX, int sizeY, int col) {
+		Bitmap border = new Bitmap(sizeX, sizeY);
+		border.fill(col);
+
+		for (int i = border.width; i < (sizeX * sizeY) -border.width; i++) {
+			if (i % border.width != 0 && i % border.width != border.width - 1) {
+				border.pixels[i] = INVISIBLE;
+			}
+		}
+
+		return border;
+	}
+
     public void draw(Bitmap bitmap, int xOffs, int yOffs, int xo, int yo, int w, int h, int col) {
         for (int y = 0; y < h; y++) {
             int yPix = y + yOffs;
@@ -141,6 +156,13 @@ public class Bitmap
 		for (int i = 0; i < lines.size(); i++) {
 			b.draw(lines.get(i), 0, lineHeight() * i, col);
 		}
+		return b;
+	}
+
+	public static Bitmap textBox(String string, int col, int bgCol) {
+		Bitmap b = new Bitmap(string.length() * fontWidth(), fontHeight());
+		b.fill(bgCol);
+		b.draw(string, 0, 0, col);
 		return b;
 	}
 

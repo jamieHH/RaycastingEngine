@@ -25,7 +25,8 @@ public class Client extends JamappClient
     public static final Menu optionsMenu = new OptionsMenu(App.getDisplayWidth(), (int) (App.getDisplayHeight() * 0.6));
     public static final Menu pauseMenu = new PauseMenu(App.getDisplayWidth(), (int) (App.getDisplayHeight() * 0.6));
     public static final Menu overMenu = new OverMenu(App.getDisplayWidth(), (int) (App.getDisplayHeight() * 0.6));
-    public static final Overlay inventoryOverlay = new InventoryOverlay((int) (App.getDisplayWidth() * 0.8), (int) (App.getDisplayHeight() * 0.6));
+//    public static final Overlay inventoryOverlay = new InventoryOverlay((int) (App.getDisplayWidth() * 0.8), (int) (App.getDisplayHeight() * 0.6));
+    public static final Overlay inventoryOverlay = new ItemsOverlay((int) (App.getDisplayWidth()), (int) (38));
     public static final Overlay consoleOverlay = new ConsoleOverlay((int) (App.getDisplayWidth() * 0.8), (int) (App.getDisplayHeight() * 0.6));
 
 	private static Overlay activeOverlay;
@@ -43,18 +44,14 @@ public class Client extends JamappClient
 			getActiveOverlay().tick();
 			input.unlockCursor();
 		} else {
-            input.lockCursor();
+			input.lockCursor();
         }
 
         if (world != null) {
 			world.tick();
 
 			if (getPlayer() != null) {
-				if (getActiveOverlay() != null) {
-					getPlayer().isUsingMenu = true;
-				} else {
-					getPlayer().isUsingMenu = false;
-				}
+				getPlayer().isUsingMenu = getActiveOverlay() != null;
 
 				if (!getPlayer().isDead) {
 					if (getActiveOverlay() != consoleOverlay) {

@@ -85,7 +85,6 @@ public class InventoryOverlay extends Overlay
 
     public InventoryOverlay(int width, int height) {
         super(width, height);
-        setSize(width, height);
     }
 
     public void setSize(int width, int height) {
