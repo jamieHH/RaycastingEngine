@@ -143,6 +143,9 @@ public class App extends Canvas implements Runnable
 
     private void initialiseFrame() {
 		reinitialiseFrame = false;
+		if (frame != null) {
+			frame.dispose();
+		}
 		display.setSize(getDisplayWidth(), getDisplayHeight());
 		img = new BufferedImage(getDisplayWidth(), getDisplayHeight(), BufferedImage.TYPE_INT_RGB);
 		pixels = ((DataBufferInt) img.getRaster().getDataBuffer()).getData();
@@ -175,7 +178,6 @@ public class App extends Canvas implements Runnable
 		game.tick();
 
 		if (reinitialiseFrame) {
-			frame.dispose();
 			initialiseFrame();
 		}
 	}
@@ -218,7 +220,7 @@ public class App extends Canvas implements Runnable
         return img;
     }
 
-    private static int getFrameWidth() {
+    public static int getFrameWidth() {
 		if (fullscreenEnabled) {
 			return Toolkit.getDefaultToolkit().getScreenSize().width;
 		}
@@ -226,7 +228,7 @@ public class App extends Canvas implements Runnable
 		return displayWidth * displayScale;
 	}
 
-	private static int getFrameHeight() {
+	public static int getFrameHeight() {
 		if (fullscreenEnabled) {
 			return Toolkit.getDefaultToolkit().getScreenSize().height;
 		}
