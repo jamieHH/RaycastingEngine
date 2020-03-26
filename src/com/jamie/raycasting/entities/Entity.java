@@ -100,6 +100,10 @@ public abstract class Entity
         return true;
     }
 
+    public boolean isTouching(Entity e) {
+        return isInside(e.posX - e.radius, e.posZ - e.radius, e.posX + e.radius, e.posZ + e.radius);
+    }
+
     public List<Entity> getEntitiesInRadius(double radius) {
         List<Entity> entities = new ArrayList<Entity>();
         for (Entity ent : level.getEntities()) {

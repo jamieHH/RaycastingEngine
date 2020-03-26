@@ -243,23 +243,26 @@ public abstract class Mob extends Entity
                 }
 
                 if (canPickup) {
-                    for (Drop drop : level.getDropEntities()) {
-                        if (contains(drop.posX, drop.posZ)) {
+                    for (int i = 0; i < level.getDropEntities().size(); i++) {
+                        Drop drop = level.getDropEntities().get(i);
+                        if (isTouching(drop)) {
                             Sound.pickUp.play();
                             addItem(drop.item);
                             drop.remove();
                         }
                     }
-                }
 
-                for (int i = 0; i < level.getAreaAlertEntities().size(); i++) {
-                    AreaAlertEntity alert = level.getAreaAlertEntities().get(i);
-                    if (contains(alert.posX, alert.posZ)) {
-                        Sound.slideUp.play();
-                        Client.alert(alert.message);
-                        alert.remove();
+                    for (int i = 0; i < level.getAreaAlertEntities().size(); i++) {
+                        AreaAlertEntity alert = level.getAreaAlertEntities().get(i);
+                        if (isTouching(alert)) {
+                            Sound.slideUp.play();
+                            Client.alert(alert.message);
+                            alert.remove();
+                        }
                     }
                 }
+
+
 
                 if (!isUsingMenu) {
                     if (input.check(Controls.ACTION)) {
@@ -532,11 +535,6 @@ public abstract class Mob extends Entity
 
         moveX += mx * Math.cos(-getRotation()) + mz * Math.sin(-getRotation());
         moveZ += mz * Math.cos(-getRotation()) - mx * Math.sin(-getRotation());
-    }
-
-    public void addMomentum(double moveX, double moveZ) {
-        this.moveX = moveX;
-        this.moveZ = moveZ;
     }
 
     public void heal(int magnitude) {
