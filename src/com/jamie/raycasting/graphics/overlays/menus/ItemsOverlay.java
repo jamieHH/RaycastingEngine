@@ -7,6 +7,7 @@ import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.graphics.overlays.Overlay;
 import com.jamie.raycasting.input.Controls;
 import com.jamie.raycasting.items.Inventory;
+import com.jamie.raycasting.items.Item;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,12 +27,23 @@ public class ItemsOverlay extends Overlay
 
     private class ItemTile
     {
-        String title;
+        String description;
         Bitmap icon;
 
-        public ItemTile(String title, Bitmap icon) {
-            this.title = title;
-            this.icon = icon;
+        public ItemTile(Item item) {
+            switch (item.type) {
+                case Item.TYPE_CONSUMABLE:
+                    this.description = "Consume: " + item.name;
+                    break;
+                case Item.TYPE_WEAPON:
+                    this.description = "Equip: " + item.name;
+                    break;
+                default:
+                    this.description = item.name;
+                    break;
+            }
+
+            this.icon = item.icon;
         }
     }
 
@@ -41,7 +53,7 @@ public class ItemsOverlay extends Overlay
 
         List<ItemTile> il = new ArrayList<ItemTile>();
         for (int i = 0; i < inventory.getItems().size(); i++) {
-            il.add(new ItemTile(inventory.getItem(i).name, inventory.getItem(i).icon));
+            il.add(new ItemTile(inventory.getItem(i)));
         }
         itemTiles = il;
 
@@ -63,47 +75,49 @@ public class ItemsOverlay extends Overlay
                 }
             }
 
-            if (Client.input.check(Controls.HOT1)) {
-                Client.input.stopInput(Controls.HOT1);
-                Sound.clickAction.play();
-                if (mob.getHotkey(1) == null || mob.getHotkey(1) != itemIndex) {
-                    mob.setHotkey(1, itemIndex);
-                } else {
-                    mob.setHotkey(1, null);
+            if (!inventory.getItems().get(itemIndex).type.equals(Item.TYPE_MISC)) {
+                if (Client.input.check(Controls.HOT1)) {
+                    Client.input.stopInput(Controls.HOT1);
+                    Sound.clickAction.play();
+                    if (mob.getHotkey(1) == null || mob.getHotkey(1) != itemIndex) {
+                        mob.setHotkey(1, itemIndex);
+                    } else {
+                        mob.setHotkey(1, null);
+                    }
                 }
-            }
-            if (Client.input.check(Controls.HOT2)) {
-                Client.input.stopInput(Controls.HOT2);
-                Sound.clickAction.play();
-                if (mob.getHotkey(2) == null || mob.getHotkey(2) != itemIndex) {
-                    mob.setHotkey(2, itemIndex);
-                } else {
-                    mob.setHotkey(2, null);
+                if (Client.input.check(Controls.HOT2)) {
+                    Client.input.stopInput(Controls.HOT2);
+                    Sound.clickAction.play();
+                    if (mob.getHotkey(2) == null || mob.getHotkey(2) != itemIndex) {
+                        mob.setHotkey(2, itemIndex);
+                    } else {
+                        mob.setHotkey(2, null);
+                    }
                 }
-            }
-            if (Client.input.check(Controls.HOT3)) {
-                Client.input.stopInput(Controls.HOT3);
-                Sound.clickAction.play();
-                if (mob.getHotkey(3) == null || mob.getHotkey(3) != itemIndex) {
-                    mob.setHotkey(3, itemIndex);
-                } else {
-                    mob.setHotkey(3, null);
+                if (Client.input.check(Controls.HOT3)) {
+                    Client.input.stopInput(Controls.HOT3);
+                    Sound.clickAction.play();
+                    if (mob.getHotkey(3) == null || mob.getHotkey(3) != itemIndex) {
+                        mob.setHotkey(3, itemIndex);
+                    } else {
+                        mob.setHotkey(3, null);
+                    }
                 }
-            }
 
-            if (Client.input.check(Controls.ACTION) || Client.input.check(Controls.ENTER)) {
-                Client.input.stopInput(Controls.ACTION);
-                Client.input.stopInput(Controls.ENTER);
-                Sound.clickAction.play();
-                mob.useItemIndex(inventory.getIndexOf(inventory.getItem(itemIndex)));
+                if (Client.input.check(Controls.ACTION) || Client.input.check(Controls.ENTER)) {
+                    Client.input.stopInput(Controls.ACTION);
+                    Client.input.stopInput(Controls.ENTER);
+                    Sound.clickAction.play();
+                    mob.useItemIndex(inventory.getIndexOf(inventory.getItem(itemIndex)));
+                }
             }
         }
     }
 
     public void update() {
-        fill(0x404040);
+        fill(0x202020);
         Bitmap itemLine = new Bitmap(itemTiles.size() * ICON_SIZE, ICON_SIZE);
-        itemLine.fill(0x404040);
+        itemLine.fill(0x202020);
         for (int i = 0; i < itemTiles.size(); i++) {
             itemLine.draw(itemTiles.get(i).icon, i * ICON_SIZE, 0);
         }
@@ -111,16 +125,17 @@ public class ItemsOverlay extends Overlay
 
         if (itemTiles.size() > 0) {
             if (!(itemTiles.size() < itemIndex + 1)) {
-                Bitmap itemTitle = textBox(itemTiles.get(itemIndex).title, 0xF0F0F0, 0);
+                String description;
+                Bitmap itemTitle = textBox(itemTiles.get(itemIndex).description, 0x707070, 0);
                 draw(itemTitle, halfWidth() - itemTitle.halfWidth(), height - itemTitle.height);
 
-                Bitmap itemHighlight = square(ICON_SIZE + 4, ICON_SIZE + 4, 0xF0F0F0);
+                Bitmap itemHighlight = square(ICON_SIZE + 4, ICON_SIZE + 4, 0x707070);
                 draw(itemHighlight, halfWidth() - itemHighlight.halfWidth(), halfHeight() - itemHighlight.halfHeight());
             } else {
                 itemIndex--;
             }
         } else {
-            Bitmap emptyMessage = textBox("Empty", 0xF0F0F0, 0);
+            Bitmap emptyMessage = textBox("Empty", 0x707070, 0);
             draw(emptyMessage, halfWidth() - emptyMessage.halfWidth(), halfHeight() - emptyMessage.halfHeight());
         }
 

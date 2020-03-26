@@ -7,10 +7,10 @@ import com.jamie.raycasting.graphics.SpriteSet;
 
 public abstract class Item
 {
-    public static String TYPE_WEAPON = "WEAPON";
-    public static String TYPE_CONSUMABLE = "CONSUMABLE";
-    public static String TYPE_MISC = "MISC";
-    public static String TYPE_SPELL = "SPELL";
+    public static final String TYPE_WEAPON = "WEAPON";
+    public static final String TYPE_CONSUMABLE = "CONSUMABLE";
+    public static final String TYPE_MISC = "MISC";
+    public static final String TYPE_SPELL = "SPELL";
 
     public String name;
     public String type;

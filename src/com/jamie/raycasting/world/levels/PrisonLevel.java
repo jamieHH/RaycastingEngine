@@ -20,7 +20,7 @@ public class PrisonLevel extends Level
         addEntity(d1, 13.5, 30.5);
 
         AreaAlertEntity a0 = new AreaAlertEntity("Press [E] to open your Inventory");
-        addEntity(a0, 18.5, 21.5);
+        addEntity(a0, 16.5, 20.5);
     }
 
     public void switchLevel(Mob mob, int id) {
