@@ -1,6 +1,7 @@
 package com.jamie.raycasting.world.levels;
 
 import com.jamie.jamapp.Bitmap;
+import com.jamie.raycasting.entities.AreaAlertEntity;
 import com.jamie.raycasting.entities.Drop;
 import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.graphics.Texture;
@@ -29,6 +30,9 @@ public class GraveyardLevel extends Level
 
 		Drop d1 = new Drop(new MiscItem("Planks", Texture.planksIcon));
 		addEntity(d1, 14.5, 44.5);
+
+		AreaAlertEntity a0 = new AreaAlertEntity("I can use these Planks to repair the bridge.");
+		addEntity(a0, 14.5, 44.5);
 	}
 
     public void switchLevel(Mob mob, int id) {

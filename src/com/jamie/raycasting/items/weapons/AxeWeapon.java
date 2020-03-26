@@ -9,7 +9,7 @@ public class AxeWeapon extends Weapon
     public AxeWeapon() {
         super();
 
-        name = "Hatchet";
+        name = "Axe";
         damage = 3;
         reach = 1;
         useWait = 20;
