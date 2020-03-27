@@ -77,12 +77,12 @@ public class PauseMenu extends Menu
 
         if (showControls) {
             List<String> lines = Arrays.asList(
-                    "[Arrows, Scroll]: Navigate",
-                    "[Space, Click]: Action",
-                    "[W, S, A, D]: Move / Strafe",
-                    "[Arrows]: Move / Rotate",
-                    "[E]: Inventory",
-                    "[Esc]: Pause");
+                    "[Arrows,Scroll]: Navigate",
+                    "[Space,Click]:     Action",
+                    "[W,S,A,D]:  Move / Strafe",
+                    "[Arrows]:   Move / Rotate",
+                    "[E]:            Inventory",
+                    "[Esc]:              Pause");
 
             Bitmap textBox = textBoxTrimmed(lines, width, 0xF0F070, 0x303030);
 
