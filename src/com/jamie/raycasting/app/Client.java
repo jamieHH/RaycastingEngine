@@ -21,7 +21,6 @@ public class Client extends JamappClient
 	private static InputHandler temporaryInput = new ArtificialInputHandler();
 
 	public static final Menu mainMenu = new MainMenu();
-    public static final Menu loadMenu = new LoadMenu();
     public static final Menu optionsMenu = new OptionsMenu();
     public static final Menu pauseMenu = new PauseMenu();
     public static final Menu overMenu = new OverMenu();
@@ -129,7 +128,6 @@ public class Client extends JamappClient
 
 	public static void resizeMenus() {
 		mainMenu.resizeOverlay();
-		loadMenu.resizeOverlay();
 		optionsMenu.resizeOverlay();
 		pauseMenu.resizeOverlay();
 		overMenu.resizeOverlay();

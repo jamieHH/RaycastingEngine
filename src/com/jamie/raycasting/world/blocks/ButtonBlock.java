@@ -7,7 +7,7 @@ import com.jamie.raycasting.graphics.Texture;
 public class ButtonBlock extends FunctionBlock
 {
     private int useTicks = 0;
-    private int useWait = 10;
+    private static final int USE_WAIT = 10;
 
 	public ButtonBlock() {
 		isOpaque = true;
@@ -31,7 +31,7 @@ public class ButtonBlock extends FunctionBlock
     }
 
 	public boolean trigger() {
-        useTicks = useWait;
+        useTicks = USE_WAIT;
         emitSound(Sound.clickUp);
         wallTex = Texture.wallButton1;
         level.triggerBlock(id);

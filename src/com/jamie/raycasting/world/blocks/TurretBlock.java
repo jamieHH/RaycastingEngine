@@ -11,7 +11,7 @@ public class TurretBlock extends TriggerableBlock
     private boolean isFiring = true;
     private String direction;
 
-    private static final int texWait = 10;
+    private static final int TEX_WAIT = 10;
     private int texTicks = 0;
 
 
@@ -36,7 +36,7 @@ public class TurretBlock extends TriggerableBlock
                 texTicks--;
             } else {
                 isFiring = false;
-                texTicks = texWait;
+                texTicks = TEX_WAIT;
             }
 
             wallTex = Texture.wallBoltSwitch1;

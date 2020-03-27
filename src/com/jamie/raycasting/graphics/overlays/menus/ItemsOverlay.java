@@ -62,20 +62,32 @@ public class ItemsOverlay extends Overlay
         itemTiles = il;
 
         if (itemTiles.size() > 0 && !(itemTiles.size() < itemIndex + 1)) {
-            if (Client.input.check(Controls.FORWARD) || Client.input.check(Controls.UP)) {
+            if (Client.input.check(Controls.FORWARD) ||
+                    Client.input.check(Controls.UP) ||
+                    Client.input.check(Controls.RIGHT) ||
+                    Client.input.check(Controls.ROTRIGHT)
+            ) {
                 Client.input.stopInput(Controls.FORWARD);
                 Client.input.stopInput(Controls.UP);
-                if ((itemIndex > 0)) {
+                Client.input.stopInput(Controls.RIGHT);
+                Client.input.stopInput(Controls.ROTRIGHT);
+                if (itemIndex < inventory.getItems().size() - 1) {
                     Sound.clickUp.play();
-                    itemIndex--;
+                    itemIndex++;
                 }
             }
-            if (Client.input.check(Controls.BACK) || Client.input.check(Controls.DOWN)) {
+            if (Client.input.check(Controls.BACK) ||
+                    Client.input.check(Controls.DOWN) ||
+                    Client.input.check(Controls.LEFT) ||
+                    Client.input.check(Controls.ROTLEFT)
+            ) {
                 Client.input.stopInput(Controls.BACK);
                 Client.input.stopInput(Controls.DOWN);
-                if ((itemIndex < inventory.getItems().size() - 1)) {
+                Client.input.stopInput(Controls.LEFT);
+                Client.input.stopInput(Controls.ROTLEFT);
+                if (itemIndex > 0) {
                     Sound.clickDown.play();
-                    itemIndex++;
+                    itemIndex--;
                 }
             }
 
@@ -129,7 +141,6 @@ public class ItemsOverlay extends Overlay
 
         if (itemTiles.size() > 0) {
             if (!(itemTiles.size() < itemIndex + 1)) {
-                String description;
                 Bitmap itemTitle = textBox(itemTiles.get(itemIndex).description, 0x707070, 0);
                 draw(itemTitle, halfWidth() - itemTitle.halfWidth(), height - 1 - itemTitle.height);
 

@@ -177,6 +177,26 @@ public class Bitmap
 		return b;
 	}
 
+	public static Bitmap textBoxTrimmed(List<String> lines, int maxWidth, int col, int bgCol) {
+		int maxLineWidth = 0;
+		for (int i = 0; i < lines.size(); i++) {
+			int lineWidth = lines.get(i).length() * fontWidth();
+			if (lineWidth > maxWidth) {
+				maxLineWidth = maxWidth;
+				break;
+			} else if (lineWidth > maxLineWidth) {
+				maxLineWidth = lineWidth;
+			}
+		}
+
+		Bitmap b = new Bitmap(maxLineWidth, lines.size() * lineHeight());
+		b.fill(bgCol);
+		for (int i = 0; i < lines.size(); i++) {
+			b.draw(lines.get(i), 0, lineHeight() * i, col);
+		}
+		return b;
+	}
+
 	public static Bitmap textBoxTrimmed(String string, int maxWidth, int col, int bgCol) {
 		List<String> lines = getTextLines(string, maxWidth);
 

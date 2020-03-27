@@ -54,7 +54,7 @@ public class InventoryOverlay extends Overlay
             this.title = item.name;
             this.items = new ArrayList<Item>(Arrays.asList(
                     item
-            ));;
+            ));
         }
 
         public String getDisplayString() {

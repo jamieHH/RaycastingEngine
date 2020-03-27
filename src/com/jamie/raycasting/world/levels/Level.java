@@ -276,26 +276,6 @@ public abstract class Level
         return mobs;
     }
 
-    public List<Drop> getDropEntities() {
-        List<Drop> drops = new ArrayList<Drop>();
-        for (Entity d : getEntities()) {
-            if (d instanceof Drop) {
-                drops.add((Drop) (d));
-            }
-        }
-        return drops;
-    }
-
-    public List<AreaAlertEntity> getAreaAlertEntities() {
-        List<AreaAlertEntity> aaes = new ArrayList<AreaAlertEntity>();
-        for (Entity aae : getEntities()) {
-            if (aae instanceof AreaAlertEntity) {
-                aaes.add((AreaAlertEntity) (aae));
-            }
-        }
-        return aaes;
-    }
-
     public Block getBlockByReference(String reference) {
         for (Block block : blocks) {
             if (block instanceof FunctionBlock) {

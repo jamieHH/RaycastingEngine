@@ -7,7 +7,7 @@ import com.jamie.raycasting.graphics.Texture;
 
 public class FountainBlock extends FunctionBlock
 {
-    private int particleWait = 0;
+    private static final int PARTICLE_WAIT = 10;
     private int particleTicks;
     private boolean isActive;
 
@@ -32,7 +32,7 @@ public class FountainBlock extends FunctionBlock
 				DropParticle p = new DropParticle(1);
 				level.addEntity(p, gridX + 0.5, gridZ + 0.5);
 
-				particleTicks = particleWait;
+				particleTicks = PARTICLE_WAIT;
 			}
 		}
     }

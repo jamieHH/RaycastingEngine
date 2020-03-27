@@ -39,7 +39,7 @@ public abstract class Mob extends Entity
     // actions
     public InputHandler input;
     public boolean isUsingMenu = false;
-    protected static final int useWait = 15;
+    protected static final int USE_WAIT = 15;
     public int useTicks = 0;
 
     protected String faction;
@@ -65,7 +65,7 @@ public abstract class Mob extends Entity
 
 	// stats
     public int baseDamage = 1;
-    private static final int hurtWait = 30;
+    private static final int HURT_WAIT = 30;
     public int hurtTicks = 0;
 	public String hurtType = "";
 	public int maxHealth = 10;
@@ -84,7 +84,7 @@ public abstract class Mob extends Entity
     public List<MobEffect> mobEffects = new ArrayList<MobEffect>();
 
     public ArrayList<String> hudHeadings = new ArrayList<String>();
-    private static final int hudHeadingsWait = 120;
+    private static final int HUD_HEADINGS_WAIT = 120;
     private int hudHeadingsTicks = 120;
 
     // sprites
@@ -98,7 +98,7 @@ public abstract class Mob extends Entity
 
     //Ai
     private final Random random = new Random();
-    private int influenceWait = 20;
+    private int influenceWait;
     protected abstract InfluenceKeyframe getIdleInfluence();
     protected abstract InfluenceKeyframe getPursuitInfluence();
     protected abstract InfluenceKeyframe getAttackInfluence();
@@ -179,7 +179,7 @@ public abstract class Mob extends Entity
                 hudHeadings.remove(0);
             }
 
-            hudHeadingsTicks = hudHeadingsWait;
+            hudHeadingsTicks = HUD_HEADINGS_WAIT;
         }
 
         if (!isDieing) {
@@ -243,26 +243,24 @@ public abstract class Mob extends Entity
                 }
 
                 if (canPickup) {
-                    for (int i = 0; i < level.getDropEntities().size(); i++) {
-                        Drop drop = level.getDropEntities().get(i);
-                        if (isTouching(drop)) {
-                            Sound.pickUp.play();
-                            addItem(drop.item);
-                            drop.remove();
-                        }
-                    }
-
-                    for (int i = 0; i < level.getAreaAlertEntities().size(); i++) {
-                        AreaAlertEntity alert = level.getAreaAlertEntities().get(i);
-                        if (isTouching(alert)) {
-                            Sound.slideUp.play();
-                            Client.alert(alert.message);
-                            alert.remove();
+                    for (int i = 0; i < level.getEntities().size(); i++) {
+                        if (level.getEntities().get(i) instanceof Drop) {
+                            Drop drop = (Drop) level.getEntities().get(i);
+                            if (isTouching(drop)) {
+                                Sound.pickUp.play();
+                                addItem(drop.item);
+                                drop.remove();
+                            }
+                        } else if (level.getEntities().get(i) instanceof AreaAlertEntity) {
+                            AreaAlertEntity alert = (AreaAlertEntity) level.getEntities().get(i);
+                            if (isTouching(alert)) {
+                                Sound.slideUp.play();
+                                Client.alert(alert.message);
+                                alert.remove();
+                            }
                         }
                     }
                 }
-
-
 
                 if (!isUsingMenu) {
                     if (input.check(Controls.ACTION)) {
@@ -328,9 +326,8 @@ public abstract class Mob extends Entity
 
             if (!isDead) {
                 dieTime--;
-                if (dieTime == 0) {
+                if (dieTime <= 0) {
                     level.addEntity(new PoofParticle(8), posX, posZ);
-
                     isDead = true;
                 }
             } else {
@@ -566,7 +563,7 @@ public abstract class Mob extends Entity
                 if (health - magnitude > 0) {
                     emitSound(hurtSound);
                     hurtType = damageType; // change to blunt if armor protects some damage
-                    hurtTicks = hurtWait;
+                    hurtTicks = HURT_WAIT;
                     health -= magnitude;
 
                     yBob -= 0.5;
@@ -644,7 +641,7 @@ public abstract class Mob extends Entity
         if (getRightHandItem() != null) {
             return getRightHandItem().useWait;
         }
-        return useWait;
+        return USE_WAIT;
     }
 
     public String getFaction() {
