@@ -85,6 +85,11 @@ public class Bitmap
 		}
 	}
 
+	public static Bitmap drawCenter(Bitmap baseMap, Bitmap bitmap) {
+		baseMap.draw(bitmap, baseMap.halfWidth() - bitmap.halfWidth(), baseMap.halfWidth() - bitmap.halfWidth());
+		return baseMap;
+	}
+
 	public static Bitmap square(int sizeX, int sizeY, int col) {
 		Bitmap border = new Bitmap(sizeX, sizeY);
 		border.fill(col);

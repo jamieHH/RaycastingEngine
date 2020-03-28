@@ -85,11 +85,9 @@ public class PauseMenu extends Menu
                     "[Esc]:              Pause");
 
             Bitmap textBox = textBoxTrimmed(lines, width, 0xF0F070, 0x303030);
-
-            Bitmap border = new Bitmap(textBox.width + 4, textBox.height + 4);
-            border.fill(0x101010);
-            border.draw(textBox, border.halfWidth() - textBox.halfWidth(), border.halfHeight() - textBox.halfHeight());
-            draw(border, halfWidth() - border.halfWidth(), halfHeight() - border.halfHeight());
+            Bitmap tWindow = new Bitmap(textBox.width + 4, textBox.height + 4);
+            tWindow.fill(0x101010);
+            draw(drawCenter(tWindow, textBox), halfWidth() - tWindow.halfWidth(), halfHeight() - tWindow.halfHeight());
         }
     }
 }

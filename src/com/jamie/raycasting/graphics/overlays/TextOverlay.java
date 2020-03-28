@@ -19,9 +19,7 @@ public class TextOverlay extends Overlay
         Bitmap wText = textBoxTrimmed(message, maxWidth, textCol, bgCol);
         Bitmap tWindow = new Bitmap(wText.width + 4, wText.height + 4);
         tWindow.fill(borderCol);
-        tWindow.draw(wText, tWindow.halfWidth() - wText.halfWidth(), tWindow.halfHeight() - wText.halfHeight());
-
-        draw(tWindow, this.halfWidth() - tWindow.halfWidth(), this.halfHeight() - tWindow.halfHeight());
+        draw(drawCenter(tWindow, wText), this.halfWidth() - tWindow.halfWidth(), this.halfHeight() - tWindow.halfHeight());
     }
 
     public void tick() {
