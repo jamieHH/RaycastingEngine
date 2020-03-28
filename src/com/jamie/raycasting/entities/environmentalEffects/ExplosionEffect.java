@@ -1,6 +1,8 @@
 package com.jamie.raycasting.entities.environmentalEffects;
 
 import com.jamie.raycasting.app.Sound;
+import com.jamie.raycasting.entities.Entity;
+import com.jamie.raycasting.entities.ExplosiveBarrelEntity;
 import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.entities.particles.EmberParticle;
 import com.jamie.raycasting.entities.particles.Particle;
@@ -25,11 +27,16 @@ public class ExplosionEffect extends EnvironmentalEffect
 
     public void activate() {
         emitSound(Sound.die);
-        List<Mob> mobs = getMobsInRadius(radius);
+        List<Entity> entities = getEntitiesInRadius(radius);
 
-        for (int i = 0; i < mobs.size(); i++) {
-            if (!mobs.get(i).isDead) {
-                mobs.get(i).hurt(this, magnitude, "fire");
+        for (int i = 0; i < entities.size(); i++) {
+            Entity entity = entities.get(i);
+            if (entities.get(i) instanceof Mob) {
+                if (!((Mob) entity).isDead) {
+                    ((Mob) entity).hurt(this, magnitude, "fire");
+                }
+            } else if (entity instanceof ExplosiveBarrelEntity) {
+                ((ExplosiveBarrelEntity) entity).detonate();
             }
         }
 

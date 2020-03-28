@@ -1,5 +1,6 @@
 package com.jamie.raycasting.entities.environmentalEffects;
 
+import com.jamie.raycasting.entities.Entity;
 import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.entities.mobs.mobEffects.FireDamageEffect;
 import com.jamie.raycasting.entities.particles.EmberParticle;
@@ -35,11 +36,13 @@ public class FireEffect extends EnvironmentalEffect
     }
 
     public void activate() {
-        List<Mob> mobs = getMobsInRadius(radius);
+        List<Entity> entities = getEntitiesInRadius(radius);
 
-        for (int i = 0; i < mobs.size(); i++) {
-            if (!mobs.get(i).isDead) {
-                mobs.get(i).addMobEffect(new FireDamageEffect(mobs.get(i), 60, magnitude));
+        for (int i = 0; i < entities.size(); i++) {
+            if (entities instanceof Mob) {
+                if (!((Mob) entities.get(i)).isDead) {
+                    ((Mob) entities.get(i)).addMobEffect(new FireDamageEffect((Mob) entities.get(i), 60, magnitude));
+                }
             }
         }
 

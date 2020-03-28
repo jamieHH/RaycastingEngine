@@ -21,7 +21,9 @@ public class BarrelEntity extends Entity
     private boolean isBroken = false;
 
     public BarrelEntity(Entity drop) {
-        setupSprites();
+        setIdleSprite(new Sprite(Texture.barrel0));
+        setSpriteSet("broken", new Sprite(Texture.barrel1));
+
         this.isSolid = true;
         this.radius = 0.25;
         this.drop = drop;
@@ -43,11 +45,6 @@ public class BarrelEntity extends Entity
         );
 
         return list.get(random.nextInt(list.size()));
-    }
-
-    private void setupSprites() {
-        setIdleSprite(new Sprite(Texture.barrel0));
-        setSpriteSet("broken", new Sprite(Texture.barrel1));
     }
 
     public boolean use(Mob source) {

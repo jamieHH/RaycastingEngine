@@ -2,6 +2,7 @@ package com.jamie.raycasting.entities.projectiles;
 
 import com.jamie.raycasting.entities.BarrelEntity;
 import com.jamie.raycasting.entities.Entity;
+import com.jamie.raycasting.entities.ExplosiveBarrelEntity;
 import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.graphics.Sprite;
 
@@ -45,7 +46,9 @@ public abstract class Projectile extends Entity
                     Entity entity = getBlockingEntity(posX + nextX, posZ);
                     if (entity != null) {
                         if (entity instanceof Mob) {
-                            ((Mob) entity).hurt(this, damage);
+                            ((Mob) getBlockingEntity(posX + nextX, posZ)).hurt(this, damage);
+                        } else if (entity instanceof ExplosiveBarrelEntity) {
+                            ((ExplosiveBarrelEntity) entity).detonate();
                         } else if (entity instanceof BarrelEntity) {
                             ((BarrelEntity) entity).smash();
                         }

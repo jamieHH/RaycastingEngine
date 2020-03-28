@@ -106,23 +106,12 @@ public abstract class Entity
     public List<Entity> getEntitiesInRadius(double radius) {
         List<Entity> entities = new ArrayList<Entity>();
         for (Entity ent : level.getEntities()) {
-            if (distanceFrom(ent.posX, ent.posZ) < radius) {
+            if (ent != this && distanceFrom(ent.posX, ent.posZ) < radius) {
                 entities.add(ent);
             }
         }
 
         return entities;
-    }
-
-    public List<Mob> getMobsInRadius(double radius) {
-        List<Mob> mobs = new ArrayList<Mob>();
-        for (Entity ent : level.getMobEntities()) {
-            if (distanceFrom(ent.posX, ent.posZ) < radius) {
-                mobs.add((Mob) ent);
-            }
-        }
-
-        return mobs;
     }
 
     protected void setSpriteSet(String name, Sprite sprite) {

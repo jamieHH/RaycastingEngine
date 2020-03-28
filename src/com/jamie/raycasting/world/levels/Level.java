@@ -315,7 +315,7 @@ public abstract class Level
         if (col == 0x9A9A9A) return GraveBlock;
         if (col == 0x0094FF) return WaterBlock;
         if (col == 0x217F74) return CeilDripBlock;
-        if (col == 0xA3723A) return SpinningDummyBlock;
+//        if (col == 0xA3723A) return SpinningDummyBlock;
         if (col == 0x7F3300) return new BridgeBlock(false);
         if (col == 0x7F334E) return new BridgeBlock(true);
         if (col == 0xA48080) return new DoorBlock(getFloorTexture(), getCeilingTexture(), false);
@@ -337,6 +337,7 @@ public abstract class Level
         if (col == 0x8080C4) return new Imp(new ArtificialInputHandler());
         if (col == 0xC0EBC0) return new Guardian(new ArtificialInputHandler());
         if (col == 0xB06E23) return new BarrelEntity(BarrelEntity.getLootItem());
+        if (col == 0xA3723A) return new ExplosiveBarrelEntity();
 //        if (col == 0xB06E23) return new ChestEntity(ChestEntity.getLootItem());
         return null;
     }

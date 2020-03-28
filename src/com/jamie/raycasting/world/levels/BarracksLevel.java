@@ -1,8 +1,12 @@
 package com.jamie.raycasting.world.levels;
 
+import com.jamie.jamapp.Bitmap;
 import com.jamie.raycasting.entities.AreaAlertEntity;
+import com.jamie.raycasting.entities.BouncingEntity;
 import com.jamie.raycasting.entities.Drop;
 import com.jamie.raycasting.entities.Entity;
+import com.jamie.raycasting.graphics.Sprite;
+import com.jamie.raycasting.graphics.Texture;
 import com.jamie.raycasting.items.weapons.AxeWeapon;
 
 public class BarracksLevel extends Level
@@ -17,6 +21,18 @@ public class BarracksLevel extends Level
 
 		AreaAlertEntity a0 = new AreaAlertEntity("This Axe can be used to break down wooden boards.");
 		addEntity(a0, 6.5, 17.5);
+
+
+		Bitmap[] ts0 = {
+				Texture.spinningDummy0,
+				Texture.spinningDummy1,
+				Texture.spinningDummy2,
+				Texture.spinningDummy3,
+				Texture.spinningDummy4,
+		};
+		addEntity(new BouncingEntity(new Sprite(ts0), "W", 0.1, 1),13.5, 9.5);
+		addEntity(new BouncingEntity(new Sprite(ts0), "W", 0.1, 1),15.5, 12.5);
+		addEntity(new BouncingEntity(new Sprite(ts0), "W", 0.1, 1),11.5, 15.5);
 	}
 
 	public void switchLevel(Entity entity, int id) {
