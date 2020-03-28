@@ -4,7 +4,6 @@ import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
-import java.io.FileInputStream;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;

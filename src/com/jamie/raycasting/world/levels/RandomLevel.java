@@ -1,6 +1,6 @@
 package com.jamie.raycasting.world.levels;
 
-import com.jamie.raycasting.entities.mobs.Mob;
+import com.jamie.raycasting.entities.Entity;
 
 public class RandomLevel extends Level
 {
@@ -12,7 +12,7 @@ public class RandomLevel extends Level
 
     }
 
-    public void switchLevel(Mob mob, int id) {
+    public void switchLevel(Entity entity, int id) {
 
     }
 }

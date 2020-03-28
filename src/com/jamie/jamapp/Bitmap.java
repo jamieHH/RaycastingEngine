@@ -1,7 +1,5 @@
 package com.jamie.jamapp;
 
-import com.jamie.raycasting.app.Console;
-
 import java.util.ArrayList;
 import java.util.List;
 

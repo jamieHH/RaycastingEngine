@@ -3,7 +3,7 @@ package com.jamie.raycasting.world.levels;
 import com.jamie.jamapp.Bitmap;
 import com.jamie.raycasting.entities.AreaAlertEntity;
 import com.jamie.raycasting.entities.Drop;
-import com.jamie.raycasting.entities.mobs.Mob;
+import com.jamie.raycasting.entities.Entity;
 import com.jamie.raycasting.graphics.Texture;
 import com.jamie.raycasting.items.MiscItem;
 
@@ -35,8 +35,8 @@ public class GraveyardLevel extends Level
 		addEntity(a0, 14.5, 44.5);
 	}
 
-    public void switchLevel(Mob mob, int id) {
-        if (id == 2) world.switchLevel(mob, "island", 1);
+    public void switchLevel(Entity entity, int id) {
+        if (id == 2) world.switchLevel(entity, "island", 1);
     }
 
 	public void triggerBlock(int id) {

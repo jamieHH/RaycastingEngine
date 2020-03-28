@@ -29,7 +29,7 @@ public class ItemsOverlay extends Overlay
         super.setSize(App.getDisplayWidth(), 40);
     }
 
-    private class ItemTile
+    private static class ItemTile
     {
         String description;
         Bitmap icon;

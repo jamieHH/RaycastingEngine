@@ -2,7 +2,7 @@ package com.jamie.raycasting.world.levels;
 
 import com.jamie.raycasting.entities.AreaAlertEntity;
 import com.jamie.raycasting.entities.Drop;
-import com.jamie.raycasting.entities.mobs.Mob;
+import com.jamie.raycasting.entities.Entity;
 import com.jamie.raycasting.items.weapons.AxeWeapon;
 
 public class BarracksLevel extends Level
@@ -19,8 +19,8 @@ public class BarracksLevel extends Level
 		addEntity(a0, 6.5, 17.5);
 	}
 
-	public void switchLevel(Mob mob, int id) {
-		if (id == 1) world.switchLevel(mob, "castleHall", 3);
+	public void switchLevel(Entity entity, int id) {
+		if (id == 1) world.switchLevel(entity, "castleHall", 3);
 	}
 
     public void triggerBlock(int id) {

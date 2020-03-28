@@ -1,7 +1,7 @@
 package com.jamie.raycasting.world.levels;
 
 import com.jamie.raycasting.entities.Drop;
-import com.jamie.raycasting.entities.mobs.Mob;
+import com.jamie.raycasting.entities.Entity;
 import com.jamie.raycasting.items.weapons.WandWeapon;
 
 public class CryptLevel extends Level
@@ -14,7 +14,7 @@ public class CryptLevel extends Level
         addEntity(new Drop(new WandWeapon()), 28.5, 23.5);
     }
 
-    public void switchLevel(Mob mob, int id) {
-        if (id == 1) world.switchLevel(mob, "island", 3);
+    public void switchLevel(Entity entity, int id) {
+        if (id == 1) world.switchLevel(entity, "island", 3);
     }
 }

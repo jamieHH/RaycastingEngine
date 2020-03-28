@@ -1,6 +1,7 @@
 package com.jamie.raycasting.entities.projectiles;
 
 import com.jamie.jamapp.Bitmap;
+import com.jamie.raycasting.app.Sound;
 import com.jamie.raycasting.graphics.Sprite;
 
 public class ArrowProjectile extends Projectile
@@ -21,5 +22,10 @@ public class ArrowProjectile extends Projectile
                 null,
         };
         setDetonationSprite(new Sprite(ts1));
+    }
+
+    public void detonate() {
+        super.detonate();
+        emitSound(Sound.clickAction);
     }
 }

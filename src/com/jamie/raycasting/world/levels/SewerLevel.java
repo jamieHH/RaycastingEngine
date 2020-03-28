@@ -1,6 +1,6 @@
 package com.jamie.raycasting.world.levels;
 
-import com.jamie.raycasting.entities.mobs.Mob;
+import com.jamie.raycasting.entities.Entity;
 
 public class SewerLevel extends Level
 {
@@ -12,8 +12,8 @@ public class SewerLevel extends Level
 
     }
 
-    public void switchLevel(Mob mob, int id) {
-        if (id == 1) world.switchLevel(mob, "prison", 1);
-        if (id == 2) world.switchLevel(mob, "island", 5);
+    public void switchLevel(Entity entity, int id) {
+        if (id == 1) world.switchLevel(entity, "prison", 1);
+        if (id == 2) world.switchLevel(entity, "island", 5);
     }
 }

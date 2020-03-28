@@ -1,11 +1,8 @@
 package com.jamie.raycasting.world.levels;
 
 import com.jamie.jamapp.Bitmap;
-import com.jamie.raycasting.entities.Drop;
-import com.jamie.raycasting.entities.mobs.Mob;
+import com.jamie.raycasting.entities.Entity;
 import com.jamie.raycasting.graphics.Texture;
-import com.jamie.raycasting.items.consumables.HealthPotion;
-import com.jamie.raycasting.items.weapons.KnifeWeapon;
 
 public class PitLevel extends Level
 {
@@ -29,8 +26,8 @@ public class PitLevel extends Level
 
     }
 
-    public void switchLevel(Mob mob, int id) {
-        if (id == 1) world.switchLevel(mob, "island", 4);
+    public void switchLevel(Entity entity, int id) {
+        if (id == 1) world.switchLevel(entity, "island", 4);
     }
 
     public void triggerBlock(int id) {

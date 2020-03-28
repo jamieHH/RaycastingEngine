@@ -3,6 +3,7 @@ package com.jamie.raycasting.world;
 import com.jamie.jamapp.App;
 import com.jamie.raycasting.app.Sound;
 import com.jamie.raycasting.app.Client;
+import com.jamie.raycasting.entities.Entity;
 import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.graphics.Texture;
 import com.jamie.raycasting.graphics.overlays.LoadingOverlay;
@@ -54,28 +55,30 @@ public class World
         cache.clear();
     }
 
-    public void switchLevel(Mob mob, String name, int id) {
-        Level newLevel;
-        if (!name.equals("random")) {
-            newLevel = getLoadLevel(name);
-        } else {
-            newLevel = Level.makeRandomLevel(1000, 1000);
-        }
+    public void switchLevel(Entity entity, String name, int id) {
+        if (entity instanceof Mob) {
+            Level newLevel;
+            if (!name.equals("random")) {
+                newLevel = getLoadLevel(name);
+            } else {
+                newLevel = Level.makeRandomLevel(1000, 1000);
+            }
 
-        Client.setActiveOverlay(new LoadingOverlay(App.getDisplayWidth(), App.getDisplayHeight(), newLevel.name));
-        Sound.switchLevel.play();
+            Client.setActiveOverlay(new LoadingOverlay(App.getDisplayWidth(), App.getDisplayHeight(), newLevel.name));
+            Sound.switchLevel.play();
 
-        if (level != null) {
-            level.removeEntity(mob);
-        }
-        level = newLevel;
+            if (level != null) {
+                level.removeEntity(entity);
+            }
+            level = newLevel;
 
-        LevelPortalBlock spawnBlock = level.getLevelPortalBlockById(id);
-        if (spawnBlock != null) {
-            level.addEntity(mob, spawnBlock.gridX + 0.5, spawnBlock.gridZ + 0.5);
-            spawnBlock.disabled = true;
-        } else {
-            level.addEntity(mob, level.spawnX, level.spawnZ);
+            LevelPortalBlock spawnBlock = level.getLevelPortalBlockById(id);
+            if (spawnBlock != null) {
+                level.addEntity(entity, spawnBlock.gridX + 0.5, spawnBlock.gridZ + 0.5);
+                spawnBlock.disabled = true;
+            } else {
+                level.addEntity(entity, level.spawnX, level.spawnZ);
+            }
         }
     }
 

@@ -18,7 +18,7 @@ import java.util.Random;
 public class BarrelEntity extends Entity
 {
     private Entity drop;
-    private boolean used = false;
+    private boolean isBroken = false;
 
     public BarrelEntity(Entity drop) {
         setupSprites();
@@ -51,8 +51,16 @@ public class BarrelEntity extends Entity
     }
 
     public boolean use(Mob source) {
-        if (!used) {
-            used = true;
+        if (!isBroken) {
+            smash();
+        }
+
+        return false;
+    }
+
+    public void smash() {
+        if (!isBroken) {
+            isBroken = true;
             isSolid = false;
             emitSound(Sound.smash);
             switchSpriteSet("broken");
@@ -60,9 +68,6 @@ public class BarrelEntity extends Entity
             if (drop != null) {
                 level.addEntity(drop, posX, posZ);
             }
-            return true;
         }
-
-        return false;
     }
 }

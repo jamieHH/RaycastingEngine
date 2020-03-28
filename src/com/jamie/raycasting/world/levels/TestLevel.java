@@ -1,5 +1,6 @@
 package com.jamie.raycasting.world.levels;
 
+import com.jamie.raycasting.entities.Entity;
 import com.jamie.raycasting.entities.mobs.*;
 import com.jamie.raycasting.input.ArtificialInputHandler;
 
@@ -14,7 +15,7 @@ public class TestLevel extends Level
 		addEntity(new Imp(new ArtificialInputHandler()), 30.5, 38.5);
 	}
 
-	public void switchLevel(Mob mob, int id) {
+	public void switchLevel(Entity entity, int id) {
 
 	}
 }

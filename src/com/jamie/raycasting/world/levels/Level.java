@@ -157,7 +157,7 @@ public abstract class Level
 
     protected abstract void postCreate();
 
-    public abstract void switchLevel(Mob mob, int id);
+    public abstract void switchLevel(Entity entity, int id);
 
     public void triggerBlock(int id) {
         for (Block block : blocks) {
@@ -361,17 +361,6 @@ public abstract class Level
     public List<Entity> getEntitiesWithin(double x0, double z0, double x1, double z1) {
         List<Entity> entities = new ArrayList<Entity>();
         for (Entity e : getEntities()) {
-            if (e.isInside(x0, z0, x1, z1)) {
-                entities.add(e);
-            }
-        }
-
-        return entities;
-    }
-
-    public List<Mob> getMobsWithin(double x0, double z0, double x1, double z1) {
-        List<Mob> entities = new ArrayList<Mob>();
-        for (Mob e : getMobEntities()) {
             if (e.isInside(x0, z0, x1, z1)) {
                 entities.add(e);
             }

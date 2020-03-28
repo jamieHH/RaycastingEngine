@@ -292,7 +292,7 @@ public class Bitmap3D extends Bitmap
 			Entity entity = level.getEntity(i);
 			if (entity.isInside(xBlockStart, zBlockStart, xBlockEnd, zBlockEnd)) {
 				Sprite sprite = entity.getRenderSprite();
-				if (sprite != null) {
+				if (sprite != null && sprite.bitmap() != null) {
 					drawSprite(entity.posX + sprite.x, sprite.y, entity.posZ + sprite.z, sprite.bitmap());
 				}
 

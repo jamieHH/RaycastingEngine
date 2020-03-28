@@ -1,6 +1,6 @@
 package com.jamie.raycasting.world.blocks;
 
-import com.jamie.raycasting.entities.mobs.Mob;
+import com.jamie.raycasting.entities.Entity;
 
 import java.util.List;
 
@@ -14,15 +14,15 @@ public class LevelPortalBlock extends FunctionBlock
 	}
 
 	public void tick() {
-        List<Mob> mobs = level.getMobsWithin(gridX, gridZ, gridX + 1, gridZ + 1);
+        List<Entity> ents = level.getEntitiesWithin(gridX, gridZ, gridX + 1, gridZ + 1);
 
         if (disabled) {
-            if (mobs.size() == 0) {
+            if (ents.size() == 0) {
                 disabled = false;
             }
         } else {
-            for (int i = 0; i < mobs.size(); i++) {
-                level.switchLevel(mobs.get(i), id);
+            for (int i = 0; i < ents.size(); i++) {
+                level.switchLevel(ents.get(i), id);
             }
         }
     }

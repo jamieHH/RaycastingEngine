@@ -1,5 +1,6 @@
 package com.jamie.raycasting.entities.projectiles;
 
+import com.jamie.raycasting.entities.BarrelEntity;
 import com.jamie.raycasting.entities.Entity;
 import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.graphics.Sprite;
@@ -41,8 +42,13 @@ public abstract class Projectile extends Entity
                 int divs = 10; // increase this to improve accuracy of collision
                 for (int i = 0; i < divs; i++) {
                     double nextX = (moveSpeed * Math.sin(getRotation())) / divs;
-                    if (getBlockingMob(posX + nextX, posZ) != null) {
-                        getBlockingMob(posX + nextX, posZ).hurt(this, damage);
+                    Entity entity = getBlockingEntity(posX + nextX, posZ);
+                    if (entity != null) {
+                        if (entity instanceof Mob) {
+                            ((Mob) entity).hurt(this, damage);
+                        } else if (entity instanceof BarrelEntity) {
+                            ((BarrelEntity) entity).smash();
+                        }
                         detonate();
                         break;
                     }
@@ -53,8 +59,13 @@ public abstract class Projectile extends Entity
                     posX += nextX;
 
                     double nextZ = (moveSpeed * Math.cos(getRotation())) / divs;
-                    if (getBlockingMob(posX, posZ + nextZ) != null) {
-                        getBlockingMob(posX, posZ + nextZ).hurt(this, damage);
+                    entity = getBlockingEntity(posX, posZ + nextZ);
+                    if (entity != null) {
+                        if (entity instanceof Mob) {
+                            ((Mob) entity).hurt(this, damage);
+                        } else if (entity instanceof BarrelEntity) {
+                            ((BarrelEntity) entity).smash();
+                        }
                         detonate();
                         break;
                     }
@@ -90,14 +101,14 @@ public abstract class Projectile extends Entity
         return false;
     }
 
-    private Mob getBlockingMob(double x, double z) {
-        for (Mob mob : level.getMobEntities()) {
-            if (mob.isSolid) {
-                double entX = mob.posX;
-                double entZ = mob.posZ;
-                double entRadius = mob.radius;
+    private Entity getBlockingEntity(double x, double z) {
+        for (Entity entity : level.getEntities()) {
+            if (entity.isSolid && entity != this) {
+                double entX = entity.posX;
+                double entZ = entity.posZ;
+                double entRadius = entity.radius;
                 if (((Math.abs(x - entX)) - entRadius < radius) && ((Math.abs(z - entZ)) - entRadius < radius)) {
-                    return mob;
+                    return entity;
                 }
             }
         }

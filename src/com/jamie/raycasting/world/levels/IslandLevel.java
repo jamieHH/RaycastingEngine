@@ -1,7 +1,7 @@
 package com.jamie.raycasting.world.levels;
 
 import com.jamie.jamapp.Bitmap;
-import com.jamie.raycasting.entities.mobs.Mob;
+import com.jamie.raycasting.entities.Entity;
 import com.jamie.raycasting.graphics.Texture;
 
 public class IslandLevel extends Level
@@ -38,12 +38,12 @@ public class IslandLevel extends Level
 //		addEntity(effect, 30.5, 31.5);
 	}
 
-    public void switchLevel(Mob mob, int id) {
-        if (id == 1) world.switchLevel(mob, "graveyard", 2);
-		if (id == 2) world.switchLevel(mob, "castleHall", 2);
-		if (id == 3) world.switchLevel(mob, "crypt", 1);
-		if (id == 4) world.switchLevel(mob, "pit", 1);
-		if (id == 5) world.switchLevel(mob, "sewer", 2);
+    public void switchLevel(Entity entity, int id) {
+        if (id == 1) world.switchLevel(entity, "graveyard", 2);
+		if (id == 2) world.switchLevel(entity, "castleHall", 2);
+		if (id == 3) world.switchLevel(entity, "crypt", 1);
+		if (id == 4) world.switchLevel(entity, "pit", 1);
+		if (id == 5) world.switchLevel(entity, "sewer", 2);
 	}
 
 	public void triggerBlock(int id) {

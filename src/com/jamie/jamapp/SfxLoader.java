@@ -1,7 +1,6 @@
 package com.jamie.jamapp;
 
 import javax.sound.sampled.*;
-import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 

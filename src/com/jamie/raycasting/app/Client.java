@@ -4,7 +4,6 @@ import com.jamie.jamapp.App;
 import com.jamie.jamapp.JamappClient;
 import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.entities.mobs.Player;
-import com.jamie.raycasting.graphics.overlays.InventoryOverlay;
 import com.jamie.raycasting.graphics.overlays.Overlay;
 import com.jamie.raycasting.graphics.overlays.TextOverlay;
 import com.jamie.raycasting.graphics.overlays.menus.*;
