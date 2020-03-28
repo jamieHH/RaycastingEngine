@@ -43,7 +43,6 @@ public class BouncingEntity extends Entity
             Entity entity = getBlockingEntity(posX + nextX, posZ);
             if (entity != null) {
                 if (entity instanceof Mob) {
-                    System.out.println("hitx");
                     ((Mob) entity).hurt(this, damage);
                 } else if (entity instanceof BarrelEntity) {
                     ((BarrelEntity) entity).smash();
@@ -59,7 +58,6 @@ public class BouncingEntity extends Entity
             entity = getBlockingEntity(posX, posZ + nextZ);
             if (entity != null) {
                 if (entity instanceof Mob) {
-                    System.out.println("hitz");
                     ((Mob) entity).hurt(this, damage);
                 } else if (entity instanceof BarrelEntity) {
                     ((BarrelEntity) entity).smash();
@@ -95,7 +93,6 @@ public class BouncingEntity extends Entity
                 double entZ = entity.posZ;
                 double entRadius = entity.radius;
                 if (((Math.abs(x - entX)) - entRadius < radius) && ((Math.abs(z - entZ)) - entRadius < radius)) {
-                    System.out.println(entity);
                     return entity;
                 }
             }
