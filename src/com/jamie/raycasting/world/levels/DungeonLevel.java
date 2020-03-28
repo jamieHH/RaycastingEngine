@@ -1,5 +1,6 @@
 package com.jamie.raycasting.world.levels;
 
+import com.jamie.raycasting.entities.BouncingEntity;
 import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.world.LogicRelay;
 import com.jamie.raycasting.world.LogicTimer;
@@ -19,6 +20,8 @@ public class DungeonLevel extends Level
 
 		addLogic(new LogicRelay("relay", new String[] {"turret"}));
 		addLogic(new LogicTimer("timer", "turret", 10));
+
+		addEntity(new BouncingEntity(),22.5, 40.5);
 	}
 
 	public void switchLevel(Mob mob, int id) {

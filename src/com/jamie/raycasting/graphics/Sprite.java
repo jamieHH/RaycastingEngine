@@ -45,9 +45,9 @@ public class Sprite
     public Bitmap bitmap() {
         if (textures.length > 0) {
             return textures[index];
-        } else {
-            return null;
         }
+
+        return null;
     }
 
     protected void reset() {

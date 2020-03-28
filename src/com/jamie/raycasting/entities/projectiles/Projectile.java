@@ -18,8 +18,6 @@ public abstract class Projectile extends Entity
 
 
     public Projectile(double detonationRadius, int detonationMagnitude) { // used for magic projectiles
-        setIdleSprite(getDefaultSprite());
-
         radius = 0.1;
         isSolid = false;
         this.detonationRadius = detonationRadius;
@@ -27,8 +25,6 @@ public abstract class Projectile extends Entity
     }
 
     public Projectile(int damage) { // used for bolt projectiles
-        setIdleSprite(getDefaultSprite());
-
         radius = 0.1;
         isSolid = false;
         this.damage = damage;

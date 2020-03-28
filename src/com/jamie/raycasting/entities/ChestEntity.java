@@ -19,7 +19,9 @@ public class ChestEntity extends Entity
     private boolean used = false;
 
     public ChestEntity(Item drop) {
-        setupSprites();
+        setIdleSprite(new Sprite(Texture.chest0));
+        setSpriteSet("open", new Sprite(Texture.chest1));
+
         this.isSolid = true;
         this.radius = 0.25;
         this.drop = drop;
@@ -39,11 +41,6 @@ public class ChestEntity extends Entity
         return list.get(random.nextInt(list.size()));
     }
 
-    private void setupSprites() {
-        setIdleSprite(getDefaultSprite());
-        setSpriteSet("open", new Sprite(Texture.chest1));
-    }
-
     public boolean use(Mob source) {
         if (!used) {
             used = true;
@@ -55,9 +52,5 @@ public class ChestEntity extends Entity
         }
 
         return false;
-    }
-
-    protected Sprite getDefaultSprite() {
-        return new Sprite(Texture.chest0);
     }
 }

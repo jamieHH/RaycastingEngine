@@ -30,7 +30,6 @@ public abstract class Mob extends Entity
     public boolean isInvulnerable = false;
     protected boolean canPickup = false;
     protected boolean canActivateBlocks = false;
-    protected boolean isFloating = false;
 
     // distances
     public int viewDist = 4;
@@ -88,6 +87,7 @@ public abstract class Mob extends Entity
     private int hudHeadingsTicks = 120;
 
     // sprites
+    protected abstract Sprite getDefaultSprite();
     protected abstract Sprite getActionSprite();
     protected abstract Sprite getHealSprite();
     protected abstract Sprite getHurtSprite();
@@ -136,7 +136,7 @@ public abstract class Mob extends Entity
         health = maxHealth;
         camY = viewHeight;
 
-        setIdleSprite(getDefaultSprite());
+        setSpriteSet("idle", getDefaultSprite());
         setSpriteSet("action", getActionSprite());
         setSpriteSet("heal", getHealSprite());
         setSpriteSet("hurt", getHurtSprite());

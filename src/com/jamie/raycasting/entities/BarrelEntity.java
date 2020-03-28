@@ -46,7 +46,7 @@ public class BarrelEntity extends Entity
     }
 
     private void setupSprites() {
-        setIdleSprite(getDefaultSprite());
+        setIdleSprite(new Sprite(Texture.barrel0));
         setSpriteSet("broken", new Sprite(Texture.barrel1));
     }
 
@@ -64,9 +64,5 @@ public class BarrelEntity extends Entity
         }
 
         return false;
-    }
-
-    protected Sprite getDefaultSprite() {
-        return new Sprite(Texture.barrel0);
     }
 }

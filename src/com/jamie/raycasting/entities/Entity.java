@@ -15,6 +15,7 @@ public abstract class Entity
     public boolean removed = false;
 
     public boolean isSolid = true;
+    protected boolean isFloating = false;
     public double radius = 0.25;
 
     private double rotation;
@@ -22,8 +23,6 @@ public abstract class Entity
     public double posZ = 0;
 
     private SpriteSet spriteSet = new SpriteSet();
-
-    protected abstract Sprite getDefaultSprite();
 
 
     public Entity() {
@@ -143,6 +142,10 @@ public abstract class Entity
     }
 
     public Sprite getRenderSprite() {
-        return spriteSet.getSprite();
+        if (spriteSet != null) {
+            return spriteSet.getSprite();
+        }
+
+        return null;
     }
 }
