@@ -12,7 +12,7 @@ public class BoardsBlock extends TriggerableBlock
 {
 	private boolean isBroken;
 
-	public BoardsBlock(Bitmap floorTex, Bitmap ceilTex, boolean smashed) {
+	public BoardsBlock(Bitmap floorTex, Bitmap ceilTex, boolean isBroken) {
         isOpaque = false;
 
         this.floorTex = floorTex;
@@ -28,7 +28,7 @@ public class BoardsBlock extends TriggerableBlock
         };
         setSpriteSet("broken", new Sprite(ts1));
 
-        if (smashed) {
+        if (isBroken) {
             this.isBroken = true;
             isSolid = false;
             switchSpriteSet("broken");
