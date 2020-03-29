@@ -17,13 +17,13 @@ public class SpearWeapon extends Weapon
         icon = Texture.spearIcon;
 
         Bitmap[] ts = {
-                Texture.screenSpear0,
+                Texture.guiSpear0,
         };
         setIdleSprite(new Sprite(ts));
 
         Bitmap[] ts1 = {
-            Texture.screenSpear1,
-            Texture.screenSpear2
+            Texture.guiSpear1,
+            Texture.giuSpear2
         };
         setUseSprite(new Sprite(ts1));
     }

@@ -17,13 +17,13 @@ public class KnifeWeapon extends Weapon
         icon = Texture.knifeIcon;
 
         Bitmap[] ts = {
-                Texture.screenKnife0,
+                Texture.guiDagger0,
         };
         setIdleSprite(new Sprite(ts));
 
         Bitmap[] ts1 = {
-                Texture.screenKnife1,
-                Texture.screenKnife2,
+                Texture.guiDagger1,
+                Texture.guiDagger2,
         };
         setUseSprite(new Sprite(ts1));
     }

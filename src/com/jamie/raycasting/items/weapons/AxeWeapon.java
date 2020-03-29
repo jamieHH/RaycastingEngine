@@ -17,12 +17,13 @@ public class AxeWeapon extends Weapon
         icon = Texture.axeIcon;
 
         Bitmap[] ts = {
-                Texture.screenAxe0,
+                Texture.guiAxe0,
         };
         setIdleSprite(new Sprite(ts));
 
         Bitmap[] ts1 = {
-                Texture.screenAxe1,
+                Texture.guiAxe1,
+                Texture.guiAxe2,
         };
         setUseSprite(new Sprite(ts1));
     }

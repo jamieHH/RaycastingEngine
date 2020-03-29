@@ -21,6 +21,7 @@ public class Texture
     public static final Bitmap yellowPotionIcon = PngLoader.loadBitmap("gui/yellowPotionIcon.png");
     public static final Bitmap greenPotionIcon = PngLoader.loadBitmap("gui/greenPotionIcon.png");
     public static final Bitmap keyIcon = PngLoader.loadBitmap("gui/keyIcon.png");
+    public static final Bitmap bag = PngLoader.loadBitmap("tex/bag.png");
 
     public static final Bitmap heartIcon = PngLoader.loadBitmap("gui/heartIcon.png");
     public static final Bitmap poisonIcon = PngLoader.loadBitmap("gui/poisonIcon.png");
@@ -183,20 +184,20 @@ public class Texture
     public static final Bitmap drop = PngLoader.loadBitmap("tex/drop.png");
 
     // screen
-    public static final Bitmap screenSpear0 = PngLoader.loadBitmap("tex/screenSpear0.png");
-    public static final Bitmap screenSpear1 = PngLoader.loadBitmap("tex/screenSpear1.png");
-    public static final Bitmap screenSpear2 = PngLoader.loadBitmap("tex/screenSpear2.png");
-    public static final Bitmap screenAxe0 = PngLoader.loadBitmap("tex/screenAxe0.png");
-    public static final Bitmap screenAxe1 = PngLoader.loadBitmap("tex/screenAxe1.png");
-    public static final Bitmap screenKnife0 = PngLoader.loadBitmap("tex/screenKnife0.png");
-    public static final Bitmap screenKnife1 = PngLoader.loadBitmap("tex/screenKnife1.png");
-    public static final Bitmap screenKnife2 = PngLoader.loadBitmap("tex/screenKnife2.png");
-    public static final Bitmap screenWand0 = PngLoader.loadBitmap("tex/screenWand0.png");
-    public static final Bitmap screenWand1 = PngLoader.loadBitmap("tex/screenWand1.png");
-    public static final Bitmap screenWand2 = PngLoader.loadBitmap("tex/screenWand2.png");
-    public static final Bitmap screenWand3 = PngLoader.loadBitmap("tex/screenWand3.png");
-    public static final Bitmap screenWand4 = PngLoader.loadBitmap("tex/screenWand4.png");
-    public static final Bitmap screenXbow0 = PngLoader.loadBitmap("tex/screenXbow0.png");
-    public static final Bitmap screenXbow1 = PngLoader.loadBitmap("tex/screenXbow1.png");
-    public static final Bitmap bag = PngLoader.loadBitmap("tex/bag.png");
+    public static final Bitmap guiSpear0 = PngLoader.loadBitmap("gui/spear0.png");
+    public static final Bitmap guiSpear1 = PngLoader.loadBitmap("gui/spear1.png");
+    public static final Bitmap giuSpear2 = PngLoader.loadBitmap("gui/spear2.png");
+    public static final Bitmap guiAxe0 = PngLoader.loadBitmap("gui/axe0.png");
+    public static final Bitmap guiAxe1 = PngLoader.loadBitmap("gui/axe1.png");
+    public static final Bitmap guiAxe2 = PngLoader.loadBitmap("gui/axe2.png");
+    public static final Bitmap guiDagger0 = PngLoader.loadBitmap("gui/dagger0.png");
+    public static final Bitmap guiDagger1 = PngLoader.loadBitmap("gui/dagger1.png");
+    public static final Bitmap guiDagger2 = PngLoader.loadBitmap("gui/dagger2.png");
+    public static final Bitmap screenWand0 = PngLoader.loadBitmap("gui/screenWand0.png");
+    public static final Bitmap screenWand1 = PngLoader.loadBitmap("gui/screenWand1.png");
+    public static final Bitmap screenWand2 = PngLoader.loadBitmap("gui/screenWand2.png");
+    public static final Bitmap screenWand3 = PngLoader.loadBitmap("gui/screenWand3.png");
+    public static final Bitmap screenWand4 = PngLoader.loadBitmap("gui/screenWand4.png");
+    public static final Bitmap screenXbow0 = PngLoader.loadBitmap("gui/screenXbow0.png");
+    public static final Bitmap screenXbow1 = PngLoader.loadBitmap("gui/screenXbow1.png");
 }
