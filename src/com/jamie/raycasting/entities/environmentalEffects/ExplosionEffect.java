@@ -6,17 +6,12 @@ import com.jamie.raycasting.entities.ExplosiveBarrelEntity;
 import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.entities.particles.EmberParticle;
 import com.jamie.raycasting.entities.particles.Particle;
-import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.world.levels.Level;
 
 import java.util.List;
 
 public class ExplosionEffect extends EnvironmentalEffect
 {
-    protected Sprite getDefaultSprite() {
-        return null;
-    }
-
     protected Particle getParticle() {
         return new EmberParticle(32);
     }

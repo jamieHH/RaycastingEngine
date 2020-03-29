@@ -52,6 +52,7 @@ public abstract class Level
     protected final TorchBlock TorchBlock = new TorchBlock(getFloorTexture(), getCeilingTexture());
     protected final SolidBlock ShrubsBlock = new SolidBlock(Texture.leaves);
     protected final SolidBlock WallBlock = new SolidBlock(getWallTexture());
+    protected final SolidBlock ShelfBlock = new SolidBlock(Texture.shelf);
     protected final AirBlock AirBlock = new AirBlock(getFloorTexture(), getCeilingTexture());
     protected final AirBlock GrassBlock = new AirBlock(Texture.grass, getCeilingTexture());
     protected final AirBlock StonePathBlock = new AirBlock(Texture.stonePath, getCeilingTexture());
@@ -303,6 +304,7 @@ public abstract class Level
     private Block getBlockByColour(int col) {
         if (col == 0x000000) return NullBlock;
         if (col == 0xFFFFFF) return WallBlock;
+        if (col == 0xFFE1C4) return ShelfBlock;
         if (col == 0x7C5F36) return TorchBlock;
         if (col == 0x808080) return PillarBlock;
         if (col == 0x648480) return LampBlock;

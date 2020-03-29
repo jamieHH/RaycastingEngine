@@ -14,15 +14,6 @@ import java.util.List;
 
 public class FireEffect extends EnvironmentalEffect
 {
-    protected Sprite getDefaultSprite() {
-        return new Sprite(new Bitmap[] {
-                Texture.fire0,
-                Texture.fire1,
-                Texture.fire2,
-                Texture.fire3,
-        });
-    }
-
     protected Particle getParticle() {
         return new EmberParticle(2);
     }
