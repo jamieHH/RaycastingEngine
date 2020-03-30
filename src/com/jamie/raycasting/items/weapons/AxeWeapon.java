@@ -24,6 +24,8 @@ public class AxeWeapon extends Weapon
         Bitmap[] ts1 = {
                 Texture.guiAxe1,
                 Texture.guiAxe2,
+                null,
+                null
         };
         setUseSprite(new Sprite(ts1));
     }
