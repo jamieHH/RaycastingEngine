@@ -9,7 +9,7 @@ import com.jamie.raycasting.items.specials.HealingSpell;
 
 public class Imp extends Mob
 {
-    protected Sprite getDefaultSprite() {
+    protected Sprite getIdleSprite() {
         return new Sprite(new Bitmap[] {
                 Texture.imp0,
                 Texture.imp1,
@@ -59,14 +59,14 @@ public class Imp extends Mob
         });
     }
 
-    protected InfluenceKeyframe getIdleInfluence() {
-        return new InfluenceKeyframe(20, 50, 50, 50, 50, 50, 50, 100, "Healing Spell");
+    protected AiKeyFrame getIdleInfluence() {
+        return new AiKeyFrame(20, 50, 50, 50, 50, 50, 50, 100, "Healing Spell");
     }
-    protected InfluenceKeyframe getPursuitInfluence() {
-        return new InfluenceKeyframe(20, 10, 100, 50, 50, 0, 0, 100, "Fireball Spell");
+    protected AiKeyFrame getPursuitInfluence() {
+        return new AiKeyFrame(20, 10, 100, 50, 50, 0, 0, 100, "Fireball Spell");
     }
-    protected InfluenceKeyframe getAttackInfluence() {
-        return new InfluenceKeyframe(10, 100, 50, 50, 50, 0, 0, 100, null);
+    protected AiKeyFrame getAttackInfluence() {
+        return new AiKeyFrame(10, 100, 50, 50, 50, 0, 0, 100, null);
     }
 
 

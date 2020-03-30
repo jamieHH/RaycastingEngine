@@ -87,7 +87,7 @@ public abstract class Mob extends Entity
     private int hudHeadingsTicks = 120;
 
     // sprites
-    protected abstract Sprite getDefaultSprite();
+    protected abstract Sprite getIdleSprite();
     protected abstract Sprite getActionSprite();
     protected abstract Sprite getHealSprite();
     protected abstract Sprite getHurtSprite();
@@ -99,31 +99,24 @@ public abstract class Mob extends Entity
     //Ai
     private final Random random = new Random();
     private int influenceWait;
-    protected abstract InfluenceKeyframe getIdleInfluence();
-    protected abstract InfluenceKeyframe getPursuitInfluence();
-    protected abstract InfluenceKeyframe getAttackInfluence();
+    protected abstract AiKeyFrame getIdleInfluence();
+    protected abstract AiKeyFrame getPursuitInfluence();
+    protected abstract AiKeyFrame getAttackInfluence();
 
 
-    protected class InfluenceKeyframe
+    protected static class AiKeyFrame
     {
-        int switchWait;
-        int forward;
-        int back;
-        int sLeft;
-        int sRight;
-        int rLeft;
-        int rRight;
-        int action;
+        int sWait, fw, bk, sLt, sRt, rLt, rRt, action;
         String itemName;
 
-        public InfluenceKeyframe(int switchWait, int forward, int back, int sLeft, int sRight, int rLeft, int rRight, int action, String itemName) {
-            this.switchWait = switchWait;
-            this.forward = forward;
-            this.back = back;
-            this.sLeft = sLeft;
-            this.sRight = sRight;
-            this.rLeft = rLeft;
-            this.rRight = rRight;
+        public AiKeyFrame(int switchWait, int forward, int back, int sLeft, int sRight, int rLeft, int rRight, int action, String itemName) {
+            this.sWait = switchWait;
+            this.fw = forward;
+            this.bk = back;
+            this.sLt = sLeft;
+            this.sRt = sRight;
+            this.rLt = rLeft;
+            this.rRt = rRight;
             this.action = action;
             this.itemName = itemName;
         }
@@ -136,21 +129,21 @@ public abstract class Mob extends Entity
         health = maxHealth;
         camY = viewHeight;
 
-        setSpriteSet("idle", getDefaultSprite());
+        setSpriteSet("idle", getIdleSprite());
         setSpriteSet("action", getActionSprite());
         setSpriteSet("heal", getHealSprite());
         setSpriteSet("hurt", getHurtSprite());
         setSpriteSet("death", getDeathSprite());
     }
 
-    private void setInputInfluence(InfluenceKeyframe influenceKeyframe) {
+    private void setInputInfluence(AiKeyFrame influenceKeyframe) {
         if (influenceKeyframe != null) {
-            input.setInput(Controls.FORWARD, (random.nextInt(100) < influenceKeyframe.forward));
-            input.setInput(Controls.BACK, (random.nextInt(100) < influenceKeyframe.back));
-            input.setInput(Controls.LEFT, (random.nextInt(100) < influenceKeyframe.sLeft));
-            input.setInput(Controls.RIGHT, (random.nextInt(100) < influenceKeyframe.sRight));
-            input.setInput(Controls.ROTLEFT, (random.nextInt(100) < influenceKeyframe.rLeft));
-            input.setInput(Controls.ROTRIGHT, (random.nextInt(100) < influenceKeyframe.rRight));
+            input.setInput(Controls.FORWARD, (random.nextInt(100) < influenceKeyframe.fw));
+            input.setInput(Controls.BACK, (random.nextInt(100) < influenceKeyframe.bk));
+            input.setInput(Controls.LEFT, (random.nextInt(100) < influenceKeyframe.sLt));
+            input.setInput(Controls.RIGHT, (random.nextInt(100) < influenceKeyframe.sRt));
+            input.setInput(Controls.ROTLEFT, (random.nextInt(100) < influenceKeyframe.rLt));
+            input.setInput(Controls.ROTRIGHT, (random.nextInt(100) < influenceKeyframe.rRt));
             input.setInput(Controls.ACTION, (random.nextInt(100) < influenceKeyframe.action));
             if (influenceKeyframe.itemName != null) {
                 for (int i = 0; i < inventory.getItems().size(); i++) {
@@ -164,7 +157,7 @@ public abstract class Mob extends Entity
             } else {
                 unequipRightHand();
             }
-            influenceWait = influenceKeyframe.switchWait;
+            influenceWait = influenceKeyframe.sWait;
         }
     }
 

@@ -12,7 +12,7 @@ import com.jamie.raycasting.items.weapons.*;
 
 public class Player extends Mob
 {
-    protected Sprite getDefaultSprite() {
+    protected Sprite getIdleSprite() {
         return new Sprite(new Bitmap[] {
                 Texture.marker
         });
@@ -34,15 +34,15 @@ public class Player extends Mob
         return null;
     }
 
-    protected InfluenceKeyframe getIdleInfluence() {
+    protected AiKeyFrame getIdleInfluence() {
         return null;
     }
 
-    protected InfluenceKeyframe getPursuitInfluence() {
+    protected AiKeyFrame getPursuitInfluence() {
         return null;
     }
 
-    protected InfluenceKeyframe getAttackInfluence() {
+    protected AiKeyFrame getAttackInfluence() {
         return null;
     }
 
@@ -63,7 +63,7 @@ public class Player extends Mob
         rotationSpeed = 0.03;
         walkSpeed = 0.1;
 
-        maxHealth = 20;
+        maxHealth = 10;
         health = maxHealth;
 
         faction = "human";

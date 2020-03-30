@@ -7,7 +7,7 @@ import com.jamie.jamapp.InputHandler;
 
 public class Bat extends Mob
 {
-    protected Sprite getDefaultSprite() {
+    protected Sprite getIdleSprite() {
         return new Sprite(new Bitmap[] {
                 Texture.bat0,
                 Texture.bat1,
@@ -47,14 +47,14 @@ public class Bat extends Mob
         });
     }
 
-    protected InfluenceKeyframe getIdleInfluence() {
-        return new InfluenceKeyframe(20, 50, 50, 50, 50, 50, 50, 0, null);
+    protected AiKeyFrame getIdleInfluence() {
+        return new AiKeyFrame(20, 50, 50, 50, 50, 50, 50, 0, null);
     }
-    protected InfluenceKeyframe getPursuitInfluence() {
-        return new InfluenceKeyframe(20, 100, 10, 50, 50, 0, 0, 0, null);
+    protected AiKeyFrame getPursuitInfluence() {
+        return new AiKeyFrame(20, 100, 10, 50, 50, 0, 0, 0, null);
     }
-    protected InfluenceKeyframe getAttackInfluence() {
-        return new InfluenceKeyframe(10, 100, 50, 50, 50, 0, 0, 100, null);
+    protected AiKeyFrame getAttackInfluence() {
+        return new AiKeyFrame(10, 100, 50, 50, 50, 0, 0, 100, null);
     }
 
 

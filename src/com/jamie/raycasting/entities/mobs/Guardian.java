@@ -9,7 +9,7 @@ import com.jamie.jamapp.InputHandler;
 
 public class Guardian extends Mob
 {
-    protected Sprite getDefaultSprite() {
+    protected Sprite getIdleSprite() {
         return new Sprite(new Bitmap[] {
                 Texture.guardian0
         });
@@ -42,14 +42,14 @@ public class Guardian extends Mob
         return new StoneParticle(4);
     }
 
-    protected InfluenceKeyframe getIdleInfluence() {
-        return new InfluenceKeyframe(20, 0, 0, 0, 0, 0, 0, 0, null);
+    protected AiKeyFrame getIdleInfluence() {
+        return new AiKeyFrame(20, 0, 0, 0, 0, 0, 0, 0, null);
     }
-    protected InfluenceKeyframe getPursuitInfluence() {
-        return new InfluenceKeyframe(20, 100, 0, 0, 0, 0, 0, 0, null);
+    protected AiKeyFrame getPursuitInfluence() {
+        return new AiKeyFrame(20, 100, 0, 0, 0, 0, 0, 0, null);
     }
-    protected InfluenceKeyframe getAttackInfluence() {
-        return new InfluenceKeyframe(10, 100, 0, 0, 0, 0, 0, 100, null);
+    protected AiKeyFrame getAttackInfluence() {
+        return new AiKeyFrame(10, 100, 0, 0, 0, 0, 0, 100, null);
     }
 
     public Guardian(InputHandler input) {
