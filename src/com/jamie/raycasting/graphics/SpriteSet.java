@@ -16,11 +16,10 @@ public class SpriteSet
             getSprite().tick();
 
             if (isSetSwapped) {
-                if (swapTicks > 0) {
-                    swapTicks--;
-                } else {
-                    switchSet(defaultKey);
+                swapTicks++;
+                if (swapTicks >= getSet(setKey).textures.length * Sprite.INTERVAL) {
                     isSetSwapped = false;
+                    switchSet(defaultKey);
                 }
             }
         }
@@ -45,8 +44,7 @@ public class SpriteSet
         if (getSet(key) != null) {
             switchSet(key);
             isSetSwapped = true;
-
-            swapTicks = getSet(key).textures.length * Sprite.INTERVAL;
+            swapTicks = 0;
         }
     }
 

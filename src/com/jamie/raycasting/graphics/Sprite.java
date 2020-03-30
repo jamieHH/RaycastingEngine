@@ -22,16 +22,13 @@ public class Sprite
     }
 
     public void tick() {
+        animTick++;
         if (textures.length > 1) {
-            if (animTick > 0) {
-                animTick--;
-            } else {
+            if (animTick % INTERVAL == 0) {
                 index++;
-                if (index == textures.length) {
+                if (index >= textures.length) {
                     index = 0;
                 }
-
-                animTick = INTERVAL;
             }
         }
     }
@@ -52,6 +49,6 @@ public class Sprite
 
     protected void reset() {
         index = 0;
-        animTick = INTERVAL;
+        animTick = 0;
     }
 }
