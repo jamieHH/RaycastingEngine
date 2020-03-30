@@ -153,7 +153,14 @@ public abstract class Mob extends Entity
             input.setInput(Controls.ROTRIGHT, (random.nextInt(100) < influenceKeyframe.rRight));
             input.setInput(Controls.ACTION, (random.nextInt(100) < influenceKeyframe.action));
             if (influenceKeyframe.itemName != null) {
-                setRightHandItem(influenceKeyframe.itemName);
+                for (int i = 0; i < inventory.getItems().size(); i++) {
+                    if (inventory.getItem(i).name.equals(influenceKeyframe.itemName)) {
+                        if (getRightHandItem() != inventory.getItem(i)) {
+                            setRightHandItemIndex(i);
+                            return;
+                        }
+                    }
+                }
             } else {
                 unequipRightHand();
             }
@@ -444,33 +451,21 @@ public abstract class Mob extends Entity
         return rightHandItemIndex;
     }
 
-    public void setRightHandItemIndex(int i) {
-        if (i < 0) {
+    private void setRightHandItemIndex(int i) {
+        rightHandEmpty = false;
+        rightHandItemIndex = i;
+        useTicks = useWait;
+    }
+
+    private void unequipRightHand() {
+        if (!rightHandEmpty) {
             rightHandEmpty = true;
             rightHandItemIndex = 0;
-        } else {
-            rightHandEmpty = false;
-            rightHandItemIndex = i;
-        }
-        useTicks = 0;
-    }
-
-    public void setRightHandItem(String itemName) {
-        for (int i = 0; i < inventory.getItems().size(); i++) {
-            if (inventory.getItem(i).name.equals(itemName)) {
-                if (getRightHandItem() != inventory.getItem(i)) {
-                    setRightHandItemIndex(i);
-                    return;
-                }
-            }
+            useTicks = useWait;
         }
     }
 
-    public void unequipRightHand() {
-        setRightHandItemIndex(-1);
-    }
-
-    public double getRightHandReach() {
+    private double getRightHandReach() {
         if (inventory.getItems().size() > 0 && !rightHandEmpty) {
             return baseReach + getRightHandItem().reach;
         }
