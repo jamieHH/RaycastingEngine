@@ -81,7 +81,6 @@ public class Spirit extends Mob
         baseReach = 1;
 
         radius = 0.25;
-
         rotationSpeed = 0.03;
         walkSpeed = 0.04;
 

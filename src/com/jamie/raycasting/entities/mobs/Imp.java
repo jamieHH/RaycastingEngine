@@ -78,7 +78,6 @@ public class Imp extends Mob
 
         viewDist = 8;
         baseReach = 1;
-
         radius = 0.25;
 
         rotationSpeed = 0.03;

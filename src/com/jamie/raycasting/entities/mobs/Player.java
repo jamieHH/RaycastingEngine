@@ -52,6 +52,7 @@ public class Player extends Mob
 
         canPickup = true;
         canActivateBlocks = true;
+
         isFloating = false;
         isSolid = true;
 
@@ -59,17 +60,17 @@ public class Player extends Mob
         baseReach = 2;
 
 	    radius = 0.25;
-
         rotationSpeed = 0.03;
         walkSpeed = 0.1;
 
-        maxHealth = 10;
+        maxHealth = 20;
         health = maxHealth;
 
         faction = "human";
         enemyFaction = "";
 
         hurtSound = Sound.pain;
+        useWait = 15;
 
         if (App.inDev) {
             addItem(new SpearWeapon());

@@ -38,7 +38,7 @@ public abstract class Mob extends Entity
     // actions
     public InputHandler input;
     public boolean isUsingMenu = false;
-    protected static final int USE_WAIT = 15;
+    protected int useWait = 30;
     public int useTicks = 0;
 
     protected String faction;
@@ -64,7 +64,7 @@ public abstract class Mob extends Entity
 
 	// stats
     public int baseDamage = 1;
-    private static final int HURT_WAIT = 30;
+    private static final int HURT_WAIT = 15;
     public int hurtTicks = 0;
 	public String hurtType = "";
 	public int maxHealth = 10;
@@ -639,7 +639,7 @@ public abstract class Mob extends Entity
         if (getRightHandItem() != null) {
             return getRightHandItem().useWait;
         }
-        return USE_WAIT;
+        return useWait;
     }
 
     public String getFaction() {
