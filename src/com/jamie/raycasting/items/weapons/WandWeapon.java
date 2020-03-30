@@ -19,7 +19,7 @@ public class WandWeapon extends Weapon
         icon = Texture.wandIcon;
 
         Bitmap[] ts = {
-                Texture.screenWand0,
+                Texture.guiWand0,
         };
         setIdleSprite(new Sprite(ts));
 

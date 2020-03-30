@@ -193,7 +193,7 @@ public class Texture
     public static final Bitmap guiDagger0 = PngLoader.loadBitmap("gui/dagger0.png");
     public static final Bitmap guiDagger1 = PngLoader.loadBitmap("gui/dagger1.png");
     public static final Bitmap guiDagger2 = PngLoader.loadBitmap("gui/dagger2.png");
-    public static final Bitmap screenWand0 = PngLoader.loadBitmap("gui/screenWand0.png");
+    public static final Bitmap guiWand0 = PngLoader.loadBitmap("gui/wand0.png");
     public static final Bitmap screenWand1 = PngLoader.loadBitmap("gui/screenWand1.png");
     public static final Bitmap screenWand2 = PngLoader.loadBitmap("gui/screenWand2.png");
     public static final Bitmap screenWand3 = PngLoader.loadBitmap("gui/screenWand3.png");
