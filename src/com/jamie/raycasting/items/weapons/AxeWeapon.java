@@ -12,7 +12,7 @@ public class AxeWeapon extends Weapon
         name = "Axe";
         damage = 3;
         reach = 1;
-        useWait = 20;
+        useWait = 30;
 
         icon = Texture.axeIcon;
 
@@ -24,6 +24,8 @@ public class AxeWeapon extends Weapon
         Bitmap[] ts1 = {
                 Texture.guiAxe1,
                 Texture.guiAxe2,
+                null,
+                null,
                 null,
                 null
         };

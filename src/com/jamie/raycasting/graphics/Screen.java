@@ -46,7 +46,8 @@ public class Screen extends Display
                 if (p.getRightHandItem() != null) {
                     Bitmap rightItemTex = p.getRightHandItem().bitmap();
                     if (rightItemTex != null) {
-                        draw(rightItemTex, render.halfWidth() - rightItemTex.halfWidth(), (render.height - rightItemTex.height) + ((int) (p.yBob * 100)) + 4);
+                        int yOffs = (render.height - rightItemTex.height) + ((int) (p.camPitch * -8)) + ((int) (p.yBob * 100));
+                        draw(rightItemTex, render.halfWidth() - rightItemTex.halfWidth(), yOffs + 10);
                     }
                 }
 
