@@ -7,7 +7,7 @@ import java.util.Map;
 public class SfxLoader
 {
     public static Map<String, Sfx> cache = new HashMap<>();
-    public static boolean enableCaching = false;
+    public static boolean enableCaching = true;
 
 
     public static Sfx loadSound(String fileName) {
