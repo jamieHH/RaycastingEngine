@@ -23,13 +23,9 @@ public class OptionsMenu extends Menu
             "8",
     };
 
-    private int resIndex = 2;
-    private int scaleIndex = 3;
-
     private boolean fullscreenEnabled = App.getFullscreenEnabled();
-    private int resWidth = App.getDisplayWidth();
-    private int resHeight = App.getDisplayHeight();
-    private int scale = App.getDisplayScale();
+    private int resIndex = 0;
+    private int scaleIndex = 3;
     private boolean soundEnabled = App.getSoundEnabled();
 
     public String[] getOptions() {
@@ -95,9 +91,6 @@ public class OptionsMenu extends Menu
                     break;
             }
         }
-        resWidth = Integer.parseInt(resolutions[resIndex][0]);
-        resHeight = Integer.parseInt(resolutions[resIndex][1]);
-        scale = Integer.parseInt(scales[scaleIndex]);
 
         if (Client.input.check(Controls.ACTION) || Client.input.check(Controls.ENTER)) {
             Client.input.stopInput(Controls.ACTION);
@@ -105,16 +98,15 @@ public class OptionsMenu extends Menu
             Sound.clickAction.play();
             switch (getOption(optionIndex)) {
                 case "Reset Defaults":
-                    resWidth = 256;
-                    resHeight = 144;
                     fullscreenEnabled = true;
-                    scale = 8;
+                    resIndex = 0;
+                    scaleIndex = 3;
                     soundEnabled = true;
                     break;
                 case "Accept":
-                    App.setDisplayResolution(resWidth, resHeight);
-                    App.setDisplayScale(scale);
                     App.enableFullscreen(fullscreenEnabled);
+                    App.setDisplayResolution(getSetWidth(), getSetHeight());
+                    App.setDisplayScale(getSetScale());
                     App.enableSound(soundEnabled);
 
                     App.display.setSize(App.getDisplayWidth(), App.getDisplayHeight());
@@ -137,10 +129,10 @@ public class OptionsMenu extends Menu
                     string = (fullscreenEnabled) ? "Enabled" : "Disabled";
                     break;
                 case "Resolution":
-                    string = resWidth + ", " + resHeight;
+                    string = getSetWidth() + ", " + getSetHeight();
                     break;
                 case "Scaling":
-                    string = "x" + scale;
+                    string = "x" + getSetScale();
                     break;
                 case "Sound":
                     string = (soundEnabled) ? "Enabled" : "Disabled";
@@ -162,5 +154,17 @@ public class OptionsMenu extends Menu
                 draw(string, width - ((string.length() * fontWidth()) + bp), bp + lineHeight() + (i * lineHeight()), col);
             }
         }
+    }
+
+    private int getSetWidth() {
+        return Integer.parseInt(resolutions[resIndex][0]);
+    }
+
+    private int getSetHeight() {
+        return Integer.parseInt(resolutions[resIndex][1]);
+    }
+
+    private int getSetScale() {
+        return Integer.parseInt(scales[scaleIndex]);
     }
 }

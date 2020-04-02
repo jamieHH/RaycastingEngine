@@ -6,7 +6,6 @@ import com.jamie.jamapp.Bitmap;
 public class Texture
 {
     // special
-    public static final Bitmap noTex = PngLoader.loadBitmap("tex/noTex.png");
     public static final Bitmap fogHours = PngLoader.loadBitmap("tex/fogHours.png");
 
     // icons
@@ -37,12 +36,13 @@ public class Texture
     public static final Bitmap durationIcon = PngLoader.loadBitmap("gui/durationIcon.png");
     public static final Bitmap magnitudeIcon = PngLoader.loadBitmap("gui/magnitudeIcon.png");
 
+
+    // surfaces
     public static final Bitmap one = PngLoader.loadBitmap("tex/1.png");
     public static final Bitmap two = PngLoader.loadBitmap("tex/2.png");
     public static final Bitmap three = PngLoader.loadBitmap("tex/3.png");
     public static final Bitmap four = PngLoader.loadBitmap("tex/4.png");
-
-    // surfaces
+    public static final Bitmap noTex = PngLoader.loadBitmap("tex/noTex.png");
 	public static final Bitmap floor = PngLoader.loadBitmap("tex/floor.png");
 	public static final Bitmap bridge = PngLoader.loadBitmap("tex/bridge.png");
 	public static final Bitmap wall = PngLoader.loadBitmap("tex/wall.png");
@@ -58,8 +58,6 @@ public class Texture
     public static final Bitmap water0 = PngLoader.loadBitmap("tex/water0.png");
     public static final Bitmap water1 = PngLoader.loadBitmap("tex/water1.png");
     public static final Bitmap water2 = PngLoader.loadBitmap("tex/water2.png");
-
-    // merged textures
     public static final Bitmap stonePath = PngLoader.loadBitmap("tex/stonePath.png");
     public static final Bitmap altStonePath = PngLoader.loadBitmap("tex/altStonePath.png");
     public static final Bitmap wetFloor = PngLoader.loadBitmap("tex/wetFloor.png");

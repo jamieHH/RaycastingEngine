@@ -7,8 +7,8 @@ import com.jamie.raycasting.input.UserInputHandler;
 public class RunApp
 {
     public static final boolean defaultInDev = true;
-    public static final int defaultResolutionWidth = 256;
-    public static final int defaultResolutionHeight = 144;
+    public static final int defaultResolutionWidth = 200;
+    public static final int defaultResolutionHeight = 150;
     public static final int defaultDisplayScale = 8;
     public static final boolean defaultFullscreenEnabled = false;
     public static final boolean defaultSoundEnabled = true;
@@ -22,9 +22,9 @@ public class RunApp
         } else {
             App.setTitle("Dungeon Crawler");
         }
+        App.enableFullscreen(defaultFullscreenEnabled);
         App.setDisplayResolution(defaultResolutionWidth, defaultResolutionHeight);
         App.setDisplayScale(defaultDisplayScale);
-        App.enableFullscreen(defaultFullscreenEnabled);
         App.enableSound(defaultSoundEnabled);
 
         App.input = new UserInputHandler();
