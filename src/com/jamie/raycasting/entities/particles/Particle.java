@@ -16,13 +16,13 @@ public abstract class Particle extends Entity
 
     protected abstract Bitmap[] getTexOptions();
 
-    private Sprite[] spriteParticles;
+    private final Sprite[] spriteParticles;
 
 
     public Particle(int count, double force, double gravity, double yOffs) {
         isSolid = false;
 
-        List<Sprite> set = new ArrayList<Sprite>();
+        List<Sprite> set = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             ParticleSprite particle = new ParticleSprite(getTexOptions()[(random.nextInt(getTexOptions().length))], force, gravity);
             particle.setOffset(0, yOffs, 0);

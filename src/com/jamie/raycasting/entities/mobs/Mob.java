@@ -80,9 +80,9 @@ public abstract class Mob extends Entity
     private int rightHandItemIndex = 0;
     public boolean rightHandEmpty = true;
 
-    public List<MobEffect> mobEffects = new ArrayList<MobEffect>();
+    public List<MobEffect> mobEffects = new ArrayList<>();
 
-    public ArrayList<String> hudHeadings = new ArrayList<String>();
+    public ArrayList<String> hudHeadings = new ArrayList<>();
     private static final int HUD_HEADINGS_WAIT = 120;
     private int hudHeadingsTicks = 120;
 

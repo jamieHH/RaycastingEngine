@@ -19,8 +19,8 @@ public abstract class Level
     public String name = "";
 
     private Block[] blocks;
-    private List<Entity> entities = new ArrayList<Entity>();
-    private List<Logic> logicInstances = new ArrayList<Logic>();
+    private List<Entity> entities = new ArrayList<>();
+    private List<Logic> logicInstances = new ArrayList<>();
 
     protected int sizeX;
     protected int sizeZ;
@@ -268,7 +268,7 @@ public abstract class Level
 
 
     public List<Mob> getMobEntities() {
-        List<Mob> mobs = new ArrayList<Mob>();
+        List<Mob> mobs = new ArrayList<>();
         for (Entity e : getEntities()) {
             if (e instanceof Mob) {
                 mobs.add((Mob) (e));
@@ -362,7 +362,7 @@ public abstract class Level
     }
 
     public List<Entity> getEntitiesWithin(double x0, double z0, double x1, double z1) {
-        List<Entity> entities = new ArrayList<Entity>();
+        List<Entity> entities = new ArrayList<>();
         for (Entity e : getEntities()) {
             if (e.isInside(x0, z0, x1, z1)) {
                 entities.add(e);

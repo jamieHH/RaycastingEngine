@@ -6,7 +6,7 @@ import com.jamie.raycasting.items.Item;
 
 public class Drop extends Entity
 {
-    public Item item;
+    public final Item item;
 
     public Drop(Item item) {
         if (item.dropSprite != null) {

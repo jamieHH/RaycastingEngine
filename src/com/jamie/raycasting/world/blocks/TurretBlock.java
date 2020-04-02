@@ -49,18 +49,23 @@ public class TurretBlock extends TriggerableBlock
         emitSound(Sound.clickAction);
         isFiring = true;
         Projectile projectile = getProjectile();
-        if (direction.equals("N")) {
-            projectile.setRotation(4.71239);
-            level.addEntity(projectile, gridX - 0.5, gridZ + 0.5);
-        } else if (direction.equals("S")) {
-            projectile.setRotation(1.5708);
-            level.addEntity(projectile, gridX + 1.5, gridZ + 0.5);
-        } else if (direction.equals("E")) {
-            projectile.setRotation(0);
-            level.addEntity(projectile, gridX + 0.5, gridZ + 1.5);
-        } else if (direction.equals("W")) {
-            projectile.setRotation(3.14159);
-            level.addEntity(projectile, gridX + 0.5, gridZ - 0.5);
+        switch (direction) {
+            case "N":
+                projectile.setRotation(4.71239);
+                level.addEntity(projectile, gridX - 0.5, gridZ + 0.5);
+                break;
+            case "S":
+                projectile.setRotation(1.5708);
+                level.addEntity(projectile, gridX + 1.5, gridZ + 0.5);
+                break;
+            case "E":
+                projectile.setRotation(0);
+                level.addEntity(projectile, gridX + 0.5, gridZ + 1.5);
+                break;
+            case "W":
+                projectile.setRotation(3.14159);
+                level.addEntity(projectile, gridX + 0.5, gridZ - 0.5);
+                break;
         }
     }
 

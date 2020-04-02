@@ -134,7 +134,7 @@ public class Bitmap
     }
 
     private static List<String> getTextLines(String string, int maxWidth) {
-		List<String> lines = new ArrayList<String>();
+		List<String> lines = new ArrayList<>();
 		String[] words = string.trim().split("\\s+");
 		String line = "";
 

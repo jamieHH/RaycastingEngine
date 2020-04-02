@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class PngLoader
 {
-    public static Map<String, Bitmap> cache = new HashMap<String, Bitmap>();
+    public static Map<String, Bitmap> cache = new HashMap<>();
     public static boolean enableCaching = false;
 
 

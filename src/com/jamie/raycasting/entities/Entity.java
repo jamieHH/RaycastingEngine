@@ -22,7 +22,7 @@ public abstract class Entity
     public double posX = 0;
     public double posZ = 0;
 
-    private SpriteSet spriteSet = new SpriteSet();
+    private final SpriteSet spriteSet = new SpriteSet();
 
 
     public Entity() {
@@ -104,7 +104,7 @@ public abstract class Entity
     }
 
     public List<Entity> getEntitiesInRadius(double radius) {
-        List<Entity> entities = new ArrayList<Entity>();
+        List<Entity> entities = new ArrayList<>();
         for (Entity ent : level.getEntities()) {
             if (ent != this && distanceFrom(ent.posX, ent.posZ) < radius) {
                 entities.add(ent);

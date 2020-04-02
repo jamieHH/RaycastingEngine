@@ -16,8 +16,7 @@ import java.util.List;
 public class ItemsOverlay extends Overlay
 {
     private Mob mob;
-    private Inventory inventory;
-    private List<ItemTile> itemTiles = new ArrayList<ItemTile>();
+    private List<ItemTile> itemTiles = new ArrayList<>();
     private static final int ICON_SIZE = 16;
     private int itemIndex = 0;
 
@@ -31,8 +30,8 @@ public class ItemsOverlay extends Overlay
 
     private static class ItemTile
     {
-        String description;
-        Bitmap icon;
+        final String description;
+        final Bitmap icon;
 
         public ItemTile(Item item) {
             switch (item.type) {
@@ -53,9 +52,9 @@ public class ItemsOverlay extends Overlay
 
     public void tick() {
         this.mob = Client.getPlayer();
-        this.inventory = Client.getPlayer().inventory;
+        Inventory inventory = Client.getPlayer().inventory;
 
-        List<ItemTile> il = new ArrayList<ItemTile>();
+        List<ItemTile> il = new ArrayList<>();
         for (int i = 0; i < inventory.getItems().size(); i++) {
             il.add(new ItemTile(inventory.getItem(i)));
         }

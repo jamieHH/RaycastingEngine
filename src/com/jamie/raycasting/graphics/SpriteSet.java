@@ -5,9 +5,9 @@ import java.util.Map;
 
 public class SpriteSet
 {
-    private Map<String, Sprite> set = new HashMap<String, Sprite>();
+    private Map<String, Sprite> set = new HashMap<>();
     private String setKey = "idle";
-    private String defaultKey = "idle";
+    private static final String defaultKey = "idle";
     private int swapTicks = 0;
     private boolean isSetSwapped = false;
 

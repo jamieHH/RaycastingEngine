@@ -10,7 +10,7 @@ public class DoorBlock extends TriggerableBlock
 	private boolean isOpen;
 
 	public double openness = 0;
-	private double openLimit = 7 / 8.0;
+	private static final double OPEN_LIMIT = 7 / 8.0;
 
 
 	public DoorBlock(Bitmap floorTex, Bitmap ceilTex, boolean isOpen) {
@@ -45,14 +45,14 @@ public class DoorBlock extends TriggerableBlock
         if (openness < 0) openness = 0;
         if (openness > 1) openness = 1;
 
-        if (openness < openLimit && !isOpen && !isSolid) {
+        if (openness < OPEN_LIMIT && !isOpen && !isSolid) {
             if (level.blockContainsEntity(gridX, gridZ)) {
-                openness = openLimit;
+                openness = OPEN_LIMIT;
                 return;
             }
         }
 
-        isSolid = openness < openLimit;
+        isSolid = openness < OPEN_LIMIT;
     }
 
     public boolean getState() {

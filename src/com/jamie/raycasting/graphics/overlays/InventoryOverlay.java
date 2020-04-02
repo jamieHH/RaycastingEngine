@@ -34,7 +34,7 @@ public class InventoryOverlay extends Overlay
     {
         public String category;
         public String itemType;
-        public List<ItemListItem> listedItems = new ArrayList<ItemListItem>();
+        public List<ItemListItem> listedItems = new ArrayList<>();
         public int listIndex = 0;
         public int listYShift = 0;
 
@@ -44,7 +44,7 @@ public class InventoryOverlay extends Overlay
         }
     }
 
-    private class ItemListItem
+    private static class ItemListItem
     {
         public String title;
         public Boolean selected = false;
@@ -52,7 +52,7 @@ public class InventoryOverlay extends Overlay
 
         public ItemListItem(Item item) {
             this.title = item.name;
-            this.items = new ArrayList<Item>(Arrays.asList(
+            this.items = new ArrayList<>(Arrays.asList(
                     item
             ));
         }
@@ -273,19 +273,19 @@ public class InventoryOverlay extends Overlay
             itemDetailsPane.draw(bGround, itemDetailsPane.halfWidth() - bGround.halfWidth(), bp);
             itemDetailsPane.draw(icon, itemDetailsPane.halfWidth() - icon.halfWidth(), bp + 1);
 
-            int rowX = bp + bGround.height + bp;
+            int rowY = bp + bGround.height + bp;
             if (item.type.equals(Item.TYPE_WEAPON)) {
-                itemDetailsPane.draw(Texture.damageIcon, bp, rowX + 1);
-                itemDetailsPane.draw(Integer.toString(item.getDamage()), bp + (fontWidth() * 2), rowX, 0xF0F0F0);
-                rowX += 10;
-                itemDetailsPane.draw(Texture.rangeIcon, bp, rowX + 1);
-                itemDetailsPane.draw(Integer.toString(item.getReach()), bp + (fontWidth() * 2), rowX, 0xF0F0F0);
+                itemDetailsPane.draw(Texture.damageIcon, bp, rowY + 1);
+                itemDetailsPane.draw(Integer.toString(item.getDamage()), bp + (fontWidth() * 2), rowY, 0xF0F0F0);
+                rowY += 10;
+                itemDetailsPane.draw(Texture.rangeIcon, bp, rowY + 1);
+                itemDetailsPane.draw(Integer.toString(item.getReach()), bp + (fontWidth() * 2), rowY, 0xF0F0F0);
             } else if (item.type.equals(Item.TYPE_CONSUMABLE)) {
-                itemDetailsPane.draw(Texture.magnitudeIcon, bp, rowX + 1);
-                itemDetailsPane.draw(Integer.toString(item.getMagnitude()), bp + (fontWidth() * 2), rowX, 0xF0F0F0);
-                rowX += 10;
-                itemDetailsPane.draw(Texture.durationIcon, bp, rowX + 1);
-                itemDetailsPane.draw(Integer.toString(item.getDuration()) + "s", bp + (fontWidth() * 2), rowX, 0xF0F0F0);
+                itemDetailsPane.draw(Texture.magnitudeIcon, bp, rowY + 1);
+                itemDetailsPane.draw(Integer.toString(item.getMagnitude()), bp + (fontWidth() * 2), rowY, 0xF0F0F0);
+                rowY += 10;
+                itemDetailsPane.draw(Texture.durationIcon, bp, rowY + 1);
+                itemDetailsPane.draw(Integer.toString(item.getDuration()) + "s", bp + (fontWidth() * 2), rowY, 0xF0F0F0);
             }
         }
         draw(itemDetailsPane, bp + itemListBitmap.width,bp + (lineHeight()));

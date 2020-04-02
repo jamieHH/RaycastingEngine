@@ -14,7 +14,7 @@ public abstract class Item
 
     public String name;
     public String type;
-    private SpriteSet spriteSet = new SpriteSet();
+    private final SpriteSet spriteSet = new SpriteSet();
     public Bitmap icon = new Bitmap(16, 16);
     public Sprite dropSprite = null;
 

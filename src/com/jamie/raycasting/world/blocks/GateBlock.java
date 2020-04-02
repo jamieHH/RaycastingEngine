@@ -10,7 +10,7 @@ public class GateBlock extends TriggerableBlock
 {
 	protected boolean isOpen = false;
 
-    public String keyName;
+    public final String keyName;
 
 
 	public GateBlock(Bitmap floorTex, Bitmap ceilTex, String keyName) {

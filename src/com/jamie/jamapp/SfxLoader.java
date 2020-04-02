@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class SfxLoader
 {
-    public static Map<String, Sfx> cache = new HashMap<String, Sfx>();
+    public static Map<String, Sfx> cache = new HashMap<>();
     public static boolean enableCaching = false;
 
 

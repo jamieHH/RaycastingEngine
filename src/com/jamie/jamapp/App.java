@@ -36,7 +36,8 @@ public class App extends Canvas implements Runnable
     private int ups, fps;
 
     private boolean hadFocus;
-    private Cursor emptyCursor, defaultCursor;
+    private final Cursor emptyCursor;
+	private final Cursor defaultCursor;
 
 
 	public App() {
@@ -133,11 +134,7 @@ public class App extends Canvas implements Runnable
 	public static void enableFullscreen(boolean i) {
 		reinitialiseFrame = true;
 		fullscreenEnabled = i;
-		if (fullscreenEnabled) {
-			borderless = true;
-		} else {
-			borderless = false;
-		}
+		borderless = fullscreenEnabled;
 	}
 
     private void initialiseFrame() {

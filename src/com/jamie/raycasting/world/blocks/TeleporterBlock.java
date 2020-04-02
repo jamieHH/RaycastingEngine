@@ -18,7 +18,7 @@ public class TeleporterBlock extends FunctionBlock
         isOpaque = false;
         isSolid = false;
 
-        Bitmap ts0[] = {
+        Bitmap[] ts0 = {
                 Texture.portal0,
                 Texture.portal1,
                 Texture.portal2,

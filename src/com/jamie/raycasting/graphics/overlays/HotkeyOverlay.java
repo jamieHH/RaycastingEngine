@@ -4,7 +4,7 @@ import com.jamie.raycasting.items.Item;
 
 public class HotkeyOverlay extends Overlay
 {
-    private String id;
+    private final String id;
 
     public HotkeyOverlay(String id) {
         super(16, 16);

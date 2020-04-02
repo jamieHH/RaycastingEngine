@@ -11,7 +11,7 @@ import java.util.List;
 
 public class Console {
 
-    private static List<String> lines = new ArrayList<String>();
+    private static List<String> lines = new ArrayList<>();
 
 
     public Console(Client client) {
@@ -34,7 +34,7 @@ public class Console {
             case "": // blank
                 break;
             case "clear": // clear all console lines
-                Console.lines = new ArrayList<String>();
+                Console.lines = new ArrayList<>();
                 break;
             case "x": // exit window
                 Client.setActiveOverlay(null);

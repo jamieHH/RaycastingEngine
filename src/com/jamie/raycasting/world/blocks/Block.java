@@ -16,7 +16,7 @@ public abstract class Block
 	public Bitmap floorTex = null;
 	public Bitmap ceilTex = null;
 
-	protected SpriteSet spriteSet = new SpriteSet();
+	protected final SpriteSet spriteSet = new SpriteSet();
 
 
 	public void tick() {

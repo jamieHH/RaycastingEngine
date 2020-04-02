@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Inventory
 {
-    private List<Item> items = new ArrayList<Item>();
+    private List<Item> items = new ArrayList<>();
 
 
     public void addItem(Item item) {
@@ -20,7 +20,7 @@ public class Inventory
     }
 
     public List<Item> getItemsByType(String type) {
-        List<Item> items = new ArrayList<Item>();
+        List<Item> items = new ArrayList<>();
         for (int i = 0; i < getItems().size(); i++) {
             if (getItem(i).getType().equals(type)) {
                 items.add(getItem(i));
@@ -50,7 +50,7 @@ public class Inventory
 
     // Weapons
     public List<Weapon> getWeapons() {
-        List<Weapon> list = new ArrayList<Weapon>();
+        List<Weapon> list = new ArrayList<>();
 
         for (int i = 0; i < items.size(); i++) {
             if (items.get(i) instanceof Weapon) {
@@ -67,7 +67,7 @@ public class Inventory
 
     // Consumables
     public List<Consumable> getConsumables() {
-        List<Consumable> list = new ArrayList<Consumable>();
+        List<Consumable> list = new ArrayList<>();
 
         for (int i = 0; i < items.size(); i++) {
             if (items.get(i) instanceof Consumable) {
@@ -84,7 +84,7 @@ public class Inventory
 
     // Keys
     public List<MiscItem> getMiscItems() {
-        List<MiscItem> list = new ArrayList<MiscItem>();
+        List<MiscItem> list = new ArrayList<>();
 
         for (int i = 0; i < items.size(); i++) {
             if (items.get(i) instanceof MiscItem) {

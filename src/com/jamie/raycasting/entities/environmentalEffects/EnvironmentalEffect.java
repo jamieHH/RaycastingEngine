@@ -10,7 +10,7 @@ public abstract class EnvironmentalEffect extends Entity
     protected int interval;
 
     protected int duration;
-    protected int magnitude;
+    protected final int magnitude;
 
     protected abstract Particle getParticle();
 

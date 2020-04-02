@@ -4,7 +4,6 @@ import com.jamie.jamapp.App;
 import com.jamie.jamapp.Bitmap;
 import com.jamie.raycasting.app.Client;
 import com.jamie.raycasting.app.Console;
-import com.jamie.raycasting.graphics.overlays.Overlay;
 import com.jamie.raycasting.input.Controls;
 
 import java.awt.event.KeyEvent;
@@ -15,7 +14,7 @@ public class ConsoleOverlay extends Overlay
 {
     private Bitmap historyPane;
     private String command = "";
-    private List<String> commandHistory = new ArrayList<String>();
+    private List<String> commandHistory = new ArrayList<>();
     private int reverseHistoryIndex = 0;
 
     public ConsoleOverlay() {
@@ -33,7 +32,6 @@ public class ConsoleOverlay extends Overlay
 
     public void tick() {
         super.tick();
-
         KeyEvent ke = Client.input.grabLastKeyEvent();
         if (ke != null) {
             if (ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {

@@ -29,7 +29,7 @@ public class ChestEntity extends Entity
 
     public static Item getLootItem() {
         Random random = new Random();
-        ArrayList<Item> list = new ArrayList<Item>(
+        ArrayList<Item> list = new ArrayList<>(
                 Arrays.asList(
                         new HealthPotion(),
                         new SpeedPotion(),

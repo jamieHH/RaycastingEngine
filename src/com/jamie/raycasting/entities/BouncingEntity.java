@@ -23,18 +23,23 @@ public class BouncingEntity extends Entity
     public void tick() {
         super.tick();
 
-        if (direction.equals("N")) {
-            moveX = 0;
-            moveZ = moveSpeed;
-        } else if (direction.equals("S")) {
-            moveX = 0;
-            moveZ = -moveSpeed;
-        } else if (direction.equals("E")) {
-            moveX = moveSpeed;
-            moveZ = 0;
-        } else if (direction.equals("W")) {
-            moveX = -moveSpeed;
-            moveZ = 0;
+        switch (direction) {
+            case "N":
+                moveX = 0;
+                moveZ = moveSpeed;
+                break;
+            case "S":
+                moveX = 0;
+                moveZ = -moveSpeed;
+                break;
+            case "E":
+                moveX = moveSpeed;
+                moveZ = 0;
+                break;
+            case "W":
+                moveX = -moveSpeed;
+                moveZ = 0;
+                break;
         }
 
         int divs = 10;

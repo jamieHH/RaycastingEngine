@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 
 public class ArtificialInputHandler extends InputHandler
 {
-    private Map<String, Integer> inputGroups = Stream.of(new Object[][] {
+    private final Map<String, Integer> inputGroups = Stream.of(new Object[][] {
             {Controls.FORWARD, 0},
             {Controls.BACK, 0},
             {Controls.LEFT, 0},

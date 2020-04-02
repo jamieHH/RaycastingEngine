@@ -18,7 +18,7 @@ import java.util.Map;
 public class World
 {
     public Level level;
-    public Map<String, Level> cache = new HashMap<String, Level>();
+    public final Map<String, Level> cache = new HashMap<>();
 
     public boolean enableTimeCycle = false;
     private int hour = 3;

@@ -31,7 +31,7 @@ public class BarrelEntity extends Entity
 
     public static Entity getLootItem() {
         Random random = new Random();
-        ArrayList<Entity> list = new ArrayList<Entity>(
+        ArrayList<Entity> list = new ArrayList<>(
                 Arrays.asList(
                         null,
                         null,

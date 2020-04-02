@@ -8,9 +8,9 @@ public class DropSprite extends Sprite
     private double moveY = 0;
     private double moveZ = 0;
 
-    private double force;
-    private double gravity;
-    public double friction = 0.05;
+    private final double force;
+    private final double gravity;
+    public final double friction = 0.05;
 
 
     public DropSprite(Bitmap t, double force, double gravity) {

@@ -7,7 +7,7 @@ import com.jamie.raycasting.graphics.Texture;
 
 public class FountainBlock extends FunctionBlock
 {
-    private static final int PARTICLE_WAIT = 10;
+    private static final int PARTICLE_WAIT = 1;
     private int particleTicks;
     private boolean isActive;
 
@@ -37,13 +37,7 @@ public class FountainBlock extends FunctionBlock
 		}
     }
 
-
-
 	protected void setState(boolean state) {
-		if (state) {
-			isActive = true;
-		} else {
-			isActive = false;
-		}
+        isActive = state;
 	}
 }

@@ -6,15 +6,15 @@ import com.jamie.raycasting.input.UserInputHandler;
 
 public class RunApp
 {
-    public static boolean defaultInDev = true;
-    public static int defaultResolutionWidth = 256;
-    public static int defaultResolutionHeight = 144;
-    public static int defaultDisplayScale = 8;
-    public static boolean defaultFullscreenEnabled = false;
-    public static boolean defaultSoundEnabled = true;
-    public static boolean defaultMouseEnabled = true;
+    public static final boolean defaultInDev = true;
+    public static final int defaultResolutionWidth = 256;
+    public static final int defaultResolutionHeight = 144;
+    public static final int defaultDisplayScale = 8;
+    public static final boolean defaultFullscreenEnabled = false;
+    public static final boolean defaultSoundEnabled = true;
+    public static final boolean defaultMouseEnabled = true;
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         App.inDev = defaultInDev;
 
         if (App.inDev) {
