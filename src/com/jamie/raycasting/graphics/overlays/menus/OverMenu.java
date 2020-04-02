@@ -21,22 +21,22 @@ public class OverMenu extends Menu
 
     public void tick() {
         super.tick();
-
         if (Client.input.check(Controls.ACTION) || Client.input.check(Controls.ENTER)) {
             Client.input.stopInput(Controls.ACTION);
             Client.input.stopInput(Controls.ENTER);
             Sound.clickAction.play();
-            if (getOption(optionIndex).equals("Main Menu")) {
-                Client.stopGame();
-            } else if (getOption(optionIndex).equals("Quit Game")) {
-                System.exit(0);
+            switch (getOption(optionIndex)) {
+                case "Main Menu":
+                    Client.stopGame();
+                    break;
+                case "Quit Game":
+                    System.exit(0);
             }
         }
     }
 
     public void update() {
         fill(0x202020);
-
         draw("  Game Over", bp, bp, 0xF0F0F0);
         for (int i = 0; i < getOptions().length; i++) {
             if (optionIndex == i) {

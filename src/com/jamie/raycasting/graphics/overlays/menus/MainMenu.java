@@ -52,14 +52,18 @@ public class MainMenu extends Menu
             Client.input.stopInput(Controls.ENTER);
             Sound.clickAction.play();
             if (!showControls) {
-                if (getOption(optionIndex).equals("New Game")) {
-                    Client.newGame("prison");
-                } else if (getOption(optionIndex).equals("Controls")) {
-                    showControls = !showControls;
-                } else if (getOption(optionIndex).equals("Options")) {
-                    Client.setActiveOverlay(Client.optionsMenu);
-                } else if (getOption(optionIndex).equals("Quit")) {
-                    System.exit(0);
+                switch (getOption(optionIndex)) {
+                    case "New Game":
+                        Client.newGame("prison");
+                        break;
+                    case "Controls":
+                        showControls = !showControls;
+                        break;
+                    case "Options":
+                        Client.setActiveOverlay(Client.optionsMenu);
+                        break;
+                    case "Quit":
+                        System.exit(0);
                 }
             } else {
                 showControls = false;
@@ -69,7 +73,6 @@ public class MainMenu extends Menu
 
     public void update() {
         fill(0x202020);
-
         draw("  Dungeon Raycaster", bp, bp, 0xF0F0F0);
         for (int i = 0; i < getOptions().length; i++) {
             if (optionIndex == i) {

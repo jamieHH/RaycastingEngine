@@ -51,21 +51,25 @@ public class PauseMenu extends Menu
             Client.input.stopInput(Controls.ACTION);
             Client.input.stopInput(Controls.ENTER);
             Sound.clickAction.play();
-            if (getOption(optionIndex).equals("Resume")) {
-                Client.setActiveOverlay(null);
-            } else if (getOption(optionIndex).equals("Controls")) {
-                showControls = !showControls;
-            } else if (getOption(optionIndex).equals("Options")) {
-                Client.setActiveOverlay(Client.optionsMenu);
-            } else if (getOption(optionIndex).equals("Main Menu")) {
-                Client.stopGame();
+            switch (getOption(optionIndex)) {
+                case "Resume":
+                    Client.setActiveOverlay(null);
+                    break;
+                case "Controls":
+                    showControls = !showControls;
+                    break;
+                case "Options":
+                    Client.setActiveOverlay(Client.optionsMenu);
+                    break;
+                case "Main Menu":
+                    Client.stopGame();
+                    break;
             }
         }
     }
 
     public void update() {
         fill(0x202020);
-
         draw("  Paused", bp, bp, 0xF0F0F0);
         for (int i = 0; i < getOptions().length; i++) {
             if (optionIndex == i) {

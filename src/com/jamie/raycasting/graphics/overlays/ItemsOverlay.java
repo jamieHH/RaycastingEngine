@@ -1,4 +1,4 @@
-package com.jamie.raycasting.graphics.overlays.menus;
+package com.jamie.raycasting.graphics.overlays;
 
 import com.jamie.jamapp.App;
 import com.jamie.jamapp.Bitmap;
