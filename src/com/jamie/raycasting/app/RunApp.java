@@ -7,32 +7,25 @@ import com.jamie.raycasting.input.UserInputHandler;
 public class RunApp
 {
     public static final boolean defaultInDev = true;
-    public static final int defaultResolutionWidth = 200;
-    public static final int defaultResolutionHeight = 150;
+    public static final int defaultResWidth = 200;
+    public static final int defaultResHeight = 150;
     public static final int defaultDisplayScale = 8;
     public static final boolean defaultFullscreenEnabled = false;
     public static final boolean defaultSoundEnabled = true;
-    public static final boolean defaultMouseEnabled = true;
 
     public static void main(String[] args) {
-        App.inDev = defaultInDev;
+        App.setIsInDev(defaultInDev);
 
-        if (App.inDev) {
-            App.setTitle("raycasting_engine_pre_0.98");
-        } else {
-            App.setTitle("Dungeon Crawler");
-        }
+        App.setTitle("raycasting_engine_pre_0.98");
         App.enableFullscreen(defaultFullscreenEnabled);
-        App.setDisplayResolution(defaultResolutionWidth, defaultResolutionHeight);
         App.setDisplayScale(defaultDisplayScale);
         App.enableSound(defaultSoundEnabled);
 
-        App.input = new UserInputHandler();
-        App.input.enableMouse = defaultMouseEnabled;
-        App.game = new Client(App.input);
-        App.display = new Screen(App.getDisplayWidth(), App.getDisplayHeight());
+        UserInputHandler inputListener = new UserInputHandler();
+        Client client = new Client(inputListener);
+        Screen display = new Screen(defaultResWidth, defaultResHeight);
 
-        App app = new App();
+        App app = new App(client, inputListener, display);
         app.start();
     }
 }

@@ -80,7 +80,6 @@ public class Console {
             case "setRes": // set resolution
                 if (args.length >= 3 && isNumeric(args[1]) && isNumeric(args[2])) {
                     App.setDisplayResolution(Integer.parseInt(args[1]), Integer.parseInt(args[2]));
-                    Client.resizeMenus();
                 } else {
                     log("Specify a numerical width and height");
                 }
@@ -94,7 +93,7 @@ public class Console {
                 break;
             case "indev":
                 if (args.length >= 2 && isNumeric(args[1])) {
-                    App.inDev = (Integer.parseInt(args[1]) > 0);
+                    App.setIsInDev(Integer.parseInt(args[1]) > 0);
                 } else {
                     log("Specify to set 0 or 1");
                 }

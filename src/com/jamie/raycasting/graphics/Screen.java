@@ -26,6 +26,7 @@ public class Screen extends Display
 
     public void setSize(int width, int height) {
         super.setSize(width, height);
+        Client.resizeMenus();
         // HUD
         hudBar = new HudBarOverlay(width, 9);
         healthBar = new StatBarOverlay(40, 4, Texture.heartIcon);

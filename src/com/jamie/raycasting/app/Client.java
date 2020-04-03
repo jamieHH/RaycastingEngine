@@ -39,6 +39,7 @@ public class Client extends JamappClient
 	}
 
 	public void tick() {
+		input.tick();
 		if (getActiveOverlay() != null) {
 			getActiveOverlay().tick();
 			input.unlockCursor();
