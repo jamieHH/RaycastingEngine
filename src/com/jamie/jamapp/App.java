@@ -13,20 +13,18 @@ public class App extends Canvas implements Runnable
 {
 	private static final long serialVersionUID = 1L;
 
-	private static String title;
+	private static String title = "Untitled";
 	private static int displayWidth;
 	private static int displayHeight;
 	private static int displayScale = 1;
-	private static boolean soundEnabled;
-	private static boolean borderless = true;
-	private static boolean fullscreenEnabled;
-	public static boolean inDev;
+	private static boolean soundEnabled = true;
+	private static boolean fullscreenEnabled = false;
+	private static boolean inDev = false;
 
 	private static boolean reinitialiseFrame = false;
 
-	public static InputHandler input;
-	public static JamappClient game;
-	public static Display display;
+	private static JamappClient game;
+	private static Display display;
 
     private static JFrame frame;
     private static BufferedImage img;
@@ -36,13 +34,17 @@ public class App extends Canvas implements Runnable
     private int ups, fps;
 
     private boolean hadFocus;
-    private final Cursor emptyCursor;
-	private final Cursor defaultCursor;
+    private final Cursor emptyCursor = Toolkit.getDefaultToolkit().createCustomCursor(
+    		new BufferedImage(16, 16, BufferedImage.TYPE_INT_ARGB),
+			new Point(0, 0),
+			"empty"
+	);
 
 
-	public App() {
-		emptyCursor = Toolkit.getDefaultToolkit().createCustomCursor(new BufferedImage(16, 16, BufferedImage.TYPE_INT_ARGB), new Point(0, 0), "empty");
-		defaultCursor = getCursor();
+	public App(JamappClient client, InputHandler input, Display display) {
+		App.game = client;
+		App.display = display;
+		App.setDisplayResolution(display.width, display.height);
 
 		addKeyListener(input);
 		addFocusListener(input);
@@ -134,7 +136,6 @@ public class App extends Canvas implements Runnable
 	public static void enableFullscreen(boolean i) {
 		reinitialiseFrame = true;
 		fullscreenEnabled = i;
-		borderless = fullscreenEnabled;
 	}
 
     private void initialiseFrame() {
@@ -157,7 +158,7 @@ public class App extends Canvas implements Runnable
 
     private static JFrame newFrame(App app) {
         JFrame f = new JFrame();
-        f.setUndecorated(borderless);
+        f.setUndecorated(fullscreenEnabled);
         f.add(app);
         f.setIconImage(getAppIcon());
         f.setTitle(App.title);
@@ -170,7 +171,6 @@ public class App extends Canvas implements Runnable
     }
 
 	private void tick() {
-		input.tick();
 		game.tick();
 
 		if (reinitialiseFrame) {
@@ -181,7 +181,7 @@ public class App extends Canvas implements Runnable
 	private void render() {
 		if (hadFocus != hasFocus()) {
 			hadFocus = !hadFocus;
-			setCursor(hadFocus ? emptyCursor : defaultCursor);
+			setCursor(hadFocus ? emptyCursor : getCursor());
 		}
 
 		BufferStrategy bs = getBufferStrategy();
@@ -258,5 +258,13 @@ public class App extends Canvas implements Runnable
 
 	public static void setTitle(String title) {
 		App.title = title;
+	}
+
+	public static void setIsInDev(boolean i) {
+		App.inDev = i;
+	}
+
+	public static boolean getIsInDev() {
+		return App.inDev;
 	}
 }

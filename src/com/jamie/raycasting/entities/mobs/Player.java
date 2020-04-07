@@ -72,7 +72,7 @@ public class Player extends Mob
         hurtSound = Sound.pain;
         useWait = 15;
 
-        if (App.inDev) {
+        if (App.getIsInDev()) {
             addItem(new SpearWeapon());
             addItem(new StrengthPotion());
             addItem(new WeaknessPotion());
