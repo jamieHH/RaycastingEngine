@@ -109,8 +109,6 @@ public class OptionsMenu extends Menu
                     App.setDisplayScale(getSetScale());
                     App.enableSound(soundEnabled);
                     optionIndex++;
-                    App.display.setSize(App.getDisplayWidth(), App.getDisplayHeight());
-                    Client.resizeMenus();
                     break;
                 case "Back":
                     Client.setActiveOverlay(Client.getPreviousOverlay());
