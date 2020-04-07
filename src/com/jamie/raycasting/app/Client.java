@@ -141,7 +141,7 @@ public class Client extends JamappClient
 		previousOverlay = activeOverlay;
 		activeOverlay = overlay;
 		if (getActiveOverlay() instanceof Menu) {
-			((Menu) getActiveOverlay()).optionIndex = 0;
+			((Menu) getActiveOverlay()).resetSelection();
 		}
 	}
 

@@ -97,4 +97,9 @@ public class MainMenu extends Menu
             draw(drawCenter(tWindow, textBox), halfWidth() - tWindow.halfWidth(), halfHeight() - tWindow.halfHeight());
         }
     }
+
+    public void resetSelection() {
+        super.resetSelection();
+        showControls = false;
+    }
 }

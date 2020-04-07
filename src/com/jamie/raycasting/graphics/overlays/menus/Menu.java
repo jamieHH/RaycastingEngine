@@ -38,4 +38,8 @@ public abstract class Menu extends Overlay
             }
         }
     }
+
+    public void resetSelection() {
+        optionIndex = 0;
+    }
 }

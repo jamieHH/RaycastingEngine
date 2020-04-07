@@ -19,13 +19,13 @@ public class XbowWeapon extends Weapon
         icon = Texture.xbowIcon;
 
         Bitmap[] ts = {
-                Texture.screenXbow0,
+                Texture.guiXbow0,
         };
         setIdleSprite(new Sprite(ts));
 
         Bitmap[] ts1 = {
-                Texture.screenXbow1,
-                Texture.screenXbow1
+                Texture.guiXbow1,
+                Texture.guiXbow1
         };
         setUseSprite(new Sprite(ts1));
     }
