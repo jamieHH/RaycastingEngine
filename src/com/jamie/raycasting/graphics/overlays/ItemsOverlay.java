@@ -21,11 +21,11 @@ public class ItemsOverlay extends Overlay
     private int itemIndex = 0;
 
     public ItemsOverlay() {
-        super(App.getDisplayWidth(), 40);
+        super(App.getDisplayWidth(), 50);
     }
 
     public void resizeOverlay() {
-        super.setSize(App.getDisplayWidth(), 40);
+        super.setSize(App.getDisplayWidth(), 50);
     }
 
     private static class ItemTile
@@ -130,27 +130,28 @@ public class ItemsOverlay extends Overlay
     }
 
     public void update() {
+        int gap = 4;
         fill(0x202020);
-        Bitmap itemLine = new Bitmap(itemTiles.size() * ICON_SIZE, ICON_SIZE);
+        Bitmap itemLine = new Bitmap(itemTiles.size() * (ICON_SIZE + gap), ICON_SIZE);
         itemLine.fill(0x202020);
         for (int i = 0; i < itemTiles.size(); i++) {
             if (i == mob.getRightHandItemIndex() && !mob.rightHandEmpty) {
                 Bitmap highlight = new Bitmap(ICON_SIZE, ICON_SIZE);
                 highlight.fill(0x404040);
-                itemLine.draw(highlight, i * ICON_SIZE, 0);
+                itemLine.draw(highlight, i * (ICON_SIZE + gap), 0);
             }
-            itemLine.draw(itemTiles.get(i).icon, i * ICON_SIZE, 0);
+            itemLine.draw(itemTiles.get(i).icon, i * (ICON_SIZE + gap), 0);
         }
-        draw(itemLine, halfWidth() - (ICON_SIZE * itemIndex) - (ICON_SIZE / 2), halfHeight() - itemLine.halfHeight());
+        draw(itemLine, halfWidth() - (itemIndex * (ICON_SIZE + gap)) - (ICON_SIZE / 2), halfHeight() - itemLine.halfHeight());
 
         if (itemTiles.size() > 0) {
             if (!(itemTiles.size() < itemIndex + 1)) {
                 if (itemIndex == mob.getRightHandItemIndex() && !mob.rightHandEmpty) {
                     Bitmap itemTitle = textBox(itemTiles.get(itemIndex).description, 0xF0F0F0, 0);
-                    draw(itemTitle, halfWidth() - itemTitle.halfWidth(), height - 1 - itemTitle.height);
+                    draw(itemTitle, halfWidth() - itemTitle.halfWidth(), height - 4 - itemTitle.height);
                 } else {
                     Bitmap itemTitle = textBox(itemTiles.get(itemIndex).description, 0x707070, 0);
-                    draw(itemTitle, halfWidth() - itemTitle.halfWidth(), height - 1 - itemTitle.height);
+                    draw(itemTitle, halfWidth() - itemTitle.halfWidth(), height - 4 - itemTitle.height);
                 }
 
                 Bitmap itemHighlight = square(ICON_SIZE + 4, ICON_SIZE + 4, 0x707070);
@@ -162,6 +163,5 @@ public class ItemsOverlay extends Overlay
             Bitmap emptyMessage = textBox("Empty", 0x707070, 0);
             draw(emptyMessage, halfWidth() - emptyMessage.halfWidth(), halfHeight() - emptyMessage.halfHeight());
         }
-
     }
 }

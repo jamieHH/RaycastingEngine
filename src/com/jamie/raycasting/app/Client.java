@@ -41,65 +41,65 @@ public class Client extends JamappClient
 	public void tick() {
 		input.tick();
 		if (getActiveOverlay() != null) {
-			getActiveOverlay().tick();
 			input.unlockCursor();
+			getActiveOverlay().tick();
 		} else {
 			input.lockCursor();
-        }
+		}
 
         if (world != null) {
-			world.tick();
+            world.tick();
+        }
 
-			if (getPlayer() != null) {
-				getPlayer().isUsingMenu = getActiveOverlay() != null;
-
-				if (!getPlayer().isDead) {
-					if (getActiveOverlay() != consoleOverlay) {
-						if (input.check(Controls.INVENTORY)) {
-							input.stopInput(Controls.INVENTORY);
-							if (getActiveOverlay() == null) {
-								Sound.slideUp.play();
-								setActiveOverlay(inventoryOverlay);
-							} else {
-								Sound.slideDown.play();
-								setActiveOverlay(null);
-							}
-						}
-
-						if (input.check(Controls.PAUSE)) {
-							input.stopInput(Controls.PAUSE);
-							if (getActiveOverlay() == null) {
-								Sound.slideUp.play();
-								setActiveOverlay(pauseMenu);
-							} else {
-								Sound.slideDown.play();
-								setActiveOverlay(null);
-							}
-						}
-					}
-
-					if (input.check(Controls.CONSOLE) || input.check(Controls.PAUSE)) {
-						input.stopInput(Controls.CONSOLE);
-						input.stopInput(Controls.PAUSE);
-						if (getActiveOverlay() == null) {
-							setActiveOverlay(consoleOverlay);
-						} else {
-							setActiveOverlay(null);
-						}
-					}
-				} else {
-					if (getActiveOverlay() != overMenu) {
-						setActiveOverlay(null);
-					}
-					if (input.check(Controls.PAUSE)) {
-						input.stopInput(Controls.PAUSE);
+		if (getPlayer() != null) {
+			getPlayer().isUsingMenu = getActiveOverlay() != null;
+			if (!getPlayer().isDead) {
+				if (getActiveOverlay() != consoleOverlay) {
+					if (input.check(Controls.INVENTORY)) {
+						input.stopInput(Controls.INVENTORY);
 						if (getActiveOverlay() == null) {
 							Sound.slideUp.play();
-							setActiveOverlay(overMenu);
+							setActiveOverlay(inventoryOverlay);
 						} else {
 							Sound.slideDown.play();
 							setActiveOverlay(null);
 						}
+					}
+
+					if (input.check(Controls.PAUSE)) {
+						input.stopInput(Controls.PAUSE);
+						if (getActiveOverlay() == null) {
+							Sound.slideUp.play();
+							setActiveOverlay(pauseMenu);
+						} else {
+							Sound.slideDown.play();
+							setActiveOverlay(null);
+						}
+					}
+				}
+
+				// Console requires other windows not to open while typing
+				if (input.check(Controls.CONSOLE)) {
+					input.stopInput(Controls.CONSOLE);
+					input.stopInput(Controls.PAUSE);
+					if (getActiveOverlay() == null) {
+						setActiveOverlay(consoleOverlay);
+					} else {
+						setActiveOverlay(null);
+					}
+				}
+			} else {
+				if (getActiveOverlay() != overMenu) {
+					setActiveOverlay(null);
+				}
+				if (input.check(Controls.PAUSE)) {
+					input.stopInput(Controls.PAUSE);
+					if (getActiveOverlay() == null) {
+						Sound.slideUp.play();
+						setActiveOverlay(overMenu);
+					} else {
+						Sound.slideDown.play();
+						setActiveOverlay(null);
 					}
 				}
 			}

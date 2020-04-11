@@ -24,7 +24,7 @@ public class BarracksLevel extends Level
 
 		Drop s0 = new Drop(new SpearWeapon());
 		addEntity(s0, 14.5, 21.5);
-		AreaAlertEntity a1 = new AreaAlertEntity("Some weapons have a longer striking distances.");
+		AreaAlertEntity a1 = new AreaAlertEntity("Some weapons have longer striking distances.");
 		addEntity(a1, 14.5, 21.5);
 
 
