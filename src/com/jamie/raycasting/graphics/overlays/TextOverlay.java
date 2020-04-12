@@ -8,18 +8,16 @@ import com.jamie.raycasting.input.Controls;
 public class TextOverlay extends Overlay
 {
     private int showTime = 60;
+    private String message;
+
+    private int maxWidth = 100;
+    private int textCol = 0xD0D0D0;
+    private int borderCol = 0x202020;
+    private int bgCol = 0x202020;
 
     public TextOverlay(int width, int height, String message) {
         super(width, height);
-        int maxWidth = 100;
-        int textCol = 0xD0D0D0;
-        int borderCol = 0x202020;
-        int bgCol = 0x202020;
-
-        Bitmap wText = textBoxTrimmed(message, maxWidth, textCol, bgCol);
-        Bitmap tWindow = new Bitmap(wText.width + 4, wText.height + 4);
-        tWindow.fill(borderCol);
-        draw(drawCenter(tWindow, wText), this.halfWidth() - tWindow.halfWidth(), this.halfHeight() - tWindow.halfHeight());
+        this.message = message;
     }
 
     public void tick() {
@@ -34,5 +32,14 @@ public class TextOverlay extends Overlay
             Sound.clickAction.play();
             Client.setActiveOverlay(null);
         }
+
+        textCol = 0x707070;
+    }
+
+    public void update() {
+        Bitmap wText = textBoxTrimmed(message, maxWidth, textCol, bgCol);
+        Bitmap tWindow = new Bitmap(wText.width + 4, wText.height + 4);
+        tWindow.fill(borderCol);
+        draw(drawCenter(tWindow, wText), this.halfWidth() - tWindow.halfWidth(), this.halfHeight() - tWindow.halfHeight());
     }
 }
