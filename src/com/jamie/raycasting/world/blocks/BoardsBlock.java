@@ -13,7 +13,7 @@ public class BoardsBlock extends TriggerableBlock
 	private boolean isBroken;
 
 	public BoardsBlock(Bitmap floorTex, Bitmap ceilTex, boolean isBroken) {
-        isOpaque = false;
+        this.isOpaque = false;
 
         this.floorTex = floorTex;
         this.ceilTex = ceilTex;
@@ -30,17 +30,17 @@ public class BoardsBlock extends TriggerableBlock
 
         if (isBroken) {
             this.isBroken = true;
-            isSolid = false;
+            this.isSolid = false;
             switchSpriteSet("broken");
         } else {
             this.isBroken = false;
-            isSolid = true;
+            this.isSolid = true;
             switchSpriteSet("idle");
         }
 	}
 
 	public boolean use(Mob source) {
-        if (!isBroken) {
+        if (!this.isBroken) {
             if (source.getRightHandItem() instanceof AxeWeapon) {
                 trigger();
                 return true;
@@ -61,7 +61,7 @@ public class BoardsBlock extends TriggerableBlock
         setState(true);
 
         WoodParticle p = new WoodParticle(12);
-        level.addEntity(p, gridX + 0.5, gridZ + 0.5);
+        this.level.addEntity(p, gridX + 0.5, gridZ + 0.5);
     }
 
     public boolean getState() {
@@ -70,13 +70,13 @@ public class BoardsBlock extends TriggerableBlock
 
     public void setState(boolean state) {
         if (state) {
-            isBroken = true;
-            isSolid = false;
+            this.isBroken = true;
+            this.isSolid = false;
             emitSound(Sound.smash);
             switchSpriteSet("broken");
         } else {
-            isBroken = false;
-            isSolid = true;
+            this.isBroken = false;
+            this.isSolid = true;
             emitSound(Sound.clickAction);
             switchSpriteSet("idle");
         }

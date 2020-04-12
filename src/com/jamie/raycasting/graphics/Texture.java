@@ -46,6 +46,7 @@ public class Texture
 	public static final Bitmap floor = PngLoader.loadBitmap("tex/floor.png");
 	public static final Bitmap bridge = PngLoader.loadBitmap("tex/bridge.png");
 	public static final Bitmap wall = PngLoader.loadBitmap("tex/wall.png");
+	public static final Bitmap wallCracked = PngLoader.loadBitmap("tex/wallCracked.png");
 	public static final Bitmap shelf = PngLoader.loadBitmap("tex/shelf.png");
 	public static final Bitmap wall2 = PngLoader.loadBitmap("tex/wall2.png");
 	public static final Bitmap cobweb = PngLoader.loadBitmap("tex/cobweb.png");

@@ -6,6 +6,8 @@ import com.jamie.raycasting.entities.ExplosiveBarrelEntity;
 import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.entities.particles.EmberParticle;
 import com.jamie.raycasting.entities.particles.Particle;
+import com.jamie.raycasting.world.blocks.Block;
+import com.jamie.raycasting.world.blocks.CrackedWallBlock;
 import com.jamie.raycasting.world.levels.Level;
 
 import java.util.List;
@@ -32,6 +34,15 @@ public class ExplosionEffect extends EnvironmentalEffect
                 }
             } else if (entity instanceof ExplosiveBarrelEntity) {
                 ((ExplosiveBarrelEntity) entity).detonate();
+            }
+        }
+
+        for (int x = (int) posX - 1; x <= (int) posX + 1; x++) {
+            for (int z = (int) posZ - 1; z <= (int) posZ + 1; z++) {
+                Block b = level.getBlock(x, z);
+                if (b instanceof CrackedWallBlock) {
+                    ((CrackedWallBlock) b).trigger();
+                }
             }
         }
 

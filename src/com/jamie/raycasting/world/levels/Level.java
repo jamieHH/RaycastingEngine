@@ -53,7 +53,7 @@ public abstract class Level
     protected final SolidBlock ShrubsBlock = new SolidBlock(Texture.leaves);
     protected final SolidBlock WallBlock = new SolidBlock(getWallTexture());
     protected final SolidBlock ShelfBlock = new SolidBlock(Texture.shelf);
-    protected final AirBlock AirBlock = new AirBlock(getFloorTexture(), getCeilingTexture());
+    public final AirBlock AirBlock = new AirBlock(getFloorTexture(), getCeilingTexture());
     protected final AirBlock GrassBlock = new AirBlock(Texture.grass, getCeilingTexture());
     protected final AirBlock StonePathBlock = new AirBlock(Texture.stonePath, getCeilingTexture());
     protected final AirBlock AltStonePathBlock = new AirBlock(Texture.altStonePath, getCeilingTexture());
@@ -108,6 +108,10 @@ public abstract class Level
         }
 
         return blocks[x + z * sizeX];
+    }
+
+    public Block[] getBlocks() {
+        return blocks;
     }
 
     public void create(int sizeX, int sizeZ, int[] pixels) {
@@ -329,6 +333,7 @@ public abstract class Level
         if (col == 0x873800) return new LevelPortalBlock();
         if (col == 0xFF6A00) return new LadderBlock(false);
         if (col == 0xB24700) return new LadderBlock(true);
+        if (col == 0xEAEAEA) return new CrackedWallBlock(getFloorTexture(), getCeilingTexture());
         if (col == 0xC82A00) return new ProjectileSwitchBlock();
         return AirBlock;
     }

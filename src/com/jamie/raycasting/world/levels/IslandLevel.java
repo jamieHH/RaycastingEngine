@@ -3,6 +3,7 @@ package com.jamie.raycasting.world.levels;
 import com.jamie.jamapp.Bitmap;
 import com.jamie.raycasting.entities.Entity;
 import com.jamie.raycasting.graphics.Texture;
+import com.jamie.raycasting.world.blocks.StrongDoorBlock;
 
 public class IslandLevel extends Level
 {
@@ -36,6 +37,11 @@ public class IslandLevel extends Level
 //
 //		EnvironmentalEffect effct = new FireEffect(this, 9000, 2, 1);
 //		addEntity(effect, 30.5, 31.5);
+
+		StrongDoorBlock b = new StrongDoorBlock(getFloorTexture(), getCeilingTexture(), false);
+		b.setReference("pitDoor");
+		setBlock(12,36, b);
+
 	}
 
     public void switchLevel(Entity entity, int id) {
@@ -47,6 +53,6 @@ public class IslandLevel extends Level
 	}
 
 	public void triggerBlock(int id) {
-		if (id == 1) super.triggerBlock(13);
+		if (id == 1) super.triggerBlock("pitDoor");
 	}
 }
