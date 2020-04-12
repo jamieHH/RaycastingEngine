@@ -13,7 +13,7 @@ public class XbowWeapon extends Weapon
         name = "Crossbow";
         damage = 2;
         reach = 0;
-        useWait = 15;
+        useWait = 30;
         canStrike = false;
 
         icon = Texture.xbowIcon;
@@ -25,7 +25,9 @@ public class XbowWeapon extends Weapon
 
         Bitmap[] ts1 = {
                 Texture.guiXbow1,
-                Texture.guiXbow1
+                Texture.guiXbow1,
+                Texture.guiXbow2,
+                Texture.guiXbow2,
         };
         setUseSprite(new Sprite(ts1));
     }

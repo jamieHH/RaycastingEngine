@@ -198,4 +198,5 @@ public class Texture
     public static final Bitmap screenWand4 = PngLoader.loadBitmap("gui/screenWand4.png");
     public static final Bitmap guiXbow0 = PngLoader.loadBitmap("gui/xbow0.png");
     public static final Bitmap guiXbow1 = PngLoader.loadBitmap("gui/xbow1.png");
+    public static final Bitmap guiXbow2 = PngLoader.loadBitmap("gui/xbow2.png");
 }
