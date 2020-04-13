@@ -12,13 +12,13 @@ public class WaterBlock extends Block
 
     private ArrayList<Bitmap> floorTextures = new ArrayList<>();
 
-	public WaterBlock() {
+	public WaterBlock(Bitmap ceilTex) {
 		isOpaque = false;
 		isSolid = false;
 		isWalkable = false;
 
 		floorTex = Texture.water0;
-		ceilTex = Texture.floor;
+		this.ceilTex = ceilTex;
 
 		floorTextures.add(Texture.water0);
 		floorTextures.add(Texture.water1);

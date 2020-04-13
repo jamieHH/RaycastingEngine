@@ -48,7 +48,7 @@ public abstract class Level
     // static blocks. TODO: check if is performance optimal.
     // Add these to array and loop through array for ticks
     protected final Block NullBlock = new NullBlock();
-    protected final WaterBlock WaterBlock = new WaterBlock();
+    protected final WaterBlock WaterBlock = new WaterBlock(getCeilingTexture());
     protected final TorchBlock TorchBlock = new TorchBlock(getFloorTexture(), getCeilingTexture());
     protected final SolidBlock ShrubsBlock = new SolidBlock(Texture.leaves);
     protected final SolidBlock WallBlock = new SolidBlock(getWallTexture());
@@ -322,8 +322,8 @@ public abstract class Level
         if (col == 0x0094FF) return WaterBlock;
         if (col == 0x217F74) return CeilDripBlock;
 //        if (col == 0xA3723A) return SpinningDummyBlock;
-        if (col == 0x7F3300) return new BridgeBlock(false);
-        if (col == 0x7F334E) return new BridgeBlock(true);
+        if (col == 0x7F3300) return new BridgeBlock(getCeilingTexture(), false);
+        if (col == 0x7F334E) return new BridgeBlock(getCeilingTexture(), true);
         if (col == 0xA48080) return new DoorBlock(getFloorTexture(), getCeilingTexture(), false);
         if (col == 0x632A2A) return new StrongDoorBlock(getFloorTexture(), getCeilingTexture(), false);
         if (col == 0xE1AE4A) return new BoardsBlock(getFloorTexture(), getCeilingTexture(), false);

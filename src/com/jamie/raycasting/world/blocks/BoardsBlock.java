@@ -11,6 +11,7 @@ import com.jamie.raycasting.items.weapons.AxeWeapon;
 public class BoardsBlock extends TriggerableBlock
 {
 	private boolean isBroken;
+	private boolean isRepairable = false;
 
 	public BoardsBlock(Bitmap floorTex, Bitmap ceilTex, boolean isBroken) {
         this.isOpaque = false;
@@ -48,7 +49,7 @@ public class BoardsBlock extends TriggerableBlock
 
             source.addHudHeading("You need an axe");
         } else {
-            if (source.getItemByName("Planks") != null) {
+            if (isRepairable && source.getItemByName("Planks") != null) {
                 setState(false);
                 return true;
             }

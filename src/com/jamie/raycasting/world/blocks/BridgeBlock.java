@@ -1,5 +1,6 @@
 package com.jamie.raycasting.world.blocks;
 
+import com.jamie.jamapp.Bitmap;
 import com.jamie.raycasting.entities.mobs.Mob;
 import com.jamie.raycasting.graphics.Texture;
 
@@ -7,7 +8,7 @@ public class BridgeBlock extends TriggerableBlock
 {
     private boolean isBroken;
 
-	public BridgeBlock(boolean isBroken) {
+	public BridgeBlock(Bitmap ceilTexture, boolean isBroken) {
 		isOpaque = false;
 		isSolid = false;
 
@@ -21,6 +22,7 @@ public class BridgeBlock extends TriggerableBlock
             isWalkable = true;
             floorTex = Texture.bridge;
         }
+        this.ceilTex = ceilTexture;
 	}
 
     public boolean use(Mob source) {

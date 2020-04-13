@@ -4,7 +4,7 @@ import com.jamie.jamapp.App;
 import com.jamie.raycasting.app.Sound;
 import com.jamie.raycasting.app.Client;
 import com.jamie.raycasting.entities.Entity;
-import com.jamie.raycasting.entities.mobs.Mob;
+import com.jamie.raycasting.entities.mobs.Player;
 import com.jamie.raycasting.graphics.Texture;
 import com.jamie.raycasting.graphics.overlays.LoadingOverlay;
 import com.jamie.raycasting.world.blocks.LevelPortalBlock;
@@ -56,7 +56,7 @@ public class World
     }
 
     public void switchLevel(Entity entity, String name, int id) {
-        if (entity instanceof Mob) {
+        if (entity instanceof Player) {
             Level newLevel;
             if (!name.equals("random")) {
                 newLevel = getLoadLevel(name);
