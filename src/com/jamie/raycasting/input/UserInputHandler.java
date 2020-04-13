@@ -35,7 +35,7 @@ public class UserInputHandler extends InputHandler
 
 
     public UserInputHandler() {
-        enableMouse = true;
+
     }
 
     public boolean check(String key) {

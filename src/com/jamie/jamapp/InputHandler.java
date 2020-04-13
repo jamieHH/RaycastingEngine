@@ -5,7 +5,7 @@ import java.awt.event.*;
 
 public abstract class InputHandler implements KeyListener, FocusListener, MouseListener, MouseMotionListener, MouseWheelListener
 {
-    public boolean enableMouse = false;
+    public boolean enableMouse = true;
     public boolean enableMouseDiffX = true;
     public boolean enableMouseDiffY = true;
 
@@ -58,31 +58,29 @@ public abstract class InputHandler implements KeyListener, FocusListener, MouseL
     }
 
     public double getDiffMouseX() {
-        return diffMouseX * mouseSensitivity;
+        if (enableMouseDiffX) {
+            return diffMouseX * mouseSensitivity;
+        }
+        return 0;
     }
 
     public double getDiffMouseY() {
-        return diffMouseY * mouseSensitivity;
+        if (enableMouseDiffY) {
+            return diffMouseY * mouseSensitivity;
+        }
+        return 0;
     }
 
     public void tick() {
         if (enableMouse) {
             if (enableMouseDiffX) {
                 diffMouseX = mouseX - oldMouseX;
-                if (lockCursor) {
-                    oldMouseX = cX() - App.getFrame().getInsets().left;
-                } else {
-                    oldMouseX = mouseX;
-                }
+                oldMouseX = cX() - App.getFrame().getInsets().left;
             }
 
             if (enableMouseDiffY) {
                 diffMouseY = mouseY - oldMouseY;
-                if (lockCursor) {
-                    oldMouseY = cY() - App.getFrame().getInsets().top;
-                } else {
-                    oldMouseY = mouseY;
-                }
+                oldMouseY = cY() - App.getFrame().getInsets().top;
             }
 
             if (lockCursor) {
@@ -92,18 +90,16 @@ public abstract class InputHandler implements KeyListener, FocusListener, MouseL
     }
 
     public void lockCursor() {
-        if (enableMouse) {
+        if (enableMouse && !lockCursor) {
             lockCursor = true;
             centerCursor();
         }
     }
 
     public void unlockCursor() {
-        if (enableMouse) {
-            if (lockCursor) {
-                lockCursor = false;
-                centerCursor();
-            }
+        if (enableMouse && lockCursor) {
+            lockCursor = false;
+            centerCursor();
         }
     }
 
