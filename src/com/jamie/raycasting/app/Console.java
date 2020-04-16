@@ -131,6 +131,25 @@ public class Console {
                     log("Provide a reference for a block in this level");
                 }
                 break;
+            case "setBlockState":
+                if (args.length >= 3) {
+                    if (getLevel() != null) {
+                        if (getLevel().getBlockByReference(args[1]) != null) {
+                            if (getLevel().getBlockByReference(args[1]) instanceof TriggerableBlock) {
+                                getLevel().setBlockState(args[1], Integer.parseInt(args[2]) > 0);
+                            } else {
+                                log("This block is not triggerable");
+                            }
+                        } else {
+                            log("Could not find a block by reference: " + args[1]);
+                        }
+                    } else {
+                        log("Player must be inside a level to use this command");
+                    }
+                } else {
+                    log("Provide a reference for a block in this level");
+                }
+                break;
             case "listEnts":
                 if (args.length >= 1) {
                     if (getLevel() != null) {
@@ -151,7 +170,7 @@ public class Console {
                         Item item = (Item) Class.forName("com.jamie.raycasting.items." + itemName).getDeclaredConstructor().newInstance();
                         Client.getPlayer().addItem(item);
                     } catch (Exception e) {
-                        log("Cannot add item: " + itemName);
+                        log("Cannot find item: " + itemName);
                     }
                 } else {
                     log("Specify the item to add");

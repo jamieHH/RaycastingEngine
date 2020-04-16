@@ -11,10 +11,11 @@ public class FountainBlock extends FunctionBlock
     private int particleTicks;
     private boolean isActive;
 
-	public FountainBlock(boolean isActive) {
-		isSolid = true;
+	public FountainBlock(Bitmap ceilTex, boolean isActive) {
+		this.isSolid = true;
 
-		floorTex = Texture.grass;
+		this.floorTex = Texture.grass;
+		this.ceilTex = ceilTex;
 
 		Bitmap[] ts0 = {
 				Texture.fountain,

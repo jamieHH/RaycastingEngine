@@ -185,6 +185,17 @@ public abstract class Level
         }
     }
 
+    public void setBlockState(String reference, boolean state) {
+        for (Block block : blocks) {
+            if (block instanceof TriggerableBlock) {
+                TriggerableBlock tBlock = (TriggerableBlock) block;
+                if (tBlock.reference != null && tBlock.reference.equals(reference)) {
+                    tBlock.setState(state);
+                }
+            }
+        }
+    }
+
     public void triggerLogic(String reference) {
         for (Logic instance : logicInstances) {
             if (instance.reference != null && instance.reference.equals(reference)) {
@@ -328,13 +339,14 @@ public abstract class Level
         if (col == 0x632A2A) return new StrongDoorBlock(getFloorTexture(), getCeilingTexture(), false);
         if (col == 0xE1AE4A) return new BoardsBlock(getFloorTexture(), getCeilingTexture(), false);
         if (col == 0x4C4C65) return new GateBlock(getFloorTexture(), getCeilingTexture(), "Grey Key");
-        if (col == 0x7EC0C0) return new FountainBlock(true);
+        if (col == 0x7EC0C0) return new FountainBlock(getCeilingTexture(), true);
         if (col == 0xC80000) return new SwitchBlock();
         if (col == 0x873800) return new LevelPortalBlock();
         if (col == 0xFF6A00) return new LadderBlock(false);
         if (col == 0xB24700) return new LadderBlock(true);
         if (col == 0xEAEAEA) return new CrackedWallBlock(getFloorTexture(), getCeilingTexture());
         if (col == 0xC82A00) return new ProjectileSwitchBlock();
+        if (col == 0xA78431) return new PressurePlateBlock(getCeilingTexture());
         return AirBlock;
     }
 

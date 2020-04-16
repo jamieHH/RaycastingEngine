@@ -61,11 +61,15 @@ public class DoorBlock extends TriggerableBlock
 
     public void setState(boolean state) {
         if (state) {
-            isOpen = true;
-            emitSound(Sound.slideUp);
+            if (!isOpen) {
+                emitSound(Sound.slideUp);
+                isOpen = true;
+            }
         } else {
-            emitSound(Sound.slideDown);
-            isOpen = false;
+            if (isOpen) {
+                emitSound(Sound.slideDown);
+                isOpen = false;
+            }
         }
     }
 }

@@ -44,6 +44,8 @@ public class Texture
     public static final Bitmap four = PngLoader.loadBitmap("tex/4.png");
     public static final Bitmap noTex = PngLoader.loadBitmap("tex/noTex.png");
 	public static final Bitmap floor = PngLoader.loadBitmap("tex/floor.png");
+	public static final Bitmap floorPadUp = PngLoader.loadBitmap("tex/floorPadUp.png");
+	public static final Bitmap floorPadDown = PngLoader.loadBitmap("tex/floorPadDown.png");
 	public static final Bitmap bridge = PngLoader.loadBitmap("tex/bridge.png");
 	public static final Bitmap wall = PngLoader.loadBitmap("tex/wall.png");
 	public static final Bitmap wallCracked = PngLoader.loadBitmap("tex/wallCracked.png");

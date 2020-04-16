@@ -26,8 +26,10 @@ public class PitLevel extends Level
     }
 
 	protected void postCreate() {
-        addEntity(new Drop(new MiscItem("Bronze Key", Texture.keyIcon)), 27, 26);
+        addEntity(new Drop(new MiscItem("Bronze Key", Texture.keyIcon)), 27.5, 26.5);
         setBlock(25, 39, new GateBlock(getFloorTexture(), getCeilingTexture(), "Bronze Key"));
+
+        addEntity(new Drop(new MiscItem("Planks", Texture.planksIcon)), 12.5, 29.5);
     }
 
     public void switchLevel(Entity entity, int id) {
