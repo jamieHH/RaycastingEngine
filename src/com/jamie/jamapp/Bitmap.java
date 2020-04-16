@@ -180,7 +180,28 @@ public class Bitmap
 		return b;
 	}
 
-	public static Bitmap textBoxTrimmed(List<String> lines, int maxWidth, int col, int bgCol) {
+	public static Bitmap textBox(List<String> inLines, int maxWidth, int col, int bgCol) {
+		List<String> lines = new ArrayList<>();
+		for (String inLine : inLines) {
+			lines.addAll(getTextLines(inLine, maxWidth));
+		}
+
+		Bitmap b = new Bitmap(maxWidth, lines.size() * lineHeight());
+		b.fill(bgCol);
+		for (int i = 0; i < lines.size(); i++) {
+			b.draw(lines.get(i), 0, lineHeight() * i, col);
+		}
+		return b;
+	}
+
+
+
+	public static Bitmap textBoxTrimmed(List<String> inLines, int maxWidth, int col, int bgCol) {
+		List<String> lines = new ArrayList<>();
+		for (String inLine : inLines) {
+			lines.addAll(getTextLines(inLine, maxWidth));
+		}
+
 		int maxLineWidth = 0;
 		for (int i = 0; i < lines.size(); i++) {
 			int lineWidth = lines.get(i).length() * fontWidth();

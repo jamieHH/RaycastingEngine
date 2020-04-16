@@ -80,17 +80,12 @@ public class ConsoleOverlay extends Overlay
 
     public void update() {
         super.update();
+        Bitmap textBox = textBox(Console.getLines(), width - 4, 0x707070, 0x101010);
+        Bitmap tWindow = new Bitmap(textBox.width + 4, textBox.height + 4);
+        tWindow.fill(0x101010);
 
         fill(0x202020);
-
-        historyPane.setSize(width, (Console.getLines().size() * lineHeight() + bp));
-        historyPane.fill(0x101010);
-
-        for (int i = 0; i < Console.getLines().size(); i++) {
-            historyPane.draw(Console.getLines().get(i), bp, (lineHeight() * (i)) + bp, 0x707070);
-        }
-        draw(historyPane, 0, (height - bp - bp - lineHeight()) - historyPane.height);
-
+        draw(drawCenter(tWindow, textBox), 0, height - 4 - lineHeight() - tWindow.height);
         draw(command + "_", bp, height - bp - lineHeight() + bp, 0xD0D0D0);
     }
 }
