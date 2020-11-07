@@ -30,7 +30,7 @@ public class GraveyardLevel extends Level
 		addEntity(d0, 14.5, 51.5);
 
 		Drop d1 = new Drop(new MiscItem("Planks", Texture.planksIcon));
-		addEntity(d1, 12.5, 32.5);
+		addEntity(d1, 11.5, 32.5);
 
 		AreaAlertEntity a0 = new AreaAlertEntity("I can use these Planks to repair the bridge.");
 		addEntity(a0, 14.5, 44.5);

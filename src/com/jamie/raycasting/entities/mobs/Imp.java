@@ -1,9 +1,11 @@
 package com.jamie.raycasting.entities.mobs;
 
 import com.jamie.jamapp.Bitmap;
+import com.jamie.raycasting.entities.Drop;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
 import com.jamie.jamapp.InputHandler;
+import com.jamie.raycasting.input.ArtificialInputHandler;
 import com.jamie.raycasting.items.specials.FireballSpell;
 import com.jamie.raycasting.items.specials.HealingSpell;
 
@@ -91,5 +93,10 @@ public class Imp extends Mob
 
         addItem(new HealingSpell());
         addItem(new FireballSpell());
+    }
+
+    public Imp(Drop drop) {
+        this(new ArtificialInputHandler());
+        setDrop(drop);
     }
 }

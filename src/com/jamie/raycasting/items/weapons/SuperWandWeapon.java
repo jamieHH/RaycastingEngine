@@ -24,10 +24,9 @@ public class SuperWandWeapon extends Weapon
         setIdleSprite(new Sprite(ts));
 
         Bitmap[] ts1 = {
-                Texture.screenWand1,
-                Texture.screenWand2,
-                Texture.screenWand3,
-                Texture.screenWand4,
+                Texture.guiWand1,
+                Texture.guiWand1,
+                Texture.guiWand2,
         };
         setUseSprite(new Sprite(ts1));
     }

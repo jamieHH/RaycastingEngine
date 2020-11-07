@@ -12,6 +12,7 @@ import com.jamie.raycasting.entities.particles.HealthParticle;
 import com.jamie.raycasting.entities.particles.Particle;
 import com.jamie.raycasting.entities.particles.PoofParticle;
 import com.jamie.raycasting.graphics.Sprite;
+import com.jamie.raycasting.input.ArtificialInputHandler;
 import com.jamie.raycasting.input.Controls;
 import com.jamie.raycasting.input.UserInputHandler;
 import com.jamie.raycasting.items.Inventory;
@@ -86,6 +87,8 @@ public abstract class Mob extends Entity
     private static final int HUD_HEADINGS_WAIT = 120;
     private int hudHeadingsTicks = 120;
 
+    private Drop drop = null;
+
     // sprites
     protected abstract Sprite getIdleSprite();
     protected abstract Sprite getActionSprite();
@@ -134,6 +137,15 @@ public abstract class Mob extends Entity
         setSpriteSet("heal", getHealSprite());
         setSpriteSet("hurt", getHurtSprite());
         setSpriteSet("death", getDeathSprite());
+    }
+
+    public Mob(Drop drop) {
+        this(new ArtificialInputHandler());
+        setDrop(drop);
+    }
+
+    public void setDrop(Drop drop) {
+        this.drop = drop;
     }
 
     private void setInputInfluence(AiKeyFrame influenceKeyframe) {
@@ -328,7 +340,9 @@ public abstract class Mob extends Entity
                 dieTime--;
                 if (dieTime <= 0) {
                     level.addEntity(new PoofParticle(8), posX, posZ);
+                    level.addEntity(drop, posX, posZ);
                     isDead = true;
+
                 }
             } else {
                 remove();

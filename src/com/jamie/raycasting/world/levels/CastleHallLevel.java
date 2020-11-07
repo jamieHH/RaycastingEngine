@@ -1,7 +1,9 @@
 package com.jamie.raycasting.world.levels;
 
+import com.jamie.jamapp.Bitmap;
 import com.jamie.raycasting.entities.Drop;
 import com.jamie.raycasting.entities.Entity;
+import com.jamie.raycasting.graphics.Texture;
 import com.jamie.raycasting.items.consumables.HealthPotion;
 
 public class CastleHallLevel extends Level
@@ -9,6 +11,10 @@ public class CastleHallLevel extends Level
 	public CastleHallLevel() {
 	    name = "Castle Hall";
 	}
+
+    protected Bitmap getWallTexture() {
+        return Texture.wall4;
+    }
 
     protected void postCreate() {
         Drop d0 = new Drop(new HealthPotion());

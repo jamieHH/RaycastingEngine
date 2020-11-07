@@ -5,10 +5,14 @@ import com.jamie.raycasting.entities.AreaAlertEntity;
 import com.jamie.raycasting.entities.BouncingEntity;
 import com.jamie.raycasting.entities.Drop;
 import com.jamie.raycasting.entities.Entity;
+import com.jamie.raycasting.entities.mobs.Imp;
 import com.jamie.raycasting.graphics.Sprite;
 import com.jamie.raycasting.graphics.Texture;
+import com.jamie.raycasting.items.MiscItem;
+import com.jamie.raycasting.items.consumables.HealthPotion;
 import com.jamie.raycasting.items.weapons.AxeWeapon;
 import com.jamie.raycasting.items.weapons.SpearWeapon;
+import com.jamie.raycasting.world.blocks.GateBlock;
 
 public class BarracksLevel extends Level
 {
@@ -16,16 +20,27 @@ public class BarracksLevel extends Level
 		name = "Barracks";
 	}
 
+	protected Bitmap getWallTexture() {
+		return Texture.wall4;
+	}
+
 	protected void postCreate() {
 		Drop d0 = new Drop(new AxeWeapon());
-		addEntity(d0, 6.5, 19.5);
+		addEntity(d0, 6.5, 35.5);
 		AreaAlertEntity a0 = new AreaAlertEntity("This Axe can be used to break down wooden boards.");
-		addEntity(a0, 6.5, 19.5);
+		addEntity(a0, 6.5, 35.5);
 
 		Drop s0 = new Drop(new SpearWeapon());
 		addEntity(s0, 14.5, 21.5);
 		AreaAlertEntity a1 = new AreaAlertEntity("Some weapons have longer striking distances.");
 		addEntity(a1, 14.5, 21.5);
+
+		Drop armoryKey = new Drop(new MiscItem("Armory Key", Texture.keyIcon));
+		addEntity(new Imp(armoryKey), 1.5, 32.5);
+
+		addEntity(new Drop(new HealthPotion()), 6.5, 19.5);
+
+		setBlock(8, 33, new GateBlock(getFloorTexture(), getCeilingTexture(), "Armory Key"));
 
 
 		Bitmap[] ts0 = {
@@ -45,6 +60,6 @@ public class BarracksLevel extends Level
 	}
 
     public void triggerBlock(int id) {
-        if (id == 1) super.triggerBlock(2);
+        if (id == 1) super.triggerBlock(3);
     }
 }
