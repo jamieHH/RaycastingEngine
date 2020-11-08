@@ -340,9 +340,10 @@ public abstract class Mob extends Entity
                 dieTime--;
                 if (dieTime <= 0) {
                     level.addEntity(new PoofParticle(8), posX, posZ);
-                    level.addEntity(drop, posX, posZ);
+                    if (drop != null) {
+                        level.addEntity(drop, posX, posZ);
+                    }
                     isDead = true;
-
                 }
             } else {
                 remove();
