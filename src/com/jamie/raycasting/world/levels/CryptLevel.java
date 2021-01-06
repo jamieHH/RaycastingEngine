@@ -43,7 +43,6 @@ public class CryptLevel extends Level
     }
 
     public void triggerBlock(String reference) {
-	    System.out.println("hit1");
         if (reference.equals("pressurePad")) {
             super.setBlockState("door", false);
         }

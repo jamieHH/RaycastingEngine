@@ -12,7 +12,9 @@ import com.jamie.raycasting.items.MiscItem;
 import com.jamie.raycasting.items.consumables.HealthPotion;
 import com.jamie.raycasting.items.weapons.AxeWeapon;
 import com.jamie.raycasting.items.weapons.SpearWeapon;
+import com.jamie.raycasting.world.blocks.DoorBlock;
 import com.jamie.raycasting.world.blocks.GateBlock;
+import com.jamie.raycasting.world.blocks.PressurePlateBlock;
 
 public class BarracksLevel extends Level
 {
@@ -42,6 +44,14 @@ public class BarracksLevel extends Level
 
 		setBlock(8, 33, new GateBlock(getFloorTexture(), getCeilingTexture(), "Armory Key"));
 
+		PressurePlateBlock b = new PressurePlateBlock(getCeilingTexture());
+		b.setReference("pressurePad");
+		setBlock(7, 23, b);
+
+		DoorBlock db = new DoorBlock(getFloorTexture(), getCeilingTexture(), false);
+		db.setReference("door");
+		setBlock(8	,23, db);
+
 
 		Bitmap[] ts0 = {
 				Texture.spinningDummy0,
@@ -61,5 +71,12 @@ public class BarracksLevel extends Level
 
     public void triggerBlock(int id) {
         if (id == 1) super.triggerBlock(3);
+
     }
+
+	public void triggerBlock(String reference) {
+		if (reference.equals("pressurePad")) {
+			super.setBlockState("door", false);
+		}
+	}
 }

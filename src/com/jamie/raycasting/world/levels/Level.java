@@ -355,6 +355,7 @@ public abstract class Level
         if (col == 0xFFFF71) return new Spirit(new ArtificialInputHandler());
         if (col == 0x8080C4) return new Imp(new ArtificialInputHandler());
         if (col == 0xC0EBC0) return new Guardian(new ArtificialInputHandler());
+        if (col == 0xDAEFDA) return new Skellington(new ArtificialInputHandler());
         if (col == 0xB06E23) return new BarrelEntity(BarrelEntity.getLootItem());
         if (col == 0xA3723A) return new ExplosiveBarrelEntity();
 //        if (col == 0xB06E23) return new ChestEntity(ChestEntity.getLootItem());
