@@ -31,15 +31,19 @@ public class CryptLevel extends Level
 
         PressurePlateBlock b = new PressurePlateBlock(getCeilingTexture());
         b.setReference("pressurePad");
-        setBlock(17, 26, b);
+        setBlock(28, 21, b);
 
         DoorBlock db = new DoorBlock(getFloorTexture(), getCeilingTexture(), false);
         db.setReference("door");
-        setBlock(17,27, db);
+        setBlock(28,22, db);
     }
 
     public void switchLevel(Entity entity, int id) {
         if (id == 1) world.switchLevel(entity, "island", 3);
+    }
+
+    public void triggerBlock(int id) {
+	    if (id == 1) super.triggerBlock(1);
     }
 
     public void triggerBlock(String reference) {

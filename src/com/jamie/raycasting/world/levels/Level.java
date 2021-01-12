@@ -175,6 +175,7 @@ public abstract class Level
     }
 
     public void triggerBlock(String reference) {
+        System.out.println(reference);
         for (Block block : blocks) {
             if (block instanceof TriggerableBlock) {
                 TriggerableBlock tBlock = (TriggerableBlock) block;
@@ -256,6 +257,10 @@ public abstract class Level
     public void addLogic(Logic logic) {
         logic.level = this;
         logicInstances.add(logic);
+    }
+
+    public List<Logic> getLogicInstances() {
+        return logicInstances;
     }
 
     public void addEntity(Entity e, double x, double z) {

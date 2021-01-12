@@ -54,7 +54,7 @@ public class MainMenu extends Menu
             if (!showControls) {
                 switch (getOption(optionIndex)) {
                     case "New Game":
-                        Client.newGame("prison");
+                        Client.newGame("armory");
                         break;
                     case "Controls":
                         showControls = !showControls;

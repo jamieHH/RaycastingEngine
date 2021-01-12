@@ -131,6 +131,27 @@ public class Console {
                     log("Provide a reference for a block in this level");
                 }
                 break;
+            case "triggerl":
+                if (args.length >= 2) {
+                    if (getLevel() != null) {
+                        boolean found = false;
+                        for (int i = 0; i < getLevel().getLogicInstances().size(); i++) {
+                            if (getLevel().getLogicInstances().get(i).reference.equals(args[1])) {
+                                getLevel().getLogicInstances().get(i).trigger();
+                                found = true;
+                                break;
+                            }
+                        }
+                        if (!found) {
+                            log("Could not find a instance: " + args[1]);
+                        }
+                    } else {
+                        log("Player must be inside a level to use this command");
+                    }
+                } else {
+                    log("Provide a reference for a logic instance in this level");
+                }
+                break;
             case "setBlockState":
                 if (args.length >= 3) {
                     if (getLevel() != null) {

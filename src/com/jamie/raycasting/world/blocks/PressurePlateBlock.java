@@ -8,7 +8,7 @@ import com.jamie.raycasting.graphics.Texture;
 
 import java.util.List;
 
-public class PressurePlateBlock extends TriggerableBlock
+public class PressurePlateBlock extends FunctionBlock
 {
     private static int checkTicks = 0;
     private static final int CHECK_WAIT = 5;
@@ -26,20 +26,20 @@ public class PressurePlateBlock extends TriggerableBlock
 	        checkTicks--;
         } else {
 	        checkTicks = CHECK_WAIT;
-	        trigger();
+            List<Entity> ents = level.getEntitiesWithin(gridX, gridZ, gridX + 1, gridZ + 1);
+            for (int i = 0; i < ents.size(); i++) {
+                if (ents.get(i) instanceof Player) {
+                    trigger();
+                    return;
+                }
+            }
+
+            setState(false);
         }
     }
 
     public void trigger() {
-        List<Entity> ents = level.getEntitiesWithin(gridX, gridZ, gridX + 1, gridZ + 1);
-        for (int i = 0; i < ents.size(); i++) {
-            if (ents.get(i) instanceof Player) {
-                setState(true);
-                return;
-            }
-        }
-
-        setState(false);
+        setState(true);
     }
 
     public boolean getState() {

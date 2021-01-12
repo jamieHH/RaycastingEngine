@@ -12,9 +12,11 @@ import com.jamie.raycasting.items.MiscItem;
 import com.jamie.raycasting.items.consumables.HealthPotion;
 import com.jamie.raycasting.items.weapons.AxeWeapon;
 import com.jamie.raycasting.items.weapons.SpearWeapon;
+import com.jamie.raycasting.world.LogicTimer;
 import com.jamie.raycasting.world.blocks.DoorBlock;
 import com.jamie.raycasting.world.blocks.GateBlock;
 import com.jamie.raycasting.world.blocks.PressurePlateBlock;
+import com.jamie.raycasting.world.blocks.TurretBlock;
 
 public class ArmoryLevel extends Level
 {
@@ -52,6 +54,27 @@ public class ArmoryLevel extends Level
 
 		addEntity(new Drop(new SpearWeapon()), 32.5, 12.5);
 		addEntity(new AreaAlertEntity("Some weapons have longer striking distances."), 32.5, 12.5);
+
+
+		TurretBlock tb0 = new TurretBlock("N");
+		tb0.setReference("turret0");
+		setBlock(35, 27, tb0);
+		TurretBlock tb1 = new TurretBlock("N");
+		tb1.setReference("turret1");
+		setBlock(35, 24, tb1);
+//		TurretBlock tb2 = new TurretBlock("N");
+//		tb2.setReference("turret2");
+//		setBlock(35, 21, tb2);
+
+		PressurePlateBlock pp0 = new PressurePlateBlock(getCeilingTexture());
+		pp0.setReference("pp0");
+		setBlock(31, 27, pp0); // TODO: solve multiple plates doubling firerate!?!
+//		PressurePlateBlock pp1 = new PressurePlateBlock(getCeilingTexture());
+//		pp1.setReference("pp1");
+//		setBlock(32, 24, pp1);
+//		PressurePlateBlock pp2 = new PressurePlateBlock(getCeilingTexture());
+//		pp2.setReference("pp2");
+//		setBlock(33, 21, pp2);
 	}
 
 	public void switchLevel(Entity entity, int id) {
@@ -60,13 +83,18 @@ public class ArmoryLevel extends Level
 	}
 
     public void triggerBlock(int id) {
-        if (id == 1) super.triggerBlock(3);
 
     }
 
 	public void triggerBlock(String reference) {
-		if (reference.equals("pressurePad")) {
-			super.setBlockState("door", false);
+		if (reference.equals("pp0")) {
+			super.triggerBlock("turret0");
 		}
+		if (reference.equals("pp1")) {
+			super.triggerBlock("turret1");
+		}
+//		if (reference.equals("pp2")) {
+//			super.triggerBlock("turret2");
+//		}
 	}
 }
