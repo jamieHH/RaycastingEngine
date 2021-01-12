@@ -94,6 +94,10 @@ public class Texture
     public static final Bitmap spirit0 = PngLoader.loadBitmap("tex/spirit0.png");
     public static final Bitmap spirit1 = PngLoader.loadBitmap("tex/spirit1.png");
     public static final Bitmap spirit2 = PngLoader.loadBitmap("tex/spirit2.png");
+    public static final Bitmap skellington0 = PngLoader.loadBitmap("tex/skellington0.png");
+    public static final Bitmap skellington1 = PngLoader.loadBitmap("tex/skellington1.png");
+    public static final Bitmap skellington2 = PngLoader.loadBitmap("tex/skellington2.png");
+    public static final Bitmap skellingtonAtt0 = PngLoader.loadBitmap("tex/skellingtonAtt0.png");
     public static final Bitmap spiritAtt0 = PngLoader.loadBitmap("tex/spiritAtt0.png");
     public static final Bitmap spiritHurt0 = PngLoader.loadBitmap("tex/spiritHurt0.png");
     public static final Bitmap spiritHeal0 = PngLoader.loadBitmap("tex/spiritHeal0.png");
