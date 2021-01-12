@@ -32,13 +32,12 @@ public class BarracksLevel extends Level
 		AreaAlertEntity a0 = new AreaAlertEntity("This Axe can be used to break down wooden boards.");
 		addEntity(a0, 6.5, 35.5);
 
-		Drop armoryKey = new Drop(new MiscItem("Barracks Stash Key", Texture.keyIcon));
-		addEntity(new Imp(armoryKey), 1.5, 32.5);
-
 		addEntity(new Drop(new HealthPotion()), 6.5, 19.5);
 		addEntity(new Drop(new HealthPotion()), 19.5, 4.5);
 
 		setBlock(8, 33, new GateBlock(getFloorTexture(), getCeilingTexture(), "Barracks Stash Key"));
+		Drop armoryKey = new Drop(new MiscItem("Barracks Stash Key", Texture.keyIcon));
+		addEntity(new Imp(armoryKey), 1.5, 32.5);
 
 		setBlock(17, 4, new GateBlock(getFloorTexture(), getCeilingTexture(), "Armory Key"));
 
@@ -49,18 +48,6 @@ public class BarracksLevel extends Level
 		DoorBlock db = new DoorBlock(getFloorTexture(), getCeilingTexture(), false);
 		db.setReference("door");
 		setBlock(8	,23, db);
-
-
-		Bitmap[] ts0 = {
-				Texture.spinningDummy0,
-				Texture.spinningDummy1,
-				Texture.spinningDummy2,
-				Texture.spinningDummy3,
-				Texture.spinningDummy4,
-		};
-		addEntity(new BouncingEntity(new Sprite(ts0), "W", 0.1, 1),13.5, 11.5);
-		addEntity(new BouncingEntity(new Sprite(ts0), "W", 0.1, 1),15.5, 14.5);
-		addEntity(new BouncingEntity(new Sprite(ts0), "W", 0.1, 1),11.5, 17.5);
 	}
 
 	public void switchLevel(Entity entity, int id) {
