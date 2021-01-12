@@ -32,17 +32,15 @@ public class BarracksLevel extends Level
 		AreaAlertEntity a0 = new AreaAlertEntity("This Axe can be used to break down wooden boards.");
 		addEntity(a0, 6.5, 35.5);
 
-		Drop s0 = new Drop(new SpearWeapon());
-		addEntity(s0, 14.5, 21.5);
-		AreaAlertEntity a1 = new AreaAlertEntity("Some weapons have longer striking distances.");
-		addEntity(a1, 14.5, 21.5);
-
-		Drop armoryKey = new Drop(new MiscItem("Armory Key", Texture.keyIcon));
+		Drop armoryKey = new Drop(new MiscItem("Barracks Stash Key", Texture.keyIcon));
 		addEntity(new Imp(armoryKey), 1.5, 32.5);
 
 		addEntity(new Drop(new HealthPotion()), 6.5, 19.5);
+		addEntity(new Drop(new HealthPotion()), 19.5, 4.5);
 
-		setBlock(8, 33, new GateBlock(getFloorTexture(), getCeilingTexture(), "Armory Key"));
+		setBlock(8, 33, new GateBlock(getFloorTexture(), getCeilingTexture(), "Barracks Stash Key"));
+
+		setBlock(17, 4, new GateBlock(getFloorTexture(), getCeilingTexture(), "Armory Key"));
 
 		PressurePlateBlock b = new PressurePlateBlock(getCeilingTexture());
 		b.setReference("pressurePad");
@@ -66,7 +64,9 @@ public class BarracksLevel extends Level
 	}
 
 	public void switchLevel(Entity entity, int id) {
-		if (id == 1) world.switchLevel(entity, "castleHall", 3);
+		if (id == 1) world.switchLevel(entity, "castleHall", 2);
+		if (id == 2) world.switchLevel(entity, "armory", 1);
+		if (id == 3) world.switchLevel(entity, "armory", 2);
 	}
 
     public void triggerBlock(int id) {
