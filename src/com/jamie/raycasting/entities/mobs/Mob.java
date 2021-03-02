@@ -3,6 +3,7 @@ package com.jamie.raycasting.entities.mobs;
 import com.jamie.jamapp.*;
 import com.jamie.raycasting.app.Client;
 import com.jamie.raycasting.app.Sound;
+import com.jamie.raycasting.entities.AddLifeEntity;
 import com.jamie.raycasting.entities.AreaAlertEntity;
 import com.jamie.raycasting.entities.Drop;
 import com.jamie.raycasting.entities.Entity;
@@ -270,6 +271,13 @@ public abstract class Mob extends Entity
                                 Sound.slideUp.play();
                                 Client.alert(alert.message);
                                 alert.remove();
+                            }
+                        } else if (level.getEntities().get(i) instanceof AddLifeEntity) {
+                            AddLifeEntity heart = (AddLifeEntity) level.getEntities().get(i);
+                            if (isTouching(heart)) {
+                                Client.playerLives++;
+                                Client.alert("Extra Life! " + Client.playerLives + " left");
+                                heart.remove();
                             }
                         }
                     }

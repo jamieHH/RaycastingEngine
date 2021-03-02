@@ -21,6 +21,7 @@ public class Texture
     public static final Bitmap greenPotionIcon = PngLoader.loadBitmap("gui/greenPotionIcon.png");
     public static final Bitmap keyIcon = PngLoader.loadBitmap("gui/keyIcon.png");
     public static final Bitmap bag = PngLoader.loadBitmap("tex/bag.png");
+    public static final Bitmap life0 = PngLoader.loadBitmap("tex/life0.png");
 
     public static final Bitmap heartIcon = PngLoader.loadBitmap("gui/heartIcon.png");
     public static final Bitmap poisonIcon = PngLoader.loadBitmap("gui/poisonIcon.png");

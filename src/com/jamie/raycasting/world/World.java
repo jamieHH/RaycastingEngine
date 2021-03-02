@@ -33,6 +33,8 @@ public class World
         if (level != null) {
             level.tick();
 
+
+
             if (level.isOutside) {
                 level.fogColor = Texture.fogHours.pixels[hour];
             }

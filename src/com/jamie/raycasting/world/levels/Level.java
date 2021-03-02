@@ -363,6 +363,7 @@ public abstract class Level
         if (col == 0xDAEFDA) return new Skellington(new ArtificialInputHandler());
         if (col == 0xB06E23) return new BarrelEntity(BarrelEntity.getLootItem());
         if (col == 0xA3723A) return new ExplosiveBarrelEntity();
+        if (col == 0xFF0055) return new AddLifeEntity();
 //        if (col == 0xB06E23) return new ChestEntity(ChestEntity.getLootItem());
         return null;
     }
