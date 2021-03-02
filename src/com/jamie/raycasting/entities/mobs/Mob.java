@@ -71,8 +71,9 @@ public abstract class Mob extends Entity
 	public int maxHealth = 10;
 	public int health;
 
-	private int dieTime = 30;
-	private boolean isDieing = false;
+	private static final int DIE_WAIT = 30;
+	private int dieTicks = DIE_WAIT;
+	private boolean isDying = false;
     public boolean isDead = false;
 
     // items
@@ -194,7 +195,7 @@ public abstract class Mob extends Entity
             hudHeadingsTicks = HUD_HEADINGS_WAIT;
         }
 
-        if (!isDieing) {
+        if (!isDying) {
             if (health > 0) {
                 if (!(input instanceof UserInputHandler)) {
                     target = null;
@@ -330,15 +331,15 @@ public abstract class Mob extends Entity
             } else {
                 emitSound(deathSound);
                 runSpriteSet("death");
-                isDieing = true;
+                isDying = true;
             }
         } else {
             unequipRightHand();
             camY = 0.125;
 
             if (!isDead) {
-                dieTime--;
-                if (dieTime <= 0) {
+                dieTicks--;
+                if (dieTicks <= 0) {
                     level.addEntity(new PoofParticle(8), posX, posZ);
                     if (drop != null) {
                         level.addEntity(drop, posX, posZ);
@@ -538,7 +539,7 @@ public abstract class Mob extends Entity
     }
 
     public void heal(int magnitude) {
-        if (magnitude > 0 && !isDieing) {
+        if (magnitude > 0 && !isDying) {
             runSpriteSet("heal");
             HealthParticle p = new HealthParticle(8);
             level.addEntity(p, posX, posZ);
@@ -559,7 +560,7 @@ public abstract class Mob extends Entity
 
     public void hurt(Entity source, int magnitude, String damageType) {
         if (!isInvulnerable) {
-            if (magnitude > 0 && !isDieing && hurtTicks < 1) {
+            if (magnitude > 0 && !isDying && hurtTicks < 1) {
                 runSpriteSet("hurt");
                 level.addEntity(getHurtParticle(), posX, posZ);
 
@@ -663,5 +664,13 @@ public abstract class Mob extends Entity
 
     public void modBaseDamage(double modifier) {
         baseDamage += modifier;
+    }
+
+    public void resetHealth() {
+        health = maxHealth;
+        dieTicks = DIE_WAIT;
+        isDying = false;
+        isDead = false;
+        removed = false;
     }
 }

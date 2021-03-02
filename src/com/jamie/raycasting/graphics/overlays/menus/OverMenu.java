@@ -8,10 +8,18 @@ import com.jamie.raycasting.input.Controls;
 public class OverMenu extends Menu
 {
     public String[] getOptions() {
-        return new String[] {
-                "Main Menu",
-                "Quit Game",
-        };
+        if (Client.playerLives < 1) {
+            return new String[]{
+                    "Main Menu",
+                    "Quit Game",
+            };
+        } else {
+            return new String[]{
+                    "Restart Level",
+                    "Main Menu",
+                    "Quit Game",
+            };
+        }
     }
 
 
@@ -26,6 +34,9 @@ public class OverMenu extends Menu
             Client.input.stopInput(Controls.ENTER);
             Sound.clickAction.play();
             switch (getOption(optionIndex)) {
+                case "Restart Level":
+                    Client.restartLevel();
+                    break;
                 case "Main Menu":
                     Client.stopGame();
                     break;

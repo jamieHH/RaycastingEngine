@@ -70,7 +70,12 @@ public class Screen extends Display
                     draw(p.hudHeadings.get(i), (render.width - 2) - (p.hudHeadings.get(i).length() * Bitmap.fontWidth()), (i * (fontHeight() + 1)) + 2, 0xF0F070);
                 }
             } else {
-                String overText = "GAME OVER";
+                String overText;
+                if (Client.playerLives > 0) {
+                    overText = "YOU SUFFERED";
+                } else {
+                    overText = "GAME OVER";
+                }
                 draw(overText, halfWidth() - (overText.length() * fontWidth() / 2), render.halfHeight() - (fontHeight() / 2), 0xFF0000);
             }
 

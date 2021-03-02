@@ -18,7 +18,7 @@ import java.util.Map;
 public class World
 {
     public Level level;
-    public final Map<String, Level> cache = new HashMap<>();
+    private final Map<String, Level> cache = new HashMap<>();
 
     public boolean enableTimeCycle = false;
     private int hour = 3;
@@ -55,6 +55,10 @@ public class World
         cache.clear();
     }
 
+    public void unloadLevel(String name) {
+        cache.remove(name);
+    }
+
     public void switchLevel(Entity entity, String name, int id) {
         if (entity instanceof Player) {
             Level newLevel;
@@ -79,6 +83,9 @@ public class World
             } else {
                 level.addEntity(entity, level.spawnX, level.spawnZ);
             }
+
+            Client.lastLevelName = name;
+            Client.lastLevelId = id;
         }
     }
 
