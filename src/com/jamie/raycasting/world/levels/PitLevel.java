@@ -37,6 +37,8 @@ public class PitLevel extends Level
     }
 
     public void triggerBlock(int id) {
-        if (id == 2) super.triggerBlock(15);
+        if (id == 2) {
+            super.triggerBlock(0);
+        }
     }
 }
