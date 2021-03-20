@@ -9,7 +9,7 @@ public class RunApp
     public static final boolean defaultInDev = true;
     public static final int defaultResWidth = 200;
     public static final int defaultResHeight = 150;
-    public static final int defaultDisplayScale = 8;
+    public static final int defaultDisplayScale = 4;
     public static final boolean defaultFullscreenEnabled = false;
     public static final boolean defaultSoundEnabled = true;
 

@@ -25,7 +25,7 @@ public class OptionsMenu extends Menu
 
     private boolean fullscreenEnabled = App.getFullscreenEnabled();
     private int resIndex = 0;
-    private int scaleIndex = 3;
+    private int scaleIndex = 2;
     private boolean soundEnabled = App.getSoundEnabled();
 
     public String[] getOptions() {
