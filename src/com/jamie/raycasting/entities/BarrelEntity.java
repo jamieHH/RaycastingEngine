@@ -37,6 +37,8 @@ public class BarrelEntity extends Entity
                         null,
                         null,
                         null,
+                        null,
+                        null,
                         new Drop(new HealthPotion()),
                         new Drop(new SpeedPotion()),
                         new Drop(new StrengthPotion()),

@@ -47,10 +47,10 @@ public abstract class Projectile extends Entity
                     if (entity != null) {
                         if (entity instanceof Mob) {
                             ((Mob) getBlockingEntity(posX + nextX, posZ)).hurt(this, damage);
-                        } else if (entity instanceof ExplosiveBarrelEntity) {
-                            ((ExplosiveBarrelEntity) entity).detonate();
                         } else if (entity instanceof BarrelEntity) {
                             ((BarrelEntity) entity).smash();
+                        } else if (entity instanceof ExplosiveBarrelEntity) {
+                            ((ExplosiveBarrelEntity) entity).detonate();
                         }
                         detonate();
                         break;
@@ -68,6 +68,8 @@ public abstract class Projectile extends Entity
                             ((Mob) entity).hurt(this, damage);
                         } else if (entity instanceof BarrelEntity) {
                             ((BarrelEntity) entity).smash();
+                        } else if (entity instanceof ExplosiveBarrelEntity) {
+                            ((ExplosiveBarrelEntity) entity).detonate();
                         }
                         detonate();
                         break;

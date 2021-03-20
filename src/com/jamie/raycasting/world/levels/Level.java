@@ -16,7 +16,7 @@ import com.jamie.raycasting.world.blocks.*;
 
 public abstract class Level
 {
-    public String name = "";
+    public String name;
 
     private Block[] blocks;
     private List<Entity> entities = new ArrayList<>();
@@ -27,6 +27,9 @@ public abstract class Level
     public int height = 1;
     public int fogColor = 0x000000;
     public boolean isOutside = false;
+
+    public int noOfMobs;
+    public int noOfLifeContainers;
 
     public double spawnX;
     public double spawnZ;
@@ -158,6 +161,9 @@ public abstract class Level
         }
 
         postCreate();
+
+        noOfMobs = getMobEntities().size();
+        noOfLifeContainers = getLifeContainers().size();
     }
 
     protected abstract void postCreate();
@@ -286,15 +292,24 @@ public abstract class Level
         return entities.size();
     }
 
-
     public List<Mob> getMobEntities() {
-        List<Mob> mobs = new ArrayList<>();
+        List<Mob> lst = new ArrayList<>();
         for (Entity e : getEntities()) {
             if (e instanceof Mob) {
-                mobs.add((Mob) (e));
+                lst.add((Mob) (e));
             }
         }
-        return mobs;
+        return lst;
+    }
+
+    public List<AddLifeEntity> getLifeContainers() {
+        List<AddLifeEntity> lst = new ArrayList<>();
+        for (Entity e : getEntities()) {
+            if (e instanceof AddLifeEntity) {
+                lst.add((AddLifeEntity) (e));
+            }
+        }
+        return lst;
     }
 
     public Block getBlockByReference(String reference) {
@@ -337,7 +352,6 @@ public abstract class Level
         if (col == 0x9A9A9A) return GraveBlock;
         if (col == 0x0094FF) return WaterBlock;
         if (col == 0x217F74) return CeilDripBlock;
-//        if (col == 0xA3723A) return SpinningDummyBlock;
         if (col == 0x7F3300) return new BridgeBlock(getCeilingTexture(), false);
         if (col == 0x7F334E) return new BridgeBlock(getCeilingTexture(), true);
         if (col == 0xA48080) return new DoorBlock(getFloorTexture(), getCeilingTexture(), false);
@@ -364,7 +378,6 @@ public abstract class Level
         if (col == 0xB06E23) return new BarrelEntity(BarrelEntity.getLootItem());
         if (col == 0xA3723A) return new ExplosiveBarrelEntity();
         if (col == 0xFF0055) return new AddLifeEntity();
-//        if (col == 0xB06E23) return new ChestEntity(ChestEntity.getLootItem());
         return null;
     }
 
@@ -386,14 +399,14 @@ public abstract class Level
     }
 
     public List<Entity> getEntitiesWithin(double x0, double z0, double x1, double z1) {
-        List<Entity> entities = new ArrayList<>();
+        List<Entity> lst = new ArrayList<>();
         for (Entity e : getEntities()) {
             if (e.isInside(x0, z0, x1, z1)) {
-                entities.add(e);
+                lst.add(e);
             }
         }
 
-        return entities;
+        return lst;
     }
 
     public static Level makeRandomLevel(int sizeX, int sizeZ) {

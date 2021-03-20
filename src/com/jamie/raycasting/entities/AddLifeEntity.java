@@ -11,6 +11,4 @@ public class AddLifeEntity extends Entity
         radius = 1;
         isSolid = false;
     }
-
-
 }
