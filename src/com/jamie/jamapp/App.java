@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
+import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -209,7 +210,8 @@ public class App extends Canvas implements Runnable
     private static Image getAppIcon() {
         Image img = null;
         try {
-            img = ImageIO.read(App.class.getClassLoader().getResource("logo.png"));
+			//img = ImageIO.read(App.class.getClassLoader().getResource("logo.png"));
+            img = ImageIO.read(new File("res/logo.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }

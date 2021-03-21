@@ -12,6 +12,7 @@ import com.jamie.raycasting.world.levels.Level;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -107,7 +108,8 @@ public class World
         }
 
         try {
-            BufferedImage img = ImageIO.read(World.class.getClassLoader().getResource("levels/" + name + ".png"));
+            //BufferedImage img = ImageIO.read(World.class.getClassLoader().getResource("levels/" + name + ".png"));
+            BufferedImage img = ImageIO.read(new File("res/levels/" + name + ".png"));
 
             int w = img.getWidth();
             int h = img.getHeight();

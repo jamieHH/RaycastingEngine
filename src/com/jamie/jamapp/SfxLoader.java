@@ -1,6 +1,7 @@
 package com.jamie.jamapp;
 
 import javax.sound.sampled.*;
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,7 +20,8 @@ public class SfxLoader
 
         try {
             Sfx sound = new Sfx();
-            AudioInputStream ais = AudioSystem.getAudioInputStream(SfxLoader.class.getClassLoader().getResource(fileName));
+            //AudioInputStream ais = AudioSystem.getAudioInputStream(SfxLoader.class.getClassLoader().getResource(fileName));
+            AudioInputStream ais = AudioSystem.getAudioInputStream(new File("res/" + fileName));
             Clip clip = AudioSystem.getClip();
             clip.open(ais);
             sound.clip = clip;

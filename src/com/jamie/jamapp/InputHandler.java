@@ -7,7 +7,7 @@ public abstract class InputHandler implements KeyListener, FocusListener, MouseL
 {
     public boolean enableMouse = true;
     public boolean enableMouseDiffX = true;
-    public boolean enableMouseDiffY = true;
+    public boolean enableMouseDiffY = false;
 
     private int cX() {
         return (App.getFrameWidth()) / 2;

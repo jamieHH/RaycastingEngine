@@ -2,6 +2,7 @@ package com.jamie.jamapp;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,7 +20,8 @@ public class PngLoader
         }
 
         try {
-            BufferedImage img = ImageIO.read(PngLoader.class.getClassLoader().getResource(fileName));
+            //BufferedImage img = ImageIO.read(PngLoader.class.getClassLoader().getResource(fileName));
+            BufferedImage img = ImageIO.read(new File("res/" + fileName));
             int width = img.getWidth();
             int height = img.getHeight();
             Bitmap result = new Bitmap(width, height);
