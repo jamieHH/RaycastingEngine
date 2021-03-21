@@ -275,6 +275,7 @@ public abstract class Mob extends Entity
                         } else if (level.getEntities().get(i) instanceof AddLifeEntity) {
                             AddLifeEntity heart = (AddLifeEntity) level.getEntities().get(i);
                             if (isTouching(heart)) {
+                                Sound.pickUp.play();
                                 Client.playerLives++;
                                 Client.alert("Extra Life! " + Client.playerLives + " left");
                                 heart.remove();
