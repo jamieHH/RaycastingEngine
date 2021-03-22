@@ -5,12 +5,12 @@ import com.jamie.jamapp.Bitmap;
 import com.jamie.raycasting.app.Client;
 import com.jamie.raycasting.app.Sound;
 import com.jamie.raycasting.entities.mobs.Mob;
-import com.jamie.raycasting.graphics.overlays.Overlay;
 import com.jamie.raycasting.input.Controls;
 import com.jamie.raycasting.items.Inventory;
 import com.jamie.raycasting.items.Item;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ItemsOverlay extends Overlay
@@ -21,11 +21,11 @@ public class ItemsOverlay extends Overlay
     private int itemIndex = 0;
 
     public ItemsOverlay() {
-        super(App.getDisplayWidth(), 50);
+        super(App.getDisplayWidth(), App.getDisplayHeight());
     }
 
     public void resizeOverlay() {
-        super.setSize(App.getDisplayWidth(), 50);
+        super.setSize(App.getDisplayWidth(), App.getDisplayHeight());
     }
 
     private static class ItemTile
@@ -131,7 +131,11 @@ public class ItemsOverlay extends Overlay
 
     public void update() {
         int gap = 4;
-        fill(0x202020);
+
+        Bitmap barWindow = new Bitmap(App.getDisplayWidth(), 50);
+        barWindow.fill(0x202020);
+        draw(barWindow, halfWidth() - barWindow.halfWidth(), halfHeight() - barWindow.halfHeight());
+
         Bitmap itemLine = new Bitmap(itemTiles.size() * (ICON_SIZE + gap), ICON_SIZE);
         itemLine.fill(0x202020);
         for (int i = 0; i < itemTiles.size(); i++) {
@@ -148,20 +152,33 @@ public class ItemsOverlay extends Overlay
             if (!(itemTiles.size() < itemIndex + 1)) {
                 if (itemIndex == mob.getRightHandItemIndex() && !mob.rightHandEmpty) {
                     Bitmap itemTitle = textBox(itemTiles.get(itemIndex).description, 0xF0F0F0, 0);
-                    draw(itemTitle, halfWidth() - itemTitle.halfWidth(), height - 4 - itemTitle.height);
+                    draw(itemTitle, barWindow.halfWidth() - itemTitle.halfWidth(), halfHeight() + 20 - itemTitle.height);
                 } else {
                     Bitmap itemTitle = textBox(itemTiles.get(itemIndex).description, 0x707070, 0);
-                    draw(itemTitle, halfWidth() - itemTitle.halfWidth(), height - 4 - itemTitle.height);
+                    draw(itemTitle, barWindow.halfWidth() - itemTitle.halfWidth(), halfHeight() + 20 - itemTitle.height);
                 }
 
                 Bitmap itemHighlight = square(ICON_SIZE + 4, ICON_SIZE + 4, 0x707070);
-                draw(itemHighlight, halfWidth() - itemHighlight.halfWidth(), halfHeight() - itemHighlight.halfHeight() );
+                draw(itemHighlight, barWindow.halfWidth() - itemHighlight.halfWidth(), halfHeight() - itemHighlight.halfHeight());
             } else {
                 itemIndex--;
             }
         } else {
             Bitmap emptyMessage = textBox("Empty", 0x707070, 0);
-            draw(emptyMessage, halfWidth() - emptyMessage.halfWidth(), halfHeight() - emptyMessage.halfHeight());
+            draw(emptyMessage, barWindow.halfWidth() - emptyMessage.halfWidth(), barWindow.halfHeight() - emptyMessage.halfHeight());
         }
+
+
+        int containersCollected = Client.getPlayer().level.noOfLifeContainers - Client.getPlayer().level.getLifeContainers().size();
+        int mobsSlain = (Client.getPlayer().level.noOfMobs + 1) - Client.getPlayer().level.getMobEntities().size();
+        List<String> stats = Arrays.asList(
+                Client.getPlayer().level.name,
+                "Life Containers: " + containersCollected,
+                "Monsters Slain:  " + mobsSlain
+        );
+        Bitmap textBox = textBoxTrimmed(stats, width, 0x707070, 0x303030);
+        Bitmap tWindow = new Bitmap(textBox.width + 4, textBox.height + 4);
+        tWindow.fill(0x303030);
+        draw(drawCenter(tWindow, textBox), 4, 4);
     }
 }
