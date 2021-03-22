@@ -28,13 +28,14 @@ public abstract class Level
     public int fogColor = 0x000000;
     public boolean isOutside = false;
 
-    public int noOfMobs;
-    public int noOfLifeContainers;
-
     public double spawnX;
     public double spawnZ;
 
     public World world;
+
+    // stats
+    private int noOfMobs;
+    private int noOfLifeContainers;
 
     protected Bitmap getFloorTexture() {
         return Texture.floor;
@@ -167,6 +168,22 @@ public abstract class Level
     }
 
     protected abstract void postCreate();
+
+    public int getInitMobsCount() {
+        return noOfMobs;
+    }
+
+    public int getInitLifeContainerCount() {
+        return noOfLifeContainers;
+    }
+
+    public int getMobsSlainCount() {
+        return noOfMobs - getNonPlayerMobEntities().size();
+    }
+
+    public int getLifeContainersCollectedCount() {
+        return noOfLifeContainers - getLifeContainers().size();
+    }
 
     public abstract void switchLevel(Entity entity, int id);
 
@@ -302,11 +319,23 @@ public abstract class Level
         return lst;
     }
 
-    public List<AddLifeEntity> getLifeContainers() {
-        List<AddLifeEntity> lst = new ArrayList<>();
+    public List<Mob> getNonPlayerMobEntities() {
+        List<Mob> lst = new ArrayList<>();
         for (Entity e : getEntities()) {
-            if (e instanceof AddLifeEntity) {
-                lst.add((AddLifeEntity) (e));
+            if (!(e instanceof Player)) {
+                if (e instanceof Mob) {
+                    lst.add((Mob) (e));
+                }
+            }
+        }
+        return lst;
+    }
+
+    public List<LifeContainerEntity> getLifeContainers() {
+        List<LifeContainerEntity> lst = new ArrayList<>();
+        for (Entity e : getEntities()) {
+            if (e instanceof LifeContainerEntity) {
+                lst.add((LifeContainerEntity) (e));
             }
         }
         return lst;
@@ -377,7 +406,7 @@ public abstract class Level
         if (col == 0xDAEFDA) return new Skellington(new ArtificialInputHandler());
         if (col == 0xB06E23) return new BarrelEntity(BarrelEntity.getLootItem());
         if (col == 0xA3723A) return new ExplosiveBarrelEntity();
-        if (col == 0xFF0055) return new AddLifeEntity();
+        if (col == 0xFF0055) return new LifeContainerEntity();
         return null;
     }
 

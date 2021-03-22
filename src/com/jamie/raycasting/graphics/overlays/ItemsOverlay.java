@@ -168,12 +168,10 @@ public class ItemsOverlay extends Overlay
             draw(emptyMessage, barWindow.halfWidth() - emptyMessage.halfWidth(), barWindow.halfHeight() - emptyMessage.halfHeight());
         }
 
-        int containersCollected = Client.getPlayer().level.noOfLifeContainers - Client.getPlayer().level.getLifeContainers().size();
-        int mobsSlain = (Client.getPlayer().level.noOfMobs + 1) - Client.getPlayer().level.getMobEntities().size();
         List<String> stats = Arrays.asList(
                 Client.getPlayer().level.name,
-                (Client.getPlayer().level.noOfLifeContainers > 0) ? "Life Containers: " + containersCollected : "",
-                (Client.getPlayer().level.noOfMobs > 0) ? "Monsters Slain:  " + mobsSlain : ""
+                (Client.getPlayer().level.getInitMobsCount() > 0) ? "Monsters Slain:  " + Client.getPlayer().level.getMobsSlainCount() : "",
+                (Client.getPlayer().level.getInitLifeContainerCount() > 0) ? "Life Containers: " + Client.getPlayer().level.getLifeContainersCollectedCount() : ""
         );
         Bitmap textBox = textBoxTrimmed(stats, width, 0x707070, 0x303030);
         Bitmap tWindow = new Bitmap(textBox.width + 4, textBox.height + 4);

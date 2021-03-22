@@ -13,6 +13,11 @@ import com.jamie.raycasting.input.ArtificialInputHandler;
 import com.jamie.jamapp.InputHandler;
 import com.jamie.raycasting.input.Controls;
 import com.jamie.raycasting.world.World;
+import com.jamie.raycasting.world.levels.Level;
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 public class Client extends JamappClient
 {
@@ -34,11 +39,39 @@ public class Client extends JamappClient
 	private static Overlay activeOverlay;
 	private static Overlay previousOverlay;
 
+	// stats
+	public static int totalMobs;
+	public static int totalMobsSlain;
+	public static int totalLifeContainers;
+	public static int totalLifeContainersCollected;
+
 	
 	public Client(InputHandler input) {
 		super(input);
 
         setActiveOverlay(mainMenu);
+	}
+
+	public static void calcStats() {
+		totalMobs = 0;
+		totalMobsSlain = 0;
+		totalLifeContainers = 0;
+		totalLifeContainersCollected = 0;
+
+		Iterator it = world.getLevelCache().entrySet().iterator();
+		while (it.hasNext()) {
+			Map.Entry<String, Level> pair = (HashMap.Entry<String, Level>)it.next();
+			Level lvl = pair.getValue();
+			totalMobs += lvl.getInitMobsCount();
+			totalLifeContainers += lvl.getInitLifeContainerCount();
+			totalMobsSlain += lvl.getMobsSlainCount();
+			totalLifeContainersCollected += lvl.getLifeContainersCollectedCount();
+		}
+
+		System.out.println("totalMobs: " + totalMobs);
+		System.out.println("totalMobsSlain: " + totalMobsSlain);
+		System.out.println("totalLifeContainers: " + totalLifeContainers);
+		System.out.println("totalLifeContainersCollected: " + totalLifeContainersCollected);
 	}
 
 	public void tick() {

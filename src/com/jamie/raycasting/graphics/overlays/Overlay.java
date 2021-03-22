@@ -6,7 +6,7 @@ import com.jamie.jamapp.Bitmap;
 public abstract class Overlay extends Bitmap
 {
     protected final int bp = 2;
-    public final int opacity = 85;
+    public final int opacity = 90;
 
 
     public Overlay(int width, int height) {

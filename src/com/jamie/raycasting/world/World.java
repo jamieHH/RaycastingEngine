@@ -89,6 +89,10 @@ public class World
         }
     }
 
+    public Map<String, Level> getLevelCache() {
+        return cache;
+    }
+
     private static Level getByName(String name) {
         try {
             name = name.substring(0, 1).toUpperCase() + name.substring(1);

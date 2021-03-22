@@ -197,6 +197,9 @@ public class Console {
                     log("Specify the item to add");
                 }
                 break;
+            case "stats": // add item
+                Client.calcStats();
+                break;
             default:
                 log("Command: " + args[0] + " not recognised");
         }
