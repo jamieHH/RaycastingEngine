@@ -25,7 +25,7 @@ public class Client extends JamappClient
 	private static Mob player;
 	public static int playerLives = 3;
 	public static String lastLevelName;
-	public static int lastLevelId;
+	public static String lastLevelRef;
 
 	private static InputHandler temporaryInput = new ArtificialInputHandler();
 
@@ -146,7 +146,7 @@ public class Client extends JamappClient
 		setWorld(new World());
 		setPlayer(new Player(input));
 		getPlayer().setRotation(1.9);
-		getWorld().switchLevel(getPlayer(), level, 0);
+		getWorld().switchLevel(getPlayer(), level, null);
 		setActiveOverlay(null);
 
 		alert("Press [Space] or Click to activate objects");
@@ -155,7 +155,7 @@ public class Client extends JamappClient
 	public static void restartLevel() {
 		getPlayer().resetHealth();
 		getWorld().unloadLevel(lastLevelName);
-		getWorld().switchLevel(getPlayer(), lastLevelName, lastLevelId);
+		getWorld().switchLevel(getPlayer(), lastLevelName, lastLevelRef);
 		setActiveOverlay(null);
 		playerLives --;
 		alert(playerLives + " Lives Left!");

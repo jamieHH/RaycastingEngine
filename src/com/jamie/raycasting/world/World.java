@@ -59,7 +59,7 @@ public class World
         cache.remove(name);
     }
 
-    public void switchLevel(Entity entity, String name, int id) {
+    public void switchLevel(Entity entity, String name, String reference) {
         if (entity instanceof Player) {
             Level newLevel;
             if (!name.equals("random")) {
@@ -76,7 +76,7 @@ public class World
             }
             level = newLevel;
 
-            LevelPortalBlock spawnBlock = level.getLevelPortalBlockById(id);
+            LevelPortalBlock spawnBlock = level.getLevelPortal(reference);
             if (spawnBlock != null) {
                 level.addEntity(entity, spawnBlock.gridX + 0.5, spawnBlock.gridZ + 0.5);
                 spawnBlock.disabled = true;
@@ -85,7 +85,7 @@ public class World
             }
 
             Client.lastLevelName = name;
-            Client.lastLevelId = id;
+            Client.lastLevelRef = reference;
         }
     }
 

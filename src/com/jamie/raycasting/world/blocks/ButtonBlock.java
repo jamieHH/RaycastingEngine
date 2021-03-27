@@ -34,7 +34,7 @@ public class ButtonBlock extends FunctionBlock
         useTicks = USE_WAIT;
         emitSound(Sound.clickUp);
         wallTex = Texture.wallButton1;
-        level.triggerBlock(id);
+        level.triggerBlock(reference);
 
 		return true;
 	}

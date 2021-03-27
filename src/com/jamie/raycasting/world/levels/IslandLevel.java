@@ -44,15 +44,15 @@ public class IslandLevel extends Level
 
 	}
 
-    public void switchLevel(Entity entity, int id) {
-        if (id == 1) world.switchLevel(entity, "graveyard", 2);
-		if (id == 2) world.switchLevel(entity, "castleHall", 2);
-		if (id == 3) world.switchLevel(entity, "crypt", 1);
-		if (id == 4) world.switchLevel(entity, "pit", 1);
-		if (id == 5) world.switchLevel(entity, "sewer", 2);
+    public void switchLevel(Entity entity, String ref) {
+        if (ref.equals("1643")) world.switchLevel(entity, "graveyard", "6007");
+		if (ref.equals("2017")) world.switchLevel(entity, "castleHall", "1010");
+		if (ref.equals("2248")) world.switchLevel(entity, "crypt", "3312");
+		if (ref.equals("3611")) world.switchLevel(entity, "pit", "2524");
+		if (ref.equals("3844")) world.switchLevel(entity, "sewer", "3726");
 	}
 
-	public void triggerBlock(int id) {
-		if (id == 1) super.triggerBlock("pitDoor");
+	public void triggerBlock(String ref) {
+		if (ref.equals("3512")) super.triggerBlock("pitDoor");
 	}
 }

@@ -38,17 +38,12 @@ public class CryptLevel extends Level
         setBlock(28,22, db);
     }
 
-    public void switchLevel(Entity entity, int id) {
-        if (id == 1) world.switchLevel(entity, "island", 3);
+    public void switchLevel(Entity entity, String ref) {
+        if (ref.equals("3312")) world.switchLevel(entity, "island", "2248");
     }
 
-    public void triggerBlock(int id) {
-	    if (id == 1) super.triggerBlock(1);
-    }
-
-    public void triggerBlock(String reference) {
-        if (reference.equals("pressurePad")) {
-            super.setBlockState("door", false);
-        }
+    public void triggerBlock(String ref) {
+        if (ref.equals("0812")) super.triggerBlock("1216");
+        if (ref.equals("pressurePad")) super.setBlockState("door", false);
     }
 }

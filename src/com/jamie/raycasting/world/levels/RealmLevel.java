@@ -14,7 +14,7 @@ public class RealmLevel extends Level
 
 	}
 
-	public void switchLevel(Entity entity, int id) {
+	public void switchLevel(Entity entity, String ref) {
 
 	}
 }

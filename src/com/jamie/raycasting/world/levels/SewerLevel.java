@@ -18,8 +18,8 @@ public class SewerLevel extends Level
 
     }
 
-    public void switchLevel(Entity entity, int id) {
-        if (id == 1) world.switchLevel(entity, "prison", 1);
-        if (id == 2) world.switchLevel(entity, "island", 5);
+    public void switchLevel(Entity entity, String ref) {
+        if (ref.equals("0813")) world.switchLevel(entity, "prison", "3015");
+        if (ref.equals("3726")) world.switchLevel(entity, "island", "3544");
     }
 }

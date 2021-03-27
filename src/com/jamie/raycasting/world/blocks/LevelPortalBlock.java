@@ -22,7 +22,7 @@ public class LevelPortalBlock extends FunctionBlock
             }
         } else {
             for (int i = 0; i < ents.size(); i++) {
-                level.switchLevel(ents.get(i), id);
+                level.switchLevel(ents.get(i), reference);
             }
         }
     }

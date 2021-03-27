@@ -58,12 +58,8 @@ public class Console {
             case "level": // move to level
                 if (args.length >= 2) {
                     String levelName = args[1];
-                    int id = 0;
-                    if (args.length > 2) {
-                        id = Integer.parseInt(args[2]);
-                    }
                     try {
-                        Client.getWorld().switchLevel(Client.getPlayer(), levelName, id);
+                        Client.getWorld().switchLevel(Client.getPlayer(), levelName, null);
                     } catch (Exception e) {
                         log("Cannot load level: " + levelName);
                     }

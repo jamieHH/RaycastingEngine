@@ -69,22 +69,18 @@ public class ArmoryLevel extends Level
 		PressurePlateBlock pp0 = new PressurePlateBlock(getCeilingTexture());
 		pp0.setReference("pp0");
 		setBlock(31, 27, pp0); // TODO: solve multiple plates doubling firerate!?!
-//		PressurePlateBlock pp1 = new PressurePlateBlock(getCeilingTexture());
-//		pp1.setReference("pp1");
-//		setBlock(32, 24, pp1);
+		PressurePlateBlock pp1 = new PressurePlateBlock(getCeilingTexture());
+		pp1.setReference("pp1");
+		setBlock(32, 24, pp1);
 //		PressurePlateBlock pp2 = new PressurePlateBlock(getCeilingTexture());
 //		pp2.setReference("pp2");
 //		setBlock(33, 21, pp2);
 	}
 
-	public void switchLevel(Entity entity, int id) {
-		if (id == 1) world.switchLevel(entity, "barracks", 2);
-		if (id == 2) world.switchLevel(entity, "barracks", 3);
+	public void switchLevel(Entity entity, String id) {
+		if (id.equals("3414")) world.switchLevel(entity, "barracks", "2426");
+		if (id.equals("1225")) world.switchLevel(entity, "barracks", "0718");
 	}
-
-    public void triggerBlock(int id) {
-
-    }
 
 	public void triggerBlock(String reference) {
 		if (reference.equals("pp0")) {

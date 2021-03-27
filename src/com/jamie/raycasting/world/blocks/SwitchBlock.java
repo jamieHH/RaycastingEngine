@@ -22,12 +22,13 @@ public class SwitchBlock extends FunctionBlock
 	public boolean use(Mob source) {
         trigger();
 
+
 		return true;
 	}
 
     public void trigger() {
         setState(!getState());
-        level.triggerBlock(id);
+        level.triggerBlock(reference);
     }
 
 	public boolean getState() {

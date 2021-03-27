@@ -124,10 +124,6 @@ public abstract class Level
         this.sizeZ = sizeZ;
         this.blocks = new Block[sizeX * sizeZ];
 
-        int switchCount = 1;
-        int levelPortalCount = 1;
-        int triggerBlockCount = 1;
-
         for (int z = 0; z < sizeZ; z++) {
             for (int x = 0; x < sizeX; x++) {
                 int col = pixels[z + x * sizeX] & 0xFFFFFF;
@@ -136,15 +132,11 @@ public abstract class Level
                 }
 
                 Block block = getBlockByColour(col);
-                if (block instanceof SwitchBlock) {
-                    ((SwitchBlock) block).id = switchCount;
-                    switchCount++;
-                } else if (block instanceof LevelPortalBlock) {
-                    ((LevelPortalBlock) block).id = levelPortalCount;
-                    levelPortalCount++;
-                } else if (block instanceof TriggerableBlock) {
-                    ((TriggerableBlock) block).id = triggerBlockCount;
-                    triggerBlockCount++;
+                if (block instanceof FunctionBlock) {
+                    String refX = String.format("%02d", x);
+                    String refZ = String.format("%02d", z);
+                    ((FunctionBlock) block).reference = refZ + refX;
+                    System.out.println(block.getClass().getSimpleName()+ ": " + ((FunctionBlock) block).reference);
                 }
                 setBlock(x, z, block);
             }
@@ -185,17 +177,7 @@ public abstract class Level
         return noOfLifeContainers - getLifeContainers().size();
     }
 
-    public abstract void switchLevel(Entity entity, int id);
-
-    public void triggerBlock(int id) {
-        for (Block block : blocks) {
-            if (block instanceof TriggerableBlock) {
-                if (((TriggerableBlock) block).id == id) {
-                    ((TriggerableBlock) block).trigger();
-                }
-            }
-        }
-    }
+    public abstract void switchLevel(Entity entity, String reference);
 
     public void triggerBlock(String reference) {
         for (Block block : blocks) {
@@ -343,7 +325,7 @@ public abstract class Level
     public Block getBlockByReference(String reference) {
         for (Block block : blocks) {
             if (block instanceof FunctionBlock) {
-                if (((FunctionBlock) block).reference != null && ((FunctionBlock) block).reference.equals(reference)) {
+                if (((FunctionBlock) block).reference.equals(reference)) {
                     return block;
                 }
             }
@@ -352,10 +334,10 @@ public abstract class Level
         return null;
     }
 
-    public LevelPortalBlock getLevelPortalBlockById(int id) {
+    public LevelPortalBlock getLevelPortal(String reference) {
         for (Block block : blocks) {
             if (block instanceof LevelPortalBlock) {
-                if (((LevelPortalBlock) block).id == id) {
+                if (((LevelPortalBlock) block).reference.equals(reference)) {
                     return (LevelPortalBlock) block;
                 }
             }

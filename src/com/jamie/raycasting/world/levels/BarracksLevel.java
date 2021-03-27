@@ -50,20 +50,14 @@ public class BarracksLevel extends Level
 		setBlock(8	,23, db);
 	}
 
-	public void switchLevel(Entity entity, int id) {
-		if (id == 1) world.switchLevel(entity, "castleHall", 2);
-		if (id == 2) world.switchLevel(entity, "armory", 1);
-		if (id == 3) world.switchLevel(entity, "armory", 2);
+	public void switchLevel(Entity entity, String ref) {
+		if (ref.equals("0302")) world.switchLevel(entity, "castleHall", "1306");
+		if (ref.equals("0718")) world.switchLevel(entity, "armory", "1225");
+		if (ref.equals("2426")) world.switchLevel(entity, "armory", "3414");
 	}
 
-    public void triggerBlock(int id) {
-        if (id == 1) super.triggerBlock(3);
-
-    }
-
-	public void triggerBlock(String reference) {
-		if (reference.equals("pressurePad")) {
-			super.setBlockState("door", false);
-		}
+	public void triggerBlock(String ref) {
+		if (ref.equals("0007")) super.triggerBlock("0707");
+		if (ref.equals("pressurePad")) super.setBlockState("door", false);
 	}
 }

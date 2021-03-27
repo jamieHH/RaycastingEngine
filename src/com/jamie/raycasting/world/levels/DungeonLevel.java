@@ -34,13 +34,11 @@ public class DungeonLevel extends Level
 		addEntity(new BouncingEntity(new Sprite(ts0), "N", 0.1, 1),22.5, 40.5);
 	}
 
-	public void switchLevel(Entity entity, int id) {
+	public void switchLevel(Entity entity, String ref) {
 
 	}
 
-	public void triggerBlock(int id) {
-//		if (id == 1) super.triggerBlock(0);
-//		if (id == 1) super.triggerBlock("turret");
-		if (id == 1) super.triggerLogic("timer");
+	public void triggerBlock(String ref) {
+		if (ref.equals("3035")) super.triggerLogic("timer");
 	}
 }

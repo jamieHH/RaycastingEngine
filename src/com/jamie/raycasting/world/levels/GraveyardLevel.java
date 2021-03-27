@@ -63,14 +63,14 @@ public class GraveyardLevel extends Level
 		setBlock(7, 34, sd2o);
 	}
 
-    public void switchLevel(Entity entity, int id) {
-        if (id == 2) world.switchLevel(entity, "island", 1);
+    public void switchLevel(Entity entity, String ref) {
+        if (ref.equals("6007")) world.switchLevel(entity, "island", "1643");
     }
 
-	public void triggerBlock(int id) {
-		if (id == 1) super.triggerBlock("l3Doors");
-		if (id == 2) super.triggerBlock("l2Doors");
-		if (id == 3) super.triggerBlock("l1Doors");
-		if (id == 4) super.triggerBlock("mazeDoor");
+	public void triggerBlock(String ref) {
+		if (ref.equals("3207")) super.triggerBlock("l3Doors");
+		if (ref.equals("3709")) super.triggerBlock("l2Doors");
+		if (ref.equals("4310")) super.triggerBlock("l1Doors");
+		if (ref.equals("4914")) super.triggerBlock("mazeDoor");
 	}
 }

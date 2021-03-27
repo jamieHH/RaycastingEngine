@@ -9,7 +9,6 @@ public abstract class FunctionBlock extends Block
 	public int gridX;
 	public int gridZ;
 	public String reference;
-	public int id;
 
 
 	public void setReference(String reference) {

@@ -21,8 +21,8 @@ public class CastleHallLevel extends Level
         addEntity(d0, 10.5, 6.5);
     }
 
-    public void switchLevel(Entity entity, int id) {
-        if (id == 2) world.switchLevel(entity, "island", 2);
-        if (id == 3) world.switchLevel(entity, "barracks", 1);
+    public void switchLevel(Entity entity, String ref) {
+        if (ref.equals("1010")) world.switchLevel(entity, "island", "2017");
+        if (ref.equals("1306")) world.switchLevel(entity, "barracks", "0302");
     }
 }

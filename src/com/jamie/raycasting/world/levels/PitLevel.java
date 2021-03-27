@@ -32,13 +32,11 @@ public class PitLevel extends Level
         addEntity(new Drop(new MiscItem("Planks", Texture.planksIcon)), 12.5, 29.5);
     }
 
-    public void switchLevel(Entity entity, int id) {
-        if (id == 1) world.switchLevel(entity, "island", 4);
+    public void switchLevel(Entity entity, String ref) {
+        if (ref.equals("2524")) world.switchLevel(entity, "island", "3611");
     }
 
-    public void triggerBlock(int id) {
-        if (id == 2) {
-            super.triggerBlock(0);
-        }
+    public void triggerBlock(String ref) {
+        if (ref.equals("2116")) super.triggerBlock("2114");
     }
 }

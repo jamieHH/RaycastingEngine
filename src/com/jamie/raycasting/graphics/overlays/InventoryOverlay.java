@@ -71,11 +71,11 @@ public class InventoryOverlay extends Overlay
             } else {
                 return "";
             }
-        };
+        }
 
         public Item nextItem() {
             return items.get(0);
-        };
+        }
     }
 
 

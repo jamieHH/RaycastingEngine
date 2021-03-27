@@ -15,7 +15,7 @@ public class TestLevel extends Level
 		addEntity(new Imp(new ArtificialInputHandler()), 30.5, 38.5);
 	}
 
-	public void switchLevel(Entity entity, int id) {
+	public void switchLevel(Entity entity, String reference) {
 
 	}
 }

@@ -23,12 +23,13 @@ public class PrisonLevel extends Level
         addEntity(a0, 16.5, 20.5);
     }
 
-    public void switchLevel(Entity entity, int id) {
-        if (id == 1) world.switchLevel(entity, "sewer", 1);
-        if (id == 2) world.switchLevel(entity, "dungeon", 1);
+    public void switchLevel(Entity entity, String ref) {
+        if (ref.equals("3015")) world.switchLevel(entity, "sewer", "0813");
     }
 
-    public void triggerBlock(int id) {
-        if (id == 1) super.triggerBlock(2);
+    public void triggerBlock(String ref) {
+        if (ref.equals("2513")) {
+            super.triggerBlock("2412");
+        }
     }
 }
