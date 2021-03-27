@@ -81,14 +81,13 @@ public class PauseMenu extends Menu
 
         if (showControls) {
             List<String> lines = Arrays.asList(
-                    "[Arrows,Scroll]: Navigate",
-                    "[Space,Click]:     Action",
-                    "[W,S,A,D]:  Move / Strafe",
-                    "[Arrows]:   Move / Rotate",
-                    "[E]:            Inventory",
-                    "[Esc]:              Pause");
-
-            Bitmap textBox = textBoxTrimmed(lines, width, 0xF0F070, 0x303030);
+                    "Action:         Space   Click",
+                    "Look / Rotate:  Arrows  Mouse",
+                    "Move / Strafe:  W,S,A,D      ",
+                    "Inventory:      E            ",
+                    "Pause:          Esc          "
+            );
+            Bitmap textBox = textBoxSpacedTrimmed(lines, width, 0xF0F070, 0x303030);
             Bitmap tWindow = new Bitmap(textBox.width + 4, textBox.height + 4);
             tWindow.fill(0x101010);
             draw(drawCenter(tWindow, textBox), halfWidth() - tWindow.halfWidth(), halfHeight() - tWindow.halfHeight());

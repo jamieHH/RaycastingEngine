@@ -84,13 +84,12 @@ public class MainMenu extends Menu
 
         if (showControls) {
             List<String> lines = Arrays.asList(
-                    "Navigate:       Arrows  Scroll",
-                    "Action:         Space   Click ",
-                    "Move / Strafe:  W,S,A,D       ",
-                    "Move / Rotate:  Arrows        ",
-                    "Inventory:      E             ",
-                    "Pause:          Esc           ");
-
+                    "Action:         Space   Click",
+                    "Look / Rotate:  Arrows  Mouse",
+                    "Move / Strafe:  W,S,A,D      ",
+                    "Inventory:      E            ",
+                    "Pause:          Esc          "
+            );
             Bitmap textBox = textBoxSpacedTrimmed(lines, width, 0xF0F070, 0x303030);
             Bitmap tWindow = new Bitmap(textBox.width + 4, textBox.height + 4);
             tWindow.fill(0x101010);

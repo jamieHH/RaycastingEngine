@@ -198,7 +198,6 @@ public abstract class Level
     }
 
     public void triggerBlock(String reference) {
-        System.out.println(reference);
         for (Block block : blocks) {
             if (block instanceof TriggerableBlock) {
                 TriggerableBlock tBlock = (TriggerableBlock) block;
